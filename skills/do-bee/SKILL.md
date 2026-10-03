@@ -13,8 +13,9 @@ This skill orchestrates the work for a complete Bee ticket by:
 3. Spawning role subagents to complete the work described in the Epic, sending questions and requests for clarification or guidance to the caller
 4. Finishing Tasks and Epics:
    4.1. After each Task: creating one git commit that includes all changes for that Task, and running the integration suites after a flagged Task
-   4.2. After the Epic's last Task: dispatching one Test Writer to run the integration suites (the Epic is not finished while they fail), then looping 2-4 until all Epics are done
-5. Dispatching reviewer subagents and addressing the issues they find
+   4.2. After the Epic's last Task: dispatching one Test Writer to run the integration suites (the Epic is not finished while they fail)
+   4.3. Recording progress in the Bee's `## do-bee progress` section and stopping, so the next Epic runs in a fresh session
+5. Dispatching reviewer subagents and addressing the issues they find, in a fresh session after the last Epic
 6. Getting User approval
 7. Marking Bee and all child tickets as closed
 8. Outputting a final summary
@@ -29,14 +30,15 @@ Rules that apply to every dispatch in this skill:
 - **Cold start**: subagents are never named, reused, or messaged mid-flight. Every dispatch is a fresh spawn with a self-contained prompt. Dispatch prompts name the relevant ticket IDs; subagents read the tickets from the bees CLI themselves.
 - **Hub-and-spoke**: subagents never talk to each other. The working tree diff plus the returned report is the handoff. You serialize dependent roles and thread each report into the next role's dispatch prompt.
 - **Reconciliation loop**: drive the work event-driven, not as one big blocking turn. Each tick: (1) observe current state — ticket store, working tree, in-flight Agent status; (2) reconcile — dispatch whatever fresh Agent invocations the delta requires; (3) yield the turn. The harness fires a completion notification when each background Agent finishes; that notification triggers the next tick. No polling, no sleep loops, no blocking waits inside a turn.
-- **Compaction recovery**: when a compaction/summarization marker is visible in your conversation, everything before it is non-authoritative. Before dispatching the next tick's work after a compaction, re-read the authoritative sources in full — the bees CLI for ticket state, git for code state, and the filesystem for any state files. Conversation memory is never a substitute for these sources.
+- **Compaction recovery**: when a compaction/summarization marker is visible in your conversation, everything before it is non-authoritative. Before dispatching the next tick's work after a compaction, re-read the authoritative sources in full — the bees CLI for ticket state, git for code state, and the filesystem for any state files. The Bee's `## do-bee progress` section (4.3) is a short guide to these sources, not one of them. Conversation memory is never a substitute for these sources.
+- **One Epic per session**: you cannot clear your own context, so after each Epic you record progress on the Bee and stop (4.3). Whoever drives the session starts a fresh `/do-bee <bee-id>`, which resumes from the Bee (step 1) the same way you recover from a compaction.
 - **Delegate discipline**: you must not do role work yourself. You dispatch subagents, route reports on completion, and commit.
 
 ### 1. Find Bee to work on and validate
 
 The user will either call without arguments, with a Bee id or with an Epic ID:
 - If called without arguments, find all bees for this repo and ask the user which one they want to work on
-- If called with a Bee id, find all Epics in the `pupa` state that are unblocked and ask which one they want to work on
+- If called with a Bee id, find all Epics in the `pupa` state that are unblocked and ask which one they want to work on, unless the Bee has a progress section (see Resume from the progress section)
 - If called with an Epic id, find the Bee that is a parent of that Epic and use that Bee
 
 You will ultimately get the Bee ID you need to work on.
@@ -50,12 +52,17 @@ You should have been launched in a worktree with a name like "b_Wx7" for a bee c
 If you are not launched in such a worktree, use AskUserQuestion to confirm they want to proceed. 
 - Tell them what directory and branch they are on.
 
+#### Resume from the progress section
+If the Bee's body has a `## do-bee progress` section (4.3), this session continues earlier work: do not ask which Epic to work on. Read the section first, then re-read the authoritative sources as in **Compaction recovery** — the bees CLI for ticket state, git for code state. Resume at the section's **Next**: an Epic resumes at step 2, including the reconcile pass; `final Bee review` resumes at step 5. Where ticket state or git disagree with the section, they win (step 2).
+
 ### 2. Find Epic to work on and validate
 
 Find all Epics in the Bee and recommend the best one to work on first:
 - Must have a status of `pupa` or `worker`
 - If it has `up_dependencies` they must be in `finished` state
 - An Epic in `worker` whose Tasks are all `finished` but whose body has no `**Integration Suites**:` result line stopped at the 4.2 gate: resume it at 4.2 step 1.
+- An Epic in `worker` whose body has an `**Integration Suites**:` result line met the 4.2 gate and is done. Epics are marked `finished` only in step 7, so skip it, and count it as `finished` for the `up_dependencies` check and the reconcile pass below.
+- When resuming from the progress section (step 1), start from its **Next** Epic, but ticket state and git are authoritative: if they disagree (e.g. another Epic is in `worker` stopped at the 4.2 gate, or the named Epic is not ready), follow the rules above and correct the section at the next hand-off (4.3).
 - If ANY Epic under the Bee is still `larva`, that is an error — the Bee was handed off before hatching completed. Stop and report it to the caller; do not hatch it yourself and do not execute around it.
 
 
@@ -146,14 +153,14 @@ One of:
 - Final Task of the Epic, moving on to the Epic's integration run
 ```
 
-#### 4.2 Run the Epic's integration suites, then find next Epic or move to Final Review
+#### 4.2 Run the Epic's integration suites
 Once the Epic's last Task is committed, run the integration suites once for the Epic:
 
 1. Dispatch one `apiary-test-writer` as the integration Test Writer, naming the Epic ID (and the flagged Task ID, for a run after a flagged Task). It finds the integration test command (configured in the project's CLAUDE.md, otherwise discovered from the repo's docs or CI config), runs the integration suites, fixes and re-runs failures caused by the tests without editing source, and reports exactly one result: `passed` (or `passed after fixing: <summary>`), `source failures: <list>`, `could not run: <reason>` or `no integration suite found`. You do not run the suites yourself.
 2. Act on the result:
    - `source failures`: dispatch `apiary-engineer` with the failures threaded into its prompt, then re-dispatch the integration Test Writer with the Engineer's report threaded in (it covers the fix in unit tests and runs the full unit suite itself). Repeat, but stop and ask the caller if an Engineer round does not reduce the failures, or after 3 Engineer rounds, whichever comes first.
    - `could not run`: ask the caller straight away; never dispatch the Engineer for it.
-   - After you ask, one of three things happens: the User fixes the environment or gives guidance and you re-run from step 1; the User explicitly waives the gate for this Epic — record the waiver as its result; or execution stops with the Epic left in `worker`.
+   - After you ask, one of three things happens: the User fixes the environment or gives guidance and you re-run from step 1; the User explicitly waives the gate for this Epic — record the waiver as its result; or execution stops with the Epic left in `worker`. That stop is not a 4.3 hand-off: leave the progress section as it is; step 2's gate rule resumes the Epic.
 3. If the integration run changed any files, create one git commit for them. **NEVER push to remote — committing only.**
 4. **Gate**: an Epic is not done until its last integration run reported `passed` or `no integration suite found`, or the User waived the gate (step 2). Until then, never mark it `finished` (wherever that happens, including step 7), start the next Epic or move to Final Review.
 5. Append the result to the Epic ticket's body, for the step 8 summary, and output the summary below to the screen
@@ -169,10 +176,39 @@ append_ticket_body(ticket_id="<epic-id>", chunk="\n\n**Integration Suites**: <re
 **Integration Suites**: [passed | passed after fixing: <summary> | no integration suite found | waived by User: <last result>] (command: <command>, configured or discovered)
 ```
 
-If there are more Epics to work on, continue automatically with the next logical one — it must already be hatched (`pupa` or `worker`, never `larva`); execution never triggers hatching. Clear your context window and go back to step 2, which includes the reconcile pass.
-If not, move to final Bee review.
+Then record progress and stop (4.3).
+
+#### 4.3 Record progress on the Bee and stop
+Only once the Epic has met the 4.2 gate (4.2 step 4) and its result is appended and output (4.2 step 5):
+
+1. Rewrite the Bee's `## do-bee progress` section in full — never append to it, so it stays short:
+
+```markdown
+## do-bee progress
+
+**Epics done**:
+- <epic-id> <epic-title>: commits <sha>, <sha>; status `<status in the ticket store>`; Integration Suites: <result>
+**Next**: <next-epic-id> | all Epics done; next: final Bee review
+**Open decisions/questions**: <list, or "None">
+**Notes for the next session**: <only what the ticket store and git do not already hold, or "None">
+```
+
+   The status is a cross-check against the ticket store: a done Epic stays `worker` until step 7, so its integration result is what marks it done. Pick the next Epic by the step 2 rules; it must already be hatched (`pupa` or `worker`, never `larva`) — execution never triggers hatching.
+2. **Edit only this section; never change any other part of the Bee body.** The bees CLI replaces the whole body, so read the current body (`bees show-ticket --ids <bee-id>`), replace only the section — from its `## do-bee progress` heading up to the next line starting with `## `, or the end of the body; append it at the end if absent — leave every other byte unchanged, and write it back:
+
+```bees
+update_ticket(ticket_id="<bee-id>", body_file="<edited body file>")   # bees update-ticket --ids <bee-id> --body-file <path>
+```
+
+3. Stop. Your final output is exactly one of these lines:
+   - More Epics remain: `do-bee: Epic <epic-id> done. Next: <next-epic-id>. Run /do-bee <bee-id> in a fresh session to continue.`
+   - Last Epic: `do-bee: Epic <epic-id> done. All Epics done. Next: final Bee review. Run /do-bee <bee-id> in a fresh session to continue.`
+
+Whoever drives the session (a human, a loop, or an orchestrator spawning a fresh worker per Epic) starts the fresh session, which resumes from step 1. Stopping is the default. Only if the driver explicitly asks to continue in the same session (sensible only for small Bees), still rewrite the section (4.3 steps 1-2), then go straight on to the next Epic (step 2), or to step 5 after the last, instead of stopping.
 
 ### 5. Final Bee-level Code, Doc and Eng reviews
+
+This step runs in a fresh session, resumed from the Bee's `## do-bee progress` section after the last Epic's hand-off (4.3), unless the driver asked to continue in the same session.
 
 Once all Epics in the Bee are done, dispatch the applicable reviewer subagents as parallel background dispatches (up to three, one per applicable reviewer) in a single reconciliation tick:
 
@@ -187,7 +223,7 @@ Each reviewer subagent invokes its corresponding review skill (/code-review, /te
     - **IMPORTANT** Do not do the work yourself — dispatch, route reports, and commit.
     - If the feedback was minor enough, you may choose to **NOT** dispatch the Product Manager on this iteration 
     - Dispatch any role subagents required to do the work you deem necessary from the reviewer findings, keeping the fix-up lean and in the same order as the initial pass: code findings to the Engineer, then the test findings to Test Writers per step 3 (lanes by your judgement, plus the final Test Writer when more than one lane runs), then all doc findings batched into a single Doc Writer. Dispatch each role after the previous role's fix-up completes, with the earlier fix-up reports threaded into its prompt; skip any role with no findings and no upstream changes to follow.
-    - If the fix-ups changed source code or integration tests, run the integration loop (4.2 steps 1-3) once after they settle, before step 6, naming the Bee ID (all its Epics) instead of an Epic ID, and append its result to the Bee ticket's body as in 4.2 step 5; the 4.2 gate still applies when the Epics are marked `finished` in step 7.
+    - If the fix-ups changed source code or integration tests, run the integration loop (4.2 steps 1-3) once after they settle, before step 6, naming the Bee ID (all its Epics) instead of an Epic ID, and record its result as a `**Post-review Integration Suites**: <result>` line in the Bee's `## do-bee progress` section (rewritten as in 4.3 step 2, never appended to the Bee body); the 4.2 gate still applies when the Epics are marked `finished` in step 7.
   - If not, move on to Final Review but you MUST share the ignored feedback for review
   - Note: This could create an infinite loop so you may ignore feedback so long as you present it in Final Review
 
@@ -214,7 +250,9 @@ Once the user approves the Bee as finished:
 update_ticket(ticket_id="<epic-id>", status="finished")
 ```
 
-2. Verify all Epics are now `finished`, then mark the Bee itself:
+2. Rewrite the Bee's `## do-bee progress` section once more (as in 4.3 step 2) as a short final summary: the Epics and their commits, the final review outcome (including any post-review integration result), and `**Next**: none — Bee finished`.
+
+3. Verify all Epics are now `finished`, then mark the Bee itself:
 ```bees
 update_ticket(ticket_id="<bee-id>", status="finished")
 ```
@@ -227,7 +265,7 @@ update_ticket(ticket_id="<bee-id>", status="finished")
 **Bee ID**: <bee-id>
 **Epics Completed**: [count]
 **Tasks Completed**: [count]
-**Integration Suites**: [one line per Epic: <epic-id>: <result recorded in its body>; plus the post-review run's result from the Bee's body, if one ran]
+**Integration Suites**: [one line per Epic: <epic-id>: <result recorded in its body>; plus the post-review run's result from the Bee's `## do-bee progress` section, if one ran]
 **Bee Status**: Finished
 
 All work has been synced to git.

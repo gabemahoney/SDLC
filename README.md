@@ -57,6 +57,7 @@ The plan will be stored as a bee in the Plans Hive.
 
 ### Do Bee
 Run `/do-bee` with the Feature bee to build the feature.
+It builds one Epic per session: after each Epic it records progress in the Bee's `## do-bee progress` section and stops with a next-step line. Re-run `/do-bee <bee-id>` in a fresh session to continue; the final reviews also run in a fresh session.
 It will spawn a full set of role subagents via the Agent tool to do the work.
 Within each Task the roles run in order: the Engineer, then one or more Test Writer lanes in parallel, with no upper limit (starting from the lanes suggested for the Task at planning time, which `/do-bee` may adjust to the actual change), then the Doc Writer once code and tests have settled. Doc rework from reviews is batched into one pass per review round.
 The final (or only) Test Writer of each pass runs the full unit suite once. An integration Test Writer runs the integration suites at the end of each Epic, after any Task flagged at planning time as an interface change, and after final-review fix-ups that touch source code or integration tests. An Epic is not finished while they fail unless the User waives it; `/do-bee` stops and asks if they cannot run, or if a source-fix round does not reduce the failures or 3 rounds pass. No other role runs a full suite.
