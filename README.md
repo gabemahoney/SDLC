@@ -66,7 +66,15 @@ The final (or only) Test Writer of each pass runs the full unit suite once. An i
 > - Run your own tests
 > - Run `/teardown-worktree` to merge back to main
 >
+> With `--no-questions`, or when run as an agent-director worker, `/do-bee` never uses AskUserQuestion, even when launched outside a worktree. Wherever it would ask, it stops with a `do-bee: needs input:` line for its driver to answer.
+>
 > Orchestrator bots can run both worktree skills without questions (`--no-questions`), create or merge the worktree only and launch their own worker (`--worktree-only`), and pick the branch to start from (`--base`) and merge into (`--target`), e.g. one branch per Epic merged into a feature branch. Without `--worktree-only`, `/configure-worktree` launches the worker through agent-director. Each skill's Arguments table has the details.
+
+### Run Lanes
+Run `/run-lanes` with the Feature bee to build its independent Epics in parallel instead of one at a time.
+It creates a feature branch for the Bee in its own worktree. Each Epic that is ready and touches different files from the running ones (going by its Subtasks' Key Files) gets an Epic lane: its own worktree and branch from the feature branch, with a `/do-bee <epic-id> --lane` worker launched through agent-director.
+Finished lanes are merged into the feature branch one at a time. After each merge, a post-merge Test Writer reruns the full unit suite and the integration suites on the feature branch, and an Engineer fixes failures where the merged work does not fit together.
+It never asks questions: a merge conflict, a failing retest or a stuck Bee stops it with a report. Each run is one pass. Run it again whenever a lane worker finishes, until every Epic is merged; then run `/do-bee` in the feature worktree for the final review and `/teardown-worktree` to merge the feature branch.
 
 ### Fix Bug
 You can tell your LLM to file a bug in the Bugs Hive, no skill needed.

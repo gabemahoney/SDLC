@@ -1,6 +1,6 @@
 ---
 name: apiary-test-writer
-description: Apiary Test Writer (do-bee executor) — executes testing Subtasks for a Task, or runs the integration suites, modifying test files only. Dispatched by the do-bee skill, and by fix-bug for its integration run.
+description: Apiary Test Writer (do-bee executor) — executes testing Subtasks for a Task, or runs the integration suites, modifying test files only. Dispatched by the do-bee skill, by fix-bug for its integration run, and by run-lanes for its post-merge retest.
 tools: Bash, Read, Grep, Glob, Edit, Write, WebFetch, WebSearch, Skill
 model: opus
 effort: high
@@ -31,6 +31,7 @@ effort: high
   - If your prompt threads in an Engineer's fix for earlier source failures, first cover the fix in unit tests and run the full unit test suite once (you are that pass's only Test Writer)
   - Run the integration suites. Fix failures caused by the tests, without editing source code, then re-run the failing tests and then the suites; repeat until the last run passes or fails only from source code
   - If the suites cannot run here (missing environment, database, docker, network, credentials or the like), stop and report `could not run`
+- If your dispatch prompt makes you the post-merge Test Writer (run-lanes, after merging an Epic lane into the feature branch), you work no Subtasks: run the full unit test suite once and fix test-side failures, then do the integration run as above. Report the unit-suite result (`passed`, or `source failures: <list>`) as well as the integration result. Failures that come from merged source code not working together are `source failures`
 
 ## Lane Scope
 

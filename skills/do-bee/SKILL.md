@@ -34,12 +34,22 @@ Rules that apply to every dispatch in this skill:
 - **One Epic per session**: you cannot clear your own context, so after each Epic you record progress on the Bee and stop (4.3). Whoever drives the session starts a fresh `/do-bee <bee-id>`, which resumes from the Bee (step 1) the same way you recover from a compaction.
 - **Delegate discipline**: you must not do role work yourself. You dispatch subagents, route reports on completion, and commit.
 
+### Modes
+
+- **No-questions mode**: on when you are given `--no-questions` or `--lane`, or when you run as an agent-director worker (`AGENT_DIRECTOR_INSTANCE_ID` is set in your environment; such workers usually cannot use AskUserQuestion). In this mode never use AskUserQuestion. Wherever this skill asks the User or the caller — with AskUserQuestion or in plain text — stop instead. Put what you know in your output, end it with exactly one line `do-bee: needs input: <question, with the options>`, and end your turn. The driver answers in this session, or starts a fresh session and gives the answer in plain words alongside the ID (e.g. `/do-bee b.xxx signed off`).
+- **Lane mode** (`/do-bee <epic-id> --lane`): you are one Epic lane of a `/run-lanes` run, working in that Epic's own worktree while other lanes work on other Epics of the same Bee. Lane mode implies no-questions mode and changes these steps:
+  - Step 1: work only the named Epic; never pick another. The Bee's `## do-bee progress` section belongs to `/run-lanes`: never resume from it or write it, and never edit any other part of the Bee body.
+  - Validate worktree: you must be in the Epic's lane worktree, named after the normalized Epic ID (e.g. `t1_xxx_ab` for `t1.xxx.ab`), on the branch of the same name. If not, stop with a needs-input line.
+  - Step 2 reconcile: do steps 1–2 for your own Epic only. Skip step 3 (downstream Epics): other lanes may be working on them, and each Epic gets its own reconcile pass when its lane starts.
+  - 4.3: skip steps 1–2. Stop with exactly this line: `do-bee: Epic <epic-id> done in lane <worktree path>. Next: run /run-lanes <bee-id> to merge it.`
+  - Never go on to step 5 or later; those run after `/run-lanes` merges every lane.
+
 ### 1. Find Bee to work on and validate
 
 The user will either call without arguments, with a Bee id or with an Epic ID:
 - If called without arguments, find all bees for this repo and ask the user which one they want to work on
-- If called with a Bee id, find all Epics in the `pupa` state that are unblocked and ask which one they want to work on, unless the Bee has a progress section (see Resume from the progress section)
-- If called with an Epic id, find the Bee that is a parent of that Epic and use that Bee
+- If called with a Bee id, find all Epics in the `pupa` state that are unblocked and ask which one they want to work on, unless the Bee has a progress section (see Resume from the progress section). In no-questions mode, do not ask: take the Epic step 2 recommends.
+- If called with an Epic id, find the Bee that is a parent of that Epic and use that Bee (in lane mode, work only that Epic)
 
 You will ultimately get the Bee ID you need to work on.
 Validate it is ready for work:
@@ -48,12 +58,14 @@ Validate it is ready for work:
 - All child Epics must be `pupa` or later — none `larva`. A `larva` Epic means hatching is incomplete: stop and tell the caller to finish `hatch-epic` for every remaining `larva` Epic under this Bee. Never hatch Epics yourself; never execute a partially hatched Bee.
 
 #### Validate worktree
-You should have been launched in a worktree with a name like "b_Wx7" for a bee called "b.Wx7".
-If you are not launched in such a worktree, use AskUserQuestion to confirm they want to proceed. 
-- Tell them what directory and branch they are on.
+You should have been launched in a worktree with a name like "b_Wx7" for a bee called "b.Wx7". After a `/run-lanes` run, this is the feature worktree it created. Lane mode has its own check (see Modes).
+If you are not launched in such a worktree:
+- In no-questions mode, do not ask: carry on in the current checkout, and state its directory and branch in your first output so the driver can see where the commits land.
+- Otherwise use AskUserQuestion to confirm they want to proceed. Tell them what directory and branch they are on.
 
 #### Resume from the progress section
-If the Bee's body has a `## do-bee progress` section (4.3), this session continues earlier work: do not ask which Epic to work on. Read the section first, then re-read the authoritative sources as in **Compaction recovery** — the bees CLI for ticket state, git for code state. Resume at the section's **Next**: an Epic resumes at step 2, including the reconcile pass; `final Bee review` resumes at step 5. Where ticket state or git disagree with the section, they win (step 2).
+If the Bee's body has a `## do-bee progress` section (4.3), this session continues earlier work: do not ask which Epic to work on. Read the section first, then re-read the authoritative sources as in **Compaction recovery** — the bees CLI for ticket state, git for code state. Resume at the section's **Next**: an Epic resumes at step 2, including the reconcile pass; `final Bee review` resumes at step 5; `User sign-off` resumes at step 6, using any answer given alongside the ID. Where ticket state or git disagree with the section, they win (step 2).
+If **Next** is `run-lanes`, the Bee's Epics are being built in Epic lanes by `/run-lanes`, which owns the section until every lane is merged. Start no Epic; stop with exactly this line: `do-bee: Bee <bee-id> is running in Epic lanes. Next: run /run-lanes <bee-id>.`
 
 ### 2. Find Epic to work on and validate
 
@@ -204,7 +216,7 @@ update_ticket(ticket_id="<bee-id>", body_file="<edited body file>")   # bees upd
    - More Epics remain: `do-bee: Epic <epic-id> done. Next: <next-epic-id>. Run /do-bee <bee-id> in a fresh session to continue.`
    - Last Epic: `do-bee: Epic <epic-id> done. All Epics done. Next: final Bee review. Run /do-bee <bee-id> in a fresh session to continue.`
 
-Whoever drives the session (a human, a loop, or an orchestrator spawning a fresh worker per Epic) starts the fresh session, which resumes from step 1. Stopping is the default. Only if the driver explicitly asks to continue in the same session (sensible only for small Bees), still rewrite the section (4.3 steps 1-2), then go straight on to the next Epic (step 2), or to step 5 after the last, instead of stopping.
+Whoever drives the session (a human, a loop, or an orchestrator spawning a fresh worker per Epic) starts the fresh session, which resumes from step 1. To build independent Epics side by side instead, the driver uses `/run-lanes`, which runs each Epic as `/do-bee <epic-id> --lane` (see Modes). Stopping is the default. Only if the driver explicitly asks to continue in the same session (sensible only for small Bees), still rewrite the section (4.3 steps 1-2), then go straight on to the next Epic (step 2), or to step 5 after the last, instead of stopping.
 
 ### 5. Final Bee-level Code, Doc and Eng reviews
 
@@ -241,6 +253,8 @@ Then use `AskUserQuestion` with:
   - "Yes, mark as finished"
   - "No, we have more work to do"
 
+In no-questions mode these three questions become one stop. Output the ignored feedback and the Acceptance Criteria evidence and instructions. Rewrite the Bee's `## do-bee progress` section (as in 4.3 step 2) with `**Next**: User sign-off` and the ignored feedback under **Open decisions/questions**. Then end with `do-bee: needs input: act on any ignored feedback (list which), sign off the Acceptance Criteria, and mark Bee <bee-id> finished? Reply "signed off" or say what to change.` If the answer asks for work, do it as in step 5 and come back here. If the User signs off, go to step 7.
+
 ### 7. Mark Bee Complete
 
 Once the user approves the Bee as finished:
@@ -273,4 +287,9 @@ All work has been synced to git.
 
 ### 9. Further testing and merging
 
-Instruct the user to perform whatever further testing they want to do, then invoke the `teardown_worktree` skill to merge and teardown the worktree
+Never tear down the worktree yourself: you run inside it.
+
+- **In a worktree** (including the feature worktree of a `/run-lanes` run): tell the caller to do whatever further testing they want, then merge the branch and remove the worktree with `teardown_worktree` from outside it. Your final output ends with exactly this line:
+  `do-bee: Bee <bee-id> finished on branch <branch>. Next: test it, then run /teardown_worktree <bee-id> from outside <worktree path>.`
+  For a `/run-lanes` run, add ` --target <base>` after the Bee ID, with the base from the progress section's **Feature branch** line. Otherwise the target is the branch of the checkout teardown runs in. In no-questions mode, also add ` --no-questions`.
+- **Not in a worktree**: the commits are already on the current branch; there is nothing to merge. End with `do-bee: Bee <bee-id> finished on branch <branch>.`
