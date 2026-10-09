@@ -65,6 +65,8 @@ The final (or only) Test Writer of each pass runs the full unit suite once. An i
 > - Run `/configure-worktree` first to do the work in an isolated worktree
 > - Run your own tests
 > - Run `/teardown-worktree` to merge back to main
+>
+> Orchestrator bots can run both worktree skills without questions (`--no-questions`), create or merge the worktree only and launch their own worker (`--worktree-only`), and pick the branch to start from (`--base`) and merge into (`--target`), e.g. one branch per Epic merged into a feature branch. Without `--worktree-only`, `/configure-worktree` launches the worker through agent-director. Each skill's Arguments table has the details.
 
 ### Fix Bug
 You can tell your LLM to file a bug in the Bugs Hive, no skill needed.

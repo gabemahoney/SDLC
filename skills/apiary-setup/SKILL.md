@@ -68,7 +68,7 @@ If all 18 are present, report success and move on. If any are missing, report th
 
 #### 3. tmux (required for worktree skills)
 
-The `configure_worktree` and `teardown_worktree` skills launch and manage Claude Code sessions in tmux and hard-depend on it. Check if tmux is installed (`which tmux`). If not, direct the user to install it via their system package manager (e.g. `apt install tmux`, `brew install tmux`).
+The `configure_worktree` and `teardown_worktree` skills launch and stop Claude Code workers through agent-director, which runs them in tmux. Check if tmux is installed (`which tmux`). If not, direct the user to install it via their system package manager (e.g. `apt install tmux`, `brew install tmux`). Their worktree-only mode needs neither tmux nor agent-director.
 
 #### 4. Repository Directory Structure
 

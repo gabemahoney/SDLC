@@ -71,7 +71,7 @@ if [ -f "{repo_root}/auto_approve.sh" ]; then
 fi
 ```
 
-Call the resulting path `{worktree_path}` (`{repo_root}/../{normalized_bug_id}`). Do **not** spawn a tmux/waggle session — fix-bug runs as the calling agent in the main repo's session and only needs the worktree itself.
+Call the resulting path `{worktree_path}` (`{repo_root}/../{normalized_bug_id}`). Do **not** launch a worker session — fix-bug runs as the calling agent in the main repo's session and only needs the worktree itself.
 
 ### 3. Dispatch Subagents to Fix Bug
 
