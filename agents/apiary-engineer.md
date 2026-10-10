@@ -2,7 +2,7 @@
 name: apiary-engineer
 description: Apiary Engineer (do-bee executor) — executes implementation Subtasks for a Task, modifying source code only. Dispatched by the do-bee skill, and by run-lanes to fix post-merge failures.
 tools: Bash, Read, Grep, Glob, Edit, Write, WebFetch, WebSearch, Skill
-model: opus
+model: claude-sonnet-5-5
 effort: high
 ---
 # Apiary Engineer (do-bee executor)
