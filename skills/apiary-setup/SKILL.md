@@ -6,19 +6,23 @@ description: Configure hives for Apiary workflow
 ## Overview
 
 This skill should be run once to configure a repo for the Apiary workflow. It can also be run to fix hives that
-have gotten misconfigured.
+have gotten misconfigured, or to migrate hives still on old status values.
 
 ## Valid configuration
 
-The repo must have the following hives available and configured with these child tiers and valid status values:
+The repo must have the following hives available and configured with these child tiers and valid status values.
+
+Every hive uses the same four status values, and no others: `larva`, `pupa`, `worker`, `finished`. A board can then show every hive the same way. What each value means in each hive is listed below.
 
 ### Bugs Hive
 Child tiers:
 none
 
 Status values:
-- open — open bug
-- finished — done
+- larva — filed, not yet validated
+- pupa — confirmed real, not yet being fixed
+- worker — being fixed
+- finished — fixed and merged, or closed as invalid (tagged `invalid`)
 
 ### Ideas Hive
 Child tiers:
@@ -51,11 +55,12 @@ Child tiers:
 - t1 — Report / Reports
 
 Status values:
-- new — filed, work not started
-- active — in review rounds
-- completed — accepted; kept, never archived
+- larva — not used by `research`: a question is ready as soon as it is written
+- pupa — filed with its question, ready to work
+- worker — in review rounds
+- finished — accepted; kept, never archived
 
-The Research hive must never be swept by the undertaker: it must not have an `undertaker_schedule`.
+The Research hive must never be swept by the undertaker: it must not have an `undertaker_schedule`. Accepted research sits in `finished` like done tickets in every other hive, so an undertaker pointed at the Research hive by mistake would archive it.
 
 ## Instructions
 
@@ -134,10 +139,36 @@ If any hives are missing:
 If a hive exists:
 - Validate its child tiers and status values.
 - If they differ from above, ask user if you may change them to the values listed above.
+- If the hive still has old status values (Bugs with `open`; Research with `new`, `active` or `completed`), make the change with the migration below, never with a single `set_status_values` call.
+
+#### Migrating hives on old status values
+
+Older setups gave Bugs `open` and `finished`, and Research `new`, `active` and `completed`. Move such a hive to the four values in this order, with the CWD requirement above:
+
+1. **Add the new values alongside the old ones.** Set the hive's status values to larva, pupa, worker and finished plus its old values, e.g.:
+   ```bash
+   bees set-status-values --scope hive --hive bugs --status-values '["larva","pupa","worker","finished","open"]'
+   ```
+2. **Rename the tickets.** For each old value, find its tickets and move them in one batch:
+   ```bash
+   bees execute-freeform-query --query-yaml 'stages:
+     - [hive=bugs, status=open]'
+   bees update-ticket --ids <id1> <id2> ... --status pupa --hive bugs
+   ```
+   - Bugs: `open` → `pupa` (already filed and treated as real)
+   - Research: `new` → `pupa`, `active` → `worker`, `completed` → `finished`. The query also returns Report children (t1), so they move with their Bees.
+
+   Use the hive's normalized name from `bees list-hives` (e.g. `bugs`) in queries: a display name like `Bugs` matches nothing.
+3. **Remove the old values.** Query each old value again. If any ticket still holds one, stop: leave the old values in place and report those tickets. Otherwise set the status values to exactly `["larva","pupa","worker","finished"]` and run `bees sanitize-hive` on the hive.
+4. **Report** for each hive the tickets renamed per old → new value, and any left over.
+
+Never delete a ticket during the migration.
+
+The order matters. Bees checks a ticket's status against the hive's configured values when the ticket is written, so a rename to a value the hive does not have yet fails. It does not recheck existing tickets when the values change, but `sanitize-hive` flags any ticket whose status is not in the list. Adding first and removing last means no ticket ever holds an invalid status.
 
 #### Research hive: no undertaker schedule
 
-Bees has no command that shows undertaker schedules, so read `~/.bees/config.json` (read only) and find the Research hive's entry under this project's scope. If it has an `undertaker_schedule`, warn the user that completed research would be archived to the cemetery, and tell them to remove that block and restart the bees MCP server. Do not edit the file yourself.
+Bees has no command that shows undertaker schedules, so read `~/.bees/config.json` (read only) and find the Research hive's entry under this project's scope. If it has an `undertaker_schedule`, warn the user that finished research would be archived to the cemetery, and tell them to remove that block and restart the bees MCP server. Do not edit the file yourself. This matters more now that Research uses `finished` like every other hive: a sweep meant for another hive is easy to point at it by mistake.
 
 ### Documentation Locations
 

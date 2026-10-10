@@ -23,21 +23,21 @@ This skill does **not** define how the research is done. Use whatever methods th
 
 The Research hive must exist with:
 - Child tiers: t1 — Report / Reports
-- Status values: `new`, `active`, `completed`
+- Status values: `larva`, `pupa`, `worker`, `finished` (the same four as every Apiary hive)
 
-If it is missing or configured differently, tell the user to run `/apiary-setup` and stop. Do not create or reconfigure the hive yourself.
+If it is missing or configured differently (e.g. it still has the old `new`, `active` and `completed`), tell the user to run `/apiary-setup`, which migrates the hive, and stop. Do not create or reconfigure the hive yourself.
 
 ## States
 
 | Status | Meaning | Next |
 |---|---|---|
-| `new` | Filed with its question; work not started. | `active` when work starts |
-| `active` | Work in review rounds: findings are presented, the reviewer accepts or asks for more. | `completed` when the reviewer accepts |
-| `completed` | Accepted. The Bee and its Report are kept as the record. | `active` only if a reviewer asks for more work |
+| `pupa` | Filed with its question, ready to work. A question is ready as soon as it is written, so a Research Bee is never `larva`. | `worker` when work starts |
+| `worker` | Work in review rounds: findings are presented, the reviewer accepts or asks for more. | `finished` when the reviewer accepts |
+| `finished` | Accepted. The Bee and its Report are kept as the record. | `worker` only if a reviewer asks for more work |
 
-The Report child uses the same status values: `active` while the Bee is `active`, `completed` when the Bee is.
+The Report child uses the same status values: `worker` while the Bee is `worker`, `finished` when the Bee is.
 
-**Completed research is never archived.** Never run `bees undertaker` on the Research hive, and never give it an `undertaker_schedule` in `~/.bees/config.json`. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe.
+**Finished research is never archived.** Never run `bees undertaker` on the Research hive, and never give it an `undertaker_schedule` in `~/.bees/config.json`. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe. Research uses `finished` like every other hive, so check which hive a sweep is pointed at.
 
 ## The reviewer
 
@@ -85,16 +85,16 @@ Put bulky raw material in artifacts, not in the Report body.
 
 ## Steps
 
-### 1. File (`new`)
+### 1. File (`pupa`)
 
 For `/research "<question>"`:
-1. Create a Bee in the Research hive with a short title, status `new`, and the Question and Scope sections (Review rounds empty).
+1. Create a Bee in the Research hive with a short title, status `pupa`, and the Question and Scope sections (Review rounds empty).
 2. Go to step 2, unless the caller asked only to file it; then report the Bee ID and stop.
 
-### 2. Start (`new` → `active`)
+### 2. Start (`pupa` → `worker`)
 
-1. Set the Bee to `active`.
-2. Create the Report child (t1), status `active`, with a placeholder body.
+1. Set the Bee to `worker`.
+2. Create the Report child (t1), status `worker`, with a placeholder body.
 3. Create the `artifacts/` folder if this research will have artifacts.
 
 ### 3. Work round
@@ -115,17 +115,17 @@ Add **Reviewer** and **Verdict** to the round. Record the request verbatim.
 - More work → step 3 with the request.
 - Accepted → step 6.
 
-### 6. Complete (`active` → `completed`)
+### 6. Complete (`worker` → `finished`)
 
 1. Check the Report meets the bar above (summary first, citations, references, artifact links).
-2. Set the Report and the Bee to `completed`.
+2. Set the Report and the Bee to `finished`.
 3. Report the Bee ID, the Report ID and the one-line answer.
 
 ### Continuing a Bee (`/research <bee-id>`)
 
 Read the Bee and its Report, then by status:
-- `new` → step 2.
-- `active`, latest round awaiting review → with a verdict given after the ID, step 5; otherwise step 4 (present it again).
-- `active`, latest verdict is more work → step 3.
-- `completed` → report that it is complete, with the Report ID. Reopen it only if a reviewer asks for more work now: set the Bee and Report to `active`, start a new round with that request as its input, and go to step 3. If it is unclear whether they want it reopened, ask (no-questions mode: `research: needs input: <bee-id> is completed — reopen it for more work? Say what to do`).
-- Any other status → stop and report it; do not guess.
+- `pupa` → step 2.
+- `worker`, latest round awaiting review → with a verdict given after the ID, step 5; otherwise step 4 (present it again).
+- `worker`, latest verdict is more work → step 3.
+- `finished` → report that it is finished, with the Report ID. Reopen it only if a reviewer asks for more work now: set the Bee and Report to `worker`, start a new round with that request as its input, and go to step 3. If it is unclear whether they want it reopened, ask (no-questions mode: `research: needs input: <bee-id> is finished — reopen it for more work? Say what to do`).
+- Any other status → stop and report it; do not guess. An old value (`new`, `active` or `completed`) means the hive needs `/apiary-setup` to migrate it.
