@@ -51,6 +51,7 @@ The dispatch prompt must contain:
 - The Idea Bee ID
 - The Plans hive name
 - The repository path to explore
+- An instruction to read the doc writing guide referenced in the repo's CLAUDE.md under "Documentation Locations", and plan no doc work it doesn't allow
 - Any architectural decisions or constraints from your conversation with the user — use the user's exact specification, do not paraphrase
 
 The subagent reads the requirements documents, explores the repo, creates the Plan Bee (with `up_deps` and `reference_materials` pointing at the Idea Bee) and its Epics in the Plans hive, sets up dependencies and statuses (Plan Bee `defined`, Epics `draft`), and returns a report.

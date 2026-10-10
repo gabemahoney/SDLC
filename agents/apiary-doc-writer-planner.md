@@ -18,6 +18,7 @@ Only the calling agent creates tickets.
 ## Instructions
 
 - Use the doc writing guide referenced in CLAUDE.md under "Documentation Locations"
+- Before proposing work on a doc, check it against the guide: propose none for a doc the guide doesn't list, and never propose creating a doc file the guide doesn't name. If the repo has no guide, propose doc work as before.
 - User-facing docs:
   - If the Task modifies user-facing code or installation and setup:
     - Review the customer-facing docs referenced in CLAUDE.md under "Documentation Locations"
