@@ -1,6 +1,6 @@
 ---
 name: doc-review
-description: Review documentation completeness after task completes. Checks user-facing docs updated (the README or the repo's named docs/ files, per its doc-writing guide) and master_plan.md updated with new functionality. Returns structured list of documentation work items.
+description: Review documentation completeness after task completes. Checks user-facing docs updated (the README or the repo's named docs/ files, per its doc-writing guide) and architecture docs updated (the repo's named architecture docs per its doc-writing guide, else master_plan.md) with new functionality. Returns structured list of documentation work items.
 ---
 
 ## Overview
@@ -24,6 +24,9 @@ User-facing docs are for human users to understand how to install and run the pr
 - No discussion of security implications or requirements
 - Keep it short and simple - focused on how to install and how to use
 - Don't describe how to use common tools (like screen, poetry, bash etc)
+### Architecture docs
+Check: architecture docs updated (the repo's named architecture docs per its doc-writing guide, else master_plan.md).
+The repo's doc-writing guide (CLAUDE.md "Documentation Locations", "Internal architecture docs") names the architecture docs; master_plan.md is the fallback when the repo has no guide.
 Architecture docs are for LLM codegen agents as a "cheat sheet" to understand the code base without reading all of it
 - Dont brag about or rationalize the code
   - No performance details
@@ -54,7 +57,7 @@ Review all commits and changed files to understand the scope of work: new featur
 
 ### 2. Review Current Documentation
 
-Read the user-facing docs (where the repo's doc-writing guide puts them; README.md if it has none) and Architecture docs to understand current state.
+Read the user-facing docs (where the repo's doc-writing guide puts them; README.md if it has none) and Architecture docs (the ones its guide names; master_plan.md if it has none) to understand current state.
 
 ### 3. Find Documentation Gaps
 
@@ -81,7 +84,7 @@ Look for docs that are now incorrect: outdated commands, deprecated features sti
 - Look for sections of the doc that are too verbose and recommend ways to compact them without losing meaning
 - Ensure docs serve the right purpose:
   - User-facing docs are a user manual
-  - master_plan.md is a cheat sheet for LLMs to understand the architecture and core technology
+  - Architecture docs are a cheat sheet for LLMs to understand the architecture and core technology
 
 ### 6. Output Work Items
 
@@ -99,7 +102,7 @@ Or if no issues:
 ```markdown
 ## Documentation Review Work Items
 
-No documentation issues found. User-facing docs and master_plan.md are up to date!
+No documentation issues found. User-facing docs and architecture docs are up to date!
 ```
 
 NOTE: It is OK to return "no issues found". Only return issues if they are very important. 
