@@ -18,7 +18,7 @@ Only the calling agent creates tickets.
 ## Instructions
 
 - Use the doc writing guide referenced in CLAUDE.md under "Documentation Locations"
-- Readme:
+- User-facing docs:
   - If the Task modifies user-facing code or installation and setup:
     - Review the customer-facing docs referenced in CLAUDE.md under "Documentation Locations"
     - Write a subtask describing how the customer-facing docs should be updated based on the work done in this Task

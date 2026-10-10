@@ -1,24 +1,26 @@
 ---
 name: doc-review
-description: Review documentation completeness after task completes. Checks README and master_plan.md are updated with new functionality. Returns structured list of documentation work items.
+description: Review documentation completeness after task completes. Checks user-facing docs updated (the README or the repo's named docs/ files, per its doc-writing guide) and master_plan.md updated with new functionality. Returns structured list of documentation work items.
 ---
 
 ## Overview
 
-Review documentation completeness after Task completion. Verify README and any architecture documents.
+Review documentation completeness after Task completion. Verify user-facing docs and any architecture documents.
 Concise is better than verbose. Value brevity.
-The ReadMe is for human users that want to use the program.
+User-facing docs are for human users that want to use the program.
 Architecture docs should contain high level architecture and architecture and core technology.
 
 ## Mission
 
 Analyze what changed, compare against current docs, return list of specific documentation gaps.
 
-### Readme
-Readme is for human users to understand how to install and run the project
+### User-facing docs
+Check: user-facing docs updated (the README or the repo's named docs/ files, per its doc-writing guide).
+The repo's doc-writing guide (CLAUDE.md "Documentation Locations") decides where docs go; the README is the fallback when the repo has no guide.
+User-facing docs are for human users to understand how to install and run the project
 - No implementation details
 - No testing or unit testing details
-  - This is IMPORTANT. Seriously. Don't talk about how to test the product in the Readme. 
+  - This is IMPORTANT. Seriously. Don't talk about how to test the product in the user-facing docs. 
 - No discussion of security implications or requirements
 - Keep it short and simple - focused on how to install and how to use
 - Don't describe how to use common tools (like screen, poetry, bash etc)
@@ -52,11 +54,11 @@ Review all commits and changed files to understand the scope of work: new featur
 
 ### 2. Review Current Documentation
 
-Read README.md and Architecture docs to understand current state.
+Read the user-facing docs (where the repo's doc-writing guide puts them; README.md if it has none) and Architecture docs to understand current state.
 
 ### 3. Find Documentation Gaps
 
-**README.md** (user-focused, concise):
+**User-facing docs** (user-focused, concise):
 - Install instructions correct?
 - Updated setup/dependencies?
 - Is the list of MCP server commands correct
@@ -78,7 +80,7 @@ Look for docs that are now incorrect: outdated commands, deprecated features sti
 - Look for sections of the docs that repeat information and suggest removing them.
 - Look for sections of the doc that are too verbose and recommend ways to compact them without losing meaning
 - Ensure docs serve the right purpose:
-  - Readme is a user manual
+  - User-facing docs are a user manual
   - master_plan.md is a cheat sheet for LLMs to understand the architecture and core technology
 
 ### 6. Output Work Items
@@ -97,14 +99,14 @@ Or if no issues:
 ```markdown
 ## Documentation Review Work Items
 
-No documentation issues found. README and master_plan.md are up to date!
+No documentation issues found. User-facing docs and master_plan.md are up to date!
 ```
 
 NOTE: It is OK to return "no issues found". Only return issues if they are very important. 
 In fact, if you never return "no issues found" the workflow will go into an infinite loop which is very bad!
 **Important**
 - Docs are wrong
-- Readme is missing information the user needs to use the app
+- User-facing docs are missing information the user needs to use the app
 **Not Important**
 - Formatting issues
 - Grammar
