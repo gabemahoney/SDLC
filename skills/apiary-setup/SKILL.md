@@ -44,6 +44,19 @@ Status values:
 - worker — in progress
 - finished — done
 
+### Research Hive
+Used by the `research` skill.
+
+Child tiers:
+- t1 — Report / Reports
+
+Status values:
+- new — filed, work not started
+- active — in review rounds
+- completed — accepted; kept, never archived
+
+The Research hive must never be swept by the undertaker: it must not have an `undertaker_schedule`.
+
 ## Instructions
 
 ### Prerequisites
@@ -121,6 +134,10 @@ If any hives are missing:
 If a hive exists:
 - Validate its child tiers and status values.
 - If they differ from above, ask user if you may change them to the values listed above.
+
+#### Research hive: no undertaker schedule
+
+Bees has no command that shows undertaker schedules, so read `~/.bees/config.json` (read only) and find the Research hive's entry under this project's scope. If it has an `undertaker_schedule`, warn the user that completed research would be archived to the cemetery, and tell them to remove that block and restart the bees MCP server. Do not edit the file yourself.
 
 ### Documentation Locations
 

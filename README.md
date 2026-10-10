@@ -23,14 +23,14 @@ Ask Claude Code to install the Apiary skills and agent definitions. The two dire
 
 > "Install the Apiary skills from `~/projects/apiary/skills` into `<absolute path to target repo>/.claude/skills`, and the Apiary agents from `~/projects/apiary/agents` into `<absolute path to target repo>/.claude/agents`."
 
-In either case, Claude will copy each skill directory (`apiary-setup`, `idea`, `write-prd`, `write-srd`, `make-plan`, `hatch-epic`, `do-bee`, `fix-bug`, etc.) and each agent definition file (`apiary-engineer.md`, `apiary-code-reviewer.md`, etc.) into the chosen directories without disturbing any other skills or agents already installed there.
+In either case, Claude will copy each skill directory (`apiary-setup`, `idea`, `write-prd`, `write-srd`, `make-plan`, `hatch-epic`, `do-bee`, `fix-bug`, `research`, etc.) and each agent definition file (`apiary-engineer.md`, `apiary-code-reviewer.md`, etc.) into the chosen directories without disturbing any other skills or agents already installed there.
 
 ### Execution model
 
 Apiary's execution skills spawn role players (Engineer, Test Writer, Doc Writer, Product Manager, and reviewers) as **named subagents** via the Agent tool. The document and planning skills (`write-prd`, `write-srd`, `req-review`, `make-plan`) likewise delegate their heavy work to named subagents (PRD Writer, SRD Writer, Requirements Reviewer, Plan Writer) — the calling agent handles user interaction and reports the results. All definitions live in the install's `.claude/agents/` directory (user-global or per-repo, mirroring the skill install). Subagents run in-process and inherit the calling agent's permission surface — no experimental feature flags required. Each agent's model is set in its frontmatter; the harness resolves the model from the agent definition.
 
 ### 3. Configure
-Run `/apiary-setup` to configure hives for the Apiary workflow.
+Run `/apiary-setup` to configure hives for the Apiary workflow: Bugs, Ideas, Plans and Research.
 It can also record your project's documentation locations and integration test command in the repo's CLAUDE.md; you may skip either step.
 Without a configured command, the integration Test Writer looks in the repo's docs or CI config, and reports "no integration suite found" if there is none.
 
@@ -82,6 +82,13 @@ Run `/fix-bug` with the bug in the Bugs Hive to fix.
 It will spawn a smaller set of role subagents via the Agent tool to do the work, in the same Engineer, Test Writer, Doc Writer order.
 The same suite ownership applies at bug scope: the Test Writer of each pass runs the full unit suite once, and an integration Test Writer runs the integration suites once at the end of the fix. The bug is not done while they fail unless the User waives it; `/fix-bug` stops and asks on the same terms as `/do-bee`.
 Unlike `/do-bee`, `/fix-bug` manages its own isolated worktree: it creates a fresh worktree for the Bug ID, does all the work and commits there, then merges back and cleans up automatically (unless it stops at the integration gate, leaving the uncommitted fix in the worktree) — no separate `/configure-worktree` or `/teardown-worktree` needed.
+
+### Research
+Run `/research "<question>"` to file a research task as a bee in the Research Hive, or `/research <bee-id>` to continue one.
+The skill defines only the ticket flow, not how the research is done: `new` → `active` → `completed`.
+`active` is a review loop. Each round, the researcher presents its findings and a reviewer (the User, or an orchestrator Claude, which decides each round whether to review it itself or send it to the User) accepts them or asks for more work. Each round and its verdict are recorded in the bee's `## Review rounds` section.
+The findings go in a Report child of the bee: a standalone document with inline citations and a numbered References list. Research artifacts (data, scripts, logs) go in the bee's `artifacts/` folder, and the Report links to them by relative path.
+Completed research is kept: never run the undertaker on the Research Hive or give it an undertaker schedule. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe.
 
 
 ## Advanced Configuration
