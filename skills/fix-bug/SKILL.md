@@ -6,10 +6,21 @@ description: Fix a bug described in a Bee ticket
 ## Overview
 
 The user will either call without arguments or with a Bug id
-- If called without arguments, find all Bug bees for this repo that are not `finished` and present them, asking which one to fix
-- If called with a Bee id, find it in the Bugs hive. If its not in the Bugs hive, tell the user and ask them if they want to continue
+- If called without arguments, find all Bug bees for this repo that are not `finished` and present them, asking which one to fix. No-questions mode: list them and end with `fix-bug: needs input: which Bug should I fix? Reply with its ID`.
+- If called with a Bee id, find it in the Bugs hive. If its not in the Bugs hive, tell the user and ask them if they want to continue. No-questions mode: end with `fix-bug: needs input: <id> is not in the Bugs hive — reply "continue" to fix it anyway`. With `continue` after the ID, go on without asking.
 
 You will ultimately get the Bug ID you need to work on.
+
+### Arguments
+
+| Form | Meaning |
+|---|---|
+| `/fix-bug` | List the Bug bees that are not `finished` and ask which one to fix. |
+| `/fix-bug <bug-id>` | Work the Bug from its current status. |
+| `/fix-bug <bug-id> <answer>` | Continue after a `fix-bug: needs input:` stop. The answer follows the ID: `continue` (not in the Bugs hive), `fix` or `invalid` (bug could not be confirmed), `resume` or `restart` (worktree left by an interrupted run; `resume` after a merge conflict), `waive` or guidance (integration gate). |
+| `--no-questions` | Never use AskUserQuestion (see No-questions mode). |
+
+**No-questions mode**: on when you are given `--no-questions`, or when you run as an agent-director worker (`AGENT_DIRECTOR_INSTANCE_ID` is set in your environment; such workers usually cannot use AskUserQuestion). In this mode never use AskUserQuestion. Wherever this skill asks the User or the caller — with AskUserQuestion or in plain text — stop instead. Put what you know in your output, end it with exactly one `fix-bug: needs input:` line as given in the steps, and end your turn. The driver answers in this session, or starts a fresh session and gives the answer after the ID (e.g. `/fix-bug b.xxx fix`). Outside this mode, ask with AskUserQuestion.
 
 New bugs are filed in the Bugs hive as `larva`. This skill first confirms the bug is real, then fixes it. Bug work is blanket approved: one run takes a real bug from `larva` through `pupa` and `worker` to `finished` with no stop in between, unless a step below says to stop.
 
@@ -27,14 +38,14 @@ Rules that apply to every dispatch in this skill:
 - **Delegate discipline**: you must not do role work yourself. You dispatch subagents, route reports on completion, and commit. Confirming the bug is real (step 1) is triage, not role work: you do it yourself, read only.
 
 ### Setup:
-There must be a hive called "Bugs". If it does not exist, ask the user where you can create one.
+There must be a hive called "Bugs". If it does not exist, ask the user where you can create one. No-questions mode: end with `fix-bug: needs input: there is no Bugs hive — run /apiary-setup to create it, then re-run /fix-bug`.
 It must have no child tiers and the following valid status values:
 - `larva` — filed, not yet validated
 - `pupa` — confirmed real, not yet being fixed
 - `worker` — being fixed
 - `finished` — fixed and merged, or closed as invalid (tagged `invalid`)
 
-If it has other values (e.g. the old `open`), tell the user to run `/apiary-setup`, which migrates the hive, and stop.
+If it has other values (e.g. the old `open`), tell the user to run `/apiary-setup`, which migrates the hive, and stop. No-questions mode: end with `fix-bug: needs input: the Bugs hive is on old status values — run /apiary-setup to migrate it, then re-run /fix-bug`.
 
 ### 1. Validate Bug
 
@@ -45,10 +56,14 @@ show_ticket(ticket_id="$1")
 #### Check status
 
 Act on the Bug's status:
-- `larva` → check blocked, then confirm the bug is real (below).
+- `larva` → check blocked, then confirm the bug is real (below). With the answer `fix` or `invalid` after the ID, skip the confirmation and act on the answer as for **Real** or **Invalid** below (for `invalid`, the `## Invalid` note says it was closed on that answer).
 - `pupa` → already confirmed, e.g. by an earlier run that was interrupted before fixing began. Check blocked, skip the confirmation, set `worker` and go to step 2.
-- `worker` → an earlier run was interrupted while fixing. Check blocked, then look for its worktree (`{repo_root}/../{normalized_bug_id}`, named as in step 2):
-  - If it exists, do not create another. Report its path, its `git -C {worktree_path} status` and the commits on its branch, and ask the user whether to resume there (skip step 2's `git worktree add` and pick up from the step the work had reached) or remove the worktree and its branch and start the fix again from step 2.
+- `worker` → an earlier run was interrupted while fixing, or stopped at a question. Check blocked, then look for its worktree (`{repo_root}/../{normalized_bug_id}`, named as in step 2):
+  - If it exists, do not create another. With an answer after the ID, act on it:
+    - `resume` → skip step 2's `git worktree add` and pick up where the work had reached, judging from the worktree's diff and branch commits. If its branch is already merged into the main branch (e.g. the user resolved a merge conflict), go to step 7 item 3. If unsure, start at step 4 so the existing changes are reviewed.
+    - `restart` → remove the worktree and its branch (`git worktree remove {worktree_path} --force`, `git branch -D {normalized_bug_id}`) and start the fix again from step 2.
+    - `waive` or guidance → the answer to a step 5 integration gate stop, in that worktree: for `waive`, record the waiver as the integration result and go to step 6; for guidance, re-dispatch the integration Test Writer with it.
+  - Without an answer, report its path, whether it has uncommitted changes (`git -C {worktree_path} status`) and the commits on its branch. Interactive: ask with AskUserQuestion (options: Resume / Restart) and act as above. No-questions mode: end with `fix-bug: needs input: <bug-id> has a worktree from an interrupted run at <path> (uncommitted changes: <yes|no>; <n> commits on <branch>) — reply "resume" to continue there or "restart" to discard it and start over`.
   - If it does not exist and the main branch has the commit `Merge worktree {bug_id} into {main_branch}`, the fix was merged before the status was set: set `finished`, report it and stop.
   - Otherwise, start the fix again from step 2. The bug is already confirmed.
 - `finished` → report that the Bug is finished, and whether it is tagged `invalid`, and stop.
@@ -86,7 +101,7 @@ Then:
   **Bug**: <bug-id>
   **Why**: <one or two lines>
   ```
-- **Cannot tell** → leave it `larva`, report what you found, and ask the user whether to fix it or close it as invalid.
+- **Cannot tell** → leave it `larva` and append a `## Validation` section to the Bug (as for `## Invalid` above) saying what you ran or reviewed and why it is inconclusive. Interactive: ask with AskUserQuestion (options: Fix / Close as invalid) and act on the answer as for **Real** or **Invalid**. No-questions mode: end with `fix-bug: needs input: <bug-id> could not be confirmed — <one-line why>; reply "fix" or "invalid"`.
 
 ### 2. Create an isolated worktree
 
@@ -159,6 +174,7 @@ Each reviewer subagent invokes its corresponding review skill (/code-review, /te
   - Dispatch one `apiary-test-writer` as the integration Test Writer, naming the Bug ID and `{worktree_path}`. It finds the integration test command (configured in the project's CLAUDE.md, otherwise discovered from the repo's docs or CI config), runs the integration suites, fixes and re-runs failures caused by the tests without editing source, and reports exactly one result: `passed` (or `passed after fixing: <summary>`), `source failures: <list>`, `could not run: <reason>` or `no integration suite found`. You do not run the suites yourself.
   - `source failures`: dispatch `apiary-engineer-bugfix` with the failures threaded into its prompt, then re-dispatch the integration Test Writer with the Engineer's report threaded in (it covers the fix in unit tests and runs the full unit suite itself). Repeat, but stop and ask the user if an Engineer round does not reduce the failures, or after 3 Engineer rounds, whichever comes first.
   - `could not run`: ask the user straight away; never dispatch the Engineer for it.
+  - No-questions mode: instead of asking, leave the Bug `worker` with the fix uncommitted in `{worktree_path}` and end with `fix-bug: needs input: <bug-id> integration suites <could not run: <reason> | still failing: <list>>; fix is uncommitted in <worktree_path> — reply with guidance, or "waive" to waive the gate`. The answer comes back as `/fix-bug <bug-id> <answer>` (step 1, `worker`).
   - After you ask, one of three things happens: the User fixes the environment or gives guidance and you re-dispatch the integration Test Writer; the User explicitly waives the gate for this Bug — record the waiver as its result; or execution stops with the Bug left `worker`, and you tell the User the fix is uncommitted in `{worktree_path}`.
   - **Gate**: the Bug is not done until its last integration run reported `passed` or `no integration suite found`, or the User waived the gate. Do not start step 6 until then.
 
@@ -197,7 +213,7 @@ Run all of the following from the main repo (`{repo_root}`), not from inside the
    ```bash
    git merge {normalized_bug_id} --no-ff -m "Merge worktree {bug_id} into {main_branch}"
    ```
-   If merge conflicts occur, report the conflicting files and stop so the user can resolve them before re-running teardown. The Bug stays `worker`.
+   If merge conflicts occur, report the conflicting files and stop so the user can resolve them before re-running teardown. The Bug stays `worker`. No-questions mode: end with `fix-bug: needs input: merging {normalized_bug_id} into {main_branch} conflicts in <files> — resolve and commit the merge, then reply "resume"`.
 3. Once the merge succeeds, set the Bug to `finished`:
    ```bash
    bees update-ticket --ids {bug_id} --status finished

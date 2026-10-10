@@ -89,6 +89,7 @@ It never asks questions: a merge conflict, a failing retest or a stuck Bee stops
 You can tell your LLM to file a bug in the Bugs Hive as `larva`, no skill needed.
 Run `/fix-bug` with the bug in the Bugs Hive to fix.
 It first confirms the bug is real: it reproduces it, or if it can't, reviews the code. A real bug goes to `pupa`, then `worker` while it is fixed, then `finished` once the fix is merged, all in one run. An invalid bug goes straight to `finished` with the tag `invalid` and an `## Invalid` note saying why; nothing else changes.
+With `--no-questions`, or when run as an agent-director worker, `/fix-bug` never uses AskUserQuestion. Wherever it would ask, it stops with a `fix-bug: needs input:` line; the driver answers after the ID (e.g. `/fix-bug <bug-id> fix`).
 It will spawn a smaller set of role subagents via the Agent tool to do the work, in the same Engineer, Test Writer, Doc Writer order.
 The same suite ownership applies at bug scope: the Test Writer of each pass runs the full unit suite once, and an integration Test Writer runs the integration suites once at the end of the fix. The bug is not done while they fail unless the User waives it; `/fix-bug` stops and asks on the same terms as `/do-bee`.
 Unlike `/do-bee`, `/fix-bug` manages its own isolated worktree: it creates a fresh worktree for the Bug ID, does all the work and commits there, then merges back and cleans up automatically (unless it stops at the integration gate, leaving the uncommitted fix in the worktree) — no separate `/configure-worktree` or `/teardown-worktree` needed.
