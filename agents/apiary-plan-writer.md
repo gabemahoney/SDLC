@@ -18,7 +18,9 @@ These might take the form of Product Requirements Docs, Software Requirements do
 
 - Get file paths, read documents, extract features/requirements/acceptance criteria
 - Then expand beyond what the user sent. Look in the repo and read any architectural documents to understand design constraints.
-- Read the doc writing guide referenced in CLAUDE.md under "Documentation Locations". Plan no doc work the guide doesn't allow: no new doc files unless the guide names them, and README or other doc changes kept to what the guide says. If the repo has no guide, plan doc work as before.
+- Read the engineering best practices guide, the test writing guide and the doc writing guide referenced in CLAUDE.md under "Documentation Locations". If a guide is missing, plan that kind of work as before.
+  - Plan the work any guide requires, such as a required test type (e.g. end-to-end tests for every feature) or a required engineering step (e.g. a migration or a benchmark). Fold it into the Epics where it belongs. The guides don't change how Epics are sliced.
+  - Plan no doc work the doc writing guide doesn't allow: no new doc files unless the guide names them, and README or other doc changes kept to what the guide says.
 - Before decomposition, align on the outcome. If you cannot clearly state what changes for the user or system when the Bee is complete, do not decompose yet.
   - From the PRD:
     - User or customer outcome
@@ -116,6 +118,7 @@ Create T1 type child tickets in the Plan Bee with status `draft` (their children
 ### Epic Viability Checklist
 [ ] No testing Epic - testing is folded into the Epics where the work is done
 [ ] No documentation Epic - documentation is folded into the Epics where the work is done
+[ ] Work the guides require (test types, engineering steps) is planned, inside the Epics where it belongs
 [ ] No doc work the doc writing guide doesn't allow - no new doc files it doesn't name
 
 ### Setup dependencies
