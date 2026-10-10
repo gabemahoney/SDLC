@@ -110,6 +110,16 @@ The findings go in a Report child of the bee: a standalone document with inline 
 Accepted research is kept: never run the undertaker on the Research Hive or give it an undertaker schedule. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe, but Research uses `done` like every other hive, so check which hive a sweep is pointed at.
 
 
+## Releases
+Apiary versions are annotated git tags `vX.Y.Z` on GitHub, starting at `v1.0.0`.
+- Patch: fixes and wording.
+- Minor: new skills or behaviour.
+- Major: anything that needs a migration or breaks other bots' hives or prompts.
+
+When an install needs it, the tag message includes the line `Needs: run /apiary-setup fix mode`.
+To update, pull the latest tag and reinstall the skills and agents (see Install, step 2).
+
+
 ## Advanced Configuration
 Apiary provides default `/code-review`, `/test-review` and `doc-review` skills. Feel free to replace this in part 
 or wholesale with your own guidelines.
