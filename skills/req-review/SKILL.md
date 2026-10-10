@@ -43,14 +43,14 @@ If the user wants issues addressed, the fixes belong to the authoring skills —
 # Next Steps
 
 After presenting the results, use AskUserQuestion to ask the user for each doc reviewed:
-- "Mark [PRD/SRD] as `pupa`?"
-  - Options: "Yes, mark as pupa" / "No, more work needed"
-- If yes, update the doc's ticket status to `pupa`.
+- "Mark [PRD/SRD] as `defined`?"
+  - Options: "Yes, mark as defined" / "No, more work needed"
+- If yes, update the doc's ticket status to `defined`.
 
-After marking docs, check if **both** the PRD and SRD are now `pupa`. If so, use AskUserQuestion to ask:
-- "Both PRD and SRD are pupa. Mark the Idea Bee as `pupa` too?"
-  - Options: "Yes, mark as pupa" / "No, not yet"
-- If yes, update the Idea Bee's status to `pupa`.
+After marking docs, check if **both** the PRD and SRD are now `defined`. If so, use AskUserQuestion to ask:
+- "Both PRD and SRD are defined. Mark the Idea Bee as `defined` too?"
+  - Options: "Yes, mark as defined" / "No, not yet"
+- If yes, update the Idea Bee's status to `defined`.
 
 Then recommend:
 - `/make-plan <bee-id>` — create a Plan Bee with Epics ready for implementation

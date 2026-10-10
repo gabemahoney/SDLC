@@ -42,7 +42,7 @@ Set `reference_materials` on the Plan Bee to link it back to the Idea Bee. Pass 
 [{"value": "<idea_bee_id>", "resolver": "bees"}]
 ```
 
-- Mark the Bee as `larva` (its children — the Epics — have not been written yet)
+- Mark the Bee as `draft` (its children — the Epics — have not been written yet)
 
 ## 3. Break Plan Bee down into Epics
 
@@ -109,7 +109,7 @@ Bad examples:
 
 ## 4. Create Shell Epics in Plan Bee
 
-Create T1 type child tickets in the Plan Bee with status `larva` (their children — Tasks — have not been written yet).
+Create T1 type child tickets in the Plan Bee with status `draft` (their children — Tasks — have not been written yet).
 **NOTE**: If the plan is small, there may only be one Epic. You dont need to make multiple.
 
 ### Epic Viability Checklist
@@ -127,8 +127,8 @@ Create T1 type child tickets in the Plan Bee with status `larva` (their children
 For each Epic, ask: "What must be completed before this Epic can be worked on?"
 
 ### Set Status
-- Set the top level Bee to `pupa` (it is written and its children — the Epics — are now written)
-- Each Epic should already be `larva` from creation (they are written but their children — Tasks — are not yet written)
+- Set the top level Bee to `defined` (it is written and its children — the Epics — are now written)
+- Each Epic should already be `draft` from creation (they are written but their children — Tasks — are not yet written)
 
 ## Report
 

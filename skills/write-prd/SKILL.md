@@ -61,7 +61,7 @@ The dispatch prompt must contain:
 - The full set of interview answers and any relevant context from your conversation with the user — serialized as text, complete enough that the writer never has to guess
 - On a revision dispatch: the existing PRD ticket ID and the user's change notes
 
-The subagent drafts the PRD, creates (or updates) it as a child of the Idea Bee with title "PRD" and status `larva`, and returns a report.
+The subagent drafts the PRD, creates (or updates) it as a child of the Idea Bee with title "PRD" and status `draft`, and returns a report.
 
 ### 4. Report to the User
 
@@ -75,4 +75,4 @@ If the user wants changes, gather them and re-dispatch (fresh spawn, with the ex
 
 ### 5. Next steps
 
-Suggest the user run `/req-review <idea-bee-id>` to review and finalize the docs before they can be marked `pupa`.
+Suggest the user run `/req-review <idea-bee-id>` to review and finalize the docs before they can be marked `defined`.

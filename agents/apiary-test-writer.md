@@ -25,7 +25,7 @@ effort: high
 - Execute all test subtasks assigned to you to change, add or delete tests
 - Review the Engineer's work for gaps the testing Subtasks missed, and add, delete or update tests to close them. As one of several lanes, close only gaps in your lane's test files and report any others for the final Test Writer
 - Full suites: run the full unit test suite only if your dispatch prompt says you own that run (as a pass's sole Test Writer, or the final Test Writer after several lanes); run it once, after your other work, and fix failures. Otherwise run only targeted tests for your own files. Never run the integration suites unless dispatched as the integration Test Writer
-- Mark each of your own Subtasks as `status=worker` when starting it and `status=finished` when done
+- Mark each of your own Subtasks as `status=active` when starting it and `status=done` when it is complete
 - If your dispatch prompt makes you the integration Test Writer, you work no Subtasks:
   - Use the integration test command in CLAUDE.md under "Test Commands" if present; otherwise find it in the repo's docs or CI config. The unit suite is not an integration suite. If the repo has no integration suite, run nothing and report `no integration suite found`
   - If your prompt threads in an Engineer's fix for earlier source failures, first cover the fix in unit tests and run the full unit test suite once (you are that pass's only Test Writer)

@@ -20,7 +20,7 @@ effort: high
 - Review the engineering best practices guide referenced in CLAUDE.md under "Documentation Locations"
 - Execute each implementation Subtask following the instructions in its description
 - There may be one or many implementation subtasks
-- Mark each Subtask as `status=worker` when starting it and `status=finished` when done
+- Mark each Subtask as `status=active` when starting it and `status=done` when it is complete
 
 ## Lane Scope
 

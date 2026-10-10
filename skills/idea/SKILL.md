@@ -16,7 +16,7 @@ The Ideas hive must exist and be configured with one t1 child tier (friendly nam
 ## Steps
 
 1. Create a new Bee in the Ideas hive.
-2. Set the status to `larva` to indicate it's incomplete.
+2. Set the status to `draft` to indicate it's incomplete.
 3. The user will give you some initial info. Ask them if they want to add anything.
 
 ## What comes next

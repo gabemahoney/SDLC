@@ -34,17 +34,25 @@ Run `/apiary-setup` to configure hives for the Apiary workflow: Bugs, Ideas, Pla
 It can also record your project's documentation locations and integration test command in the repo's CLAUDE.md; you may skip either step.
 Without a configured command, the integration Test Writer looks in the repo's docs or CI config, and reports "no integration suite found" if there is none.
 
-Hives set up before every hive shared one set of states still have the old status values. Run `/apiary-setup` to migrate them: Bugs `open` → `pupa`; Research `new` → `pupa`, `active` → `worker`, `completed` → `finished` (Reports too). It adds the new values, renames the tickets, then removes the old values, so no ticket is lost or left in an invalid state.
+Hives set up with older states still have the old status values. Run `/apiary-setup` to migrate them, Bugs, Ideas, Plans and Research alike, with every child ticket (Docs, Epics, Tasks, Subtasks, Reports):
+- From the interim set, on any hive: `larva` → `draft`, `pupa` → `defined`, `worker` → `active`, `finished` → `done`.
+- From the original sets: Bugs `open` → `defined`, `finished` → `done`; Research `new` → `defined`, `active` stays `active`, `completed` → `done`.
+
+It adds the new values, renames the tickets, then removes the old values, so no ticket is lost or left in an invalid state.
 
 
 ## Workflow
 
 ### Ticket states
 Every hive uses the same four states:
-- `larva` — filed, not yet ready to work (for a bug: not yet validated)
-- `pupa` — ready to work (for a bug: confirmed real)
-- `worker` — being worked on
-- `finished` — done
+- `draft` — filed, not yet fully written up (for a bug: not yet validated)
+- `defined` — fully written up, not approved (for a bug: confirmed real)
+- `active` — being worked on
+- `done` — complete (for a bug: fixed and merged, or closed as invalid)
+
+A state never means approval or priority. Those come from tags:
+- `priority:N` — one tag per ticket. A lower number means higher priority: `priority:0` is the highest, then `priority:1`, and so on, with no upper limit.
+- `parked` — set aside for now.
 
 ### Idea
 Run `/idea` to jot down a new idea.
@@ -86,9 +94,9 @@ Finished lanes are merged into the feature branch one at a time. After each merg
 It never asks questions: a merge conflict, a failing retest or a stuck Bee stops it with a report. Each run is one pass. Run it again whenever a lane worker finishes, until every Epic is merged; then run `/do-bee` in the feature worktree for the final review and `/teardown-worktree` to merge the feature branch.
 
 ### Fix Bug
-You can tell your LLM to file a bug in the Bugs Hive as `larva`, no skill needed.
+You can tell your LLM to file a bug in the Bugs Hive as `draft`, no skill needed.
 Run `/fix-bug` with the bug in the Bugs Hive to fix.
-It first confirms the bug is real: it reproduces it, or if it can't, reviews the code. A real bug goes to `pupa`, then `worker` while it is fixed, then `finished` once the fix is merged, all in one run. An invalid bug goes straight to `finished` with the tag `invalid` and an `## Invalid` note saying why; nothing else changes.
+It first confirms the bug is real: it reproduces it, or if it can't, reviews the code. A real bug goes to `defined`, then `active` while it is fixed, then `done` once the fix is merged, all in one run. An invalid bug goes straight to `done` with the tag `invalid` and an `## Invalid` note saying why; nothing else changes.
 With `--no-questions`, or when run as an agent-director worker, `/fix-bug` never uses AskUserQuestion. Wherever it would ask, it stops with a `fix-bug: needs input:` line; the driver answers after the ID (e.g. `/fix-bug <bug-id> fix`).
 It will spawn a smaller set of role subagents via the Agent tool to do the work, in the same Engineer, Test Writer, Doc Writer order.
 The same suite ownership applies at bug scope: the Test Writer of each pass runs the full unit suite once, and an integration Test Writer runs the integration suites once at the end of the fix. The bug is not done while they fail unless the User waives it; `/fix-bug` stops and asks on the same terms as `/do-bee`.
@@ -96,10 +104,10 @@ Unlike `/do-bee`, `/fix-bug` manages its own isolated worktree: it creates a fre
 
 ### Research
 Run `/research "<question>"` to file a research task as a bee in the Research Hive, or `/research <bee-id>` to continue one.
-The skill defines only the ticket flow, not how the research is done: `pupa` → `worker` → `finished`. A research bee is `pupa` as soon as it is filed, since a question is ready once it is written.
-`worker` is a review loop. Each round, the researcher presents its findings and a reviewer (the User, or an orchestrator Claude, which decides each round whether to review it itself or send it to the User) accepts them or asks for more work. Each round and its verdict are recorded in the bee's `## Review rounds` section.
+The skill defines only the ticket flow, not how the research is done: `defined` → `active` → `done`. A research bee is `defined` as soon as it is filed, since a question is ready once it is written.
+`active` is a review loop. Each round, the researcher presents its findings and a reviewer (the User, or an orchestrator Claude, which decides each round whether to review it itself or send it to the User) accepts them or asks for more work. Each round and its verdict are recorded in the bee's `## Review rounds` section.
 The findings go in a Report child of the bee: a standalone document with inline citations and a numbered References list. Research artifacts (data, scripts, logs) go in the bee's `artifacts/` folder, and the Report links to them by relative path.
-Finished research is kept: never run the undertaker on the Research Hive or give it an undertaker schedule. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe, but Research uses `finished` like every other hive, so check which hive a sweep is pointed at.
+Accepted research is kept: never run the undertaker on the Research Hive or give it an undertaker schedule. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe, but Research uses `done` like every other hive, so check which hive a sweep is pointed at.
 
 
 ## Advanced Configuration

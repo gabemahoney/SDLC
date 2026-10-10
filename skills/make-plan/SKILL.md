@@ -20,7 +20,7 @@ If there is no Plans hive nested inside the Ideas hive, ask the user if you can 
 ### 2. Resolve the Idea Bee
 
 The user should provide you a Bee in the Ideas hive. If they do not, list the Ideas hive and ask them which they want to hatch.
-First check if the Idea Bee is in the `pupa` state (which means its ready to be worked on). If not, warn the user and ask if they want to continue.
+First check if the Idea Bee is in the `defined` state (which means it is fully written up and ready to be worked on). If not, warn the user and ask if they want to continue.
 
 ### 3. Dispatch the Plan Writer
 
@@ -38,7 +38,7 @@ The dispatch prompt must contain:
 - The repository path to explore
 - Any architectural decisions or constraints from your conversation with the user — use the user's exact specification, do not paraphrase
 
-The subagent reads the requirements documents, explores the repo, creates the Plan Bee (with `up_deps` and `reference_materials` pointing at the Idea Bee) and its Epics in the Plans hive, sets up dependencies and statuses (Plan Bee `pupa`, Epics `larva`), and returns a report.
+The subagent reads the requirements documents, explores the repo, creates the Plan Bee (with `up_deps` and `reference_materials` pointing at the Idea Bee) and its Epics in the Plans hive, sets up dependencies and statuses (Plan Bee `defined`, Epics `draft`), and returns a report.
 
 ### 4. Report to the User
 
@@ -50,7 +50,7 @@ When the subagent's report arrives, tell the user the results as a markdown summ
 
 ### 5. Continue to hatch-epic
 
-Load the `hatch-epic` skill and run it once per Epic — pass each Epic ID explicitly, in dependency order — until EVERY Epic in the Plan Bee is hatched (status `pupa`). Run fully automatically: no user prompts between Epics.
+Load the `hatch-epic` skill and run it once per Epic — pass each Epic ID explicitly, in dependency order — until EVERY Epic in the Plan Bee is hatched (status `defined`). Run fully automatically: no user prompts between Epics.
 Hatching is planning only: do NOT invoke `do-bee` or begin any execution until all Epics are hatched. Execution is a separate, later step. (During execution, do-bee reconciles already-hatched Epics against completed work — never a reason to defer hatching.)
-If hatching is interrupted mid-batch, resume `hatch-epic` for the remaining `larva` Epics before any execution begins.
-After hatching, query the Plan Bee's child Epics and confirm none are `larva` before declaring the plan ready.
+If hatching is interrupted mid-batch, resume `hatch-epic` for the remaining `draft` Epics before any execution begins.
+After hatching, query the Plan Bee's child Epics and confirm none are `draft` before declaring the plan ready.

@@ -43,7 +43,7 @@ real modules, patterns, and conventions from the actual codebase.
 
 Write the SRD as a child of the Idea Bee, using the bees CLI.
 Use the title "SRD".
-Set its status to `larva`.
+Set its status to `draft`.
 
 #### Style Rules
 

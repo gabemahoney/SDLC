@@ -12,27 +12,27 @@ have gotten misconfigured, or to migrate hives still on old status values.
 
 The repo must have the following hives available and configured with these child tiers and valid status values.
 
-Every hive uses the same four status values, and no others: `larva`, `pupa`, `worker`, `finished`. A board can then show every hive the same way. What each value means in each hive is listed below.
+Every hive uses the same four status values, and no others: `draft`, `defined`, `active`, `done`. A board can then show every hive the same way. What each value means in each hive is listed below. `defined` means fully written up, not approved. Approval and priority come from tags, never from the status: one `priority:N` tag, where a lower number means higher priority (`priority:0` is the highest, then `priority:1`, and so on, with no upper limit), and `parked`.
 
 ### Bugs Hive
 Child tiers:
 none
 
 Status values:
-- larva — filed, not yet validated
-- pupa — confirmed real, not yet being fixed
-- worker — being fixed
-- finished — fixed and merged, or closed as invalid (tagged `invalid`)
+- draft — filed, not yet validated
+- defined — confirmed real, not yet being fixed
+- active — being fixed
+- done — fixed and merged, or closed as invalid (tagged `invalid`)
 
 ### Ideas Hive
 Child tiers:
 - t1 - Doc / Docs
 
 Status values:
-- larva — not fully documented, not ready to work
-- pupa — fully documented, ready to work
-- worker — in progress
-- finished — done
+- draft — not fully documented, not ready to work
+- defined — fully documented, ready to work
+- active — in progress
+- done — complete
 
 #### Plans Hive (nested inside Ideas)
 Located at `{ideas_hive_path}/Plans`.
@@ -43,10 +43,10 @@ Child tiers:
 - t3 — Subtask / Subtasks
 
 Status values:
-- larva — not fully documented, not ready to work
-- pupa — fully documented, ready to work
-- worker — in progress
-- finished — done
+- draft — not fully documented, not ready to work
+- defined — fully documented, ready to work
+- active — in progress
+- done — complete
 
 ### Research Hive
 Used by the `research` skill.
@@ -55,12 +55,12 @@ Child tiers:
 - t1 — Report / Reports
 
 Status values:
-- larva — not used by `research`: a question is ready as soon as it is written
-- pupa — filed with its question, ready to work
-- worker — in review rounds
-- finished — accepted; kept, never archived
+- draft — not used by `research`: a question is ready as soon as it is written
+- defined — filed with its question, ready to work
+- active — in review rounds
+- done — accepted; kept, never archived
 
-The Research hive must never be swept by the undertaker: it must not have an `undertaker_schedule`. Accepted research sits in `finished` like done tickets in every other hive, so an undertaker pointed at the Research hive by mistake would archive it.
+The Research hive must never be swept by the undertaker: it must not have an `undertaker_schedule`. Accepted research sits in `done` like closed tickets in every other hive, so an undertaker pointed at the Research hive by mistake would archive it.
 
 ## Instructions
 
@@ -139,28 +139,44 @@ If any hives are missing:
 If a hive exists:
 - Validate its child tiers and status values.
 - If they differ from above, ask user if you may change them to the values listed above.
-- If the hive still has old status values (Bugs with `open`; Research with `new`, `active` or `completed`), make the change with the migration below, never with a single `set_status_values` call.
+- If the hive still has old status values (any of `larva`, `pupa`, `worker`, `finished`, `open`, `new`, `completed`), make the change with the migration below, never with a single `set_status_values` call. `active` alone is not old: it is one of the four values.
 
 #### Migrating hives on old status values
 
-Older setups gave Bugs `open` and `finished`, and Research `new`, `active` and `completed`. Only a Bugs or Research hive on those old values is migrated. Ideas and Plans already use the four values: leave them alone, with no migration and no `sanitize-hive`. Move such a hive to the four values in this order, with the CWD requirement above:
+Older setups used one of two earlier sets of status values:
+- **Interim set**, on any hive: `larva`, `pupa`, `worker`, `finished`.
+- **Original sets**: Bugs `open` and `finished`; Research `new`, `active` and `completed`.
 
-1. **Add the new values alongside the old ones.** Set the hive's status values to larva, pupa, worker and finished plus its old values, e.g.:
+Every hive that still has any of those values is migrated: Bugs, Ideas, Plans and Research alike. Plans is a hive of its own, migrated on its own, even though it lives inside the Ideas folder. Check each hive's configured values with `bees get-status-values`, and query each hive for tickets on old values too, since a ticket can hold a value the config no longer lists. Rename by this table:
+
+| Old value | New value | Old set |
+|-----------|-----------|---------|
+| `larva` | `draft` | interim, any hive |
+| `pupa` | `defined` | interim, any hive |
+| `worker` | `active` | interim, any hive |
+| `finished` | `done` | interim (any hive), and original Bugs |
+| `open` | `defined` | original Bugs (already filed and treated as real) |
+| `new` | `defined` | original Research |
+| `active` | `active` (unchanged) | original Research |
+| `completed` | `done` | original Research |
+
+Move each such hive to the four values in this order, with the CWD requirement above:
+
+1. **Add the new values alongside the old ones.** Set the hive's status values to draft, defined, active and done plus every old value it has, e.g. for Bugs on the original set:
    ```bash
-   bees set-status-values --scope hive --hive bugs --status-values '["larva","pupa","worker","finished","open"]'
+   bees set-status-values --scope hive --hive bugs --status-values '["draft","defined","active","done","open","finished"]'
    ```
-2. **Rename the tickets.** For each old value, find its tickets and move them in one batch:
+2. **Rename the tickets.** For each old value except `active`, find its tickets and move them in batches. The query matches every tier, not just Bees: Docs in Ideas, Epics, Tasks and Subtasks in Plans, Reports in Research all move with their Bees.
    ```bash
    bees execute-freeform-query --query-yaml 'stages:
-     - [hive=bugs, status=open]'
-   bees update-ticket --ids <id1> <id2> ... --status pupa --hive bugs
+     - [hive=plans, status=pupa]'
+   bees update-ticket --ids <id1> <id2> ... --status defined --hive plans
    ```
-   - Bugs: `open` → `pupa` (already filed and treated as real)
-   - Research: `new` → `pupa`, `active` → `worker`, `completed` → `finished`. The query also returns Report children (t1), so they move with their Bees.
+   A Plans hive can hold thousands of Epics, Tasks and Subtasks, so never update one ticket per call: pass the IDs from the query to `update-ticket --ids` in batches of up to 200. Each call reports `updated`, `not_found` and `failed` IDs; collect the failures for the report. Repeat the query until it returns no tickets on that value, or only ones that keep failing.
 
    Use the hive's normalized name from `bees list-hives` (e.g. `bugs`) in queries: a display name like `Bugs` matches nothing.
-3. **Remove the old values.** Query each old value again. If any ticket still holds one, stop: leave the old values in place and report those tickets. Otherwise set the status values to exactly `["larva","pupa","worker","finished"]`. Then run `bees sanitize-hive` on this hive only, after checking for nested hives with one command: `find <hive-path> -mindepth 2 -type d -name .hive`. Any result is another hive inside this hive's path, registered or not (e.g. Plans at `.../Ideas/Plans`, or a copy of a hive kept as evidence inside a ticket). If there is any result, do not sanitize this hive, because sanitize treats the nested hive's tickets as its own and moves their files; report the paths found instead. Never sanitize any other hive as part of this migration.
-4. **Report** for each hive the tickets renamed per old → new value, and any left over.
+3. **Remove the old values.** Query each old value again. If any ticket still holds one, stop: leave the old values in place and report those tickets. Otherwise set the status values to exactly `["draft","defined","active","done"]`. `active` stays, since it is one of the four. Then run `bees sanitize-hive` on this hive only, after checking for nested hives with one command: `find <hive-path> -mindepth 2 -type d -name .hive`. Any result is another hive inside this hive's path, registered or not (e.g. Plans at `.../Ideas/Plans`, or a copy of a hive kept as evidence inside a ticket). If there is any result, do not sanitize this hive, because sanitize treats the nested hive's tickets as its own and moves their files; report the paths found instead. Never sanitize any other hive as part of this migration. An Ideas hive with Plans inside it is migrated, but never sanitized.
+4. **Report** for each hive the number of tickets renamed per old → new value, any that failed or are left over (by ID), and whether the hive was sanitized or skipped for a nested `.hive`.
 
 Never delete a ticket during the migration.
 
@@ -168,7 +184,7 @@ The order matters. Bees checks a ticket's status against the hive's configured v
 
 #### Research hive: no undertaker schedule
 
-Bees has no command that shows undertaker schedules, so read `~/.bees/config.json` (read only) and find the Research hive's entry under this project's scope. If it has an `undertaker_schedule`, warn the user that finished research would be archived to the cemetery, and tell them to remove that block and restart the bees MCP server. Do not edit the file yourself. This matters more now that Research uses `finished` like every other hive: a sweep meant for another hive is easy to point at it by mistake.
+Bees has no command that shows undertaker schedules, so read `~/.bees/config.json` (read only) and find the Research hive's entry under this project's scope. If it has an `undertaker_schedule`, warn the user that accepted research would be archived to the cemetery, and tell them to remove that block and restart the bees MCP server. Do not edit the file yourself. This matters more now that Research uses `done` like every other hive: a sweep meant for another hive is easy to point at it by mistake.
 
 ### Documentation Locations
 

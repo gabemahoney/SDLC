@@ -31,7 +31,7 @@ The dispatch prompt must contain:
 - The Idea Bee ID (and the PRD ticket ID if the user provided one)
 - The repository path to explore
 
-The subagent reads the PRD, explores the codebase, writes the SRD as a child of the Idea Bee with title "SRD" and status `larva`, and returns a report.
+The subagent reads the PRD, explores the codebase, writes the SRD as a child of the Idea Bee with title "SRD" and status `draft`, and returns a report.
 
 ## 3. Report to the User
 
@@ -42,4 +42,4 @@ When the subagent's report arrives, tell the user the results:
 
 ## 4. Next steps
 
-Suggest the user run `/req-review <idea-bee-id>` to review and finalize the docs before they can be marked `pupa`.
+Suggest the user run `/req-review <idea-bee-id>` to review and finalize the docs before they can be marked `defined`.

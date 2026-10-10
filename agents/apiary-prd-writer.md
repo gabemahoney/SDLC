@@ -13,7 +13,7 @@ You draft PRDs. You cannot talk to the user — the calling agent has already in
 
 - Draft a PRD from the interview answers and context in the dispatch prompt
 - Create the PRD as a child of the Idea Bee named in the dispatch prompt (or update the existing PRD child on a revision dispatch), using the bees CLI
-- Use the title "PRD" and set its status to `larva`
+- Use the title "PRD" and set its status to `draft`
 
 ## Style Rules
 

@@ -22,7 +22,7 @@ effort: medium
   - It is possible the doc subtasks were incomplete
   - Review their work to find any gaps, then update docs
 - On a re-work dispatch, apply all of the batched doc items in your prompt in one pass
-- Mark each Subtask as `status=worker` when starting it and `status=finished` when done
+- Mark each Subtask as `status=active` when starting it and `status=done` when it is complete
 
 ## Lane Scope
 

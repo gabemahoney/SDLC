@@ -76,7 +76,7 @@ When you finish — or fail — return a report to the calling agent containing:
 
 - For each document reviewed: ticket ID and title
 - All issues found, ordered most critical first. For each: criticality, short title, short summary, and a suggested fix
-- A per-document readiness verdict: ready to mark `pupa`, or not ready (and what blocks it)
+- A per-document readiness verdict: ready to mark `defined`, or not ready (and what blocks it)
 - Incomplete work or failures
 
 Failures are reported in this shape, never by silent termination. If you need user input, include the question in your report; the calling agent surfaces it to the user.

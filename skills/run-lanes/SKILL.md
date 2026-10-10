@@ -37,8 +37,8 @@ Run it from the main repo or from the feature worktree, never from inside an Epi
 
 - `{bee_branch}`: the Bee ID normalized (dots to underscores, `b.xxx` → `b_xxx`). This is the **feature branch**; its worktree `{feature_path}` is `{repo_root}/../{bee_branch}`, created by `configure_worktree`.
 - `{epic_branch}`: an Epic ID normalized (`t1.xxx.ab` → `t1_xxx_ab`). This is the Epic lane's branch; its worktree `{lane_path}` is `{repo_root}/../{epic_branch}`.
-- **Done Epic**: an Epic whose body has an `**Integration Suites**:` result line (it met do-bee's 4.2 gate), or whose status is `finished`.
-- **Merged Epic**: a done Epic listed under **Epics done** in the Bee's progress section with a merge commit, or `finished`.
+- **Done Epic**: an Epic whose body has an `**Integration Suites**:` result line (it met do-bee's 4.2 gate), or whose status is `done`.
+- **Merged Epic**: a done Epic listed under **Epics done** in the Bee's progress section with a merge commit, or `done`.
 
 ## Progress section
 
@@ -67,7 +67,7 @@ Run it from the main repo or from the feature worktree, never from inside an Epi
 bees show-ticket --ids {bee_id}
 ```
 
-Apply do-bee step 1's checks: the Bee is `pupa` or `worker`, its `up_dependencies` are `pupa` or later, and no child Epic is `larva` (if one is, stop: hatching is incomplete). Load every Epic, and every Task and Subtask under it.
+Apply do-bee step 1's checks: the Bee is `defined` or `active`, its `up_dependencies` are `defined` or later, and no child Epic is `draft` (if one is, stop: hatching is incomplete). Load every Epic, and every Task and Subtask under it.
 
 ### 2. Make sure the feature branch exists
 
@@ -111,7 +111,7 @@ A lane whose Epic is not done but whose worker is idle or gone has stopped early
 ### 5. Start new lanes
 
 An Epic can start a lane when all of these hold:
-- It is `pupa` or `worker`, not done, and has no open lane.
+- It is `defined` or `active`, not done, and has no open lane.
 - Every Epic in its `up_dependencies` is merged. Merged, not just done: the lane starts from `{bee_branch}` and needs that work in it.
 - Its **file set** does not overlap with that of any open lane, or of any other Epic starting in this pass.
 
