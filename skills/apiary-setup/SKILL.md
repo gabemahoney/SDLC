@@ -143,7 +143,7 @@ If a hive exists:
 
 #### Migrating hives on old status values
 
-Older setups gave Bugs `open` and `finished`, and Research `new`, `active` and `completed`. Move such a hive to the four values in this order, with the CWD requirement above:
+Older setups gave Bugs `open` and `finished`, and Research `new`, `active` and `completed`. Only a Bugs or Research hive on those old values is migrated. Ideas and Plans already use the four values: leave them alone, with no migration and no `sanitize-hive`. Move such a hive to the four values in this order, with the CWD requirement above:
 
 1. **Add the new values alongside the old ones.** Set the hive's status values to larva, pupa, worker and finished plus its old values, e.g.:
    ```bash
@@ -159,7 +159,7 @@ Older setups gave Bugs `open` and `finished`, and Research `new`, `active` and `
    - Research: `new` → `pupa`, `active` → `worker`, `completed` → `finished`. The query also returns Report children (t1), so they move with their Bees.
 
    Use the hive's normalized name from `bees list-hives` (e.g. `bugs`) in queries: a display name like `Bugs` matches nothing.
-3. **Remove the old values.** Query each old value again. If any ticket still holds one, stop: leave the old values in place and report those tickets. Otherwise set the status values to exactly `["larva","pupa","worker","finished"]` and run `bees sanitize-hive` on the hive.
+3. **Remove the old values.** Query each old value again. If any ticket still holds one, stop: leave the old values in place and report those tickets. Otherwise set the status values to exactly `["larva","pupa","worker","finished"]`. Then run `bees sanitize-hive` on this hive only, after checking `bees list-hives`: if another hive's `path` lies inside this hive's `path` (e.g. Plans at `.../Ideas/Plans`), do not sanitize it, because sanitize treats the nested hive's tickets as its own; report that instead. Never sanitize any other hive as part of this migration.
 4. **Report** for each hive the tickets renamed per old → new value, and any left over.
 
 Never delete a ticket during the migration.
