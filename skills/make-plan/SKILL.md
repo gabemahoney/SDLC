@@ -10,6 +10,21 @@ You are the **calling agent**. The planning itself — reading the PRD/SRD, expl
 
 ## Workflow
 
+### Approval guard
+
+Run this first, before step 1: no question, dispatch or ticket change comes before it. If you were not given an Idea Bee ID, ask for it as step 2 says, then run this before anything else.
+
+A plan is made only once the User has approved the Idea's PRD. Read tickets with `bees show-ticket --ids <id>`.
+
+1. PRD: the Idea Bee's t1 child titled `PRD`.
+2. The PRD's `tags` must include `approved:yes`.
+
+If either step fails, stop at once: change no ticket and dispatch nothing. When given `--no-questions`, or when `AGENT_DIRECTOR_INSTANCE_ID` is set, end your output with exactly one of these lines; otherwise tell the user the same and stop:
+- `make-plan: needs input: <prd-id> lacks approved:yes — the User must approve it`
+- `make-plan: needs input: no PRD found for <idea-id> — cannot check approved:yes`
+
+This skill never adds `approved:yes`. Only the User approves.
+
 ### 1. Setup
 
 If there is no Plans hive nested inside the Ideas hive, ask the user if you can create one. It must have these child tiers:
@@ -20,7 +35,7 @@ If there is no Plans hive nested inside the Ideas hive, ask the user if you can 
 ### 2. Resolve the Idea Bee
 
 The user should provide you a Bee in the Ideas hive. If they do not, list the Ideas hive and ask them which they want to hatch.
-First check if the Idea Bee is in the `defined` state (which means it is fully written up and ready to be worked on). If not, warn the user and ask if they want to continue.
+First check if the Idea Bee is in the `defined` state (which means it is fully written up; approval is the PRD's `approved:yes` tag, checked above). If not, warn the user and ask if they want to continue.
 
 ### 3. Dispatch the Plan Writer
 

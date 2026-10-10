@@ -6,6 +6,7 @@ description: Proceed through each Epic in a Bee, doing the work described therin
 ## Overview
 
 This skill orchestrates the work for a complete Bee ticket by:
+0. Refusing to start unless the User approved the Bee's PRD (Approval guard)
 1. Finding the Bee to work on and validating it is ready (all child Epics hatched — none `draft`)
 2. Finding the best Epic to work on
    2.1. Validating the Epic is unblocked
@@ -43,6 +44,23 @@ Rules that apply to every dispatch in this skill:
   - Step 2 reconcile: do steps 1–2 for your own Epic only. Skip step 3 (downstream Epics): other lanes may be working on them, and each Epic gets its own reconcile pass when its lane starts.
   - 4.3: skip steps 1–2. Stop with exactly this line: `do-bee: Epic <epic-id> done in lane <worktree path>. Next: run /run-lanes <bee-id> to merge it.`
   - Never go on to step 5 or later; those run after `/run-lanes` merges every lane.
+
+### Approval guard
+
+Run this first in every session, before step 1: no question, worktree check, status change or dispatch comes before it. If you were not given an ID, pick the Bee as step 1 says, then run this before anything else.
+
+A Bee is built only once the User has approved its Idea's PRD. Read tickets with `bees show-ticket --ids <id>`.
+
+1. Plan Bee: given a Bee ID, that Bee. Given an Epic, or any ticket below one, follow `parent` up to the Bee.
+2. Idea Bee: the Ideas-hive Bee named in the Plan Bee's `reference_materials` (its `bees` entry) or `up_dependencies`. `bees execute-freeform-query --query-yaml "stages: [[id=<id>, hive=ideas]]"` returns a ticket only if it is in the Ideas hive. If there is more than one, check each.
+3. PRD: the Idea Bee's t1 child titled `PRD`.
+4. The PRD's `tags` must include `approved:yes`.
+
+If any step fails, stop at once: change no ticket, write no progress section and dispatch nothing. In no-questions mode (including lane mode), end your output with exactly one of these lines; otherwise tell the user the same and stop:
+- `do-bee: needs input: <prd-id> lacks approved:yes — the User must approve it`
+- `do-bee: needs input: no <Plan Bee | Idea Bee | PRD> found for <ticket-id> — cannot check approved:yes`
+
+This skill never adds `approved:yes`. Only the User approves.
 
 ### 1. Find Bee to work on and validate
 

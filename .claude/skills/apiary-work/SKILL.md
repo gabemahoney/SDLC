@@ -19,6 +19,34 @@ pushed.
 
 ## Steps
 
+### Approval guard
+
+Run this first: no context gathering, dispatch or ticket change comes before
+it. If you were not given a ticket ID, ask for it as step 1 says, then run this
+before anything else.
+
+Only Ideas-hive tickets are gated. Read tickets with
+`bees show-ticket --ids <id>`.
+
+1. Hive: `bees execute-freeform-query --query-yaml "stages: [[id=<id>, hive=ideas]]"`
+   returns the ticket only if it is in the Ideas hive. If it is not (a Bug,
+   like `/fix-bug`, or any other hive), skip the rest of this guard.
+2. Idea Bee: the ticket itself if it is a Bee. For a child-tier ticket, follow
+   `parent` up to the Bee.
+3. The Idea Bee's `tags` must include `approved:yes`.
+4. If the Idea Bee has a t1 child titled `PRD`, the PRD's `tags` must include
+   `approved:yes` too. An Idea with no PRD passes this step.
+
+If any step fails, stop at once: change no ticket and dispatch nothing. When
+given `--no-questions`, or when `AGENT_DIRECTOR_INSTANCE_ID` is set, end your
+output with exactly one of these lines; otherwise tell the user the same and
+stop:
+- `apiary-work: needs input: <ticket-id> lacks approved:yes — the User must approve it`,
+  naming the Idea or its PRD, whichever lacks the tag
+- `apiary-work: needs input: no Idea Bee found for <ticket-id> — cannot check approved:yes`
+
+This skill never adds `approved:yes`. Only the User approves.
+
 ### 1. Input
 
 Take a bees ticket ID (a bee ID like `b.448` or a child-tier ID). If the user

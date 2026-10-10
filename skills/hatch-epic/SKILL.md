@@ -11,6 +11,23 @@ One invocation hatches ONE Epic. In the normal flow (from make-plan), it is run 
 
 ## Workflow
 
+### Approval guard
+
+Run this first, before step 1: no question, dispatch or ticket change comes before it.
+
+An Epic is hatched only once the User has approved its Idea's PRD. Read tickets with `bees show-ticket --ids <id>`.
+
+1. Plan Bee: given a Bee ID, that Bee. Given an Epic, or any ticket below one, follow `parent` up to the Bee.
+2. Idea Bee: the Ideas-hive Bee named in the Plan Bee's `reference_materials` (its `bees` entry) or `up_dependencies`. `bees execute-freeform-query --query-yaml "stages: [[id=<id>, hive=ideas]]"` returns a ticket only if it is in the Ideas hive. If there is more than one, check each.
+3. PRD: the Idea Bee's t1 child titled `PRD`.
+4. The PRD's `tags` must include `approved:yes`.
+
+If any step fails, stop at once: change no ticket and dispatch nothing. When given `--no-questions`, or when `AGENT_DIRECTOR_INSTANCE_ID` is set, end your output with exactly one of these lines; otherwise tell the user the same and stop:
+- `hatch-epic: needs input: <prd-id> lacks approved:yes — the User must approve it`
+- `hatch-epic: needs input: no <Plan Bee | Idea Bee | PRD> found for <ticket-id> — cannot check approved:yes`
+
+This skill never adds `approved:yes`. Only the User approves.
+
 ### 1. Determine Which Epic to Break Down
 
 **If caller provides Epic ID**: Use that Epic ID directly.

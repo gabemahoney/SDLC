@@ -22,6 +22,17 @@ You are the **calling agent**. You run the interview with the user, then dispatc
 
 ## Workflow
 
+### Approval guard
+
+Run this first: no question, dispatch or ticket change comes before it. If you were not given an Idea Bee ID, ask for it as step 1 says, then run this before anything else.
+
+A PRD is written only once the User has approved the Idea: the Idea Bee's `tags` (`bees show-ticket --ids <idea-id>`) must include `approved:yes`.
+
+If the tag is missing, stop at once: change no ticket and dispatch nothing. When given `--no-questions`, or when `AGENT_DIRECTOR_INSTANCE_ID` is set, end your output with exactly this line; otherwise tell the user the same and stop:
+- `write-prd: needs input: <idea-id> lacks approved:yes — the User must approve it`
+
+This skill never adds `approved:yes`. Only the User approves.
+
 ### 1. Determine the Idea Bee
 
 The PRD will be a child of a Bee in the Ideas hive.
@@ -76,3 +87,4 @@ If the user wants changes, gather them and re-dispatch (fresh spawn, with the ex
 ### 5. Next steps
 
 Suggest the user run `/req-review <idea-bee-id>` to review and finalize the docs before they can be marked `defined`.
+`/write-srd`, `/make-plan`, `/hatch-epic`, `/do-bee` and `/run-lanes` refuse to run until the User approves the PRD by tagging the PRD ticket `approved:yes`.

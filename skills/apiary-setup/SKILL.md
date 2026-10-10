@@ -12,7 +12,7 @@ have gotten misconfigured, or to migrate hives still on old status values.
 
 The repo must have the following hives available and configured with these child tiers and valid status values.
 
-Every hive uses the same four status values, and no others: `draft`, `defined`, `active`, `done`. A board can then show every hive the same way. What each value means in each hive is listed below. `defined` means fully written up, not approved. Approval and priority come from tags, never from the status: one `priority:N` tag, where a lower number means higher priority (`priority:0` is the highest, then `priority:1`, and so on, with no upper limit), and `parked`.
+Every hive uses the same four status values, and no others: `draft`, `defined`, `active`, `done`. A board can then show every hive the same way. What each value means in each hive is listed below. `defined` means fully written up, not approved. Approval and priority come from tags, never from the status: `approved:yes`, which only the User gives, one `priority:N` tag, where a lower number means higher priority (`priority:0` is the highest, then `priority:1`, and so on, with no upper limit), and `parked`.
 
 ### Bugs Hive
 Child tiers:
@@ -30,7 +30,7 @@ Child tiers:
 
 Status values:
 - draft — not fully documented, not ready to work
-- defined — fully documented, ready to work
+- defined — fully documented; work still needs the User's `approved:yes`
 - active — in progress
 - done — complete
 
@@ -44,7 +44,7 @@ Child tiers:
 
 Status values:
 - draft — not fully documented, not ready to work
-- defined — fully documented, ready to work
+- defined — fully documented; work still needs the User's `approved:yes` on the Idea's PRD
 - active — in progress
 - done — complete
 

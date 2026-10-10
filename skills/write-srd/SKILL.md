@@ -12,6 +12,21 @@ what must be true about the software for the PRD to be satisfied.
 
 You are the **calling agent**. The entire job — reading the PRD, exploring the codebase, writing the SRD, creating the SRD child bee — is done by the `apiary-srd-writer` subagent, a named agent definition installed in `.claude/agents/`, spawned via the Agent tool. You resolve the input, dispatch, and tell the user the results. You do not write the SRD yourself.
 
+## Approval guard
+
+Run this first: no question, dispatch or ticket change comes before it. If you were given nothing, ask for the Idea Bee as step 1 says, then run this before anything else.
+
+An SRD is written only once the User has approved the PRD. Read tickets with `bees show-ticket --ids <id>`.
+
+1. PRD: given the PRD, that ticket. Given the Idea Bee, its t1 child titled `PRD`.
+2. The PRD's `tags` must include `approved:yes`.
+
+If either step fails, stop at once: change no ticket and dispatch nothing. When given `--no-questions`, or when `AGENT_DIRECTOR_INSTANCE_ID` is set, end your output with exactly one of these lines; otherwise tell the user the same and stop:
+- `write-srd: needs input: <prd-id> lacks approved:yes — the User must approve it`
+- `write-srd: needs input: no PRD found for <idea-id> — cannot check approved:yes`
+
+This skill never adds `approved:yes`. Only the User approves.
+
 ## 1. Resolve the Input
 
 The user will provide either a Bee in the Idea hive, a PRD bee child of such a bee or nothing.

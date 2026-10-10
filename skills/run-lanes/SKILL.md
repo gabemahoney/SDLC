@@ -12,6 +12,8 @@ description: Run a Bee's Epics in parallel Epic lanes — pick the Epics that to
 3. Merges finished lanes back into the feature branch **one at a time**, and retests the feature branch after each merge.
 4. Stops and reports on a merge conflict, a failing retest or anything else it cannot settle. It never uses AskUserQuestion and never waits for an answer.
 
+Before any of this, every pass checks that the User approved the Bee's PRD (Approval guard), and stops if not.
+
 One invocation is one pass: it merges every lane that is ready, starts every lane that can start, records the state on the Bee and stops. Whoever drives it (an orchestrator, a `/loop`, or a person) runs `/run-lanes <bee-id>` again whenever a lane worker finishes. Each pass rebuilds its picture from the ticket store, git and agent-director, so passes can run in fresh sessions.
 
 "Epic lane" here is unrelated to the Test Writer lanes inside a Task (do-bee step 3).
@@ -60,6 +62,23 @@ Run it from the main repo or from the feature worktree, never from inside an Epi
 `**Lanes**: none` once no lane is open.
 
 ## Steps
+
+### Approval guard
+
+Run this first in every pass, before step 1: no worktree, merge, lane, dispatch or ticket change comes before it.
+
+A Bee is built only once the User has approved its Idea's PRD. Read tickets with `bees show-ticket --ids <id>`.
+
+1. Plan Bee: the `<bee-id>` given.
+2. Idea Bee: the Ideas-hive Bee named in the Plan Bee's `reference_materials` (its `bees` entry) or `up_dependencies`. `bees execute-freeform-query --query-yaml "stages: [[id=<id>, hive=ideas]]"` returns a ticket only if it is in the Ideas hive. If there is more than one, check each.
+3. PRD: the Idea Bee's t1 child titled `PRD`.
+4. The PRD's `tags` must include `approved:yes`.
+
+If any step fails, stop at once: change no ticket, write no progress section, start or merge no lane, and skip the step 7 report. End your output with exactly one of these lines:
+- `run-lanes: needs input: <prd-id> lacks approved:yes — the User must approve it`
+- `run-lanes: needs input: no <Idea Bee | PRD> found for <ticket-id> — cannot check approved:yes`
+
+This skill never adds `approved:yes`. Only the User approves.
 
 ### 1. Validate the Bee
 
@@ -151,6 +170,8 @@ End with exactly one of these lines:
 - `run-lanes: <n> lanes open (<epic-ids>). Next: run /run-lanes <bee-id> again when a lane worker finishes.`
 - `run-lanes: all Epics merged into <bee_branch>. Next: run /do-bee <bee-id> in <feature_path> for the final Bee review.`
 - `run-lanes: stopped — <one-line reason>. Fix it, then run /run-lanes <bee-id> again.` (for a conflict, a failing retest, a failed worktree step, or a stuck Bee)
+
+A pass refused by the Approval guard writes no report and ends with the guard's `run-lanes: needs input:` line instead.
 
 ## Rules
 
