@@ -25,25 +25,37 @@ Run this first: no context gathering, dispatch or ticket change comes before
 it. If you were not given a ticket ID, ask for it as step 1 says, then run this
 before anything else.
 
-Only Ideas-hive tickets are gated. Read tickets with
-`bees show-ticket --ids <id>`.
+Ideas-hive and Plans-hive tickets are gated. Read tickets with
+`bees show-ticket --ids <id>`. To find a ticket's hive,
+`bees execute-freeform-query --query-yaml "stages: [[id=<id>, hive=<hive>]]"`
+returns it only if it is in that hive (`ideas` or `plans`).
 
-1. Hive: `bees execute-freeform-query --query-yaml "stages: [[id=<id>, hive=ideas]]"`
-   returns the ticket only if it is in the Ideas hive. If it is not (a Bug,
-   like `/fix-bug`, or any other hive), skip the rest of this guard.
-2. Idea Bee: the ticket itself if it is a Bee. For a child-tier ticket, follow
+**Ideas hive:**
+1. Idea Bee: the ticket itself if it is a Bee. For a child-tier ticket, follow
    `parent` up to the Bee.
-3. The Idea Bee's `tags` must include `approved:yes`.
-4. If the Idea Bee has a t1 child titled `PRD`, the PRD's `tags` must include
+2. The Idea Bee's `tags` must include `approved:yes`.
+3. If the Idea Bee has a t1 child titled `PRD`, the PRD's `tags` must include
    `approved:yes` too. An Idea with no PRD passes this step.
+
+**Plans hive** (as in `/do-bee`):
+1. Plan Bee: the ticket itself if it is a Bee. For an Epic, or any ticket below
+   one, follow `parent` up to the Bee.
+2. Idea Bee: the Ideas-hive Bee named in the Plan Bee's `reference_materials`
+   (its `bees` entry) or `up_dependencies`. If there is more than one, check
+   each.
+3. PRD: the Idea Bee's t1 child titled `PRD`.
+4. The PRD's `tags` must include `approved:yes`.
+
+**Any other hive** (Bugs and Research, like `/fix-bug` and `/research`): not
+gated. Skip the rest of this guard.
 
 If any step fails, stop at once: change no ticket and dispatch nothing. When
 given `--no-questions`, or when `AGENT_DIRECTOR_INSTANCE_ID` is set, end your
 output with exactly one of these lines; otherwise tell the user the same and
 stop:
 - `apiary-work: needs input: <ticket-id> lacks approved:yes — the User must approve it`,
-  naming the Idea or its PRD, whichever lacks the tag
-- `apiary-work: needs input: no Idea Bee found for <ticket-id> — cannot check approved:yes`
+  naming the Idea or the PRD, whichever lacks the tag
+- `apiary-work: needs input: no <Plan Bee | Idea Bee | PRD> found for <ticket-id> — cannot check approved:yes`
 
 This skill never adds `approved:yes`. Only the User approves.
 
@@ -90,6 +102,6 @@ On worker return:
 On sign-off, instruct the worker to:
 
 - `git push origin master`
-- `bees update-ticket --ids <id> --status finished`
+- `bees update-ticket --ids <id> --status done`
 
 Confirm both to the operator.

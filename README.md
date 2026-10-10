@@ -55,7 +55,7 @@ A state never means approval or priority. Those come from tags:
 - `priority:N` — one tag per ticket. A lower number means higher priority: `priority:0` is the highest, then `priority:1`, and so on, with no upper limit.
 - `parked` — set aside for now.
 
-`/write-prd` refuses an Idea bee without `approved:yes`. `/write-srd`, `/make-plan`, `/hatch-epic`, `/do-bee` and `/run-lanes` refuse unless the Idea's PRD has it; for a Plan bee or Epic they trace back to the Idea's PRD. Apiary's own `/apiary-work` checks an Idea bee, and its PRD if it has one. Bugs (`/fix-bug`) and research are not gated.
+`/write-prd` refuses an Idea bee without `approved:yes`. `/write-srd`, `/make-plan`, `/hatch-epic`, `/do-bee` and `/run-lanes` refuse unless the Idea's PRD has it; for a Plan bee or Epic they trace back to the Idea's PRD. Apiary's own `/apiary-work` checks an Idea bee (and its PRD, if there is one), and traces a Plan bee or Epic like `/do-bee`. Bugs (`/fix-bug`) and research are not gated.
 Only the User approves. No skill adds `approved:yes`; a bot adds it only when relaying the User's explicit approval. In-progress Plans are not exempt.
 
 ### Idea
