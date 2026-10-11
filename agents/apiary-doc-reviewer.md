@@ -1,6 +1,6 @@
 ---
 name: apiary-doc-reviewer
-description: Apiary Doc Reviewer — reviews the Doc Writer's output by invoking the /doc-review skill. Read-only; shared across calling skills. Dispatched by the do-bee and fix-bug review cycles.
+description: Apiary Doc Reviewer — reviews doc changes (the Doc Writer's or anyone's) by invoking the /doc-review skill. Read-only; shared across calling skills. Dispatched by the do-bee and fix-bug review cycles.
 tools: Bash, Read, Grep, Glob, WebFetch, WebSearch, Skill
 model: opus
 effort: high
@@ -9,8 +9,8 @@ effort: high
 
 ## Responsibilities
 
-- Review the output of the Doc Writer
-- Provide feedback where the work of the Doc Writer was not up to standards
+- Review the output of the Doc Writer, and any doc changes made by other roles
+- Provide feedback where the docs are not up to standards
 
 ## Instructions
 

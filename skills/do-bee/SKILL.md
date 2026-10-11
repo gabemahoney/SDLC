@@ -244,7 +244,7 @@ Once all Epics in the Bee are done, dispatch the applicable reviewer subagents a
 
 If you dispatched the Engineer during execution, dispatch `apiary-code-reviewer`.
 If you dispatched the Test Writer during execution, dispatch `apiary-test-reviewer`.
-If you dispatched the Doc Writer during execution, dispatch `apiary-doc-reviewer`.
+If you dispatched the Doc Writer during execution, or the change touched a README or any doc the repo's doc-writing guide governs (whoever edited it), dispatch `apiary-doc-reviewer`.
 
 Each reviewer subagent invokes its corresponding review skill (/code-review, /test-review, /doc-review) and returns a numbered list of freeform findings (an explicit "no findings" statement when there are none). Include this line in each reviewer's dispatch prompt: "Your review skill is a read-only operation — invoke it via the Skill tool; do not decline the invocation."
 
