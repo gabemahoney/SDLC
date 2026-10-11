@@ -22,6 +22,8 @@ User-facing docs are for human users to understand how to install and run the pr
 - No testing or unit testing details
   - This is IMPORTANT. Seriously. Don't talk about how to test the product in the user-facing docs. 
 - No discussion of security implications or requirements
+- No error cases, migration or recovery steps
+- No history - just the current state of things
 - Keep it short and simple - focused on how to install and how to use
 - Don't describe how to use common tools (like screen, poetry, bash etc)
 ### Architecture docs
@@ -59,13 +61,19 @@ Review all commits and changed files to understand the scope of work: new featur
 
 Read the user-facing docs (where the repo's doc-writing guide puts them; README.md if it has none) and Architecture docs (the ones its guide names; master_plan.md if it has none) to understand current state.
 
-### 3. Find Documentation Gaps
+### 3. Re-read Every Touched Doc in Full
+
+For each changed README, or any doc the repo's doc-writing guide governs, read the WHOLE file, not just the diff.
+Check it against the guide and the doc's own stated rules: length and scope, no implementation detail, no error cases, migration or recovery, no history, and anything else the guide forbids (or the User-facing docs rules above when the repo has no guide).
+Flag every violation anywhere in the file, including text this change did not touch.
+
+### 4. Find Documentation Gaps
 
 **User-facing docs** (user-focused, concise):
 - Install instructions correct?
 - Updated setup/dependencies?
 - Is the list of MCP server commands correct
-- If yes, fix it. If no, LEAVE IT ALONE!
+- If yes, fix it. If no, LEAVE IT ALONE! (Step 3 findings still apply to the whole touched doc.)
 
 
 **Architecture Docs** (cheat sheet for llms):
@@ -73,20 +81,20 @@ Read the user-facing docs (where the repo's doc-writing guide puts them; README.
 - Have new components been introduce or old ones remove?
 - Schema/API changes?
 - Data flow still accurate?
-- If yes, fix it. If no, LEAVE IT ALONE!
+- If yes, fix it. If no, LEAVE IT ALONE! (Step 3 findings still apply to the whole touched doc.)
 
 
-### 4. Check for Inconsistencies
+### 5. Check for Inconsistencies
 Look for docs that are now incorrect: outdated commands, deprecated features still shown, changed file paths, old config formats.
 
-### 5. Find and reduce duplication and waste
+### 6. Find and reduce duplication and waste
 - Look for sections of the docs that repeat information and suggest removing them.
 - Look for sections of the doc that are too verbose and recommend ways to compact them without losing meaning
 - Ensure docs serve the right purpose:
   - User-facing docs are a user manual
   - Architecture docs are a cheat sheet for LLMs to understand the architecture and core technology
 
-### 6. Output Work Items
+### 7. Output Work Items
 
 Return specific, actionable items as numbered list:
 
@@ -110,6 +118,7 @@ In fact, if you never return "no issues found" the workflow will go into an infi
 **Important**
 - Docs are wrong
 - User-facing docs are missing information the user needs to use the app
+- A touched doc breaks its doc-writing guide or its own rules anywhere in the file (step 3)
 **Not Important**
 - Formatting issues
 - Grammar

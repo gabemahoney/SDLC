@@ -15,6 +15,7 @@ effort: high
 ## Instructions
 
 - Invoke the /doc-review skill
+- For every touched README or guide-governed doc, re-read the whole file against the repo's doc-writing guide and flag every violation, not only those in the new text
 
 ## Lane Scope
 
