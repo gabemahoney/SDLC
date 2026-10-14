@@ -54,7 +54,7 @@ Each transition has exactly one owner. Change only the tickets and statuses your
 
 **Idea:** write-idea → write-prd and write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. idea-review checks the whole Idea without changing statuses.
 
-An Idea has at most one PRD and one SRD; the writing skill updates an existing one. Docs and req-review are optional: the Managing Intelligence may mark an Idea `defined` and proceed to write-plan.
+An Idea has at most one PRD and one SRD; the writing skill updates an existing one. Docs and req-review are optional: the Managing Intelligence may mark an Idea `defined` and proceed to write-plan. When an Idea has no PRD or SRD, or one that is not `defined`, write-plan stops and asks the Managing Intelligence to confirm planning without it, and goes on only on an explicit yes.
 
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. If the Bug is not real, define-bug sets `invalid` with a note saying why. The Managing Intelligence either sets an `invalid` Bug `done` or sends it back to `draft` for define-bug. Returned fixes also go back to `draft` for define-bug.
 
