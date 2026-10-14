@@ -97,7 +97,10 @@ Project-level skills—project-setup, write-idea, write-bug, write-prd, write-sr
 
 Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve Guidance Documents' relative paths, including pointers and `maintained-docs.md` entries, from that checkout's root, wherever the Guidance Document sits.
 
-For develop-epic, idea-review, review skills and the repos write-plan and write-epic plan in, starting in `.worktrees/<ticket id>/` confines work to that ticket's worktrees; otherwise use main checkouts. Put worktrees only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder. Commit per repo, naming the ticket; a Task spanning repos gets one commit per repo. Only release pushes.
+- **Where worktrees live:** only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder.
+- **Where to work:** develop-epic, idea-review, the review skills, and write-plan and write-epic for the repos they plan in, work only in a ticket's worktrees when started in `.worktrees/<ticket id>/`; otherwise in the main checkouts.
+- **How to commit:** per repo, naming the ticket; a Task spanning repos gets one commit per repo.
+- **Who pushes:** only release.
 
 ### Settings
 
