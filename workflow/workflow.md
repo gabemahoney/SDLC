@@ -83,7 +83,7 @@ A source reference links a ticket to something outside the ticket system that it
 
 ### Starting, reporting and resuming
 
-Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load needed Guidance Documents (see Guidance Documents), templates and ticket-dependent skills' `SKILL.md` files, complete the fail-closed checks, then check the state gate. On failure, stop without changes and say why.
+Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents), templates and ticket-dependent skills' `SKILL.md` files, complete the fail-closed checks, then check the state gate. On failure, stop without changes and say why.
 
 Stop before any change, naming the file, if a needed Guidance Document has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the run likewise; point to project-setup.
 
@@ -112,7 +112,7 @@ Pass the settings and the Ticket System and Agent Protocol Files in every dispat
 
 ### Guidance Documents
 
-Read every user copy of each needed Guidance Document from the working folder's `.apiary` through each parent, including `~/.apiary`. In a repo checkout, start at that checkout's `.apiary`, then its parent; a worktree uses its branch's committed copy. Outside `~`, walk to `/`, then read `~/.apiary` once.
+Load only the Guidance Documents your `SKILL.md` or Subagent definition names; read no others. Read every user copy of each of them from the working folder's `.apiary` through each parent, including `~/.apiary`. In a repo checkout, start at that checkout's `.apiary`, then its parent; a worktree uses its branch's committed copy. Outside `~`, walk to `/`, then read `~/.apiary` once.
 
 Files sit directly in each `.apiary` Folder. User copies are `<name>.md`. Only if no user copy exists, read `~/.apiary/<name>-default-fallback.md` alone. Every user copy adds up, including all its checks and gates; any user copy disables the Default Fallback File. If guidance conflicts, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
 
