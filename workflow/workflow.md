@@ -15,9 +15,9 @@ Stores are flat; none is nested in another.
 
 An Idea is a piece of work; a Bug is a defect to validate and fix. A Plan divides an Idea into Epics, an Epic into Tasks (each committed in one go), and a Task into Subtasks (each one executor's part). A Doc describes an Idea: its PRD (what and why), SRD (what the software must do), TLA+ spec (a model-checked design), or another document. A Research ticket holds a research question; its one Report holds the answer. A Report is not a Doc.
 
-## Statuses and tags
+## Statuses
 
-Set and read only these statuses, in every store:
+Set and read only these statuses, in every store. All status transitions are idempotent.
 
 | Status | Meaning |
 |---|---|
@@ -26,27 +26,29 @@ Set and read only these statuses, in every store:
 | `active` | Work in progress. |
 | `done` | Complete. |
 
-All status transitions are idempotent.
+## Tags
 
-- `level:<label>`: one Thinking Level tag on each Idea, Epic, Task and Bug.
-- `invalid`: define-bug sets it on a Bug that is not real, with a note explaining why.
+| Tag | Meaning |
+|---|---|
+| `level:<label>` | The ticket's Thinking Level: one on each Idea, Epic, Task and Bug. |
+| `invalid` | Set by define-bug on a Bug that is not real, with a note explaining why. |
 
 ## Status Ownership
 
 Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` and this table give you.
 
-| Ticket | Transitions and owners |
-|---|---|
-| Idea | **I1:** write-idea creates `draft`. **I2:** req-review sets `draft` → `defined` on the Managing Intelligence's yes, once every Doc child is `defined`. **I3:** develop-epic sets `active` when starting an Epic. **I4:** the Managing Intelligence sets `done` after testing the Idea. |
-| PRD / SRD | **D1:** write-prd / write-srd creates `draft`; revising a `defined` PRD or SRD sets it back to `draft`. **D2:** req-review asks the Managing Intelligence and, on yes, sets `defined`. |
-| Other Doc (not PRD, SRD or TLA+ spec) | **D3:** the Managing Intelligence creates `draft` and owns changes other than D4. **D4:** req-review asks the Managing Intelligence and, on yes, sets `defined`. |
-| TLA+ spec Doc | **D5:** tla-plus creates `defined`; a re-run updates it and leaves it `defined`. No other transition. |
-| Plan | **P1–P2:** write-plan creates `draft`, then sets `defined`. **P3:** develop-epic sets `active` when starting an Epic. **P4:** develop-epic sets `done` when finishing an Epic leaves every Epic in the Plan `done`. |
-| Epic | **E1:** write-plan creates `draft`. **E2:** write-epic sets `defined`. **E3–E4:** develop-epic sets `active`, then `done`. |
-| Task | **T1–T2:** write-epic creates `draft`, then sets `defined`. **T3–T4:** develop-epic sets `active`, then `done`; `done` requires every Subtask to be `done`. |
-| Subtask | **S1–S2:** write-epic creates `draft`, then sets `defined`. **S3–S4:** the executor working it sets `active`, then `done`. |
-| Bug | **B1:** write-bug or the Managing Intelligence creates `draft`, not yet validated. **B2:** define-bug sets `defined` after reproducing and validating it, and sets its `level:` tag. **B3:** define-bug leaves a Bug that is not real `draft`, tags it `invalid`, and notes why, awaiting the Managing Intelligence. **B4:** fix-bug sets `active`. **B5:** the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note. **B6:** the Managing Intelligence sets it back to `draft`, or removes `invalid`, to send it back to define-bug. |
-| Research ticket and Report | **R1–R4:** research creates the Research ticket `defined`, sets it `active` during review rounds, sets it `done` when the reviewer accepts, and reopens it as `active` when a reviewer asks for more work. **R5:** the Report, created with the first round, carries the Research ticket's status. All five transitions belong to research. |
+| Ticket                                | Transitions and owners                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Idea                                  | **I1:** write-idea creates `draft`. **I2:** req-review sets `draft` → `defined` on the Managing Intelligence's yes, once every Doc child is `defined`. **I3:** develop-epic sets `active` when starting an Epic. **I4:** the Managing Intelligence sets `done` after testing the Idea.                                                                                                                                                                                                                                                                                                |
+| PRD / SRD                             | **D1:** write-prd / write-srd creates `draft`; revising a `defined` PRD or SRD sets it back to `draft`. **D2:** req-review asks the Managing Intelligence and, on yes, sets `defined`.                                                                                                                                                                                                                                                                                                                                                                                                |
+| Other Doc (not PRD, SRD or TLA+ spec) | **D3:** the Managing Intelligence creates `draft` and owns changes other than D4. **D4:** req-review asks the Managing Intelligence and, on yes, sets `defined`.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| TLA+ spec Doc                         | **D5:** tla-plus creates `defined`; a re-run updates it and leaves it `defined`. No other transition.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Plan                                  | **P1–P2:** write-plan creates `draft`, then sets `defined`. **P3:** develop-epic sets `active` when starting an Epic. **P4:** develop-epic sets `done` when finishing an Epic leaves every Epic in the Plan `done`.                                                                                                                                                                                                                                                                                                                                                                   |
+| Epic                                  | **E1:** write-plan creates `draft`. **E2:** write-epic sets `defined`. **E3–E4:** develop-epic sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Task                                  | **T1–T2:** write-epic creates `draft`, then sets `defined`. **T3–T4:** develop-epic sets `active`, then `done`; `done` requires every Subtask to be `done`.                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Subtask                               | **S1–S2:** write-epic creates `draft`, then sets `defined`. **S3–S4:** the executor working it sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Bug                                   | **B1:** write-bug or the Managing Intelligence creates `draft`, not yet validated. **B2:** define-bug sets `defined` after reproducing and validating it, and sets its `level:` tag. **B3:** define-bug leaves a Bug that is not real `draft`, tags it `invalid`, and notes why, awaiting the Managing Intelligence. **B4:** fix-bug sets `active`. **B5:** the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note. **B6:** the Managing Intelligence sets it back to `draft`, or removes `invalid`, to send it back to define-bug. |
+| Research ticket and Report            | **R1–R4:** research creates the Research ticket `defined`, sets it `active` during review rounds, sets it `done` when the reviewer accepts, and reopens it as `active` when a reviewer asks for more work. **R5:** the Report, created with the first round, carries the Research ticket's status. All five transitions belong to research.                                                                                                                                                                                                                                           |
 
 ## Flows
 
