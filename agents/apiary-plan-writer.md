@@ -21,6 +21,7 @@ These might take the form of Product Requirements Docs, Software Requirements do
 - Read the engineering best practices guide, the test writing guide and the doc writing guide referenced in CLAUDE.md under "Documentation Locations". If a guide is missing, plan that kind of work as before.
   - Plan the work any guide requires, such as a required test type (e.g. end-to-end tests for every feature) or a required engineering step (e.g. a migration or a benchmark). Fold it into the Epics where it belongs. The guides don't change how Epics are sliced.
   - Plan no doc work the doc writing guide doesn't allow: no new doc files unless the guide names them, and README or other doc changes kept to what the guide says.
+- Write only what your input (the Idea's documents and the guides) states. Add no defaults, fallbacks, validation, edge-case rules, schemas or guards that the input doesn't ask for. Keep the Plan and its Epics short.
 - Before decomposition, align on the outcome. If you cannot clearly state what changes for the user or system when the Bee is complete, do not decompose yet.
   - From the PRD:
     - User or customer outcome

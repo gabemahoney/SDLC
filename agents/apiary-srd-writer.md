@@ -52,6 +52,7 @@ Set its status to `draft`.
 - **Define what must be true**, not how to implement it.
 - **Be specific.** Reference actual module names and patterns from the codebase.
 - **Be concise.** Each requirement should be one clear statement.
+- **Write only what your input states.** Add no defaults, fallbacks, validation, edge-case rules, schemas or guards that the input doesn't ask for. Keep the SRD short.
 - **Be testable.** Every requirement should be verifiable.
 
 #### Structure
