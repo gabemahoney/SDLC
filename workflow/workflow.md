@@ -108,7 +108,7 @@ Read settings only from the Project Folder's `.apiary/project_settings.md`, then
 
 The six names are `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code` and `levels_codex`. Each value is the text below its `## <setting name>` heading up to the next `##` heading; text before the first heading is a comment. A malformed settings file stops the run, naming it. If neither file names a required setting, the run stops before changes, naming it and pointing to project-setup. Ticket systems, Launchers and intake approaches must be ones Apiary ships.
 
-Resolve settings and Protocol Files once per run started by the Managing Intelligence; retain them throughout. Pass values and Ticket System and Agent Protocol Files in every dispatch. Subagents and inner skills use them; settings edits apply to the next run the Managing Intelligence starts.
+Pass the settings and the Ticket System and Agent Protocol Files in every dispatch; Subagents and inner skills use those, not their own lookup.
 
 ### Guidance Documents
 
