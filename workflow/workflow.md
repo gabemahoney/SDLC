@@ -110,7 +110,7 @@ The Project Folder is the nearest folder, from the working directory up, contain
 
 Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, tla-plus, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug and the worktree skills—change files and commit only inside repo checkouts.
 
-Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve Guidance Documents' relative paths, including pointers and `maintained-docs.md` entries, from that checkout's root, wherever the Guidance Document sits.
+Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve Guidance Documents' relative paths, pointers included, from that checkout's root, wherever the Guidance Document sits.
 
 - **Where worktrees live:** only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder.
 - **Where to work:** develop-epic, idea-review, the review skills, and write-plan and write-epic for the repos they plan in, work only in a ticket's worktrees when started in `.worktrees/<ticket id>/`; otherwise in the main checkouts.
@@ -131,20 +131,20 @@ Load only the Guidance Documents your `SKILL.md` or Subagent definition names; r
 
 Files sit directly in each `.apiary` Folder. User copies are `<name>.md`. Only if no user copy exists, read `~/.apiary/<name>-default-fallback.md` alone. Every user copy adds up, including all its checks and gates; any user copy disables the Default Fallback File. If guidance conflicts, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
 
-A Guidance Document may consist entirely of a pointer; `maintained-docs.md` entries are pointers too. Open targets as plain references under the path rule: no walk, combining or Default Fallback File. Report a missing target; stop if the work requires it.
+A Guidance Document may consist entirely of a pointer to other files. Open targets as plain references under the path rule: no walk, combining or Default Fallback File. Report a missing target; stop if the work requires it.
 
 ### Thinking Levels
 
 The labels `low` < `medium` < `high` < `xhigh` < `max` each map to an Agent's model and effort. Take each session's or Subagent's Thinking Level from one source:
 
-| Session or work | Source |
-|---|---|
-| Worker | Its skill's session Thinking Level in `SKILL.md`; this is a recommendation for other sessions. |
-| Inner skill | The caller's session or dispatch model and effort. |
-| PRD Writer, SRD Writer, Requirements Reviewer, Plan Writer; idea-review's reviewers, fix-up executors and integration Test Writer | Idea. |
-| write-epic's planners; develop-epic's final integration Test Writer and end-of-Epic check | Epic. |
-| develop-epic's executors, Code, Test and Doc Reviewers, Product Manager, and integration Test Writer for a flagged Task | Task. |
-| Every Subagent fix-bug dispatches | Bug. |
+| Session or work                                                                                                                   | Source                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Worker                                                                                                                            | Its skill's session Thinking Level in `SKILL.md`; this is a recommendation for other sessions. |
+| Inner skill                                                                                                                       | The caller's session or dispatch model and effort.                                             |
+| PRD Writer, SRD Writer, Requirements Reviewer, Plan Writer; idea-review's reviewers, fix-up executors and integration Test Writer | Idea.                                                                                          |
+| write-epic's planners; develop-epic's final integration Test Writer and end-of-Epic check                                         | Epic.                                                                                          |
+| develop-epic's executors, Code, Test and Doc Reviewers, Product Manager, and integration Test Writer for a flagged Task           | Task.                                                                                          |
+| Every Subagent fix-bug dispatches                                                                                                 | Bug.                                                                                           |
 
 When an Idea, Epic, Task or Bug starts work with a missing, unknown or repeated `level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
 
