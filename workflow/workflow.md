@@ -106,7 +106,7 @@ Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo,
 
 Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value.
 
-The six names are `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code` and `levels_codex`. Each value is the text below its `## <setting name>` heading up to the next `##` heading; text before the first heading is a comment. A malformed settings file stops the run, naming it. An unset required setting stops the run before changes, naming it and pointing to project-setup. Ticket systems, Launchers and intake approaches must be ones Apiary ships.
+The six names are `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code` and `levels_codex`. Each value is the text below its `## <setting name>` heading up to the next `##` heading; text before the first heading is a comment. A malformed settings file stops the run, naming it. If neither file names a required setting, the run stops before changes, naming it and pointing to project-setup. Ticket systems, Launchers and intake approaches must be ones Apiary ships.
 
 Resolve settings and Protocol Files once per run started by the Managing Intelligence; retain them throughout. Pass values and Ticket System and Agent Protocol Files in every dispatch. Subagents and inner skills use them; settings edits apply to the next run the Managing Intelligence starts.
 
