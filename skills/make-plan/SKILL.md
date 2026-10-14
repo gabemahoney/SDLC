@@ -47,6 +47,11 @@ Dispatch rules:
 - **Background dispatch**: if the Agent tool schema accepts `run_in_background`, pass `run_in_background: true`; otherwise omit it — background is the harness default under Claude Code fork-subagents mode. When the completion notification fires, present the report (step 4).
 - **Cold start**: every dispatch is a fresh spawn with a self-contained prompt. Dispatch prompts name the relevant ticket IDs; the subagent reads the tickets from the bees CLI itself.
 
+**In Codex CLI**, keep these rules with Codex's tools:
+- Call `spawn_agent` with `agent_type: "apiary-plan-writer"` (pass it even if the tool does not list it; the agent is defined in `~/.codex/agents/apiary-plan-writer.toml` or the repo's `.codex/agents/`), `message`: the dispatch prompt, `fork_turns: "none"` (the cold start; where `spawn_agent` has no `fork_turns`, do not fork) and a `task_name` of lowercase letters, digits and underscores (e.g. `plan_writer_b_abc`). Pass no `model` or `reasoning_effort`: the agent file sets them.
+- Codex sends no completion notification: wait for the report with `wait_agent` (prefer long waits, minutes). Close the agent with `close_agent` where that tool exists.
+- "Load the `hatch-epic` skill" (step 5) means: read `~/.agents/skills/hatch-epic/SKILL.md` (or the repo's `.agents/skills/hatch-epic/SKILL.md`) and follow it, including its own In Codex CLI notes.
+
 The dispatch prompt must contain:
 - The Idea Bee ID
 - The Plans hive name

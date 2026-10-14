@@ -105,6 +105,16 @@ Rules that apply to every dispatch in this skill:
 - **Reconciliation loop**: drive the work event-driven, not as one big blocking turn. Each tick: (1) observe current state — ticket store, in-flight Agent status; (2) reconcile — dispatch whatever fresh Agent invocations the delta requires; (3) yield the turn. The harness fires a completion notification when each background Agent finishes; that notification triggers the next tick. No polling, no sleep loops, no blocking waits inside a turn.
 - **Compaction recovery**: when a compaction/summarization marker is visible in your conversation, everything before it is non-authoritative. Before dispatching the next tick's work after a compaction, re-read the authoritative sources in full — the bees CLI for ticket state, git for code state, and the filesystem for any state files. Conversation memory is never a substitute for these sources.
 
+#### In Codex CLI
+
+The rules above name Claude Code's tools. In Codex CLI, keep the rules and use these instead:
+
+- **Dispatch**: for `Agent(subagent_type: "<agent-name>", prompt: <P>)`, call `spawn_agent` with `agent_type: "<agent-name>"` (pass it even if the tool does not list it; the agent is defined in `~/.codex/agents/<agent-name>.toml` or the repo's `.codex/agents/`), `message: <P>`, `fork_turns: "none"` (the cold start; where `spawn_agent` has no `fork_turns`, do not fork) and a unique `task_name` of lowercase letters, digits and underscores (e.g. `engineer_planner_t2_abc`). Pass no `model` or `reasoning_effort`: the agent file sets them.
+- **Ticks**: Codex sends no completion notification. Spawn every dispatch of the tick, then call `wait_agent` (prefer long waits, minutes): it ends the tick, and is the one blocking wait allowed. Each finished agent's report starts the next tick. Close a finished agent with `close_agent` where that tool exists.
+- **Concurrency**: Codex runs a few agents at once (`agents.max_concurrent_threads_per_session`, 4 by default, you included). When no slot is free, wait for an agent to finish before spawning the next, so parallel planners may run in batches.
+- **Questions**: there is no AskUserQuestion. Ask in plain text in your reply and end your turn.
+- **Skills and agents**: "invoke the /x skill" or the Skill tool means: read `~/.agents/skills/x/SKILL.md` (or the repo's `.agents/skills/x/SKILL.md`) and follow it. Agent definitions are `.codex/agents/apiary-*.toml`, not `.claude/agents/apiary-*.md`.
+
 #### Roles
 If source code needs to be changed, include `apiary-engineer-planner`. If not, the Engineer is optional.
 If unit test code need to be changed, include `apiary-test-writer-planner`. If not, the Test Writer is optional.

@@ -19,6 +19,8 @@ This skill does **not** define how the research is done. Use whatever methods th
 
 **No-questions mode**: on when you are given `--no-questions`, or when you run as an agent-director worker (`AGENT_DIRECTOR_INSTANCE_ID` is set in your environment; such workers usually cannot use AskUserQuestion). In this mode never use AskUserQuestion. Wherever this skill asks the reviewer or the caller, stop instead: put what you know in your output, end it with exactly one `research: needs review:` or `research: needs input:` line as given in the steps, and end your turn. The driver answers in this session, or starts a fresh session and gives the answer after the ID (e.g. `/research b.xxx accept`).
 
+In Codex CLI, which has no AskUserQuestion, ask in plain text in your reply and end your turn.
+
 ## Prerequisites
 
 The Research hive must exist with:

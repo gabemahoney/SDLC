@@ -67,6 +67,11 @@ Dispatch rules:
 - **Background dispatch**: if the Agent tool schema accepts `run_in_background`, pass `run_in_background: true`; otherwise omit it — background is the harness default under Claude Code fork-subagents mode. When the completion notification fires, present the report (step 4).
 - **Cold start**: every dispatch is a fresh spawn with a self-contained prompt. The subagent cannot see this conversation and cannot ask the user anything — everything it needs must be in the dispatch prompt.
 
+**In Codex CLI**, keep these rules with Codex's tools:
+- Call `spawn_agent` with `agent_type: "apiary-prd-writer"` (pass it even if the tool does not list it; the agent is defined in `~/.codex/agents/apiary-prd-writer.toml` or the repo's `.codex/agents/`), `message`: the dispatch prompt, `fork_turns: "none"` (the cold start; where `spawn_agent` has no `fork_turns`, do not fork) and a `task_name` of lowercase letters, digits and underscores (e.g. `prd_writer_b_abc`). Pass no `model` or `reasoning_effort`: the agent file sets them.
+- Codex sends no completion notification: wait for the report with `wait_agent` (prefer long waits, minutes). Close the agent with `close_agent` where that tool exists.
+- There is no AskUserQuestion (step 2): ask in plain text in your reply and end your turn.
+
 The dispatch prompt must contain:
 - The Idea Bee ID (the subagent reads the ticket from the bees CLI itself)
 - The full set of interview answers and any relevant context from your conversation with the user — serialized as text, complete enough that the writer never has to guess

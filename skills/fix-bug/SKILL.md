@@ -37,6 +37,16 @@ Rules that apply to every dispatch in this skill:
 - **Compaction recovery**: when a compaction/summarization marker is visible in your conversation, everything before it is non-authoritative. Before dispatching the next tick's work after a compaction, re-read the authoritative sources in full — the bees CLI for ticket state, git for code state, and the filesystem for any state files. Conversation memory is never a substitute for these sources.
 - **Delegate discipline**: you must not do role work yourself. You dispatch subagents, route reports on completion, and commit. Confirming the bug is real (step 1) is triage, not role work: you do it yourself, read only.
 
+#### In Codex CLI
+
+The rules above name Claude Code's tools. In Codex CLI, keep the rules and use these instead:
+
+- **Dispatch**: for `Agent(subagent_type: "<agent-name>", prompt: <P>)`, call `spawn_agent` with `agent_type: "<agent-name>"` (pass it even if the tool does not list it; the agent is defined in `~/.codex/agents/<agent-name>.toml` or the repo's `.codex/agents/`), `message: <P>`, `fork_turns: "none"` (the cold start; where `spawn_agent` has no `fork_turns`, do not fork) and a unique `task_name` of lowercase letters, digits and underscores (e.g. `engineer_bugfix_b_abc`). Pass no `model` or `reasoning_effort`: the agent file sets them.
+- **Ticks**: Codex sends no completion notification. Spawn every dispatch of the tick, then call `wait_agent` (prefer long waits, minutes): it ends the tick, and is the one blocking wait allowed. Each finished agent's report starts the next tick. Close a finished agent with `close_agent` where that tool exists.
+- **Concurrency**: Codex runs a few agents at once (`agents.max_concurrent_threads_per_session`, 4 by default, you included). When no slot is free, wait for an agent to finish before spawning the next, so parallel dispatches (e.g. the reviewers) may run in batches.
+- **Questions**: there is no AskUserQuestion. Ask in plain text in your reply and end your turn. No-questions mode is unchanged.
+- **Skills and agents**: "invoke the /x skill" or the Skill tool means: read `~/.agents/skills/x/SKILL.md` (or the repo's `.agents/skills/x/SKILL.md`) and follow it. Agent definitions are `.codex/agents/apiary-*.toml`, not `.claude/agents/apiary-*.md`.
+
 ### Setup:
 There must be a hive called "Bugs". If it does not exist, ask the user where you can create one. No-questions mode: end with `fix-bug: needs input: there is no Bugs hive — run /apiary-setup to create it, then re-run /fix-bug`.
 It must have no child tiers and the following valid status values:

@@ -35,6 +35,16 @@ Rules that apply to every dispatch in this skill:
 - **One Epic per session**: you cannot clear your own context, so after each Epic you record progress on the Bee and stop (4.3). Whoever drives the session starts a fresh `/do-bee <bee-id>`, which resumes from the Bee (step 1) the same way you recover from a compaction.
 - **Delegate discipline**: you must not do role work yourself. You dispatch subagents, route reports on completion, and commit.
 
+#### In Codex CLI
+
+The rules above name Claude Code's tools. In Codex CLI, keep the rules and use these instead:
+
+- **Dispatch**: for `Agent(subagent_type: "<agent-name>", prompt: <P>)`, call `spawn_agent` with `agent_type: "<agent-name>"` (pass it even if the tool does not list it; the agent is defined in `~/.codex/agents/<agent-name>.toml` or the repo's `.codex/agents/`), `message: <P>`, `fork_turns: "none"` (the cold start; where `spawn_agent` has no `fork_turns`, do not fork) and a unique `task_name` of lowercase letters, digits and underscores (e.g. `engineer_t2_abc_de`). Pass no `model` or `reasoning_effort`: the agent file sets them.
+- **Ticks**: Codex sends no completion notification. Spawn every dispatch of the tick, then call `wait_agent` (prefer long waits, minutes): it ends the tick, and is the one blocking wait allowed. Each finished agent's report starts the next tick. Close a finished agent with `close_agent` where that tool exists.
+- **Concurrency**: Codex runs a few agents at once (`agents.max_concurrent_threads_per_session`, 4 by default, you included). When no slot is free, wait for an agent to finish before spawning the next, so parallel dispatches (e.g. Test Writer lanes) may run in batches.
+- **Questions**: there is no AskUserQuestion. Ask in plain text in your reply and end your turn. No-questions mode is unchanged.
+- **Skills and agents**: "invoke the /x skill" or the Skill tool means: read `~/.agents/skills/x/SKILL.md` (or the repo's `.agents/skills/x/SKILL.md`) and follow it. Agent definitions are `.codex/agents/apiary-*.toml`, not `.claude/agents/apiary-*.md`.
+
 ### Modes
 
 - **No-questions mode**: on when you are given `--no-questions` or `--lane`, or when you run as an agent-director worker (`AGENT_DIRECTOR_INSTANCE_ID` is set in your environment; such workers usually cannot use AskUserQuestion). In this mode never use AskUserQuestion. Wherever this skill asks the User or the caller — with AskUserQuestion or in plain text — stop instead. Put what you know in your output, end it with exactly one line `do-bee: needs input: <question, with the options>`, and end your turn. The driver answers in this session, or starts a fresh session and gives the answer in plain words alongside the ID (e.g. `/do-bee b.xxx signed off`).

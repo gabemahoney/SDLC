@@ -26,6 +26,11 @@ Dispatch rules:
 - **Background dispatch**: if the Agent tool schema accepts `run_in_background`, pass `run_in_background: true`; otherwise omit it — background is the harness default under Claude Code fork-subagents mode. When the completion notification fires, present the report (step 3).
 - **Cold start**: every dispatch is a fresh spawn with a self-contained prompt. Dispatch prompts name the relevant ticket IDs; the subagent reads the tickets from the bees CLI itself.
 
+**In Codex CLI**, keep these rules with Codex's tools:
+- Call `spawn_agent` with `agent_type: "apiary-req-reviewer"` (pass it even if the tool does not list it; the agent is defined in `~/.codex/agents/apiary-req-reviewer.toml` or the repo's `.codex/agents/`), `message`: the dispatch prompt, `fork_turns: "none"` (the cold start; where `spawn_agent` has no `fork_turns`, do not fork) and a `task_name` of lowercase letters, digits and underscores (e.g. `req_reviewer_b_abc`). Pass no `model` or `reasoning_effort`: the agent file sets them.
+- Codex sends no completion notification: wait for the report with `wait_agent` (prefer long waits, minutes). Close the agent with `close_agent` where that tool exists.
+- There is no AskUserQuestion (Next Steps): ask in plain text in your reply and end your turn.
+
 The dispatch prompt must contain:
 - The Idea Bee ID (or the individual PRD/SRD ticket IDs)
 - The repository path relevant to the documents
