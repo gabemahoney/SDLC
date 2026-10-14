@@ -2,6 +2,21 @@
 
 Every Apiary skill reads this rulebook when run; every Subagent reads it when spawned.
 
+## Terms
+
+- **Managing Intelligence:** the person, or a bot acting for one, who drives Apiary: runs the skills, answers their questions, decides what work happens next and tests the results.
+- **Agent:** the AI coding tool Apiary runs in: Claude Code or Codex CLI.
+- **Subagent:** a helper an Agent starts inside its own session, with fresh context, to do one Subagent Role's work for a skill and report back.
+- **Subagent Role:** the job a Subagent does, such as Engineer or Code Reviewer, defined by its Subagent definition. Executors change files, writers write tickets, read-only Subagent Roles change nothing.
+- **Worker:** a separate Agent session the Launcher starts to run one skill.
+- **Launcher:** the program that starts, watches and stops Workers, such as agent-director.
+- **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
+- **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents for the folder it sits in, and settings in the Project Folder and `~`.
+- **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `maintained-docs.md`, `release-guide.md`, `bug-writing-guide.md`.
+- **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no copy of it is found.
+- **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent.
+- **Thinking Level:** one of `low` to `max`, picking the model and effort a session or Subagent runs at.
+
 ## Stores and ticket terms
 
 Stores are flat; none is nested in another.
