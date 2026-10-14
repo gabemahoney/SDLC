@@ -125,7 +125,7 @@ With `--worktree-only`, skip to step 8.
      ```bash
      agent-director send-keys --instance-id {instance_id} --allow-pending --text "{prompt}"
      ```
-     Then check that `agent-director status --instance-id {instance_id}` leaves `pending` (for `working` or `waiting`) within about a minute. If the input box never shows, or the row stays `pending`, report the last state and pane and fail; the worker and worktree stay in place.
+     Then check that `agent-director status --instance-id {instance_id}` leaves `pending` (for `working` or `waiting`) within about a minute. If it is still `pending`, read the pane once: if the prompt text still sits in Codex's input box (e.g. the `$` skill popup took the Enter), press Enter once more with `agent-director send-keys --instance-id {instance_id} --allow-pending` (no text) and check the status again. If the input box never shows, or the row stays `pending`, report the last state and pane and fail; the worker and worktree stay in place.
 
 ## 8. Report
 

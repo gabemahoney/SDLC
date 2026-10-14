@@ -150,7 +150,7 @@ When an install needs it, the tag message includes the line `Needs: run /apiary-
 To update, pull the latest tag and re-run `./install.sh` for each flavour you use (see Install, step 2).
 
 ### Upgrading to v3 (agent-director 0.12.0)
-1. Stop your agents, then upgrade agent-director to 0.12.0 with its own installer, and claude-slack-channel-bots to 0.16.0 if you use it.
+1. Upgrade agent-director to 0.12.0 with its own installer and upgrade steps. If you run claude-slack-channel-bots, follow its 0.16.0 migration guide instead, which orders the two upgrades.
 2. Pull the v3 tag and re-run `./install.sh` for each flavour you use. Workers need Claude Code 2.1.296 or later.
 3. Change orchestrator prompts and scripts that pass `--claude-instance-id` or read `claude_instance_id` to `--instance-id` and `instance_id`.
 
