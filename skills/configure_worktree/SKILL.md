@@ -1,13 +1,17 @@
 ---
 name: configure-worktree
-description: Create an isolated git worktree for a Bee and optionally launch a tracked Claude worker in it via agent-director
+description: Create an isolated git worktree for a Bee and optionally launch a tracked agent worker (Claude Code or Codex CLI) in it via agent-director
 ---
 
 # Overview
 
-Create a git worktree for a bee ticket, then (by default) launch Claude Code in it as an agent-director worker so it can work on the ticket on its own.
+Create a git worktree for a bee ticket, then (by default) launch an agent worker in it (Claude Code or Codex CLI) through agent-director, so it can work on the ticket on its own.
 
 Callers can also run it with no questions, create only the worktree and leave the worker to the caller, and choose the branch the worktree starts from. Orchestrator bots use these options.
+
+Worker mode needs agent-director 0.12.0 or later (`agent-director version`); 0.11.x and earlier refuse its flags. Worktree-only mode does not use agent-director.
+
+In Codex CLI, which has no AskUserQuestion, ask each question in plain text in your reply and end your turn.
 
 # Usage
 
@@ -23,11 +27,12 @@ Callers can also run it with no questions, create only the worktree and leave th
 |----------|---------|---------|
 | `<ticket_id>` | Bee or child-tier ticket the worktree is for. Required with `--no-questions`. | Ask (or suggest one from context) |
 | `--no-questions` | Never use AskUserQuestion. All input comes from arguments. Any missing input or failed check stops the skill with a clear error (see Failure report). | Off |
-| `--worktree-only` | Create (or reuse) the worktree and stop. Do not launch a worker. The caller launches its own (e.g. with `agent-director spawn --cwd {worktree_path}`). | Off |
+| `--worktree-only` | Create (or reuse) the worktree and stop. Do not launch a worker. The caller launches its own (e.g. with `agent-director spawn --cwd {worktree_path} --agent claude`). | Off |
 | `--base <ref>` | Branch (or other commit-ish) the new worktree branch starts from, e.g. a feature branch for per-Epic lanes. | `HEAD` of the checkout you run in |
 | `--prompt "<text>"` | Prompt sent to the worker. Spawn mode only. Required in spawn mode with `--no-questions`. | Ask |
 | `--template <name>` | agent-director template for the worker (e.g. `WORKER`). Spawn mode only. | None |
-| `--model <model>` | Model for the worker. Spawn mode only. Ignored when `--template` is given — the template sets the model. | Ask (Opus or Sonnet); with `--no-questions`, Claude Code's default |
+| `--agent <claude\|codex>` | The worker's agent: Claude Code or Codex CLI. Spawn mode only. | With `--template`, the template's agent; otherwise the agent you run in |
+| `--model <model>` | Model for the worker. Spawn mode only. Ignored when `--template` is given — the template sets the model. | Ask (Claude: Opus or Sonnet; Codex: a Codex model name or Codex's default); with `--no-questions`, the agent's default |
 
 Arguments may also be given in plain words ("worktree only", "base it on feature/x"); treat them the same.
 
@@ -103,17 +108,24 @@ With `--worktree-only`, skip to step 8.
 
 ## 7. Launch the worker via agent-director
 
-1. **Gather inputs.** Prompt: from `--prompt`, else (interactive) AskUserQuestion for the full instruction to give the worker — a skill invocation, a task description or any valid prompt. Model: from `--model`, else (interactive, no `--template`) ask Opus or Sonnet. With `--no-questions` and no `--prompt`, fail before spawning.
-2. **Spawn.** The tmux session name and the `apiary_worktree` label let `teardown_worktree` find this worker later:
+1. **Gather inputs.** Prompt: from `--prompt`, else (interactive) AskUserQuestion for the full instruction to give the worker — a skill invocation, a task description or any valid prompt. Model: from `--model`, else (interactive, no `--template`) ask: Opus or Sonnet for a Claude worker; a Codex model name (e.g. `gpt-6-astra`) or Codex's default for a Codex worker. With `--no-questions` and no `--prompt`, fail before spawning.
+2. **Pick the agent.** `--agent {agent}` when given. Otherwise, with `--template`, pass no `--agent`: the template names its agent (agent-director 0.12.0's installer set existing templates, such as `WORKER`, to `agent = "claude"`). Otherwise pass `--agent claude` when you run in Claude Code, `--agent codex` when you run in Codex CLI. A Codex worker commits into the main checkout's git metadata, so it needs full access (e.g. `--sandbox danger-full-access` in its template's agent args or the user's Codex config).
+3. **Spawn.** The tmux session name and the `apiary_worktree` label let `teardown_worktree` find this worker later:
    ```bash
-   agent-director spawn --cwd {worktree_path} --tmux-session-name {normalized_id} --label apiary_worktree={normalized_id} [--template {template}] [-- --model {model}]
+   agent-director spawn --cwd {worktree_path} --tmux-session-name {normalized_id} --label apiary_worktree={normalized_id} [--agent {agent}] [--template {template}] [-- --model {model}]
    ```
-   Pass `-- --model {model}` only without `--template` (claude args given on the command line replace the template's). Record `claude_instance_id` from the JSON output. On an error, report its `err_name` and `err_description` and fail; the worktree stays in place.
-3. **Send the prompt.** Wait until `agent-director status --claude-instance-id {id}` reports `waiting` (check every few seconds, up to about 2 minutes; `pending` means it is still starting). Then:
-   ```bash
-   agent-director send-keys --claude-instance-id {id} --text "{prompt}"
-   ```
-   If it never reaches `waiting`, report the last state and fail; the worker and worktree stay in place.
+   Pass `-- --model {model}` only without `--template` (agent args given on the command line replace the template's). Never pass the prompt after `--`. Record `instance_id` from the JSON output. If the template chose the agent, read it from `agent-director get --instance-id {instance_id}` (its `agent`). On an error, report its `err_name` and `err_description` and fail; the worktree stays in place.
+4. **Send the prompt.**
+   - **Claude worker.** Wait until `agent-director status --instance-id {instance_id}` reports `waiting` (check every few seconds, up to about 2 minutes; `pending` means it is still starting). Then:
+     ```bash
+     agent-director send-keys --instance-id {instance_id} --text "{prompt}"
+     ```
+     If it never reaches `waiting`, report the last state and fail; the worker and worktree stay in place.
+   - **Codex worker.** Its row stays `pending` until its first prompt. Wait until `agent-director read-pane --instance-id {instance_id}` shows Codex's input box ready for typing, with no startup or trust dialog (check every few seconds, up to about 2 minutes). A prompt that starts with a skill invocation `/<skill>` is sent as `$<skill>`: Codex invokes skills with `$`. Then:
+     ```bash
+     agent-director send-keys --instance-id {instance_id} --allow-pending --text "{prompt}"
+     ```
+     Then check that `agent-director status --instance-id {instance_id}` leaves `pending` (for `working` or `waiting`) within about a minute. If the input box never shows, or the row stays `pending`, report the last state and pane and fail; the worker and worktree stay in place.
 
 ## 8. Report
 
@@ -124,11 +136,11 @@ Ticket:      {ticket_id}
 Worktree:    {worktree_path} (created | reused)
 Branch:      {normalized_id}
 Base:        {base} ({base_sha})
-Worker:      {claude_instance_id}, tmux session {normalized_id} | none (worktree-only)
+Worker:      {instance_id} ({agent}), tmux session {normalized_id} | none (worktree-only)
 Prompt:      {prompt} | n/a
 ```
 
-With a worker, add: `To watch: agent-director read-pane --claude-instance-id {claude_instance_id}`.
+With a worker, add: `To watch: agent-director read-pane --instance-id {instance_id}`.
 
 ## Failure report
 

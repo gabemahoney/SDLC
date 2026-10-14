@@ -11,6 +11,8 @@ Callers can also run it with no questions, leave the worker to the caller, and c
 
 **Important:** Run this skill from outside the worktree being torn down (the main repo, or any other checkout). Running it inside the worktree would remove the directory, and kill the session, it is running in. See step 1.
 
+Stopping a worker needs agent-director 0.12.0 or later; `--worktree-only` does not use agent-director. In Codex CLI, which has no AskUserQuestion, ask each question in plain text in your reply and end your turn.
+
 # Usage
 
 **Invocation patterns**:
@@ -59,7 +61,7 @@ If this is `{worktree_path}`, fail: "This skill must run from outside the worktr
    agent-director list --cwd {worktree_path} --state pending,waiting,working,ask_user,check_permission
    ```
    - With `--worktree-only`: if any are live, fail. Removing the worktree would pull the directory out from under them; the caller must end its worker first.
-   - Otherwise: the worker this skill stops is the row labelled `apiary_worktree={normalized_id}` (check its `labels`). If it is `pending` or `working`, it is still busy: with `--no-questions`, fail; otherwise use AskUserQuestion to confirm merging anyway. Live rows without the label are someone else's: fail, as in worktree-only mode. If no row is live, note "no live worker" and carry on.
+   - Otherwise: the worker this skill stops is the row labelled `apiary_worktree={normalized_id}` (check its `labels`; record its `instance_id`). If it is `pending` or `working`, it is still busy: with `--no-questions`, fail; otherwise use AskUserQuestion to confirm merging anyway. Live rows without the label are someone else's: fail, as in worktree-only mode. If no row is live, note "no live worker" and carry on.
 
 ## 3. Handle uncommitted changes in the worktree
 
@@ -111,7 +113,7 @@ Record the merge commit: `git -C {target_checkout} rev-parse HEAD`.
 Skip with `--worktree-only`, or if step 2 found no live worker. Only after a successful merge:
 
 ```bash
-agent-director kill --claude-instance-id {claude_instance_id}
+agent-director kill --instance-id {instance_id}
 ```
 
 If kill returns an error, fail with its `err_name` and `err_description`; do not remove the worktree under a worker that may still be running. The merge stays in place.
@@ -139,7 +141,7 @@ Ticket:       {ticket_id}
 Merged into:  {target} at {target_checkout} (merge commit {sha})
 Worktree:     {worktree_path} (removed)
 Branch:       {normalized_id} (deleted | kept: {reason})
-Worker:       {claude_instance_id} (stopped) | none found | left to caller (worktree-only)
+Worker:       {instance_id} (stopped) | none found | left to caller (worktree-only)
 ```
 
 ## Failure report

@@ -8,6 +8,8 @@ description: Configure hives for Apiary workflow
 This skill should be run once to configure a repo for the Apiary workflow. It can also be run to fix hives that
 have gotten misconfigured, or to migrate hives still on old status values.
 
+In Codex CLI, which has no AskUserQuestion, ask each question in plain text in your reply and end your turn.
+
 ## Valid configuration
 
 The repo must have the following hives available and configured with these child tiers and valid status values.
@@ -79,14 +81,17 @@ The Apiary workflow spawns role players as subagents defined in `agents/*.md` fi
 Detect the skill install location and check that all 18 agent definition files are present at the parallel path:
 - `<repo>/.claude/agents/` when the Apiary skills live in `<repo>/.claude/skills/`
 - `~/.claude/agents/` when they live in `~/.claude/skills/`
+- In Codex CLI: `~/.codex/agents/` when the skills live in `~/.agents/skills/`, `<repo>/.codex/agents/` when they live in `<repo>/.agents/skills/`. There each file is `.toml` instead of `.md` (e.g. `apiary-engineer.toml`).
 
 The 18 files: `apiary-engineer.md`, `apiary-test-writer.md`, `apiary-doc-writer.md`, `apiary-product-manager.md`, `apiary-engineer-bugfix.md`, `apiary-test-writer-bugfix.md`, `apiary-doc-writer-bugfix.md`, `apiary-engineer-planner.md`, `apiary-test-writer-planner.md`, `apiary-doc-writer-planner.md`, `apiary-product-manager-planner.md`, `apiary-code-reviewer.md`, `apiary-test-reviewer.md`, `apiary-doc-reviewer.md`, `apiary-prd-writer.md`, `apiary-srd-writer.md`, `apiary-req-reviewer.md`, `apiary-plan-writer.md`.
 
-If all 18 are present, report success and move on. If any are missing, report the missing filenames and instruct the user to re-run README Install step 2 (the paired copy of `skills/` and `agents/`). Perform no file copies, no backups, and no clone-path prompts.
+If all 18 are present, report success and move on. If any are missing, report the missing filenames and instruct the user to re-run README Install step 2 (the paired copy of `skills/` and `agents/`; `./install.sh --agent codex` for Codex CLI). Perform no file copies, no backups, and no clone-path prompts.
 
-#### 3. tmux (required for worktree skills)
+#### 3. tmux and agent-director (required for worktree skills)
 
-The `configure_worktree` and `teardown_worktree` skills launch and stop Claude Code workers through agent-director, which runs them in tmux. Check if tmux is installed (`which tmux`). If not, direct the user to install it via their system package manager (e.g. `apt install tmux`, `brew install tmux`). Their worktree-only mode needs neither tmux nor agent-director.
+The `configure_worktree` and `teardown_worktree` skills (and `run-lanes`, through them) launch and stop agent workers (Claude Code or Codex CLI) through agent-director, which runs them in tmux. Check if tmux is installed (`which tmux`). If not, direct the user to install it via their system package manager (e.g. `apt install tmux`, `brew install tmux`).
+
+Their worker mode needs agent-director 0.12.0 or later. Check with `agent-director version`: if it is missing or older (0.11.x and earlier refuse these skills' `--instance-id` and `--agent` flags), tell the user to install or upgrade it with agent-director's own installer. Verify only; do not install it. Their worktree-only mode needs neither tmux nor agent-director.
 
 #### 4. Repository Directory Structure
 

@@ -30,6 +30,7 @@ One invocation is one pass: it merges every lane that is ready, starts every lan
 | `--base <branch>` | Branch the feature branch starts from. Used only on the first pass, when the feature branch is created. | Branch of the checkout you run in |
 | `--worktree-only` | Create and merge lane worktrees, but do not launch or stop lane workers. The pass lists each new lane's worktree and prompt for the caller to launch, and the caller must end a lane's worker before the pass that merges it. | Off: lane workers are launched through `configure_worktree` and stopped by `teardown_worktree` |
 | `--template <name>` | agent-director template for lane workers (e.g. `WORKER`). | None |
+| `--agent <claude\|codex>` | Agent for lane workers, passed to `configure_worktree`. | `configure_worktree`'s default: the template's agent, else the agent you run in |
 | `--max-lanes <n>` | Most Epic lanes running at once. | No limit |
 | `--waive-retest <epic-id>` | Accept a failing post-merge retest for that merge (step 4) and carry on. Only the driver passes this, on the User's say-so. | — |
 
@@ -53,7 +54,7 @@ Run it from the main repo or from the feature worktree, never from inside an Epi
 **Epics done**:
 - <epic-id> <epic-title>: merged into <bee_branch> at <merge_sha>; status `<status>`; Integration Suites: <lane result>; Post-merge retest: <passed | passed after fixing: <summary> | no integration suite found, unit suite passed | failed: <result> | waived by User: <last result>>
 **Lanes**:
-- <epic-id>: <lane_path> (branch <epic_branch>); worker <claude_instance_id> | caller's worker; <running | done, waiting to merge | blocked: <reason>>
+- <epic-id>: <lane_path> (branch <epic_branch>); worker <instance_id> | caller's worker; <running | done, waiting to merge | blocked: <reason>>
 **Next**: run-lanes | all Epics done; next: final Bee review
 **Open decisions/questions**: <list, or "None">
 **Notes for the next session**: <only what the ticket store and git do not already hold, or "None">
@@ -125,7 +126,7 @@ Take the open lanes whose Epic is done, in the Bee's Epic order. For each lane, 
    - **Gate**: the retest passes when its last run reported `passed` (or `passed after fixing`), or `no integration suite found` with the unit suite passing, or the driver passed `--waive-retest {epic_id}`. Until then do not merge the next lane or start new ones.
 4. **Record it.** Move the Epic from **Lanes** to **Epics done** with its merge commit and retest result, and write the section (as in Progress section), before the next lane.
 
-A lane whose Epic is not done but whose worker is idle or gone has stopped early, usually to ask something (its last output is a `do-bee: needs input:` line; check with `agent-director read-pane --claude-instance-id {id}`). Do not merge it. Mark it `blocked:` with the question or reason, and put it in the report. The driver answers the worker in its session, or re-launches it.
+A lane whose Epic is not done but whose worker is idle or gone has stopped early, usually to ask something (its last output is a `do-bee: needs input:` line; check with `agent-director read-pane --instance-id {instance_id}`). Do not merge it. Mark it `blocked:` with the question or reason, and put it in the report. The driver answers the worker in its session, or re-launches it.
 
 ### 5. Start new lanes
 
@@ -141,10 +142,10 @@ Go through the Epics in the Bee's order and start each one that qualifies, up to
 To start a lane:
 
 ```
-/configure_worktree {epic_id} --no-questions --base {bee_branch} --prompt "/do-bee {epic_id} --lane" [--template {template}] [--worktree-only]
+/configure_worktree {epic_id} --no-questions --base {bee_branch} --prompt "/do-bee {epic_id} --lane" [--agent {agent}] [--template {template}] [--worktree-only]
 ```
 
-With `--worktree-only`, `configure_worktree` creates the worktree only; list the lane's `{lane_path}` and prompt in the report so the caller can launch the worker. Otherwise it launches the worker through agent-director; record its `claude_instance_id`. If `configure_worktree` fails, stop and pass on its failure report. Lanes already started stay open and appear in the section.
+With `--worktree-only`, `configure_worktree` creates the worktree only; list the lane's `{lane_path}` and prompt in the report so the caller can launch the worker. Otherwise it launches the worker through agent-director (a Codex worker gets the prompt as `$do-bee ...`); record its `instance_id`. If `configure_worktree` fails, stop and pass on its failure report. Lanes already started stay open and appear in the section.
 
 ### 6. All Epics merged
 
@@ -178,6 +179,6 @@ A pass refused by the Approval guard writes no report and ends with the guard's 
 - **No questions.** Never use AskUserQuestion. Anything that needs a decision stops the pass with a report.
 - **One merge at a time.** Merge, retest, record — then the next lane.
 - **Never push.** All merges and commits are local.
-- **Delegate discipline.** Do not do role work yourself. The post-merge Test Writer and Engineer are subagents (Agent tool, background dispatch, cold start — as in do-bee's Execution model); Epic lanes are separate do-bee sessions.
+- **Delegate discipline.** Do not do role work yourself. The post-merge Test Writer and Engineer are subagents (Agent tool, background dispatch, cold start — as in do-bee's Execution model; in Codex CLI, as in do-bee's In Codex CLI notes); Epic lanes are separate do-bee sessions.
 - **Never resolve a merge conflict yourself.** Report it.
-- **Use the worktree skills.** Invoke `configure_worktree` and `teardown_worktree` with the Skill tool, always with `--no-questions`. Do not run their git and agent-director steps by hand.
+- **Use the worktree skills.** Run the `configure_worktree` and `teardown_worktree` skills (in Claude Code with the Skill tool; in Codex CLI, read and follow their SKILL.md from Codex's skills folder), always with `--no-questions`. Do not run their git and agent-director steps by hand. Launching and stopping lane workers needs agent-director 0.12.0 or later.
