@@ -89,8 +89,6 @@ Stop before any change, naming the file, if a needed Guidance Document has neith
 
 Read and follow a skill's installed `SKILL.md` whenever running it. An inner skill uses its caller's settings and Protocol Files and reports into its caller's report. Subagents follow their installed definitions. Report pass, fail or not applicable for every required check and gate in loaded `SKILL.md` files and Guidance Documents; name the Guidance Document copies or Default Fallback Files used.
 
-After compaction, re-read `workflow.md`, the resolved Protocol Files, inner skills' `SKILL.md` files and Guidance Documents before continuing. A compacted Subagent re-reads `workflow.md`, its dispatch prompt's Protocol Files and its Guidance Documents.
-
 ### Project Folder, paths and worktrees
 
 The Project Folder is the nearest folder, from the working directory up, containing `.apiary/project_settings.md`. Without one, use the folder the Agent started in and only `~/.apiary/default_project_settings.md`. The Project's repos are its main checkouts under the Project Folder.
