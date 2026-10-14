@@ -3,6 +3,17 @@
 Apiary is an opinionated agentic workflow for taking an idea from inception to working software.
 It uses the [bees](https://github.com/gabemahoney/bees) ticket management system. Install that first.
 
+Apiary comes in two flavours from the same skills and agents: **Claude Code** and **Codex CLI**.
+This README writes skills as `/do-bee`; in Codex CLI, invoke them as `$do-bee`.
+
+## Requirements
+
+- [bees](https://github.com/gabemahoney/bees).
+- agent-director 0.12.0 or later, for the worker mode of `/configure-worktree` and `/teardown-worktree`, and for `/run-lanes`. Earlier versions refuse the flags these skills pass (`--instance-id`, `--agent`). Check with `agent-director version`.
+- Claude Code 2.1.296 or later for workers under agent-director 0.12.0.
+- Bots run by claude-slack-channel-bots need its 0.16.0 release, which needs agent-director 0.12.0.
+- Codex CLI: run Apiary sessions with full access (`--sandbox danger-full-access`), or with writable roots that let them commit in git worktrees (whose metadata lives in the main checkout) and reach `~/.config/agent-director` (with `network_access = true`). The Codex install needs `python3`.
+
 ## Install
 
 ### 1. Clone the repo
@@ -13,21 +24,36 @@ git clone https://github.com/gabemahoney/apiary ~/projects/apiary
 
 ### 2. Install the skills and agents
 
-Ask Claude Code to install the Apiary skills and agent definitions. The two directories are a paired copy — always install both to the same scope. You have two options — pick one.
+Run the installer from the clone, for the agent you use:
 
-**Option A — Global install (recommended for single-user machines).** Installs into your user-level `.claude` directories so every repo you work in can use them.
+```bash
+cd ~/projects/apiary
+./install.sh                  # Claude Code (the default)
+./install.sh --agent codex    # Codex CLI
+./install.sh --agent both
+```
 
-> "Install the Apiary skills from `~/projects/apiary/skills` globally into `~/.claude/skills`, and the Apiary agents from `~/projects/apiary/agents` into `~/.claude/agents`."
+Add `--repo <path>` to install into one repository instead of your user-level folders (to try Apiary on one project), and `--dry-run` to print what it would do. It copies each skill folder and each agent, overwriting earlier Apiary copies in place, and touches nothing else.
 
-**Option B — Single-repo install.** Installs into a specific project's `.claude` directories so only that repo sees them. Useful if you want to try Apiary on one project without affecting anything else.
+| Flavour | Skills | Agents | With `--repo <path>` |
+|---|---|---|---|
+| Claude Code | `~/.claude/skills/<name>/` | `~/.claude/agents/apiary-*.md` | `<path>/.claude/skills`, `<path>/.claude/agents` |
+| Codex CLI | `~/.agents/skills/<name>/` | `~/.codex/agents/apiary-*.toml`, rendered from `agents/*.md` | `<path>/.agents/skills`, `<path>/.codex/agents` |
 
-> "Install the Apiary skills from `~/projects/apiary/skills` into `<absolute path to target repo>/.claude/skills`, and the Apiary agents from `~/projects/apiary/agents` into `<absolute path to target repo>/.claude/agents`."
+Skills and agents are a paired copy: always install both to the same scope. Codex loads a repo's `.codex/agents/` only when it trusts that project.
 
-In either case, Claude will copy each skill directory (`apiary-setup`, `idea`, `write-prd`, `write-srd`, `make-plan`, `hatch-epic`, `do-bee`, `fix-bug`, `research`, etc.) and each agent definition file (`apiary-engineer.md`, `apiary-code-reviewer.md`, etc.) into the chosen directories without disturbing any other skills or agents already installed there.
+To install by hand instead:
+- Claude Code: copy each `skills/<name>/` to `~/.claude/skills/<name>/` and `agents/*.md` to `~/.claude/agents/`.
+- Codex CLI: copy each `skills/<name>/` to `~/.agents/skills/<name>/`, then run `python3 scripts/codex_agents.py render --out ~/.codex/agents`.
+
+`python3 scripts/codex_agents.py lint ~/.codex/agents` checks a Codex install's agent files (it needs Python 3.11+ or `tomli`; the installer runs the same checks when one is available).
 
 ### Execution model
 
-Apiary's execution skills spawn role players (Engineer, Test Writer, Doc Writer, Product Manager, and reviewers) as **named subagents** via the Agent tool. The document and planning skills (`write-prd`, `write-srd`, `req-review`, `make-plan`) likewise delegate their heavy work to named subagents (PRD Writer, SRD Writer, Requirements Reviewer, Plan Writer) — the calling agent handles user interaction and reports the results. All definitions live in the install's `.claude/agents/` directory (user-global or per-repo, mirroring the skill install). Subagents run in-process and inherit the calling agent's permission surface — no experimental feature flags required. Each agent's model is set in its frontmatter; the harness resolves the model from the agent definition.
+Apiary's execution skills spawn role players (Engineer, Test Writer, Doc Writer, Product Manager, and reviewers) as **named subagents**. The document and planning skills (`write-prd`, `write-srd`, `req-review`, `make-plan`) likewise delegate their heavy work to named subagents (PRD Writer, SRD Writer, Requirements Reviewer, Plan Writer) — the calling agent handles user interaction and reports the results.
+
+- **Claude Code**: subagents are spawned with the Agent tool from the install's `.claude/agents/` (user-global or per-repo, mirroring the skill install). They run in-process and inherit the calling agent's permission surface — no experimental feature flags required. Each agent's model is set in its frontmatter.
+- **Codex CLI**: each agent is a Codex custom agent in `.codex/agents/apiary-<role>.toml`, which the installer renders from the same `agents/*.md`: the instructions unchanged, plus a few generated Codex notes. Skills spawn them with `spawn_agent` (`agent_type: "apiary-<role>"`, cold start) and collect results with `wait_agent`. Models map from the frontmatter: Opus → `gpt-6-astra`, Sonnet → `gpt-6.1-sol`, Haiku → `gpt-6-luna`, with the same reasoning effort; set `APIARY_CODEX_MODEL_OPUS`, `_SONNET` or `_HAIKU` before installing to change one (empty: Codex's default). Subagents inherit the parent's sandbox and approvals, so the read-only roles are read-only by instruction only. Codex runs a few agents at once (`agents.max_concurrent_threads_per_session`, 4 by default including the parent), so parallel dispatches run in batches.
 
 ### 3. Configure
 Run `/apiary-setup` to configure hives for the Apiary workflow: Bugs, Ideas, Plans and Research.
@@ -79,7 +105,7 @@ The plan will be stored as a bee in the Plans Hive.
 ### Do Bee
 Run `/do-bee` with the Feature bee to build the feature.
 It builds one Epic per session: after each Epic it records progress in the Bee's `## do-bee progress` section and stops with a next-step line. Re-run `/do-bee <bee-id>` in a fresh session to continue; the final reviews also run in a fresh session.
-It will spawn a full set of role subagents via the Agent tool to do the work.
+It will spawn a full set of role subagents to do the work.
 Within each Task the roles run in order: the Engineer, then one or more Test Writer lanes in parallel, with no upper limit (starting from the lanes suggested for the Task at planning time, which `/do-bee` may adjust to the actual change), then the Doc Writer once code and tests have settled. Doc rework from reviews is batched into one pass per review round.
 The final (or only) Test Writer of each pass runs the full unit suite once. An integration Test Writer runs the integration suites at the end of each Epic, after any Task flagged at planning time as an interface change, and after final-review fix-ups that touch source code or integration tests. An Epic is not finished while they fail unless the User waives it; `/do-bee` stops and asks if they cannot run, or if a source-fix round does not reduce the failures or 3 rounds pass. No other role runs a full suite.
 > Tip:
@@ -89,7 +115,7 @@ The final (or only) Test Writer of each pass runs the full unit suite once. An i
 >
 > With `--no-questions`, or when run as an agent-director worker, `/do-bee` never uses AskUserQuestion, even when launched outside a worktree. Wherever it would ask, it stops with a `do-bee: needs input:` line for its driver to answer.
 >
-> Orchestrator bots can run both worktree skills without questions (`--no-questions`), create or merge the worktree only and launch their own worker (`--worktree-only`), and pick the branch to start from (`--base`) and merge into (`--target`), e.g. one branch per Epic merged into a feature branch. Without `--worktree-only`, `/configure-worktree` launches the worker through agent-director. Each skill's Arguments table has the details.
+> Orchestrator bots can run both worktree skills without questions (`--no-questions`), create or merge the worktree only and launch their own worker (`--worktree-only`), and pick the branch to start from (`--base`) and merge into (`--target`), e.g. one branch per Epic merged into a feature branch. Without `--worktree-only`, `/configure-worktree` launches the worker through agent-director: Claude Code or Codex CLI, picked with `--agent` (by default the agent you run in, or the `--template`'s). Each skill's Arguments table has the details.
 
 ### Run Lanes
 Run `/run-lanes` with the Feature bee to build its independent Epics in parallel instead of one at a time.
@@ -102,7 +128,7 @@ You can tell your LLM to file a bug in the Bugs Hive as `draft`, no skill needed
 Run `/fix-bug` with the bug in the Bugs Hive to fix.
 It first confirms the bug is real: it reproduces it, or if it can't, reviews the code. A real bug goes to `defined`, then `active` while it is fixed, then `done` once the fix is merged, all in one run. An invalid bug goes straight to `done` with the tag `invalid` and an `## Invalid` note saying why; nothing else changes.
 With `--no-questions`, or when run as an agent-director worker, `/fix-bug` never uses AskUserQuestion. Wherever it would ask, it stops with a `fix-bug: needs input:` line; the driver answers after the ID (e.g. `/fix-bug <bug-id> fix`).
-It will spawn a smaller set of role subagents via the Agent tool to do the work, in the same Engineer, Test Writer, Doc Writer order.
+It will spawn a smaller set of role subagents to do the work, in the same Engineer, Test Writer, Doc Writer order.
 The same suite ownership applies at bug scope: the Test Writer of each pass runs the full unit suite once, and an integration Test Writer runs the integration suites once at the end of the fix. The bug is not done while they fail unless the User waives it; `/fix-bug` stops and asks on the same terms as `/do-bee`.
 Unlike `/do-bee`, `/fix-bug` manages its own isolated worktree: it creates a fresh worktree for the Bug ID, does all the work and commits there, then merges back and cleans up automatically (unless it stops at the integration gate, leaving the uncommitted fix in the worktree) — no separate `/configure-worktree` or `/teardown-worktree` needed.
 
@@ -121,7 +147,14 @@ Apiary versions are annotated git tags `vX.Y.Z` on GitHub, starting at `v1.0.0`.
 - Major: anything that needs a migration or breaks other bots' hives or prompts.
 
 When an install needs it, the tag message includes the line `Needs: run /apiary-setup fix mode`.
-To update, pull the latest tag and reinstall the skills and agents (see Install, step 2).
+To update, pull the latest tag and re-run `./install.sh` for each flavour you use (see Install, step 2).
+
+### Upgrading to v3 (agent-director 0.12.0)
+1. Stop your agents, then upgrade agent-director to 0.12.0 with its own installer, and claude-slack-channel-bots to 0.16.0 if you use it.
+2. Pull the v3 tag and re-run `./install.sh` for each flavour you use. Workers need Claude Code 2.1.296 or later.
+3. Change orchestrator prompts and scripts that pass `--claude-instance-id` or read `claude_instance_id` to `--instance-id` and `instance_id`.
+
+No hive migration is needed: skip `/apiary-setup` fix mode.
 
 
 ## Advanced Configuration
