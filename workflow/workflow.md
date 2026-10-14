@@ -83,7 +83,7 @@ A source reference links a ticket to something outside the ticket system that it
 
 ### Starting, reporting and resuming
 
-Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder and load settings. Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load needed Guidance Documents, templates and ticket-dependent skills' `SKILL.md` files, complete the fail-closed checks, then check the state gate. On failure, stop without changes and say why.
+Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load needed Guidance Documents (see Guidance Documents), templates and ticket-dependent skills' `SKILL.md` files, complete the fail-closed checks, then check the state gate. On failure, stop without changes and say why.
 
 Stop before any change, naming the file, if a needed Guidance Document has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the run likewise; point to project-setup.
 
