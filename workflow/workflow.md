@@ -100,7 +100,7 @@ Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo,
 - **Where worktrees live:** only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder.
 - **Where to work:** develop-epic, idea-review, the review skills, and write-plan and write-epic for the repos they plan in, work only in a ticket's worktrees when started in `.worktrees/<ticket id>/`; otherwise in the main checkouts.
 - **How to commit:** per repo, naming the ticket; a Task spanning repos gets one commit per repo.
-- **Who pushes:** only release.
+- **Who pushes:** push only as the Project's `release-guide.md` allows.
 
 ### Settings
 
