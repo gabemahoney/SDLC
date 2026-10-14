@@ -15,6 +15,13 @@ Stores are flat; none is nested in another.
 
 An Idea is a piece of work; a Bug is a defect to validate and fix. A Plan divides an Idea into Epics, an Epic into Tasks (each committed in one go), and a Task into Subtasks (each one executor's part). A Doc describes an Idea: its PRD (what and why), SRD (what the software must do), TLA+ spec (a model-checked design), or another document. A Research ticket holds a research question; its one Report holds the answer. A Report is not a Doc.
 
+## Tags
+
+| Tag | Meaning |
+|---|---|
+| `level:<label>` | The ticket's Thinking Level: one on each Idea, Epic, Task and Bug. |
+| `invalid` | Set by define-bug on a Bug that is not real, with a note explaining why. |
+
 ## Statuses
 
 Set and read only these statuses, in every store. All status transitions are idempotent.
@@ -25,13 +32,6 @@ Set and read only these statuses, in every store. All status transitions are ide
 | `defined` | Fully written up. |
 | `active` | Work in progress. |
 | `done` | Complete. |
-
-## Tags
-
-| Tag | Meaning |
-|---|---|
-| `level:<label>` | The ticket's Thinking Level: one on each Idea, Epic, Task and Bug. |
-| `invalid` | Set by define-bug on a Bug that is not real, with a note explaining why. |
 
 ## Status Ownership
 
