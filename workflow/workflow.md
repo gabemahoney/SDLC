@@ -154,11 +154,11 @@ Code Reviewer: xhigh
 - A resumed Subagent keeps its first dispatch's Thinking Level.
 - A session the Managing Intelligence starts itself runs at whatever it was started with.
 
-At startup, a Run checks the lines for its skill, each non-executor Subagent Role it dispatches and, for configure-worktree, its Worker's skill. A missing line stops the Run before changes, naming it and pointing to project-setup.
+At startup, a Run checks the `levels_<agent>` mapping for its Agent and the `thinking_levels` lines for its skill, each non-executor Subagent Role it dispatches and, for configure-worktree, its Worker's skill. A missing mapping or line stops the Run before changes, naming it and pointing to project-setup.
 
 For a Task or Bug starting work with a missing, unknown or repeated `thinking_level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
 
-Dispatch through the Agent Protocol File with the mapped model and effort, or neither for an unset mapping. Worker launches use the Worker's Agent's mapping and Launcher Protocol File.
+Dispatch through the Agent Protocol File with the mapped model and effort. Worker launches use the Worker's Agent's mapping and Launcher Protocol File.
 
 If a Thinking Level cannot be applied, report it and use the session's model and effort; never stop. Retry dispatches or launches rejected for model or effort without them, and report it.
 
