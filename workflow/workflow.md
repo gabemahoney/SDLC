@@ -140,7 +140,7 @@ A Guidance Document may consist entirely of a pointer to other files. Open targe
 
 `levels_<agent>` maps `low` < `medium` < `high` < `xhigh` < `max` to an Agent's model and effort, one plain-language line per label. Model names come only from these mappings.
 
-`thinking_levels` (see Settings) holds one `<name>: <label>` line per skill and non-executor Subagent Role, for example:
+The `thinking_levels` setting (see Settings) holds one `<name>: <label>` line per skill and non-executor Subagent Role, for example:
 
 ```
 ## thinking_levels
