@@ -175,7 +175,7 @@ Name each Subagent's repos and checkouts in its dispatch; it loads their Guidanc
 
 #### Replacing an executor
 
-Start fresh only after an approach change, failed resume (error or no report), or transcript over the Agent Protocol File's model limit. Carry findings, chosen fix and work so far into the prompt. Same-approach refinements resume; unknown transcript size never triggers the limit.
+Resume it for each fix round. If it can't continue, because its context is full or the resume fails, start a fresh one with the findings and the work so far.
 
 #### Handoff
 
@@ -183,7 +183,7 @@ Subagents never talk to each other; the diff is the handoff.
 
 #### Progress record
 
-On the skill's ticket, record each warm Subagent's Subagent Role, Task or Bug, ID from the Agent, name if available, dispatch Thinking Level and last transcript size; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID. A stale name or ID fails the resume and goes fresh.
+On the skill's ticket, record each warm Subagent's Subagent Role, Task or Bug, ID from the Agent, name if available and dispatch Thinking Level; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID. A stale name or ID fails the resume and goes fresh.
 
 #### Context guard
 
@@ -191,7 +191,7 @@ Before each Task after the first, develop-epic checks its own context use per th
 
 #### Agent limits
 
-Where the Agent requires closing, close cold Subagents after reporting, warm ones when replaced or their Task or Bug ends. At the open-Subagent limit, close finished Subagents and dispatch again. Without a resume tool, every pass gets a fresh start; without transcript size, skip that check. Report each unavailable capability.
+Where the Agent requires closing, close cold Subagents after reporting, warm ones when replaced or their Task or Bug ends. At the open-Subagent limit, close finished Subagents and dispatch again. Without a resume tool, every pass gets a fresh start. Report each unavailable capability.
 
 ### Versions and fresh reads
 
