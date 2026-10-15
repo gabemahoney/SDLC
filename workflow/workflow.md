@@ -137,8 +137,6 @@ A Guidance Document may consist entirely of a pointer to other files. Open targe
 
 ### Thinking Levels
 
-The recommended `thinking_levels` entry for the TLA+ Reviewer is `TLA+ Reviewer: xhigh`.
-
 The labels `low` < `medium` < `high` < `xhigh` < `max` each map to an Agent's model and effort. Take each session's or Subagent's Thinking Level from one source:
 
 - **A Worker** runs at its skill's line in the `thinking_levels` setting; a fix-bug Worker runs at its Bug's `level:` tag. A session the Managing Intelligence starts itself runs at whatever it was started with.
