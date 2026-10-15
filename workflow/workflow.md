@@ -168,9 +168,9 @@ Name each Subagent's repos and checkouts in its dispatch; it loads their Guidanc
 
 **Fresh start:** a new dispatch with a self-contained prompt and no earlier context.
 
-**Reuse:** resume the same Subagent within its scope. Give a self-contained message: findings and chosen fix in full, other changes since its last pass, and what to report; omit context it holds. Keep its first dispatch's Thinking Level and Guidance Documents; newly assigned repos add theirs.
+**Reuse:** resume the same Subagent for its Task or Bug. Give a self-contained message: findings and chosen fix in full, other changes since its last pass, and what to report; omit context it holds. Keep its first dispatch's Thinking Level and Guidance Documents; newly assigned repos add theirs.
 
-- **Executors (Engineer, Test Writer, Doc Writer):** reuse within one Task, or the Bug in fix-bug. Dispatch once per Subagent Role and per Test Writer lane; resume only affected executors. Never reuse across scopes.
+- **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for each Task (or for the Bug in fix-bug). Fix rounds reuse only the executors whose work the findings touch. The next Task or Bug starts fresh executors.
 - **Everything else:** fresh start every dispatch—the planners; Code, Test and Doc Reviewers; Product Manager; Requirements Reviewer; TLA+ Writer; TLA+ Reviewer; Integration Tester.
 
 #### Replacing an executor
@@ -183,7 +183,7 @@ Subagents never talk to each other; the diff is the handoff.
 
 #### Progress record
 
-On the skill's ticket, record each warm Subagent's Subagent Role, scope, ID from the Agent, name if available, dispatch Thinking Level and last transcript size; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID. A stale name or ID fails the resume and goes fresh.
+On the skill's ticket, record each warm Subagent's Subagent Role, Task or Bug, ID from the Agent, name if available, dispatch Thinking Level and last transcript size; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID. A stale name or ID fails the resume and goes fresh.
 
 #### Context guard
 
@@ -191,7 +191,7 @@ Before each Task after the first, develop-epic checks its own context use per th
 
 #### Agent limits
 
-Where the Agent requires closing, close cold Subagents after reporting, warm ones when replaced or their scope ends. At the open-Subagent limit, close finished Subagents and dispatch again. Without a resume tool, every pass gets a fresh start; without transcript size, skip that check. Report each unavailable capability.
+Where the Agent requires closing, close cold Subagents after reporting, warm ones when replaced or their Task or Bug ends. At the open-Subagent limit, close finished Subagents and dispatch again. Without a resume tool, every pass gets a fresh start; without transcript size, skip that check. Report each unavailable capability.
 
 ### Versions and fresh reads
 
