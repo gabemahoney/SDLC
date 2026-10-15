@@ -179,7 +179,7 @@ Resume it for each fix round. If it can't continue, because its context is full 
 
 #### Handoff
 
-Subagents never talk to each other; the diff is the handoff.
+Subagents never talk to each other. The skill coordinates them: it reads each Subagent's report and passes what the next one needs in that one's dispatch or resume message. The work itself passes through the files: each Subagent sees the changes earlier ones made in its checkouts.
 
 #### Progress record
 
