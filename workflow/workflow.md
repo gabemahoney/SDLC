@@ -85,7 +85,7 @@ Enforce your skill's gate before changing anything. If it fails, change nothing 
 |---|---|
 | write-plan | Idea `defined`, with a PRD and an SRD. Finish an existing Plan in `draft` or `defined`; never duplicate it. |
 | write-epic | Epic `draft`; its Plan `defined` or `active`. |
-| develop-epic | Epic `defined` or `active`; every Epic it depends on `done`. |
+| develop-epic | Epic `defined` or `active`; every Epic it depends on `done`. A re-run on a `done` Epic may only finish the Plan's completion check. |
 | idea-review | Plan `done`; no worktree of its Epics still unmerged. |
 | define-bug | Bug `draft`. |
 | fix-bug | Bug `defined`, or `active` when resuming; every ticket it depends on `done`. |
