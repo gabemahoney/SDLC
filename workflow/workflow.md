@@ -7,9 +7,9 @@ Every Apiary skill reads this rulebook when run; every Subagent reads it when sp
 - **Managing Intelligence:** the person, or a bot acting for one, who drives Apiary: runs the skills, answers their questions, decides what work happens next and tests the results.
 - **Agent:** the AI coding tool Apiary runs in: Claude Code or Codex CLI.
 - **Subagent:** a helper an Agent starts inside its own session, with fresh context, to do one Subagent Role's work for a skill and report back.
-- **Subagent Role:** the job a Subagent does, such as Engineer or Code Reviewer, defined by its Subagent definition. Executors change files, writers write tickets, read-only Subagent Roles change nothing.
+- **Subagent Role:** the job a Subagent does, defined by its Subagent definition. Executors change files, writers write tickets, read-only Subagent Roles change nothing.
 - **Worker:** a separate Agent session the Launcher starts to run one skill.
-- **Launcher:** the program that starts, watches and stops Workers, such as agent-director.
+- **Launcher:** the program that starts, watches and stops Workers.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents for the folder it sits in, and settings in the Project Folder and `~`.
 - **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `maintained-docs.md`, `release-guide.md`, `bug-writing-guide.md`.
@@ -41,7 +41,7 @@ Every Epic is a vertical slice through the product, never component work (only t
 
 ## Statuses
 
-Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use those plus `invalid`. Set and read only the statuses for each store. All status transitions are idempotent.
+Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use those plus `invalid`. All status transitions are idempotent.
 
 | Status | Meaning |
 |---|---|
@@ -74,7 +74,7 @@ Each transition has exactly one owner. Change only the tickets and statuses your
 
 Every Idea has exactly one PRD and one SRD; the writing skill updates an existing one. An Idea may have several TLA+ spec Docs, one per modelled SRD part; revisiting a part updates its spec. write-srd selects the parts to model, dispatches one TLA+ Writer per part in parallel, and fixes SRD bugs their models find. req-review dispatches one read-only TLA+ Reviewer per TLA+ spec Doc alongside the Requirements Reviewer, checking that the model matches the SRD and its invariants are meaningful. req-review is optional: the Managing Intelligence may skip it and mark the Idea `defined` by hand. When the PRD or SRD is not `defined`, write-plan stops and asks the Managing Intelligence to confirm planning without review, and goes on only on an explicit yes.
 
-**Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. If the Bug is not real, define-bug sets `invalid` with a note saying why. The Managing Intelligence either sets an `invalid` Bug `done` or sends it back to `draft` for define-bug. Returned fixes also go back to `draft` for define-bug.
+**Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. Returned fixes go back to `draft` for define-bug.
 
 **Research:** research files the Research ticket, runs review rounds through acceptance, and reopens it for further reviewer requests.
 
@@ -95,13 +95,13 @@ Enforce your skill's gate before changing anything. If it fails, change nothing 
 
 ## Source references
 
-A source reference links a ticket to something outside the ticket system that it came from. The ticket system stores only the link; Apiary resolves and reads it. Resolve GitHub links through the GitHub CLI, file paths by reading them, and ticket IDs through the ticket system. Use source references as context when present; work without them when absent.
+A source reference links a ticket to something outside the ticket system that it came from. The ticket system stores only the link; Apiary resolves and reads it. Resolve GitHub links through the GitHub CLI. Read source references as context.
 
 ## Shared rules
 
 ### Starting, reporting and resuming
 
-Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate. On failure, stop without changes and say why.
+Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate.
 
 Stop before any change, naming the file, if a Guidance Document your `SKILL.md` or Subagent definition names has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the Run likewise; point to project-setup.
 
@@ -132,7 +132,7 @@ Pass the settings and the Ticket System and Agent Protocol Files in every dispat
 
 Load only the Guidance Documents your `SKILL.md` or Subagent definition names; read no others. Read every user copy of each of them from the working folder's `.apiary` through each parent, including `~/.apiary`. In a repo checkout, start at that checkout's `.apiary`, then its parent; a worktree uses its branch's committed copy. Outside `~`, walk to `/`, then read `~/.apiary` once.
 
-Files sit directly in each `.apiary` Folder. User copies are `<name>.md`. Only if no user copy exists, read `~/.apiary/<name>-default-fallback.md` alone. Every user copy adds up, including all its checks and gates; any user copy disables the Default Fallback File. If guidance conflicts, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
+Files sit directly in each `.apiary` Folder. User copies are `<name>.md`. Only if no user copy exists, read `~/.apiary/<name>-default-fallback.md` alone. Every user copy adds up, including all its checks and gates. If guidance conflicts, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
 
 A Guidance Document may consist entirely of a pointer to other files. Open targets as plain references under the path rule: no walk, combining or Default Fallback File. Report a missing target; stop if the work requires it.
 
@@ -166,16 +166,16 @@ If a Thinking Level cannot be applied, report it and use the session's model and
 
 Name each Subagent's repos and checkouts in its dispatch; it loads their Guidance Documents and may read any repo for context.
 
-**Fresh start:** a new dispatch with a self-contained prompt and no earlier context.
+**Fresh start:** a new dispatch with no earlier context.
 
-**Reuse:** resume the same Subagent for its Task or Bug. Give a self-contained message: findings and chosen fix in full, other changes since its last pass, and what to report; omit context it holds. Keep its first dispatch's Thinking Level and Guidance Documents; newly assigned repos add theirs.
+**Reuse:** resume the same Subagent for its Task or Bug. Keep its Guidance Documents; newly assigned repos add theirs.
 
 - **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for each Task (or for the Bug in fix-bug). Fix rounds reuse only the executors whose work the findings touch. The next Task or Bug starts fresh executors.
 - **Everything else:** fresh start every dispatch—the planners; Code, Test and Doc Reviewers; Product Manager; Requirements Reviewer; TLA+ Writer; TLA+ Reviewer; Integration Tester.
 
 #### Replacing an executor
 
-Resume it for each fix round. If it can't continue, because its context is full or the resume fails, start a fresh one with the findings and the work so far.
+Resume it for each fix round; if it can't continue, start a fresh one with the findings and the work so far.
 
 #### Handoff
 
@@ -183,26 +183,20 @@ Subagents never talk to each other. The skill coordinates them: it reads each Su
 
 #### Progress record
 
-On the skill's ticket, record each warm Subagent's Subagent Role, Task or Bug, ID from the Agent, name if available and dispatch Thinking Level; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID. A stale name or ID fails the resume and goes fresh.
+On the skill's ticket, record each warm Subagent's Subagent Role, Task or Bug, ID from the Agent, name if available and dispatch Thinking Level; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID.
 
 #### Context guard
 
 Before each Task after the first, develop-epic checks its own context use per the Agent Protocol File. At 75% or more, or a reading older than its freshness window, stop at that Task boundary and name the re-run for a new session. The Managing Intelligence restarts it, through the Launcher for a Worker, per its Launcher Protocol File. With no reading, continue and report it.
 
-#### Agent limits
+### Versions
 
-Where the Agent requires closing, close cold Subagents after reporting, warm ones when replaced or their Task or Bug ends. At the open-Subagent limit, close finished Subagents and dispatch again. Without a resume tool, every pass gets a fresh start. Report each unavailable capability.
-
-### Versions and fresh reads
-
-Before changing anything, stop if a `SKILL.md`, Subagent definition or `workflow.md` is from another Apiary version; say to resume the session. Read `workflow.md` and `.apiary` files from disk each Run; Subagents read `workflow.md` and Guidance Documents when spawned. After an Apiary update, a resumed session's next Run uses the new skills and Subagent definitions.
+Before changing anything, stop if a `SKILL.md`, Subagent definition or `workflow.md` is from another Apiary version; say to resume the session.
 
 ## Questions and stops
 
-A skill or Subagent needing an answer or unable to continue stops and explains why in its output. Give all questions available at once, numbered in plain text, each with options, or state what must be fixed. Whoever started the Run—the Managing Intelligence or the skill or Subagent above it—reads the output and decides. Never continue with missing or ambiguous information.
-
-The Managing Intelligence answers in the session (through the Launcher for a Worker), or re-runs the skill with answers to continue the work.
+When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information. Ask all your questions at once, numbered, each with options.
 
 ## Ending a Run
 
-End every skill Run with the next-step suggestions its `SKILL.md` lists. The Managing Intelligence may decline them.
+End every skill Run with the next-step suggestions its `SKILL.md` lists.
