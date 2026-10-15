@@ -30,11 +30,13 @@ Stores are flat; none is nested in another.
 
 An Idea is a piece of software to build: a feature, a change or a product; a Bug is a defect to validate and fix. A Plan divides an Idea into Epics, an Epic into Tasks (each committed in one go), and a Task into Subtasks (each one executor's part). A Doc describes an Idea: its PRD (what and why), SRD (what the software must do), TLA+ spec (a model-checked design), or another document. A Research ticket holds a research question; its one Report holds the answer. A Report is not a Doc.
 
+Every Epic is a vertical slice through the product, never component work (only testing, docs or plumbing). The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice.
+
 ## Tags
 
 | Tag | Meaning |
 |---|---|
-| `level:<label>` | The ticket's Thinking Level: one on each Idea, Epic, Task and Bug. |
+| `level:<label>` | The Thinking Level the executors working the ticket run at, and a fix-bug Worker on the Bug: one on each Task and Bug. write-epic sets a Task's, define-bug a Bug's. |
 
 ## Statuses
 
@@ -57,9 +59,9 @@ Each transition has exactly one owner. Change only the tickets and statuses your
 | Idea                                  | write-idea creates `draft`; req-review sets `draft` → `defined` on the Managing Intelligence's yes, once its PRD and SRD are `defined`; develop-epic sets `active` when starting an Epic; the Managing Intelligence sets `done` after testing the Idea.                                                                                                                                                                                                            |
 | PRD / SRD                             | write-prd / write-srd creates `draft`; revising a `defined` PRD or SRD sets it back to `draft`; req-review asks the Managing Intelligence and, on yes, sets `defined`.                                                                                                                                                                                                                                                                                             |
 | Other Doc (not PRD, SRD or TLA+ spec) | The Managing Intelligence creates `draft`; req-review asks the Managing Intelligence and, on yes, sets `defined`; the Managing Intelligence owns other changes.                                                                                                                                                                                                                                                                                                    |
-| TLA+ spec Doc                         | tla-plus creates `defined`; a re-run updates it and leaves it `defined`. No other transition.                                                                                                                                                                                                                                                                                                                                                                      |
-| Plan                                  | write-plan creates `draft`, and sets `defined` once the Plan is written, checked and revised; develop-epic sets `active` when starting an Epic; develop-epic sets `done` when finishing an Epic leaves every Epic in the Plan `done`.                                                                                                                                                                                                                              |
-| Epic                                  | write-plan creates `draft`; write-epic sets `defined`; develop-epic sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                                    |
+| TLA+ spec Doc                         | the TLA+ Writer creates `defined`; a later TLA+ step updates it and leaves it `defined`. No other transition.                                                                                                                                                                                                                                                                                                                                                                      |
+| Plan                                  | write-plan creates `draft`, and sets `defined` once the Plan is written, checked and revised; develop-epic sets `active` when starting an Epic; develop-epic sets `done` when finishing an Epic leaves every Epic in the Plan `done`; idea-review sets `done` → `active` when it files a Round Feedback Epic.                                                                                                                                                                                                                              |
+| Epic                                  | write-plan creates `draft`, and idea-review creates a Round Feedback Epic `draft`; write-epic sets `defined`; develop-epic sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                                    |
 | Task                                  | write-epic creates `draft`, then sets `defined`; develop-epic sets `active`, then `done`; `done` requires every Subtask to be `done`.                                                                                                                                                                                                                                                                                                                              |
 | Subtask                               | write-epic creates `draft`, then sets `defined`; the executor working it sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                               |
 | Bug                                   | write-bug or the Managing Intelligence creates `draft`, not yet validated; define-bug sets `defined` after reproducing and validating it, and sets its `level:` tag; define-bug sets `invalid` when the Bug is not real, with a note saying why; fix-bug sets `active`; the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note; the Managing Intelligence sets it back to `draft` to send it back to define-bug. |
@@ -67,7 +69,7 @@ Each transition has exactly one owner. Change only the tickets and statuses your
 
 ## Flows
 
-**Idea:** write-idea → write-prd and write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. idea-review checks the whole Idea without changing statuses.
+**Idea:** write-idea → write-prd and write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
 
 Every Idea has exactly one PRD and one SRD; the writing skill updates an existing one. req-review is optional: the Managing Intelligence may skip it and mark the Idea `defined` by hand. When the PRD or SRD is not `defined`, write-plan stops and asks the Managing Intelligence to confirm planning without review, and goes on only on an explicit yes.
 
@@ -98,22 +100,22 @@ A source reference links a ticket to something outside the ticket system that it
 
 ### Starting, reporting and resuming
 
-Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents), templates and ticket-dependent skills' `SKILL.md` files, complete the fail-closed checks, then check the state gate. On failure, stop without changes and say why.
+Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate. On failure, stop without changes and say why.
 
-Stop before any change, naming the file, if a needed Guidance Document has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the run likewise; point to project-setup.
+Stop before any change, naming the file, if a Guidance Document your `SKILL.md` or Subagent definition names has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the run likewise; point to project-setup.
 
-Read and follow a skill's installed `SKILL.md` whenever running it. An inner skill uses its caller's settings and Protocol Files and reports into its caller's report. Subagents follow their installed definitions. Report pass, fail or not applicable for every required check and gate in loaded `SKILL.md` files and Guidance Documents; name the Guidance Document copies or Default Fallback Files used.
+Read and follow a skill's installed `SKILL.md` whenever running it. No skill or Subagent runs another skill. Subagents follow their installed definitions. Report pass, fail or not applicable for every required check and gate in loaded `SKILL.md` files and Guidance Documents; name the Guidance Document copies or Default Fallback Files used.
 
 ### Project Folder, paths and worktrees
 
 The Project Folder is the nearest folder, from the working directory up, containing `.apiary/project_settings.md`. Without one, use the folder the Agent started in and only `~/.apiary/default_project_settings.md`. The Project's repos are its main checkouts under the Project Folder.
 
-Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, tla-plus, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug and the worktree skills—change files and commit only inside repo checkouts.
+Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug and the worktree skills—change files and commit only inside repo checkouts.
 
 Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve Guidance Documents' relative paths, pointers included, from that checkout's root, wherever the Guidance Document sits.
 
 - **Where worktrees live:** only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder.
-- **Where to work:** develop-epic, idea-review, the review skills, and write-plan and write-epic for the repos they plan in, work only in a ticket's worktrees when started in `.worktrees/<ticket id>/`; otherwise in the main checkouts.
+- **Where to work:** develop-epic, idea-review, and write-plan and write-epic for the repos they plan in, work only in a ticket's worktrees when started in `.worktrees/<ticket id>/`; otherwise in the main checkouts.
 - **How to commit:** per repo, naming the ticket; a Task spanning repos gets one commit per repo.
 - **Who pushes:** push only as the Project's `release-guide.md` allows.
 
@@ -121,9 +123,9 @@ Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo,
 
 Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value.
 
-The six names are `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code` and `levels_codex`. Each value is the text below its `## <setting name>` heading up to the next `##` heading; text before the first heading is a comment. A malformed settings file stops the run, naming it. If neither file names a required setting, the run stops before changes, naming it and pointing to project-setup. Ticket systems, Launchers and intake approaches must be ones Apiary ships.
+The seven names are `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex` and `thinking_levels`. Each value is the text below its `## <setting name>` heading up to the next `##` heading; text before the first heading is a comment. A malformed settings file stops the run, naming it. If neither file names a required setting, the run stops before changes, naming it and pointing to project-setup. Ticket systems, Launchers and intake approaches must be ones Apiary ships.
 
-Pass the settings and the Ticket System and Agent Protocol Files in every dispatch; Subagents and inner skills use those, not their own lookup.
+Pass the settings and the Ticket System and Agent Protocol Files in every dispatch; Subagents use those, not their own lookup.
 
 ### Guidance Documents
 
@@ -137,36 +139,37 @@ A Guidance Document may consist entirely of a pointer to other files. Open targe
 
 The labels `low` < `medium` < `high` < `xhigh` < `max` each map to an Agent's model and effort. Take each session's or Subagent's Thinking Level from one source:
 
-| Session or work                                                                                                                   | Source                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Worker                                                                                                                            | Its skill's session Thinking Level in `SKILL.md`; this is a recommendation for other sessions. |
-| Inner skill                                                                                                                       | The caller's session or dispatch model and effort.                                             |
-| PRD Writer, SRD Writer, Requirements Reviewer, Plan Writer; idea-review's reviewers, fix-up executors and integration Test Writer | Idea.                                                                                          |
-| write-epic's planners; develop-epic's final integration Test Writer and end-of-Epic check                                         | Epic.                                                                                          |
-| develop-epic's executors, Code, Test and Doc Reviewers, Product Manager, and integration Test Writer for a flagged Task           | Task.                                                                                          |
-| Every Subagent fix-bug dispatches                                                                                                 | Bug.                                                                                           |
+- **A Worker** runs at its skill's line in the `thinking_levels` setting; a fix-bug Worker runs at its Bug's `level:` tag. A session the Managing Intelligence starts itself runs at whatever it was started with.
+- **A Subagent** runs at its Subagent Role's line in `thinking_levels`. An executor (the Engineer, Test Writer or Doc Writer) working on a Task or Bug runs at that ticket's `level:` tag instead. A resumed Subagent keeps its first dispatch's level.
 
-When an Idea, Epic, Task or Bug starts work with a missing, unknown or repeated `level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
+`thinking_levels` holds one `<name>: <label>` line for every skill and every Subagent Role except fix-bug and the Doc Writer, which always run at a Task's or Bug's tag. At its start, a run checks that it has every line the run will use:
+- its skill's, unless it is fix-bug;
+- each Subagent Role's it dispatches outside a Task or Bug;
+- for configure-worktree, the line of the skill its Worker will run.
+
+A missing line stops the run before changes, naming the line and pointing to project-setup.
+
+When a Task or Bug starts work with a missing, unknown or repeated `level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
 
 Read each `levels_<agent>` mapping as one plain-language line per label; model names come only from these mappings. At dispatch, pass the mapped model and effort through the Agent Protocol File; pass neither for an unset mapping. Worker launches use the Worker's Agent's mapping and Launcher Protocol File. If a Thinking Level cannot be applied, report it and use the session's model and effort; never stop for this. Retry a dispatch or Worker launch rejected for its model or effort without them, and report it.
 
 ### Subagent dispatch and reuse
 
-Name each Subagent's repos and checkouts in its dispatch; it loads their Guidance Documents and may read any repo for context. develop-epic, idea-review and fix-bug do no executor or reviewer work themselves. Executors never commit. Read-only Subagent Roles change no files or tickets and never commit.
+Name each Subagent's repos and checkouts in its dispatch; it loads their Guidance Documents and may read any repo for context. develop-epic and fix-bug do no executor or reviewer work themselves; idea-review does no reviewer work and dispatches no executor. Executors never commit. Read-only Subagent Roles change no files or tickets and never commit.
 
-A reuse scope is one Task, a Bug in fix-bug, idea-review's close-out fix-ups, or an Epic's integration gate after its last Task. Dispatch each executor once per scope: one per executor Subagent Role, one per Test Writer lane, and an integration Test Writer separate from the lanes. Start with a self-contained prompt. Later passes resume only affected executors, with self-contained messages giving the findings and chosen fix in full, other changes since their last pass, and what to report; do not repeat context they hold. Resumes retain the first dispatch's Thinking Level and Guidance Documents; a newly assigned repo adds its Guidance Documents.
+A reuse scope is one Task, a Bug in fix-bug, or an Epic's integration gate after its last Task. Dispatch each executor once per scope: one per executor Subagent Role, one per Test Writer lane, and an integration Test Writer separate from the lanes. Start with a self-contained prompt. Later passes resume only affected executors, with self-contained messages giving the findings and chosen fix in full, other changes since their last pass, and what to report; do not repeat context they hold. Resumes retain the first dispatch's Thinking Level and Guidance Documents; a newly assigned repo adds its Guidance Documents.
 
 Writers and read-only Subagent Roles are fresh every dispatch. Never reuse across scopes. Subagents never talk to each other; the diff is the handoff. Replace an executor with a fresh dispatch only after an approach change, failed resume, or transcript exceeding the Agent Protocol File's model limit. Carry findings, chosen fix and work so far into the replacement prompt. A same-approach refinement resumes. An error or no report means resume failed; unknown transcript size never triggers the limit.
 
 Keep a progress record on the skill's ticket: each warm Subagent's Subagent Role, scope, ID the Agent gave it, name where available, dispatch Thinking Level and last transcript size, updated after each report. Resume from it after compaction or a re-run, using the name if available, otherwise ID; a stale name or ID fails the resume and goes fresh.
 
-Before each Task after its first, develop-epic checks its own context use; fix-bug does so before each pass after its first. Follow the Agent Protocol File. At 75% or more, or a reading older than its freshness window, stop at that boundary and name the re-run for a new session. With no reading, continue and report it.
+Before each Task after its first, develop-epic checks its own context use, as the Agent Protocol File says. At 75% or more, or with a reading older than its freshness window, it stops at that Task boundary and names the re-run for a new session; the Managing Intelligence restarts it, through the Launcher for a Worker, as its Launcher Protocol File says. With no reading, it continues and reports it.
 
 Where the Agent requires closing Subagents, close a cold one after its report and a warm one when replaced or its scope ends. At the open-Subagent limit, close finished Subagents and dispatch again. With no resume tool, make every pass fresh; with no transcript size, skip that limit check. Report each unavailable capability.
 
 ### Versions and fresh reads
 
-Before changing anything, stop if a `SKILL.md`, Subagent definition or `workflow.md` is from another Apiary version; say to resume the session. Read `workflow.md`, inner skills' `SKILL.md` files and `.apiary` files from disk each run; Subagents read `workflow.md` and Guidance Documents when spawned. After an Apiary update, a resumed session's next run uses the new skills and Subagent definitions.
+Before changing anything, stop if a `SKILL.md`, Subagent definition or `workflow.md` is from another Apiary version; say to resume the session. Read `workflow.md` and `.apiary` files from disk each run; Subagents read `workflow.md` and Guidance Documents when spawned. After an Apiary update, a resumed session's next run uses the new skills and Subagent definitions.
 
 ## Questions and stops
 
