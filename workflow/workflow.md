@@ -36,7 +36,7 @@ Every Epic is a vertical slice through the product, never component work (only t
 
 | Tag | Meaning |
 |---|---|
-| `level:<label>` | The Thinking Level the executors working the ticket run at, and a fix-bug Worker on the Bug: one on each Task and Bug. write-epic sets a Task's, define-bug a Bug's. |
+| `thinking_level:<label>` | The Thinking Level the executors working the ticket run at, and a fix-bug Worker on the Bug: one on each Task and Bug. write-epic sets a Task's, define-bug a Bug's. |
 
 ## Statuses
 
@@ -64,7 +64,7 @@ Each transition has exactly one owner. Change only the tickets and statuses your
 | Epic                                  | write-plan creates `draft`, and idea-review creates a Round Feedback Epic `draft`; write-epic sets `defined`; develop-epic sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                                    |
 | Task                                  | write-epic creates `draft`, then sets `defined`; develop-epic sets `active`, then `done`; `done` requires every Subtask to be `done`.                                                                                                                                                                                                                                                                                                                              |
 | Subtask                               | write-epic creates `draft`, then sets `defined`; the executor working it sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                               |
-| Bug                                   | write-bug or the Managing Intelligence creates `draft`, not yet validated; define-bug sets `defined` after reproducing and validating it, and sets its `level:` tag; define-bug sets `invalid` when the Bug is not real, with a note saying why; fix-bug sets `active`; the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note; the Managing Intelligence sets it back to `draft` to send it back to define-bug. |
+| Bug                                   | write-bug or the Managing Intelligence creates `draft`, not yet validated; define-bug sets `defined` after reproducing and validating it, and sets its `thinking_level:` tag; define-bug sets `invalid` when the Bug is not real, with a note saying why; fix-bug sets `active`; the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note; the Managing Intelligence sets it back to `draft` to send it back to define-bug. |
 | Research ticket and Report            | research creates the Research ticket `defined`, sets it `active` during review rounds, sets it `done` when the reviewer accepts, and reopens it as `active` when a reviewer asks for more work; the Report, created with the first round, carries the Research ticket's status.                                                                                                                                                                                    |
 
 ## Flows
@@ -139,8 +139,8 @@ A Guidance Document may consist entirely of a pointer to other files. Open targe
 
 The labels `low` < `medium` < `high` < `xhigh` < `max` each map to an Agent's model and effort. Take each session's or Subagent's Thinking Level from one source:
 
-- **A Worker** runs at its skill's line in the `thinking_levels` setting; a fix-bug Worker runs at its Bug's `level:` tag. A session the Managing Intelligence starts itself runs at whatever it was started with.
-- **A Subagent** runs at its Subagent Role's line in `thinking_levels`. An executor (the Engineer, Test Writer or Doc Writer) working on a Task or Bug runs at that ticket's `level:` tag instead. A resumed Subagent keeps its first dispatch's level.
+- **A Worker** runs at its skill's line in the `thinking_levels` setting; a fix-bug Worker runs at its Bug's `thinking_level:` tag. A session the Managing Intelligence starts itself runs at whatever it was started with.
+- **A Subagent** runs at its Subagent Role's line in `thinking_levels`. An executor (the Engineer, Test Writer or Doc Writer) working on a Task or Bug runs at that ticket's `thinking_level:` tag instead. A resumed Subagent keeps its first dispatch's level.
 
 `thinking_levels` holds one `<name>: <label>` line for every skill and every Subagent Role except fix-bug and the Doc Writer, which always run at a Task's or Bug's tag. At its start, a run checks that it has every line the run will use:
 - its skill's, unless it is fix-bug;
@@ -149,7 +149,7 @@ The labels `low` < `medium` < `high` < `xhigh` < `max` each map to an Agent's mo
 
 A missing line stops the run before changes, naming the line and pointing to project-setup.
 
-When a Task or Bug starts work with a missing, unknown or repeated `level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
+When a Task or Bug starts work with a missing, unknown or repeated `thinking_level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
 
 Read each `levels_<agent>` mapping as one plain-language line per label; model names come only from these mappings. At dispatch, pass the mapped model and effort through the Agent Protocol File; pass neither for an unset mapping. Worker launches use the Worker's Agent's mapping and Launcher Protocol File. If a Thinking Level cannot be applied, report it and use the session's model and effort; never stop for this. Retry a dispatch or Worker launch rejected for its model or effort without them, and report it.
 
