@@ -142,7 +142,7 @@ The labels `low` < `medium` < `high` < `xhigh` < `max` each map to an Agent's mo
 - **A Worker** runs at its skill's line in the `thinking_levels` setting, including fix-bug. A session the Managing Intelligence starts itself runs at whatever it was started with.
 - **A non-executor Subagent** runs at its Subagent Role's line in the `thinking_levels` setting. The Engineer, Test Writer and Doc Writer always run at the `thinking_level:` tag of the Task or Bug they work on; Subtasks carry no tag and use their Task's. A resumed Subagent keeps its first dispatch's level.
 
-`thinking_levels` holds one `<name>: <label>` line for every skill and every non-executor Subagent Role. The Engineer, Test Writer and Doc Writer have no lines. Recommended additions are `fix-bug: medium` and `Integration Tester: xhigh`. At its start, a run checks that it has every line the run will use:
+`thinking_levels` holds one `<name>: <label>` line for every skill and every non-executor Subagent Role. The Engineer, Test Writer and Doc Writer have no lines. At its start, a run checks that it has every line the run will use:
 - its skill's;
 - each non-executor Subagent Role's it dispatches;
 - for configure-worktree, the line of the skill its Worker will run.
