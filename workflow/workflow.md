@@ -138,12 +138,9 @@ A Guidance Document may consist entirely of a pointer to other files. Open targe
 
 ### Thinking Levels
 
-The labels `low` < `medium` < `high` < `xhigh` < `max` each map to an Agent's model and effort. Take each session's or Subagent's Thinking Level from one source:
+`levels_<agent>` maps `low` < `medium` < `high` < `xhigh` < `max` to an Agent's model and effort, one plain-language line per label. Model names come only from these mappings.
 
-- **A Worker** runs at its skill's line in the `thinking_levels` setting. A session the Managing Intelligence starts itself runs at whatever it was started with.
-- **A non-executor Subagent** runs at its Subagent Role's line in the `thinking_levels` setting. The Engineer, Test Writer and Doc Writer always run at the `thinking_level:` tag of the Task or Bug they work on; Subtasks carry no tag and use their Task's. A resumed Subagent keeps its first dispatch's level.
-
-The `thinking_levels` setting (see Settings) holds one `<name>: <label>` line for every skill and every non-executor Subagent Role, for example:
+`thinking_levels` (see Settings) holds one `<name>: <label>` line per skill and non-executor Subagent Role, for example:
 
 ```
 ## thinking_levels
@@ -152,16 +149,18 @@ develop-epic: medium
 Code Reviewer: xhigh
 ```
 
-The Engineer, Test Writer and Doc Writer have no lines. At its start, a Run checks that it has every line the Run will use:
-- its skill's;
-- each non-executor Subagent Role's it dispatches;
-- for configure-worktree, the line of the skill its Worker will run.
+- A Worker runs at its skill's line; a non-executor Subagent at its Subagent Role's.
+- Engineer, Test Writer and Doc Writer have no lines: they always use their Task's or Bug's `thinking_level:` tag. Subtasks carry no tag and use their Task's.
+- A resumed Subagent keeps its first dispatch's Thinking Level.
+- A session the Managing Intelligence starts itself runs at whatever it was started with.
 
-A missing line stops the Run before changes, naming the line and pointing to project-setup.
+At startup, a Run checks the lines for its skill, each non-executor Subagent Role it dispatches and, for configure-worktree, its Worker's skill. A missing line stops the Run before changes, naming it and pointing to project-setup.
 
-When a Task or Bug starts work with a missing, unknown or repeated `thinking_level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
+For a Task or Bug starting work with a missing, unknown or repeated `thinking_level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
 
-Read each `levels_<agent>` mapping as one plain-language line per label; model names come only from these mappings. At dispatch, pass the mapped model and effort through the Agent Protocol File; pass neither for an unset mapping. Worker launches use the Worker's Agent's mapping and Launcher Protocol File. If a Thinking Level cannot be applied, report it and use the session's model and effort; never stop for this. Retry a dispatch or Worker launch rejected for its model or effort without them, and report it.
+Dispatch through the Agent Protocol File with the mapped model and effort, or neither for an unset mapping. Worker launches use the Worker's Agent's mapping and Launcher Protocol File.
+
+If a Thinking Level cannot be applied, report it and use the session's model and effort; never stop. Retry dispatches or launches rejected for model or effort without them, and report it.
 
 ### Subagent dispatch and reuse
 
