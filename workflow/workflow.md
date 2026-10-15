@@ -140,7 +140,7 @@ A Guidance Document may consist entirely of a pointer to other files. Open targe
 The labels `low` < `medium` < `high` < `xhigh` < `max` each map to an Agent's model and effort. Take each session's or Subagent's Thinking Level from one source:
 
 - **A Worker** runs at its skill's line in the `thinking_levels` setting; a fix-bug Worker runs at its Bug's `thinking_level:` tag. A session the Managing Intelligence starts itself runs at whatever it was started with.
-- **A Subagent** runs at its Subagent Role's line in `thinking_levels`. An executor (the Engineer, Test Writer or Doc Writer) working on a Task or Bug runs at that ticket's `thinking_level:` tag instead. A resumed Subagent keeps its first dispatch's level.
+- **A Subagent** runs at its Subagent Role's line in the `thinking_levels` setting. An executor (the Engineer, Test Writer or Doc Writer) working on a Task or Bug runs at that ticket's `thinking_level:` tag instead. A resumed Subagent keeps its first dispatch's level.
 
 `thinking_levels` holds one `<name>: <label>` line for every skill and every Subagent Role except fix-bug and the Doc Writer, which always run at a Task's or Bug's tag. At its start, a run checks that it has every line the run will use:
 - its skill's, unless it is fix-bug;
