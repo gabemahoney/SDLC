@@ -166,15 +166,32 @@ If a Thinking Level cannot be applied, report it and use the session's model and
 
 Name each Subagent's repos and checkouts in its dispatch; it loads their Guidance Documents and may read any repo for context.
 
-A reuse scope is one Task or a Bug in fix-bug. Dispatch each executor once per scope: one per executor Subagent Role, one per Test Writer lane. Start with a self-contained prompt. Later passes resume only affected executors, with self-contained messages giving the findings and chosen fix in full, other changes since their last pass, and what to report; do not repeat context they hold. Resumes retain the first dispatch's Thinking Level and Guidance Documents; a newly assigned repo adds its Guidance Documents.
+**Fresh start:** a new dispatch with a self-contained prompt and no earlier context.
 
-Writers, read-only Subagent Roles and the Integration Tester are fresh every dispatch. Never reuse across scopes. Subagents never talk to each other; the diff is the handoff. Replace an executor with a fresh dispatch only after an approach change, failed resume, or transcript exceeding the Agent Protocol File's model limit. Carry findings, chosen fix and work so far into the replacement prompt. A same-approach refinement resumes. An error or no report means resume failed; unknown transcript size never triggers the limit.
+**Reuse:** resume the same Subagent within its scope. Give a self-contained message: findings and chosen fix in full, other changes since its last pass, and what to report; omit context it holds. Keep its first dispatch's Thinking Level and Guidance Documents; newly assigned repos add theirs.
 
-Keep a progress record on the skill's ticket: each warm Subagent's Subagent Role, scope, ID the Agent gave it, name where available, dispatch Thinking Level and last transcript size, updated after each report. Resume from it after compaction or a re-run, using the name if available, otherwise ID; a stale name or ID fails the resume and goes fresh.
+- **Executors (Engineer, Test Writer, Doc Writer):** reuse within one Task, or the Bug in fix-bug. Dispatch once per Subagent Role and per Test Writer lane; resume only affected executors. Never reuse across scopes.
+- **Everything else:** fresh start every dispatch—the planners; Code, Test and Doc Reviewers; Product Manager; Requirements Reviewer; TLA+ Writer; TLA+ Reviewer; Integration Tester.
 
-Before each Task after its first, develop-epic checks its own context use, as the Agent Protocol File says. At 75% or more, or with a reading older than its freshness window, it stops at that Task boundary and names the re-run for a new session; the Managing Intelligence restarts it, through the Launcher for a Worker, as its Launcher Protocol File says. With no reading, it continues and reports it.
+#### Replacing an executor
 
-Where the Agent requires closing Subagents, close a cold one after its report and a warm one when replaced or its scope ends. At the open-Subagent limit, close finished Subagents and dispatch again. With no resume tool, make every pass fresh; with no transcript size, skip that limit check. Report each unavailable capability.
+Start fresh only after an approach change, failed resume (error or no report), or transcript over the Agent Protocol File's model limit. Carry findings, chosen fix and work so far into the prompt. Same-approach refinements resume; unknown transcript size never triggers the limit.
+
+#### Handoff
+
+Subagents never talk to each other; the diff is the handoff.
+
+#### Progress record
+
+On the skill's ticket, record each warm Subagent's Subagent Role, scope, ID from the Agent, name if available, dispatch Thinking Level and last transcript size; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID. A stale name or ID fails the resume and goes fresh.
+
+#### Context guard
+
+Before each Task after the first, develop-epic checks its own context use per the Agent Protocol File. At 75% or more, or a reading older than its freshness window, stop at that Task boundary and name the re-run for a new session. The Managing Intelligence restarts it, through the Launcher for a Worker, per its Launcher Protocol File. With no reading, continue and report it.
+
+#### Agent limits
+
+Where the Agent requires closing, close cold Subagents after reporting, warm ones when replaced or their scope ends. At the open-Subagent limit, close finished Subagents and dispatch again. Without a resume tool, every pass gets a fresh start; without transcript size, skip that check. Report each unavailable capability.
 
 ### Versions and fresh reads
 
