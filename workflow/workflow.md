@@ -164,7 +164,7 @@ If a Thinking Level cannot be applied, report it and use the session's model and
 
 ### Subagent dispatch and reuse
 
-Name each Subagent's repos and checkouts in its dispatch; it loads their Guidance Documents and may read any repo for context. develop-epic and fix-bug do no executor or reviewer work themselves; idea-review does no reviewer work and dispatches no executor. Executors never commit. Read-only Subagent Roles change no files or tickets and never commit.
+Name each Subagent's repos and checkouts in its dispatch; it loads their Guidance Documents and may read any repo for context.
 
 A reuse scope is one Task or a Bug in fix-bug. Dispatch each executor once per scope: one per executor Subagent Role, one per Test Writer lane. Start with a self-contained prompt. Later passes resume only affected executors, with self-contained messages giving the findings and chosen fix in full, other changes since their last pass, and what to report; do not repeat context they hold. Resumes retain the first dispatch's Thinking Level and Guidance Documents; a newly assigned repo adds its Guidance Documents.
 
