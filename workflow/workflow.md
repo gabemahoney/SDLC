@@ -15,6 +15,7 @@ Every Apiary skill reads this rulebook when run; every Subagent reads it when sp
 - **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `maintained-docs.md`, `release-guide.md`, `bug-writing-guide.md`.
 - **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no copy of it is found.
 - **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent.
+- **Run:** one execution of a skill, from its first steps to its report.
 - **Thinking Level:** one of `low` to `max`, picking the model and effort a session or Subagent runs at.
 
 ## Stores and ticket terms
@@ -102,7 +103,7 @@ A source reference links a ticket to something outside the ticket system that it
 
 Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate. On failure, stop without changes and say why.
 
-Stop before any change, naming the file, if a Guidance Document your `SKILL.md` or Subagent definition names has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the run likewise; point to project-setup.
+Stop before any change, naming the file, if a Guidance Document your `SKILL.md` or Subagent definition names has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the Run likewise; point to project-setup.
 
 Read and follow a skill's installed `SKILL.md` whenever running it. No skill or Subagent runs another skill. Subagents follow their installed definitions. Report pass, fail or not applicable for every required check and gate in loaded `SKILL.md` files and Guidance Documents; name the Guidance Document copies or Default Fallback Files used.
 
@@ -123,7 +124,7 @@ Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo,
 
 Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value.
 
-The seven names are `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex` and `thinking_levels`. Each value is the text below its `## <setting name>` heading up to the next `##` heading; text before the first heading is a comment. A malformed settings file stops the run, naming it. If neither file names a required setting, the run stops before changes, naming it and pointing to project-setup. Ticket systems, Launchers and intake approaches must be ones Apiary ships.
+The seven names are `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex` and `thinking_levels`. Each value is the text below its `## <setting name>` heading up to the next `##` heading; text before the first heading is a comment. A malformed settings file stops the Run, naming it. If neither file names a required setting, the Run stops before changes, naming it and pointing to project-setup. Ticket systems, Launchers and intake approaches must be ones Apiary ships.
 
 Pass the settings and the Ticket System and Agent Protocol Files in every dispatch; Subagents use those, not their own lookup.
 
@@ -151,12 +152,12 @@ develop-epic: medium
 Code Reviewer: xhigh
 ```
 
-The Engineer, Test Writer and Doc Writer have no lines. At its start, a run checks that it has every line the run will use:
+The Engineer, Test Writer and Doc Writer have no lines. At its start, a Run checks that it has every line the Run will use:
 - its skill's;
 - each non-executor Subagent Role's it dispatches;
 - for configure-worktree, the line of the skill its Worker will run.
 
-A missing line stops the run before changes, naming the line and pointing to project-setup.
+A missing line stops the Run before changes, naming the line and pointing to project-setup.
 
 When a Task or Bug starts work with a missing, unknown or repeated `thinking_level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
 
@@ -178,14 +179,14 @@ Where the Agent requires closing Subagents, close a cold one after its report an
 
 ### Versions and fresh reads
 
-Before changing anything, stop if a `SKILL.md`, Subagent definition or `workflow.md` is from another Apiary version; say to resume the session. Read `workflow.md` and `.apiary` files from disk each run; Subagents read `workflow.md` and Guidance Documents when spawned. After an Apiary update, a resumed session's next run uses the new skills and Subagent definitions.
+Before changing anything, stop if a `SKILL.md`, Subagent definition or `workflow.md` is from another Apiary version; say to resume the session. Read `workflow.md` and `.apiary` files from disk each Run; Subagents read `workflow.md` and Guidance Documents when spawned. After an Apiary update, a resumed session's next Run uses the new skills and Subagent definitions.
 
 ## Questions and stops
 
-A skill or Subagent needing an answer or unable to continue stops and explains why in its output. Give all questions available at once, numbered in plain text, each with options, or state what must be fixed. Whoever started the run—the Managing Intelligence or the skill or Subagent above it—reads the output and decides. Never continue with missing or ambiguous information.
+A skill or Subagent needing an answer or unable to continue stops and explains why in its output. Give all questions available at once, numbered in plain text, each with options, or state what must be fixed. Whoever started the Run—the Managing Intelligence or the skill or Subagent above it—reads the output and decides. Never continue with missing or ambiguous information.
 
 The Managing Intelligence answers in the session (through the Launcher for a Worker), or re-runs the skill with answers to continue the work.
 
-## Ending a run
+## Ending a Run
 
-End every skill run with the next-step suggestions its `SKILL.md` lists. The Managing Intelligence may decline them.
+End every skill Run with the next-step suggestions its `SKILL.md` lists. The Managing Intelligence may decline them.
