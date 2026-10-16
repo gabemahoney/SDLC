@@ -10,14 +10,14 @@
 - **Launcher:** the program that starts, watches and stops Workers.
 - **Project:** the software the Managing Intelligence builds with Apiary, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
-- **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents for the folder it sits in, and settings in the Project Folder and `~`.
+- **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.apiary` the default settings.
 - **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `maintained-docs.md`, `release-guide.md`, `bug-writing-guide.md`.
 - **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no user copy of that Guidance Document is found.
 - **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent.
 - **Source Reference:** a link on a ticket to where it came from outside the ticket system, such as a GitHub issue or a file. Read it as context.
 - **Resolver:** the instructions for reading one kind of Source Reference, picked by its kind (a GitHub URL uses `github`, a file path uses `file`).
 - **Run:** one execution of a skill, from its first steps to its report.
-- **Thinking Level:** one of `low`, `medium`, `high`, `xhigh` or `max`, picking the model and effort a session or Subagent runs at.
+- **Thinking Level:** the model and effort a Subagent or Worker runs at (see Thinking Levels).
 
 ## Stores and ticket terms
 
@@ -64,9 +64,9 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 
 ## Shared rules
 
-### Starting, reporting and resuming
+### Every Run
 
-- Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers `workflow.md`, the `SKILL.md`, a Subagent definition, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
+- Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers the `SKILL.md`, a Subagent definition, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
 - If your skill's Gate fails, change nothing and say why.
 - No skill or Subagent runs another skill.
 - After a compaction, re-read the Protocol Files and Guidance Documents you loaded.
@@ -126,6 +126,6 @@ If a line or mapping you need is missing, stop before any change and point to pr
 - A Subagent loads the Guidance Documents of each repo it works in, and may read any repo for context.
 - Subagents never talk to each other. The skill reads each report and passes on what the next Subagent needs. Their work passes through the files.
 
-## Questions and stops
+### Questions and stops
 
 When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information.
