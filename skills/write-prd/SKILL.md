@@ -99,10 +99,6 @@ State the performance, security, scalability or compatibility constraints that a
 
 ## Acceptance Criteria
 List the observable, testable checks that must pass for the work to be complete.
-When the result depends on the situation, write the check as Given (the
-starting situation), When (what happens) and Then (the observable result).
-- [ ] Given an order already paid, when a repeat payment arrives, then the
-      order is still charged once.
 - [ ] Criterion
 
 ## Assumptions
