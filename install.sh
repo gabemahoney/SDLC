@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Install (or update) Apiary's skills and agents for Claude Code, Codex CLI or both.
-# It touches only Apiary's own skill folders and apiary-* agent files.
+# It copies Apiary's skills, agents and document templates.
 set -euo pipefail
 
 usage() {
@@ -17,6 +17,7 @@ Claude Code:  skills/<name>/ -> ~/.claude/skills/<name>/
 Codex CLI:    skills/<name>/ -> ~/.agents/skills/<name>/
               agents/*.md    -> ~/.codex/agents/<name>.toml (rendered; needs python3)
               (--repo: <repo>/.agents/skills, <repo>/.codex/agents)
+Shared:       doc-templates/ -> ~/.apiary/system/doc-templates/ (also with --repo)
 EOF
 }
 
@@ -118,6 +119,9 @@ case "$AGENT" in
   codex) install_codex ;;
   both) install_claude; install_codex ;;
 esac
+
+run mkdir -p "$HOME/.apiary/system/doc-templates"
+run cp -R "$SRC/doc-templates/." "$HOME/.apiary/system/doc-templates/"
 
 if [ "$DRY" -eq 1 ]; then
   echo "Dry run: nothing was written."

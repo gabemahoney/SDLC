@@ -33,7 +33,9 @@ cd ~/projects/apiary
 ./install.sh --agent both
 ```
 
-Add `--repo <path>` to install into one repository instead of your user-level folders (to try Apiary on one project), and `--dry-run` to print what it would do. It copies each skill folder and each agent, overwriting earlier Apiary copies in place, and touches nothing else.
+Add `--repo <path>` to install skills and agents into one repository instead of your user-level folders (to try Apiary on one project), and `--dry-run` to print what it would do. It copies each skill folder and each agent, overwriting earlier Apiary copies in place. It also copies `doc-templates/` to `~/.apiary/system/doc-templates/`, including with `--repo`.
+
+The `prd_template` setting names the PRD template file. project-setup offers `~/.apiary/system/doc-templates/prd.md` as the shipped default or records your own file's path. Settings resolve from `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The installer does not create or update these settings files; project-setup writes them.
 
 | Flavour | Skills | Agents | With `--repo <path>` |
 |---|---|---|---|
@@ -43,6 +45,8 @@ Add `--repo <path>` to install into one repository instead of your user-level fo
 Skills and agents are a paired copy: always install both to the same scope. Codex loads a repo's `.codex/agents/` only when it trusts that project.
 
 To install by hand instead:
+
+- Copy `doc-templates/` to `~/.apiary/system/doc-templates/` for either Agent.
 - Claude Code: copy each `skills/<name>/` to `~/.claude/skills/<name>/` and `agents/*.md` to `~/.claude/agents/`.
 - Codex CLI: copy each `skills/<name>/` to `~/.agents/skills/<name>/`, then run `python3 scripts/codex_agents.py render --out ~/.codex/agents`.
 

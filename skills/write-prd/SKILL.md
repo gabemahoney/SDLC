@@ -20,7 +20,8 @@ An Idea ID, with optional review findings or change notes for a revision.
 ## Reads
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system` and the PRD template through `prd_template`.
+- **PRD template:** the file at the path named by `prd_template`. Why: to structure the PRD.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to interview the Managing Intelligence and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and create or update its PRD.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
@@ -40,7 +41,7 @@ None: the PRD can be written or revised at any Idea status.
    - Look up facts yourself instead of asking: the code, the Idea, its Docs and Source References. Ask only for decisions. Keep asking the other questions while a lookup runs.
    - Stop when every branch is either answered or one the Managing Intelligence chooses to leave open, nothing is silently assumed, and they confirm you share an understanding. Questions they leave open become Open Questions.
 
-3. **Write the PRD.** Use the section template and craft guidance below.
+3. **Write the PRD.** Read the file named by `prd_template` and draft the PRD from it, following the required sections and craft guidance below.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
@@ -71,51 +72,9 @@ Report the PRD's ID, assumptions, Open Questions, incomplete work and what the S
 - If the Idea has no SRD, suggest “write-srd”.
 - Otherwise, suggest “req-review, or, on a `draft` Idea, mark the Idea defined”.
 
-## PRD section template
+## Required sections
 
-```markdown
-# [Feature/Project Name]
-
-## Glossary
-Define only novel terms the product coins or uses in its own sense, grouped
-by topic, each in Title Case. Each definition is one to three short sentences:
-what it is and what it is for. Use plain words, common developer terms or other
-Glossary terms; each definition stands alone without pointing to the body.
-
-## Goals
-List one bullet per feature or goal. Each states a concrete, measurable outcome and makes sense without reading the body.
-
-## Problem Statement
-What problem exists today? Who has it? Why does it matter?
-Keep this to two or three sentences.
-
-## Non-Goals / Out of Scope (if any)
-State the boundaries the Managing Intelligence wants kept to prevent scope creep.
-Remove this section when there are none.
-
-## Requirements
-
-### Functional Requirements
-State each product behaviour as a testable requirement.
-
-### Edge Cases and Error Handling
-For each edge case or error the input or interview names, state the scenario and expected behaviour.
-
-### Non-Functional Requirements (if applicable)
-State the performance, security, scalability or compatibility constraints that apply. Include this section only when they are relevant.
-
-## Acceptance Criteria
-List the observable, testable checks that must pass for the work to be complete.
-- [ ] Criterion
-
-## Assumptions
-State what is assumed to be true going into this work, including dependencies on
-other systems, existing functionality or prior work.
-
-## Open Questions (if any)
-List the product decisions the Managing Intelligence chose to leave open.
-Remove this section when there are none.
-```
+Every PRD must include Glossary, Acceptance Criteria and Open Questions, even if the template omits them or makes them optional: write-srd and req-review need shared terms, completion checks and unresolved decisions. Write “None” in an empty Open Questions section.
 
 ## Style rules
 
