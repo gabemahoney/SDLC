@@ -14,6 +14,8 @@
 - **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `maintained-docs.md`, `release-guide.md`, `bug-writing-guide.md`.
 - **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no user copy of that Guidance Document is found.
 - **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent.
+- **Source Reference:** a link on a ticket to where it came from outside the ticket system, such as a GitHub issue or a file. Read it as context.
+- **Resolver:** the instructions for reading one kind of Source Reference, picked by its kind (a GitHub URL uses `github`, a file path uses `file`).
 - **Run:** one execution of a skill, from its first steps to its report.
 - **Thinking Level:** one of `low`, `medium`, `high`, `xhigh` or `max`, picking the model and effort a session or Subagent runs at.
 
@@ -59,10 +61,6 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. Bugs whose fixes are returned go back to `draft` for define-bug.
 
 **Research:** research → the Managing Intelligence accepts the Report.
-
-## Source references
-
-A source reference links a ticket to the source outside the ticket system that the ticket came from. The ticket system stores only the link. Apiary resolves the link and reads the source. A resolver supplies the instructions for resolving and reading a kind of source reference. The source reference's kind selects the resolver: a GitHub URL uses `github`, and a file path uses `file`. Follow the selected resolver's instructions at `~/.apiary/system/resolvers/<resolver>.md`. Read source references as context.
 
 ## Shared rules
 
