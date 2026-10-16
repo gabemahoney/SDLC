@@ -88,17 +88,6 @@ A source reference links a ticket to something outside the ticket system that it
 
 ## Shared rules
 
-### Succinctness pass
-
-A writing skill runs this pass over its document after acting on review findings, on every revision from change notes, and wherever the skill names it.
-
-- Fold each fix into the body where it belongs. Never append amendments, errata or a review-fixes section.
-- Cut text a fix superseded, repeated text and padding.
-- Keep every current requirement, acceptance criterion, edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
-- An acceptance criterion may restate the behaviour it checks, and a summary section may restate what the body details. Nothing else repeats.
-- Report what you cut.
-- If the pass folds a whole ticket away, delete that ticket rather than leaving it `draft`.
-
 ### Starting, reporting and resuming
 
 Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load these Protocol Files from `~/.apiary/system/protocols/`:

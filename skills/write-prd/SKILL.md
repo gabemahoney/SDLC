@@ -19,7 +19,7 @@ An Idea ID, with optional review findings or change notes for a revision.
 
 ## Reads
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules and the Succinctness pass.
+- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to interview the Managing Intelligence and report through this Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and create or update its PRD.
@@ -44,7 +44,11 @@ None: the PRD can be written or revised at any Idea status.
    - If revising, first apply the findings or change notes to establish the current requirements.
 
 4. **Review it yourself.** Make four passes over the whole draft (succinctness, product not software, dropped ideas, quality checklist), for a first draft and a revision alike. Repeat all four until a full round of them changes nothing:
-   - **Succinctness:** run the Succinctness pass in `workflow.md`: cut repetition and padding with no loss of signal.
+   - **Succinctness:** cut repetition and padding with no loss of signal.
+     - Fold each finding or change into the body where it belongs. Never append amendments, errata or a review-fixes section.
+     - Cut text a change superseded, repeated text and padding.
+     - Keep every current requirement, acceptance criterion, edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
+     - An acceptance criterion may restate the behaviour it checks, and Goals may restate what the body details. Nothing else repeats.
    - **Product, not software:** rewrite any requirement that describes how the software works (code, components, data structures, APIs) as what the product must do for the people who use it. Software requirements belong in the SRD.
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. If the interview considered something and decided against it, the PRD doesn't mention it at all. No "must not do X" or "X is out of scope" just because X came up. Keep a Non-Goal only when the Managing Intelligence wants that boundary stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
