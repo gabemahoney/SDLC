@@ -79,7 +79,8 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 - **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree change files and commit only inside repo checkouts.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
 - **Where to work:** if develop-epic, idea-review, write-plan or write-epic starts inside `<Project Folder>/.worktrees/<ticket id>/`, it works only in that ticket's worktrees. Otherwise it works in the main checkouts.
-- **Repo files:** open every repo file you work on in the checkout you're working in. In a worktree, a path into the repo always means the worktree's copy, however the path is written. Guidance Documents are the exception; see Guidance Documents.
+- **Code work happens in the worktree,** when you're in one.
+- **Guidance Documents come from the main checkout,** never a worktree.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
 - **Pushing:** push only as the Project's `release-guide.md` allows.
 
@@ -95,12 +96,12 @@ Pass the settings and the Ticket System and Agent Protocol Files in every dispat
 
 Load only the Guidance Documents your `SKILL.md` or Subagent definition names. To find one, `<name>.md`:
 
-1. Start in the main checkout of the repo you're working in (not your worktree, if you're in one), or in your current directory if you're not working in a repo.
+1. Start in the main checkout of the repo you're working in, or in your current directory if you're not working in a repo.
 2. Walk up to `~`, reading `<name>.md` from each folder's `.apiary` Folder, including `~/.apiary`.
 3. Use every copy you find, together. If two copies conflict, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
 4. If you find none, use `~/.apiary/<name>-default-fallback.md`.
 
-If a copy is only a pointer to other files, follow it. A relative pointer is relative to the folder holding the copy. Read the file it points to exactly where the pointer says, never in your worktree.
+If a copy is only a pointer to other files, follow it.
 
 ### Thinking Levels
 
