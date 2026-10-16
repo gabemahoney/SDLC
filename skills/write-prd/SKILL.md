@@ -67,10 +67,9 @@ Report the PRD's ID, one line describing each section, its assumptions, its Open
 
 ## Glossary
 Define only novel terms the product coins or uses in its own sense, grouped
-by topic. Each definition is one to three short sentences: what it is and,
-where applicable, where it lives, who writes or edits it and what it is for.
-Use plain words, common developer terms or other Glossary terms; each
-definition stands alone without pointing to the body.
+by topic, each in Title Case. Each definition is one to three short sentences:
+what it is and what it is for. Use plain words, common developer terms or other
+Glossary terms; each definition stands alone without pointing to the body.
 
 ## Goals
 One bullet per new feature or goal: a concrete, measurable outcome that must be true when the work is complete, understandable without reading the body.
@@ -117,7 +116,7 @@ Remove this section when there are none.
 - **Requirements, not solutions.** State the user's problem and needed outcome; leave the design open. Make every requirement specific and verifiable.
   Bad: “Add a red Retry button that calls the retry endpoint.” Good: “Customers can retry a failed payment. An order is charged at most once.”
 - **Conversational wording.** Use direct statements without requirement numbers. Use user stories when actor, goal and benefit add clarity.
-- **Consistent terms.** Explain each novel term briefly or point to the Glossary at first use in the body. Use its exact Glossary wording in Title Case, including plurals, except names in backticks. Lowercase words and synonyms never stand for defined terms; definitions avoid the lowercase form of their own term. Quote or backtick feature names sharing a term's word.
+- **Consistent terms.** Write each Glossary term in Title Case wherever it appears: in its definition and every use, including plurals, except names in backticks. Explain it briefly or point to the Glossary at its first use in the body. Lowercase words and synonyms never stand for defined terms; definitions avoid the lowercase form of their own term. Quote or backtick feature names sharing a term's word.
 - **Current requirements.** State the requirements as they now stand. Fold answered Open Questions into the body.
 
 ## Quality checklist
