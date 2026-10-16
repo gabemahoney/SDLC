@@ -13,7 +13,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 ## Gate
 
-Check the creation input.
+None: write-idea creates a new ticket.
 
 ## Owned transition
 
@@ -21,7 +21,7 @@ write-idea creates `draft`.
 
 ## Filing the Idea
 
-Read the `new_idea_intake` setting. It names how this Project files Ideas: interview the Managing Intelligence, or a source reference resolver such as `github`. Follow it:
+Read the `new_idea_intake` setting. It names how this Project files Ideas: interview the Managing Intelligence, or a source reference resolver such as `github`. If the input doesn't fit that intake (for example, no issue URL for the `github` resolver), stop and say what's needed. Otherwise follow it:
 - When it names a source reference resolver, store the input as the Idea's source reference.
 - When it says to interview the Managing Intelligence, do so and write the description in the Idea's body.
 
