@@ -22,9 +22,8 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 - Whatever exists of `<Project Folder>/.apiary/project_settings.md` and `~/.apiary/default_project_settings.md`: `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex` and `thinking_levels`.
 - The running Agent's Protocol File: `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`.
 - When found, the Ticket System Protocol File selected by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`.
-- When in effect, the Launcher Protocol File selected by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`.
 - The chosen Apiary template at `~/.apiary/system/templates/<template-name>.md`, if using one. Names are lowercase with hyphens: Public GitHub Project is `public-github-project.md`.
-- For the installation check, Apiary skills and Subagent definitions in the running Agent's folders: `~/.claude/skills/<skill>/SKILL.md` and `~/.claude/agents/apiary-<role>.md` for Claude Code; `~/.agents/skills/<skill>/SKILL.md` and `~/.codex/agents/apiary-<role>.toml` for Codex CLI.
+- For the installation check, Apiary's installed skills and Subagent definitions for the running Agent: `~/.claude/` for Claude Code, `~/.agents/` and `~/.codex/` for Codex CLI.
 - `<folder on the Guidance Document walk>/.apiary/release-guide.md`, or `~/.apiary/release-guide-default-fallback.md`, as the rulebook specifies.
 - Each confirmed repo's manifests and stack configuration under `<Project Folder>/<repo path>/`; existing Guidance Documents at the output paths below; and the repo files the Managing Intelligence supplies as guidance.
 
