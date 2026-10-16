@@ -1,28 +1,49 @@
 ---
 name: write-idea
-description: File an Idea from a description of the work or intake input such as an issue URL, using the Project's new_idea_intake setting.
+description: File a new Idea from a description of the work or intake input such as an issue URL, following the Project's new_idea_intake setting.
 ---
 
 # write-idea
 
-Files an Idea. Input: a description of the work, or intake input such as an issue URL.
+## Purpose
+
+Files a new Idea in `draft`. It is the first step of the Idea flow; write-prd comes next.
 
 ## Loading Apiary
 
 You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
 
+## Input
+
+A description of the work, or intake input such as an issue URL.
+
+## Reads
+
+- The `new_idea_intake` setting, from the Project Folder's `.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`. It names how this Project files Ideas: interview the Managing Intelligence, or a source reference resolver such as `github`.
+
 ## Gate
 
 None: write-idea creates a new ticket.
 
-## Owned transition
+## Steps
 
-write-idea creates `draft`.
+1. Check that the input fits the intake. If it doesn't (for example, no issue URL for the `github` resolver), stop and say what's needed.
+2. When the intake names a source reference resolver, store the input as the Idea's source reference.
+3. When the intake says to interview the Managing Intelligence, interview them and write the description in the Idea's body.
+4. File the Idea.
 
-## Filing the Idea
+## Dispatches
 
-Read the `new_idea_intake` setting. It names how this Project files Ideas: interview the Managing Intelligence, or a source reference resolver such as `github`. If the input doesn't fit that intake (for example, no issue URL for the `github` resolver), stop and say what's needed. Otherwise follow it:
-- When it names a source reference resolver, store the input as the Idea's source reference.
-- When it says to interview the Managing Intelligence, do so and write the description in the Idea's body.
+None.
 
-File the Idea and print its ID. Next step: "write-prd".
+## Writes
+
+- A new Idea in the Ideas store, status `draft`.
+
+## Stops and asks
+
+None beyond step 1.
+
+## Done
+
+Print the Idea's ID. Next step: "write-prd".
