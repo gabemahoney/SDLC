@@ -19,7 +19,7 @@ An Idea ID or its PRD Doc ID, with optional review findings, model findings or c
 
 ## Reads
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules, Questions and stops, and the Succinctness pass.
+- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules and Questions and stops.
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system` and, when dispatching, the TLA+ Writer's Thinking Level through `thinking_levels` and its model and effort through `levels_claude_code` or `levels_codex` for the running Agent.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to locate the installed TLA+ Writer definition, dispatch it, and ask and report through this Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and create or update its SRD.
@@ -55,13 +55,17 @@ None: the SRD can be written or revised at any Idea status.
    - If no part needs modelling, then continue to self-review and report why modelling was unnecessary.
 
 6. **Review and finish the SRD yourself.** Make four passes over the whole draft, for a first draft and a revision alike. Repeat all four until a full round changes nothing:
-   - **Succinctness:** run the Succinctness pass in `workflow.md` after model findings and revision notes as well as self-review.
+   - **Succinctness:** cut repetition and padding with no loss of signal.
+     - Fold each review finding, model finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section.
+     - Cut text a change superseded, repeated text and padding.
+     - Keep every current software requirement, invariant, acceptance criterion, supplied edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
+     - Within the SRD, an acceptance criterion may restate the behaviour it checks, and a summary may restate what the body details. Nothing else repeats; refer to an existing SR when another group needs it.
    - **Requirements:** make every SR a verifiable software obligation grounded in the PRD and explored code, with implementation choices left to planning and execution.
    - **Current requirements:** remove every trace of dropped ideas and fold settled questions into the body. Keep an explicit boundary only when the Managing Intelligence wants it stated.
    - **Quality checklist:** check every item below and fix what fails.
 
-   Save the final SRD in the same Doc with status `draft`.
-   - If self-review changes requirements covered by a model or reveals another part needing one, then repeat the dispatch prerequisite checks, step 5 and this self-review before reporting completion.
+   - If self-review changes requirements covered by a model or reveals another part needing one, then repeat steps 4–6, checking dispatch prerequisites before saving the revised SRD.
+   - If self-review leaves no modelling work to do, then save the final SRD in the same Doc with status `draft`.
 
 ## Dispatches
 
