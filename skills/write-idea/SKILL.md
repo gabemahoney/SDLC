@@ -9,7 +9,7 @@ Files an Idea. Input: a description of the work, or intake input such as an issu
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Read `~/.apiary/system/workflow.md` and follow it. Then load, from `~/.apiary/system/protocols/`, your Agent's Protocol File (`agent-claude-code.md` in Claude Code, `agent-codex.md` in Codex CLI) and the Ticket System and Launcher Protocol Files this Run requires, as your settings choose.
+You are running an Apiary software development workflow. Read `~/.apiary/system/workflow.md` for where this skill sits in the overall workflow and for the rules skills share; follow this skill for what to do. Then load, from `~/.apiary/system/protocols/`, your Agent's Protocol File (`agent-claude-code.md` in Claude Code, `agent-codex.md` in Codex CLI) and the Ticket System and Launcher Protocol Files this Run requires, as your settings choose.
 
 As a Subagent, use the settings and Protocol Files your dispatch prompt names; look nothing up yourself.
 
