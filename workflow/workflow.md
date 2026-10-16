@@ -90,7 +90,7 @@ A source reference links a ticket to something outside the ticket system that it
 
 ### Succinctness pass
 
-- **Succinctness pass.** After each such review, and on every revision from change notes, the writing skill acts on the findings, then tightens the document: it folds each fix into the body where it belongs and removes text a fix superseded, repeated text and padding; it never appends amendments, errata or a review-fixes section, and never removes a current requirement, acceptance criterion, edge case, or a Managing Intelligence answer the document carries (one the Managing Intelligence withdrew or replaced is no longer current); an acceptance criterion doesn't duplicate the requirement it tests. It reports what it cut. A ticket the check folds away is deleted, not left `draft`.
+- **Succinctness pass.** After each such review, and on every revision from change notes, the writing skill acts on the findings, then tightens the document: it folds each fix into the body where it belongs and removes text a fix superseded, repeated text and padding; it never appends amendments, errata or a review-fixes section, and never removes a current requirement, acceptance criterion, edge case, or a Managing Intelligence answer the document carries (one the Managing Intelligence withdrew or replaced is no longer current); an acceptance criterion may restate the behaviour it checks, but nothing else repeats. It reports what it cut. A ticket the check folds away is deleted, not left `draft`.
 
 ### Starting, reporting and resuming
 
@@ -185,7 +185,7 @@ On the skill's ticket, record each warm Subagent's Subagent Role, Task or Bug, I
 
 ## Questions and stops
 
-When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information. Ask all your questions at once, numbered, each with options.
+When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information. Ask all your questions at once, numbered, each with options. A skill that interviews in rounds follows its own round rules instead.
 
 ## Ending a Run
 

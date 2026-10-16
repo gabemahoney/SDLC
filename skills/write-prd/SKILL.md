@@ -86,8 +86,9 @@ List one bullet per new feature or goal. Each states a concrete, measurable outc
 What problem exists today? Who has it? Why does it matter?
 Keep this to two or three sentences.
 
-## Non-Goals / Out of Scope
-State what this work will not do, so the scope doesn't creep during implementation.
+## Non-Goals / Out of Scope (if any)
+State what this work will not do, when the Managing Intelligence wants a boundary
+stated so the scope doesn't creep. Remove this section when there are none.
 
 ## Requirements
 
@@ -133,7 +134,7 @@ Before saving, check the resolved requirements below. Record gaps the Managing I
 - [ ] The Glossary and Goals stand alone, and terms are explained at first use.
 - [ ] The problem statement names who has the problem and why it matters to them.
 - [ ] Goals are concrete and measurable.
-- [ ] Non-goals give explicit boundaries.
+- [ ] Any Non-Goals are boundaries the Managing Intelligence asked for.
 - [ ] Each requirement states one testable obligation, serves a stated need and has an acceptance check.
 - [ ] Supplied priorities and trade-offs are explicit.
 - [ ] Supplied edge cases and error scenarios have expected behaviours.
