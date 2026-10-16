@@ -40,16 +40,15 @@ None: the PRD can be written or revised at any Idea status.
    - Look up facts yourself instead of asking: the code, the Idea, its Docs and source references. Ask only for decisions. Keep asking the other questions while a lookup runs.
    - Stop when no question is left open, every branch has been visited and nothing is silently assumed, and the Managing Intelligence confirms you share an understanding.
 
-3. **Write and check the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions in the draft; flag them in the report.
+3. **Write the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions; flag them in the report.
    - If revising, first apply the findings or change notes to establish the current requirements.
 
-   Then make a final pass over the whole PRD, a first draft as well as a revision:
-   - Run the Succinctness pass in `workflow.md`: cut repetition and padding with no loss of signal.
-   - Remove every trace of ideas discussed and dropped. If the interview considered something and decided against it, the PRD doesn't mention it at all. No "must not do X" or "X is out of scope" just because X came up. Keep a Non-Goal only when the Managing Intelligence wants that boundary stated.
+4. **Review it yourself before saving.** Make these passes over the whole PRD, for a first draft and a revision alike, and repeat them until a pass changes nothing:
+   - **Succinctness:** run the Succinctness pass in `workflow.md`: cut repetition and padding with no loss of signal.
+   - **Dropped ideas:** remove every trace of ideas discussed and dropped. If the interview considered something and decided against it, the PRD doesn't mention it at all. No "must not do X" or "X is out of scope" just because X came up. Keep a Non-Goal only when the Managing Intelligence wants that boundary stated.
+   - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
 
-   Apply the Quality Checklist before saving.
-
-4. **Save the PRD.** Follow the Ticket System Protocol File.
+5. **Save the PRD.** Follow the Ticket System Protocol File.
    - If the Idea has a PRD, update that Doc; a revised `defined` PRD returns to `draft`, and a `draft` PRD stays `draft`.
    - Otherwise, create a Doc child of the Idea titled `PRD`, with status `draft`.
 
