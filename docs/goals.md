@@ -33,11 +33,11 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
   - steps a capable model doesn't need spelled out.
 
 ## How a skill change is made
-1. **Start from the old files.** Copy today's skill, and any Subagent it folds in, unchanged.
+1. **Start from the old files.** Load today's skill, and any Subagent it folds in, into context: `apiary-main` master `skills/<name>/SKILL.md` and `agents/apiary-<role>.md`.
 2. **Write a change list first.** Each change is paired with the goal, Doc or decision that requires it. Anything with no reason to change stays.
 3. **Make only those changes.**
 4. **Review it:**
    - "What was lost?": compare the old and new side by side;
    - a cold read;
    - the checklist (`docs/skill-review-checklist.md`).
-5. **The User reviews the change list and the diff.**
+5. **The User reviews the change list and the new skill.** A diff against the old files is available on request.
