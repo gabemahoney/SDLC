@@ -174,10 +174,6 @@ Subagents never talk to each other. The skill coordinates them: it reads each Su
 
 On the skill's ticket, record each warm Subagent's Subagent Role, Task or Bug, ID from the Agent, name if available and dispatch Thinking Level; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID.
 
-### Versions
-
-Before changing anything, stop if a `SKILL.md`, Subagent definition or `workflow.md` is from another Apiary version; say to resume the session.
-
 ## Questions and stops
 
 When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information. Ask all your questions at once, numbered, each with options.
