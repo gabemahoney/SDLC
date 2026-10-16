@@ -90,7 +90,14 @@ A source reference links a ticket to something outside the ticket system that it
 
 ### Succinctness pass
 
-- **Succinctness pass.** After each such review, and on every revision from change notes, the writing skill acts on the findings, then tightens the document: it folds each fix into the body where it belongs and removes text a fix superseded, repeated text and padding; it never appends amendments, errata or a review-fixes section, and never removes a current requirement, acceptance criterion, edge case, or a Managing Intelligence answer the document carries (one the Managing Intelligence withdrew or replaced is no longer current); an acceptance criterion may restate the behaviour it checks, and a summary section may restate what the body details, but nothing else repeats. It reports what it cut. A ticket the check folds away is deleted, not left `draft`.
+A writing skill runs this pass over its document after acting on review findings, on every revision from change notes, and wherever the skill names it.
+
+- Fold each fix into the body where it belongs. Never append amendments, errata or a review-fixes section.
+- Cut text a fix superseded, repeated text and padding.
+- Keep every current requirement, acceptance criterion, edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
+- An acceptance criterion may restate the behaviour it checks, and a summary section may restate what the body details. Nothing else repeats.
+- Report what you cut.
+- If the pass folds a whole ticket away, delete that ticket rather than leaving it `draft`.
 
 ### Starting, reporting and resuming
 
