@@ -7,7 +7,7 @@ description: "One-time setup of an Apiary Project: its settings, ticket stores a
 
 ## Purpose
 
-One-time setup of a Project: its settings, ticket stores and Guidance Documents. It works on an existing repo or a new, empty folder. Re-running it is safe and fixes or completes a setup. It comes before write-idea or write-bug.
+One-time setup of a Project: its settings, ticket stores and Guidance Documents. It works on an existing repo or a new, empty folder. Re-running it is safe and fixes or completes a setup. Run it before any other Apiary skill.
 
 ## Loading Apiary
 
