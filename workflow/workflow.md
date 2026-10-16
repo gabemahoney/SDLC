@@ -94,14 +94,7 @@ Pass the settings and the Ticket System and Agent Protocol Files in every dispat
 
 ### Guidance Documents
 
-Load only the Guidance Documents your `SKILL.md` or Subagent definition names. To find one, `<name>.md`:
-
-1. Start in the main checkout of the repo you're working in, or in your current directory if you're not working in a repo.
-2. Walk up to `~`, reading `<name>.md` from each folder's `.apiary` Folder, including `~/.apiary`.
-3. Use every copy you find, together. If two copies conflict, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
-4. If you find none, use `~/.apiary/<name>-default-fallback.md`.
-
-If a copy is only a pointer to other files, follow it.
+Load only the Guidance Documents your `SKILL.md` or Subagent definition names. Read every copy of each one, from the `.apiary` Folder in the main checkout of the repo you're working in (or your current directory, outside a repo) up through each parent's to `~/.apiary`. Use them together, and ask the Managing Intelligence if they conflict. If there's no copy, use `~/.apiary/<name>-default-fallback.md`.
 
 ### Thinking Levels
 
