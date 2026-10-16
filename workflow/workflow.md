@@ -95,11 +95,11 @@ Pass the settings and the Ticket System and Agent Protocol Files in every dispat
 
 ### Guidance Documents
 
-Load only the Guidance Documents your `SKILL.md` or Subagent definition names. Read no others. Read every user copy of each named Guidance Document from the working folder's `.apiary` through each parent's `.apiary`, including `~/.apiary`. In a repo checkout, start at that checkout's `.apiary`, then its parent's `.apiary`. A worktree uses its branch's committed copy. Outside `~`, walk to `/`, then read `~/.apiary` once.
+Load only the Guidance Documents your `SKILL.md` or Subagent definition names. Read no others. Read every user copy of each named Guidance Document from the working folder's `.apiary` through each parent's `.apiary`, including `~/.apiary`. In a worktree, walk as if you were in the main checkout of the same repo: `.worktrees/<ticket id>/<repo path>` starts at `<Project Folder>/<repo path>/.apiary`. A guide changed on a branch takes effect only once it is merged to the main checkout.
 
 Files sit directly in each `.apiary` Folder. User copies are `<name>.md`, where `<name>` is a Guidance Document's filename without `.md`. Only if no user copy of that Guidance Document exists, read `~/.apiary/<name>-default-fallback.md` alone. All user copies of a Guidance Document apply together, including all their checks and gates. If guidance conflicts, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
 
-A Guidance Document may consist entirely of a pointer to other files. Open the pointer targets as plain references, resolving their paths as described in Project Folder, paths and worktrees. Do not search parent folders for additional copies of a target, combine copies or use a Default Fallback File for a target. Report a missing target. Stop if the work requires the missing target.
+A Guidance Document may consist entirely of a pointer to other files; follow it.
 
 ### Thinking Levels
 
