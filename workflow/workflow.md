@@ -1,9 +1,5 @@
 # Apiary workflow
 
-Every Apiary skill reads this rulebook when run. Every Subagent reads it when spawned.
-
-This rulebook holds the bird's-eye view of the workflow and common information required by more than one skill. Information specific to a skill lives in its `SKILL.md`. Information specific to a Subagent Role lives in its Subagent definition.
-
 ## Terms
 
 - **Managing Intelligence:** the person, or a bot acting for one, who drives Apiary: runs the skills, answers their questions, decides what work happens next and tests the results.
@@ -12,6 +8,7 @@ This rulebook holds the bird's-eye view of the workflow and common information r
 - **Subagent Role:** the job a Subagent does, defined by its Subagent definition. Executors change files. Writers write tickets. Read-only Subagent Roles change nothing.
 - **Worker:** a separate Agent session the Launcher starts to run one skill.
 - **Launcher:** the program that starts, watches and stops Workers.
+- **Project:** the software the Managing Intelligence builds with Apiary, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents for the folder it sits in, and settings in the Project Folder and `~`.
 - **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `maintained-docs.md`, `release-guide.md`, `bug-writing-guide.md`.
