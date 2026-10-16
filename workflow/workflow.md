@@ -47,7 +47,7 @@ Every Epic is a vertical slice through the product, never component work (only t
 
 ## Statuses
 
-Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use those plus `invalid`. Repeating a status transition has the same effect as applying it once.
+Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use those plus `invalid`. All status transitions are idempotent.
 
 | Status | Meaning |
 |---|---|
