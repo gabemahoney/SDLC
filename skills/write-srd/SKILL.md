@@ -61,7 +61,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
      - Cut text a change superseded, repeated text and padding.
      - Keep every current software requirement, invariant, acceptance criterion, supplied edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
      - Within the SRD, an acceptance criterion may restate the behaviour it checks, and a summary may restate what the body details. Nothing else repeats; refer to an existing SR when another group needs it.
-   - **Requirements:** make every SR a verifiable software obligation grounded in the PRD and explored code, with implementation choices left to planning and execution.
+   - **Requirements:** make every SR a verifiable software obligation grounded in the PRD and any existing code, with implementation choices left to planning and execution.
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. Keep an explicit boundary only when the Managing Intelligence wants it stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
 
