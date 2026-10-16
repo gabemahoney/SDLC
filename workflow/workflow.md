@@ -187,14 +187,7 @@ A Subagent loads the Guidance Documents of each repo it works in and may read an
 **Reuse:** resume the same Subagent for its Task or Bug. Keep its Guidance Documents. Add the Guidance Documents of any newly assigned repos.
 
 - **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for each Task (or for the Bug in fix-bug). Fix rounds reuse only the executors whose work the findings touch. The next Task or Bug starts fresh executors.
-- **Everything else:** start fresh on every dispatch for these Subagent Roles:
-  - Start the planners fresh.
-  - Start Code, Test and Doc Reviewers fresh.
-  - Start the Product Manager fresh.
-  - Start the Requirements Reviewer fresh.
-  - Start the TLA+ Writer fresh.
-  - Start the TLA+ Reviewer fresh.
-  - Start the Integration Tester fresh.
+- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Requirements Reviewer, the TLA+ Writer, the TLA+ Reviewer and the Integration Tester.
 
 #### Replacing an executor
 
@@ -206,13 +199,7 @@ Subagents never talk to each other. The skill coordinates them: it reads each Su
 
 #### Progress record
 
-On the skill's ticket, record the following for each Subagent kept for reuse:
-
-- Record its Subagent Role.
-- Record its Task or Bug.
-- Record its ID from the Agent.
-- Record its name if available.
-- Record its dispatch Thinking Level.
+On the skill's ticket, record each Subagent kept for reuse: its Subagent Role, its Task or Bug, its ID from the Agent, its name if available, and its dispatch Thinking Level.
 
 Update the record after each report. After compaction or a re-run, use the record to resume each Subagent by name if available, otherwise by ID.
 
