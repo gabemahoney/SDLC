@@ -32,22 +32,6 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Specific rules:** Changes no tracked file. When it cannot reproduce or settle the report from source, leaves Bug `draft`, records what it tried and asks the Managing Intelligence whether it is real.
 
-## req-review
-
-**Reads:** Idea and every Doc child; Requirements Reviewer and TLA+ Reviewer reports, to report findings and ready Docs.
-
-**Gate:** None specified.
-
-**Owned transitions:** **Idea:** req-review sets `draft` → `defined` on the Managing Intelligence's yes, once its PRD and SRD are `defined`
-
-**PRD / SRD:** req-review asks the Managing Intelligence and, on yes, sets `defined`.
-
-**Other Doc (not PRD, SRD or TLA+ spec):** req-review asks the Managing Intelligence and, on yes, sets `defined`
-
-**Two modes:** with no SRD yet, it reviews the PRD alone and loops with write-prd until the Managing Intelligence approves, then sets the PRD `defined`. Once the SRD exists, it reviews the PRD and SRD together (they agree, and the SRD covers every PRD acceptance criterion) and loops with write-srd, or write-prd if the PRD must change, until approval; then it sets the SRD and the Idea `defined`.
-
-**Specific rules:** req-review dispatches one read-only TLA+ Reviewer per TLA+ spec Doc alongside the Requirements Reviewer, checking that the model matches the SRD and its invariants are meaningful.
-
 ## write-plan
 
 **Reads:** Idea, requirements Docs, source references, existing Plan and Epics; `engineering-best-practices`, `test-guide`, `doc-writing-guide`, `maintained-docs`, planning context and Product Manager report, to plan and revise the work.
@@ -270,7 +254,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 **Owned transitions:** None.
 
-**Specific rules:** Cuts in a separate cut-only pass; every proposed new rule cites its stated requirement. May flag a risky SRD part without a model as a normal finding for write-srd. Edit no files, change no tickets, never commit.
+**Specific rules:** Edit no files, change no tickets, never commit.
 
 ## Researcher
 
@@ -302,7 +286,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 **Owned transitions:** None.
 
-**Specific rules:** Checks model correspondence with the SRD and meaningful invariants; reports to req-review. Edit no files, change no tickets, never commit.
+**Specific rules:** Edit no files, change no tickets, never commit.
 
 ## Integration Tester
 

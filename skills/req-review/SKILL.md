@@ -1,61 +1,83 @@
 ---
 name: req-review
-description: Review product and software requirement documents and provide suggestions
-disable-model-invocation: false
+description: "Review an Idea's PRD, or its PRD and SRD together, and mark them defined with the Managing Intelligence's approval."
 ---
 
-# Overview
+# req-review
 
-Your role is to help the user get Product Requirement and Software Requirement documents
-into a good enough state that they can be executed autonomously by a swarm of agents.
+## Purpose
 
-You are the **calling agent**. The review itself — reading the documents, reviewing the codebase, running the checklists — is done by the `apiary-req-reviewer` subagent, a named agent definition installed in `.claude/agents/`, spawned via the Agent tool. You resolve the input, dispatch, tell the user the results, and handle status promotion. You do not perform the review yourself.
+Reviews the PRD before write-srd, then the PRD and SRD together before write-plan. Independent reviewers check another skill's writing for consistency, completeness and clarity, so Agents can implement the requirements.
 
-# 1. Resolve the Input
+## Loading Apiary
 
-The user will provide a Bee in the Ideas hive (or its PRD/SRD children) whose documents should be reviewed.
-If they do not, ask them which Idea Bee's documents to review.
+You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
 
-# 2. Dispatch the Reviewer
+## Input
 
-Dispatch `apiary-req-reviewer` via the Agent tool:
-`Agent(subagent_type: "apiary-req-reviewer", prompt: <dispatch prompt>)`
+An Idea ID or one of its PRD or SRD Doc IDs, with any earlier findings and Managing Intelligence decisions for a re-review.
 
-Dispatch rules:
+## Reads
 
-- **Background dispatch**: if the Agent tool schema accepts `run_in_background`, pass `run_in_background: true`; otherwise omit it — background is the harness default under Claude Code fork-subagents mode. When the completion notification fires, present the report (step 3).
-- **Cold start**: every dispatch is a fresh spawn with a self-contained prompt. Dispatch prompts name the relevant ticket IDs; the subagent reads the tickets from the bees CLI itself.
+- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the Requirements Reviewer's and TLA+ Reviewer's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
+- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
+- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs and set their approved statuses.
+- **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
+- **The Idea and every Doc child:** through the Ticket System Protocol File, using the input ID. Why: to select the review mode, supply the requirements and models to reviewers, and identify other `draft` Docs.
+- **Codebase and docs:** the affected code folders under `<Project Folder>`, if any, identified from the Idea and requirements. Why: to give the Requirements Reviewer the context needed to judge whether the requirements fit the existing software.
+- **Review reports:** returned by the Requirements Reviewer and each TLA+ Reviewer dispatched during this Run. Why: to present findings and readiness for the Managing Intelligence's decision.
 
-**In Codex CLI**, keep these rules with Codex's tools:
-- Call `spawn_agent` with `agent_type: "apiary-req-reviewer"` (pass it even if the tool does not list it; the agent is defined in `~/.codex/agents/apiary-req-reviewer.toml` or the repo's `.codex/agents/`), `message`: the dispatch prompt, `fork_turns: "none"` (the cold start; where `spawn_agent` has no `fork_turns`, do not fork) and a `task_name` of lowercase letters, digits and underscores (e.g. `req_reviewer_b_abc`). Pass no `model` or `reasoning_effort`: the agent file sets them.
-- Codex sends no completion notification: wait for the report with `wait_agent` (prefer long waits, minutes). Close the agent with `close_agent` where that tool exists.
-- There is no AskUserQuestion (Next Steps): ask in plain text in your reply and end your turn.
+## Gate
 
-The dispatch prompt must contain:
-- The Idea Bee ID (or the individual PRD/SRD ticket IDs)
-- The repository path relevant to the documents
+None: requirements can be reviewed at any Idea status.
 
-The subagent is read-only: it reviews and reports; it never updates tickets. All status changes happen in step 4, by you.
+## Steps
 
-# 3. Report to the User
+1. **Review the requirements that exist.**
+   - If the Idea has no SRD, dispatch the Requirements Reviewer to review the PRD alone.
+   - If the Idea has an SRD, dispatch the Requirements Reviewer to review the PRD and SRD together, and a TLA+ Reviewer for each TLA+ spec Doc alongside it.
 
-When the subagent's report arrives, tell the user the results:
-- An overview of all issues (criticality, short title, short summary, format it pretty), most critical first, with the reviewer's suggested fixes
-- The reviewer's per-document readiness verdict
+2. **Get the Managing Intelligence's decision.** Present the findings and readiness verdicts, then stop and ask the Managing Intelligence: which findings should be accepted, and which requirements Docs are approved or need revision? Set each approved PRD or SRD `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
+   - If revisions are needed, hand off the accepted findings and declined findings separately. Suggest that the Managing Intelligence run write-prd for product changes or write-srd for software or model changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
+   - If the combined review is approved and both the PRD and SRD are `defined`, set the `draft` Idea `defined`.
 
-If the user wants issues addressed, the fixes belong to the authoring skills — suggest re-running `/write-prd` or `/write-srd` with the findings, then `/req-review` again. Re-dispatch (fresh spawn) for any re-review.
+3. **Settle other Docs separately.** For each `draft` Doc other than the PRD, SRD or a TLA+ spec, stop and ask the Managing Intelligence: mark this Doc `defined`? On yes, set it `defined`. These approvals are independent of the Idea's approval.
 
-# Next Steps
+## Dispatches
 
-After presenting the results, use AskUserQuestion to ask the user for each doc reviewed:
-- "Mark [PRD/SRD] as `defined`?"
-  - Options: "Yes, mark as defined" / "No, more work needed"
-- If yes, update the doc's ticket status to `defined`.
+- **Requirements Reviewer:** launch for each review, with the Idea and requirements Doc IDs, relevant code folders, earlier decisions and the review criteria below. Expect findings ordered by criticality, suggested fixes, a separate cut-only pass and a readiness verdict for each reviewed Doc.
+- **TLA+ Reviewer:** launch one per TLA+ spec Doc in PRD and SRD mode, alongside the Requirements Reviewer, with the spec and SRD. Expect findings on whether the model matches the SRD and its invariants are meaningful, with references, suggested fixes and a readiness verdict.
 
-After marking docs, check if **both** the PRD and SRD are now `defined`. If so, use AskUserQuestion to ask:
-- "Both PRD and SRD are defined. Mark the Idea Bee as `defined` too?"
-  - Options: "Yes, mark as defined" / "No, not yet"
-- If yes, update the Idea Bee's status to `defined`.
+## Writes
 
-Then recommend:
-- `/make-plan <bee-id>` — create a Plan Bee with Epics ready for implementation
+The PRD and SRD, Doc children in the Ideas store, are each set `defined` when the Managing Intelligence approves that Doc. PRD-only approval sets only the PRD `defined`.
+
+The Idea moves from `draft` to `defined` on approval of the combined review, once its PRD and SRD are `defined`.
+
+Other Docs, excluding TLA+ specs, move from `draft` to `defined` on their own approval.
+
+## Done
+
+Report the reviewed Doc IDs and titles, findings ordered by criticality, suggested fixes and each Doc's readiness verdict. Include the cut-only findings, TLA+ findings, accepted and declined findings, status changes, and any incomplete review work or decisions still needed.
+
+- If revisions are needed, suggest the writing skill for the accepted findings, followed by req-review.
+- If the PRD-only review is approved, suggest write-srd.
+- If the combined review is approved, suggest write-plan.
+
+## Review criteria
+
+Value content over form. Prefer concise, direct requirements and clear organization; user stories are useful when they clarify the requirement.
+
+The Requirements Reviewer checks the relevant code and docs as well as the requirements. Review for:
+
+- **Consistency:** statements agree, terms keep their meanings, and control flows have complete outcomes without unintended gaps or cycles. In a combined review, the PRD and SRD agree and the SRD covers every PRD acceptance criterion.
+- **Completeness:** requirements state the dependencies, assumptions, boundaries and expected behaviour for relevant edge cases and errors. Cover the decisions this change needs in proportion to the change.
+- **Testability:** each requirement has clear acceptance criteria and observable outcomes. Performance, security, scalability and other non-functional requirements have measures grounded in a stated need or existing constraint.
+- **Implementation readiness:** Agents can implement the resolved requirements without inventing product decisions. Flag implied assumptions and unresolved questions that prevent implementation.
+- **PRD quality:** the problem and Goals are clear, acceptance criteria are defined, and applicable UI/UX and mobile or responsive behaviour are described. Product requirements describe what users need.
+- **SRD quality:** deployment, performance, interfaces, data models, authentication and authorization, security and testing are specified where the change needs them. Software requirements fit the existing code and make new capabilities explicit. A risky SRD part lacking a model may be raised as a finding for write-srd.
+
+Make each finding specific: cite the affected Doc and section or requirement, explain its criticality and suggest a fix. Every proposed new rule cites the stated requirement it serves.
+
+In a separate cut-only pass, propose removing repetition, superseded text, padding and unsupported requirements. Preserve current requirements, acceptance criteria and Managing Intelligence decisions. Keep cuts separate from proposed additions so simplification gets its own consideration.
