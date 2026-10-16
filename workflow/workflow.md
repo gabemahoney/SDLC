@@ -89,7 +89,7 @@ Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo,
 
 Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value.
 
-The seven setting names are `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex` and `thinking_levels`. Each value is the text below its `## <setting name>` heading up to the next `##` heading. Text before the first heading is a comment. A malformed settings file stops the Run, naming the file. If neither settings file names a required setting, the Run stops before changes, naming the missing setting and pointing to project-setup. Ticket systems, Launchers and intake approaches must be ones Apiary ships.
+If a setting your skill needs is missing from both files, stop before any change and point to project-setup.
 
 Pass the settings and the Ticket System and Agent Protocol Files in every dispatch. Subagents use the supplied settings and Protocol Files, not their own lookup.
 
