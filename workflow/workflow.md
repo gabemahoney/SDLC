@@ -19,8 +19,6 @@
 
 ## Stores and ticket terms
 
-Stores are flat. None is nested in another.
-
 | Store | Top-level ticket | Child tiers |
 |---|---|---|
 | Ideas | Idea | Doc |
@@ -34,7 +32,7 @@ Stores are flat. None is nested in another.
 - A Doc describes an Idea: its Product Requirements Document (PRD, what and why), Software Requirements Document (SRD, what the software must do), TLA+ spec (a model-checked design), or another document.
 - A Research ticket holds a research question. Its one Report holds the answer. A Report is not a Doc.
 
-Every Epic is a vertical slice through the product, never component work (only testing, docs or plumbing). The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice.
+Every Epic is a vertical slice through the product, never an Epic of only testing, docs or plumbing. The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice.
 
 ## Tags
 

@@ -73,7 +73,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If a line is invalid, stop and ask the Managing Intelligence for its corrected Thinking Level.
       The Managing Intelligence may change any line.
 
-4. **Create or check the ticket stores.** Through the selected Ticket System Protocol File, create or check the four stores with the child tiers and status values defined in the rulebook.
+4. **Create or check the ticket stores.** Through the selected Ticket System Protocol File, create or check the four stores with the child tiers and status values defined in the rulebook. Keep every store at the top level, never nested in another.
 
 5. **Write the Guidance Documents.**
 
