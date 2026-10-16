@@ -39,7 +39,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
-3. **Model the parts whose correctness needs it.** Select concurrency, state machines, protocols or invariants needing a model, including modelled parts affected by a revision. Use Write → Review → Run for each part: fix review findings until none remain, then run the checker. Checker runs are slow, so review each model first. Fix SRD bugs found by a run, save the SRD and repeat the cycle for affected parts until the models match the SRD and their checks pass.
+3. **Model the parts whose correctness needs a TLA+ model.** Select the concurrency, state machines, protocols or invariants that need one, including modelled parts affected by a revision. For each part, a TLA+ Writer writes the model, a TLA+ Reviewer reviews it, and the Writer fixes the findings until none remain, then runs the TLA+ model checker. The checker is slow, so each model is reviewed before it runs. Fix SRD bugs found by a run, save the SRD and repeat the cycle for affected parts until the models match the SRD and their checks pass.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
