@@ -25,6 +25,7 @@ Every lesson from the User's reviews of `workflow.md`, write-idea and project-se
 13. **Phrase things positively.** Say what the skill takes, does and writes, never what it doesn't. "No ticket ID" is wrong; "it also doesn't take a watermelon".
 14. **No random subsets.** List every case, or state a general rule. A partial list implies the missing cases differ.
 15. **No undefined terms.** Use Glossary terms in Title Case, including Run. If a word like "scope", "approach" or "gate" isn't defined, either define it once or say it plainly.
+15a. **Full sentences.** Every instruction, including each line of a template, is a complete sentence. Never write a bare noun phrase like "The scenarios and expected behaviour supplied by the input."
 16. **Plain words over jargon a capable Agent doesn't need.** Write "git repos", not "folders whose `.git` is a directory"; write "the repo", not "manifests and config".
 17. **No negative-space or obvious lines.** Leave out "No ticket ID", "no status transitions", "Subagents never …" in a skill, and "names its own …".
 18. **Say which thing you mean.** Write "the folder it's setting up", not "the folder it runs in"; write "Fresh start", not a vague "new one".
