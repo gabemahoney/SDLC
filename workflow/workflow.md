@@ -48,16 +48,7 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` or Subagent definition gives you.
 
-| Who | What they do |
-|---|---|
-| Filing and writing skills | Create Ideas, Bugs, Docs, Plans, Epics, Tasks and Subtasks. |
-| TLA+ Writer | Writes TLA+ spec Docs. |
-| req-review and define-bug | Review Docs and validate Bugs. |
-| develop-epic and its executors | Track work on Ideas, Plans, Epics, Tasks and Subtasks. |
-| idea-review | Reopens a Plan for a Round Feedback Epic. |
-| fix-bug | Tracks work on a Bug. |
-| research | Tracks the Research ticket and its Report. |
-| Managing Intelligence | Accepts Ideas and Bugs, returns Bugs and manages other Docs. |
+The Managing Intelligence accepts Ideas and Bugs, returns Bugs and manages Docs other than the PRD, SRD and TLA+ specs.
 
 ## Flows
 
