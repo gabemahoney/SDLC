@@ -106,7 +106,8 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 
 ## What not to include
 
-- Leave out function signatures and step-by-step implementation plans. TLA+ models belong in their spec Docs.
+- Leave out function signatures and step-by-step implementation plans.
+- Put TLA+ models in their spec Docs, not in the SRD.
 - Include defaults, fallbacks, validation, schemas, error rules and guards only when grounded in the input or applicable guidance.
 - Omit time estimates and scheduling.
 - Omit history, decision logs and deferred work.
