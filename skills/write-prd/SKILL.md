@@ -34,7 +34,7 @@ None: the PRD can be written or revised at any Idea status.
 
 1. **Gather the existing requirements.** Read the Idea, its source references and existing Docs. Gather what they and the conversation already say, together with any review findings or change notes.
 
-2. **Interview the Managing Intelligence.** Ask focused questions to fill the gaps in that context, and wait for the answers. Cover the problem, acceptance criteria, what is out of scope, edge cases and errors, UI/UX considerations, performance or security constraints, and dependencies on or effects on other work. Offer options where useful.
+2. **Interview the Managing Intelligence.** Ask focused questions to fill the gaps in that context, and wait for the answers. Cover the problem, acceptance criteria, what is out of scope, edge cases and errors, UI/UX considerations, performance or security constraints, how it will be deployed and run (where it runs, who operates it, what it runs on), and dependencies on or effects on other work. Offer options rather than open-ended questions where you can.
 
 3. **Write and check the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions in the draft; flag them in the report.
    - If revising, first apply the findings or change notes to establish the current requirements, then run the Succinctness pass in `workflow.md` on that revised document.
