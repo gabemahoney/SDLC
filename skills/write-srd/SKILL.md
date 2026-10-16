@@ -43,7 +43,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
-     - Fold each review finding, model finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section.
+     - Fold each accepted finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section.
      - Cut text a change superseded, repeated text and padding.
      - Keep every current software requirement, invariant, acceptance criterion, supplied edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
      - Within the SRD, an acceptance criterion may restate the behaviour it checks, and a summary may restate what the body details. Nothing else repeats; refer to an existing SR when another group needs it.
@@ -70,7 +70,7 @@ Research tickets in the Research store, filed `defined` with the question; the R
 
 ## Done
 
-Report the SRD's ID, incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
+Report the SRD's ID, each SR group with a one-line description, any incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
 
 Report the Research tickets filed and what each settled.
 
