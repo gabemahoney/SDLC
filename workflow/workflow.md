@@ -106,29 +106,23 @@ If a copy is only a pointer to other files, follow it.
 
 ### Thinking Levels
 
-`levels_<agent>` means `levels_claude_code` for Claude Code or `levels_codex` for Codex CLI. Each setting maps the ordered labels `low` < `medium` < `high` < `xhigh` < `max` to that Agent's model and effort, one plain-language line per label. Model names come only from these mappings.
+A Thinking Level picks the model and effort a Subagent or Worker runs at. Two settings turn a level into a model:
 
-The `thinking_levels` setting (see Settings) holds one `<name>: <label>` line per skill and non-executor Subagent Role, for example:
+- `thinking_levels` gives each skill and each non-executor Subagent Role a level, one `<name>: <label>` line each:
+  ```
+  ## thinking_levels
+  write-plan: max
+  Code Reviewer: xhigh
+  ```
+- `levels_claude_code` and `levels_codex` say what each level (`low` < `medium` < `high` < `xhigh` < `max`) means for that Agent, one line per level. Use only the model names they give.
 
-```
-## thinking_levels
-write-plan: max
-develop-epic: medium
-Code Reviewer: xhigh
-```
+Executors (Engineer, Test Writer, Doc Writer) have no line. They use their Task's or Bug's `thinking_level:` tag, and a Subtask uses its Task's. write-epic and develop-epic set the tags.
 
-- A Worker runs at the Thinking Level on its skill's line in `thinking_levels`. A non-executor Subagent runs at the Thinking Level on its Subagent Role's line.
-- Engineer, Test Writer and Doc Writer have no lines in `thinking_levels`: they always use their Task's or Bug's `thinking_level:` tag. Subtasks carry no tag and use their Task's Thinking Level. write-epic and develop-epic set their Tasks' tags.
-- A resumed Subagent keeps its first dispatch's Thinking Level.
-- A session the Managing Intelligence starts itself runs at the model and effort the session was started with.
+Before you start a Subagent or Worker:
 
-Before a Run dispatches a Subagent or launches a Worker, check the `thinking_levels` line for that Subagent Role or the Worker's skill. Also check the `levels_<agent>` mapping for the Agent the Subagent or Worker runs in. A missing line or mapping stops the Run before changes, naming the missing line or mapping and pointing to project-setup.
-
-For a Task or Bug starting work with a missing, unknown or repeated `thinking_level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
-
-Dispatch through the Agent Protocol File with the mapped model and effort. Worker launches use the Worker's Agent's mapping and Launcher Protocol File.
-
-If a Thinking Level cannot be applied, report the failure and use the session's model and effort. Never stop because a Thinking Level cannot be applied. Retry dispatches or launches rejected for model or effort without specifying the model or effort, and report the retry.
+- If its line or the Agent's mapping is missing, stop before any change and point to project-setup.
+- If a Task or Bug has a missing or invalid tag, ask the Managing Intelligence for its level, set the tag and go on.
+- If the level can't be applied, use your own model and effort and report it.
 
 ### Subagent dispatch and reuse
 
