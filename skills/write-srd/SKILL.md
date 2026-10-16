@@ -38,7 +38,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 1. **Gather the existing requirements.** Combine the Idea, its Source References, existing Docs and conversation with any review findings or change notes. Honour the Managing Intelligence's decisions on findings.
 
-2. **Explore the affected code yourself.** Use the Codebase exploration guidance below, in proportion to the change.
+2. **Explore the affected code,** so the requirements fit what exists.
 
 3. **Settle the design decisions the SRD needs.** Resolve facts from the PRD, code and guidance.
    - If a design decision the SRD needs is still open, ask the Managing Intelligence.
@@ -90,24 +90,13 @@ Report the SRD's ID, any **RESEARCH NEEDED** flags and incomplete work, and what
 - If the SRD and all selected modelling are complete, suggest “req-review, or, on a `draft` Idea, mark the Idea defined”.
 - Otherwise, say what must be settled before write-srd can finish.
 
-## Codebase exploration
-
-- **Architecture:** identify the directory structure and module organization.
-- **Affected modules:** identify the real files and modules the PRD touches across the Project's repos.
-- **Existing patterns:** inspect how comparable features handle configuration, validation, errors and serialization where relevant to the requirements.
-- **Data models:** inspect the definitions and constraints the feature extends.
-- **Test fixtures:** identify test organization, helpers, factories and centralized constants.
-- **Configuration:** trace how relevant configuration is loaded, validated and accessed.
-
-If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
-
 ## Style rules
 
 - **Group by concern:** group requirements by domain or concern, not by PRD section. Data model, configuration, interfaces, runtime behaviour, validation, behaviour to preserve and documentation are common groups; use those the change needs.
 - **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because TLA+ Writers, req-review and write-plan cite them by number.
 - **Software requirements:** define what must be true, leaving the implementation plan open. Name actual modules and established patterns where they constrain the work.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
-- **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the change.
+- **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the change. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
 - **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep model-checking bounds in the spec as modelling assumptions, rather than turning them into product limits.
 - **Consistent terms:** use the PRD's defined terms in Title Case wherever they appear, with the same meanings. Explain additional terms at first use and use their defined names consistently.
 - **Stable references:** name files and modules without line numbers. Other than test helpers and fixtures, requirements describe obligations rather than function calls.
