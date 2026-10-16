@@ -1,6 +1,6 @@
 ---
 name: project-setup
-description: One-time setup of an Apiary Project: its settings, ticket stores and Guidance Documents, from a template or an interview. Re-run it to fix or complete a setup.
+description: "One-time setup of an Apiary Project: its settings, ticket stores and Guidance Documents, from a template or an interview. Re-run it to fix or complete a setup."
 ---
 
 # project-setup

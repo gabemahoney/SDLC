@@ -5,7 +5,7 @@ Every `SKILL.md` uses these sections, in this order. Every section is required; 
 ```
 ---
 name: <skill>
-description: <one line: what it does and its input>
+description: "<one line: what it does and its input>"
 ---
 
 # <skill>
@@ -39,6 +39,7 @@ What it reports, and the next-step suggestion.
 ```
 
 Rules for writing a skill:
+- Quote the `description` value: an unquoted colon breaks the frontmatter.
 - Everything specific to this skill is in the skill. Rules more than one skill needs are in `workflow.md`; do not repeat them.
 - Say exactly where everything is: full paths, and how a setting value maps to a file.
 - Capable Agents: no edge cases, no fault handling a capable Agent does anyway.
