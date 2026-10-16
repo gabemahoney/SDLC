@@ -2,8 +2,6 @@
 
 ## Resolution
 
-a GitHub link through the GitHub CLI
-
 Resolve GitHub links through the GitHub CLI.
 
 ## Intake input
