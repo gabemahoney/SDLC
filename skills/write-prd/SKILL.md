@@ -80,7 +80,7 @@ Report the PRD's ID, assumptions, Open Questions, incomplete work and what the S
 - **Requirements, not solutions.** State the user's problem and needed outcome; leave the design open.
   Bad: “Add a red Retry button that calls the retry endpoint.” Good: “Customers can retry a failed payment. An order is charged at most once.”
 - **Conversational wording.** Use direct statements without requirement numbers. Use user stories when actor, goal and benefit add clarity.
-- **Consistent terms.** Write each defined term in Title Case wherever it appears, and briefly explain it or point to the Glossary at its first use. Never use a synonym for a defined term.
+- **Consistent terms.** Write each defined term in Title Case wherever it appears, and briefly explain it at its first use. Never use a synonym for a defined term.
 
 ## Quality checklist
 
