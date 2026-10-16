@@ -118,7 +118,7 @@ resolve. Remove this section when there are none.
 - **Requirements, not solutions.** State the user's problem and needed outcome; leave the design open. Make every requirement specific and verifiable.
   Bad: “Add a red Retry button that calls the retry endpoint.” Good: “Customers can retry a failed payment. An order is charged at most once.”
 - **Conversational wording.** Use direct statements without requirement numbers. Use user stories when actor, goal and benefit add clarity.
-- **Consistent terms.** Write each Glossary term in Title Case wherever it appears: in its definition and every use, including plurals, except names in backticks. Explain it briefly or point to the Glossary at its first use in the body. Lowercase words and synonyms never stand for defined terms; definitions avoid the lowercase form of their own term. Quote or backtick feature names sharing a term's word.
+- **Consistent terms.** Write each Glossary term in Title Case wherever it appears, and briefly explain it or point to the Glossary at its first use. Never use a synonym for a defined term.
 - **Current requirements.** State the requirements as they now stand. Fold answered Open Questions into the body.
 
 ## Quality checklist
