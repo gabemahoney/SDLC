@@ -36,9 +36,13 @@ Each ticket or file it creates or changes: which store or path, and which status
 
 ## Done
 What it reports, and the next-step suggestion.
+
+## <Craft guidance, if any>
+Sections carried over from today's skill that make its output good, e.g. a document template, style rules, a quality checklist, or what not to include. Keep them.
 ```
 
-Rules for writing a skill:
+Rules for writing a skill (see also docs/goals.md):
+- Start from today's Apiary skill and keep its proven guidance; change only what docs/goals.md requires.
 - No logic specific to one template, intake, resolver, ticket system, Launcher or Agent: say 'follow the …' and put the specifics in that file.
 - State what a skill does and takes; don't list what it doesn't.
 - Write a step that branches as if/then bullets, one per path. Write straight-line steps as plain sentences.
