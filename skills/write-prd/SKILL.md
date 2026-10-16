@@ -45,7 +45,9 @@ None: the PRD can be written or revised at any Idea status.
 
    Then make a final pass over the whole PRD, a first draft as well as a revision:
    - Run the Succinctness pass in `workflow.md`: cut repetition and padding with no loss of signal.
-   - Remove every trace of ideas discussed and dropped. If the interview considered something and decided against it, the PRD doesn't mention it at all. No "must not do X" or "X is out of scope" just because X came up. Keep a Non-Goal only when the Managing Intelligence wants that boundary stated. Apply the Quality Checklist before saving.
+   - Remove every trace of ideas discussed and dropped. If the interview considered something and decided against it, the PRD doesn't mention it at all. No "must not do X" or "X is out of scope" just because X came up. Keep a Non-Goal only when the Managing Intelligence wants that boundary stated.
+
+   Apply the Quality Checklist before saving.
 
 4. **Save the PRD.** Follow the Ticket System Protocol File.
    - If the Idea has a PRD, update that Doc; a revised `defined` PRD returns to `draft`, and a `draft` PRD stays `draft`.
@@ -138,6 +140,7 @@ Before saving, check the resolved requirements below. Record gaps the Managing I
 - [ ] Acceptance criteria specify observable outcomes, and the conditions and measures that matter.
 - [ ] Assumptions and dependencies are explicit.
 - [ ] Every requirement is user-facing product behaviour; nothing describes code, components or data structures.
+- [ ] Nothing mentions an idea that was discussed and dropped.
 - [ ] Sections agree with each other.
 - [ ] An Agent can implement the resolved requirements without inventing product decisions; unresolved decisions are Open Questions.
 
