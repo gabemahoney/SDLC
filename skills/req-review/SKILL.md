@@ -20,13 +20,13 @@ An Idea ID or one of its PRD or SRD Doc IDs, with any earlier findings and Manag
 ## Reads
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the Requirements Reviewer's and TLA+ Reviewer's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the Requirements Reviewer's Thinking Level through `thinking_levels` and `levels_claude_code` or `levels_codex`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs and set their approved statuses.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
-- **The Idea and every Doc child:** through the Ticket System Protocol File, using the input ID. Why: to select the review mode, supply the requirements and models to reviewers, and identify other `draft` Docs.
+- **The Idea and every Doc child:** through the Ticket System Protocol File, using the input ID. Why: to select the review mode, supply the requirements to the reviewer, and identify other `draft` Docs.
 - **Codebase and docs:** the affected code folders under `<Project Folder>`, if any, identified from the Idea and requirements. Why: to give the Requirements Reviewer the context needed to judge whether the requirements fit the existing software.
-- **Review reports:** returned by the Requirements Reviewer and each TLA+ Reviewer dispatched during this Run. Why: to present findings and readiness for the Managing Intelligence's decision.
+- **Review reports:** returned by the Requirements Reviewer dispatched during this Run. Why: to present findings and readiness for the Managing Intelligence's decision.
 
 ## Gate
 
@@ -36,10 +36,10 @@ None: requirements can be reviewed at any Idea status.
 
 1. **Review the requirements that exist.**
    - If the Idea has no SRD, dispatch the Requirements Reviewer to review the PRD alone.
-   - If the Idea has an SRD, dispatch the Requirements Reviewer to review the PRD and SRD together, and a TLA+ Reviewer for each TLA+ spec Doc alongside it.
+   - If the Idea has an SRD, dispatch the Requirements Reviewer to review the PRD and SRD together.
 
 2. **Get the Managing Intelligence's decision.** Present the findings and readiness verdicts. The Managing Intelligence decides which findings to accept and which Docs to approve. Set each approved PRD or SRD `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
-   - If revisions are needed, hand off the accepted findings and declined findings separately. Suggest that the Managing Intelligence run write-prd for product changes or write-srd for software or model changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
+   - If revisions are needed, hand off the accepted findings and declined findings separately. Suggest that the Managing Intelligence run write-prd for product changes or write-srd for software changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
    - If the combined review is approved and both the PRD and SRD are `defined`, set the `draft` Idea `defined`.
 
 3. **Settle other Docs separately.** For each `draft` Doc other than the PRD, SRD or a TLA+ spec, ask the Managing Intelligence whether to mark it `defined`, and do so on yes. These approvals are independent of the Idea's approval.
@@ -47,7 +47,6 @@ None: requirements can be reviewed at any Idea status.
 ## Dispatches
 
 - **Requirements Reviewer:** launch for each review, with the Idea and requirements Doc IDs, relevant code folders, earlier decisions and the review criteria below. Expect findings ordered by criticality, suggested fixes, a separate cut-only pass and a readiness verdict for each reviewed Doc.
-- **TLA+ Reviewer:** launch one per TLA+ spec Doc in PRD and SRD mode, alongside the Requirements Reviewer, with the spec and SRD. Expect findings on whether the model matches the SRD and its invariants are meaningful, with references, suggested fixes and a readiness verdict.
 
 ## Writes
 
@@ -59,7 +58,7 @@ Other Docs, excluding TLA+ specs, move from `draft` to `defined` on their own ap
 
 ## Done
 
-Report the reviewed Doc IDs and titles, findings ordered by criticality, suggested fixes and each Doc's readiness verdict. Include the cut-only findings, TLA+ findings, accepted and declined findings, status changes, and any incomplete review work or decisions still needed.
+Report the reviewed Doc IDs and titles, findings ordered by criticality, suggested fixes and each Doc's readiness verdict. Include the cut-only findings, accepted and declined findings, status changes, and any incomplete review work or decisions still needed.
 
 - If revisions are needed, suggest the writing skill for the accepted findings, followed by req-review.
 - If the PRD-only review is approved, suggest write-srd.

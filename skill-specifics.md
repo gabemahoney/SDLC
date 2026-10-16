@@ -276,7 +276,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 **TLA+ spec Doc:** revisiting that part updates its spec and leaves it `defined`. No other transition.
 
-**Specific rules:** Model-checks the assigned part and returns findings to write-srd. Never commit.
+**Specific rules:** Dispatched by write-srd to write the assigned part's model without running it. Resumed to fix review findings or update the model after an SRD change, then to run the Project's Model check command from `build-commands.md` once review has no findings. Returns the spec, checker results and SRD findings to write-srd. Never commit.
 
 ## TLA+ Reviewer
 
@@ -286,7 +286,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 **Owned transitions:** None.
 
-**Specific rules:** Edit no files, change no tickets, never commit.
+**Specific rules:** Dispatched fresh by write-srd for each model after writing or fixes, before each checker run. Checks that the model matches the SRD and its invariants are meaningful; returns findings with references and suggested fixes, or no findings. Edit no files, change no tickets, never commit.
 
 ## Integration Tester
 
@@ -326,7 +326,8 @@ A Subagent loads the Guidance Documents of each repo it works in and may read an
 **Reuse:** resume the same Subagent for its Task or Bug. Keep its Guidance Documents. Add the Guidance Documents of any newly assigned repos.
 
 - **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for each Task (or for the Bug in fix-bug). Fix rounds reuse only the executors whose work the findings touch. The next Task or Bug starts fresh executors.
-- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Requirements Reviewer, the Researcher, the TLA+ Writer, the TLA+ Reviewer and the Integration Tester.
+- **TLA+ Writer:** write-srd resumes the same Writer for each model's fixes and checker runs.
+- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Requirements Reviewer, the Researcher, the TLA+ Reviewer and the Integration Tester.
 
 #### Replacing an executor
 

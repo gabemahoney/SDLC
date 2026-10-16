@@ -20,7 +20,7 @@ An Idea ID, with optional review findings or change notes for a revision.
 ## Reads
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the TLA+ Writer's and Researcher's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the TLA+ Writer's, TLA+ Reviewer's and Researcher's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
@@ -39,7 +39,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
-3. **Model the parts whose correctness needs it.** Select concurrency, state machines, protocols or invariants needing a model, including modelled parts affected by a revision. Dispatch TLA+ Writers and fix the SRD where a model finds a bug. Save and re-dispatch the affected parts until the models match the SRD and their checks pass.
+3. **Model the parts whose correctness needs it.** Select concurrency, state machines, protocols or invariants needing a model, including modelled parts affected by a revision. Use Write → Review → Run for each part: fix review findings until none remain, then run the checker. Checker runs are slow, so review each model first. Fix SRD bugs found by a run, save the SRD and repeat the cycle for affected parts until the models match the SRD and their checks pass.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
@@ -55,7 +55,8 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 ## Dispatches
 
-- **TLA+ Writer:** launch one per SRD part needing a model, in parallel. Each writes the model and runs the model checker. Expect a TLA+ spec Doc, the checker results and findings for the SRD.
+- **TLA+ Writer:** launch one per SRD part needing a model, in parallel, to write without running it. Expect a TLA+ spec Doc. Resume the same Writer to fix review findings or update the model after an SRD change; expect the updated spec. Once review has no findings, resume it to run the Project's Model check command from `build-commands.md`; expect checker results and findings for the SRD.
+- **TLA+ Reviewer:** launch a fresh Reviewer for each model after writing or fixes, before each run, with the spec and SRD. Expect findings on whether the model matches the SRD and its invariants are meaningful, with references and suggested fixes, or no findings.
 - **Researcher:** launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report. Use it to settle the decision, then set the ticket `done`.
 
 ## Writes
@@ -70,7 +71,7 @@ Research tickets in the Research store, filed `defined` with the question; the R
 
 ## Done
 
-Report the SRD's ID, each SR group with a one-line description, any incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
+Report the SRD's ID, each SR group with a one-line description, any incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs, TLA+ review findings and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
 
 Report the Research tickets filed and what each settled.
 
