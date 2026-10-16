@@ -89,7 +89,7 @@ Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo,
 
 Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value.
 
-If a setting your skill needs is missing from both files, stop before any change and point to project-setup.
+If a setting the Run needs is missing from both files, stop before any change and point to project-setup.
 
 Pass the settings and the Ticket System and Agent Protocol Files in every dispatch. Subagents use the supplied settings and Protocol Files, not their own lookup.
 
@@ -122,9 +122,9 @@ If a line or mapping you need is missing, stop before any change and point to pr
 
 ### Subagents
 
-- Start every Subagent fresh, with no earlier context, unless your skill says to reuse one.
+- A skill starts every Subagent fresh, with no earlier context, unless the skill says to reuse one.
 - A Subagent loads the Guidance Documents of each repo it works in, and may read any repo for context.
-- Subagents never talk to each other. You read each report and pass on what the next Subagent needs. Their work passes through the files.
+- Subagents never talk to each other. The skill reads each report and passes on what the next Subagent needs. Their work passes through the files.
 
 ## Questions and stops
 
