@@ -128,7 +128,7 @@ If a line or mapping you need is missing, stop before any change and point to pr
 
 ## Questions and stops
 
-When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information. Ask all your questions at once, numbered, each with options. A skill that interviews in rounds follows its own round rules instead.
+When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information.
 
 ## Ending a Run
 
