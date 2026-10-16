@@ -90,7 +90,12 @@ A source reference links a ticket to something outside the ticket system that it
 
 ### Starting, reporting and resuming
 
-Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File for configure-worktree and teardown-worktree outside worktree-only mode. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate.
+Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load these Protocol Files from `~/.apiary/system/protocols/`:
+- your Agent's: `agent-claude-code.md` in Claude Code, `agent-codex.md` in Codex CLI;
+- `ticket-<ticket_system>.md`, named by the `ticket_system` setting (e.g. `ticket-bees.md`), for ticket work;
+- `launcher-<launcher>.md`, named by the `launcher` setting (e.g. `launcher-agent-director.md`), for configure-worktree and teardown-worktree outside worktree-only mode.
+
+A Subagent uses the settings and Protocol Files its dispatch prompt names and looks nothing up itself. After a compaction, also re-read the Protocol Files you loaded and your Guidance Documents. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate.
 
 Stop before any change, naming the file, if a Guidance Document your `SKILL.md` or Subagent definition names has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the Run likewise; point to project-setup.
 
