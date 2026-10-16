@@ -164,7 +164,7 @@ If a Thinking Level cannot be applied, report it and use the session's model and
 
 ### Subagent dispatch and reuse
 
-Name each Subagent's repos and checkouts in its dispatch; it loads their Guidance Documents and may read any repo for context.
+A Subagent loads the Guidance Documents of each repo it works in and may read any repo for context.
 
 **Fresh start:** a new dispatch with no earlier context.
 
