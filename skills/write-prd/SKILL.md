@@ -72,15 +72,12 @@ where applicable, where it lives, who writes or edits it and what it is for.
 Use plain words, common developer terms or other Glossary terms; each
 definition stands alone without pointing to the body.
 
-## At a glance
-One bullet per new feature or goal, understandable without reading the body.
+## Goals
+One bullet per new feature or goal: a concrete, measurable outcome that must be true when the work is complete, understandable without reading the body.
 
 ## Problem Statement
 What problem exists today? Who has it? Why does it matter?
 Keep this to two or three sentences.
-
-## Goals
-Concrete, measurable outcomes that must be true when the work is complete.
 
 ## Non-Goals / Out of Scope
 Explicit boundaries that prevent scope creep during implementation.
@@ -127,7 +124,7 @@ Remove this section when there are none.
 
 Before saving, check the resolved requirements below. Record gaps the Managing Intelligence explicitly leaves unresolved as Open Questions and report the affected checks as incomplete.
 
-- [ ] The Glossary and At a glance stand alone, and terms are explained at first use.
+- [ ] The Glossary and Goals stand alone, and terms are explained at first use.
 - [ ] The problem statement identifies the affected users and the evidence for their need; assumptions are labelled.
 - [ ] Goals are concrete and measurable.
 - [ ] Non-goals give explicit boundaries.
