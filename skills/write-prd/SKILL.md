@@ -41,14 +41,14 @@ None: the PRD can be written or revised at any Idea status.
    - Look up facts yourself instead of asking: the code, the Idea, its Docs and Source References. Ask only for decisions. Keep asking the other questions while a lookup runs.
    - Stop when every branch is either answered or one the Managing Intelligence chooses to leave open, nothing is silently assumed, and they confirm you share an understanding. Questions they leave open become Open Questions.
 
-3. **Write the PRD.** Read the file named by `prd_template` and draft the PRD from it, following the required sections and craft guidance below.
+3. **Write the PRD.** Read the file named by `prd_template` and draft the PRD from it, following the craft guidance below.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
      - Fold each finding or change into the body where it belongs. Never append amendments, errata or a review-fixes section.
      - Cut text a change superseded, repeated text and padding.
      - Keep every current requirement, acceptance criterion, edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
-     - An acceptance criterion may restate the behaviour it checks, and Goals may restate what the body details. Nothing else repeats.
+     - An acceptance criterion may restate the behaviour it checks, and a summary section may restate what the body details. Nothing else repeats.
    - **Product, not software:** rewrite any requirement that describes how the software works (code, components, data structures, APIs) as what the product must do for the people who use it. Software requirements belong in the SRD.
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. If the interview considered something and decided against it, the PRD doesn't mention it at all. No "must not do X" or "X is out of scope" just because X came up. Keep a Non-Goal only when the Managing Intelligence wants that boundary stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
@@ -72,10 +72,6 @@ Report the PRD's ID, assumptions, Open Questions, incomplete work and what the S
 - If the Idea has no SRD, suggest “write-srd”.
 - Otherwise, suggest “req-review, or, on a `draft` Idea, mark the Idea defined”.
 
-## Required sections
-
-Every PRD must include Glossary, Acceptance Criteria and Open Questions, even if the template omits them or makes them optional: write-srd and req-review need shared terms, completion checks and unresolved decisions. Write “None” in an empty Open Questions section.
-
 ## Style rules
 
 - **Plain English.** Use short sentences, bullet lists and short paragraphs.
@@ -84,7 +80,7 @@ Every PRD must include Glossary, Acceptance Criteria and Open Questions, even if
 - **Requirements, not solutions.** State the user's problem and needed outcome; leave the design open.
   Bad: “Add a red Retry button that calls the retry endpoint.” Good: “Customers can retry a failed payment. An order is charged at most once.”
 - **Conversational wording.** Use direct statements without requirement numbers. Use user stories when actor, goal and benefit add clarity.
-- **Consistent terms.** Write each Glossary term in Title Case wherever it appears, and briefly explain it or point to the Glossary at its first use. Never use a synonym for a defined term.
+- **Consistent terms.** Write each defined term in Title Case wherever it appears, and briefly explain it or point to the Glossary at its first use. Never use a synonym for a defined term.
 
 ## Quality checklist
 
