@@ -44,13 +44,7 @@ None: project-setup configures a Project without a ticket state gate. During sta
 
 4. With a template, resolve its two intake approaches or rules for choosing them and write the resolved `new_idea_intake` and `new_bug_intake` to `<Project Folder>/.apiary/project_settings.md`. The Public GitHub Project template explains that public repos receive feature requests and bug reports through GitHub Issues while private repos do not. For that template, detect whether any Project repo is public: use the `github` resolver for both intakes if one is, otherwise interview the Managing Intelligence. That template asks for Guidance Documents and maintained docs.
 
-5. Stop and ask the Managing Intelligence: which Agents does the Project use, Claude Code, Codex CLI or both? For each used Agent, write its recommended Thinking Level mapping in `levels_claude_code` or `levels_codex`, allowing changes. Ask for default versus Project value and the value to write as in step 3.
-
-   ```text
-   <RECOMMENDED MAPPINGS: pending the User's decision>
-   ```
-
-   Until recommendations are supplied, offer existing mappings or stop and ask the Managing Intelligence for missing model-and-effort values; do not write the placeholder into settings.
+5. Stop and ask the Managing Intelligence: which Agents does the Project use, Claude Code, Codex CLI or both? For each used Agent whose mapping (`levels_claude_code` or `levels_codex`) is not already set, stop and ask the Managing Intelligence which model and effort each of `low`, `medium`, `high`, `xhigh` and `max` means, one line per label. Suggest no models. Ask for default versus Project value as in step 3.
 
 6. Ask for `thinking_levels` as in step 3 and write the complete list in the chosen settings file, skills first, then Subagent Roles. Keep existing lines, adding missing lines at their recommended levels; the Managing Intelligence may change any line. The recommended list is:
 
