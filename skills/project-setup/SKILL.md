@@ -82,7 +82,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - Else stop and ask the Managing Intelligence: point to your own guide, or use Apiary's default?
       - If the default and user copies exist on the Guidance Document walk, stop and ask the Managing Intelligence: keep them, or remove them so the default applies? Follow the answer.
       - If the default and no user copies remain, write nothing. The Default Fallback File applies.
-      - If their own: ask whether all code folders share it or each has its own. Shared goes in `<Project Folder>/.apiary/<name>`; per code folder goes in `<Project Folder>/<code folder path>/.apiary/<name>`. Write the file as a pointer to their guide, relative to the folder holding the pointer file, or as its rules.
+      - If their own: ask whether all code folders share it or each has its own. Write a shared copy in `<Project Folder>/.apiary/` and a per-code-folder copy in `<Project Folder>/<code folder path>/.apiary/`, under the Guidance Document's filename. Write the file as a pointer to their guide, relative to the folder holding the pointer file, or as its rules. A per-code-folder copy reaches worktrees only once it is committed in that code folder's repo; say so in the report.
       - If a copy already exists there, offer it as the answer and change it only as the Managing Intelligence says.
 
    b. **Set each code folder's build commands.** For each confirmed code folder, use seven slots: Compile / type-check, Format, Lint, Narrow test (takes a path), Full test, Integration test and Model check. A slot may be marked unused.
