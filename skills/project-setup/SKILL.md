@@ -19,7 +19,7 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 
 ## Reads
 
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `launcher`, `prd_template`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `launcher`, `prd_template`, `srd_template`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: how to ask the Managing Intelligence questions, report in this Agent and identify its expected installed skills and Subagent definitions.
 - **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
 - **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check the Launcher's prerequisites.
@@ -53,10 +53,10 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If a template is named, follow its Markdown instructions and resolve its answers before writing settings. Required: Name, New Idea intake, New Bug intake. Optional engineering, test, doc-writing and maintained-doc sections give paths, ask, or skip.
       - Otherwise, interview the Managing Intelligence, including both intakes.
 
-      For `ticket_system`, `launcher`, `prd_template` and, when no template is selected, both intakes, show the defaults and first offer “use the default for all”; otherwise ask default or Project value for each.
+      For `ticket_system`, `launcher`, `prd_template`, `srd_template` and, when no template is selected, both intakes, show the defaults and first offer “use the default for all”; otherwise ask default or Project value for each.
       - If a value exists in the chosen file, offer it.
-      - Otherwise, suggest `bees` for `ticket_system`, `agent-director` for `launcher`, `~/.apiary/system/doc-templates/prd.md` for `prd_template`, and “interview the Managing Intelligence” for both intakes.
-      - For `prd_template`, offer the default first, then their own template file; write its path as the setting's value.
+      - Otherwise, suggest `bees` for `ticket_system`, `agent-director` for `launcher`, `~/.apiary/system/doc-templates/prd.md` for `prd_template`, `~/.apiary/system/doc-templates/srd.md` for `srd_template`, and “interview the Managing Intelligence” for both intakes.
+      - For `prd_template` and `srd_template`, offer the default first, then their own template file; write its path as the setting's value.
       - If Project value, write it to `<Project Folder>/.apiary/project_settings.md`.
       - If using an existing default, remove any Project value.
       - If the chosen default is missing from `~/.apiary/default_project_settings.md`, stop and ask the Managing Intelligence: approve adding it? Add it on approval, then remove any Project value.

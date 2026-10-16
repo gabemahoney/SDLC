@@ -35,7 +35,7 @@ cd ~/projects/apiary
 
 Add `--repo <path>` to install skills and agents into one repository instead of your user-level folders (to try Apiary on one project), and `--dry-run` to print what it would do. It copies each skill folder and each agent, overwriting earlier Apiary copies in place. It also copies `doc-templates/` to `~/.apiary/system/doc-templates/`, including with `--repo`.
 
-The `prd_template` setting names the PRD template file. project-setup offers `~/.apiary/system/doc-templates/prd.md` as the shipped default or records your own file's path. Settings resolve from `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The installer does not create or update these settings files; project-setup writes them.
+The `prd_template` and `srd_template` settings name the PRD and SRD template files. project-setup offers `~/.apiary/system/doc-templates/prd.md` and `~/.apiary/system/doc-templates/srd.md` as the shipped defaults or records your own files' paths. Settings resolve from `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The installer does not create or update these settings files; project-setup writes them.
 
 | Flavour | Skills | Agents | With `--repo <path>` |
 |---|---|---|---|
