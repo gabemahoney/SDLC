@@ -39,6 +39,7 @@ What it reports, and the next-step suggestion.
 ```
 
 Rules for writing a skill:
+- State what a skill does and takes; don't list what it doesn't.
 - Quote the `description` value: an unquoted colon breaks the frontmatter.
 - Everything specific to this skill is in the skill. Rules more than one skill needs are in `workflow.md`; do not repeat them.
 - Say exactly where everything is: full paths, and how a setting value maps to a file.

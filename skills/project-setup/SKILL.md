@@ -15,7 +15,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 ## Input
 
-No ticket ID. Work on the Project this Run is in, using a named template or an interview with the Managing Intelligence.
+The Project Folder it runs in, and optionally the name of an Apiary template. Without a template, it interviews the Managing Intelligence.
 
 ## Reads
 
@@ -106,7 +106,7 @@ None: project-setup does the setup itself.
 ## Writes
 
 - `<Project Folder>/.apiary/project_settings.md` and, as agreed, `~/.apiary/default_project_settings.md`.
-- The Ideas, Plans, Bugs and Research stores through the selected Ticket System Protocol File; no ticket status transitions.
+- The Ideas, Plans, Bugs and Research stores through the selected Ticket System Protocol File.
 - If accepted, the product's repo at `<Project Folder>/<named subfolder>/`, with an empty first commit.
 - Each supplied repo Guidance Document at `<Project Folder>/<repo path>/.apiary/<name>.md` or `<Project Folder>/.apiary/<name>.md`, where `<name>` is `engineering-best-practices`, `test-guide`, `doc-writing-guide`, `maintained-docs` or `build-commands`.
 - `<Project Folder>/.apiary/release-guide.md`.
