@@ -456,6 +456,8 @@ At startup, a Run checks the `levels_<agent>` mapping for its Agent and the `thi
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`, selected by the running Agent. Why: follow the Agent’s operations and reporting rules.
 - **`ticket_system` setting:** `ticket_system` in `<Project Folder>/.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`. Why: select the Ticket System Protocol File for this Run.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: read the Idea or Epic’s status and worktree context before merging.
+- **`launcher` setting:** `launcher` in `<Project Folder>/.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`, outside worktree-only mode. Why: select the Launcher Protocol File for inspecting and stopping Workers.
+- **Launcher Protocol File:** `~/.apiary/system/protocols/launcher-<launcher>.md`, selected by `launcher`, outside worktree-only mode. Why: to stop the Worker configure-worktree launched.
 - **`levels_<agent>` setting:** `levels_claude_code` or `levels_codex`, selected by the running Agent, in `<Project Folder>/.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`. Why: validate the running Agent’s Thinking Level mapping.
 - **`thinking_levels` setting:** `thinking_levels` in `<Project Folder>/.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`. Why: check the `teardown-worktree` line before starting work.
 - **Idea or Epic:** Ticket System selected by `ticket_system`: the supplied Idea or Epic ID. Why: check that the ticket is done before merging its worktrees.
