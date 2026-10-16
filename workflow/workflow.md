@@ -60,10 +60,6 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 
 **Research:** research → the Managing Intelligence accepts the Report.
 
-## State gates
-
-Enforce your skill's state gate—the state requirements in its `SKILL.md`—before changing anything. If the state gate fails, change nothing and say why.
-
 ## Source references
 
 A source reference links a ticket to the source outside the ticket system that the ticket came from. The ticket system stores only the link. Apiary resolves the link and reads the source. A resolver supplies the instructions for resolving and reading a kind of source reference. The source reference's kind selects the resolver: a GitHub URL uses `github`, and a file path uses `file`. Follow the selected resolver's instructions at `~/.apiary/system/resolvers/<resolver>.md`. Read source references as context.
@@ -73,6 +69,7 @@ A source reference links a ticket to the source outside the ticket system that t
 ### Starting, reporting and resuming
 
 - Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers `workflow.md`, the `SKILL.md`, a Subagent definition, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
+- If your skill's Gate fails, change nothing and say why.
 - No skill or Subagent runs another skill.
 - After a compaction, re-read the Protocol Files and Guidance Documents you loaded.
 - Report pass, fail or not applicable for every required check and gate in the `SKILL.md` and its Guidance Documents, and name the Guidance Document copies or Default Fallback Files used.
