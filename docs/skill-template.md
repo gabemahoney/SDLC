@@ -20,7 +20,7 @@ You are running an Apiary software development workflow. Before anything else, r
 What it is given.
 
 ## Reads
-Every file and setting it uses, with its full path or the setting that picks it, including any templates.
+Every file and setting it uses, with its full path or the setting that picks it, including any templates. Each one says why the skill needs it.
 
 ## Gate
 What must be true before it changes anything, or "None: <why>".
