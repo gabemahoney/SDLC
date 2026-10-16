@@ -36,7 +36,7 @@ None: the SRD can be written or revised at any Idea status.
 
 ## Steps
 
-1. **Gather the current requirements.** Read the Idea, its Source References and Docs, including the PRD's Glossary, Goals, requirements and acceptance criteria. Gather supplied findings and change notes with the Managing Intelligence's decisions on them.
+1. **Gather the current requirements.** Read the Idea, its Source References and Docs, including the PRD's Glossary, requirements and Acceptance Criteria. Gather supplied findings and change notes with the Managing Intelligence's decisions on them.
    - If revising, then establish the current requirements from that material and apply actionable findings. Honour declined findings and withdrawn requirements throughout the Run.
 
 2. **Explore the affected code yourself.** Load the engineering and test Guidance Documents, then explore the affected code folders using the Codebase exploration guidance below. Gather concrete references for the requirements and Test Fixtures section, in proportion to the change.
