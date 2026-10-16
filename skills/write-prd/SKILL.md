@@ -41,9 +41,9 @@ None: the PRD can be written or revised at any Idea status.
    - Stop when no question is left open, every branch has been visited and nothing is silently assumed, and the Managing Intelligence confirms you share an understanding.
 
 3. **Write and check the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions in the draft; flag them in the report.
-   - If revising, first apply the findings or change notes to establish the current requirements, then run the Succinctness pass in `workflow.md` on that revised document.
+   - If revising, first apply the findings or change notes to establish the current requirements.
 
-   Apply the Quality Checklist before saving.
+   Then run the Succinctness pass in `workflow.md` on the whole PRD, a first draft as well as a revision: cut repetition and padding with no loss of signal. Apply the Quality Checklist before saving.
 
 4. **Save the PRD.** Follow the Ticket System Protocol File.
    - If the Idea has a PRD, update that Doc; a revised `defined` PRD returns to `draft`, and a `draft` PRD stays `draft`.
@@ -59,7 +59,7 @@ The Idea's Doc titled `PRD` in the Ideas store: created `draft`, or updated in p
 
 ## Done
 
-Report the PRD's ID, one line describing each section, its assumptions, its Open Questions and any incomplete work. On a revision, report what the Succinctness pass cut.
+Report the PRD's ID, one line describing each section, its assumptions, its Open Questions and any incomplete work. Report what the Succinctness pass cut.
 
 - If the Idea has no SRD, suggest “write-srd”.
 - Otherwise, suggest “req-review, or, on a `draft` Idea, mark the Idea defined”.
