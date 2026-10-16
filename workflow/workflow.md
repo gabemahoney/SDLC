@@ -118,11 +118,7 @@ A Thinking Level picks the model and effort a Subagent or Worker runs at. Two se
 
 Executors (Engineer, Test Writer, Doc Writer) have no line. They use their Task's or Bug's `thinking_level:` tag, and a Subtask uses its Task's. write-epic and develop-epic set the tags.
 
-Before you start a Subagent or Worker:
-
-- If its line or the Agent's mapping is missing, stop before any change and point to project-setup.
-- If a Task or Bug has a missing or invalid tag, ask the Managing Intelligence for its level, set the tag and go on.
-- If the level can't be applied, use your own model and effort and report it.
+If a line or mapping you need is missing, stop before any change and point to project-setup.
 
 ### Subagent dispatch and reuse
 
