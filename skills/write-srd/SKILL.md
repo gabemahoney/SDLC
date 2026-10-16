@@ -27,7 +27,7 @@ An Idea ID, with optional review findings or change notes for a revision.
 - **The Idea and its Docs:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, find the SRD and TLA+ specs to revise, and ground changes in current requirements and supplied findings.
 - **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes. Why: to ground constraints in the Project's engineering conventions.
 - **Test guidance:** `test-guide.md` for each explored repo, found as `workflow.md` describes. Why: to ground test requirements in the Project's test conventions.
-- **Codebase and tests:** the affected code folders under `<Project Folder>`, identified from the PRD and Idea. Why: to establish the architecture, modules, patterns, data models, configuration and test infrastructure the requirements must fit.
+- **Codebase and tests:** the affected code folders under `<Project Folder>`, if any, identified from the PRD and Idea. Why: so the requirements fit the code that exists.
 - **TLA+ Writer definition:** the installed definition for the TLA+ Writer Subagent Role, located through the Agent Protocol File. Why: when a part needs modelling, to dispatch its model-writing and model-checking work.
 
 ## Gate
@@ -38,11 +38,11 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 1. **Gather the existing requirements.** Combine the Idea, its Source References, existing Docs and conversation with any review findings or change notes. Honour the Managing Intelligence's decisions on findings.
 
-2. **Explore the affected code,** so the requirements fit what exists.
+2. **Explore the affected code,** so the requirements fit what exists. If there is no code yet, the SRD describes new software.
 
-3. **Settle the design decisions the SRD needs.** Resolve facts from the PRD, code and guidance.
-   - If a design decision the SRD needs is still open, ask the Managing Intelligence.
-   - If the Managing Intelligence leaves a necessary decision open, mark it **RESEARCH NEEDED** beside the affected requirement, save the unfinished SRD as `draft`, and stop.
+3. **Settle what the PRD leaves open.** Decide what the software must do from the PRD, any code and the engineering guidance.
+   - If a choice changes what users get or breaks a constraint the Managing Intelligence set, ask them.
+   - If the Managing Intelligence leaves such a choice open, mark it **RESEARCH NEEDED** beside the affected requirement, save the unfinished SRD as `draft`, and stop.
 
 4. **Write the SRD.** Organize it as the change needs, following the craft guidance below. Assess its concurrency, state machines, protocols and invariants. Select the parts whose correctness needs a model, including existing modelled parts affected by a revision.
 
@@ -52,7 +52,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
    - If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered against the changed SRD. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the old SRD.
 
 6. **Model the selected parts.**
-   - If parts need modelling, dispatch the TLA+ Writers as described in Dispatches. Fix SRD bugs the models find and save the corrected SRD. Re-dispatch for affected parts until the models agree with the corrected SRD and their checks pass. Take necessary design decisions back to step 3.
+   - If parts need modelling, dispatch the TLA+ Writers as described in Dispatches. Fix SRD bugs the models find and save the corrected SRD. Re-dispatch for affected parts until the models agree with the corrected SRD and their checks pass. Take any choice a model raises back to step 3.
    - If no part needs modelling, continue to self-review.
 
 7. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
@@ -100,7 +100,7 @@ Report the SRD's ID, any **RESEARCH NEEDED** flags and incomplete work, and what
 - **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep model-checking bounds in the spec as modelling assumptions, rather than turning them into product limits.
 - **Consistent terms:** use the PRD's defined terms in Title Case wherever they appear, with the same meanings. Explain additional terms at first use and use their defined names consistently.
 - **Stable references:** name files and modules without line numbers. Other than test helpers and fixtures, requirements describe obligations rather than function calls.
-- **Test fixtures:** say which existing fixtures, factories, helpers and constants tests must reuse, what they need to support this change, what new fixtures are needed and where, and which test files to extend or add. Ground it in the code and test guidance, say when nothing new is needed, and keep it in proportion to the change. This stops tests hand-rolling shared setup.
+- **Test fixtures:** say which existing fixtures, factories, helpers and constants tests must reuse, what they need to support this change, what new fixtures are needed and where, and which test files to extend or add. Ground it in any existing code and the test guidance, say when nothing new is needed, and keep it in proportion to the change. This stops tests hand-rolling shared setup.
 
 ## Quality checklist
 
@@ -109,7 +109,7 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - [ ] Every PRD acceptance criterion maps to at least one SR.
 - [ ] Every SR states a specific, testable obligation grounded in current input or applicable guidance.
 - [ ] The SRD agrees with the PRD and uses its defined terms consistently.
-- [ ] Codebase references name real modules, patterns, fixtures and helpers, with additions clearly identified.
+- [ ] References to existing code name real modules, patterns, fixtures and helpers, and anything new is marked as new.
 - [ ] The test requirements identify the relevant helpers, factories, constants, needed extensions and test locations.
 - [ ] Requirements define what must be true and leave implementation steps open.
 - [ ] Numeric constraints have a stated basis, and modelling bounds remain modelling assumptions.
