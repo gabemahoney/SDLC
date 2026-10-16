@@ -40,8 +40,6 @@ None: the PRD can be written or revised at any Idea status.
    - Look up facts yourself instead of asking: the code, the Idea, its Docs and source references. Ask only for decisions. Keep asking the other questions while a lookup runs.
    - Stop when no question is left open, every branch has been visited and nothing is silently assumed, and the Managing Intelligence confirms you share an understanding.
 
-   (Interview method adapted from Matt Pocock's `grilling` skill, MIT licence: github.com/mattpocock/skills.)
-
 3. **Write and check the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions in the draft; flag them in the report.
    - If revising, first apply the findings or change notes to establish the current requirements, then run the Succinctness pass in `workflow.md` on that revised document.
 
@@ -78,38 +76,38 @@ what it is and what it is for. Use plain words, common developer terms or other
 Glossary terms; each definition stands alone without pointing to the body.
 
 ## Goals
-One bullet per new feature or goal: a concrete, measurable outcome that must be true when the work is complete, understandable without reading the body.
+List one bullet per new feature or goal. Each states a concrete, measurable outcome that must be true when the work is complete, and makes sense without reading the body.
 
 ## Problem Statement
 What problem exists today? Who has it? Why does it matter?
 Keep this to two or three sentences.
 
 ## Non-Goals / Out of Scope
-Explicit boundaries that prevent scope creep during implementation.
+State what this work will not do, so the scope doesn't creep during implementation.
 
 ## Requirements
 
 ### Functional Requirements
 Each requirement is a statement of what the product must do, not how it must
-do it. Each is specific enough to test and independent where possible.
+do it. Each should be specific enough to test and validate.
 
 ### Edge Cases and Error Handling
-The scenarios and expected behaviour supplied by the input and interview.
+Describe how the product behaves when things don't go as expected. For each edge case or error the input or interview names, state the scenario and the expected behaviour.
 
 ### Non-Functional Requirements (if applicable)
-Relevant performance, security, scalability and compatibility constraints.
+State the performance, security, scalability or compatibility constraints that apply. Include this section only when they are relevant.
 
 ## Acceptance Criteria
-Observable, testable checks that must pass for the work to be complete.
+List the observable, testable checks that must pass for the work to be complete.
 - [ ] Criterion
 
 ## Assumptions
-Explicit assumptions and dependencies on other systems, existing
-functionality or prior work.
+State what is assumed to be true going into this work, including dependencies on
+other systems, existing functionality or prior work.
 
 ## Open Questions (if any)
-Unanswered product decisions for the Managing Intelligence to resolve.
-Remove this section when there are none.
+List the product decisions still unanswered, for the Managing Intelligence to
+resolve. Remove this section when there are none.
 ```
 
 ## Style rules
