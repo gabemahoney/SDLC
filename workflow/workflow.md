@@ -2,6 +2,8 @@
 
 Every Apiary skill reads this rulebook when run; every Subagent reads it when spawned.
 
+It holds the bird's-eye view of the workflow and common information required by more than one skill. Information specific to a skill lives in its `SKILL.md`; information specific to a Subagent Role lives in its Subagent definition.
+
 ## Terms
 
 - **Managing Intelligence:** the person, or a bot acting for one, who drives Apiary: runs the skills, answers their questions, decides what work happens next and tests the results.
@@ -37,7 +39,7 @@ Every Epic is a vertical slice through the product, never component work (only t
 
 | Tag | Meaning |
 |---|---|
-| `thinking_level:<label>` | The Thinking Level the executors working the ticket run at: one on each Task and Bug. Subtasks carry no tag and use their Task's. write-epic and develop-epic set their Tasks' tags; define-bug sets a Bug's. |
+| `thinking_level:<label>` | The Thinking Level the executors working the ticket run at: one on each Task and Bug. Subtasks carry no tag and use their Task's. write-epic and develop-epic set their Tasks' tags. |
 
 ## Statuses
 
@@ -49,30 +51,28 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 | `defined` | Fully written up. |
 | `active` | Work in progress. |
 | `done` | Complete. |
-| `invalid` | Not a real Bug; define-bug sets it with a note saying why. |
+| `invalid` | Not a real Bug. |
 
 ## Status Ownership
 
-Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` and this table give you.
+Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` gives you.
 
-| Ticket                                | Transitions and owners                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Idea                                  | write-idea creates `draft`; req-review sets `draft` → `defined` on the Managing Intelligence's yes, once its PRD and SRD are `defined`; develop-epic sets `active` when starting an Epic; the Managing Intelligence sets `done` after testing the Idea.                                                                                                                                                                                                            |
-| PRD / SRD                             | write-prd / write-srd creates `draft`; revising a `defined` PRD or SRD sets it back to `draft`; req-review asks the Managing Intelligence and, on yes, sets `defined`.                                                                                                                                                                                                                                                                                             |
-| Other Doc (not PRD, SRD or TLA+ spec) | The Managing Intelligence creates `draft`; req-review asks the Managing Intelligence and, on yes, sets `defined`; the Managing Intelligence owns other changes.                                                                                                                                                                                                                                                                                                    |
-| TLA+ spec Doc                         | the TLA+ Writer, dispatched by write-srd, creates `defined`, one Doc per modelled SRD part; revisiting that part updates its spec and leaves it `defined`. No other transition.                                                                                                                                                                                                                                                                                                                                                                      |
-| Plan                                  | write-plan creates `draft`, and sets `defined` once the Plan is written, checked and revised; develop-epic sets `active` when starting an Epic; develop-epic sets `done` when finishing an Epic leaves every Epic in the Plan `done`; idea-review sets `done` → `active` when it files a Round Feedback Epic.                                                                                                                                                                                                                              |
-| Epic                                  | write-plan creates `draft`, and idea-review creates a Round Feedback Epic `draft`; write-epic sets `defined`; develop-epic sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                                    |
-| Task                                  | write-epic creates `draft`, then sets `defined`; develop-epic also creates integration fix Tasks `draft`, sets their `thinking_level:` tags and sets them `defined`; develop-epic sets Tasks `active`, then `done`; `done` requires every Subtask to be `done`.                                                                                                                                                                                                                                                                                                                              |
-| Subtask                               | write-epic creates `draft`, then sets `defined` for its Tasks; develop-epic does the same for its integration fix Tasks; the executor working it sets `active`, then `done`.                                                                                                                                                                                                                                                                                                                                                               |
-| Bug                                   | write-bug or the Managing Intelligence creates `draft`, not yet validated; define-bug sets `defined` after reproducing and validating it, and sets its `thinking_level:` tag; define-bug sets `invalid` when the Bug is not real, with a note saying why; fix-bug sets `active`; the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note; the Managing Intelligence sets it back to `draft` to send it back to define-bug. |
-| Research ticket and Report            | research creates the Research ticket `defined`, sets it `active` during review rounds, sets it `done` when the reviewer accepts, and reopens it as `active` when a reviewer asks for more work; the Report, created with the first round, carries the Research ticket's status.                                                                                                                                                                                    |
+| Who | What they do |
+|---|---|
+| Filing and writing skills | Create Ideas, Bugs, Docs, Plans, Epics, Tasks and Subtasks. |
+| TLA+ Writer | Writes TLA+ spec Docs. |
+| req-review and define-bug | Review Docs and validate Bugs. |
+| develop-epic and its executors | Track work on Ideas, Plans, Epics, Tasks and Subtasks. |
+| idea-review | Reopens a Plan for a Round Feedback Epic. |
+| fix-bug | Tracks work on a Bug. |
+| research | Tracks the Research ticket and its Report. |
+| Managing Intelligence | Accepts Ideas and Bugs, returns Bugs and manages other Docs. |
 
 ## Flows
 
 **Idea:** write-idea → write-prd and write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
 
-Every Idea has exactly one PRD and one SRD; the writing skill updates an existing one. An Idea may have several TLA+ spec Docs, one per modelled SRD part; revisiting a part updates its spec. write-srd selects the parts to model, dispatches one TLA+ Writer per part in parallel, and fixes SRD bugs their models find. req-review dispatches one read-only TLA+ Reviewer per TLA+ spec Doc alongside the Requirements Reviewer, checking that the model matches the SRD and its invariants are meaningful. req-review is optional: the Managing Intelligence may skip it and mark the Idea `defined` by hand. When the PRD or SRD is not `defined`, write-plan stops and asks the Managing Intelligence to confirm planning without review, and goes on only on an explicit yes.
+Every Idea has exactly one PRD and one SRD; the writing skill updates an existing one. An Idea may have several TLA+ spec Docs, one per modelled SRD part; revisiting a part updates its spec. req-review is optional: the Managing Intelligence may skip it and mark the Idea `defined` by hand.
 
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. Returned fixes go back to `draft` for define-bug.
 
@@ -81,17 +81,6 @@ Every Idea has exactly one PRD and one SRD; the writing skill updates an existin
 ## State gates
 
 Enforce your skill's gate before changing anything. If it fails, change nothing and say why.
-
-| Skill | Gate |
-|---|---|
-| write-plan | Idea `defined`, with a PRD and an SRD. Finish an existing Plan in `draft` or `defined`; never duplicate it. |
-| write-epic | Epic `draft`; its Plan `defined` or `active`. |
-| develop-epic | Epic `defined` or `active`; every Epic it depends on `done`. A re-run on a `done` Epic may only finish the Plan's completion check. |
-| idea-review | Plan `done`; no worktree of its Epics still unmerged. |
-| define-bug | Bug `draft`. |
-| fix-bug | Bug `defined`, or `active` when resuming; every ticket it depends on `done`. |
-| configure-worktree | Idea or Epic `defined` or `active`. |
-| teardown-worktree | Merge an Idea's worktrees only once the Idea is `done`, and an Epic's only once the Epic is `done`. |
 
 ## Source references
 
@@ -154,7 +143,7 @@ Code Reviewer: xhigh
 - A resumed Subagent keeps its first dispatch's Thinking Level.
 - A session the Managing Intelligence starts itself runs at whatever it was started with.
 
-At startup, a Run checks the `levels_<agent>` mapping for its Agent and the `thinking_levels` lines for its skill, each non-executor Subagent Role it dispatches and, for configure-worktree, its Worker's skill. A missing mapping or line stops the Run before changes, naming it and pointing to project-setup.
+At startup, a Run checks the `levels_<agent>` mapping for its Agent and the `thinking_levels` lines for its skill and each non-executor Subagent Role it dispatches. A missing mapping or line stops the Run before changes, naming it and pointing to project-setup.
 
 For a Task or Bug starting work with a missing, unknown or repeated `thinking_level:` tag, ask the Managing Intelligence for its Thinking Level, set the tag and continue.
 
@@ -184,10 +173,6 @@ Subagents never talk to each other. The skill coordinates them: it reads each Su
 #### Progress record
 
 On the skill's ticket, record each warm Subagent's Subagent Role, Task or Bug, ID from the Agent, name if available and dispatch Thinking Level; update after each report. Resume from it after compaction or a re-run, by name if available, otherwise ID.
-
-#### Context guard
-
-Before each Task after the first, develop-epic checks its own context use per the Agent Protocol File. At 75% or more, or a reading older than its freshness window, stop at that Task boundary and name the re-run for a new session. The Managing Intelligence restarts it, through the Launcher for a Worker, per its Launcher Protocol File. With no reading, continue and report it.
 
 ### Versions
 

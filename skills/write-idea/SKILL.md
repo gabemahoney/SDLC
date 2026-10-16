@@ -15,6 +15,14 @@ As a Subagent, use the settings and Protocol Files your dispatch prompt names; l
 
 After a compaction, before going on, re-read `workflow.md`, the Protocol Files you loaded and your Guidance Documents.
 
+## Gate
+
+Check the creation input.
+
+## Owned transition
+
+write-idea creates `draft`.
+
 ## Filing the Idea
 
 Read the `new_idea_intake` setting from the Project Folder's `.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`. It names how this Project files Ideas: interview the Managing Intelligence, or a source reference resolver such as `github`. Follow it:
