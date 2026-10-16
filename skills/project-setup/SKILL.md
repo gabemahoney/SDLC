@@ -43,6 +43,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
 2. **Settle the Project's code folders.** Ask the Managing Intelligence for code folders under the Project Folder, including itself, proposing git repos you see.
    - If a folder is outside, move or clone it inside.
+   - If there are no code folders, offer to create a git repo in a subfolder the Managing Intelligence names. If they decline, continue without one.
 
 3. **Fill in the settings.**
 
