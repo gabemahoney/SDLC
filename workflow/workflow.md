@@ -78,8 +78,7 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
 - **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree change files and commit only inside repo checkouts.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
-- **Where to work:** if develop-epic, idea-review, write-plan or write-epic starts inside `<Project Folder>/.worktrees/<ticket id>/`, it works only in that ticket's worktrees. Otherwise it works in the main checkouts.
-- **Code work happens in the worktree,** when you're in one.
+- **Work in the worktree you start in:** read, change and commit code only in that ticket's worktrees. Outside a worktree, work in the main checkouts.
 - **Guidance Documents come from the main checkout,** never a worktree. Load only the ones your `SKILL.md` or Subagent definition names. Read every copy of each, starting from the `.apiary` Folder in the main checkout of the repo you're working in (or your current directory, outside a repo), then each parent folder's `.apiary` up to `~/.apiary`. Use all the copies together, and ask the Managing Intelligence if they conflict. If there's no copy at all, use `~/.apiary/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
 - **Pushing:** push only as the Project's `release-guide.md` allows.
