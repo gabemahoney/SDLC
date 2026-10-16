@@ -23,7 +23,7 @@ An Idea ID or its PRD Doc ID, with optional review findings, model findings or c
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system` and, when dispatching, the TLA+ Writer's Thinking Level through `thinking_levels` and its model and effort through `levels_claude_code` or `levels_codex` for the running Agent.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to locate the installed TLA+ Writer definition, dispatch it, and ask and report through this Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and create or update its SRD.
-- **Source reference instructions:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each source reference's kind. Why: to read the Idea's source material as context.
+- **Source Reference instructions:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
 - **The Idea and its Docs:** through the Ticket System Protocol File, using the input ID and its parent when given a PRD. Why: to understand the PRD, find the SRD and TLA+ specs to revise, and ground changes in current requirements and supplied findings.
 - **Engineering guidance:** `.apiary/engineering-best-practices.md` copies found for each explored repo through the Guidance Documents rule in `workflow.md`, or `~/.apiary/engineering-best-practices-default-fallback.md`. Why: to ground constraints in the Project's engineering conventions.
 - **Test guidance:** `.apiary/test-guide.md` copies found for each explored repo through the same rule, or `~/.apiary/test-guide-default-fallback.md`. Why: to ground the Test Fixtures section in the Project's test conventions. For a Project without repos, load both Guidance Documents from the working folder through that rule.
@@ -36,7 +36,7 @@ None: the SRD can be written or revised at any Idea status.
 
 ## Steps
 
-1. **Gather the current requirements.** Read the Idea, its source references and Docs, including the PRD's Glossary, Goals, requirements and acceptance criteria. Gather supplied findings and change notes with the Managing Intelligence's decisions on them.
+1. **Gather the current requirements.** Read the Idea, its Source References and Docs, including the PRD's Glossary, Goals, requirements and acceptance criteria. Gather supplied findings and change notes with the Managing Intelligence's decisions on them.
    - If revising, then establish the current requirements from that material and apply actionable findings. Honour declined findings and withdrawn requirements throughout the Run.
 
 2. **Explore the affected code yourself.** Load the engineering and test Guidance Documents, then explore the affected code folders using the Codebase exploration guidance below. Gather concrete references for the requirements and Test Fixtures section, in proportion to the change.

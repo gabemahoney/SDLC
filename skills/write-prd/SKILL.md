@@ -23,7 +23,7 @@ An Idea ID, with optional review findings or change notes for a revision.
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to interview the Managing Intelligence and report through this Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and create or update its PRD.
-- **Source reference instructions:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each source reference's kind. Why: to read the Idea's source material as context.
+- **Source Reference instructions:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
 - **The Idea and its existing Docs:** through the Ticket System Protocol File, using the input Idea ID. Why: to gather requirements, find the PRD to revise and determine whether an SRD exists.
 
 ## Gate
@@ -32,12 +32,12 @@ None: the PRD can be written or revised at any Idea status.
 
 ## Steps
 
-1. **Gather the existing requirements.** Read the Idea, its source references and existing Docs. Gather what they and the conversation already say, together with any review findings or change notes.
+1. **Gather the existing requirements.** Read the Idea, its Source References and existing Docs. Gather what they and the conversation already say, together with any review findings or change notes.
 
 2. **Interview the Managing Intelligence until you share an understanding.** Cover the problem, acceptance criteria, what is out of scope, edge cases and errors, UI/UX considerations, performance or security constraints, how it will be deployed and run (where it runs, who operates it, what it runs on) as far as that shapes what its users get, and dependencies on or effects on other work.
    - Treat the decisions this Idea needs as a tree: each one branches into the decisions that depend on it. Follow only branches that change what the product must do; don't invent new edge cases to explore.
    - Ask in rounds. Each round asks every question whose prerequisites are already settled. Number each question, give your recommended answer, and word it so "yes" accepts that answer. Hold a question that depends on one still open in this round for a later round.
-   - Look up facts yourself instead of asking: the code, the Idea, its Docs and source references. Ask only for decisions. Keep asking the other questions while a lookup runs.
+   - Look up facts yourself instead of asking: the code, the Idea, its Docs and Source References. Ask only for decisions. Keep asking the other questions while a lookup runs.
    - Stop when every branch is either answered or one the Managing Intelligence chooses to leave open, nothing is silently assumed, and they confirm you share an understanding. Questions they leave open become Open Questions.
 
 3. **Write the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions; flag them in the report.
