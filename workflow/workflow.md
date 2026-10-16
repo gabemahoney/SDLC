@@ -84,9 +84,13 @@ Enforce your skill's gate before changing anything. If it fails, change nothing 
 
 ## Source references
 
-A source reference links a ticket to something outside the ticket system that it came from. The ticket system stores only the link; Apiary resolves and reads it. Follow the selected source reference resolver. Read source references as context.
+A source reference links a ticket to something outside the ticket system that it came from. The ticket system stores only the link; Apiary resolves and reads it. A source reference names its resolver by its kind (a GitHub URL uses `github`, a file path uses `file`). Follow that resolver's instructions at `~/.apiary/system/resolvers/<resolver>.md`. Read source references as context.
 
 ## Shared rules
+
+### Succinctness pass
+
+- **Succinctness pass.** After each such review, and on every revision from change notes, the writing skill acts on the findings, then tightens the document: it folds each fix into the body where it belongs and removes text a fix superseded, repeated text and padding; it never appends amendments, errata or a review-fixes section, and never removes a requirement, acceptance criterion, edge case, or a Managing Intelligence answer the document carries; an acceptance criterion doesn't duplicate the requirement it tests. It reports what it cut. A ticket the check folds away is deleted, not left `draft`.
 
 ### Starting, reporting and resuming
 
