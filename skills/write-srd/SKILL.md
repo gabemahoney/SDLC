@@ -36,7 +36,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 ## Steps
 
-1. **Pause work built on the old SRD.** If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered against the changed SRD. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the old SRD.
+1. **If you're revising an SRD that a Plan was built from, pause that Plan.** If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered once the SRD changes. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the SRD as it was.
 
 2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
