@@ -19,13 +19,14 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 
 ## Reads
 
-- Whatever exists of `<Project Folder>/.apiary/project_settings.md` and `~/.apiary/default_project_settings.md`: `ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex` and `thinking_levels`.
-- The running Agent's Protocol File: `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`.
-- When found, the Ticket System Protocol File selected by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`.
-- The chosen Apiary template at `~/.apiary/system/templates/<template-name>.md`, if using one. Names are lowercase with hyphens: Public GitHub Project is `public-github-project.md`.
-- For the installation check, Apiary's installed skills and Subagent definitions for the running Agent: `~/.claude/` for Claude Code, `~/.agents/` and `~/.codex/` for Codex CLI.
-- `<folder on the Guidance Document walk>/.apiary/release-guide.md`, or `~/.apiary/release-guide-default-fallback.md`, as the rulebook specifies.
-- Each confirmed repo's manifests and stack configuration under `<Project Folder>/<repo path>/`; existing Guidance Documents at the output paths below; and the repo files the Managing Intelligence supplies as guidance.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
+- **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `agent-codex.md`. Why: how to ask the Managing Intelligence questions and report in this Agent.
+- **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
+- **The chosen template**, if any: `~/.apiary/system/templates/<template-name>.md`, the name lowercase with hyphens (Public GitHub Project is `public-github-project.md`). Why: it supplies that template's answers, such as how intake works.
+- **Apiary's installed files** for your Agent: `~/.claude/` for Claude Code, `~/.agents/` and `~/.codex/` for Codex CLI. Why: to check and report that Apiary is installed.
+- **The existing `release-guide.md`** on the Guidance Document walk. Why: you help the Managing Intelligence write it, starting from what exists.
+- **Each confirmed repo's manifests and config** under `<Project Folder>/<repo path>/`. Why: to detect its stack and propose its build commands.
+- **Existing Guidance Documents** at the paths under Writes, and any repo files the Managing Intelligence points to. Why: to offer them as the starting answer instead of writing from scratch.
 
 ## Gate
 
