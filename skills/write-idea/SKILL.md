@@ -9,11 +9,7 @@ Files an Idea. Input: a description of the work, or intake input such as an issu
 
 ## Loading Apiary
 
-You are running inside Apiary. Identify your Agent:
-- Claude Code: your rules are in `~/.claude/skills/apiary/`.
-- Codex CLI: your rules are in `~/.agents/skills/apiary/`.
-
-In that folder, read `workflow.md` and follow it. Then load the Protocol Files it names from `protocols/`: your Agent's (`agent-claude-code.md` or `agent-codex.md`), and the Ticket System and Launcher ones your settings choose.
+You are running inside Apiary. Read `~/.apiary/system/workflow.md` and follow it. Then load, from `~/.apiary/system/protocols/`, your Agent's Protocol File (`agent-claude-code.md` in Claude Code, `agent-codex.md` in Codex CLI) and the Ticket System and Launcher Protocol Files your settings choose.
 
 As a Subagent, use the settings and Protocol Files your dispatch prompt names; look nothing up yourself.
 
