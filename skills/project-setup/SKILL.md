@@ -24,9 +24,9 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 - **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
 - **The chosen template**, if any: `~/.apiary/system/templates/<template-name>.md`, the name lowercase with hyphens (Public GitHub Project is `public-github-project.md`). Why: it supplies that template's answers, such as how intake works.
 - **Apiary's installed files** for your Agent: `~/.claude/` for Claude Code, `~/.agents/` and `~/.codex/` for Codex CLI. Why: to check and report that Apiary is installed.
-- **The existing `release-guide.md`** on the Guidance Document walk. Why: you help the Managing Intelligence write it, starting from what exists.
+- **The existing `release-guide.md`**, if any, on the Guidance Document walk. Why: you help the Managing Intelligence write it, starting from what exists.
 - **Each confirmed repo's manifests and config** under `<Project Folder>/<repo path>/`. Why: to detect its stack and propose its build commands.
-- **Existing Guidance Documents** at the paths under Writes, and any repo files the Managing Intelligence points to. Why: to offer them as the starting answer instead of writing from scratch.
+- **Existing Guidance Documents**, if any, at the paths under Writes, and any repo files the Managing Intelligence points to. Why: to offer them as the starting answer instead of writing from scratch.
 
 ## Gate
 
