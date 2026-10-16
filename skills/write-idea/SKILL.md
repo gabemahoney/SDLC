@@ -28,7 +28,7 @@ write-idea creates `draft`.
 
 ## Filing the Idea
 
-Read the `new_idea_intake` setting from the Project Folder's `.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`. It names how this Project files Ideas: interview the Managing Intelligence, or a source reference resolver such as `github`. Follow it:
+Read the `new_idea_intake` setting. It names how this Project files Ideas: interview the Managing Intelligence, or a source reference resolver such as `github`. Follow it:
 - When it names a source reference resolver, store the input as the Idea's source reference.
 - When it says to interview the Managing Intelligence, do so and write the description in the Idea's body.
 
