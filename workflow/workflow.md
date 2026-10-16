@@ -129,7 +129,3 @@ If a line or mapping you need is missing, stop before any change and point to pr
 ## Questions and stops
 
 When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information.
-
-## Ending a Run
-
-End every skill Run with the next-step suggestions its `SKILL.md` lists.
