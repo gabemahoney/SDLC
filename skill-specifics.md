@@ -325,3 +325,32 @@ Gets the Product Manager's end-of-Epic check after integration; records its repo
 **Bug:** the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note
 
 **Bug:** the Managing Intelligence sets it back to `draft` to send it back to define-bug.
+
+## Executor rules (moved from workflow.md, for develop-epic and fix-bug)
+
+Fold these into develop-epic and fix-bug when they are written, and define "lane" there.
+
+
+A Subagent loads the Guidance Documents of each repo it works in and may read any repo for context.
+
+**Fresh start:** a new dispatch with no earlier context.
+
+**Reuse:** resume the same Subagent for its Task or Bug. Keep its Guidance Documents. Add the Guidance Documents of any newly assigned repos.
+
+- **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for each Task (or for the Bug in fix-bug). Fix rounds reuse only the executors whose work the findings touch. The next Task or Bug starts fresh executors.
+- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Requirements Reviewer, the TLA+ Writer, the TLA+ Reviewer and the Integration Tester.
+
+#### Replacing an executor
+
+Resume the executor for each fix round. If the executor can't continue, start a fresh executor with the findings and the work so far.
+
+#### Handoff
+
+Subagents never talk to each other. The skill coordinates them: it reads each Subagent's report and passes what the next one needs in that one's dispatch or resume message. The work itself passes through the files: each Subagent sees the changes earlier ones made in its checkouts.
+
+#### Progress record
+
+On the skill's ticket, record each Subagent kept for reuse: its Subagent Role, its Task or Bug, its ID from the Agent, its name if available, and its dispatch Thinking Level.
+
+Update the record after each report. After compaction or a re-run, use the record to resume each Subagent by name if available, otherwise by ID.
+
