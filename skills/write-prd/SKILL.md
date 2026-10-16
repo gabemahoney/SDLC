@@ -20,7 +20,7 @@ An Idea ID, then optional review findings or change notes.
 ## Reads
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: follow the shared rules for this Run.
-- **Settings:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`: `ticket_system`, the running Agent's `levels_claude_code` or `levels_codex`, and `thinking_levels`. Why: select the Ticket System Protocol File and check the Agent's Thinking Level mapping and the `write-prd` line.
+- **Settings:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`: `ticket_system`. Why: to select the Ticket System Protocol File.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: follow the Agent's instructions for questions and reporting.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, where `<ticket_system>` is the setting's value. Why: read the Idea and its Docs and save its PRD.
 - **Idea and Docs:** the input Idea and its Doc children in the Ideas store, through the Ticket System Protocol File. Why: gather the Idea's stated requirements, find its existing PRD and determine whether it has an SRD.

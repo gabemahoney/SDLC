@@ -19,7 +19,7 @@ A description of the work, or intake input such as an issue URL.
 
 ## Reads
 
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the intake and Ticket System and check this Run's Thinking Level settings.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the intake and the Ticket System Protocol File.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the source reference resolver named by `new_idea_intake`. Why: to check the input and prepare the Idea according to that intake.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to ask the Managing Intelligence questions and report through this Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to create the Idea and store its body and any source reference.
