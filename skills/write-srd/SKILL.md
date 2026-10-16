@@ -36,12 +36,13 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 ## Steps
 
-1. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
-   - If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered against the changed SRD. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the old SRD.
+1. **Pause work built on the old SRD.** If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered against the changed SRD. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the old SRD.
 
-2. **Model the parts whose correctness needs it.** Select concurrency, state machines, protocols or invariants needing a model, including modelled parts affected by a revision. Dispatch TLA+ Writers and fix the SRD where a model finds a bug. Save and re-dispatch the affected parts until the models match the SRD and their checks pass.
+2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
-3. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
+3. **Model the parts whose correctness needs it.** Select concurrency, state machines, protocols or invariants needing a model, including modelled parts affected by a revision. Dispatch TLA+ Writers and fix the SRD where a model finds a bug. Save and re-dispatch the affected parts until the models match the SRD and their checks pass.
+
+4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
      - Fold each review finding, model finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section.
      - Cut text a change superseded, repeated text and padding.
@@ -51,7 +52,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. Keep an explicit boundary only when the Managing Intelligence wants it stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
 
-   If self-review changed a modelled part or found another part that needs a model, go back to step 2. Otherwise, save the final SRD.
+   If self-review changed a modelled part or found another part that needs a model, go back to step 3. Otherwise, save the final SRD.
 
 ## Dispatches
 
