@@ -43,15 +43,15 @@ None: the PRD can be written or revised at any Idea status.
 3. **Write the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions; flag them in the report.
    - If revising, first apply the findings or change notes to establish the current requirements.
 
-4. **Save the PRD.** Follow the Ticket System Protocol File.
-   - If the Idea has a PRD, update that Doc; a revised `defined` PRD returns to `draft`, and a `draft` PRD stays `draft`.
-   - Otherwise, create a Doc child of the Idea titled `PRD`, with status `draft`.
-
-5. **Review it yourself.** Make four passes over the saved PRD (succinctness, product not software, dropped ideas, quality checklist), updating the Doc after each, for a first draft and a revision alike. Repeat them until a pass changes nothing:
+4. **Review it yourself.** Make four passes over the whole draft (succinctness, product not software, dropped ideas, quality checklist), for a first draft and a revision alike. Repeat them until a pass changes nothing:
    - **Succinctness:** run the Succinctness pass in `workflow.md`: cut repetition and padding with no loss of signal.
    - **Product, not software:** rewrite any requirement that describes how the software works (code, components, data structures, APIs) as what the product must do for the people who use it. Software requirements belong in the SRD.
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. If the interview considered something and decided against it, the PRD doesn't mention it at all. No "must not do X" or "X is out of scope" just because X came up. Keep a Non-Goal only when the Managing Intelligence wants that boundary stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
+
+5. **Save the PRD.** Follow the Ticket System Protocol File.
+   - If the Idea has a PRD, update that Doc; a revised `defined` PRD returns to `draft`, and a `draft` PRD stays `draft`.
+   - Otherwise, create a Doc child of the Idea titled `PRD`, with status `draft`.
 
 ## Dispatches
 
