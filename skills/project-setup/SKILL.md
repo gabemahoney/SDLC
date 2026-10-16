@@ -15,7 +15,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 ## Input
 
-The Project Folder it runs in, and optionally the name of an Apiary template. Without a template, it interviews the Managing Intelligence.
+The folder to set up as the Project Folder: the nearest folder up from where you started that holds `.apiary/project_settings.md`, else the folder you started in. Optionally, the name of an Apiary template. Without a template, it interviews the Managing Intelligence.
 
 ## Reads
 
