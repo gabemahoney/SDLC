@@ -107,7 +107,7 @@ The Project Folder is the nearest folder, from the working directory up, contain
 
 Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug and the worktree skills—change files and commit only inside repo checkouts. release follows the process and conditions in `release-guide.md`.
 
-Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve Guidance Documents' relative paths, pointers included, from that checkout's root, wherever the Guidance Document sits.
+Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve a Guidance Document's relative pointers from the folder holding that Guidance Document. Resolve its other relative paths from the checkout's root.
 
 - **Where worktrees live:** only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder.
 - **Where to work:** develop-epic, idea-review, and write-plan and write-epic for the repos they plan in, work only in a ticket's worktrees when started in `.worktrees/<ticket id>/`; otherwise in the main checkouts.

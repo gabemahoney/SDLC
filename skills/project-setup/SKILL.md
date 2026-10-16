@@ -23,7 +23,7 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: how to ask the Managing Intelligence questions and report in this Agent.
 - **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
 - **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check the Launcher's prerequisites (e.g. tmux).
-- **The chosen template**, if any: `~/.apiary/system/templates/<template-name>.md`, the name lowercase with hyphens (Public GitHub Project is `public-github-project.md`). Why: it supplies that template's answers, such as how intake works.
+- **The chosen template**, if any: `~/.apiary/system/templates/<template-name>.md`, the name lowercase with hyphens. Why: it supplies that template's answers, such as how intake works.
 - **The recommended Thinking Level list:** `~/.apiary/system/templates/thinking-levels.md`. Why: the lines to write into `thinking_levels`.
 - **Apiary's installed files** for your Agent: `~/.claude/` for Claude Code, `~/.agents/` and `~/.codex/` for Codex CLI. Why: to check and report that Apiary is installed.
 - **The existing `release-guide.md`**, if any, at `<folder on the Guidance Document walk>/.apiary/release-guide.md`, or `~/.apiary/release-guide-default-fallback.md` as the rulebook specifies. Why: you help the Managing Intelligence write it, starting from what exists.
@@ -58,13 +58,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If the chosen default is missing from `~/.apiary/default_project_settings.md`, stop and ask the Managing Intelligence: approve adding it? Add it on approval, then remove any Project value.
 
    b. **Set intake from the template.**
-      - If no template, continue to 3c.
-      - If a template, resolve its intake rules and write `new_idea_intake` and `new_bug_intake` to `<Project Folder>/.apiary/project_settings.md`.
-
-      For Public GitHub Project, explain that public repos receive feature requests and bug reports through GitHub Issues. Check confirmed code folders:
-      - If any is a public repo, use `github` for both intakes.
-      - Otherwise, use interviews.
-      Ask for guidance and maintained docs in 5a.
+      - If a template is named, follow its instructions to set the intakes.
 
    c. **Set the Agents' model mappings.** Stop and ask the Managing Intelligence: Claude Code, Codex CLI or both? For each used Agent's mapping (`levels_claude_code` or `levels_codex`):
       - If already set, keep it.
@@ -82,7 +76,8 @@ None: this skill sets up the Project. During startup and throughout this Run, re
    a. **Set up each code folder's guidance.** The four Guidance Documents here are `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `maintained-docs.md`. For each:
       - If the template gives it, use the template's answer.
       - Else stop and ask the Managing Intelligence: point to your own guide, or use Apiary's default?
-      - If the default: write nothing. The Default Fallback File applies.
+      - If the default and user copies exist on the Guidance Document walk, stop and ask the Managing Intelligence: keep them, or remove them so the default applies? Follow the answer.
+      - If the default and no user copies remain, write nothing. The Default Fallback File applies.
       - If their own: ask whether all code folders share it or each has its own. Shared goes in `<Project Folder>/.apiary/<name>`; per code folder goes in `<Project Folder>/<code folder path>/.apiary/<name>`. Write the file as a relative pointer to their guide, or its rules.
       - If a copy already exists there, offer it as the answer and change it only as the Managing Intelligence says.
 
