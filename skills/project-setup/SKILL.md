@@ -36,21 +36,44 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
 ## Steps
 
-1. **Choose and mark the Project Folder.** Project Folders don't nest. If a folder above or below the one you're setting up already holds `.apiary/project_settings.md`, stop and ask the Managing Intelligence: set up that existing Project instead, or choose another folder? Otherwise read existing settings and mark the Project Folder by creating `<Project Folder>/.apiary/project_settings.md` if absent.
+1. **Choose and mark the Project Folder.** Project Folders don't nest.
+   - If another Project exists above or below, stop and ask the Managing Intelligence: use it or choose another folder?
+   - Otherwise, read existing settings.
+   - If `<Project Folder>/.apiary/project_settings.md` is absent, create it.
 
-2. **Settle the Project's code folders.** Ask the Managing Intelligence which folders under the Project Folder hold the Project's code, proposing any git repos you see. A folder outside the Project Folder must be moved or cloned inside it.
+2. **Settle the Project's code folders.** Ask the Managing Intelligence for code folders under the Project Folder, including itself, proposing git repos you see.
+   - If a folder is outside, move or clone it inside.
 
 3. **Fill in the settings.**
 
-   a. **Choose the setup settings.** Apply the named template, or interview the Managing Intelligence. Follow the template's plain Markdown instructions and resolve its answers before writing settings. Each template has Name, New Idea intake and New Bug intake sections. Optional sections give paths to engineering, test and doc-writing guidance and maintained docs, ask for them, or skip them.
+   a. **Choose the setup settings.**
+      - If a template is named, follow its Markdown instructions and resolve its answers before writing settings. Required: Name, New Idea intake, New Bug intake. Optional engineering, test, doc-writing and maintained-doc sections give paths, ask, or skip.
+      - Otherwise, interview the Managing Intelligence, including both intakes.
 
-      Set `ticket_system` and `launcher`, and, without a template, `new_idea_intake` and `new_bug_intake`. For each, stop and ask the Managing Intelligence: use the default or a Project value? For every value written, offer the value already in the chosen file, or suggest `bees`, `agent-director`, and “interview the Managing Intelligence” for both intakes. Write a Project value to `<Project Folder>/.apiary/project_settings.md`. To use a default, remove any Project value so the default applies. If the default is missing from `~/.apiary/default_project_settings.md`, first stop and ask the Managing Intelligence: approve adding it there?
+      For `ticket_system`, `launcher` and interview intakes, stop and ask the Managing Intelligence: default or Project value?
+      - If a value exists in the chosen file, offer it.
+      - Otherwise, suggest `bees` for `ticket_system`, `agent-director` for `launcher`, and “interview the Managing Intelligence” for both intakes.
+      - If Project value, write it to `<Project Folder>/.apiary/project_settings.md`.
+      - If using an existing default, remove any Project value.
+      - If the chosen default is missing from `~/.apiary/default_project_settings.md`, stop and ask the Managing Intelligence: approve adding it? Add it on approval, then remove any Project value.
 
-   b. **Set intake from the template.** With a template, follow its rules to choose how to collect Ideas and Bugs, then write `new_idea_intake` and `new_bug_intake` to `<Project Folder>/.apiary/project_settings.md`. For Public GitHub Project, explain that public repos receive feature requests and bug reports through GitHub Issues. Check whether any confirmed code folder is a public repo: use the `github` resolver for both intakes if one is, otherwise interview the Managing Intelligence. Ask for Guidance Documents and maintained docs in 5a.
+   b. **Set intake from the template.**
+      - If no template, continue to 3c.
+      - If a template, resolve its intake rules and write `new_idea_intake` and `new_bug_intake` to `<Project Folder>/.apiary/project_settings.md`.
 
-   c. **Set the Agents' model mappings.** Stop and ask the Managing Intelligence: which Agents does the Project use, Claude Code, Codex CLI or both? For each used Agent whose mapping (`levels_claude_code` or `levels_codex`) is not already set, stop and ask the Managing Intelligence which model and effort each of `low`, `medium`, `high`, `xhigh` and `max` means, one line per label. Suggest no models. Ask for default versus Project value as in 3a.
+      For Public GitHub Project, explain that public repos receive feature requests and bug reports through GitHub Issues. Check confirmed code folders:
+      - If any is a public repo, use `github` for both intakes.
+      - Otherwise, use interviews.
+      Ask for guidance and maintained docs in 5a.
 
-   d. **Complete the Thinking Level list.** Stop and ask the Managing Intelligence for `thinking_levels` as in 3a and write the complete list from `~/.apiary/system/templates/thinking-levels.md` in the chosen settings file, skills first, then Subagent Roles. Keep existing lines, adding missing lines at their recommended levels; the Managing Intelligence may change any line.
+   c. **Set the Agents' model mappings.** Stop and ask the Managing Intelligence: Claude Code, Codex CLI or both? For each used Agent's mapping (`levels_claude_code` or `levels_codex`):
+      - If already set, keep it.
+      - Otherwise, stop and ask the Managing Intelligence for the model and effort for `low`, `medium`, `high`, `xhigh` and `max`, one line per label. Suggest no models. Ask for default versus Project value as in 3a.
+
+   d. **Complete the Thinking Level list.** Stop and ask the Managing Intelligence for `thinking_levels` as in 3a. Write the complete list from `~/.apiary/system/templates/thinking-levels.md`, skills first, then Subagent Roles:
+      - If a line exists, keep it.
+      - Otherwise, add its recommended level.
+      The Managing Intelligence may change any line.
 
 4. **Create or check the ticket stores.** Through the selected Ticket System Protocol File, create or check the four stores with the child tiers and status values defined in the rulebook.
 
@@ -63,9 +86,15 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If their own: ask whether all code folders share it or each has its own. Shared goes in `<Project Folder>/.apiary/<name>`; per code folder goes in `<Project Folder>/<code folder path>/.apiary/<name>`. Write the file as a relative pointer to their guide, or its rules.
       - If a copy already exists there, offer it as the answer and change it only as the Managing Intelligence says.
 
-   b. **Set each code folder's build commands.** Look at each confirmed code folder to work out how it builds and tests, and propose its commands. Use these seven slots: Compile / type-check, Format, Lint, Narrow test (takes a path), Full test, Integration test and Model check. Stop and ask the Managing Intelligence: confirm or override the commands? When the code folder's build and test setup is unclear, ask for every command. Write the seven slots to `build-commands.md` at the chosen Guidance Document location when a build or test setup is found or commands are supplied; otherwise continue to 5c. A slot may be marked unused.
+   b. **Set each code folder's build commands.** For each confirmed code folder, use seven slots: Compile / type-check, Format, Lint, Narrow test (takes a path), Full test, Integration test and Model check. A slot may be marked unused.
+      - If its build and test setup is clear, propose commands; stop and ask the Managing Intelligence: confirm or override?
+      - Otherwise, ask for every command.
+      - If a setup is found or commands supplied, ask where to keep `build-commands.md`: `<Project Folder>/.apiary/` or `<Project Folder>/<code folder path>/.apiary/`. Write the slots there.
+      - Otherwise, continue to 5c.
 
-   c. **Write or locate the release guide.** Help the Managing Intelligence write `<Project Folder>/.apiary/release-guide.md` or make it point to an existing release guide. It covers what may be done without a human, including pushing and releasing; what needs a human; and the release process.
+   c. **Write or locate the release guide.** Cover permissions without a human (including pushing and releasing), human approvals and the release process in `<Project Folder>/.apiary/release-guide.md`:
+      - If a guide exists, use or point to it.
+      - Otherwise, write it with the Managing Intelligence.
 
 6. **Check the installation and Launcher prerequisites.** Check and report whether Apiary is installed for the running Agent. Report what is missing and say "run Apiary's `install.sh`". Check and report the prerequisites named by the Launcher Protocol File in effect.
 
