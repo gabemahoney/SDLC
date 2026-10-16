@@ -99,6 +99,10 @@ State the performance, security, scalability or compatibility constraints that a
 
 ## Acceptance Criteria
 List the observable, testable checks that must pass for the work to be complete.
+When the result depends on the situation, write the check as Given (the
+starting situation), When (what happens) and Then (the observable result).
+- [ ] Given an order already paid, when a repeat payment arrives, then the
+      order is still charged once.
 - [ ] Criterion
 
 ## Assumptions
@@ -132,7 +136,7 @@ Before saving, check the resolved requirements below. Record gaps the Managing I
 - [ ] Each requirement states one testable obligation, serves a stated need and has an acceptance check.
 - [ ] Supplied priorities and trade-offs are explicit.
 - [ ] Supplied edge cases and error scenarios have expected behaviours.
-- [ ] Acceptance criteria specify observable outcomes and relevant conditions and measures. Use Given/When/Then for behaviour that depends on context.
+- [ ] Acceptance criteria specify observable outcomes, and the conditions and measures that matter.
 - [ ] Assumptions and dependencies are explicit.
 - [ ] Every requirement is user-facing product behaviour; nothing describes code, components or data structures.
 - [ ] Sections agree with each other.
