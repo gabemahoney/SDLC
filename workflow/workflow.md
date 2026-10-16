@@ -78,8 +78,7 @@ The Project Folder is the nearest folder, from the working directory up, contain
 
 Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree—change files and commit only inside repo checkouts.
 
-- **Paths in tickets and reports:** an absolute path (`/…` or `~/…`) means exactly that place. A path to a file in a Project repo means that file in the checkout you're working in, so in a worktree it means the worktree's copy.
-
+- **Paths to repo files:** a ticket names a repo file by its repo and its path from that repo's root, such as `app: src/export.py`. Open it in the checkout you're working in. In the worktree `.worktrees/b.xyz/app/`, that is `.worktrees/b.xyz/app/src/export.py`. If a path into a repo is written in full, open the same file in your checkout. Other paths mean exactly what they say.
 - **Where worktrees live:** only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder.
 - **Where to work:** this rule applies to develop-epic and idea-review, and to write-plan and write-epic for the repos they plan in. When started in `<Project Folder>/.worktrees/<ticket id>/`, these skills work only in that ticket's worktrees. Otherwise, they work in the main checkouts.
 - **How to commit:** commit per repo, naming the ticket. A Task spanning repos gets one commit per repo.
