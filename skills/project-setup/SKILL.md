@@ -7,7 +7,7 @@ description: "One-time setup of an Apiary Project: its settings, ticket stores a
 
 ## Purpose
 
-One-time setup of a Project: its settings, ticket stores and Guidance Documents. It works on an existing repo or a new, empty folder. Re-running it is safe and fixes or completes a setup. Run it before any other Apiary skill.
+One-time setup of a Project: its settings, ticket stores and Guidance Documents. It works on an existing code folder or a new, empty folder. Re-running it is safe and fixes or completes a setup. Run it before any other Apiary skill.
 
 ## Loading Apiary
 
@@ -22,12 +22,12 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: how to ask the Managing Intelligence questions and report in this Agent.
 - **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
-- **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check and report the Launcher's prerequisites.
+- **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check the Launcher's prerequisites (e.g. tmux).
 - **The chosen template**, if any: `~/.apiary/system/templates/<template-name>.md`, the name lowercase with hyphens (Public GitHub Project is `public-github-project.md`). Why: it supplies that template's answers, such as how intake works.
 - **Apiary's installed files** for your Agent: `~/.claude/` for Claude Code, `~/.agents/` and `~/.codex/` for Codex CLI. Why: to check and report that Apiary is installed.
 - **The existing `release-guide.md`**, if any, at `<folder on the Guidance Document walk>/.apiary/release-guide.md`, or `~/.apiary/release-guide-default-fallback.md` as the rulebook specifies. Why: you help the Managing Intelligence write it, starting from what exists.
-- **Each confirmed repo** under `<Project Folder>/<repo path>/`. Why: to work out how it builds and tests, and propose its build commands.
-- **Existing Guidance Documents**, if any, at the paths under Writes, and any repo files the Managing Intelligence points to. Why: to offer them as the starting answer instead of writing from scratch.
+- **Each confirmed code folder** under `<Project Folder>/<code folder path>/`. Why: to work out how it builds and tests, and propose its build commands.
+- **Existing Guidance Documents**, if any, at the paths under Writes, and any files the Managing Intelligence points to. Why: to offer them as the starting answer instead of writing from scratch.
 
 ## Gate
 
@@ -37,13 +37,13 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
 1. **Choose and mark the Project Folder.** Project Folders don't nest. If a folder above or below the one you're setting up already holds `.apiary/project_settings.md`, stop and ask the Managing Intelligence: set up that existing Project instead, or choose another folder? Otherwise read existing settings and mark the Project Folder by creating `<Project Folder>/.apiary/project_settings.md` if absent.
 
-2. **Settle the Project's repos.** Find the git repos under the Project Folder. Stop and ask the Managing Intelligence: confirm them, and name any others the Project uses. A repo outside the Project Folder must be moved or cloned inside it. With no repo, stop and ask the Managing Intelligence: create one in a subfolder they name? On yes, create `<Project Folder>/<named subfolder>/`, initialize git and make an empty first commit. On no, continue setup.
+2. **Settle the Project's code folders.** Ask the Managing Intelligence which folders under the Project Folder hold the Project's code, proposing any git repos you see. A folder outside the Project Folder must be moved or cloned inside it.
 
 3. **Choose the setup settings.** Apply the named template, or interview the Managing Intelligence. Follow the template's plain Markdown instructions and resolve its answers before writing settings. Each template has Name, New Idea intake and New Bug intake sections. Optional sections give paths to engineering, test and doc-writing guidance and maintained docs, ask for them, or skip them.
 
    Set `ticket_system` and `launcher`, and, without a template, `new_idea_intake` and `new_bug_intake`. For each, stop and ask the Managing Intelligence: use the default or a Project value? For every value written, offer the value already in the chosen file, or suggest `bees`, `agent-director`, and “interview the Managing Intelligence” for both intakes. Write a Project value to `<Project Folder>/.apiary/project_settings.md`. To use a default, remove any Project value so the default applies. If the default is missing from `~/.apiary/default_project_settings.md`, first stop and ask the Managing Intelligence: approve adding it there?
 
-4. **Set intake from the template.** With a template, follow its rules to choose how to collect Ideas and Bugs, then write `new_idea_intake` and `new_bug_intake` to `<Project Folder>/.apiary/project_settings.md`. For Public GitHub Project, explain that public repos receive feature requests and bug reports through GitHub Issues. Check whether any Project repo is public: use the `github` resolver for both intakes if one is, otherwise interview the Managing Intelligence. Ask for Guidance Documents and maintained docs in step 9.
+4. **Set intake from the template.** With a template, follow its rules to choose how to collect Ideas and Bugs, then write `new_idea_intake` and `new_bug_intake` to `<Project Folder>/.apiary/project_settings.md`. For Public GitHub Project, explain that public repos receive feature requests and bug reports through GitHub Issues. Check whether any confirmed code folder is a public repo: use the `github` resolver for both intakes if one is, otherwise interview the Managing Intelligence. Ask for Guidance Documents and maintained docs in step 8.
 
 5. **Set the Agents' model mappings.** Stop and ask the Managing Intelligence: which Agents does the Project use, Claude Code, Codex CLI or both? For each used Agent whose mapping (`levels_claude_code` or `levels_codex`) is not already set, stop and ask the Managing Intelligence which model and effort each of `low`, `medium`, `high`, `xhigh` and `max` means, one line per label. Suggest no models. Ask for default versus Project value as in step 3.
 
@@ -81,15 +81,15 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
 7. **Create or check the ticket stores.** Through the selected Ticket System Protocol File, create or check the four stores with the child tiers and status values defined in the rulebook.
 
-8. **Choose where repo guidance goes.** For each repo, stop and ask the Managing Intelligence: commit its Guidance Documents in `<Project Folder>/<repo path>/.apiary/` (the default), or, for a repo they cannot commit to, keep them in `<Project Folder>/.apiary/`? In the latter location, add the repo's guidance to existing copies, in a section naming the repo when the Project has several. Offer each existing Guidance Document as the answer and change it only as the Managing Intelligence says.
+8. **Set up each repo's guidance.** Stop and ask the Managing Intelligence: Use the default for all repos (Guidance Documents committed in each repo's `.apiary/`), or choose per repo? For code folders without git, the same choice applies, with the default being files in the code folder's `.apiary/`. If they accept the defaults, use `<Project Folder>/<code folder path>/.apiary/` for every confirmed code folder. If they want to choose, ask for each code folder: use that location or `<Project Folder>/.apiary/`? In the latter location, add the code folder's guidance to existing copies, in a section naming the code folder when the Project has several. Offer each existing Guidance Document as the answer and change it only as the Managing Intelligence says.
 
-9. **Collect repo guidance and doc paths.** For each repo, obtain `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` from the template or stop and ask the Managing Intelligence for each. For each supplied, write a same-named Guidance Document at the chosen location, containing a relative pointer to the repo file or the supplied rules. Obtain contributor-doc and customer-doc path lists likewise. For supplied lists, write them to `maintained-docs.md` at that location.
+   For each confirmed code folder, obtain `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` from the template or stop and ask the Managing Intelligence for each. For each supplied, write a same-named Guidance Document at the chosen location, containing a relative pointer to the supplied file or the supplied rules. Obtain contributor-doc and customer-doc path lists likewise. For supplied lists, write them to `maintained-docs.md` at that location.
 
-10. **Set each repo's build commands.** Look at each repo to work out how it builds and tests, and propose its commands. Use these seven slots: Compile / type-check, Format, Lint, Narrow test (takes a path), Full test, Integration test and Model check. Stop and ask the Managing Intelligence: confirm or override the commands? When the repo's build and test setup is unclear, ask for every command. Write the seven slots to `build-commands.md` at the chosen Guidance Document location when a build or test setup is found or commands are supplied; otherwise continue to step 11. A slot may be marked unused.
+9. **Set each code folder's build commands.** Look at each confirmed code folder to work out how it builds and tests, and propose its commands. Use these seven slots: Compile / type-check, Format, Lint, Narrow test (takes a path), Full test, Integration test and Model check. Stop and ask the Managing Intelligence: confirm or override the commands? When the code folder's build and test setup is unclear, ask for every command. Write the seven slots to `build-commands.md` at the chosen Guidance Document location when a build or test setup is found or commands are supplied; otherwise continue to step 10. A slot may be marked unused.
 
-11. **Write the release guide.** Help the Managing Intelligence write `<Project Folder>/.apiary/release-guide.md`: what may be done without a human, including pushing and releasing; what needs a human; and the release process.
+10. **Write or locate the release guide.** Help the Managing Intelligence write `<Project Folder>/.apiary/release-guide.md` or make it point to an existing release guide. It covers what may be done without a human, including pushing and releasing; what needs a human; and the release process.
 
-12. **Check the installation and Launcher prerequisites.** Check and report whether Apiary is installed for the running Agent. Report what is missing and say "run Apiary's `install.sh`". Check and report the prerequisites named by the Launcher Protocol File in effect.
+11. **Check the installation and Launcher prerequisites.** Check and report whether Apiary is installed for the running Agent. Report what is missing and say "run Apiary's `install.sh`". Check and report the prerequisites named by the Launcher Protocol File in effect.
 
 ## Dispatches
 
@@ -99,10 +99,9 @@ None: project-setup does the setup itself.
 
 - `<Project Folder>/.apiary/project_settings.md` and, as agreed, `~/.apiary/default_project_settings.md`.
 - The Ideas, Plans, Bugs and Research stores through the selected Ticket System Protocol File.
-- If accepted, the product's repo at `<Project Folder>/<named subfolder>/`, with an empty first commit.
-- Each supplied repo Guidance Document at `<Project Folder>/<repo path>/.apiary/<name>.md` or `<Project Folder>/.apiary/<name>.md`, where `<name>` is `engineering-best-practices`, `test-guide`, `doc-writing-guide`, `maintained-docs` or `build-commands`.
+- Each supplied Guidance Document at `<Project Folder>/<code folder path>/.apiary/<name>.md` or `<Project Folder>/.apiary/<name>.md`, where `<name>` is `engineering-best-practices`, `test-guide`, `doc-writing-guide`, `maintained-docs` or `build-commands`.
 - `<Project Folder>/.apiary/release-guide.md`.
 
 ## Done
 
-Report the setup and the installation and Launcher prerequisite checks, naming anything missing and saying "run Apiary's `install.sh`" for missing Apiary files. Tell the Managing Intelligence to commit the Guidance Documents written to repos. Next step: “write-idea or write-bug”.
+Report the setup and the installation and Launcher prerequisite checks, naming anything missing and saying "run Apiary's `install.sh`" for missing Apiary files. For Guidance Documents written to git repos, tell the Managing Intelligence to commit them. Next step: “write-idea or write-bug”.
