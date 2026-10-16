@@ -76,7 +76,7 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 
 The Project Folder is the nearest folder, from the working directory up, containing `.apiary/project_settings.md`. If no such settings file is found, use the folder the Agent started in as the Project Folder and read settings only from `~/.apiary/default_project_settings.md`. Project Folders don't nest. The Project's repos are its main checkouts under the Project Folder, outside any other Project Folder.
 
-Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree—change files and commit only inside repo checkouts. release follows the process and conditions in `release-guide.md`.
+Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree—change files and commit only inside repo checkouts.
 
 Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve a Guidance Document's relative pointers from the folder holding that Guidance Document. Resolve its other relative paths from the checkout's root.
 
