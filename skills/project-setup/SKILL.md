@@ -22,10 +22,10 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `launcher`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: how to ask the Managing Intelligence questions and report in this Agent.
 - **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
-- **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check the Launcher's prerequisites (e.g. tmux).
+- **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check the Launcher's prerequisites.
 - **The chosen template**, if any: `~/.apiary/system/templates/<template-name>.md`, the name lowercase with hyphens. Why: it supplies that template's answers, such as how intake works.
 - **The recommended Thinking Level list:** `~/.apiary/system/templates/thinking-levels.md`. Why: the lines to write into `thinking_levels`.
-- **Apiary's installed files** for your Agent: `~/.claude/` for Claude Code, `~/.agents/` and `~/.codex/` for Codex CLI. Why: to check and report that Apiary is installed.
+- **Apiary's installed files:** `~/.apiary/system/workflow.md`, and for your Agent its skills and Subagent definitions: `~/.claude/skills/<skill>/SKILL.md` and `~/.claude/agents/apiary-<role>.md` in Claude Code, `~/.agents/skills/<skill>/SKILL.md` and `~/.codex/agents/apiary-<role>.toml` in Codex CLI. Why: to check and report that Apiary is installed: workflow.md and every Apiary skill and Subagent definition is present.
 - **The existing `release-guide.md`**, if any, at `<folder on the Guidance Document walk>/.apiary/release-guide.md`, or `~/.apiary/release-guide-default-fallback.md` as the rulebook specifies. Why: you help the Managing Intelligence write it, starting from what exists.
 - **Each confirmed code folder** under `<Project Folder>/<code folder path>/`. Why: to work out how it builds and tests, and propose its build commands.
 - **Existing Guidance Documents**, if any, at the paths under Writes, and any files the Managing Intelligence points to. Why: to offer them as the starting answer instead of writing from scratch.
@@ -84,7 +84,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
    b. **Set each code folder's build commands.** For each confirmed code folder, use seven slots: Compile / type-check, Format, Lint, Narrow test (takes a path), Full test, Integration test and Model check. A slot may be marked unused.
       - If its build and test setup is clear, propose commands; stop and ask the Managing Intelligence: confirm or override?
       - Otherwise, ask for every command.
-      - If a setup is found or commands supplied, ask where to keep `build-commands.md`: `<Project Folder>/.apiary/` or `<Project Folder>/<code folder path>/.apiary/`. Write the slots there.
+      - If a setup is found or commands supplied, ask where to keep `build-commands.md`: `<Project Folder>/.apiary/` or `<Project Folder>/<code folder path>/.apiary/`. Write the slots there; in the shared `<Project Folder>/.apiary/` copy, put each code folder's slots in a section naming it.
       - Otherwise, continue to 5c.
 
    c. **Write or locate the release guide.** Cover permissions without a human (including pushing and releasing), human approvals and the release process in `<Project Folder>/.apiary/release-guide.md`:
