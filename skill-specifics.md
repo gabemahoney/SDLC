@@ -276,7 +276,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 **TLA+ spec Doc:** revisiting that part updates its spec and leaves it `defined`. No other transition.
 
-**Specific rules:** Dispatched by write-srd to write the assigned part's model without running it. Resumed to fix review findings or update the model after an SRD change, then to run the Project's Model check command from `build-commands.md` once review has no findings. Returns the spec, checker results and SRD findings to write-srd. Never commit.
+**Specific rules:** Attaches the model files (`.tla`, `.cfg`) to its TLA+ spec Doc as the Ticket System Protocol File describes, and runs the checker on them there; they never go in a repo. Dispatched by write-srd to write the assigned part's model without running it. Resumed to fix review findings or update the model after an SRD change, then to run the Project's Model check command from `build-commands.md` once review has no findings. Returns the spec, checker results and SRD findings to write-srd. Never commit.
 
 ## TLA+ Reviewer
 
