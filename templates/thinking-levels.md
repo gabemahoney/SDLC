@@ -17,6 +17,7 @@ research: high
 release: medium
 configure-worktree: medium
 teardown-worktree: medium
+Researcher: high
 TLA+ Writer: xhigh
 TLA+ Reviewer: xhigh
 Requirements Reviewer: max

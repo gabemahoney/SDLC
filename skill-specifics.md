@@ -8,7 +8,7 @@ Per-entry Reads name specific inputs only. Shared startup, settings, Protocol Fi
 
 **Thinking Levels (2026-10-16):** only skills that dispatch a Subagent or launch a Worker read `thinking_levels` and the relevant `levels_<agent>` mapping, before that dispatch or launch. They check the target Role or Worker's skill, not their own skill line. Whoever launches a skill sets its own level. Executors use their Task's or Bug's tag; the dispatcher maps it. No Role below dispatches or launches, so none reads thinking levels itself.
 
-The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug; their Reads include the definitions of the Roles they dispatch. configure-worktree reads its Worker's skill line and Worker's Agent mapping only when launching, outside worktree-only mode.
+The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug. configure-worktree reads its Worker's skill line and Worker's Agent mapping only when launching, outside worktree-only mode.
 
 ## write-bug
 
@@ -31,16 +31,6 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 **Bug:** define-bug sets `invalid` when the Bug is not real, with a note saying why
 
 **Specific rules:** Changes no tracked file. When it cannot reproduce or settle the report from source, leaves Bug `draft`, records what it tried and asks the Managing Intelligence whether it is real.
-
-## write-srd
-
-**Reads:** Idea, PRD, existing SRD and TLA+ specs; `engineering-best-practices`, `test-guide`, codebase and tests of explored repos; revision notes and model findings, to ground and revise the SRD.
-
-**Gate:** None specified.
-
-**Owned transitions:** Creates SRD `draft`; revising a `defined` SRD sets it back to `draft`.
-
-**Specific rules:** write-srd selects the parts to model, dispatches one TLA+ Writer per part in parallel, and fixes SRD bugs their models find.
 
 ## req-review
 
@@ -139,6 +129,8 @@ Gets the Product Manager's end-of-Epic check after integration; records its repo
 **Research ticket and Report:** the Report, created with the first round, carries the Research ticket's status.
 
 **Specific rules:** Sets the ticket flow, not how research is done; the reviewer is the Managing Intelligence.
+
+Research tickets filed by write-srd are researched by its Researcher and closed by write-srd, without review rounds.
 
 ## configure-worktree
 
@@ -280,6 +272,16 @@ Gets the Product Manager's end-of-Epic check after integration; records its repo
 
 **Specific rules:** Cuts in a separate cut-only pass; every proposed new rule cites its stated requirement. May flag a risky SRD part without a model as a normal finding for write-srd. Edit no files, change no tickets, never commit.
 
+## Researcher
+
+**Reads:** The question, why the SRD needs it, the Idea, SRD and Research ticket supplied by write-srd, and relevant sources, to ground the answer; no Guidance Documents.
+
+**Gate:** None specified.
+
+**Owned transitions:** Creates the Research ticket's Report child `defined` with a cited answer.
+
+**Specific rules:** Dispatched by write-srd to answer one research question and report back with its cited Report. It may use any research skill its Agent provides, as its Agent Protocol File describes. Its investigation is read-only: it changes no code and no ticket other than its Report. Never commit.
+
 ## TLA+ Writer
 
 **Reads:** Assigned SRD part, existing spec, model files and checker output; `build-commands` for Model check.
@@ -340,7 +342,7 @@ A Subagent loads the Guidance Documents of each repo it works in and may read an
 **Reuse:** resume the same Subagent for its Task or Bug. Keep its Guidance Documents. Add the Guidance Documents of any newly assigned repos.
 
 - **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for each Task (or for the Bug in fix-bug). Fix rounds reuse only the executors whose work the findings touch. The next Task or Bug starts fresh executors.
-- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Requirements Reviewer, the TLA+ Writer, the TLA+ Reviewer and the Integration Tester.
+- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Requirements Reviewer, the Researcher, the TLA+ Writer, the TLA+ Reviewer and the Integration Tester.
 
 #### Replacing an executor
 

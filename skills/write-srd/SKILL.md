@@ -7,7 +7,7 @@ description: "Write or revise an Idea's Software Requirements Document (SRD) fro
 
 ## Purpose
 
-Follows write-prd and writes the software requirements and any TLA+ models for req-review and planning.
+Follows write-prd and defines what the software must do to meet the PRD. The SRD settles technology choices and architecture, contains no code, and feeds req-review and planning.
 
 ## Loading Apiary
 
@@ -20,15 +20,15 @@ An Idea ID, with optional review findings or change notes for a revision.
 ## Reads
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the TLA+ Writer's Thinking Level through `thinking_levels` and `levels_claude_code` or `levels_codex`.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to locate the installed TLA+ Writer definition, dispatch it, and ask and report through the Agent.
-- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and create or update its SRD.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the TLA+ Writer's and Researcher's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
+- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
+- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
-- **The Idea and its Docs:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, find the SRD and TLA+ specs to revise, and ground changes in current requirements and supplied findings.
+- **The Idea, its Docs and Plan:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, find the SRD and TLA+ specs to revise, ground changes in current requirements and supplied findings, and identify the Plan and active Epics affected by a revision.
+- **Research tickets and Reports:** through the Ticket System Protocol File, using the tickets linked from the SRD or filed during this Run. Why: to use their evidence in software decisions.
 - **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes. Why: to ground constraints in the Project's engineering conventions.
 - **Test guidance:** `test-guide.md` for each explored repo, found as `workflow.md` describes. Why: to ground test requirements in the Project's test conventions.
 - **Codebase and tests:** the affected code folders under `<Project Folder>`, if any, identified from the PRD and Idea. Why: so the requirements fit the code that exists.
-- **TLA+ Writer definition:** the installed definition for the TLA+ Writer Subagent Role, located through the Agent Protocol File. Why: when a part needs modelling, to dispatch its model-writing and model-checking work.
 
 ## Gate
 
@@ -36,42 +36,28 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 ## Steps
 
-1. **Gather the existing requirements.** Combine the Idea, its Source References, existing Docs and conversation with any review findings or change notes. Honour the Managing Intelligence's decisions on findings.
-
-2. **Explore the affected code,** so the requirements fit what exists. If there is no code yet, the SRD describes new software.
-
-3. **Make the software decisions.** Treat the PRD as having answered every product question, and make the software decisions yourself from it, any existing code and the engineering guidance. If you find a product question the PRD didn't answer, raise it with the Managing Intelligence.
-
-4. **Write the SRD.** Organize it as the change needs, following the craft guidance below. Assess its concurrency, state machines, protocols and invariants. Select the parts whose correctness needs a model, including existing modelled parts affected by a revision.
-
-5. **Save the SRD.** Save before modelling so each Writer can read the SRD Doc.
-   - If the Idea has an SRD, update that Doc.
-   - Otherwise, create it.
+1. **Write the SRD from the PRD and any existing code.** Treat the PRD as having answered every product question; raise any it missed with the Managing Intelligence. Settle the software decisions using the guidance and findings. Look up small things yourself; use a Researcher for questions needing real digging, one per question in parallel. File each question as described in Writes and link its Research ticket from the SRD. Use the cited answer to settle the decision, then set the Research ticket `done`. Save the SRD before dispatching so Researchers have its ID and each TLA+ Writer can read it before modelling.
    - If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered against the changed SRD. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the old SRD.
 
-6. **Model the selected parts.**
-   - If parts need modelling, dispatch the TLA+ Writers as described in Dispatches. Fix SRD bugs the models find and save the corrected SRD. Re-dispatch for affected parts until the models agree with the corrected SRD and their checks pass. Raise any product question a model reveals with the Managing Intelligence.
-   - If no part needs modelling, continue to self-review.
+2. **Model the parts whose correctness needs it.** Select concurrency, state machines, protocols or invariants needing a model, including modelled parts affected by a revision. Dispatch TLA+ Writers, fix the SRD where a model finds a bug, and save before re-dispatching affected parts until the models match the SRD and their checks pass. Raise any product question a model reveals with the Managing Intelligence.
 
-7. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
+3. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
      - Fold each review finding, model finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section.
      - Cut text a change superseded, repeated text and padding.
      - Keep every current software requirement, invariant, acceptance criterion, supplied edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
      - Within the SRD, an acceptance criterion may restate the behaviour it checks, and a summary may restate what the body details. Nothing else repeats; refer to an existing SR when another group needs it.
-   - **Requirements:** make every SR a verifiable software obligation grounded in the PRD and any existing code, with implementation choices left to planning and execution.
+   - **Requirements:** make every SR a verifiable software obligation grounded in the PRD and any existing code.
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. Keep an explicit boundary only when the Managing Intelligence wants it stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
 
-8. **Finish.**
-   - If self-review changed a modelled part or found another part that needs a model, go back to step 5.
-   - Otherwise, save the final SRD.
+   Save the final SRD.
+   - If self-review changed a modelled part or found another part needing a model, repeat modelling and self-review.
 
 ## Dispatches
 
-Dispatch the **TLA+ Writer** once per selected SRD part, in parallel, through the Agent Protocol File.
-
-Pass the Idea, PRD and SRD IDs; the assigned SR group IDs and modelling question; the relevant repos and checkout paths; any existing spec Doc ID for that part; and findings that prompted the dispatch.
+- **TLA+ Writer:** launch one per SRD part needing a model, in parallel. Expect a TLA+ spec Doc, model-checker results and findings for the SRD.
+- **Researcher:** launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report.
 
 ## Writes
 
@@ -81,9 +67,13 @@ The Idea's Plan, set back to `draft` when a revision changes an SRD it was built
 
 The TLA+ Writers it dispatches write each modelled part's TLA+ spec Doc.
 
+File Research tickets in the Research store as `defined` with the question, each with a Report child the Researcher writes. Set each ticket `done` once its answer is used. These tickets skip the research skill's review rounds.
+
 ## Done
 
 Report the SRD's ID, any product questions you raised and incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
+
+Report the Research tickets filed and what each settled.
 
 - If the SRD and all selected modelling are complete, suggest “req-review”.
 - Otherwise, say what must be settled before write-srd can finish.
@@ -93,6 +83,7 @@ Report the SRD's ID, any product questions you raised and incomplete work, and w
 - **Group by concern:** group requirements by domain or concern, not by PRD section. Data model, configuration, interfaces, runtime behaviour, validation, behaviour to preserve and documentation are common groups; use those the change needs.
 - **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because TLA+ Writers, req-review and write-plan cite them by number.
 - **Software requirements:** define what must be true, leaving the implementation plan open. Name actual modules and established patterns where they constrain the work.
+- **Technology and architecture:** state each choice the SRD makes, with its reason in a sentence, and link the Research ticket if one informed it.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the change. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
 - **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep model-checking bounds in the spec as modelling assumptions, rather than turning them into product limits.
@@ -118,8 +109,7 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 ## What not to include
 
 - Keep source code, function signatures and pseudocode out of the SRD; TLA+ models belong in their spec Docs.
-- Leave function-call instructions, library choices, architectural proposals, design alternatives and step-by-step implementation plans to planning.
-- The exceptions are constraints the input already requires, and the names of test helpers and fixtures.
+- Keep function-call instructions and step-by-step implementation plans out of the SRD; test helpers and fixtures may be named.
 - Include defaults, fallbacks, validation, schemas, error rules and guards only when grounded in the input or applicable guidance.
 - Omit time estimates and scheduling.
 - Omit history, decision logs and deferred work.

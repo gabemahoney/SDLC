@@ -68,7 +68,7 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 
 - Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers the `SKILL.md`, a Subagent definition, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
 - If your skill's Gate fails, change nothing and say why.
-- No skill or Subagent runs another skill.
+- No skill or Subagent runs another Apiary skill.
 - After a compaction, re-read the Protocol Files and Guidance Documents you loaded.
 - Report pass, fail or not applicable for every required check and gate in the `SKILL.md` and its Guidance Documents, and name the Guidance Document copies or Default Fallback Files used.
 
