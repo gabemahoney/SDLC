@@ -54,7 +54,7 @@ None: the SRD can be written or revised at any Idea status.
    - If parts need modelling, then dispatch one TLA+ Writer per part in parallel as described in Dispatches. Read each report and spec, fix SRD bugs the models find, and save the corrected SRD. Re-dispatch for affected parts until the models agree with the corrected SRD and their checks pass. Route any necessary design decision back through step 3.
    - If no part needs modelling, then continue to self-review and report why modelling was unnecessary.
 
-6. **Review and finish the SRD yourself.** Make four passes over the whole draft, for a first draft and a revision alike. Repeat all four until a full round changes nothing:
+6. **Review and finish the SRD yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
      - Fold each review finding, model finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section.
      - Cut text a change superseded, repeated text and padding.

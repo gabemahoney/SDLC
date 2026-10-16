@@ -43,7 +43,7 @@ None: the PRD can be written or revised at any Idea status.
 3. **Write the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions; flag them in the report.
    - If revising, first apply the findings or change notes to establish the current requirements.
 
-4. **Review it yourself.** Make four passes over the whole draft (succinctness, product not software, dropped ideas, quality checklist), for a first draft and a revision alike. Repeat all four until a full round of them changes nothing:
+4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
      - Fold each finding or change into the body where it belongs. Never append amendments, errata or a review-fixes section.
      - Cut text a change superseded, repeated text and padding.
