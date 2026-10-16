@@ -117,22 +117,24 @@ Remove this section when there are none.
 
 - **Plain English.** Use short sentences and clear bullet lists, with short paragraphs where detail is needed. Every sentence adds information.
 - **Only what the input states.** Keep the PRD short. Include only requirements and guards against real harm grounded in the context and interview answers.
-- **Requirements, not solutions.** Describe what must be true. Make every requirement specific and verifiable.
-- **Conversational wording.** Use direct statements without requirement numbers; user-story format is optional.
+- **Requirements, not solutions.** State the user's problem and needed outcome; leave the design open. Make every requirement specific and verifiable.
+  Bad: “Add a red Retry button that calls the retry endpoint.” Good: “Customers can retry a failed payment. An order is charged at most once.”
+- **Conversational wording.** Use direct statements without requirement numbers. Use user stories when actor, goal and benefit add clarity.
 - **Consistent terms.** Explain each novel term briefly or point to the Glossary at first use in the body. Use its exact Glossary wording in Title Case, including plurals, except names in backticks. Lowercase words and synonyms never stand for defined terms; definitions avoid the lowercase form of their own term. Quote or backtick feature names sharing a term's word.
 - **Current requirements.** State the requirements as they now stand. Fold answered Open Questions into the body.
 
 ## Quality checklist
 
-Before saving, verify:
+Before saving, check the resolved requirements below. Record gaps the Managing Intelligence explicitly leaves unresolved as Open Questions and report the affected checks as incomplete.
 
 - [ ] The Glossary and At a glance stand alone, and terms are explained at first use.
-- [ ] The problem statement is clear and concise.
+- [ ] The problem statement identifies the affected users and the evidence for their need; assumptions are labelled.
 - [ ] Goals are concrete and measurable.
 - [ ] Non-goals give explicit boundaries.
-- [ ] Every functional requirement is testable.
+- [ ] Each requirement states one testable obligation, serves a stated need and has an acceptance check.
+- [ ] Supplied priorities and trade-offs are explicit.
 - [ ] Supplied edge cases and error scenarios have expected behaviours.
-- [ ] Acceptance criteria are specific and observable.
+- [ ] Acceptance criteria specify observable outcomes and relevant conditions and measures. Use Given/When/Then for behaviour that depends on context.
 - [ ] Assumptions and dependencies are explicit.
 - [ ] The document contains requirements rather than implementation details or code.
 - [ ] Sections agree with each other.
@@ -143,6 +145,7 @@ Before saving, verify:
 - Source code, pseudocode or technical implementation details.
 - Architecture decisions, design proposals or instructions for how to build it.
 - Defaults, fallbacks, validation, schemas, edge-case rules or guards the input did not request.
+- Vague claims such as “fast” or “user-friendly” without agreed measures, or invented targets presented as requirements.
 - Time estimates or scheduling.
 - Specific file paths, function names or line numbers.
 - Rejected alternatives, reversed decisions, history or a decision log.
