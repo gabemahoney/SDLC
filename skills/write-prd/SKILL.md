@@ -119,6 +119,7 @@ resolve. Remove this section when there are none.
 - **Product requirements, not software requirements.** Write what the product must do for the people who use it: user-facing behaviour and outcomes. Software requirements belong in the SRD, written next. If you are writing about code, components or data structures, you are probably doing it wrong.
 - **Plain English.** Use short sentences and clear bullet lists, with short paragraphs where detail is needed. Every sentence adds information.
 - **Only what the input states.** Keep the PRD short. Include only requirements and guards against real harm grounded in the context and interview answers.
+- **No false precision.** Every number in a PRD becomes a hard limit the SRD must meet exactly. Give a number only when the Managing Intelligence states one or confirms it is a real limit. Otherwise state the need in words, such as "fast enough that users don't wait" or "handles a typical team's tickets". Never invent a target to make a requirement look testable.
 - **Requirements, not solutions.** State the user's problem and needed outcome; leave the design open. Make every requirement specific and verifiable.
   Bad: “Add a red Retry button that calls the retry endpoint.” Good: “Customers can retry a failed payment. An order is charged at most once.”
 - **Conversational wording.** Use direct statements without requirement numbers. Use user stories when actor, goal and benefit add clarity.
@@ -147,7 +148,7 @@ Before saving, check the resolved requirements below. Record gaps the Managing I
 - Source code, pseudocode or technical implementation details.
 - Architecture decisions, design proposals or instructions for how to build it.
 - Defaults, fallbacks, validation, schemas, edge-case rules or guards the input did not request.
-- Vague claims such as “fast” or “user-friendly” without agreed measures, or invented targets presented as requirements.
+- Invented numbers or targets the Managing Intelligence did not give.
 - Time estimates or scheduling.
 - Specific file paths, function names or line numbers.
 - Rejected alternatives, reversed decisions, history or a decision log.
