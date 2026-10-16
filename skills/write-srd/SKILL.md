@@ -83,6 +83,7 @@ Report the Research tickets filed and what each settled.
 - **Group by concern:** group requirements by domain or concern, not by PRD section. Data model, configuration, interfaces, runtime behaviour, validation, behaviour to preserve and documentation are common groups; use those the change needs.
 - **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because TLA+ Writers, req-review and write-plan cite them by number.
 - **Software requirements:** define what must be true. Name actual modules and established patterns where they constrain the work.
+- **Linked models:** link each modelled SR group to its TLA+ spec Doc.
 - **Technology and architecture:** state each choice the SRD makes, with its reason in a sentence, and link the Research ticket if one informed it.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the change. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
