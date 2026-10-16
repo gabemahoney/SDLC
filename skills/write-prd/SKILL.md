@@ -86,6 +86,10 @@ Report the PRD's ID, assumptions, Open Questions, incomplete work and what the S
 
 If an Open Question stops a check below from passing, say so in your report and mark that check incomplete.
 
+- [ ] The problem statement names who has the problem and why it matters to them.
+- [ ] Every requirement is user-facing product behaviour; nothing describes code, components or data structures.
+- [ ] Nothing mentions an idea that was discussed and dropped, except a Non-Goal the Managing Intelligence asked to keep.
+- [ ] Supplied edge cases and error scenarios have expected behaviours.
 - [ ] Each requirement states one testable obligation, serves a stated need and has an acceptance check.
 - [ ] Supplied priorities and trade-offs are explicit.
 - [ ] Acceptance criteria specify observable outcomes, and the conditions and measures that matter.
