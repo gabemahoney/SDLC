@@ -36,10 +36,10 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 ## Steps
 
-1. **Write the SRD from the PRD and any existing code.** Treat the PRD as having answered every product question; raise any it missed with the Managing Intelligence. Settle the software decisions using the guidance and findings. Look up small things yourself; use a Researcher for questions needing real digging, one per question in parallel. File each question as described in Writes and link its Research ticket from the SRD. Use the cited answer to settle the decision, then set the Research ticket `done`. Save the SRD before dispatching so Researchers have its ID and each TLA+ Writer can read it before modelling.
+1. **Write the SRD from the PRD and any existing code.** Treat the PRD as having answered every product question, and raise any it missed with the Managing Intelligence. Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
    - If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered against the changed SRD. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the old SRD.
 
-2. **Model the parts whose correctness needs it.** Select concurrency, state machines, protocols or invariants needing a model, including modelled parts affected by a revision. Dispatch TLA+ Writers, fix the SRD where a model finds a bug, and save before re-dispatching affected parts until the models match the SRD and their checks pass. Raise any product question a model reveals with the Managing Intelligence.
+2. **Model the parts whose correctness needs it.** Select concurrency, state machines, protocols or invariants needing a model, including modelled parts affected by a revision. Dispatch TLA+ Writers and fix the SRD where a model finds a bug. Save and re-dispatch the affected parts until the models match the SRD and their checks pass. Raise any product question a model reveals with the Managing Intelligence.
 
 3. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
@@ -51,13 +51,12 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. Keep an explicit boundary only when the Managing Intelligence wants it stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
 
-   Save the final SRD.
-   - If self-review changed a modelled part or found another part needing a model, repeat modelling and self-review.
+   If self-review changed a modelled part or found another part that needs a model, go back to step 2. Otherwise, save the final SRD.
 
 ## Dispatches
 
 - **TLA+ Writer:** launch one per SRD part needing a model, in parallel. Expect a TLA+ spec Doc, model-checker results and findings for the SRD.
-- **Researcher:** launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report.
+- **Researcher:** launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report. Use it to settle the decision, then set the ticket `done`.
 
 ## Writes
 
@@ -65,9 +64,9 @@ The SRD, a Doc child of the Idea titled `SRD`. A new SRD starts as `draft`, and 
 
 The Idea's Plan, set back to `draft` when a revision changes an SRD it was built from.
 
-The TLA+ Writers it dispatches write each modelled part's TLA+ spec Doc.
+Each modelled part's TLA+ spec Doc, written by its TLA+ Writer.
 
-File Research tickets in the Research store as `defined` with the question, each with a Report child the Researcher writes. Set each ticket `done` once its answer is used. These tickets skip the research skill's review rounds.
+Research tickets in the Research store, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds.
 
 ## Done
 
