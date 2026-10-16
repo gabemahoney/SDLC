@@ -33,4 +33,6 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
   - steps a capable model doesn't need spelled out.
 
 ## How a skill change is made
+The b.v38 PRD Docs are background only; use the Acceptance baseline for checks.
+
 Load today's skill, and any Subagent it folds in, into context (`apiary-main` master `skills/<name>/SKILL.md` and `agents/apiary-<role>.md`). Write the new skill from it, keeping what works and changing what these goals require. Then run a cold read and the checklist (`docs/skill-review-checklist.md`).
