@@ -39,6 +39,7 @@ What it reports, and the next-step suggestion.
 ```
 
 Rules for writing a skill:
+- No logic specific to one template, intake, resolver, ticket system, Launcher or Agent: say 'follow the …' and put the specifics in that file.
 - State what a skill does and takes; don't list what it doesn't.
 - Write a step that branches as if/then bullets, one per path. Write straight-line steps as plain sentences.
 - Quote the `description` value: an unquoted colon breaks the frontmatter.

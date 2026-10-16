@@ -84,7 +84,7 @@ Enforce your skill's gate before changing anything. If it fails, change nothing 
 
 ## Source references
 
-A source reference links a ticket to something outside the ticket system that it came from. The ticket system stores only the link; Apiary resolves and reads it. Resolve GitHub links through the GitHub CLI. Read source references as context.
+A source reference links a ticket to something outside the ticket system that it came from. The ticket system stores only the link; Apiary resolves and reads it. Follow the selected source reference resolver. Read source references as context.
 
 ## Shared rules
 
