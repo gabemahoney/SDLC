@@ -97,9 +97,8 @@ A source reference links a ticket to the source outside the ticket system that t
 Before changing anything:
 
 1. Identify your Agent.
-2. Read the installed `~/.apiary/system/workflow.md`.
-3. Find the Project Folder (see Project Folder, paths and worktrees).
-4. Load settings (see Settings).
+2. Find the Project Folder (see Project Folder, paths and worktrees).
+3. Load settings (see Settings).
 
 Load these Protocol Files from `~/.apiary/system/protocols/`:
 
