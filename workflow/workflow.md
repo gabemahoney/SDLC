@@ -80,7 +80,7 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
 - **Where to work:** if develop-epic, idea-review, write-plan or write-epic starts inside `<Project Folder>/.worktrees/<ticket id>/`, it works only in that ticket's worktrees. Otherwise it works in the main checkouts.
 - **Code work happens in the worktree,** when you're in one.
-- **Guidance Documents come from the main checkout,** never a worktree.
+- **Guidance Documents come from the main checkout,** never a worktree. Load only the ones your `SKILL.md` or Subagent definition names. Read every copy of each, starting from the `.apiary` Folder in the main checkout of the repo you're working in (or your current directory, outside a repo), then each parent folder's `.apiary` up to `~/.apiary`. Use all the copies together, and ask the Managing Intelligence if they conflict. If there's no copy at all, use `~/.apiary/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
 - **Pushing:** push only as the Project's `release-guide.md` allows.
 
@@ -91,10 +91,6 @@ Read settings only from the Project Folder's `.apiary/project_settings.md`, then
 If a setting the Run needs is missing from both files, stop before any change and point to project-setup.
 
 Pass the settings and the Ticket System and Agent Protocol Files in every dispatch. Subagents use the supplied settings and Protocol Files, not their own lookup.
-
-### Guidance Documents
-
-Load only the Guidance Documents your `SKILL.md` or Subagent definition names. Read every copy of each one, from the `.apiary` Folder in the main checkout of the repo you're working in (or your current directory, outside a repo) up through each parent's to `~/.apiary`. Use them together, and ask the Managing Intelligence if they conflict. If there's no copy, use `~/.apiary/<name>-default-fallback.md`.
 
 ### Thinking Levels
 
