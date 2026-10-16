@@ -66,7 +66,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Owned transitions:** Creates Tasks and Subtasks `draft`; after the Product Manager's check and revision, sets them, then Epic, `defined`.
 
-**Specific rules:** Sets its Tasks' `thinking_level:` tags. Dispatches executor planners where useful. Records suggested Test Writer lanes and flags Tasks changing interfaces for integration checks. Each Subtask names its executor, scope, acceptance criteria and concrete Key Files from a named repo's root; Managing Intelligence decisions are carried word for word.
+**Specific rules:** Plans the test fixtures (moved from the SRD, 2026-10-16): which existing fixtures, factories, helpers and constants tests reuse, what they need for this change, which new fixtures are needed and where, and which test files to extend or add, so tests don't hand-roll shared setup. Sets its Tasks' `thinking_level:` tags. Dispatches executor planners where useful. Records suggested Test Writer lanes and flags Tasks changing interfaces for integration checks. Each Subtask names its executor, scope, acceptance criteria and concrete Key Files from a named repo's root; Managing Intelligence decisions are carried word for word.
 
 ## develop-epic
 

@@ -27,7 +27,6 @@ An Idea ID, with optional review findings or change notes for a revision.
 - **The Idea, its Docs and Plan:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, find the SRD and TLA+ specs to revise, ground changes in current requirements and supplied findings, and identify the Plan and active Epics affected by a revision.
 - **Research tickets and Reports:** through the Ticket System Protocol File, using the tickets linked from the SRD or filed during this Run. Why: to use their evidence in software decisions.
 - **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes. Why: to ground constraints in the Project's engineering conventions.
-- **Test guidance:** `test-guide.md` for each explored repo, found as `workflow.md` describes. Why: to ground test requirements in the Project's test conventions.
 - **Codebase and tests:** the affected code folders under `<Project Folder>`, if any, identified from the PRD and Idea. Why: so the requirements fit the code that exists.
 
 ## Gate
@@ -90,7 +89,6 @@ Report the Research tickets filed and what each settled.
 - **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep model-checking bounds in the spec as modelling assumptions, rather than turning them into product limits.
 - **Consistent terms:** use the PRD's defined terms in Title Case wherever they appear, with the same meanings. Explain additional terms at first use and use their defined names consistently.
 - **Stable references:** you may name code files and modules, but never line numbers or code, because those change far more often than the requirements. Pseudocode is fine where it makes a requirement clearer.
-- **Test fixtures:** say which existing fixtures, factories, helpers and constants tests must reuse, what they need to support this change, what new fixtures are needed and where, and which test files to extend or add. Ground it in any existing code and the test guidance, say when nothing new is needed, and keep it in proportion to the change. This stops tests hand-rolling shared setup.
 
 ## Quality checklist
 
@@ -99,8 +97,7 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - [ ] The SRD covers every PRD acceptance criterion.
 - [ ] Every SR states a specific, testable obligation grounded in current input or applicable guidance.
 - [ ] The SRD agrees with the PRD and uses its defined terms consistently.
-- [ ] References to existing code name real modules, patterns, fixtures and helpers, and anything new is marked as new.
-- [ ] The test requirements identify the relevant helpers, factories, constants, needed extensions and test locations.
+- [ ] References to existing code name real modules and patterns, and anything new is marked as new.
 - [ ] Numeric constraints have a stated basis, and modelling bounds remain modelling assumptions.
 - [ ] Each selected part has a checked TLA+ spec matching the final SRD, and model findings have been resolved.
 
