@@ -126,7 +126,7 @@ resolve. Remove this section when there are none.
 Before saving, check the resolved requirements below. Record gaps the Managing Intelligence explicitly leaves unresolved as Open Questions and report the affected checks as incomplete.
 
 - [ ] The Glossary and Goals stand alone, and terms are explained at first use.
-- [ ] The problem statement identifies the affected users and the evidence for their need; assumptions are labelled.
+- [ ] The problem statement names who has the problem and why it matters to them.
 - [ ] Goals are concrete and measurable.
 - [ ] Non-goals give explicit boundaries.
 - [ ] Each requirement states one testable obligation, serves a stated need and has an acceptance check.
