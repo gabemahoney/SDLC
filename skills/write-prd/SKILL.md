@@ -84,8 +84,8 @@ Explicit boundaries that prevent scope creep during implementation.
 ## Requirements
 
 ### Functional Requirements
-What the system must do. Each requirement is specific enough to test and
-independent where possible.
+Each requirement is a statement of what the product must do, not how it must
+do it. Each is specific enough to test and independent where possible.
 
 ### Edge Cases and Error Handling
 The scenarios and expected behaviour supplied by the input and interview.
