@@ -40,7 +40,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Owned transitions:** Creates SRD `draft`; revising a `defined` SRD sets it back to `draft`.
 
-**Specific rules:** write-srd selects the parts to model, dispatches one TLA+ Writer per part in parallel, and fixes SRD bugs their models find.
+**Specific rules:** Add an `srd_template` setting the same way as write-prd's `prd_template` (path to the SRD template; shipped default `~/.apiary/system/doc-templates/srd.md`), with the sections write-plan and req-review need kept required. write-srd selects the parts to model, dispatches one TLA+ Writer per part in parallel, and fixes SRD bugs their models find.
 
 ## req-review
 
