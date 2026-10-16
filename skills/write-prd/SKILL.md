@@ -43,7 +43,9 @@ None: the PRD can be written or revised at any Idea status.
 3. **Write and check the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions in the draft; flag them in the report.
    - If revising, first apply the findings or change notes to establish the current requirements.
 
-   Then run the Succinctness pass in `workflow.md` on the whole PRD, a first draft as well as a revision: cut repetition and padding with no loss of signal. Apply the Quality Checklist before saving.
+   Then make a final pass over the whole PRD, a first draft as well as a revision:
+   - Run the Succinctness pass in `workflow.md`: cut repetition and padding with no loss of signal.
+   - Remove every trace of ideas discussed and dropped. If the interview considered something and decided against it, the PRD doesn't mention it at all. No "must not do X" or "X is out of scope" just because X came up. Keep a Non-Goal only when the Managing Intelligence wants that boundary stated. Apply the Quality Checklist before saving.
 
 4. **Save the PRD.** Follow the Ticket System Protocol File.
    - If the Idea has a PRD, update that Doc; a revised `defined` PRD returns to `draft`, and a `draft` PRD stays `draft`.
