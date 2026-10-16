@@ -84,7 +84,7 @@ Report the PRD's ID, assumptions, Open Questions, incomplete work and what the S
 
 ## Quality checklist
 
-Report checks affected by Open Questions as incomplete.
+If an Open Question stops a check below from passing, say so in your report and mark that check incomplete.
 
 - [ ] Each requirement states one testable obligation, serves a stated need and has an acceptance check.
 - [ ] Supplied priorities and trade-offs are explicit.
