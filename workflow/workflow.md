@@ -94,33 +94,10 @@ A source reference links a ticket to the source outside the ticket system that t
 
 ### Starting, reporting and resuming
 
-Before changing anything:
-
-1. Identify your Agent.
-2. Find the Project Folder (see Project Folder, paths and worktrees).
-3. Load settings (see Settings).
-
-Load these Protocol Files from `~/.apiary/system/protocols/`:
-
-- Load your Agent's Protocol File: `agent-claude-code.md` in Claude Code, or `agent-codex.md` in Codex CLI.
-- For ticket work, load `ticket-<ticket_system>.md`, named by the `ticket_system` setting (e.g. `ticket-bees.md`).
-- For configure-worktree and teardown-worktree outside worktree-only mode, load `launcher-<launcher>.md`, named by the `launcher` setting (e.g. `launcher-agent-director.md`). Worktree-only mode leaves Worker management to the caller. For project-setup, load the Launcher Protocol File to check the Launcher's prerequisites.
-
-A Subagent uses the settings and Protocol Files its dispatch prompt names and looks nothing up itself. After a compaction, also re-read the Protocol Files you loaded and your Guidance Documents. Complete these steps:
-
-1. Check the ticket ID or creation input.
-2. Load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and any templates it names.
-3. Complete the fail-closed checks.
-4. Check the state gate.
-
-Stop before any change, naming the file, if either condition holds:
-
-- A Guidance Document your `SKILL.md` or Subagent definition names has neither a user copy nor a Default Fallback File.
-- A needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable.
-
-A missing store also stops the Run before any change. Point to project-setup.
-
-Read and follow a skill's installed `SKILL.md` whenever running it. No skill or Subagent runs another skill. Subagents follow their installed definitions. Report pass, fail or not applicable for every required check and gate in loaded `SKILL.md` files and Guidance Documents. Name the Guidance Document copies or Default Fallback Files used.
+- Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers `workflow.md`, the `SKILL.md`, a Subagent definition, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
+- No skill or Subagent runs another skill.
+- After a compaction, re-read the Protocol Files and Guidance Documents you loaded.
+- Report pass, fail or not applicable for every required check and gate in the `SKILL.md` and its Guidance Documents, and name the Guidance Document copies or Default Fallback Files used.
 
 ### Project Folder, paths and worktrees
 
