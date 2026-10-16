@@ -95,7 +95,7 @@ Before changing anything, identify your Agent, read the installed `workflow.md`,
 - `ticket-<ticket_system>.md`, named by the `ticket_system` setting (e.g. `ticket-bees.md`), for ticket work;
 - `launcher-<launcher>.md`, named by the `launcher` setting (e.g. `launcher-agent-director.md`), for configure-worktree and teardown-worktree outside worktree-only mode.
 
-A Subagent uses the settings and Protocol Files its dispatch prompt names and looks nothing up itself. After a compaction, also re-read the Protocol Files you loaded and your Guidance Documents. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate.
+A Subagent uses the settings and Protocol Files its dispatch prompt names and looks nothing up itself. After a compaction, also re-read the Protocol Files you loaded and your Guidance Documents. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and any templates it names, complete the fail-closed checks, then check the state gate.
 
 Stop before any change, naming the file, if a Guidance Document your `SKILL.md` or Subagent definition names has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the Run likewise; point to project-setup.
 

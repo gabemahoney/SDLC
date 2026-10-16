@@ -27,7 +27,7 @@ None: write-idea creates a new ticket.
 
 ## Steps
 
-1. Check that the input fits the intake. If it doesn't (for example, no issue URL for the `github` resolver), stop and say what's needed.
+1. Check that the input fits the intake. If it doesn't (for example, no issue URL for the `github` resolver), stop and ask the Managing Intelligence for what's needed.
 2. When the intake names a source reference resolver, store the input as the Idea's source reference.
 3. When the intake says to interview the Managing Intelligence, interview them and write the description in the Idea's body.
 4. File the Idea.
@@ -39,10 +39,6 @@ None.
 ## Writes
 
 - A new Idea in the Ideas store, status `draft`.
-
-## Stops and asks
-
-None beyond step 1.
 
 ## Done
 
