@@ -38,11 +38,11 @@ None: requirements can be reviewed at any Idea status.
    - If the Idea has no SRD, dispatch the Requirements Reviewer to review the PRD alone.
    - If the Idea has an SRD, dispatch the Requirements Reviewer to review the PRD and SRD together, and a TLA+ Reviewer for each TLA+ spec Doc alongside it.
 
-2. **Get the Managing Intelligence's decision.** Present the findings and readiness verdicts, then stop and ask the Managing Intelligence: which findings should be accepted, and which requirements Docs are approved or need revision? Set each approved PRD or SRD `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
+2. **Get the Managing Intelligence's decision.** Present the findings and readiness verdicts. The Managing Intelligence decides which findings to accept and which Docs to approve. Set each approved PRD or SRD `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
    - If revisions are needed, hand off the accepted findings and declined findings separately. Suggest that the Managing Intelligence run write-prd for product changes or write-srd for software or model changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
    - If the combined review is approved and both the PRD and SRD are `defined`, set the `draft` Idea `defined`.
 
-3. **Settle other Docs separately.** For each `draft` Doc other than the PRD, SRD or a TLA+ spec, stop and ask the Managing Intelligence: mark this Doc `defined`? On yes, set it `defined`. These approvals are independent of the Idea's approval.
+3. **Settle other Docs separately.** For each `draft` Doc other than the PRD, SRD or a TLA+ spec, ask the Managing Intelligence whether to mark it `defined`, and do so on yes. These approvals are independent of the Idea's approval.
 
 ## Dispatches
 
@@ -75,7 +75,7 @@ The Requirements Reviewer checks the relevant code and docs as well as the requi
 - **Completeness:** requirements state the dependencies, assumptions, boundaries and expected behaviour for relevant edge cases and errors. Cover the decisions this change needs in proportion to the change.
 - **Testability:** each requirement has clear acceptance criteria and observable outcomes. Performance, security, scalability and other non-functional requirements have measures grounded in a stated need or existing constraint.
 - **Implementation readiness:** Agents can implement the resolved requirements without inventing product decisions. Flag implied assumptions and unresolved questions that prevent implementation.
-- **PRD quality:** the problem and Goals are clear, acceptance criteria are defined, and applicable UI/UX and mobile or responsive behaviour are described. Product requirements describe what users need.
+- **PRD quality:** the problem and the outcome users need are clear, acceptance criteria are defined, and any user-facing behaviour the change needs is described. Product requirements describe what users need.
 - **SRD quality:** deployment, performance, interfaces, data models, authentication and authorization, security and testing are specified where the change needs them. Software requirements fit the existing code and make new capabilities explicit. A risky SRD part lacking a model may be raised as a finding for write-srd.
 
 Make each finding specific: cite the affected Doc and section or requirement, explain its criticality and suggest a fix. Every proposed new rule cites the stated requirement it serves.
