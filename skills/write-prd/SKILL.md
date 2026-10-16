@@ -112,6 +112,7 @@ resolve. Remove this section when there are none.
 
 ## Style rules
 
+- **Product requirements, not software requirements.** Write what the product must do for the people who use it: user-facing behaviour and outcomes. Software requirements belong in the SRD, written next. If you are writing about code, components or data structures, you are probably doing it wrong.
 - **Plain English.** Use short sentences and clear bullet lists, with short paragraphs where detail is needed. Every sentence adds information.
 - **Only what the input states.** Keep the PRD short. Include only requirements and guards against real harm grounded in the context and interview answers.
 - **Requirements, not solutions.** State the user's problem and needed outcome; leave the design open. Make every requirement specific and verifiable.
@@ -133,7 +134,7 @@ Before saving, check the resolved requirements below. Record gaps the Managing I
 - [ ] Supplied edge cases and error scenarios have expected behaviours.
 - [ ] Acceptance criteria specify observable outcomes and relevant conditions and measures. Use Given/When/Then for behaviour that depends on context.
 - [ ] Assumptions and dependencies are explicit.
-- [ ] The document contains requirements rather than implementation details or code.
+- [ ] Every requirement is user-facing product behaviour; nothing describes code, components or data structures.
 - [ ] Sections agree with each other.
 - [ ] An Agent can implement the resolved requirements without inventing product decisions; unresolved decisions are Open Questions.
 
