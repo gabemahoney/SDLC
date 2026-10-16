@@ -55,7 +55,7 @@ None: the PRD can be written or revised at any Idea status.
 
 5. **Save the PRD.**
    - If the Idea has a PRD, update that Doc.
-   - Otherwise, create a Doc child of the Idea titled `PRD`.
+   - Otherwise, create it.
 
 ## Dispatches
 
@@ -63,7 +63,7 @@ None: write-prd interviews and writes the PRD itself.
 
 ## Writes
 
-Write the PRD Doc in the Ideas store. Create it as `draft`; return a revised `defined` PRD to `draft`.
+The PRD, a Doc child of the Idea titled `PRD`. A new PRD starts as `draft`, and a revised `defined` PRD goes back to `draft`.
 
 ## Done
 
