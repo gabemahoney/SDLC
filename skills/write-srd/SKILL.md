@@ -56,7 +56,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 ## Dispatches
 
-- **TLA+ Writer:** launch one per SRD part needing a model, in parallel. Expect a TLA+ spec Doc, model-checker results and findings for the SRD.
+- **TLA+ Writer:** launch one per SRD part needing a model, in parallel. Each writes the model and runs the model checker. Expect a TLA+ spec Doc, the checker results and findings for the SRD.
 - **Researcher:** launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report. Use it to settle the decision, then set the ticket `done`.
 
 ## Writes
