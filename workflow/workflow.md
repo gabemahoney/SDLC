@@ -74,15 +74,14 @@ Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec D
 
 ### Project Folder, paths and worktrees
 
-The Project Folder is the nearest folder, from the working directory up, containing `.apiary/project_settings.md`. If no such settings file is found, use the folder the Agent started in as the Project Folder and read settings only from `~/.apiary/default_project_settings.md`. Project Folders don't nest. The Project's repos are its main checkouts under the Project Folder, outside any other Project Folder.
-
-Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree—change files and commit only inside repo checkouts.
-
-- **Paths to repo files:** a ticket names a repo file by its repo and its path from that repo's root, such as `app: src/export.py`. Open it in the checkout you're working in. In the worktree `.worktrees/b.xyz/app/`, that is `.worktrees/b.xyz/app/src/export.py`. If a path into a repo is written in full, open the same file in your checkout. Other paths mean exactly what they say.
-- **Where worktrees live:** only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder.
-- **Where to work:** this rule applies to develop-epic and idea-review, and to write-plan and write-epic for the repos they plan in. When started in `<Project Folder>/.worktrees/<ticket id>/`, these skills work only in that ticket's worktrees. Otherwise, they work in the main checkouts.
-- **How to commit:** commit per repo, naming the ticket. A Task spanning repos gets one commit per repo.
-- **Who pushes:** push only as the Project's `release-guide.md` allows.
+- **Project Folder:** the nearest folder, from the working directory up, that holds `.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest.
+- **Repos:** the Project's repos are its main checkouts under the Project Folder.
+- **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree change files and commit only inside repo checkouts.
+- **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
+- **Where to work:** if develop-epic, idea-review, write-plan or write-epic starts inside `<Project Folder>/.worktrees/<ticket id>/`, it works only in that ticket's worktrees. Otherwise it works in the main checkouts.
+- **Repo files:** open every repo file you work on in the checkout you're working in. In a worktree, a path into the repo always means the worktree's copy, however the path is written. Guidance Documents are the exception; see Guidance Documents.
+- **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
+- **Pushing:** push only as the Project's `release-guide.md` allows.
 
 ### Settings
 
@@ -101,7 +100,7 @@ Load only the Guidance Documents your `SKILL.md` or Subagent definition names. T
 3. Use every copy you find, together. If two copies conflict, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
 4. If you find none, use `~/.apiary/<name>-default-fallback.md`.
 
-If a copy is only a pointer to other files, follow it. A relative pointer is relative to the folder holding the copy, and the file it points to is read from the main checkout too.
+If a copy is only a pointer to other files, follow it. A relative pointer is relative to the folder holding the copy. Read the file it points to exactly where the pointer says, never in your worktree.
 
 ### Thinking Levels
 
