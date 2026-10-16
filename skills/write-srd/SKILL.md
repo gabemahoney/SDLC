@@ -81,13 +81,13 @@ Report the Research tickets filed and what each settled.
 
 - **Group by concern:** group requirements by domain or concern, not by PRD section. Data model, configuration, interfaces, runtime behaviour, validation, behaviour to preserve and documentation are common groups; use those the change needs.
 - **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because TLA+ Writers, req-review and write-plan cite them by number.
-- **Software requirements:** define what must be true, leaving the implementation plan open. Name actual modules and established patterns where they constrain the work.
+- **Software requirements:** define what must be true. Name actual modules and established patterns where they constrain the work.
 - **Technology and architecture:** state each choice the SRD makes, with its reason in a sentence, and link the Research ticket if one informed it.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the change. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
 - **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep model-checking bounds in the spec as modelling assumptions, rather than turning them into product limits.
 - **Consistent terms:** use the PRD's defined terms in Title Case wherever they appear, with the same meanings. Explain additional terms at first use and use their defined names consistently.
-- **Stable references:** name files and modules without line numbers. Other than test helpers and fixtures, requirements describe obligations rather than function calls.
+- **Stable references:** name files and modules without line numbers.
 - **Test fixtures:** say which existing fixtures, factories, helpers and constants tests must reuse, what they need to support this change, what new fixtures are needed and where, and which test files to extend or add. Ground it in any existing code and the test guidance, say when nothing new is needed, and keep it in proportion to the change. This stops tests hand-rolling shared setup.
 
 ## Quality checklist
@@ -99,16 +99,13 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - [ ] The SRD agrees with the PRD and uses its defined terms consistently.
 - [ ] References to existing code name real modules, patterns, fixtures and helpers, and anything new is marked as new.
 - [ ] The test requirements identify the relevant helpers, factories, constants, needed extensions and test locations.
-- [ ] Requirements define what must be true and leave implementation steps open.
 - [ ] Numeric constraints have a stated basis, and modelling bounds remain modelling assumptions.
 - [ ] Each selected part has a checked TLA+ spec matching the final SRD, and model findings have been resolved.
-- [ ] The document contains only current requirements and boundaries the Managing Intelligence wants stated.
 - [ ] The document is free of source code, pseudocode and line numbers.
 
 ## What not to include
 
-- Keep source code, function signatures and pseudocode out of the SRD; TLA+ models belong in their spec Docs.
-- Keep function-call instructions and step-by-step implementation plans out of the SRD; test helpers and fixtures may be named.
+- Leave out source code, function signatures, pseudocode and step-by-step implementation plans. TLA+ models belong in their spec Docs.
 - Include defaults, fallbacks, validation, schemas, error rules and guards only when grounded in the input or applicable guidance.
 - Omit time estimates and scheduling.
 - Omit history, decision logs and deferred work.
