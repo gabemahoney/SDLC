@@ -20,8 +20,7 @@ An Idea ID, with optional review findings or change notes for a revision.
 ## Reads
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, the SRD template through `srd_template`, and the TLA+ Writer's Thinking Level through `thinking_levels` and `levels_claude_code` or `levels_codex`.
-- **SRD template:** the file at the path named by `srd_template`. Why: to structure the SRD.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the TLA+ Writer's Thinking Level through `thinking_levels` and `levels_claude_code` or `levels_codex`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to locate the installed TLA+ Writer definition, dispatch it, and ask and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and create or update its SRD.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
@@ -45,7 +44,7 @@ None: the SRD can be written or revised at any Idea status.
    - If a design decision the SRD needs is still open, ask the Managing Intelligence.
    - If the Managing Intelligence leaves a necessary decision open, mark it **RESEARCH NEEDED** beside the affected requirement, save the unfinished SRD as `draft`, and stop.
 
-4. **Write the SRD.** Read the file named by `srd_template` and draft the SRD from it, following the craft guidance below. Assess its concurrency, state machines, protocols and invariants. Select the parts whose correctness needs a model, including existing modelled parts affected by a revision.
+4. **Write the SRD.** Organize it as the change needs, following the craft guidance below. Assess its concurrency, state machines, protocols and invariants. Select the parts whose correctness needs a model, including existing modelled parts affected by a revision.
 
 5. **Save the SRD.** Save before modelling so each Writer can read the SRD Doc.
    - If the Idea has an SRD, update that Doc.
@@ -101,12 +100,15 @@ If a capability the SRD needs doesn't exist yet, say it's new rather than implyi
 
 ## Style rules
 
+- **Group by concern:** group requirements by domain or concern, not by PRD section. Data model, configuration, interfaces, runtime behaviour, validation, behaviour to preserve and documentation are common groups; use those the change needs.
+- **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because TLA+ Writers, req-review and write-plan cite them by number.
 - **Software requirements:** define what must be true, leaving the implementation plan open. Name actual modules and established patterns where they constrain the work.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the change.
 - **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep model-checking bounds in the spec as modelling assumptions, rather than turning them into product limits.
 - **Consistent terms:** use the PRD's defined terms in Title Case wherever they appear, with the same meanings. Explain additional terms at first use and use their defined names consistently.
-- **Stable references:** name files and modules without line numbers. Name test helpers and fixtures in the test requirements; other requirements describe obligations rather than function calls.
+- **Stable references:** name files and modules without line numbers. Other than test helpers and fixtures, requirements describe obligations rather than function calls.
+- **Test fixtures:** say which existing fixtures, factories, helpers and constants tests must reuse, what they need to support this change, what new fixtures are needed and where, and which test files to extend or add. Ground it in the code and test guidance, say when nothing new is needed, and keep it in proportion to the change. This stops tests hand-rolling shared setup.
 
 ## Quality checklist
 
