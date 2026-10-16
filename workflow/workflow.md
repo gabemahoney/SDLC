@@ -78,7 +78,7 @@ The Project Folder is the nearest folder, from the working directory up, contain
 
 Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree—change files and commit only inside repo checkouts.
 
-Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve a Guidance Document's relative pointers from the folder holding that Guidance Document. Resolve its other relative paths from the checkout's root.
+- **Paths in tickets and reports:** an absolute path (`/…` or `~/…`) means exactly that place. A path to a file in a Project repo means that file in the checkout you're working in, so in a worktree it means the worktree's copy.
 
 - **Where worktrees live:** only at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is relative to the Project Folder.
 - **Where to work:** this rule applies to develop-epic and idea-review, and to write-plan and write-epic for the repos they plan in. When started in `<Project Folder>/.worktrees/<ticket id>/`, these skills work only in that ticket's worktrees. Otherwise, they work in the main checkouts.
@@ -102,7 +102,7 @@ Load only the Guidance Documents your `SKILL.md` or Subagent definition names. T
 3. Use every copy you find, together. If two copies conflict, stop and ask the Managing Intelligence which to follow, naming both files and the conflicting lines.
 4. If you find none, use `~/.apiary/<name>-default-fallback.md`.
 
-If a copy is only a pointer to other files, follow it.
+If a copy is only a pointer to other files, follow it. A relative pointer is relative to the folder holding the copy, and the file it points to is read from the main checkout too.
 
 ### Thinking Levels
 
