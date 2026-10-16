@@ -89,7 +89,7 @@ Report the Research tickets filed and what each settled.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the change. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
 - **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep model-checking bounds in the spec as modelling assumptions, rather than turning them into product limits.
 - **Consistent terms:** use the PRD's defined terms in Title Case wherever they appear, with the same meanings. Explain additional terms at first use and use their defined names consistently.
-- **Stable references:** name files and modules without line numbers.
+- **Stable references:** you may name code files and modules, but never line numbers or code, because those change far more often than the requirements.
 - **Test fixtures:** say which existing fixtures, factories, helpers and constants tests must reuse, what they need to support this change, what new fixtures are needed and where, and which test files to extend or add. Ground it in any existing code and the test guidance, say when nothing new is needed, and keep it in proportion to the change. This stops tests hand-rolling shared setup.
 
 ## Quality checklist
@@ -107,7 +107,7 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 
 ## What not to include
 
-- Leave out source code, function signatures, pseudocode and step-by-step implementation plans. TLA+ models belong in their spec Docs.
+- Leave out function signatures, pseudocode and step-by-step implementation plans. TLA+ models belong in their spec Docs.
 - Include defaults, fallbacks, validation, schemas, error rules and guards only when grounded in the input or applicable guidance.
 - Omit time estimates and scheduling.
 - Omit history, decision logs and deferred work.
