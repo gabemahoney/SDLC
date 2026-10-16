@@ -40,7 +40,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
 3. **Model the parts whose correctness needs a TLA+ model.** Select the concurrency, state machines, protocols or invariants that need one, including modelled parts affected by a revision. The checker is slow, so each model is reviewed before it runs. For each part, in parallel with the other parts:
-   1. **Write.** Dispatch a TLA+ Writer with the SR group and what to model. It writes the model as a TLA+ spec Doc, without running it.
+   1. **Write.** Dispatch a TLA+ Writer with the SR group and what to model. It writes the model as a TLA+ spec Doc on the Idea, with the model files attached to that Doc, and doesn't run it yet.
    2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec and the SRD. It reports whether the model matches the SRD and its invariants are meaningful.
    3. **Fix.** If there are findings, resume the same Writer with them, then go back to 2 with a fresh Reviewer.
    4. **Run.** Once a review has no findings, resume the Writer to run the TLA+ model checker. It returns the checker results and any SRD bugs they show.
@@ -70,7 +70,7 @@ The SRD, a Doc child of the Idea titled `SRD`. A new SRD starts as `draft`, and 
 
 The Idea's Plan, set back to `draft` when a revision changes an SRD it was built from.
 
-Each modelled part's TLA+ spec Doc, written by its TLA+ Writer.
+Each modelled part's TLA+ spec Doc, a Doc child of the Idea with the model files attached, written by its TLA+ Writer.
 
 Research tickets in the Research store, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds.
 
