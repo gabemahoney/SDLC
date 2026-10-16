@@ -40,9 +40,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 2. **Explore the affected code,** so the requirements fit what exists. If there is no code yet, the SRD describes new software.
 
-3. **Settle what the PRD leaves open.** Decide what the software must do from the PRD, any code and the engineering guidance.
-   - If a choice changes what users get or breaks a constraint the Managing Intelligence set, ask them.
-   - If the Managing Intelligence leaves such a choice open, mark it **RESEARCH NEEDED** beside the affected requirement, save the unfinished SRD as `draft`, and stop.
+3. **Make the software decisions.** Treat the PRD as having answered every product question, and make the software decisions yourself from it, any existing code and the engineering guidance. If you find a product question the PRD didn't answer, raise it with the Managing Intelligence.
 
 4. **Write the SRD.** Organize it as the change needs, following the craft guidance below. Assess its concurrency, state machines, protocols and invariants. Select the parts whose correctness needs a model, including existing modelled parts affected by a revision.
 
@@ -52,7 +50,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
    - If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered against the changed SRD. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the old SRD.
 
 6. **Model the selected parts.**
-   - If parts need modelling, dispatch the TLA+ Writers as described in Dispatches. Fix SRD bugs the models find and save the corrected SRD. Re-dispatch for affected parts until the models agree with the corrected SRD and their checks pass. Take any choice a model raises back to step 3.
+   - If parts need modelling, dispatch the TLA+ Writers as described in Dispatches. Fix SRD bugs the models find and save the corrected SRD. Re-dispatch for affected parts until the models agree with the corrected SRD and their checks pass. Raise any product question a model reveals with the Managing Intelligence.
    - If no part needs modelling, continue to self-review.
 
 7. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
@@ -85,9 +83,9 @@ The TLA+ Writers it dispatches write each modelled part's TLA+ spec Doc.
 
 ## Done
 
-Report the SRD's ID, any **RESEARCH NEEDED** flags and incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
+Report the SRD's ID, any product questions you raised and incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
 
-- If the SRD and all selected modelling are complete, suggest “req-review, or, on a `draft` Idea, mark the Idea defined”.
+- If the SRD and all selected modelling are complete, suggest “req-review”.
 - Otherwise, say what must be settled before write-srd can finish.
 
 ## Style rules
