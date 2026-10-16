@@ -55,7 +55,7 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 ## Status Ownership
 
-Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` gives you.
+Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` or Subagent definition gives you.
 
 | Who | What they do |
 |---|---|
@@ -90,7 +90,7 @@ A source reference links a ticket to something outside the ticket system that it
 
 ### Starting, reporting and resuming
 
-Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File where required. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate.
+Before changing anything, identify your Agent, read the installed `workflow.md`, find the Project Folder (see Project Folder, paths and worktrees) and load settings (see Settings). Load the Agent Protocol File, the Ticket System Protocol File for ticket work, and the Launcher Protocol File for configure-worktree and teardown-worktree outside worktree-only mode. Check the ticket ID or creation input, load the Guidance Documents your `SKILL.md` names (see Guidance Documents) and templates, complete the fail-closed checks, then check the state gate.
 
 Stop before any change, naming the file, if a Guidance Document your `SKILL.md` or Subagent definition names has neither a user copy nor a Default Fallback File, or a needed installed `workflow.md`, `SKILL.md`, Subagent definition or Protocol File is missing, empty or unreadable. A missing store stops the Run likewise; point to project-setup.
 
@@ -100,7 +100,7 @@ Read and follow a skill's installed `SKILL.md` whenever running it. No skill or 
 
 The Project Folder is the nearest folder, from the working directory up, containing `.apiary/project_settings.md`. Without one, use the folder the Agent started in and only `~/.apiary/default_project_settings.md`. The Project's repos are its main checkouts under the Project Folder.
 
-Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug and the worktree skills—change files and commit only inside repo checkouts.
+Project-level skills—project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research—must not assume git. Execution skills—develop-epic, idea-review, define-bug, fix-bug and the worktree skills—change files and commit only inside repo checkouts. release follows the process and conditions in `release-guide.md`.
 
 Use absolute paths (`/…` or `~/…`) as given. A target inside a Project repo, however written, opens its copy in the checkout being worked in. Resolve Guidance Documents' relative paths, pointers included, from that checkout's root, wherever the Guidance Document sits.
 
