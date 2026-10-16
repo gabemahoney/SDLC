@@ -44,7 +44,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Other Doc (not PRD, SRD or TLA+ spec):** req-review asks the Managing Intelligence and, on yes, sets `defined`
 
-**Two modes:** with no SRD yet, it reviews the PRD alone and loops with write-prd until the Managing Intelligence approves, then sets the PRD `defined`. Once the SRD exists, it reviews the PRD and SRD together (they agree; every PRD acceptance criterion maps to an SR) and loops with write-srd, or write-prd if the PRD must change, until approval; then it sets the SRD and the Idea `defined`.
+**Two modes:** with no SRD yet, it reviews the PRD alone and loops with write-prd until the Managing Intelligence approves, then sets the PRD `defined`. Once the SRD exists, it reviews the PRD and SRD together (they agree, and the SRD covers every PRD acceptance criterion) and loops with write-srd, or write-prd if the PRD must change, until approval; then it sets the SRD and the Idea `defined`.
 
 **Specific rules:** req-review dispatches one read-only TLA+ Reviewer per TLA+ spec Doc alongside the Requirements Reviewer, checking that the model matches the SRD and its invariants are meaningful.
 

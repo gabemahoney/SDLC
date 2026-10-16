@@ -96,7 +96,7 @@ Report the Research tickets filed and what each settled.
 
 If an unresolved decision or unfinished model stops a check below from passing, say so in your report and mark that check incomplete.
 
-- [ ] Every PRD acceptance criterion maps to at least one SR.
+- [ ] The SRD covers every PRD acceptance criterion.
 - [ ] Every SR states a specific, testable obligation grounded in current input or applicable guidance.
 - [ ] The SRD agrees with the PRD and uses its defined terms consistently.
 - [ ] References to existing code name real modules, patterns, fixtures and helpers, and anything new is marked as new.
