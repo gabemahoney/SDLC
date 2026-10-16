@@ -38,13 +38,11 @@ Every Epic is a vertical slice through the product, never an Epic of only testin
 
 Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use those plus `invalid`. All status transitions are idempotent.
 
-| Status | Meaning |
-|---|---|
-| `draft` | Not fully written up. |
-| `defined` | Fully written up. |
-| `active` | Work in progress. |
-| `done` | Complete. |
-| `invalid` | Not a real Bug. |
+- `draft`: not fully written up.
+- `defined`: fully written up.
+- `active`: work in progress.
+- `done`: complete.
+- `invalid`: not a real Bug.
 
 ## Status Ownership
 
