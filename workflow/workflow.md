@@ -54,9 +54,9 @@ The Managing Intelligence accepts Ideas and Bugs, returns Bugs and manages Docs 
 
 ## Flows
 
-**Idea:** write-idea → write-prd and write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
+**Idea:** write-idea → write-prd → req-review → write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
 
-Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec Docs, one per modelled SRD part. req-review is optional: the Managing Intelligence may skip req-review and mark the Idea `defined` by hand.
+Every Idea has exactly one PRD and one SRD. An Idea may have several TLA+ spec Docs, one per modelled SRD part. req-review is optional: the Managing Intelligence may skip it and mark the PRD, the SRD and the Idea `defined` by hand.
 
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. Bugs whose fixes are returned go back to `draft` for define-bug.
 

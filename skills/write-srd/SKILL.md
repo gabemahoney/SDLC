@@ -32,7 +32,7 @@ An Idea ID, with optional review findings or change notes for a revision.
 
 ## Gate
 
-None: the SRD can be written or revised at any Idea status.
+The Idea's PRD is `defined`, because the SRD builds on settled product requirements. If it isn't, stop and suggest req-review.
 
 ## Steps
 
