@@ -34,7 +34,13 @@ None: the PRD can be written or revised at any Idea status.
 
 1. **Gather the existing requirements.** Read the Idea, its source references and existing Docs. Gather what they and the conversation already say, together with any review findings or change notes.
 
-2. **Interview the Managing Intelligence.** Ask focused questions to fill the gaps in that context, and wait for the answers. Cover the problem, acceptance criteria, what is out of scope, edge cases and errors, UI/UX considerations, performance or security constraints, how it will be deployed and run (where it runs, who operates it, what it runs on), and dependencies on or effects on other work. Offer options rather than open-ended questions where you can.
+2. **Interview the Managing Intelligence until you share an understanding.** Cover the problem, acceptance criteria, what is out of scope, edge cases and errors, UI/UX considerations, performance or security constraints, how it will be deployed and run (where it runs, who operates it, what it runs on), and dependencies on or effects on other work.
+   - Treat the decisions as a tree: each one branches into the decisions that depend on it.
+   - Ask in rounds. Each round asks every question whose prerequisites are already settled. Number each question, give your recommended answer, and word it so "yes" accepts that answer. Hold a question that depends on one still open in this round for a later round.
+   - Look up facts yourself instead of asking: the code, the Idea, its Docs and source references. Ask only for decisions. Keep asking the other questions while a lookup runs.
+   - Stop when no question is left open, every branch has been visited and nothing is silently assumed, and the Managing Intelligence confirms you share an understanding.
+
+   (Interview method adapted from Matt Pocock's `grilling` skill, MIT licence: github.com/mattpocock/skills.)
 
 3. **Write and check the PRD.** Draft it yourself from the gathered context and interview answers, using the section template and craft guidance below. Decisions the Managing Intelligence leaves unresolved may remain as Open Questions in the draft; flag them in the report.
    - If revising, first apply the findings or change notes to establish the current requirements, then run the Succinctness pass in `workflow.md` on that revised document.
@@ -92,9 +98,6 @@ The scenarios and expected behaviour supplied by the input and interview.
 
 ### Non-Functional Requirements (if applicable)
 Relevant performance, security, scalability and compatibility constraints.
-
-### UI/UX Requirements (if applicable)
-Layout, interaction and presentation requirements for user-facing features.
 
 ## Acceptance Criteria
 Observable, testable checks that must pass for the work to be complete.
