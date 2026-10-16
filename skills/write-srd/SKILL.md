@@ -39,7 +39,12 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
-3. **Model the parts whose correctness needs a TLA+ model.** Select the concurrency, state machines, protocols or invariants that need one, including modelled parts affected by a revision. For each part, a TLA+ Writer writes the model, a TLA+ Reviewer reviews it, and the Writer fixes the findings until none remain, then runs the TLA+ model checker. The checker is slow, so each model is reviewed before it runs. Fix SRD bugs found by a run, save the SRD and repeat the cycle for affected parts until the models match the SRD and their checks pass.
+3. **Model the parts whose correctness needs a TLA+ model.** Select the concurrency, state machines, protocols or invariants that need one, including modelled parts affected by a revision. The checker is slow, so each model is reviewed before it runs. For each part, in parallel with the other parts:
+   1. **Write.** Dispatch a TLA+ Writer with the SR group and what to model. It writes the model as a TLA+ spec Doc, without running it.
+   2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec and the SRD. It reports whether the model matches the SRD and its invariants are meaningful.
+   3. **Fix.** If there are findings, resume the same Writer with them, then go back to 2 with a fresh Reviewer.
+   4. **Run.** Once a review has no findings, resume the Writer to run the TLA+ model checker. It returns the checker results and any SRD bugs they show.
+   5. **Fix the SRD.** If the run shows an SRD bug, fix the SRD, save it, and repeat from 3 for that part, giving the Writer the SRD change.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
@@ -55,8 +60,8 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 ## Dispatches
 
-- **TLA+ Writer:** launch one per SRD part needing a model, in parallel, to write without running it. Expect a TLA+ spec Doc. Resume the same Writer to fix review findings or update the model after an SRD change; expect the updated spec. Once review has no findings, resume it to run the Project's Model check command from `build-commands.md`; expect checker results and findings for the SRD.
-- **TLA+ Reviewer:** launch a fresh Reviewer for each model after writing or fixes, before each run, with the spec and SRD. Expect findings on whether the model matches the SRD and its invariants are meaningful, with references and suggested fixes, or no findings.
+- **TLA+ Writer:** one per modelled part, kept for that part's whole cycle (write, fix, run), as step 3 says. Expect a TLA+ spec Doc; after a run, the checker results and any SRD bugs they show.
+- **TLA+ Reviewer:** a fresh one for each review in step 3. Expect findings with references and suggested fixes, or none.
 - **Researcher:** launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report. Use it to settle the decision, then set the ticket `done`.
 
 ## Writes
