@@ -49,6 +49,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 5. **Save the SRD.** Save before modelling so each Writer can read the SRD Doc.
    - If the Idea has an SRD, update that Doc.
    - Otherwise, create it.
+   - If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered against the changed SRD. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the old SRD.
 
 6. **Model the selected parts.**
    - If parts need modelling, dispatch the TLA+ Writers as described in Dispatches. Fix SRD bugs the models find and save the corrected SRD. Re-dispatch for affected parts until the models agree with the corrected SRD and their checks pass. Take necessary design decisions back to step 3.
@@ -78,11 +79,13 @@ Pass the Idea, PRD and SRD IDs; the assigned SR group IDs and modelling question
 
 The SRD, a Doc child of the Idea titled `SRD`. A new SRD starts as `draft`, and a revised `defined` SRD goes back to `draft`.
 
+The Idea's Plan, set back to `draft` when a revision changes an SRD it was built from.
+
 The TLA+ Writers it dispatches write each modelled part's TLA+ spec Doc.
 
 ## Done
 
-Report the SRD's ID, any **RESEARCH NEEDED** flags and incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary.
+Report the SRD's ID, any **RESEARCH NEEDED** flags and incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
 
 - If the SRD and all selected modelling are complete, suggest “req-review, or, on a `draft` Idea, mark the Idea defined”.
 - Otherwise, say what must be settled before write-srd can finish.

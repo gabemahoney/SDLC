@@ -62,7 +62,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Reads:** Idea, requirements Docs, source references, existing Plan and Epics; `engineering-best-practices`, `test-guide`, `doc-writing-guide`, `maintained-docs`, planning context and Product Manager report, to plan and revise the work.
 
-**Gate:** Idea `defined`, with a PRD and an SRD. Finish an existing Plan in `draft` or `defined`; never duplicate it.
+**Gate:** Idea `defined`, with a PRD and an SRD. Finish an existing Plan in `draft` or `defined`; never duplicate it. A Plan write-srd reset to `draft` is revised against the changed SRD: `done` Epics stay done; the rest are revised, added or dropped; then the Plan is set `defined` again, or `active` if any Epic is `done` or `active`.
 
 **Owned transitions:** Creates Plan and Epics `draft`; sets Plan `defined` once written, checked by the Product Manager and revised.
 
@@ -82,7 +82,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Reads:** Epic work, dependencies, Idea requirements, progress and findings; `build-commands`, checkout state, changes, Subagent reports and its own context reading, to execute and resume Tasks.
 
-**Gate:** Epic `defined` or `active`; every Epic it depends on `done`. A re-run on a `done` Epic may only finish the Plan's completion check.
+**Gate:** Epic `defined` or `active`; every Epic it depends on `done`; its Plan `defined` or `active`. Re-check the Plan before each Task and stop cleanly if it went back to `draft`. A re-run on a `done` Epic may only finish the Plan's completion check.
 
 **Owned transitions:** **Idea:** develop-epic sets `active` when starting an Epic
 
