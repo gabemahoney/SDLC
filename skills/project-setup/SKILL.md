@@ -1,13 +1,13 @@
 ---
 name: project-setup
-description: 'One-time setup of an Apiary Project: its settings, ticket stores and Guidance Documents, from a template or an interview. Re-run it to fix or complete a setup.'
+description: One-time setup of an Apiary Project: its settings, ticket stores and Guidance Documents, from a template or an interview. Re-run it to fix or complete a setup.
 ---
 
 # project-setup
 
 ## Purpose
 
-Sets up a Project's settings, stores and Guidance Documents idempotently, including in an empty folder. Prepares the Project for write-idea or write-bug.
+One-time setup of a Project, new or existing, an empty folder included: its settings, ticket stores and Guidance Documents. Re-running it is safe and fixes or completes a setup. It comes before write-idea or write-bug.
 
 ## Loading Apiary
 
