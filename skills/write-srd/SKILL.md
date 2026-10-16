@@ -26,8 +26,8 @@ An Idea ID or its PRD Doc ID, with optional review findings, model findings or c
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and create or update its SRD.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
 - **The Idea and its Docs:** through the Ticket System Protocol File, using the input ID and its parent when given a PRD. Why: to understand the PRD, find the SRD and TLA+ specs to revise, and ground changes in current requirements and supplied findings.
-- **Engineering guidance:** `.apiary/engineering-best-practices.md` copies found for each explored repo through the Guidance Documents rule in `workflow.md`, or `~/.apiary/engineering-best-practices-default-fallback.md`. Why: to ground constraints in the Project's engineering conventions.
-- **Test guidance:** `.apiary/test-guide.md` copies found for each explored repo through the Guidance Documents rule in `workflow.md`, or `~/.apiary/test-guide-default-fallback.md`. Why: to ground test requirements in the Project's test conventions.
+- **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes. Why: to ground constraints in the Project's engineering conventions.
+- **Test guidance:** `test-guide.md` for each explored repo, found as `workflow.md` describes. Why: to ground test requirements in the Project's test conventions.
 - **Codebase and tests:** the affected code folders under `<Project Folder>`, identified from the PRD and Idea. Why: to establish the architecture, modules, patterns, data models, configuration and test infrastructure the requirements must fit.
 - **TLA+ Writer definition:** the installed definition for the TLA+ Writer Subagent Role, located through the Agent Protocol File. Why: when a part needs modelling, to dispatch its model-writing and model-checking work.
 
@@ -65,7 +65,8 @@ None: the SRD can be written or revised at any Idea status.
    - **Current requirements:** remove every trace of dropped ideas and fold settled questions into the body. Keep an explicit boundary only when the Managing Intelligence wants it stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
 
-   - If self-review changes requirements covered by a model or reveals another part needing one, repeat steps 5–7.
+8. **Finish.**
+   - If self-review changed a modelled part or found another part that needs a model, go back to step 5.
    - Otherwise, save the final SRD.
 
 ## Dispatches
@@ -83,6 +84,7 @@ The SRD, a Doc child of the Idea titled `SRD`. A new SRD starts as `draft`, and 
 Report the SRD's ID, any **RESEARCH NEEDED** flags and incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary.
 
 - If the SRD and all selected modelling are complete, suggest “req-review, or, on a `draft` Idea, mark the Idea defined”.
+- Otherwise, say what must be settled before write-srd can finish.
 
 ## Codebase exploration
 
