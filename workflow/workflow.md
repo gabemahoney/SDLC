@@ -34,12 +34,6 @@
 
 Every Epic is a vertical slice through the product, never an Epic of only testing, docs or plumbing. The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice.
 
-## Tags
-
-| Tag | Meaning |
-|---|---|
-| `thinking_level:<label>` | The Thinking Level the executors working the ticket run at: one tag on each Task and Bug. Subtasks carry no tag and use their Task's Thinking Level. write-epic and develop-epic set their Tasks' tags. |
-
 ## Statuses
 
 Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use those plus `invalid`. All status transitions are idempotent.
@@ -137,7 +131,7 @@ Code Reviewer: xhigh
 ```
 
 - A Worker runs at the Thinking Level on its skill's line in `thinking_levels`. A non-executor Subagent runs at the Thinking Level on its Subagent Role's line.
-- Engineer, Test Writer and Doc Writer have no lines in `thinking_levels`: they always use their Task's or Bug's `thinking_level:` tag. Subtasks carry no tag and use their Task's Thinking Level.
+- Engineer, Test Writer and Doc Writer have no lines in `thinking_levels`: they always use their Task's or Bug's `thinking_level:` tag. Subtasks carry no tag and use their Task's Thinking Level. write-epic and develop-epic set their Tasks' tags.
 - A resumed Subagent keeps its first dispatch's Thinking Level.
 - A session the Managing Intelligence starts itself runs at the model and effort the session was started with.
 
