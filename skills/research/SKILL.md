@@ -28,7 +28,7 @@ A Research ticket ID to continue, or a question to file as a new Research ticket
 
 ## Gate
 
-An existing Research ticket is `defined`, `active` or `done`. If it has another status, stop and report its status. A new question needs no gate.
+None: research files a new Research ticket or continues one at any status.
 
 ## Steps
 
@@ -67,9 +67,9 @@ Report the Research ticket ID and status, the Report ID when it exists, and the 
 
 ## Research methods and artifacts
 
-Choose methods that suit the question and review request. The Agent may use its own research skills, such as deep-research, as its Agent Protocol File describes. A small runnable prototype can answer a design question; keep it with the research artifacts and record what it demonstrated.
+Choose methods that suit the question and review request. Use any research skill your Agent provides, as its Agent Protocol File describes. A small runnable prototype can answer a design question; keep it with the research artifacts and record what it demonstrated.
 
-Keep bulky data, scripts, logs, screenshots, notes and excerpts in artifacts, with secrets and tokens removed. Link evidence from the findings it supports.
+Keep bulky data, scripts, logs, screenshots, notes and excerpts in artifacts, with secrets and tokens removed, because the research record may be shared. Link evidence from the findings it supports.
 
 ## Report guidance
 
