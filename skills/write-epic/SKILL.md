@@ -103,6 +103,7 @@ develop-epic runs its Integration Tester after a Task that changes an interface 
 ## Thinking Level guidance
 
 A Task's tag sets how hard its Engineer, Test Writer and Doc Writer think, so match it to what a mistake in that Task would cost and how much judgement it needs:
+- `low`: trivial, mechanical changes such as renames, wording or config values, where a mistake is obvious and cheap.
 - `medium`: routine work that follows an established pattern, such as adding a field or a small, well-understood change.
 - `high`: work that needs real design judgement, touches several modules, or changes behaviour other code relies on.
 - `xhigh`: work where a mistake is costly or hard to spot, such as concurrency, security, data migrations or an interface between components.
