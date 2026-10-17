@@ -15,7 +15,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 ## Input
 
-An Idea ID, with any planning decisions or change notes. For a Plan reset by write-srd, include its report naming the changed SRs and the Epics that were `active`.
+An Idea ID.
 
 ## Reads
 
@@ -27,7 +27,7 @@ An Idea ID, with any planning decisions or change notes. For a Plan reset by wri
 - **The Idea, its Docs and existing Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID. Why: to ground the Plan in requirements, reuse existing planning and preserve completed work.
 - **Engineering, testing and documentation guidance:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `maintained-docs.md` for each affected code folder, found as `workflow.md` describes, including the documents listed by `maintained-docs.md`. Why: to understand the existing design, plan required engineering and testing work, and limit documentation work to what its guide allows.
 - **Codebase and tests:** the affected code folders under `<Project Folder>`, if any, identified from the Idea and requirements. Why: to fit the Epics to the software that exists.
-- **Planning context and reports:** decisions and change notes supplied with the input, write-srd's revision report, and the Product Manager's report returned during this Run. Why: to preserve settled decisions and revise the Plan from changed requirements and review findings.
+- **Product Manager's report:** returned during this Run. Why: to revise the Plan from its findings.
 
 ## Gate
 
@@ -53,7 +53,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 ## Dispatches
 
-- **Product Manager:** launch fresh after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs, planning decisions and any revision context. Expect findings on product coverage, scope and proportion, with references and suggested fixes. An independent read checks the planner's judgement before the Plan is finalized.
+- **Product Manager:** launch fresh after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes. An independent read checks the planner's judgement before the Plan is finalized.
 
 ## Writes
 
