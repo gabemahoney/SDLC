@@ -43,3 +43,5 @@ Every lesson from the User's reviews of `workflow.md`, write-idea and project-se
 - **A cold read before the User sees anything.** A fresh Agent gets only the SKILL.md, `workflow.md` and the files it names, plus concrete scenarios. It lists every point where it would have to guess. Repeat until clean.
 - **A checklist review,** by a separate fresh Agent, against every item above.
 - **Verify worker claims in the file itself.** Never trust a "done" report alone.
+
+- **Every rule says why.** Each instruction that something must or must not be done gives its reason, briefly, in the same sentence ("…so later skills can find the requirements").
