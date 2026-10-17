@@ -84,7 +84,7 @@ Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small
 
 Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new.
 
-Common Dependencies: a capability depends on the infrastructure it uses; a screen depends on the data and services it shows; processing depends on the import that supplies its data; protected features depend on authentication. For each Epic, ask what must be `done` before it can start. Watch for chains whose intermediate states cannot be tested and for pervasive refactors mixed into feature work without serving its outcome.
+Order the Epics so each one can be demoed when it's `done`, rather than a chain whose middle Epics can't be shown.
 
 Acceptance criteria describe that demo. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
