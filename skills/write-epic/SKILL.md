@@ -116,7 +116,7 @@ Write each Task's testing Subtasks with two goals in mind:
 1. **Reuse the Project's test setup.** Say which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
 2. **Let Test Writers work in parallel.** develop-epic can run several Test Writers on one Task, one per Lane. A **Lane** is a group of test files one Writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so Writers don't edit the same helper or test the same thing twice. develop-epic adjusts them to the actual code.
 
-Don't write two tests that check the same thing at the same level, such as two unit tests of the same quoting rule; tests at different levels, such as a unit test and an end-to-end test, can cover the same behaviour. Include tests to update, obsolete tests to remove and missing coverage to add. The full unit suite runs once, at the end, by the last Test Writer, so one Writer checks everyone's changes together.
+Check each behaviour once at each test level, so effort isn't spent on duplicates: one unit test of a quoting rule is enough, though an end-to-end test of the export may check it again from the outside. Include tests to update, obsolete tests to remove and missing coverage to add. The full unit suite runs once, at the end, by the last Test Writer, so one Writer checks everyone's changes together.
 
 ## Quality checklist
 
