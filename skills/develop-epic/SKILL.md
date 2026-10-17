@@ -29,6 +29,8 @@ An Epic ID.
 - **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `maintained-docs.md`, `build-commands.md` and `release-guide.md` for each affected code folder, found as `workflow.md` describes. Include the documents `maintained-docs.md` lists. Why: to judge findings, define integration fixes, check required build and test results, identify documentation affected by changes, and commit and push as permitted.
 - **Subagent reports and Epic progress:** reports returned during execution and the progress recorded on the Epic. Why: to coordinate reviews and fixes and recover the unfinished phase and retained executors.
 
+Also read the Project's code, tests and any linked Research tickets as the work needs.
+
 ## Gate
 
 Run only when all of these are true:

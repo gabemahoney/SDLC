@@ -25,9 +25,9 @@ An Idea ID, with optional review findings or change notes for a revision.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
 - **The Idea, its Docs and Plan:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, find the SRD and TLA+ specs to revise, ground changes in current requirements and supplied findings, and identify the Plan and active Epics affected by a revision.
-- **Research tickets and Reports:** through the Ticket System Protocol File, using the tickets linked from the SRD or filed during this Run. Why: to use their evidence in software decisions.
 - **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes. Why: to ground constraints in the Project's engineering conventions.
-- **Codebase and tests:** the affected code folders under `<Project Folder>`, if any, identified from the PRD and Idea. Why: so the requirements fit the code that exists.
+
+Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 

@@ -25,7 +25,8 @@ An Idea ID or one of its PRD or SRD Doc IDs, with any earlier findings and Manag
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs and set their approved statuses.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
 - **The Idea and every Doc child:** through the Ticket System Protocol File, using the input ID. Why: to see which Docs are `draft` and review them.
-- **Codebase and docs:** the affected code folders under `<Project Folder>`, if any, identified from the Idea and requirements. Why: to judge whether the requirements fit the existing software.
+
+Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 

@@ -26,7 +26,8 @@ A Bug ID.
 - **Resolvers:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Bug's source material and fill out its report.
 - **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes. Why: to complete the Bug's write-up in the Project's format.
 - **Build commands:** `build-commands.md`, found as `workflow.md` describes. Why: to run the relevant commands for each repo involved in reproduction.
-- **Source, tests and configuration:** the affected main checkouts at `<Project Folder>/<repo path>/`, identified from the Bug and its Source References. Why: to reproduce the report and judge whether the reported behaviour is real.
+
+Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 

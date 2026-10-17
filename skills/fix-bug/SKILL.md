@@ -28,6 +28,8 @@ A Bug ID.
 - **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `maintained-docs.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes. Include the documents `maintained-docs.md` lists. Why: to judge findings, check the fix and affected documentation, and commit, merge and push as permitted.
 - **Subagent reports:** reports returned during execution and retained on the Bug. Why: to coordinate fixes and resume unfinished work.
 
+Also read the Project's code, tests and any linked Research tickets as the work needs.
+
 ## Gate
 
 Run only when all of these are true:

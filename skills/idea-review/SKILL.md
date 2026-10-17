@@ -25,9 +25,10 @@ An Idea ID.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and progress, record review results, and file feedback in the Plan.
 - **Idea, its Docs, Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID, including Tasks and Subtasks behind findings. Why: to review the PRD and SRD requirements, earlier review reports, unacted-on findings, commits, integration results and waivers, and Managing Intelligence decisions.
 - **Round progress and earlier feedback:** on the Idea and its Plan's Round Feedback Epics. Why: to resume an unfinished round, check earlier fixes and choose the next round number.
-- **Finished product and git history:** the affected repos under `<Project Folder>`, or the Idea's worktrees at `<Project Folder>/.worktrees/<idea-id>/<repo path>`. Why: to identify the checkouts containing all completed Epic work and review the combined changes at their recorded commits.
 - **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `maintained-docs.md` and `build-commands.md` for each reviewed repo, found as `workflow.md` describes. Include the documents `maintained-docs.md` lists. Why: to judge findings against the Project's guidance and demonstrate acceptance criteria with its build and test commands.
 - **Subagent reports:** returned during this round or recorded in its progress. Why: to combine independent reviews and give the Product Manager their findings and the acceptance evidence.
+
+Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 

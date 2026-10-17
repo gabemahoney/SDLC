@@ -20,7 +20,7 @@ You are running an Apiary software development workflow. Before anything else, r
 What it is given.
 
 ## Required Reading
-Every file and setting it uses, with its full path or the setting that picks it, including any templates. Each one says why the skill needs it.
+Every file and setting it uses, with its full path or the setting that picks it, including any templates. Each one says why the skill needs it. List only what every Run reads. Code, tests and Research tickets read as the work needs go in one closing line: "Also read the Project's code, tests and any linked Research tickets as the work needs."
 
 ## Gate
 What must be true before it changes anything, or "None: <why>".
