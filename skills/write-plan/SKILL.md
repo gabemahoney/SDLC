@@ -82,7 +82,7 @@ Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small
 
 **An Epic is a vertical slice of the end product.** It delivers one new feature, or one working part of a feature, through the whole stack: the code, its tests and its docs. Think of each Epic as a sprint demo: when it's `done`, you could show the product doing at least a little something new. Code alone or a set of tests isn't a demo. Every Epic leaves the software working with existing tests passing.
 
-Slice by capability, not by layer. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not, because none of them delivers something a user can check on its own.
+Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new.
 
 Common Dependencies: a capability depends on the infrastructure it uses; a screen depends on the data and services it shows; processing depends on the import that supplies its data; protected features depend on authentication. For each Epic, ask what must be `done` before it can start. Watch for chains whose intermediate states cannot be tested and for pervasive refactors mixed into feature work without serving its outcome.
 
