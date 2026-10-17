@@ -14,6 +14,8 @@
 - **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `maintained-docs.md`, `release-guide.md`, `bug-writing-guide.md`.
 - **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no user copy of that Guidance Document is found.
 - **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent.
+- **Dependency:** a link meaning one ticket can't start until another is `done`, such as between Epics or between Tasks.
+- **Association:** a link between related tickets where neither waits on the other, such as a Plan and its Idea, or an SRD and a Research ticket it cites.
 - **Source Reference:** a link on a ticket to where it came from outside the ticket system, such as a GitHub issue or a file. Read it as context.
 - **Resolver:** the instructions for reading one kind of Source Reference, picked by its kind (a GitHub URL uses `github`, a file path uses `file`).
 - **Run:** one execution of a skill, from its first steps to its report.
@@ -30,7 +32,7 @@
 
 - An Idea is a piece of software to build: a feature, a change or a product.
 - A Bug is a defect to validate and fix.
-- A Plan is linked to one Idea, and an Idea has at most one Plan. The Ticket System Protocol File defines how tickets are linked.
+- A Plan has an Association with one Idea, and an Idea has at most one Plan.
 - A Plan divides an Idea into Epics, an Epic into Tasks (each committed in one go), and a Task into Subtasks (each one executor's part).
 - A Doc describes an Idea: its Product Requirements Document (PRD, what and why), Software Requirements Document (SRD, what the software must do), TLA+ spec (a model-checked design), or another document.
 - A Research ticket holds a research question. Its one Report holds the answer. A Report is not a Doc.
