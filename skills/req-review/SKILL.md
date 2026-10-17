@@ -65,7 +65,7 @@ Report the reviewed Doc IDs and titles, findings ordered by criticality, suggest
 
 ## Review criteria
 
-Value content over form. Prefer concise, direct requirements and clear organization; user stories are useful when they clarify the requirement.
+Value content over form. Prefer concise, direct requirements and clear organization; user stories are only useful when they clarify the requirement.
 
 Check the relevant code and docs as well as the requirements. Review for:
 
