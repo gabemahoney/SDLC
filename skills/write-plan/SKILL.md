@@ -82,7 +82,9 @@ Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small
 
 **An Epic is a vertical slice of the end product.** It delivers one new feature, or one working part of a feature, through the whole stack: the code, its tests and its docs. Think of each Epic as a sprint demo: when it's `done`, you could show the product doing at least a little something new. Code alone or a set of tests isn't a demo. Every Epic leaves the software working with existing tests passing.
 
-Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new. If planning reveals work outside this Idea's scope, such as a refactor, suggest a separate Idea for it to the Managing Intelligence rather than planning it, because whether to take it on is their call.
+Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new. A refactor Epic is a vertical slice too: its demo shows a feature that worked on the old code still working on the new code.
+
+If planning reveals work outside this Idea's scope, such as a refactor, suggest a separate Idea for it to the Managing Intelligence rather than planning it, because whether to take it on is their call.
 
 Acceptance criteria describe that demo. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
