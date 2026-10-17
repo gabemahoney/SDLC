@@ -106,13 +106,13 @@ Keep the Epic's progress concise: current Task and phase, repo checkouts, integr
 
 ## Integration gate
 
-Run integration after each flagged Task and after the Epic's last Task. The gate passes when each affected repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives the remaining failures. Record evidence and any waiver on the Epic and the flagged Task. Keep the Epic and gated Tasks `active` until then, and commit the gate's integration-test changes before continuing to the next planned Task.
+At each gate, dispatch a fresh Integration Tester once all file-changing Subagents have finished. It writes or updates the integration tests the work needs and runs the integration suites of every affected repo, as `test-guide.md` and `build-commands.md` describe, then reports a result for each repo. The gate passes when each affected repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives the remaining failures. Record the evidence and any waiver on the Epic and the gated Task, keep both `active` until the gate passes, and commit the gate's integration-test changes before the next Task.
 
 If integration tests change, get a Test Reviewer check because these tests were written after the Task's review. Resolve accepted findings with a fresh Integration Tester and obtain a suite result for the resulting files.
 
 For source failures within the Epic's scope, create integration fix Tasks describing the outcome, acceptance criteria and prerequisites. On resume, finish any recorded draft repairs before executing them, so interruptions during repair planning are recoverable. Each Subtask names its executor and has Context, What Needs to Change, Key Files and Acceptance Criteria sections, so the fix is as executable as the original planning. Include unit coverage and the final full-unit-suite Subtask, documentation where affected, and Test Writer Lanes.
 
-Execute fix Tasks through the full Task pipeline in Dependency order and mark each `done` after its checks, reviews and commit. Defer their flagged integration runs to one check over the combined repairs, so dependent fixes can proceed. Keep the original gated Task and Epic `active` until that check passes. Use the original Task's committed implementation as repair context; Dependencies between fix Tasks order their execution.
+Execute fix Tasks through the full Task pipeline in Dependency order and mark each `done` after its checks, reviews and commit. Defer their own integration gates to one check over the combined repairs, so dependent fixes can proceed. Keep the original gated Task and Epic `active` until that check passes. Use the original Task's committed implementation as repair context; Dependencies between fix Tasks order their execution.
 
 If a failure an earlier fix Task was meant to fix persists, stop for the Managing Intelligence's decision, so failed repairs do not become an automatic loop. If suites cannot run, stop for the environment to be fixed or a waiver. Record the unfinished gate so a later Run resumes there.
 
