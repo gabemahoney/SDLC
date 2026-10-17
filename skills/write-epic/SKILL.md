@@ -124,7 +124,7 @@ Test each behaviour in one place only, so the same thing isn't tested twice. Pla
 - [ ] Every proposed change serves the requirements or applicable Guidance Documents, and its size fits the outcome.
 - [ ] Prerequisite and sibling Epic work is accounted for, and each Task has a coherent outcome and the Dependencies it needs.
 - [ ] Each Subtask has an executor, the four template sections and concrete Key Files in a named repo or code folder.
-- [ ] Test proposals identify fixture reuse and changes, give behaviours a single coverage owner and group dependent test files in the same Lane.
+- [ ] Test proposals identify fixture reuse and changes, test each behaviour in one place, and keep test files that share changed setup in the same Lane.
 - [ ] Every Task changing source or unit tests has a final full-unit-suite Subtask following its other unit-test work.
 - [ ] Documentation work follows its implementation and tests and is allowed by the doc-writing guide.
 - [ ] Every Task to execute has a Thinking Level suited to its complexity and risk.
