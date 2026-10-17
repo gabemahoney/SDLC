@@ -30,7 +30,7 @@ An Idea ID or one of its PRD or SRD Doc IDs, with any earlier findings and Manag
 
 ## Gate
 
-None: requirements can be reviewed at any Idea status.
+The Idea has a PRD and isn't `done`. If it has no PRD, stop and suggest write-prd.
 
 ## Steps
 
