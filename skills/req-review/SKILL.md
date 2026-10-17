@@ -49,9 +49,10 @@ None: req-review reviews the Docs itself.
 
 ## Writes
 
-The PRD and SRD, Doc children of the Idea, each set `defined` when the Managing Intelligence approves it.
+req-review changes statuses only. It never edits the PRD or SRD.
 
-The Idea, set from `draft` to `defined` once its PRD and SRD are both `defined`.
+- The PRD or SRD: set to `defined` when the Managing Intelligence approves it.
+- The Idea: set from `draft` to `defined` once its PRD and SRD are both `defined`.
 
 
 ## Done
