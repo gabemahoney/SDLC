@@ -80,9 +80,9 @@ Suggest write-epic on each `draft` Epic in dependency order.
 
 Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small Idea has 1–3 Epics, a medium one 3–6, a large one 6–9 and a new product 10 or more. These are guidance, not limits: choose the count by judgement, and when it falls outside the range, give a good reason for it in the Plan's body.
 
-Every Epic must leave the software working with existing tests passing. Each outcome should be independently testable and demonstrable when its Dependencies are complete.
+**An Epic is a vertical slice.** It delivers one new feature, or one working part of a feature, through the whole stack: the code, its tests and its docs, so the feature can be demonstrated when the Epic is `done`. Every Epic leaves the software working with existing tests passing.
 
-Slice Epics by capability, not by layer. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not, because none of them delivers something a user can check on its own.
+Slice by capability, not by layer. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not, because none of them delivers something a user can check on its own.
 
 Common Dependencies: a capability depends on the infrastructure it uses; a screen depends on the data and services it shows; processing depends on the import that supplies its data; protected features depend on authentication. For each Epic, ask what must be `done` before it can start. Watch for chains whose intermediate states cannot be tested and for pervasive refactors mixed into feature work without serving its outcome.
 
