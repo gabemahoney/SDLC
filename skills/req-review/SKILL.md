@@ -37,7 +37,7 @@ Run only when both are true:
 
 1. **Review whatever is `draft`:** the PRD, the SRD or both, using the Review criteria below.
 
-2. **Get the Managing Intelligence's decision.** Present your findings and a readiness verdict for each Doc. The Managing Intelligence decides which findings to accept and which Docs to approve. Set each approved PRD or SRD `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
+2. **Get the Managing Intelligence's decision.** Present your findings and a readiness verdict for each Doc. The Managing Intelligence decides which findings to accept and which Docs to approve. Only when the Managing Intelligence approves a PRD or SRD, set it `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
    - If revisions are needed, hand off the accepted findings and declined findings separately. Suggest that the Managing Intelligence run write-prd for product changes or write-srd for software changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
    - Once both the PRD and SRD are `defined`, set a `draft` Idea `defined`.
 
