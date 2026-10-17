@@ -103,7 +103,7 @@ Each Lane owns its files and exclusively used fixtures and helpers, including ex
 
 ## Executor reuse and progress
 
-Start fresh executors for each Task and retain them for its fix rounds so fixes reuse their knowledge. Keep each Lane's Test Writer and any final Test Writer. Resume the executors whose work is affected, replacing unavailable ones with fresh executors reading the Task's progress. Reviewers and Product Managers start fresh each time for an independent assessment.
+Start fresh executors for each Task and retain them for its fix rounds, including each Lane's Test Writer and any final Test Writer. Before resuming an affected executor, read its context fraction as the Agent Protocol File describes: its latest context tokens divided by its own model's applicable context window. Resume it only below 75%. At 75% or more, when the reading is unknown, when a resume fails or when the approach changes, replace it with a fresh executor that reads the Task's progress. A nearly full context causes mistakes, while a resume costs far less than a fresh start. Reviewers and Product Managers start fresh each time for an independent assessment.
 
 Keep the Epic's progress concise: current Task and phase, repo checkouts, integration gate and next work. On each Task, record retained executors' Roles, Lane or final-Writer assignments, Agent IDs, names if available and Thinking Levels after each report, so a later Run can resume them. Dispatches name the assigned repo checkouts so code changes land in the intended worktrees. After compaction, reconcile ticket and git state before dispatching or committing, because a summary may omit completed work.
 

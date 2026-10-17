@@ -99,7 +99,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If a guide exists, use or point to it.
       - Otherwise, write it with the Managing Intelligence.
 
-6. **Check the installation and Launcher prerequisites.** Follow your Agent's Protocol File for the expected installed skills, Subagent definitions and their filenames. Check and report whether Apiary is installed for the running Agent. Report missing files inspected only for installation completeness here. Report what is missing and say "run Apiary's `install.sh`". Check and report the prerequisites named by the Launcher Protocol File in effect. Check that each used Agent's Protocol File says how to read or estimate how full its context is, because develop-epic stops for a fresh session before its context fills. If one doesn't, report it as missing from that Protocol File.
+6. **Check the installation and Launcher prerequisites.** Follow your Agent's Protocol File for the expected installed skills, Subagent definitions and their filenames. Check and report whether Apiary is installed for the running Agent. Report missing files inspected only for installation completeness here. Report what is missing and say "run Apiary's `install.sh`". Check and report the prerequisites named by the Launcher Protocol File in effect. Check that each used Agent's Protocol File says how to read or estimate both its own context fraction and a retained Subagent's, because develop-epic stops for a fresh session or replaces an executor before its context fills. If either is missing, report it as missing from that Protocol File.
 
 ## Dispatches
 

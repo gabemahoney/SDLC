@@ -21,7 +21,7 @@ A Bug ID.
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system` and map the Bug's executor tag and the reviewers' `thinking_levels` through `levels_claude_code` or `levels_codex`.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch and resume Subagents and ask and report through the Agent.
+- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch and resume Subagents, check context use and ask and report through the Agent.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Bug and its dependencies and record execution evidence, decisions and status.
 - **The Bug and its Dependencies:** through the Ticket System Protocol File, using the input ID. Why: to read the confirmed behaviour, retained reproduction, `thinking_level:<label>` tag, progress and Managing Intelligence decisions, including why an earlier fix was returned.
 - **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes. Why: to judge findings, check the fix and affected documentation, and commit, merge and push as permitted.
@@ -92,7 +92,7 @@ Record Lane assignments, covered behaviours and shared fixtures or helpers on th
 
 ## Executor reuse and progress
 
-Retain the repair's executors for fix rounds, including any final Test Writer, so repairs reuse their knowledge. Replace unavailable executors with fresh ones reading the Bug's progress. Start reviewers fresh each time for an independent assessment.
+Retain the repair's executors for fix rounds, including each Lane's Test Writer and any final Test Writer. Before resuming an affected executor, read its context fraction as the Agent Protocol File describes: its latest context tokens divided by its own model's applicable context window. Resume it only below 75%. At 75% or more, when the reading is unknown, when a resume fails or when the approach changes, replace it with a fresh executor that reads the Bug's progress. A nearly full context causes mistakes, while a resume costs far less than a fresh start. Start reviewers fresh each time for an independent assessment.
 
 Keep the current phase, next work and integration repair-round count on the Bug. Record retained executors' Roles, Lane or final-Writer assignments, Agent IDs, names if available and Thinking Levels so a later Run can resume them.
 
