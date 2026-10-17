@@ -31,12 +31,12 @@ An Idea ID or one of its PRD or SRD Doc IDs, with any earlier findings and Manag
 ## Gate
 
 Run only when both are true:
-- The Idea's PRD or SRD is `draft`. If neither is, there's nothing to review; say so and stop. If the Idea has no PRD, suggest write-prd.
+- The Idea's PRD or SRD is `draft`. If neither is, there's nothing to review; say so and stop. 
 - The Idea isn't `done`, because done work is already shipped. If it is, stop and say so.
 
 ## Steps
 
-1. **Review whatever is `draft`.** Dispatch the Requirements Reviewer to review the `draft` PRD, the `draft` SRD, or both. It always reads the PRD, because the SRD is checked against it, but it reviews a `defined` PRD only for the SRD's agreement with it, not on its own.
+1. **Review whatever is `draft`.** Dispatch the Requirements Reviewer on the `draft` PRD, SRD or both.
 
 2. **Get the Managing Intelligence's decision.** Present the findings and readiness verdicts. The Managing Intelligence decides which findings to accept and which Docs to approve. Set each approved PRD or SRD `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
    - If revisions are needed, hand off the accepted findings and declined findings separately. Suggest that the Managing Intelligence run write-prd for product changes or write-srd for software changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
