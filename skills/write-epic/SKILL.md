@@ -43,7 +43,7 @@ Run only when all of these are true:
 
 2. **Plan each draft Task's Subtasks.** Work in Dependency order. Save the Task before dispatching its planners, so they can read it. Have planners do each Task's detailed reading, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below. Assign each draft Task a `thinking_level:<label>` tag suited to its complexity and risk, because develop-epic uses it for the Task's executors.
    - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
-   - The Managing Intelligence decides product questions and conflicts with the SRD's choices, because planning follows the defined requirements.
+   - If planning raises a product question, or a planner's proposal conflicts with the SRD, ask the Managing Intelligence, because planning follows the defined requirements.
 
 3. **Check the whole Epic with the Product Manager.** Save the Tasks and Subtasks, then dispatch the Product Manager. Resolve its findings and dispatch a fresh one after significant revisions, so the revised work has an independent check. Check the Quality checklist below.
 
