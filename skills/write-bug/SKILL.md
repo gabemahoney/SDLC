@@ -26,8 +26,6 @@ A defect report or intake input such as an issue URL, because this skill creates
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to create the Bug and store its body and any Source Reference.
 - **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes. Why: to write the supplied report in the Project's format.
 
-Also read the Project's code, tests and any linked Research tickets as the work needs.
-
 ## Gate
 
 Run only when all of these are true:
@@ -51,7 +49,7 @@ A new Bug in the Bugs store, with the supplied report in its body and status `dr
 
 ## Done
 
-Report the Bug's ID and any findings or feedback left unaddressed, with the reason.
+Report the Bug's ID. Next step: define-bug.
 
 ## Writing guidance
 

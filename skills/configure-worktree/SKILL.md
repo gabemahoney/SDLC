@@ -58,7 +58,9 @@ None: configure-worktree prepares the worktrees itself; the Launcher starts the 
 
 ## Done
 
-Report the ticket ID, and any findings or feedback left unaddressed with the reason.
+Report the ticket ID and the worktree paths.
+
+If a Worker was launched, it runs the assigned skill. Otherwise, the work can start in the worktrees.
 
 ## Worktree guidance
 

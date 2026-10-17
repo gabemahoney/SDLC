@@ -65,7 +65,9 @@ The Bug is the only ticket changed. Set it `active` when work starts and leave i
 
 ## Done
 
-Report the Bug's ID and any findings or feedback left unaddressed with the reason.
+Report the Bug's ID, and any review findings left unaddressed with the reason.
+
+Suggest the Managing Intelligence check the fix: they set the Bug `done` on acceptance, or return it to `draft` for define-bug.
 
 ## Repair pipeline
 

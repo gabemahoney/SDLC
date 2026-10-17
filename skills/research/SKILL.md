@@ -60,7 +60,9 @@ Retain accepted Research tickets, Reports and artifacts in the Research store, w
 
 ## Done
 
-Report the Research ticket ID and any findings or feedback left unaddressed, with the reason.
+Report the Research ticket ID, and the Report's ID once it exists.
+
+If the round awaits review, say so; the Managing Intelligence's verdict continues it.
 
 ## Research ticket record
 

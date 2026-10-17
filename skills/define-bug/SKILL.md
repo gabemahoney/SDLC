@@ -58,7 +58,10 @@ The Bug's write-up, validation evidence, retained reproduction and Managing Inte
 
 ## Done
 
-Report the Bug's ID and any findings or feedback left unaddressed with the reason.
+Report the Bug's ID and its status.
+
+- If it's `defined`, suggest fix-bug.
+- If it's still `draft`, report what is needed to settle it.
 
 ## Reproduction guidance
 

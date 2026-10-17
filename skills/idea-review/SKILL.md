@@ -62,7 +62,11 @@ Run only when all of these are true:
 
 ## Done
 
-Report the Idea's ID, and any findings or feedback left unaddressed with the reason.
+Report the Idea's ID, and the Round Feedback Epic's ID if one was filed.
+
+- If feedback was filed, suggest write-epic on it, then develop-epic, then idea-review again.
+- If an earlier fix failed, report what decision is needed to resume.
+- Otherwise, the Idea is ready for the Managing Intelligence's testing.
 
 ## Findings guidance
 

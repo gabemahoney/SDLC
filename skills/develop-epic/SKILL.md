@@ -72,7 +72,11 @@ Run only when all of these are true:
 
 ## Done
 
-Report the Epic's ID, and any findings or feedback left unaddressed with the reason.
+Report the Epic's ID, and any review findings left unaddressed with the reason.
+
+- If it stopped at a Task boundary, suggest re-running develop-epic on this Epic.
+- If more Epics remain, suggest the next one: write-epic if it's `draft`, otherwise develop-epic.
+- If the Plan is `done`, suggest teardown-worktree for any Epic worktrees, then idea-review.
 
 ## Task pipeline
 
