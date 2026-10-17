@@ -24,7 +24,7 @@ An Epic ID.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and existing work, and write Tasks, Subtasks, dependencies, tags and statuses.
 - **Epic, Plan, all sibling Epics and existing Tasks and Subtasks:** through the Ticket System Protocol File, using the input Epic ID. Why: to establish the Epic's outcome, account for its dependencies, avoid overlapping work and reconcile earlier planning and progress.
-- **Idea and its Docs:** through the Idea reference on the Plan and the Ticket System Protocol File. Why: to follow the PRD, SRD and settled decisions, including findings and Managing Intelligence answers recorded on the tickets they concern.
+- **Idea and its Docs:** the Plan's Idea, through the Ticket System Protocol File. Why: to follow the PRD, SRD and settled decisions, including findings and Managing Intelligence answers recorded on the tickets they concern.
 - **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `maintained-docs.md` for each affected code folder, found as `workflow.md` describes, including the documents `maintained-docs.md` lists. Why: to judge proposals against engineering conventions, plan tests and fixture reuse, and limit documentation work to what its guide allows.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.

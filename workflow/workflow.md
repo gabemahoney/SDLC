@@ -30,6 +30,7 @@
 
 - An Idea is a piece of software to build: a feature, a change or a product.
 - A Bug is a defect to validate and fix.
+- A Plan is linked to one Idea, and an Idea has at most one Plan. The Ticket System Protocol File defines how tickets are linked.
 - A Plan divides an Idea into Epics, an Epic into Tasks (each committed in one go), and a Task into Subtasks (each one executor's part).
 - A Doc describes an Idea: its Product Requirements Document (PRD, what and why), Software Requirements Document (SRD, what the software must do), TLA+ spec (a model-checked design), or another document.
 - A Research ticket holds a research question. Its one Report holds the answer. A Report is not a Doc.
