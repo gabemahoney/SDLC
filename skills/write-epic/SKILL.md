@@ -111,7 +111,7 @@ When unsure between two levels, choose the higher one.
 
 ## Planning the tests
 
-Plan each Task's testing Subtasks for two goals:
+Plan each Task's testing Subtasks with two goals in mind:
 
 1. **Reuse the Project's test setup.** Plan which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
 2. **Let Test Writers work in parallel.** develop-epic can run several Test Writers on one Task, one per Lane. A **Lane** is a group of test files one Writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so Writers don't edit the same helper or test the same thing twice. develop-epic adjusts them to the actual code.
