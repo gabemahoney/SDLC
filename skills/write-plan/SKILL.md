@@ -31,7 +31,7 @@ An Idea ID, with any planning decisions or change notes. For a Plan reset by wri
 
 ## Gate
 
-The Idea is `defined` and has a PRD and an SRD. Both Docs are `defined`, unless the Managing Intelligence explicitly confirms planning without review in step 1.
+The Idea is `defined`, or `active` when revising a Plan that write-srd reset, and has a PRD and an SRD. Both Docs are `defined`, unless the Managing Intelligence explicitly confirms planning without review in step 1.
 
 Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan only when the Idea has none, so the work has one Plan to follow.
 
