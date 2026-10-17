@@ -49,7 +49,7 @@ Run only when all of these are true:
    - Once Subtasks are `done` and accepted findings are fixed, require passing `guide:build-commands.md ## Compile`, `guide:build-commands.md ## Lint` and the full `guide:build-commands.md ## Unit tests` for every affected code folder. Use `guide:build-commands.md`, skipping only sections marked `none` with a reason. The final `test-writer` owns the unit run. Route failures through the Task pipeline and repeat affected checks after repairs, so the evidence covers the completed work.
    - Commit only after all three checks pass, then set the Task `done`.
 
-3. **Finish the Epic.** After the last Task, run the Integration gate and repeat it until it passes, so the finished Epic works as a whole. Then launch `product-manager`, turn its accepted findings into fix Tasks, complete them through step 2, and pass the Integration gate again. Set the Epic `done` once all Tasks, accepted findings and the gate are complete.
+3. **Finish the Epic.** After the last Task, run the Integration gate and repeat it until it passes, so the finished Epic works as a whole. Then launch `product-manager` and judge each finding. Turn the ones worth fixing into fix Tasks, complete them through step 2, and pass the Integration gate again. Decline minor findings, and record each one with its reason on the Epic and in the Done report, so the Managing Intelligence sees what was left. Set the Epic `done` once all Tasks, accepted findings and the gate are complete.
 
 4. **Check Plan completion.** Set the Plan `done` when every Epic is `done`. Record remaining Epics or the handoff to teardown-worktree, then idea-review after merging.
 
