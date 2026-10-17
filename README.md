@@ -61,7 +61,7 @@ For hives created by earlier Apiary releases, use the legacy `apiary-setup` migr
 
 ## Workflow
 
-Each workflow skill below runs in its own Main Agent. The Managing Intelligence chooses the next Run from the tickets and the previous Run's handoff.
+Each workflow skill below runs in its own Main Agent. The Managing Intelligence chooses the next Run from the tickets and the previous Run's handoff. [Who runs which skill](docs/who-runs-which-skill.md) shows which Main Agent skills launch which Child Agent skills.
 
 **Ideas:** write-idea → write-prd → req-review → write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing.
 
