@@ -80,7 +80,7 @@ Suggest write-epic on each `draft` Epic in dependency order.
 
 Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small Idea has 1–3 Epics, a medium one 3–6, a large one 6–9 and a new product 10 or more. These are guidance, not limits: choose the count by judgement, and when it falls outside the range, give a good reason for it in the Plan's body.
 
-**An Epic is a vertical slice of the end product.** It delivers one new feature, or one working part of a feature, through the whole stack: the code, its tests and its docs. The test is a sprint demo: when the Epic is `done`, you could show the product doing at least a little something new. Code alone or a set of tests isn't a demo. Every Epic leaves the software working with existing tests passing.
+**An Epic is a vertical slice of the end product.** It delivers one new feature, or one working part of a feature, through the whole stack: the code, its tests and its docs. Think of each Epic as a sprint demo: when it's `done`, you could show the product doing at least a little something new. Code alone or a set of tests isn't a demo. Every Epic leaves the software working with existing tests passing.
 
 Slice by capability, not by layer. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not, because none of them delivers something a user can check on its own.
 
