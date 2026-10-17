@@ -6,7 +6,7 @@ Select this file with `launcher: agent-director`. It installs as `~/.apiary/syst
 
 Use agent-director with working hooks for each chosen Agent, tmux, the Agent's installed skills and access to the assigned checkouts and ticket system. Run `agent-director version` and `agent-director --help` to check the installed commands. Run lifecycle commands as the same user and on the same tmux server as the agents, because another server cannot establish their liveness.
 
-Choose an agent-director template for the selected Agent and assignment from `~/.config/agent-director/templates/<name>.toml`. The template supplies the approved permissions and environment. Record its name on the ticket so a resumed Run uses the same launch configuration. The caller resolves the skill's Thinking Level through the Project settings before launch, including a Task or Bug tag override as `workflow.md` describes.
+Choose an agent-director template for the selected Agent and assignment from `~/.config/agent-director/templates/<name>.toml`. The template supplies the approved permissions and environment. Record its name on the ticket so a resumed Run uses the same launch configuration. Resolve Thinking Levels as described below.
 
 ## Launch a Main Agent
 
@@ -18,9 +18,7 @@ Record the returned `instance_id` on the ticket. Use `get` and `status` to confi
 
 Run `spawn` from the Main Agent's environment. agent-director records the caller's `AGENT_DIRECTOR_INSTANCE_ID` as the new row's `parent_id`, and gives the Child Agent its own instance ID. Verify that `get` returns the intended Main Agent ID as `parent_id`, so the Child Agent remains attached to its parent.
 
-agent-director 0.12.0 takes the parent from that environment; its `--parent` flag belongs to `list`, not `spawn`. From a supervising shell, `env AGENT_DIRECTOR_INSTANCE_ID='<main-id>' agent-director spawn ...` supplies the same parent identity. Use the recorded Main Agent ID, because a Child Agent must belong to the Main Agent assigning its work.
-
-Start the Child Agent with the assigned skill and ticket IDs. Include the Main Agent ID, assigned checkout paths, resolved settings and Protocol File locations in the prompt. Keep work instructions and progress on the referenced tickets so the launch does not copy their contents. Record the Child Agent's instance ID, skill, assignment and Thinking Level on the ticket for later continuation.
+Use the same spawn arguments as for a Main Agent, with the Child Agent's assignment and launch context from `workflow.md`. Record its instance ID, skill, assignment and Thinking Level on the ticket for continuation.
 
 ## Model and Thinking Level at launch
 
@@ -54,21 +52,27 @@ When a fresh replacement is needed, resolve any uncertain delivery and stop the 
 
 ## Read a Child Agent's context
 
-Until agent-director ships Idea b.17w, read the Child Agent's own session file, following Research Report t1.b1n.y4. Get the child's `session_id`, `jsonl_path` and Agent with `agent-director get --instance-id '<child-id>'`. Confirm `parent_id` against the recorded Main Agent and match the file's session identity, because the parent's context says nothing about the child's.
+Get its `session_id`, `jsonl_path` and Agent with `agent-director get --instance-id '<child-id>'`. Confirm `parent_id` and match the session file's identity, because a parent's context says nothing about its child.
 
-Follow the selected Agent Protocol File's **Context use** section for that session: Claude Code's latest assistant usage and effective capacity, or Codex's latest `token_count` usage and window. A captured status-line reading is usable only when it belongs to that Child Agent's session. These Child Agents are separate Agent sessions, so their files are the sessions recorded by agent-director.
-
-Keep the session identity, source, history position, model, provider and capacity basis with the reading. Use the active history after compaction and the latest completed turn, because cumulative usage measures consumption rather than current context. If identity, usage or compatible capacity cannot be established, return unknown so the shared Context rule replaces the Child Agent.
+Follow that Agent Protocol File's **Context use** instructions on the child's session. Retain the reading's session identity, source, history position, model, provider and capacity basis. Return unknown if identity, usage or compatible capacity cannot be established; `workflow.md` decides whether to resume or replace.
 
 ## Know when a Child Agent's state changes
 
-agent-director doesn't notify the Main Agent, so the Main Agent watches each Child Agent itself. Right after launching or resuming one, start a background watcher that polls `agent-director status --instance-id '<child-id>'` every few seconds. It reports once the state has held steady for several polls in `waiting`, `ask_user`, `check_permission`, `ended` or `missing`. Run the watcher with the Agent's own background-event tool, so each report wakes the Main Agent, as its Agent Protocol File describes. On a report, read the Child Agent's result: `waiting` means its turn ended; `ask_user` or `check_permission` means it needs an answer or a decision (use `decide` for permissions); `ended` or `missing` means it stopped. Re-arm the watcher whenever the Child Agent is resumed.
+agent-director provides no automatic notification. After launch or resume, poll `agent-director status --instance-id '<child-id>'` every few seconds while work is outstanding, including when the Main Agent has no other work. Inspect `get` and `read-pane` when the state changes so a completed or blocked Child Agent does not wait unnoticed.
+
+- `pending`: launch has not reported in. Follow the pending grace and inspection instructions in `agent-director --help` before sending input or retrying a launch.
+- `working`: the turn is running.
+- `waiting`: read the result; the turn may have completed, asked a question or stopped unfinished.
+- `ask_user` or `check_permission`: inspect the request. Relay decisions needing the Managing Intelligence; use `decide` for an open relayed permission request as `--help` describes.
+- `ended` or `missing`: inspect the result and verify process exit before replacement or cleanup, because a row state alone does not prove exit.
+
+Continue watching after any resumption.
 
 ## Watch and collect results
 
-Use `status --instance-id '<id>'` for state, `get --instance-id '<id>'` for the full record and `read-pane --instance-id '<id>' --lines 80` for output. `list --parent '<main-id>'` finds a Main Agent's Child Agents. A `waiting` state means the turn ended; read its result to distinguish completion from a question or an unfinished assignment.
+Use `status --instance-id '<id>'` for state, `get --instance-id '<id>'` for the full record and `read-pane --instance-id '<id>' --lines 80` for output. `list --parent '<main-id>'` finds a Main Agent's Child Agents.
 
-Child Agents report ticket IDs and unresolved work to their Main Agent. The Main Agent reads the tickets, coordinates the next work and passes questions needing a decision to the Managing Intelligence. Record progress on tickets so a replacement Main Agent can find both the work and its retained Child Agents.
+Use the state handling above for both classes. Read results from the recorded tickets and pane.
 
 A fresh Main Agent may continue a retained Child Agent only after the old Main Agent has stopped using it. Stop the idle Child Agent with `pause`, verify exit, then `resume` it from the new Main Agent's environment to update `parent_id`. Verify that relationship with `get` before sending work, so continuation belongs to the current Main Agent.
 

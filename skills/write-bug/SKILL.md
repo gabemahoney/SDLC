@@ -11,7 +11,7 @@ Records a new defect report as a Bug for define-bug to complete and validate.
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,12 +19,11 @@ A defect report or intake input such as an issue URL, because this skill creates
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the intake through `new_bug_intake` and the Ticket System Protocol File through `ticket_system`.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the Source Reference resolver named by `new_bug_intake`. Why: to check the input and prepare the Bug according to that intake.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to interview the Managing Intelligence and report through the Agent.
-- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to create the Bug and store its body and any Source Reference.
-- **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes. Why: to write the supplied report in the Project's format.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to create the Bug and store its body and any Source Reference.
+- **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes, to write the supplied report in the Project's format.
 
 ## Gate
 
@@ -39,7 +38,7 @@ Run only when all of these are true:
 
 2. **File the Bug** as described under Writes.
 
-## Child Agents
+## Dispatches
 
 None: write-bug files the Bug itself.
 

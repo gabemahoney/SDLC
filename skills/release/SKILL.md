@@ -11,7 +11,7 @@ Carries out the Project's release process. The Project's guide defines what rele
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -20,7 +20,7 @@ The release target required by the Project's guide, such as a ticket ID or versi
 ## Required Reading
 
 - **Release guidance:** `release-guide.md`, found as `workflow.md` describes, and the files it points to. Why: to follow the Project's release process, permissions and approvals.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to request approvals and report through the Agent.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
 
 If the guide uses tickets, read `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`, and the Ticket System Protocol File `~/.apiary/system/protocols/ticket-<ticket_system>.md` selected by `ticket_system`, so ticket changes use the Project's ticket system.
 
@@ -37,7 +37,7 @@ Run only when both of these are true:
 
 2. **Check the result** as the guide requires, so the report reflects what was released.
 
-## Child Agents
+## Dispatches
 
 None: release follows the guide itself.
 

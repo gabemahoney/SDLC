@@ -11,7 +11,7 @@ Keeps a research question, its evidence and review rounds together until the Man
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,12 +19,11 @@ A Research ticket ID.
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` selects the Ticket System Protocol File and `research_location` locates the Research store.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to present rounds, receive decisions and use research skills provided by the Agent.
-- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the Research ticket, its Report and review log, and store and link research artifacts.
-- **Research guidance:** `research-guide.md`, found as `workflow.md` describes. Why: to follow the Project's research methods, evidence requirements and Report guidance.
-- **Research ticket and its existing Report:** at `research_location` through the Ticket System Protocol File, using the input ID. Why: to understand the question, constraints, findings and latest review decision, and resume the right round.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read and write the Research ticket, its Report and review log, and store and link research artifacts.
+- **Research guidance:** `research-guide.md`, found as `workflow.md` describes, to follow the Project's research methods, evidence requirements and Report guidance.
+- **Research ticket and its existing Report:** at `research_location` to understand the question, constraints, findings and latest review decision, and resume the right round.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -49,7 +48,7 @@ Run only when all of these are true:
 
 4. **Complete any extra outputs.** After the Report is accepted, produce any extra outputs `research-guide.md` requires from it. Record their locations and completion on the Research ticket, so an interrupted Run can finish what remains without repeating completed work. Apply this step to each newly accepted revision too, so the extra outputs stay current.
 
-## Child Agents
+## Dispatches
 
 None: research does the investigation and brings each round to the Managing Intelligence.
 

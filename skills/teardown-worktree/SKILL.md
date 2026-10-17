@@ -11,7 +11,7 @@ Brings completed Idea or Epic work into its target branches, then cleans up the 
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,14 +19,13 @@ An Idea or Epic ID.
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md` if present, then `~/.apiary/default_project_settings.md`. Why: to select `ticket_system` and, when managing the Main Agent, `launcher`.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to ask and report through the Agent.
-- **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea or Epic and record merge and cleanup decisions on it.
-- **The Idea or Epic:** through the Ticket System Protocol File, using the input ID. Why: to read its worktree and Main Agent records, merge targets, cleanup choices and earlier results so a resumed Run continues existing work.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea or Epic and record merge and cleanup decisions on it.
+- **The Idea or Epic and its Plan:** for completion, worktree and Main Agent records, merge targets, cleanup choices and earlier results.
 - **Repo and merge state:** each main checkout and the ticket's registered worktrees and target checkouts. Why: to verify ownership, branches, uncommitted changes and merges against the ticket's record.
 
-When managing agents, read `launcher.md`, selected by `launcher` as `workflow.md` describes, to inspect and stop the Main Agent and its Child Agents before removing their worktrees.
+When managing agents, read `launcher.md` for inspection and verified shutdown. If committing outstanding changes, read `release-guide.md`, found as `workflow.md` describes, for applicable permissions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -34,7 +33,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 Run only when all of these are true:
 
-- The input Idea or Epic is `done`. Otherwise, stop and report its status, because unfinished work is still being developed.
+- An Epic is `done`, or an Idea's Plan is `done`. Otherwise, stop and report unfinished work. Idea work is merged before idea-review and acceptance, so the Idea itself can still be `active`.
 - The Run starts outside `<Project Folder>/.worktrees/<ticket id>/`. Otherwise, stop and ask the Managing Intelligence to run it elsewhere, because teardown removes this folder.
 
 ## Steps
@@ -49,7 +48,7 @@ Run only when all of these are true:
 
 4. **Remove the completed worktrees and branches.** Remove each clean worktree once its branch is fully merged into the recorded target, then delete that branch. Keep anything git refuses to remove and record the failure, to preserve work that needs a decision. Remove the ticket's worktree folder once it is empty.
 
-## Child Agents
+## Dispatches
 
 None: teardown-worktree merges and removes the worktrees itself.
 

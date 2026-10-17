@@ -11,7 +11,7 @@ Reviews the whole Idea after its Plan is done and Epic worktrees are merged. Fil
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,13 +19,12 @@ An Idea ID.
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` and `launcher` select the Protocol Files; `thinking_levels` and `levels_claude_code` or `levels_codex` set the launched skills' model and effort.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to check this Main Agent's context and ask and report through the Agent.
-- **Launcher Protocol File:** `launcher.md`, selected by `launcher` as `workflow.md` describes. Why: to launch, resume and watch Child Agents, keep their parent relationship and read their context before reuse.
-- **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and progress, record review results and file feedback in the Plan.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read requirements and progress, record review results and file feedback in the Plan.
 - **The Idea, its PRD, SRD, Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID and the Plan's Association to it. Why: to review the requirements, resume round progress and follow earlier findings, fixes, integration results, waivers and Managing Intelligence decisions.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `build-commands.md` for each reviewed repo, found as `workflow.md` describes. Why: to judge the work against the Project's guidance and demonstrate acceptance criteria.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `build-commands.md` for each reviewed repo, found as `workflow.md` describes, to judge the work against the Project's guidance and demonstrate acceptance criteria.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -41,22 +40,22 @@ Run only when all of these are true:
 
 1. **Establish the round.** Resume the Idea's unfinished round, or start the next numbered round, beginning at 1. If only feedback filing or the handoff remains, continue at step 4 from the recorded findings. Record the reviewed checkouts and commits. Reuse recorded checks only for the requirements and files they covered, so a resumed review assesses the current product.
 
-2. **Review the whole Idea.** Launch independent Child Agents with code-review, test-review and doc-review in parallel, as `launcher.md` describes. Demonstrate each PRD acceptance criterion with tests or scripts; record concrete manual validation instructions where direct demonstration needs the Managing Intelligence. Save the reports and evidence on the Idea, then launch a Child Agent with the product-manager skill, as `launcher.md` describes, with the relevant ticket IDs. Each new round covers the whole Idea, because corrections can affect previously working behaviour.
+2. **Review the whole Idea.** Launch code-review, test-review and doc-review in parallel for independent checks. Demonstrate each PRD acceptance criterion with tests or scripts; record concrete manual validation instructions where direct demonstration needs the Managing Intelligence. Judge their findings under the shared rule. Save acceptance evidence and declined or unaddressed findings with reasons on the Idea, then launch `product-manager` with the ticket IDs. Each new round covers the whole Idea, because corrections can affect previously working behaviour.
 
 3. **Judge the findings.** Use the Findings guidance below, including unaddressed feedback from develop-epic and the Tasks behind it. Check whether earlier feedback fixes resolved their findings. If an earlier fix failed, record the evidence on that feedback Epic and stop for the Managing Intelligence's decision before filing more work, so a failed fix does not start an automatic loop. Resume from their recorded decision.
 
 4. **Finish the round.** File its non-trivial findings in one `Round <N> Feedback` Epic, using the contents below. Reuse that round's Epic if filing was interrupted, so a restart creates no duplicate work. Record the handoff on the Idea: write-epic for feedback, then develop-epic, merging and another idea-review; or the Managing Intelligence's testing and acceptance when only trivial findings or none remain.
 
-## Child Agents
+## Dispatches
 
-- **`code-review`:** Launch a Child Agent with the code-review skill, as `launcher.md` describes, in each round for the whole Idea's source changes. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
-- **`test-review`:** Launch a Child Agent with the test-review skill, as `launcher.md` describes, in each round for the whole Idea's tests. Expect coverage, quality and duplication findings across the suite, or none.
-- **`doc-review`:** Launch a Child Agent with the doc-review skill, as `launcher.md` describes, in each round for the whole Idea's documentation. Expect findings on complete touched documents, including breaches anywhere in them and missing or outdated documentation, or none.
-- **`product-manager`:** Launch a Child Agent with the product-manager skill, as `launcher.md` describes, after the reviewers and acceptance demonstrations in each round. Expect findings against the PRD and SRD on coverage, scope and proportion, including incomplete work, conflicting decisions and unaddressed feedback.
+- **`code-review`:** Launch in each round for the whole Idea's source changes. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
+- **`test-review`:** Launch in each round for the whole Idea's tests. Expect coverage, quality and duplication findings across the suite, or none.
+- **`doc-review`:** Launch in each round for the whole Idea's documentation. Expect findings on complete touched documents, including breaches anywhere in them and missing or outdated documentation, or none.
+- **`product-manager`:** Launch after the reviewers and acceptance demonstrations in each round. Expect findings against the PRD and SRD on coverage, scope and proportion, including incomplete work, conflicting decisions and unaddressed feedback.
 
 ## Writes
 
-- **Idea:** record the round number, reviewed checkouts and commits, reports, acceptance evidence and manual checks, findings and their disposition, feedback Epic ID and next work as the round progresses, so a later Run can resume it. Its status remains for the Managing Intelligence to decide.
+- **Idea:** record the round number, reviewed checkouts and commits, acceptance evidence and manual checks, declined or unaddressed findings with reasons, feedback Epic ID and next work as the round progresses, so a later Run can resume it. Its status remains for the Managing Intelligence to decide.
 - **Round Feedback Epic:** create one per round with non-trivial findings, as a `draft` child of the Plan. When revising findings, update every feedback Epic they affect, whatever its status, and return it to `draft`, so write-epic replans its affected Tasks and Subtasks. Use Associations to earlier Epics for context; record a Dependency only where the feedback Epic must wait for another ticket to be `done`.
 - **Plan:** set it `active` when feedback is filed or revised, because execution has more work.
 - **Earlier Round Feedback Epics:** record failed fixes and the Managing Intelligence's decisions on the Epics that held them, so the next review can judge the attempted corrections.

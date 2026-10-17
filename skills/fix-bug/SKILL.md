@@ -11,7 +11,7 @@ Follows define-bug and takes a confirmed Bug through implementation, review, tes
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,13 +19,12 @@ A Bug ID.
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` and `launcher` select the Protocol Files; `thinking_levels` and `levels_claude_code` or `levels_codex` set the launched skills' model and effort.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to check this Main Agent's context and ask and report through the Agent.
-- **Launcher Protocol File:** `launcher.md`, selected by `launcher` as `workflow.md` describes. Why: to launch, resume and watch Child Agents, keep their parent relationship and read their context before reuse.
-- **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Bug and its dependencies and record execution evidence, decisions and status.
-- **The Bug and its Dependencies:** through the Ticket System Protocol File, using the input ID. Why: to read the confirmed behaviour, retained reproduction, `thinking_level:<label>` tag, progress and Managing Intelligence decisions, including why an earlier fix was returned.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes. Why: to judge findings, check the fix and affected documentation, and commit, merge and push as permitted.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Bug and its dependencies and record execution evidence, decisions and status.
+- **The Bug and its Dependencies:** to read the confirmed behaviour, retained reproduction, `thinking_level:<label>` tag, progress and Managing Intelligence decisions, including why an earlier fix was returned.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes, to judge findings, check the fix and affected documentation, and commit, merge and push as permitted.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -39,31 +38,28 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Prepare or resume the repair.** Set the Bug `active` when work starts. Use an isolated Bug worktree for each affected repo to keep concurrent work separate, based on its main checkout's current branch. Record worktree paths, base revisions and merge targets on the Bug. Resume from its progress and actual git state, including unfinished merges and cleanup. For a returned fix, address the revised write-up against current code, because the earlier merge predates the new evidence.
+1. **Prepare or resume.** Set the Bug `active`. Create an isolated Bug worktree for each affected repo from its main checkout's current branch, using the workflow's worktree path. Record paths, bases and merge targets. Reconcile progress with git, including unfinished merges and cleanup. A returned fix follows the revised Bug against current code.
 
-2. **Implement and review the fix.** Plan `test-writer` Subtasks on the Bug for the unit and integration coverage `test-guide.md` requires, so regression tests are written and reviewed with the repair. Follow the Repair pipeline and Regression evidence guidance below. Judge every review finding and fix the accepted ones through the Repair pipeline. Record only declined or unaddressed findings on the Bug, each with its reason, so the Managing Intelligence sees what remains. The Managing Intelligence decides expected behaviour because the defined Bug is the repair's requirements.
+2. **Implement and review.** Record testing assignments in the Bug body for the coverage `test-guide.md` requires. Follow the Repair pipeline and Regression evidence guidance. Judge findings under the shared rule. The Managing Intelligence settles expected behaviour because the defined Bug is the repair's requirements.
 
-3. **Prove the repair.** After implementation and review finish, pass the Integration gate below. Rerun the Bug's retained reproduction against the repaired worktrees with the same inputs and setup, to check the reporter's exact symptom.
-   - If the symptom remains, route it through the repair pipeline.
-   - If the reproduction can't run or validation relied on source inspection, the Managing Intelligence decides how to verify the fix. Record that decision and its evidence on the Bug.
+3. **Prove the repair.** Pass the Integration gate after implementation and review. Rerun the retained reproduction with its original inputs and setup. Route a remaining symptom through the Repair pipeline. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision and evidence.
 
-4. **Commit and merge.** Once accepted findings are resolved, regression evidence is complete, the reproduction or agreed verification shows the expected behaviour and the integration gate is met, run `## Compile` and `## Lint` from `build-commands.md` for every affected code folder. The final `test-writer`'s full `## Unit tests` run must also pass for the completed repair. Skip sections marked `none`. Send failures back to the executor who owns the files through the Repair pipeline and repeat the checks after repairs. Commit only when all required checks pass, so the merged fix has been verified.
+4. **Commit and merge.** Require fixed accepted findings, complete regression evidence, successful reproduction or agreed verification, and a passed integration gate. Run Compile and Lint from `build-commands.md` for every affected code folder; the final test-writer's full Unit Tests must also pass for the completed repair. Skip only sections marked `none` with a reason. Route failures through the Repair pipeline and repeat affected checks before committing, so evidence covers the final files.
 
-   Merge each worktree into its recorded target from the main checkout. If the target changed or conflict resolution changed the repair, review and check the resulting source before cleanup, because the worktree evidence predates those changes. Record successful merges, then remove the merged worktrees and branches. Leave the Bug `active` for the Managing Intelligence's acceptance.
-   - If a merge conflicts, preserve that worktree and record the conflicting files and completed merges. Stop for resolution; a later Run resumes the unfinished merge, verification and cleanup.
+   Merge from the main checkouts into the recorded targets. If a target or conflict resolution changes the repair, review and check the combined result before cleanup because earlier evidence no longer covers it. Record successful merges, then remove merged worktrees and branches. Leave the Bug `active` for acceptance. If a merge conflicts, preserve its worktree, record conflicts and completed merges, and stop for resolution; a later Run resumes there.
 
-## Child Agents
+## Dispatches
 
-- **`engineer`:** Launch a Child Agent with the engineer skill, as `launcher.md` describes, for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
-- **`test-writer`:** Launch a Child Agent with the test-writer skill, as `launcher.md` describes, for testing Subtasks and after every source-changing pass, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and assigned test results.
-- **`doc-writer`:** Launch a Child Agent with the doc-writer skill, as `launcher.md` describes, after source and testing Subtasks finish to assess and update documentation following `doc-writing-guide.md`. Resume when review findings or repairs affect documentation. Expect changes or a reason none are needed.
-- **`code-review`:** Launch a Child Agent with the code-review skill, as `launcher.md` describes, after source changes, while `test-writer` Child Agents work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
-- **`test-review`:** Launch a Child Agent with the test-review skill, as `launcher.md` describes, after testing Subtasks finish, while the `doc-writer` works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
-- **`doc-review`:** Launch a Child Agent with the doc-review skill, as `launcher.md` describes, after the `doc-writer` finishes. Expect findings on complete touched documents and documentation missing or made outdated by the fix, or no findings.
+- **`engineer`:** Launch for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
+- **`test-writer`:** Launch for testing assignments and after every source-changing pass, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and assigned test results.
+- **`doc-writer`:** Launch after source and testing assignments finish to assess and update documentation following `doc-writing-guide.md`. Resume when review findings or repairs affect documentation. Expect changes or a reason none are needed.
+- **`code-review`:** Launch after source changes, while `test-writer` Child Agents work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
+- **`test-review`:** Launch after testing assignments finish, while the `doc-writer` works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
+- **`doc-review`:** Launch after the `doc-writer` finishes. Expect findings on complete touched documents and documentation missing or made outdated by the fix, or no findings.
 
 ## Writes
 
-The Bug is the only ticket changed. Set it `active` when work starts and leave it `active` after merge, because the Managing Intelligence accepts the fix. Keep `test-writer` Subtasks, progress, decisions, reproduction and regression evidence, checks, integration results and waivers, commits and merges on the Bug so a later Run can continue the repair. Record only declined or unaddressed review findings, each with its reason, so acceptance accounts for what remains.
+The Bug is the only ticket changed. Set it `active` at start and leave it `active` after merge for the Managing Intelligence's acceptance. Keep testing assignments, progress, decisions, reproduction and regression evidence, check results, waivers, commits and merges on it. Apply the shared finding-record rule.
 
 ## Done
 
@@ -73,13 +69,11 @@ Suggest the Managing Intelligence check the fix: they set the Bug `done` on acce
 
 ## Repair pipeline
 
-Executors change files; reviewers check them independently. fix-bug coordinates their work, judges findings and commits the result.
+fix-bug coordinates executors and independent reviewers and owns commits. Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the skills the repair needs, including doc-writer assessment for every Bug so restored behaviour does not hide documentation gaps.
 
-Use Child Agents with these skills in order: engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the skills the repair needs, with a doc-writer assessment for every Bug so documentation gaps are checked even when source behaviour is restored.
+Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order. Give doc-writer one pass after source and tests finish; fresh reviewers check repairs. Repeat until accepted findings are fixed.
 
-Group accepted findings into one fix round so executors can address them together. Resume affected executors in source → tests → documentation order so coverage and documentation follow the repair. Give the `doc-writer` one pass after the round's source and tests finish. Have fresh reviewers check the repairs and repeat until accepted findings are fixed.
-
-The sole `test-writer`, or final writer after multiple Lanes, runs the full `## Unit tests` suite from `build-commands.md` for each affected code folder, skipping sections marked `none`. It fixes failures caused by tests and rechecks them. Include this run after every source- or unit-test-changing pass so later repairs are tested too. Route source failures through the `engineer`, unit testing and review. Other executors work out targeted checks for their changes so every executor does not repeat the full suite.
+The sole test-writer or final writer after multiple Lanes owns the full `## Unit tests` run for every affected code folder. Run after the combined changes and later source or unit-test repairs, skipping sections marked `none`. The writer fixes test failures; source failures return through engineer, testing and review. Other executors run targeted checks so they do not each repeat the full suite.
 
 ## Regression evidence
 
@@ -87,24 +81,22 @@ The `test-writer` preserves an automated regression test at the boundary where t
 
 ## Testing Lanes
 
-A **Lane** is a group of test files one `test-writer` can change independently. Group the Bug's affected files by the behaviours they cover and the fixtures or helpers they change, so parallel writers avoid conflicting edits and duplicate coverage.
+A **Lane** is a group of test files one test-writer can change independently. Record each Lane's files, behaviours, fixtures and helpers on the Bug. Group overlapping behaviour and changed shared setup together to avoid conflicting edits and duplicate coverage.
 
-Record Lane assignments, covered behaviours and shared fixtures or helpers on the Bug so writers can follow their boundaries. Each Lane owns its files and exclusively used setup, including entries in common helper files. Writers record shared changes and coverage gaps on the Bug for a final `test-writer`, which makes those changes and runs the full unit suite after all Lanes finish. A sole writer owns all the Bug's tests and helpers. Keep this ownership in fix rounds so parallel repairs stay independent.
+Each Lane owns whole files and exclusively used setup. Writers record shared changes and gaps for a final test-writer after all Lanes finish. That writer changes shared files, closes gaps and runs the full unit suite. A sole writer owns all tests and helpers. Keep this ownership during repairs.
 
 ## Executor reuse and progress
 
-Retain the repair's executors for fix rounds, including each Lane's `test-writer` and any final writer. Apply `workflow.md`'s retained Child Agent Context rule before continuing them. If continuation fails or the approach changes, replace the affected executor after resolving any uncertain delivery, so two executors cannot work on the same assignment. Start reviewers fresh each time for an independent assessment.
+Retain executors for repair rounds and apply the shared retained Child Agent Context rule before resuming. If continuation fails or the approach changes, resolve uncertain delivery before replacing the executor so two agents cannot share an assignment. Reviewers start fresh for independence.
 
-Keep the current phase, next work and integration repair-round count on the Bug. Record retained executors' skills, Lane or final testing assignments, Agent IDs, names if available and Thinking Levels so a later Run can resume them.
+Record the current phase, next work, integration repair-round count and executor IDs, skills, testing assignments and Thinking Levels on the Bug so later Runs can resume.
 
 ## Integration gate
 
-After the repair's implementation and review finish, fix-bug runs `## Integration tests` from `build-commands.md` for every affected code folder, following `test-guide.md` and skipping sections marked `none`. Save command output to a file and read only the failures, so long suite output stays out of the skill's context. Record each command, its exit status and the output file on the Bug as evidence. Send failures caused by tests to a `test-writer` and source failures through the Repair pipeline.
+After implementation and review, fix-bug runs `## Integration tests` for every affected code folder, following `test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Bug.
 
-The gate passes when every affected code folder's Integration Tests pass or its section says `none` with a reason, or the Managing Intelligence explicitly waives the remaining failures. Record results and waivers on the Bug so acceptance and later Runs have the evidence.
+Required suites pass or the Managing Intelligence explicitly waives remaining failures. Record waivers; if suites cannot run, stop for environment repair or a waiver.
 
-- After a `test-writer` repairs tests, get a fresh `test-review` check because the tests changed after the earlier review. Have the `test-writer` resolve accepted findings, then rerun the affected Integration Tests in fix-bug so the result covers the reviewed tests.
-- If source fixes are needed, pass the failures through the Repair pipeline, then rerun Integration Tests in fix-bug over the combined repairs. Stop for the Managing Intelligence's decision if a round does not reduce failures or failures remain after three source-fix rounds, to bound unsuccessful repair attempts.
-- If suites cannot run, stop for the environment to be fixed or an explicit waiver. Keep the unfinished gate and evidence on the Bug so a later Run resumes there.
+Send test failures to test-writer, followed by fresh test-review and accepted repairs. Source failures go through the Repair pipeline. Rerun integration over the combined repairs. Stop for the Managing Intelligence if source-fix rounds fail to reduce failures or failures remain after three rounds, to bound unsuccessful attempts.
 
-Results and waivers apply to the files they covered. Further source or integration-test changes need a new result or explicit waiver; source changes also need the regression and reproduction or agreed verification checked again, so the evidence covers the final repair.
+Results and waivers cover only the files checked. Later source or integration-test changes require a new result or waiver; source changes also require new regression and reproduction evidence. Record unfinished work so a later Run can resume the gate.

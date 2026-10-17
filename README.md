@@ -10,7 +10,7 @@ The Managing Intelligence chooses the next workflow skill and starts a Main Agen
 
 The `launcher` setting selects `~/.apiary/system/protocols/launcher-<launcher>.md`, called `launcher.md` in the skills. It defines launching Main Agents and Child Agents, preserving their relationship, continuing a Child Agent, reading its context, watching agents and stopping them. Apiary's [agent-director protocol](protocols/launcher-agent-director.md) uses separate tracked sessions for both classes. Model and effort are set at launch from the Project's Thinking Levels.
 
-Before each new unit of work, a Main Agent follows the shared Context rule in [workflow.md](workflow/workflow.md). It records progress and stops at 75% context or an unknown reading; the Managing Intelligence starts a fresh session with the same skill and ticket IDs. Retained Child Agents are resumed only below 75%, otherwise replaced from the ticket record.
+Main Agents and retained Child Agents follow the shared [Context rules](workflow/workflow.md#context), continuing work from tickets when a fresh session is needed.
 
 ## Requirements
 
@@ -37,7 +37,7 @@ Add `--repo <path>` to install into one repository, or `--dry-run` to print the 
 | Claude Code | `~/.claude/skills/<skill>/SKILL.md` | `<repo>/.claude/skills/<skill>/SKILL.md` |
 | Codex CLI | `~/.agents/skills/<skill>/SKILL.md` | `<repo>/.agents/skills/<skill>/SKILL.md` |
 
-Invoke a skill as `/write-idea <ticket-id>` in Claude Code or `$write-idea <ticket-id>` in Codex. Their Agent Protocol Files describe invocation and reading a session's context.
+Invoke a skill as `/write-prd <idea-id>` in Claude Code or `$write-prd <idea-id>` in Codex. Their Agent Protocol Files describe invocation and reading a session's context.
 
 Shared files always install under `~/.apiary`, including with `--repo`: `workflow.md`, protocols, templates, document templates, intakes and resolvers go under `system/`; `dot-apiary/*-default-fallback.md` goes directly under `~/.apiary/`. The launcher protocol installs alongside the Agent Protocol Files.
 
@@ -53,7 +53,7 @@ Have the Managing Intelligence start a Main Agent with `project-setup`. It confi
 - `prd_template` selects the PRD template; setup offers `~/.apiary/system/doc-templates/prd.md` or a user-supplied file.
 - `research_location` selects where Research tickets, Reports and artifacts live. Setup recommends a shared location such as `~/research/tickets`, and also offers a Project-local location.
 
-project-setup requires the named launcher sections listed in [workflow.md](workflow/workflow.md): launch a Main Agent, launch a Child Agent as its child, resume a Child Agent, stop it and read its context. It stops and names missing sections or instructions so later skills can rely on those operations.
+project-setup checks the [required Launcher operations](workflow/workflow.md#launcher-operations), including state-change monitoring, and reports missing instructions before work starts.
 
 Guidance Documents come from the main checkout and its parent folders, as the workflow describes. They cover engineering, tests, documentation, build commands, release permissions, Bug writing and research. A shared Research store still uses the requesting Project's `research-guide.md`. Default Fallback Files apply where no user copy exists.
 

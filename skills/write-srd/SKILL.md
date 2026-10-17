@@ -11,7 +11,7 @@ Follows write-prd and defines what the software must do to meet the PRD. The SRD
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,14 +19,12 @@ An Idea ID.
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` and `launcher` select the Protocol Files; `thinking_levels` and `levels_claude_code` or `levels_codex` set the launched skills' model and effort. `research_location` locates Research when needed.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to check this Main Agent's context and ask and report through the Agent.
-- **Launcher Protocol File:** `launcher.md`, selected by `launcher` as `workflow.md` describes. Why: to launch, resume and watch Child Agents, keep their parent relationship and read their context before reuse.
-- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
-- **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
-- **The Idea, its Docs and Plan:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, read accepted findings on the SRD and the Managing Intelligence's change requests on the Idea or SRD, find Model Docs to revise, and identify the Plan and active Epics affected by a revision.
-- **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes. Why: to ground constraints in the Project's engineering conventions.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
+- **The Idea, its Docs and Plan:** to understand the PRD, read accepted findings on the SRD and the Managing Intelligence's change requests on the Idea or SRD, find Model Docs to revise, and identify the Plan and active Epics affected by a revision.
+- **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes, to ground constraints in the Project's engineering conventions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -36,44 +34,34 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 ## Steps
 
-1. **If you're revising an SRD that a Plan was built from, pause that Plan.** If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered once the SRD changes, and note on the Plan which SRs changed and which Epics were `active`, so write-plan knows what to revise. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the SRD as it was.
+1. **Pause a Plan built from the SRD before revising it.** Set that Plan `draft`, including a completed Plan, because changed requirements need replanning. Record changed SRs and previously active Epics on it as the revision proceeds. Tell the Managing Intelligence to pause running write-epic and develop-epic work; their Runs stop at the next Task boundary.
 
-2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, read `research-guide.md`, found as `workflow.md` describes, so the investigation follows the Project's guidance. File a Research ticket at `research_location`, launch a Child Agent with the researcher skill as `launcher.md` describes and link the ticket from the SRD. Look up small things yourself. Save the SRD before launching any Child Agent, so it can read the SRD.
+2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, read `research-guide.md`, found as `workflow.md` describes, file a question at `research_location` and associate it with the SRD. Save the SRD before launching `researcher` so it reads the current requirements.
 
-3. **Write Formal Models where they help.** Model an SR group when concurrency (things happening at the same time, retries, partial failure) or a state machine hides ordering bugs that reading and tests can miss. Include already-modelled groups a revision changed. Skip modelling when no group needs it. For groups that do, read `build-commands.md`, found as `workflow.md` describes, and use the language and checker command in `## Model check`. If that section is missing, stop and ask the Managing Intelligence, because the Project must supply the modelling language and a way to check the model. Review each Formal Model before model checking, because checker runs can be slow. For each chosen SR group, in parallel:
-   1. **Write.** Launch a Child Agent with the model-writer skill, as `launcher.md` describes, using the SRD ID and assigned SR group. It writes a Formal Model in the language named by `## Model check` and attaches its files to a Model Doc under the Idea so the model stays with its requirements.
-   2. **Review.** Launch a fresh Child Agent with the model-review skill, as `launcher.md` describes, using the Model Doc and SRD IDs so the check is independent of the writer's reasoning. Judge each finding and turn accepted ones into repair instructions on the Model Doc so the writer can act on them. Record only declined or unaddressed findings, each with its reason, so later review sees what remains.
-   3. **Fix.** If repairs are needed, resume the same writer to carry them out, then return to step 2 so a fresh reviewer checks the changed model.
-   4. **Run.** Once accepted review findings are fixed, resume the writer to run the `## Model check` command. Keep its results on the Model Doc as evidence. Have the writer fix model errors and repeat the review and model checking so the Formal Model passes before this work finishes.
-   5. **Fix the SRD.** If the checker exposes an SRD bug, correct and save the requirements, then have the writer update the model and repeat its review and run so both agree. Product questions go to the Managing Intelligence, because the SRD follows the approved PRD.
+3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `build-commands.md`, found as `workflow.md` describes, for the language and checker in `## Model check`. If missing, ask the Managing Intelligence to supply it. For each group, independently and in parallel where possible:
+   - Have `model-writer` write or update its Formal Model and attach the files to its Model Doc.
+   - Have a fresh `model-review` check it against the SRD before running the checker, because checker runs can be slow. Judge findings under the shared rule and record repairs on the Model Doc. Resume the writer for repairs, then review again.
+   - Once accepted findings are fixed, resume the writer to run the checker and retain its results on the Model Doc. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
 
-4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
-   - **Succinctness:** cut repetition and padding with no loss of signal.
-     - Fold each accepted finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section, so later skills find one current account of the requirements.
-     - Cut text a change superseded, repeated text and padding.
-     - Keep every current software requirement, invariant, acceptance criterion, supplied edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
-     - Within the SRD, an acceptance criterion may restate the behaviour it checks, and a summary may restate what the body details. Nothing else repeats; refer to an existing SR when another group needs it.
-   - **Requirements:** make every SR a verifiable software obligation grounded in the PRD and any existing code.
-   - **Dropped ideas:** remove every trace of ideas discussed and dropped. Keep an explicit boundary only when the Managing Intelligence wants it stated.
-   - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
+4. **Review the whole draft** for succinctness, software obligations, dropped ideas and the Quality checklist, in that order. Repeat after changes until a full round changes nothing, so revisions receive the same scrutiny as a first draft.
+   - Fold changes into the affected requirements. Cut superseded text and padding while preserving current SRs, invariants, acceptance criteria, supplied edge cases and Managing Intelligence decisions. Only acceptance criteria and summaries may repeat behaviour; otherwise reference the existing SR.
+   - Make each SR a verifiable obligation grounded in the PRD and existing code.
+   - Include a boundary from a dropped idea only if the Managing Intelligence wants it stated.
 
-   If self-review changes a modelled SR group or finds another that needs a model, return to step 3 so the models cover the final requirements. Otherwise, save the SRD. Keep only declined or unaddressed findings on its Doc ticket, each with its reason, so req-review sees what remains.
+   Return changed or newly modelled groups to step 3 so models cover the final requirements, then save the SRD.
 
-## Child Agents
+## Dispatches
 
-- **`model-writer`:** Launch a Child Agent with the model-writer skill, as `launcher.md` describes, for each modelled SR group. Retain it for the group's write, fix and run cycle under the shared Context rule. Expect a Model Doc, checker results and any SRD bugs they show.
-- **`model-review`:** Launch a Child Agent with the model-review skill, as `launcher.md` describes, fresh for each review in step 3. Expect findings with references and suggested fixes, or none.
-- **`researcher`:** Launch a Child Agent with the researcher skill, as `launcher.md` describes, one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report. Use it to settle the decision, then set the ticket `done`.
+- **`model-writer`:** Launch for each modelled SR group. Retain it for the group's write, fix and run cycle under the shared Context rule. Expect a Model Doc, checker results and any SRD bugs they show.
+- **`model-review`:** Launch fresh for each review in step 3. Expect findings with references and suggested fixes, or none.
+- **`researcher`:** Launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report.
 
 ## Writes
 
-The SRD is a Doc child of the Idea titled `SRD`. Apply accepted fixes to its requirements and keep only declined or unaddressed findings on the Doc ticket, each with its reason, so req-review sees the current requirements and what remains. A new or revised SRD is `draft` because it needs approval.
-
-The Idea's Plan, set back to `draft` when a revision changes an SRD it was built from.
-
-Each modelled SR group has a Model Doc under the Idea, with the Formal Model's files written and attached by its `model-writer`. The Doc holds repair instructions and checker results so work can resume from the evidence. Its finding record contains only declined or unaddressed findings, each with its reason, so later review sees what remains.
-
-Research tickets at `research_location`, filed `defined` with the question; the `researcher` writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds, because req-review checks the SRD decisions they inform.
+- **SRD:** create or update the Idea's Doc titled `SRD`, set `draft` because new or revised requirements need approval.
+- **Plan:** reset to `draft` when revising the SRD it was built from, with changed SRs and previously active Epics recorded.
+- **Model Docs:** one per modelled SR group, maintained by `model-writer`. Keep model files attached to the Doc, outside repos, so they stay with requirements. Record repair instructions, checker evidence and outstanding findings there.
+- **Research:** file questions `defined` at `research_location` and associate them with the SRD. The researcher writes each Report `defined`; set the ticket `done` after using the answer. These questions skip research's review rounds because req-review checks the SRD decisions they inform.
 
 ## Done
 
@@ -113,4 +101,3 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - Keep each Formal Model in its Model Doc so the SRD stays focused on software requirements.
 - Include defaults, fallbacks, validation, schemas, error rules and guards only when grounded in the input or applicable guidance.
 - Omit time estimates and scheduling.
-- Keep the requirements body about the software to build. Put reasons for declined or unaddressed findings on the Doc ticket so later Runs can assess what remains.

@@ -11,7 +11,7 @@ Validates a Bug report and preserves the evidence and reproduction for fix-bug. 
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,13 +19,14 @@ A Bug ID.
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to ask and report through the Agent.
-- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and update the Bug, its status and its tags.
-- **The Bug and its Dependencies:** through the Ticket System Protocol File, using the input ID. Why: to check readiness and read the report, earlier validation, retained reproduction and Managing Intelligence decisions, including why a fix was returned.
-- **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes. Why: to complete the Bug's write-up in the Project's format.
-- **Build commands:** `build-commands.md`, found as `workflow.md` describes. Why: to run the relevant commands for each repo involved in reproduction.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read and update the Bug, its status and its tags.
+- **The Bug and its Dependencies:** to check readiness and read the report, earlier validation, retained reproduction and Managing Intelligence decisions, including why a fix was returned.
+- **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes, to complete the Bug's write-up in the Project's format.
+- **Build commands:** `build-commands.md`, found as `workflow.md` describes, to run the relevant commands for each repo involved in reproduction.
+
+For Source References, read `~/.apiary/system/resolvers/<resolver>.md`, selected by kind, to access the original report.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -38,7 +39,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Complete the report.** Fill out the Bug from its supplied evidence and any Source References, following `bug-writing-guide.md`. For each Source Reference, read `~/.apiary/system/resolvers/<resolver>.md`, selected by its kind, to access the source material. Incorporate earlier validation and the Managing Intelligence's decisions into the write-up so fix-bug has one current account of the defect.
+1. **Complete the report.** Fill out the Bug from its supplied evidence and any Source References, following `bug-writing-guide.md`. Incorporate earlier validation and the Managing Intelligence's decisions into the write-up so fix-bug has one current account of the defect.
 
 2. **Validate the reported behaviour.** Reproduce it in the main checkouts using the guidance below. Keep scratch scripts and inputs outside the repos so validation leaves repository files unchanged. For a returned fix, check the retained reproduction and new evidence against the current software, because the earlier validation predates the repair.
    - If reproduction cannot establish whether the report is real or would require repository edits, review the source for evidence that settles it.
@@ -48,7 +49,7 @@ Run only when all of these are true:
    - If the reported behaviour cannot happen or is intended, set the Bug `invalid` and explain why, citing the evidence or the Managing Intelligence's decision.
    - If the result is inconclusive, leave the Bug `draft`, record what was tried and why it is inconclusive, and ask the Managing Intelligence whether the Bug is real. Record their decision on the Bug and apply the corresponding outcome above.
 
-## Child Agents
+## Dispatches
 
 None: define-bug validates the Bug itself.
 

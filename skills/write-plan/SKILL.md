@@ -11,7 +11,7 @@ Turns the `defined` PRD and SRD into a Plan and its Epics. write-epic then break
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,14 +19,12 @@ An Idea ID.
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` and `launcher` select the Protocol Files; `thinking_levels` and `levels_claude_code` or `levels_codex` set the launched skills' model and effort. `research_location` locates Research when needed.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to check this Main Agent's context and ask and report through the Agent.
-- **Launcher Protocol File:** `launcher.md`, selected by `launcher` as `workflow.md` describes. Why: to launch, resume and watch Child Agents, keep their parent relationship and read their context before reuse.
-- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and write the Plan, Epics and their relationships.
-- **The Idea, its Docs and existing Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID. Why: to ground the Plan in requirements and update an existing Plan rather than start again.
-- **Engineering, testing and documentation guidance:** `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` for each affected code folder, found as `workflow.md` describes. Why: to plan engineering, testing and documentation work according to the Project's guidance.
-- **`product-manager`'s report:** returned during this Run. Why: to revise the Plan from its findings.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea and its Docs, and write the Plan, Epics and their relationships.
+- **The Idea, its Docs and existing Plan and Epics:** to ground the Plan in requirements and update an existing Plan rather than start again.
+- **Engineering, testing and documentation guidance:** `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` for each affected code folder, found as `workflow.md` describes, to plan engineering, testing and documentation work according to the Project's guidance.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -34,27 +32,27 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 The Idea is `defined`, or `active` when revising a Plan, and has a PRD and an SRD. Both Docs are `defined`, unless the Managing Intelligence explicitly confirms planning without review in step 1.
 
-Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan only when the Idea has none, so the work has one Plan to follow.
+Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 
 ## Steps
 
 1. **Settle readiness for planning.**
-   - If either required Doc is not `defined`, stop and ask the Managing Intelligence: confirm planning without review. Continue only on an explicit yes.
+   - If either Doc is not `defined`, continue only with the Managing Intelligence's explicit approval to plan without review.
    - If both are `defined`, continue with planning.
 
 2. **Write the Plan and Epics.** First state in a sentence what changes for the user or system when the Idea is done, from the PRD's goals, acceptance criteria and constraints. If you can't, stop and raise it with the Managing Intelligence, because Epics cut without a clear outcome won't add up to one. Follow the SRD's software requirements, technology choices and architecture. Write each ticket as "What to write in each ticket" below says, and follow the Planning guidance.
    - If the Idea has no Plan, create one and its Epics as `draft`.
    - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
-3. **Check the Plan with the `product-manager`.** Save the Plan and Epics, then launch a Child Agent with the product-manager skill, as `launcher.md` describes. Fix what its findings show, and launch a fresh one after any significant change, until its findings are resolved. Then check the whole Plan against the Quality checklist below.
+3. **Check the Plan with the `product-manager`.** Save the Plan and Epics, then launch `product-manager`. Judge every finding under the shared rule and launch a fresh review after significant changes. Then check the whole Plan against the Quality checklist below.
 
-4. **Set the Plan's status.** Only once the `product-manager`'s findings are resolved and the Quality checklist passes:
+4. **Set the Plan's status.** Only once the `product-manager`'s accepted findings are fixed and the Quality checklist passes:
    - If any Epic is `done` or `active`, or was before this revision, set the Plan `active`, because work is already underway.
    - Otherwise, set the Plan `defined`.
 
-## Child Agents
+## Dispatches
 
-- **`product-manager`:** Launch a Child Agent with the product-manager skill, as `launcher.md` describes, fresh after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes. An independent read checks the planner's judgement before the Plan is finalized.
+- **`product-manager`:** Launch fresh after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes. An independent read checks the planner's judgement before the Plan is finalized.
 
 ## Writes
 
@@ -81,9 +79,7 @@ Suggest write-epic on each `draft` Epic in dependency order.
 
 Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small Idea has 1–3 Epics, a medium one 3–6, a large one 6–9 and a new product 10 or more. These are guidance, not limits: choose the count by judgement, and when it falls outside the range, give a good reason for it in the Plan's body.
 
-**An Epic is a vertical slice of the end product.** It delivers one new feature, or one working part of a feature, through the whole stack: the code, its tests and its docs. Think of each Epic as a sprint demo: when it's `done`, you could show the product doing at least a little something new. Code alone or a set of tests isn't a demo. Every Epic leaves the software working with existing tests passing.
-
-Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new. A refactor Epic is a vertical slice too: its demo shows a feature that worked on the old code still working on the new code.
+Slice by capability, following the workflow's Epic rule. “User places an order and sees confirmation” is a coherent demo. Grouping by layer, such as database or UI, hides whether the product works. A refactor's demo shows existing behaviour still working. Leave every Epic working with existing tests passing.
 
 Acceptance criteria describe that demo. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
@@ -99,7 +95,7 @@ Plan documentation as `doc-writing-guide.md` guides, including which doc files t
 - [ ] Every planned documentation change is allowed by the doc-writing guide.
 - [ ] Every planned requirement is grounded in the Idea's Docs, supplied decisions or applicable Guidance Documents.
 - [ ] A revision covers every changed SR, and every Epic it affects is back in `draft`.
-- [ ] The `product-manager` has checked the Plan, and its findings have been addressed.
+- [ ] The `product-manager` has checked the Plan, and every finding has been judged and accepted fixes applied.
 
 ## What not to include
 

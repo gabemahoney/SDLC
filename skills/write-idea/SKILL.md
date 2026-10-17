@@ -11,7 +11,7 @@ Files a new Idea in `draft`. It is the first step of the Idea flow; write-prd co
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,10 +19,10 @@ A description of the work, or intake input such as an issue URL.
 
 ## Required Reading
 
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the intake and the Ticket System Protocol File.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the Source Reference resolver named by `new_idea_intake`. Why: to check the input and prepare the Idea according to that intake.
-- **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to ask the Managing Intelligence questions and report through this Agent.
-- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to create the Idea and store its body and any Source Reference.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to create the Idea and store its body and any Source Reference.
 
 ## Gate
 
@@ -38,7 +38,7 @@ None: write-idea creates a new ticket.
    Follow the intake's instructions for the Idea's body.
 3. **File the Idea.** Create it in the Ideas store with status `draft`.
 
-## Child Agents
+## Dispatches
 
 None: write-idea files the Idea itself.
 

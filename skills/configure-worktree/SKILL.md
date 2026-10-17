@@ -11,7 +11,7 @@ Prepares isolated worktrees for an Idea or Epic before implementation. By defaul
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -19,14 +19,13 @@ An Idea or Epic ID.
 
 ## Required Reading
 
-- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md` if present, then `~/.apiary/default_project_settings.md`. Why: to select `ticket_system` and, when launching, `launcher`, the Main Agent's skill line in `thinking_levels`, and its Agent's `levels_claude_code` or `levels_codex` mapping.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to ask and report through the Agent.
-- **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea or Epic and record decisions on it.
-- **The Idea or Epic:** through the Ticket System Protocol File, using the input ID. Why: to read its setup choices and earlier preparation or launch results so a resumed Run continues existing work.
+- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea or Epic and record decisions on it.
+- **The Idea or Epic:** to read its setup choices and earlier preparation or launch results so a resumed Run continues existing work.
 - **Repo state:** each main checkout at `<Project Folder>/<repo path>` and its registered worktrees. Why: to check branches, base commits, uncommitted changes and worktrees available for reuse.
 
-When launching the assigned Main Agent, read `launcher.md`, selected by `launcher` as `workflow.md` describes, to launch it with the chosen skill and track its identity.
+When launching, read `launcher.md` and the assigned skill before making changes, for launch requirements and input IDs. If committing main-checkout changes, read `release-guide.md`, found as `workflow.md` describes, for applicable permissions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -41,7 +40,6 @@ Run only when all of these are true:
 ## Steps
 
 1. **Settle the setup from the ticket.** Read the repos, base refs and next Main Agent assignment recorded by the Managing Intelligence. They settle missing choices. Use each main checkout's `HEAD` as its default base and the current Agent tool for the new session unless the assignment says otherwise. Launch by default; a worktree-only choice ends the Run after preparation. Record the choices before preparing worktrees so another Run can continue them.
-   - When launching, read `launcher.md` and the assigned skill's `SKILL.md` for the chosen Agent before making changes, to check launch requirements and the skill's required ticket IDs. The assignment names the skill and those tickets so the Main Agent reads its instructions from the record.
 
 2. **Prepare the worktrees.** Follow the Worktree guidance below. Record each repo's result as preparation proceeds, so a failure in one repo leaves a usable handoff for the others.
 
@@ -49,7 +47,7 @@ Run only when all of these are true:
    - For worktree-only mode, finish after all repos are prepared.
    - Otherwise, follow the Launcher Protocol File to start or reuse the assignment's Main Agent at `<Project Folder>/.worktrees/<ticket id>/`, using the chosen Agent and its skill's Thinking Level. Confirm delivery of the skill and ticket IDs, and record the Main Agent identity and launch result so teardown-worktree can find it. On a resumed Run, reconcile the recorded Main Agent through the Launcher before launching, to avoid duplicate Main Agents.
 
-## Child Agents
+## Dispatches
 
 None: configure-worktree prepares the worktrees itself; the Launcher starts the Main Agent.
 
