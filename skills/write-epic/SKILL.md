@@ -111,7 +111,12 @@ When unsure between two levels, choose the higher one.
 
 ## Fixture planning and Test Writer Lanes
 
-Plan which existing fixtures, factories, helpers and constants tests reuse, what changes they need, which new fixtures are needed and where they belong, and which test files to extend or add. This lets tests share established setup.
+For each Task's tests, plan:
+- which existing test setup (fixtures, factories, helpers, constants) they reuse, and any changes it needs;
+- what new setup they need, and where it goes;
+- which test files to extend, and which to add.
+
+Reusing existing setup keeps tests consistent and stops each one rebuilding its own.
 
 Organize unit-test Subtasks by test file or logical group of files. Give each behaviour one coverage owner, so parallel Writers do not duplicate tests. Account for tests to update, obsolete tests to remove and missing coverage to add.
 
