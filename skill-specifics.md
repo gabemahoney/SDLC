@@ -10,20 +10,6 @@ Per-entry Required Reading names specific inputs only. Shared startup, settings,
 
 The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug. configure-worktree reads its Worker's skill line and Worker's Agent mapping only when launching, outside worktree-only mode.
 
-## research
-
-**Required Reading:** Question, evidence, Research ticket, Report and review log, to continue the research and its review rounds.
-
-**Gate:** None specified.
-
-**Owned transitions:** **Research ticket and Report:** research creates the Research ticket `defined`, sets it `active` during review rounds, sets it `done` when the reviewer accepts, and reopens it as `active` when a reviewer asks for more work
-
-**Research ticket and Report:** the Report, created with the first round, carries the Research ticket's status.
-
-**Specific rules:** Sets the ticket flow, not how research is done; the reviewer is the Managing Intelligence.
-
-Research tickets filed by write-srd are researched by its Researcher and closed by write-srd, without review rounds.
-
 ## configure-worktree
 
 **Required Reading:** Idea or Epic, repo, branch and worktree state; outside worktree-only mode, `launcher`, Launcher Protocol File, Worker prompt and its named skill, to create worktrees and launch the Worker.

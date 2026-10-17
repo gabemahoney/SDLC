@@ -1,133 +1,83 @@
 ---
 name: research
-description: Track a research task as a Research Bee — file it, run its review rounds, and complete it with a cited Report. Defines only the ticket state flow, not how the research is done.
+description: "File or continue a Research ticket, investigate its question, and complete its cited Report through review rounds with the Managing Intelligence."
 ---
 
-# Overview
+# research
 
-Research tasks live as Bees in the Research hive. This skill moves a Research Bee through its states and keeps its record: the question, a Report child holding the findings, research artifacts in the Bee's folder, and a log of review rounds.
+## Purpose
 
-This skill does **not** define how the research is done. Use whatever methods the question, the requester and the reviewer call for.
+Keeps a research question, its evidence and review rounds together until the Managing Intelligence accepts the Report.
 
-## Arguments
+## Loading Apiary
 
-| Form | Meaning |
-|---|---|
-| `/research "<question>"` | File a new Research Bee for the question, then start work on it. |
-| `/research <bee-id>` | Continue an existing Research Bee from its current state. Any text after the ID is the reviewer's verdict or request for the latest round (e.g. `/research b.xxx accept`). |
-| `--no-questions` | Never use AskUserQuestion (see No-questions mode). |
+You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
 
-**No-questions mode**: on when you are given `--no-questions`, or when you run as an agent-director worker (`AGENT_DIRECTOR_INSTANCE_ID` is set in your environment; such workers usually cannot use AskUserQuestion). In this mode never use AskUserQuestion. Wherever this skill asks the reviewer or the caller, stop instead: put what you know in your output, end it with exactly one `research: needs review:` or `research: needs input:` line as given in the steps, and end your turn. The driver answers in this session, or starts a fresh session and gives the answer after the ID (e.g. `/research b.xxx accept`).
+## Input
 
-In Codex CLI, which has no AskUserQuestion, ask in plain text in your reply and end your turn.
+A Research ticket ID to continue, or a question to file as a new Research ticket.
 
-## Prerequisites
+## Required Reading
 
-The Research hive must exist with:
-- Child tiers: t1 — Report / Reports
-- Status values: `draft`, `defined`, `active`, `done` (the same four as every Apiary hive)
+- **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`.
+- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to present rounds, receive decisions and use research skills provided by the Agent.
+- **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the Research ticket, its Report and review log, and store and link research artifacts.
+- **Research ticket, Report and evidence:** through the Ticket System Protocol File, using the input ID when continuing. Why: to understand the question, constraints, findings and latest review decision, and resume the right round.
+- **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read source material supplied with the question.
 
-If it is missing or configured differently (e.g. it still has an old value: `new`, `completed`, `larva`, `pupa`, `worker` or `finished`), tell the user to run `/apiary-setup`, which migrates the hive, and stop. Do not create or reconfigure the hive yourself.
+## Gate
 
-## States
-
-| Status | Meaning | Next |
-|---|---|---|
-| `defined` | Filed with its question, ready to work. A question is ready as soon as it is written, so a Research Bee is never `draft`. | `active` when work starts |
-| `active` | Work in review rounds: findings are presented, the reviewer accepts or asks for more. | `done` when the reviewer accepts |
-| `done` | Accepted. The Bee and its Report are kept as the record. | `active` only if a reviewer asks for more work |
-
-The Report child uses the same status values: `active` while the Bee is `active`, `done` when the Bee is.
-
-**Accepted research is never archived.** Never run `bees undertaker` on the Research hive, and never give it an `undertaker_schedule` in `~/.bees/config.json`. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe. Research uses `done` like every other hive, so check which hive a sweep is pointed at.
-
-## The reviewer
-
-The reviewer is the User or an orchestrator Claude. When an orchestrator drives this skill, it decides for each round whether it reviews the round itself or sends it to the User. This skill does not choose the reviewer: it presents the round, records who gave the verdict and what it was, and acts on it.
-
-## The Research Bee
-
-Body sections:
-
-```markdown
-## Question
-<the question, in the requester's words where possible>
-
-## Scope
-<who asked, why, constraints, what is out of scope; "none given" if none>
-
-## Review rounds
-### Round 1 — <YYYY-MM-DD>
-**Presented**: <what was found or changed this round, 2–5 lines>
-**Reviewer**: <User | orchestrator>
-**Verdict**: <accepted | more work: <the request, verbatim>>
-```
-
-A round with no **Reviewer**/**Verdict** lines is awaiting review.
-
-## Bee folder and artifacts
-
-- The Bee's folder is `<research hive path>/<bee-id>/` (hive path from `bees list-hives`). The Report lives in `<bee-id>/<report-id>/`.
-- Put research artifacts (data, scripts, logs, screenshots, notes, excerpts) in `<research hive path>/<bee-id>/artifacts/`.
-- Do not name any folder in there like a ticket ID (`b.xxx`, `t1.xxx`), and do not create a `<dir>/<dir>.md` file pair: bees would take either for a ticket.
-- Keep secrets and tokens out of artifacts.
-
-## The Report
-
-One t1 child of the Bee, titled `Report: <Bee title>`. Its body is a well-written, standalone document a reader can use without the Bee or the conversation:
-
-1. **Summary** — the answer first, in a few lines.
-2. **Findings** — organised by theme or sub-question, with evidence.
-3. **Limitations** — what was not checked, uncertainty, open questions.
-4. **Conclusions / recommendations** — if the question calls for them.
-5. **References** — a numbered list. Every claim that is not common knowledge carries an inline `[n]` citation pointing here. Each entry names its source precisely: URL with access date, `path:line` or commit SHA, ticket ID, Slack permalink, or document title and section.
-6. **Artifacts** — each artifact linked by relative path from the Report's folder, `../artifacts/<file>`, with one line on what it is. Link artifacts from the text where they back a finding.
-
-Put bulky raw material in artifacts, not in the Report body.
+An existing Research ticket is `defined`, `active` or `done`. If it has another status, stop and report its status. A new question needs no gate.
 
 ## Steps
 
-### 1. File (`defined`)
+1. **File or continue the question.**
+   - If given a new question, create a Research ticket as `defined`, using the Research ticket template below. If asked only to file it, report its ID and finish.
+   - If the ticket is `defined`, set it `active` and create its Report as `active` when starting the first round.
+   - If the ticket is `active`, use its review log to continue unfinished research or requested further work in step 2. For a round awaiting review or already accepted, go to step 3.
+   - If the ticket is `done`, report its completion and Report ID and finish unless the Managing Intelligence requests more work. For that request, record it and set the ticket and Report `active` for a new round.
 
-For `/research "<question>"`:
-1. Create a Bee in the Research hive with a short title, status `defined`, and the Question and Scope sections (Review rounds empty).
-2. Go to step 2, unless the caller asked only to file it; then report the Bee ID and stop.
+2. **Research the round.** Investigate the question on the first round and the Managing Intelligence's latest request on later rounds. Save the evidence and update the same Report to reflect all findings so far. Check it against the Report guidance below, then append a dated round with a short Presented summary to the Research ticket.
 
-### 2. Start (`defined` → `active`)
+3. **Review with the Managing Intelligence.** If a verdict is still needed, present the ticket ID, round summary, Report ID and links to the Report and artifacts, then wait for the Managing Intelligence's decision. Record and apply the verdict, including one already supplied. Record who reviewed the round, keeping any request for more work verbatim.
+   - If they request more work, return to step 2 with that request.
+   - If they accept the Report, set the Report and Research ticket `done`.
 
-1. Set the Bee to `active`.
-2. Create the Report child (t1), status `active`, with a placeholder body.
-3. Create the `artifacts/` folder if this research will have artifacts.
+## Dispatches
 
-### 3. Work round
+None: research does the investigation and brings each round to the Managing Intelligence.
 
-1. Do the research for this round: the Question on the first round, the reviewer's latest request on later rounds.
-2. Save artifacts and update the Report body so it reflects all findings so far, not just this round's.
-3. Append `### Round N — <date>` with its **Presented** line to the Bee's Review rounds.
+## Writes
 
-### 4. Present
+- Create the Research ticket in the Research store as `defined` with its question and constraints, then set it `active` when research starts. Its review log records each round and the Managing Intelligence's decisions.
+- Create its one Report child, titled `Report: <Research ticket title>`, as `active` in the first round and update it throughout the investigation.
+- Both tickets become `done` only when the Managing Intelligence accepts the Report. Both return to `active` when the Managing Intelligence requests more work after acceptance.
+- Store research artifacts with the Research ticket through the Ticket System Protocol File. Keep accepted tickets, Reports and artifacts available as the research record.
 
-Show the reviewer: the Bee ID, the round's **Presented** summary, the Report ID, and the paths to the Report file and `artifacts/`. Ask them to accept or say what more to do.
-- Interactive: ask with AskUserQuestion (options: Accept / More work).
-- No-questions mode: end with `research: needs review: <bee-id> round <N> — reply "accept" or say what more to do`.
+## Done
 
-### 5. Record the verdict
+Report the Research ticket ID and status, the Report ID when it exists, and the one-line answer or work still awaiting review. For an unfinished round, name the remaining work or decision needed from the Managing Intelligence.
 
-Add **Reviewer** and **Verdict** to the round. Record the request verbatim.
-- More work → step 3 with the request.
-- Accepted → step 6.
+## Research ticket template
 
-### 6. Complete (`active` → `done`)
+- **Question:** state the question in the requester's words where possible.
+- **Scope:** record who asked, why, and the supplied constraints and boundaries. State when none were given.
+- **Review rounds:** give each round a number and date. Its Presented summary briefly describes the findings or changes. Record the reviewer's identity and verdict when received; a round without a verdict awaits review.
 
-1. Check the Report meets the bar above (summary first, citations, references, artifact links).
-2. Set the Report and the Bee to `done`.
-3. Report the Bee ID, the Report ID and the one-line answer.
+## Research methods and artifacts
 
-### Continuing a Bee (`/research <bee-id>`)
+Choose methods that suit the question and review request. The Agent may use its own research skills, such as deep-research, as its Agent Protocol File describes. A small runnable prototype can answer a design question; keep it with the research artifacts and record what it demonstrated.
 
-Read the Bee and its Report, then by status:
-- `defined` → step 2.
-- `active`, latest round awaiting review → with a verdict given after the ID, step 5; otherwise step 4 (present it again).
-- `active`, latest verdict is more work → step 3.
-- `done` → report that it is done, with the Report ID. Reopen it only if a reviewer asks for more work now: set the Bee and Report to `active`, start a new round with that request as its input, and go to step 3. If it is unclear whether they want it reopened, ask (no-questions mode: `research: needs input: <bee-id> is done — reopen it for more work? Say what to do`).
-- Any other status → stop and report it; do not guess. An old value (`new`, `completed`, `larva`, `pupa`, `worker` or `finished`) means the hive needs `/apiary-setup` to migrate it.
+Keep bulky data, scripts, logs, screenshots, notes and excerpts in artifacts, with secrets and tokens removed. Link evidence from the findings it supports.
+
+## Report guidance
+
+Write a standalone document that a reader can use without the ticket or conversation:
+
+1. **Summary:** answer the question first, in a few lines.
+2. **Findings:** organize findings by theme or sub-question and give their evidence.
+3. **Limitations:** state what was not checked, uncertainty and open questions.
+4. **Conclusions and recommendations:** include these when the question calls for them.
+5. **References:** give a numbered list, with an inline `[n]` citation for every claim beyond common knowledge. Identify sources precisely: a URL and access date, a file path and line or commit SHA, a ticket ID, a message permalink, or a document title and section.
+6. **Artifacts:** link each artifact through the Ticket System Protocol File and explain in one line what it holds.
