@@ -37,7 +37,7 @@
 - A Doc describes an Idea: its Product Requirements Document (PRD, what and why), Software Requirements Document (SRD, what the software must do), TLA+ spec (a model-checked design), or another document.
 - A Research ticket holds a research question. Its one Report holds the answer. A Report is not a Doc.
 
-Every Epic is a vertical slice: one new feature or working part of a feature, through the whole stack of code, tests and docs, so each delivers something that can be demonstrated on its own. The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice, because it groups corrections from one review round.
+Every Epic is a vertical slice of the end product: one new feature or working part of a feature, through the whole stack of code, tests and docs, so each delivers something that can be demonstrated on its own. The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice, because it groups corrections from one review round.
 
 ## Statuses
 
