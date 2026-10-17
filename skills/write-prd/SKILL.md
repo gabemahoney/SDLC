@@ -56,7 +56,7 @@ None: the PRD can be written or revised at any Idea status.
 5. **Save the PRD.**
    - If the Idea has a PRD, update that Doc.
    - Otherwise, create it.
-   Mark each finding folded into the saved PRD resolved on that Doc, so req-review can check what changed.
+   Keep only declined or unaddressed findings on the Doc ticket, each with its reason, so req-review sees what remains.
 
 ## Dispatches
 
@@ -64,7 +64,7 @@ None: write-prd interviews and writes the PRD itself.
 
 ## Writes
 
-The PRD, a Doc child of the Idea titled `PRD`, including resolution of its accepted findings. A new PRD starts as `draft`, and a revised `defined` PRD goes back to `draft`.
+The PRD is a Doc child of the Idea titled `PRD`. Apply accepted fixes to its requirements and keep only declined or unaddressed findings on the Doc ticket, each with its reason, so req-review sees the current requirements and what remains. A new or revised PRD is `draft` because it needs approval.
 
 ## Done
 
@@ -99,5 +99,5 @@ If an Open Question stops a check below from passing, say so in your report and 
 ## What not to include
 
 - Leave out time estimates and scheduling.
-- Leave history and decision logs out of the requirements body; review records belong on the Doc ticket so later Runs can use them.
+- Keep the requirements body about the product. Put reasons for declined or unaddressed findings on the Doc ticket so later Runs can assess what remains.
 - Leave out deferred features and follow-up work.

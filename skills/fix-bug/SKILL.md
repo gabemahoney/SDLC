@@ -40,7 +40,7 @@ Run only when all of these are true:
 
 1. **Prepare or resume the repair.** Set the Bug `active` when work starts. Use an isolated Bug worktree for each affected repo to keep concurrent work separate, based on its main checkout's current branch. Record worktree paths, base revisions and merge targets on the Bug. Resume from its progress and actual git state, including unfinished merges and cleanup. For a returned fix, address the revised write-up against current code, because the earlier merge predates the new evidence.
 
-2. **Implement and review the fix.** Record Test Writer Subtasks on the Bug for the unit and integration coverage `test-guide.md` requires, so regression tests are written and reviewed with the repair. Follow the Repair pipeline and Regression evidence guidance below. Judge review findings and record each disposition and reason on the Bug. The Managing Intelligence decides expected behaviour because the defined Bug is the repair's requirements.
+2. **Implement and review the fix.** Plan Test Writer Subtasks on the Bug for the unit and integration coverage `test-guide.md` requires, so regression tests are written and reviewed with the repair. Follow the Repair pipeline and Regression evidence guidance below. Judge every review finding and fix the accepted ones through the Repair pipeline. Record only declined or unaddressed findings on the Bug, each with its reason, so the Managing Intelligence sees what remains. The Managing Intelligence decides expected behaviour because the defined Bug is the repair's requirements.
 
 3. **Prove the repair.** After implementation and review finish, pass the Integration gate below. Rerun the Bug's retained reproduction against the repaired worktrees with the same inputs and setup, to check the reporter's exact symptom.
    - If the symptom remains, route it through the repair pipeline.
@@ -60,7 +60,7 @@ Run only when all of these are true:
 
 ## Writes
 
-The Bug is the only ticket changed. Set it `active` when work starts and leave it `active` after merge, because the Managing Intelligence accepts the fix. Record Test Writer Subtasks and their progress, reproduction and regression evidence, review findings and decisions, checks, integration results and waivers, commits and merges on the Bug so a later Run can continue the repair.
+The Bug is the only ticket changed. Set it `active` when work starts and leave it `active` after merge, because the Managing Intelligence accepts the fix. Keep Test Writer Subtasks, progress, decisions, reproduction and regression evidence, checks, integration results and waivers, commits and merges on the Bug so a later Run can continue the repair. Record only declined or unaddressed review findings, each with its reason, so acceptance accounts for what remains.
 
 ## Done
 
@@ -74,7 +74,7 @@ Executors change files; reviewers check them independently. fix-bug coordinates 
 
 Run the Engineer first, then the Code Reviewer and Test Writers in parallel. After the Test Writers finish, run the Test Reviewer and Doc Writer in parallel, then the Doc Reviewer. Use the roles the work needs, with a Doc Writer assessment for every Bug so documentation gaps are checked even when source behaviour is restored.
 
-Collect findings before a fix round so executors address them together. Resume affected executors in source → tests → documentation order, so coverage and documentation follow the repair. Give the Doc Writer one pass after the round's source and tests finish. Re-review changed work with fresh reviewers and repeat for findings worth fixing.
+Group accepted findings into one fix round so executors can address them together. Resume affected executors in source → tests → documentation order so coverage and documentation follow the repair. Give the Doc Writer one pass after the round's source and tests finish. Have fresh reviewers check the repairs and repeat until accepted findings are fixed.
 
 The sole Test Writer, or final Writer after multiple Lanes, runs the full unit suite in each affected repo with unit tests. It fixes failures caused by tests and rechecks them. Include this run after every source- or unit-test-changing pass so later repairs are tested too. Route source failures through the Engineer, unit testing and review. Other roles use targeted checks so every role does not repeat the full suite.
 

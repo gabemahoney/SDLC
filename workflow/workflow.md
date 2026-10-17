@@ -126,7 +126,9 @@ If a line or mapping you need is missing, stop before any change and point to pr
 
 ### Tickets carry the information
 
-Skills and Subagents record findings, decisions, progress and handoffs on the ticket they concern, and the next skill or Subagent reads them from there. A dispatch, launch or report names the tickets to read rather than repeating their contents, because copying information between Agents spends tokens and drifts from the record.
+Skills judge every finding returned by a reviewer or the Product Manager and fix the ones they accept. Record only declined or unaddressed findings on the ticket they concern, each with its reason, so the next skill sees what remains. Product questions go to the Managing Intelligence, who decides the expected behaviour. idea-review hands its final findings to the Managing Intelligence to act on.
+
+Skills and Subagents keep decisions, repair instructions, progress and handoffs on the ticket they concern so later work can continue from the record. A dispatch, launch or report names those tickets rather than repeating their contents, because copied instructions can drift from the record.
 
 ### Work outside the ticket
 
