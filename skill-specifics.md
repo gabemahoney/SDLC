@@ -10,16 +10,6 @@ Per-entry Required Reading names specific inputs only. Shared startup, settings,
 
 The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug.
 
-## teardown-worktree
-
-**Required Reading:** Idea or Epic, worktree, branch and merge state; outside worktree-only mode, `launcher` and Launcher Protocol File, to merge and stop the Worker.
-
-**Gate:** Merge an Idea's worktrees only once the Idea is `done`, and an Epic's only once the Epic is `done`. Starts outside the folder it removes; before merging, stops if the Launcher reports another live Worker under that ticket's worktrees.
-
-**Owned transitions:** None.
-
-**Specific rules:** Merge target defaults per repo to its main checkout's branch. Commits or discards uncommitted changes only as the Managing Intelligence chooses. Stops its Worker only after every merge succeeds, then removes worktrees; worktree-only mode stops none.
-
 ## release
 
 **Required Reading:** `release-guide` and its plain reference targets; Ticket System Protocol File only if the guide uses tickets.
