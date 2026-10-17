@@ -12,13 +12,22 @@
   - **Code, Test and Doc Reviewers:** check executors' changes independently.
   - **Product Manager:** checks a Plan, an Epic's planned work or finished work against the requirements, for scope and proportion.
   - **Researcher:** answers one research question for write-srd with a cited Report.
-  - **TLA+ Writer** and **TLA+ Reviewer:** write and run a TLA+ model of an SRD part, and check it before each run.
+  - **Model Writer** and **Model Reviewer:** the Writer creates a Formal Model of an SRD part and runs its checker; the Reviewer checks the model before each run.
 - **Worker:** a separate Agent session the Launcher starts to run one skill.
 - **Launcher:** the program that starts, watches and stops Workers.
 - **Project:** the software the Managing Intelligence builds with Apiary, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.apiary` the default settings.
 - **Guidance Document:** one of six user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `release-guide.md`, `bug-writing-guide.md`. The Project's `doc-writing-guide.md` says how it handles documentation, including which documents it keeps current and how strict its requirements are.
+- **Build Commands:** `build-commands.md` defines named sections for each code folder. Apiary names these sets of work as Terms so skills can sequence them: Lint before a commit, Unit Tests at the end of each Task and Integration Tests at the end of each Epic. Each code folder needs the first four sections below, each containing a command or `none` with a reason, so an empty entry never leaves the required work unclear.
+  - **Compile** (`## Compile`): compilation or type-checking.
+  - **Lint** (`## Lint`): lint and format checks.
+  - **Unit Tests** (`## Unit tests`): the full unit suite.
+  - **Integration Tests** (`## Integration tests`): the integration suites.
+  - **Model Check** (`## Model check`): an optional section naming the formal-modelling language and the command that runs its checker. If a Formal Model needs checking and this section is missing, write-srd stops and asks the Managing Intelligence.
+
+  Any other `##` section belongs to the Project; skills use it as the file describes.
+- **Formal Model:** a formal specification checked by a model checker. **Model checking** means running that checker. A **Model Doc** holds a Formal Model and its attached files.
 - **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no user copy of that Guidance Document is found.
 - **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent.
 - **Dependency:** a link meaning one ticket can't start until another is `done`, such as between Epics or between Tasks.
@@ -41,7 +50,7 @@
 - A Bug is a defect to validate and fix.
 - A Plan has an Association with one Idea, and an Idea has at most one Plan.
 - A Plan divides an Idea into Epics, an Epic into Tasks (each committed in one go), and a Task into Subtasks (each one executor's part).
-- A Doc describes an Idea: its Product Requirements Document (PRD, what and why), Software Requirements Document (SRD, what the software must do), TLA+ spec (a model-checked design), or another document.
+- A Doc describes an Idea: its Product Requirements Document (PRD, what and why), Software Requirements Document (SRD, what the software must do), Formal Model in a Model Doc, or another document.
 - A Research ticket holds a research question. Its one Report holds the answer. A Report is not a Doc.
 
 Every Epic is a vertical slice of the end product: one new feature or working part of a feature, through the whole stack of code, tests and docs, so each delivers something that can be demonstrated on its own. The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice, because it groups corrections from one review round.
@@ -60,13 +69,13 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` or Subagent definition gives you.
 
-The Managing Intelligence accepts Ideas and Bugs, returns Bugs and manages Docs other than the PRD, SRD and TLA+ specs.
+The Managing Intelligence accepts Ideas and Bugs, returns Bugs and manages Docs other than the PRD, SRD and Model Docs.
 
 ## Flows
 
 **Idea:** write-idea → write-prd → req-review → write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
 
-An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several TLA+ spec Docs, one per modelled SRD part. Run each req-review in a fresh session, not the one that wrote the PRD or SRD, so the review is independent. req-review is optional: the Managing Intelligence may skip it and mark the PRD, the SRD and the Idea `defined` by hand.
+An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part. Run each req-review in a fresh session, not the one that wrote the PRD or SRD, so the review is independent. req-review is optional: the Managing Intelligence may skip it and mark the PRD, the SRD and the Idea `defined` by hand.
 
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. Bugs whose fixes are returned go back to `draft` for define-bug.
 

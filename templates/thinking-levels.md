@@ -18,8 +18,8 @@ release: medium
 configure-worktree: medium
 teardown-worktree: medium
 Researcher: high
-TLA+ Writer: xhigh
-TLA+ Reviewer: xhigh
+Model Writer: xhigh
+Model Reviewer: xhigh
 Engineer planner: high
 Test Writer planner: high
 Doc Writer planner: high

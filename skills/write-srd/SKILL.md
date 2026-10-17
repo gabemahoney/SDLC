@@ -1,6 +1,6 @@
 ---
 name: write-srd
-description: "Write or revise an Idea's Software Requirements Document (SRD) from its PRD, codebase and recorded findings and change requests, with TLA+ models for concurrency or state machines."
+description: "Write or revise an Idea's Software Requirements Document (SRD) from its PRD, codebase and recorded findings and change requests, with Formal Models for concurrency or state machines."
 ---
 
 # write-srd
@@ -20,11 +20,11 @@ An Idea ID.
 ## Required Reading
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the TLA+ Writer's, TLA+ Reviewer's and Researcher's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the Model Writer's, Model Reviewer's and Researcher's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
-- **The Idea, its Docs and Plan:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, read accepted findings on the SRD and the Managing Intelligence's change requests on the Idea or SRD, find TLA+ specs to revise, and identify the Plan and active Epics affected by a revision.
+- **The Idea, its Docs and Plan:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, read accepted findings on the SRD and the Managing Intelligence's change requests on the Idea or SRD, find Model Docs to revise, and identify the Plan and active Epics affected by a revision.
 - **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes. Why: to ground constraints in the Project's engineering conventions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
@@ -39,11 +39,11 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
-3. **Model in TLA+ only what needs it.** Model an SR group when it has concurrency (things happening at the same time, retries, partial failure) or a state machine, because those hide ordering bugs that reading and tests miss. Include already-modelled groups a revision changed. Most SRDs need neither, so skip this step. The checker is slow, so each model is reviewed before it runs. For each picked SR group, in parallel:
-   1. **Write.** Dispatch a TLA+ Writer with the SR group and what to model. It writes the model as a TLA+ spec Doc on the Idea, with the model files attached to that Doc, and doesn't run it yet.
-   2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec Doc and SRD IDs so the check is independent of the Writer's reasoning. Judge each finding and turn accepted ones into repair instructions on the spec Doc so the Writer can act on them. Record only declined or unaddressed findings, each with its reason, so later review sees what remains.
+3. **Write Formal Models where they help.** Model an SR group when concurrency (things happening at the same time, retries, partial failure) or a state machine hides ordering bugs that reading and tests can miss. Include already-modelled groups a revision changed. Skip modelling when no group needs it. For groups that do, read `build-commands.md`, found as `workflow.md` describes, and use the language and checker command in `## Model check`. If that section is missing, stop and ask the Managing Intelligence, because the Project must supply the modelling language and a way to check the model. Review each Formal Model before model checking, because checker runs can be slow. For each chosen SR group, in parallel:
+   1. **Write.** Dispatch a Model Writer with the SRD ID and assigned SR group. It writes a Formal Model in the language named by `## Model check` and attaches its files to a Model Doc under the Idea so the model stays with its requirements.
+   2. **Review.** Dispatch a fresh Model Reviewer with the Model Doc and SRD IDs so the check is independent of the Writer's reasoning. Judge each finding and turn accepted ones into repair instructions on the Model Doc so the Writer can act on them. Record only declined or unaddressed findings, each with its reason, so later review sees what remains.
    3. **Fix.** If repairs are needed, resume the same Writer to carry them out, then return to step 2 so a fresh Reviewer checks the changed model.
-   4. **Run.** Once accepted review findings are fixed, resume the Writer to run the TLA+ model checker. Keep its results on the spec Doc as evidence. Have the Writer fix model errors and repeat the review and run so the model passes before this work finishes.
+   4. **Run.** Once accepted review findings are fixed, resume the Writer to run the `## Model check` command. Keep its results on the Model Doc as evidence. Have the Writer fix model errors and repeat the review and model checking so the Formal Model passes before this work finishes.
    5. **Fix the SRD.** If the checker exposes an SRD bug, correct and save the requirements, then have the Writer update the model and repeat its review and run so both agree. Product questions go to the Managing Intelligence, because the SRD follows the approved PRD.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
@@ -60,8 +60,8 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 ## Dispatches
 
-- **TLA+ Writer:** one per modelled SR group, kept for that group's whole cycle (write, fix, run), as step 3 says. Expect a TLA+ spec Doc; after a run, the checker results and any SRD bugs they show.
-- **TLA+ Reviewer:** a fresh one for each review in step 3. Expect findings with references and suggested fixes, or none.
+- **Model Writer:** one per modelled SR group, kept for that group's whole cycle (write, fix, run), as step 3 says. Expect a Model Doc; after model checking, the checker results and any SRD bugs they show.
+- **Model Reviewer:** a fresh one for each review in step 3. Expect findings with references and suggested fixes, or none.
 - **Researcher:** launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report. Use it to settle the decision, then set the ticket `done`.
 
 ## Writes
@@ -70,13 +70,13 @@ The SRD is a Doc child of the Idea titled `SRD`. Apply accepted fixes to its req
 
 The Idea's Plan, set back to `draft` when a revision changes an SRD it was built from.
 
-Each modelled SR group has a TLA+ spec Doc under the Idea, with model files written and attached by its TLA+ Writer. The Doc holds repair instructions and checker results so work can resume from the evidence. Its finding record contains only declined or unaddressed findings, each with its reason, so later review sees what remains.
+Each modelled SR group has a Model Doc under the Idea, with the Formal Model's files written and attached by its Model Writer. The Doc holds repair instructions and checker results so work can resume from the evidence. Its finding record contains only declined or unaddressed findings, each with its reason, so later review sees what remains.
 
 Research tickets in the Research store, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds, because req-review checks the SRD decisions they inform.
 
 ## Done
 
-Report the SRD's ID, its spec Doc and Research ticket IDs, and anything left unaddressed with the reason. If the Plan was reset, report its ID.
+Report the SRD's ID, its Model Doc and Research ticket IDs, and anything left unaddressed with the reason. If the Plan was reset, report its ID.
 
 - If the SRD and all its modelling are complete, suggest “req-review”.
 - Otherwise, say what must be settled before write-srd can finish.
@@ -84,14 +84,14 @@ Report the SRD's ID, its spec Doc and Research ticket IDs, and anything left una
 ## Style rules
 
 - **Group by concern:** group requirements by domain or concern, not by PRD section. Data model, configuration, interfaces, runtime behaviour, validation, behaviour to preserve and documentation are common groups; use those the Idea needs.
-- **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because TLA+ Writers, req-review and write-plan cite them by number.
+- **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because Model Writers, req-review and write-plan cite them by number.
 - **Software requirements:** define what must be true. Name actual modules and established patterns where they constrain the work.
-- **Linked models:** name each modelled SR group's TLA+ spec Doc beside it.
+- **Linked models:** link each modelled SR group to its Model Doc so reviewers can find the Formal Model and checker results.
 - **Code in poor shape:** where the code this Idea changes is in poor shape, decide whether delivering the Idea needs it refactored. If it does, state the refactor as a requirement with its reason. If it doesn't, it's work outside the Idea, as `workflow.md` describes.
 - **Technology and architecture:** state each choice the SRD makes, with its reason in a sentence, and link the Research ticket if one informed it.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the Idea. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
-- **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep model-checking bounds in the spec as modelling assumptions, rather than turning them into product limits.
+- **No false precision:** use numeric limits only when the input states them, the Managing Intelligence confirms them, or an existing constraint that must be preserved establishes them. Keep bounds used for model checking in the Model Doc as modelling assumptions, so they do not become product limits.
 - **Consistent terms:** use the PRD's defined terms in Title Case wherever they appear, with the same meanings. Explain additional terms at first use and use their defined names consistently.
 - **Stable references:** you may name code files and modules, but never line numbers or code, because those change far more often than the requirements. Pseudocode is fine where it makes a requirement clearer.
 
@@ -104,12 +104,12 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - [ ] The SRD agrees with the PRD and uses its defined terms consistently.
 - [ ] References to existing code name real modules and patterns, and anything new is marked as new.
 - [ ] Numeric constraints have a stated basis, and modelling bounds remain modelling assumptions.
-- [ ] Each modelled SR group has a TLA+ spec that matches the final SRD and passes the model checker.
+- [ ] Each modelled SR group has a Formal Model that matches the final SRD and passes the checker named in `## Model check`.
 
 ## What not to include
 
 - Leave out function signatures and step-by-step implementation plans.
-- Put TLA+ models in their spec Docs, not in the SRD.
+- Keep each Formal Model in its Model Doc so the SRD stays focused on software requirements.
 - Include defaults, fallbacks, validation, schemas, error rules and guards only when grounded in the input or applicable guidance.
 - Omit time estimates and scheduling.
 - Keep the requirements body about the software to build. Put reasons for declined or unaddressed findings on the Doc ticket so later Runs can assess what remains.

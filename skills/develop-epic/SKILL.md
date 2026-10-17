@@ -49,7 +49,7 @@ Run only when all of these are true:
    - **Before it starts:** re-check the Plan. If it's back in `draft`, record progress and stop for write-plan, because an SRD change has paused the work. From the second Task on, check how full your context is, as the Agent Protocol File describes. At 75% or more, or if you can't tell, record progress and stop for a fresh `develop-epic <epic-id>` session, which the Managing Intelligence starts, because an Agent with a nearly full context makes mistakes.
    - **Check and update its instructions:** compare this Task's instructions with the code earlier Tasks committed, such as the files, functions and interfaces the instructions name. Fix any instruction that code made wrong, because every Task was written before any of that code existed.
    - **While it runs:** set the Task `active` and follow the Task pipeline below.
-   - **When it's done:** once its Subtasks are `done`, accepted findings are resolved and required checks pass, commit its work.
+   - **When it's done:** once its Subtasks are `done` and accepted findings are resolved, run `## Compile` and `## Lint` from `build-commands.md` for every affected code folder. The final Test Writer's full `## Unit tests` run must also pass for the completed work. Skip sections marked `none`. Send failures back to the executor who owns the files through the Task pipeline and repeat the checks after repairs. Commit only when all required checks pass, so each Task leaves verified work for the next one.
    - **After its commit:** set the Task `done`, because its work and checks are complete.
 
 3. **Finish the Epic.** Once all Tasks are `done`, run the Integration gate, because the Epic is a complete vertical slice, and catching errors early stops them compounding, even if it costs a little extra time. If an earlier Run already passed the gate, or the Managing Intelligence waived its failures, and no files have changed since, skip it.
@@ -63,7 +63,7 @@ Run only when all of these are true:
 ## Dispatches
 
 - **Engineer:** launch for source changes, including integration fixes. Expect implementation, targeted checks and any deviations or effects on design and documentation.
-- **Test Writer:** launch for testing Subtasks after their source changes, one per Lane and a final Writer after multiple Lanes. Expect unit and integration coverage following `test-guide.md`, fixture changes, remaining gaps and assigned test results. Dispatch a fresh Test Writer for the end-of-Epic Integration gate to keep suite output out of this skill's context. Expect a result per affected repo with commands and evidence.
+- **Test Writer:** launch for testing Subtasks after their source changes, one per Lane and a final Writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration coverage following `test-guide.md`, fixture changes, test repairs, remaining gaps and assigned test results.
 - **Doc Writer:** launch when source and testing Subtasks finish and documentation is affected. Expect updates following `doc-writing-guide.md`, including gaps found in the implementation.
 - **Code Reviewer:** launch after source changes, alongside Test Writers. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
 - **Test Reviewer:** launch after unit-test or integration-test changes finish. Expect findings on test quality, coverage and duplication across the suite, or none.
@@ -93,7 +93,7 @@ Run the Engineer first, then the Code Reviewer and Test Writers in parallel. Aft
 
 Judge the findings together and have the executors fix the accepted ones in one round. Resume affected executors in source → tests → documentation order so tests and documentation follow the implementation. Give the Doc Writer one pass after the round's code and tests finish. Have fresh reviewers check the repairs and repeat until accepted findings are fixed. Record only declined or unaddressed findings on the Task, each with its reason, so idea-review sees what remains. The Managing Intelligence decides product questions and conflicts with the SRD, because execution follows the defined requirements.
 
-The last Test Writer owns the full unit-suite run in each affected repo with unit tests. Assign it the Task's final full-unit-suite Subtask: the sole Writer for one Lane, or the final Writer after multiple Lanes. It runs the suite after its changes and fixes and rechecks failures. Each later source- or unit-test-changing pass has the same owner. Other roles use targeted checks, so full suites are not repeated by every role. Route unit-test source failures through the Engineer, unit testing and review before completing the Task.
+The last Test Writer owns the full `## Unit tests` run from `build-commands.md` for each affected code folder, skipping sections marked `none`. Assign it the Task's final full-unit-suite Subtask: the sole Writer for one Lane, or the final Writer after multiple Lanes. It runs the suite after its changes and fixes and rechecks failures. Each later source- or unit-test-changing pass has the same owner. Other executors work out targeted checks for their changes, so full suites are not repeated by every role. Route unit-test source failures through the Engineer, unit testing and review before completing the Task.
 
 ## Test Writer Lanes
 
@@ -109,15 +109,15 @@ Keep the Epic's progress concise: current Task and phase, repo checkouts, integr
 
 ## Integration gate
 
-After the Epic's last Task, dispatch a fresh Test Writer to run every affected repo's integration suites as `test-guide.md` and `build-commands.md` describe. The Test Writer fixes only failures caused by the tests themselves, leaving source repairs to the Task pipeline. It reports `passed`, `source failures`, `could not run` or `no suites found` for each repo, with commands and evidence.
+After the Epic's last Task, develop-epic runs `## Integration tests` from `build-commands.md` for every affected code folder, following `test-guide.md` and skipping sections marked `none`. Save command output to a file and read only the failures, so long suite output stays out of the skill's context. Record each command, its exit status and the output file on the Epic as evidence. Send failures caused by tests to a Test Writer; source failures become fix Tasks through the Task pipeline.
 
-The gate passes when each affected repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives the remaining failures. Record evidence and waivers on the Epic and keep it `active` until the gate passes, so completion reflects the integration result.
+The gate passes when every affected code folder's Integration Tests pass or its section says `none` with a reason, or the Managing Intelligence explicitly waives the remaining failures. Record evidence and waivers on the Epic and keep it `active` until the gate passes, so completion reflects the integration result.
 
-If the run changes tests, get a fresh Test Reviewer check because these repairs follow the Task's review. Have the Test Writer resolve accepted findings and rerun the affected suites. Commit the reviewed repairs so the evidence covers the committed tests.
+After a Test Writer repairs tests, get a fresh Test Reviewer check because the tests changed after the Task's review. Have the Test Writer resolve accepted findings, then rerun the affected Integration Tests in develop-epic. Apply step 2's pre-commit checks to these repairs before committing, so the evidence covers the reviewed and committed tests.
 
 For source failures within the Epic's scope, create integration fix Tasks with outcomes, acceptance criteria and prerequisites. Complete recorded draft repairs before executing them so interrupted planning can resume. Each Subtask names its executor and has Context, What Needs to Change, Key Files and Acceptance Criteria sections, so repairs are as executable as the original work. Include the unit and integration coverage `test-guide.md` requires, the final full-unit-suite Subtask, affected documentation and Test Writer Lanes.
 
-Execute the fix Tasks through the full Task pipeline in Dependency order. After all fixes are committed and their Tasks are `done`, dispatch a fresh Test Writer for one integration run over the combined repairs, so the result covers their interactions.
+Execute the fix Tasks through the full Task pipeline in Dependency order. After all fixes are committed and their Tasks are `done`, rerun Integration Tests in develop-epic over the combined repairs, so the result covers their interactions.
 
 If a failure an earlier fix Task was meant to fix persists, stop for the Managing Intelligence's decision, so failed repairs do not become an automatic loop. If suites cannot run, stop for the environment to be fixed or a waiver. Record the unfinished gate so a later Run resumes there.
 

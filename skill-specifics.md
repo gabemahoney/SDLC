@@ -28,9 +28,9 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
 
-**Specific rules:** Writes unit and integration tests as Subtask work following `test-guide.md`, so coverage matches the Project's guidance. Each Lane owns its files and exclusively used fixtures and helpers so parallel Writers avoid conflicting edits. The last Test Writer makes shared changes and runs the full unit suite in each affected repo with unit tests to check the combined work. For a Bug, records failing-before and passing-after regression evidence so the test proves it catches the defect. The calling skill owns commits.
+**Specific rules:** Writes unit and integration tests as Subtask work following `test-guide.md`, so coverage matches the Project's guidance. Each Lane owns its files and exclusively used fixtures and helpers so parallel Writers avoid conflicting edits. The last Test Writer makes shared changes and runs `## Unit tests` from `build-commands.md` for each affected code folder, skipping sections marked `none`, to check the combined work. For a Bug, records failing-before and passing-after regression evidence so the test proves it catches the defect. The calling skill owns commits.
 
-A fresh Test Writer runs every affected repo's integration suites at the end of an Epic or Bug repair, following `test-guide.md` and `build-commands.md`, to keep suite output out of the calling skill's context. It fixes failures caused by tests and reports source failures for the calling skill's repair pipeline. It returns `passed`, `source failures`, `could not run` or `no suites found` per repo, with commands and evidence so the calling skill can judge its gate.
+The calling skill runs `## Integration tests` itself and saves output to a file, reading only failures so suite output stays out of its context. A Test Writer repairs failures caused by tests; source failures go through the calling skill's repair pipeline. The calling skill reruns Integration Tests after repairs so its gate covers the completed work.
 
 ## Doc Writer
 
@@ -122,21 +122,19 @@ A fresh Test Writer runs every affected repo's integration suites at the end of 
 
 **Specific rules:** Dispatched by write-srd to answer one research question and report back with its cited Report. It may use any research skill its Agent provides, as its Agent Protocol File describes. Its investigation is read-only: it changes no code and no ticket other than its Report. Never commit.
 
-## TLA+ Writer
+## Model Writer
 
-**Required Reading:** Assigned SRD part, existing spec, model files and checker output; `build-commands` for Model check.
+**Required Reading:** Assigned SRD part, any existing Model Doc, model files and checker output; `build-commands` for the language and checker command in `## Model check`.
 
 **Gate:** None specified.
 
-**Owned transitions:** **TLA+ spec Doc:** the TLA+ Writer, dispatched by write-srd, creates `defined`, one Doc per modelled SRD part
+**Owned transitions:** **Model Doc:** the Model Writer, dispatched by write-srd, creates it `defined`, one Doc per modelled SRD part. A revision updates its Formal Model and leaves it `defined`.
 
-**TLA+ spec Doc:** revisiting that part updates its spec and leaves it `defined`. No other transition.
+**Specific rules:** Writes the assigned SRD part's Formal Model in the language named by `## Model check` in `build-commands.md`. Attaches the model files to its Model Doc as the Ticket System Protocol File describes, so they stay with the requirements. Model files stay out of repos. Resumed to fix accepted review findings or update the Formal Model after an SRD change, then to run the checker command once accepted findings are fixed, because review catches mistakes before a potentially slow checker run. Records checker results and SRD findings on the Model Doc and returns its ID to write-srd so later work uses that evidence. Never commit.
 
-**Specific rules:** Attaches the model files (`.tla`, `.cfg`) to its TLA+ spec Doc as the Ticket System Protocol File describes, and runs the checker on them there; they never go in a repo. Dispatched by write-srd to write the assigned part's model without running it. Resumed to fix review findings or update the model after an SRD change, then to run the Project's Model check command from `build-commands.md` once review has no findings. Returns the spec, checker results and SRD findings to write-srd. Never commit.
+## Model Reviewer
 
-## TLA+ Reviewer
-
-**Required Reading:** Assigned TLA+ spec and SRD; no Guidance Documents.
+**Required Reading:** Assigned Model Doc, its attached Formal Model and the SRD; no Guidance Documents.
 
 **Gate:** None specified.
 
@@ -150,9 +148,7 @@ A fresh Test Writer runs every affected repo's integration suites at the end of 
 
 **Owned transitions:** **Idea:** the Managing Intelligence sets `done` after testing the Idea.
 
-**Other Doc (not PRD, SRD or TLA+ spec):** The Managing Intelligence creates `draft`
-
-**Other Doc (not PRD, SRD or TLA+ spec):** the Managing Intelligence owns other changes.
+**Other Doc (not PRD, SRD or Model Doc):** the Managing Intelligence creates it `draft` and owns its later status changes.
 
 **Bug:** write-bug or the Managing Intelligence creates `draft`, not yet validated
 

@@ -88,11 +88,12 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If their own: ask whether all code folders share it or each has its own. Write a shared copy in `<Project Folder>/.apiary/` and a per-code-folder copy in `<Project Folder>/<code folder path>/.apiary/`, under the Guidance Document's filename. Write the file as a pointer to their guide, relative to the folder holding the pointer file, or as its rules.
       - If a copy already exists there, offer it as the answer and change it only as the Managing Intelligence says.
 
-   b. **Set each code folder's build commands.** For each confirmed code folder, use seven slots: Compile / type-check, Format, Lint, Narrow test (takes a path), Full test, Integration test and Model check. A slot may be marked unused.
-      - If its build and test setup is clear, propose commands; stop and ask the Managing Intelligence: confirm or override?
-      - Otherwise, ask for every command.
+   b. **Set each code folder's build commands.** Write `build-commands.md` with `## Compile` for compilation or type-checking, `## Lint` for lint and format checks, `## Unit tests` for the full unit suite and `## Integration tests` for integration suites. Apiary names these sets of work as Terms so skills can sequence them: Lint before a commit, Unit Tests at the end of each Task and Integration Tests at the end of each Epic.
+      - Propose commands from each code folder's setup and have the Managing Intelligence settle them. Each required section needs a command or `none` with a reason, so setup can check that every code folder's required work is accounted for.
+      - Ask whether to add `## Model check`, naming the formal-modelling language and checker command. The checker needs installing on the host so write-srd can check Formal Models.
+      - Keep any other `##` sections the Project needs, with instructions for their use.
 
-      Ask where to keep `build-commands.md`: `<Project Folder>/.apiary/` or `<Project Folder>/<code folder path>/.apiary/`. Write the slots there; in the shared `<Project Folder>/.apiary/` copy, put each code folder's slots in a section naming it.
+      Agree where to keep `build-commands.md` with the Managing Intelligence. Use a copy for each code folder or a shared copy found as `workflow.md` describes. In a shared copy, name each code folder's commands within the required sections so skills can find the commands for the folder they affect. Check that all four required sections have a command or `none` with a reason for every confirmed code folder before finishing setup.
 
    c. **Write or locate the release guide.** Cover permissions without a human (including pushing and releasing), human approvals and the release process in `<Project Folder>/.apiary/release-guide.md`:
       - If a guide exists, use or point to it.

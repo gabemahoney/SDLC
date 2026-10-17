@@ -46,13 +46,15 @@ Run only when all of these are true:
    - If the symptom remains, route it through the repair pipeline.
    - If the reproduction can't run or validation relied on source inspection, the Managing Intelligence decides how to verify the fix. Record that decision and its evidence on the Bug.
 
-4. **Commit and merge.** Once accepted findings are resolved, regression evidence is complete, the reproduction or agreed verification shows the expected behaviour, required checks pass and the integration gate is met, commit the Bug's changes. Merge each worktree into its recorded target from the main checkout. If the target changed or conflict resolution changed the repair, review and check the resulting source before cleanup, because the worktree evidence predates those changes. Record successful merges, then remove the merged worktrees and branches. Leave the Bug `active` for the Managing Intelligence's acceptance.
+4. **Commit and merge.** Once accepted findings are resolved, regression evidence is complete, the reproduction or agreed verification shows the expected behaviour and the integration gate is met, run `## Compile` and `## Lint` from `build-commands.md` for every affected code folder. The final Test Writer's full `## Unit tests` run must also pass for the completed repair. Skip sections marked `none`. Send failures back to the executor who owns the files through the Repair pipeline and repeat the checks after repairs. Commit only when all required checks pass, so the merged fix has been verified.
+
+   Merge each worktree into its recorded target from the main checkout. If the target changed or conflict resolution changed the repair, review and check the resulting source before cleanup, because the worktree evidence predates those changes. Record successful merges, then remove the merged worktrees and branches. Leave the Bug `active` for the Managing Intelligence's acceptance.
    - If a merge conflicts, preserve that worktree and record the conflicting files and completed merges. Stop for resolution; a later Run resumes the unfinished merge, verification and cleanup.
 
 ## Dispatches
 
 - **Engineer:** launch for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
-- **Test Writer:** launch for testing Subtasks and after every source-changing pass, one per Lane and a final Writer after multiple Lanes. Expect unit and integration tests, before-and-after regression evidence, fixture changes, gaps and assigned test results. Dispatch a fresh Test Writer for the Integration gate to keep suite output out of this skill's context. Expect a result per affected repo with commands and evidence.
+- **Test Writer:** launch for testing Subtasks and after every source-changing pass, one per Lane and a final Writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and assigned test results.
 - **Doc Writer:** launch after source and testing Subtasks finish to assess and update documentation following `doc-writing-guide.md`. Resume when review findings or repairs affect documentation. Expect changes or a reason none are needed.
 - **Code Reviewer:** launch after source changes, while Test Writers work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
 - **Test Reviewer:** launch after testing Subtasks finish, while the Doc Writer works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
@@ -76,7 +78,7 @@ Run the Engineer first, then the Code Reviewer and Test Writers in parallel. Aft
 
 Group accepted findings into one fix round so executors can address them together. Resume affected executors in source → tests → documentation order so coverage and documentation follow the repair. Give the Doc Writer one pass after the round's source and tests finish. Have fresh reviewers check the repairs and repeat until accepted findings are fixed.
 
-The sole Test Writer, or final Writer after multiple Lanes, runs the full unit suite in each affected repo with unit tests. It fixes failures caused by tests and rechecks them. Include this run after every source- or unit-test-changing pass so later repairs are tested too. Route source failures through the Engineer, unit testing and review. Other roles use targeted checks so every role does not repeat the full suite.
+The sole Test Writer, or final Writer after multiple Lanes, runs the full `## Unit tests` suite from `build-commands.md` for each affected code folder, skipping sections marked `none`. It fixes failures caused by tests and rechecks them. Include this run after every source- or unit-test-changing pass so later repairs are tested too. Route source failures through the Engineer, unit testing and review. Other executors work out targeted checks for their changes so every role does not repeat the full suite.
 
 ## Regression evidence
 
@@ -96,12 +98,12 @@ Keep the current phase, next work and integration repair-round count on the Bug.
 
 ## Integration gate
 
-After the repair's implementation and review finish, dispatch a fresh Test Writer for one integration run across every affected repo, following `test-guide.md` and `build-commands.md`. It fixes only failures caused by the tests themselves, leaving source repairs to the Repair pipeline. It reports `passed`, `source failures`, `could not run` or `no suites found` for each repo, with commands and evidence.
+After the repair's implementation and review finish, fix-bug runs `## Integration tests` from `build-commands.md` for every affected code folder, following `test-guide.md` and skipping sections marked `none`. Save command output to a file and read only the failures, so long suite output stays out of the skill's context. Record each command, its exit status and the output file on the Bug as evidence. Send failures caused by tests to a Test Writer and source failures through the Repair pipeline.
 
-The gate passes when every affected repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives its remaining failures. Record results and waivers on the Bug so acceptance and later Runs have the evidence.
+The gate passes when every affected code folder's Integration Tests pass or its section says `none` with a reason, or the Managing Intelligence explicitly waives the remaining failures. Record results and waivers on the Bug so acceptance and later Runs have the evidence.
 
-- If the run changes tests, get a fresh Test Reviewer check because those repairs follow the earlier review. Have the Test Writer resolve accepted findings and rerun the affected suites so the result covers the reviewed tests.
-- If source fixes are needed, pass the failures through the Repair pipeline, then dispatch a fresh Test Writer for one run over the combined repairs. Stop for the Managing Intelligence's decision if a round does not reduce failures or failures remain after three source-fix rounds, to bound unsuccessful repair attempts.
+- After a Test Writer repairs tests, get a fresh Test Reviewer check because the tests changed after the earlier review. Have the Test Writer resolve accepted findings, then rerun the affected Integration Tests in fix-bug so the result covers the reviewed tests.
+- If source fixes are needed, pass the failures through the Repair pipeline, then rerun Integration Tests in fix-bug over the combined repairs. Stop for the Managing Intelligence's decision if a round does not reduce failures or failures remain after three source-fix rounds, to bound unsuccessful repair attempts.
 - If suites cannot run, stop for the environment to be fixed or an explicit waiver. Keep the unfinished gate and evidence on the Bug so a later Run resumes there.
 
 Results and waivers apply to the files they covered. Further source or integration-test changes need a new result or explicit waiver; source changes also need the regression and reproduction or agreed verification checked again, so the evidence covers the final repair.
