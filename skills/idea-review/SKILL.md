@@ -27,7 +27,7 @@ An Idea ID.
 - **Round progress and earlier feedback:** on the Idea and its Plan's Round Feedback Epics. Why: to resume an unfinished round, check earlier fixes and choose the next round number.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read supporting source material.
 - **Finished product and git history:** the affected repos under `<Project Folder>`, or the Idea's worktrees at `<Project Folder>/.worktrees/<idea-id>/<repo path>`. Why: to identify the checkouts containing all completed Epic work and review the combined changes at their recorded commits.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `maintained-docs.md` and `build-commands.md` for each reviewed repo, at `<folder on the Guidance Document walk>/.apiary/<name>.md`, or `~/.apiary/<name>-default-fallback.md`, as `workflow.md` describes. Include the documents `maintained-docs.md` lists. Why: to judge findings against the Project's guidance and demonstrate acceptance criteria with its build and test commands.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `maintained-docs.md` and `build-commands.md` for each reviewed repo, found as `workflow.md` describes. Include the documents `maintained-docs.md` lists. Why: to judge findings against the Project's guidance and demonstrate acceptance criteria with its build and test commands.
 - **Subagent reports:** returned during this round or recorded in its progress. Why: to combine independent reviews and give the Product Manager their findings and the acceptance evidence.
 
 ## Gate
@@ -73,11 +73,11 @@ Report the Idea ID, round number, reviewed commits, reviewer results, acceptance
 
 ## Findings guidance
 
-A non-trivial finding is an unmet requirement or acceptance criterion, or a real defect in the Idea's work. Everything else is trivial. Judge the evidence and impact, so review rounds converge on a working product. Combine duplicate findings and cite the affected requirement, repo and file or observed behaviour, explaining the problem and the result a fix must achieve.
+A non-trivial finding is an unmet requirement or acceptance criterion, or a real defect in the Idea's work. Everything else is trivial. Judge by evidence and impact, so review rounds converge on a working product. Combine duplicate findings and cite the affected requirement, repo and file or observed behaviour, explaining the problem and the result a fix must achieve.
 
 Keep the work within the Idea's requirements and the SRD's settled choices. Include missing functionality, regressions and excess functionality that conflicts with those requirements. Honour recorded Managing Intelligence decisions when judging findings. Problems outside the Idea become suggestions for write-bug or write-idea in the report.
 
-Present acceptance evidence honestly: distinguish demonstrated behaviour, observed failures and checks left for manual validation. Include relevant earlier integration results and waivers so the Managing Intelligence can see what was tested.
+Keep demonstrated behaviour, observed failures and checks left for manual validation clearly apart. Include relevant earlier integration results and waivers so the Managing Intelligence can see what was tested.
 
 ## Feedback Epic contents
 
