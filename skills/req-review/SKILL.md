@@ -7,7 +7,7 @@ description: "Review an Idea's PRD, or its PRD and SRD together, and mark them d
 
 ## Purpose
 
-Reviews the PRD before write-srd, then the PRD and SRD together before write-plan. Independent reviewers check another skill's writing for consistency, completeness and clarity, so Agents can implement the requirements.
+Reviews the PRD before write-srd, then the PRD and SRD together before write-plan. A fresh Requirements Reviewer checks them for consistency, completeness and clarity, so Agents can implement the requirements without guessing.
 
 ## Loading Apiary
 

@@ -32,16 +32,6 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Specific rules:** Changes no tracked file. When it cannot reproduce or settle the report from source, leaves Bug `draft`, records what it tried and asks the Managing Intelligence whether it is real.
 
-## write-plan
-
-**Reads:** Idea, requirements Docs, source references, existing Plan and Epics; `engineering-best-practices`, `test-guide`, `doc-writing-guide`, `maintained-docs`, planning context and Product Manager report, to plan and revise the work.
-
-**Gate:** Idea `defined`, with a PRD and an SRD. Finish an existing Plan in `draft` or `defined`; never duplicate it. A Plan write-srd reset to `draft` is revised against the changed SRD: `done` Epics stay done; the rest are revised, added or dropped; then the Plan is set `defined` again, or `active` if any Epic is `done` or `active`.
-
-**Owned transitions:** Creates Plan and Epics `draft`; sets Plan `defined` once written, checked by the Product Manager and revised.
-
-**Specific rules:** When the PRD or SRD is not `defined`, stops and asks the Managing Intelligence to confirm planning without review, and goes on only on an explicit yes. Stops after the Plan and Epics; suggests write-epic on each `draft` Epic in dependency order.
-
 ## write-epic
 
 **Reads:** Epic, Plan, sibling Epics, Idea requirements and source references; proposed Key Files and interfaces, planner reports and Managing Intelligence answers. Without a planner, its guidance: `engineering-best-practices` for Engineer; `test-guide` for Test Writer; `doc-writing-guide` and `maintained-docs` for Doc Writer.
