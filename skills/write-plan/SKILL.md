@@ -84,8 +84,6 @@ Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small
 
 Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new. A refactor Epic is a vertical slice too: its demo shows a feature that worked on the old code still working on the new code.
 
-If planning reveals work outside this Idea's scope, such as a refactor, suggest a separate Idea for it to the Managing Intelligence rather than planning it, because whether to take it on is their call.
-
 Acceptance criteria describe that demo. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
 Plan documentation as `doc-writing-guide.md` guides, including which doc files to write and what belongs in them. Plan the test types and engineering steps the Guidance Documents call for inside the Epics they support.

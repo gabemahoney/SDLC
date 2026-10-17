@@ -121,6 +121,10 @@ If a line or mapping you need is missing, stop before any change and point to pr
 
 Skills and Subagents record findings, decisions, progress and handoffs on the ticket they concern, and the next skill or Subagent reads them from there. A dispatch, launch or report names the tickets to read rather than repeating their contents, because copying information between Agents spends tokens and drifts from the record.
 
+### Work outside the ticket
+
+If you find work outside the current Idea or Bug, such as a refactor, a new defect or a missing feature, record it on the ticket and suggest it to the Managing Intelligence as a new Idea or Bug. Don't take it on, because whether to do it is their call.
+
 ### Questions and stops
 
 When you need an answer or can't continue, stop and say why. Never guess past missing or ambiguous information.
