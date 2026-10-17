@@ -23,7 +23,7 @@ A report of a defect, or intake input such as an issue URL.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the Source Reference resolver named by `new_bug_intake`. Why: to check the input and prepare the Bug according to that intake.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to ask the Managing Intelligence questions and report through this Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to create the Bug and store its body and any Source Reference.
-- **Bug writing guidance:** `<folder on the Guidance Document walk>/.apiary/bug-writing-guide.md`, or `~/.apiary/bug-writing-guide-default-fallback.md`, found as `workflow.md` describes. Why: to write the supplied report in the Project's format.
+- **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes. Why: to write the supplied report in the Project's format.
 
 ## Gate
 

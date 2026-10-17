@@ -24,13 +24,13 @@ A Bug ID.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and update the Bug, its status and its tags.
 - **The Bug:** through the Ticket System Protocol File, using the input ID. Why: to read the report, earlier validation, retained reproduction and Managing Intelligence decisions, including why a fix was returned.
 - **Resolvers:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Bug's source material and fill out its report.
-- **Bug writing guidance:** `<folder on the Guidance Document walk>/.apiary/bug-writing-guide.md`, or `~/.apiary/bug-writing-guide-default-fallback.md`, found as `workflow.md` describes. Why: to complete the Bug's write-up in the Project's format.
-- **Build commands:** `<folder on the Guidance Document walk>/.apiary/build-commands.md`, or `~/.apiary/build-commands-default-fallback.md`, found as `workflow.md` describes. Why: to run the relevant commands for each repo involved in reproduction.
+- **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes. Why: to complete the Bug's write-up in the Project's format.
+- **Build commands:** `build-commands.md`, found as `workflow.md` describes. Why: to run the relevant commands for each repo involved in reproduction.
 - **Source, tests and configuration:** the affected main checkouts at `<Project Folder>/<repo path>/`, identified from the Bug and its Source References. Why: to reproduce the report and judge whether the reported behaviour is real.
 
 ## Gate
 
-The ticket is a Bug in `draft`. If it isn't, stop and report its type and status.
+The Bug is `draft`. If it isn't, stop and report its status.
 
 ## Steps
 
