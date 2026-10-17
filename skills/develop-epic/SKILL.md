@@ -44,12 +44,11 @@ Run only when all of these are true:
 1. **Start or resume the Epic.**
    - If the Epic is `done`, go straight to step 4.
    - Otherwise, set the Idea, Plan and Epic `active`, to show that work has begun. If an earlier Run did some of the work, continue from the progress recorded on the Epic, checked against the tickets and git, so finished work isn't redone. A Task that write-epic reopened counts as unfinished, even if an earlier version was committed.
-   - Before starting a Task, fix its instructions if earlier Tasks have made them out of date.
 
-2. **Complete the Tasks in Dependency order.** Before each Task, including an integration fix Task, re-check the Plan. If it returned to `draft`, record progress and stop for write-plan, because an SRD revision has paused execution. Apply the Context boundary guidance below.
-   - Set the Task `active` and follow the Task pipeline.
-   - Once its Subtasks are `done`, accepted findings are resolved and required checks pass, commit the Task's work.
-   - After a Task's commit, judge whether it changed an interface between components, such as a contract, API or schema. If it did, run the Integration gate before the next Task, so a broken interface is caught before later Tasks build on it; the Task stays `active` until the gate passes. Other Tasks become `done` after their commit. The last Task uses the end-of-Epic gate, so the same files are tested once. Integration fix Tasks use the combined repair check described below.
+2. **Work on each Task,** one at a time in Dependency order, including any integration fix Tasks.
+   - **Before it starts:** re-check the Plan. If it's back in `draft`, record progress and stop for write-plan, because an SRD change has paused the work. Check your context as the Context boundary guidance below says. Fix the Task's instructions if earlier Tasks have made them out of date.
+   - **While it runs:** set the Task `active` and follow the Task pipeline below. Once its Subtasks are `done`, accepted findings are resolved and required checks pass, commit its work.
+   - **After its commit:** judge whether it changed an interface between components, such as a contract, API or schema. If it did, run the Integration gate before the next Task, so a broken interface is caught before later Tasks build on it, and keep the Task `active` until the gate passes. Otherwise, set it `done`. The last Task waits for the end-of-Epic gate in step 3, so the same files aren't tested twice. Integration fix Tasks use the combined repair check described below.
 
 3. **Finish the Epic.** Run the Integration gate after the last Task's commit, unless the current files already have a passing result or an applicable waiver. Then dispatch the Product Manager for the end-of-Epic check and save its findings on the Epic for idea-review. This check informs idea-review rather than blocking completion, because idea-review assesses the whole product. Re-check the Plan before completion, because an SRD revision may have paused execution during the final Task. If it is `draft`, record progress and stop for write-plan. Otherwise, set the Epic `done` once all its Tasks are `done` and its integration gate is met.
 
