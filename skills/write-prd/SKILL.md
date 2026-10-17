@@ -1,6 +1,6 @@
 ---
 name: write-prd
-description: "Write or revise an Idea's Product Requirements Document (PRD) from its context, an interview, and optional review findings or change notes."
+description: "Write or revise an Idea's Product Requirements Document (PRD) from its context, an interview, and findings and change requests recorded on its tickets."
 ---
 
 # write-prd
@@ -15,7 +15,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 ## Input
 
-An Idea ID, with optional review findings or change notes for a revision.
+An Idea ID.
 
 ## Required Reading
 
@@ -33,7 +33,7 @@ None: the PRD can be written or revised at any Idea status.
 
 ## Steps
 
-1. **Gather the existing requirements.** Combine the Idea, its Source References, existing Docs and conversation with any review findings or change notes.
+1. **Gather the existing requirements.** Read the Idea, its Source References and existing Docs, including accepted findings on the PRD and the Managing Intelligence's change requests on the Idea or PRD, so revisions follow the recorded decisions.
 
 2. **Interview the Managing Intelligence until you share an understanding.** Cover the problem, acceptance criteria, boundaries, edge cases and errors, UI/UX, performance and security constraints, and dependencies on or effects on other work. Ask where the product runs, who operates it and what it runs on, as far as that shapes what its users get.
    - Treat the decisions this Idea needs as a tree: each one branches into the decisions that depend on it. Follow only branches that change what the product must do; don't invent new edge cases to explore.
@@ -56,6 +56,7 @@ None: the PRD can be written or revised at any Idea status.
 5. **Save the PRD.**
    - If the Idea has a PRD, update that Doc.
    - Otherwise, create it.
+   Mark each finding folded into the saved PRD resolved on that Doc, so req-review can check what changed.
 
 ## Dispatches
 
@@ -63,11 +64,11 @@ None: write-prd interviews and writes the PRD itself.
 
 ## Writes
 
-The PRD, a Doc child of the Idea titled `PRD`. A new PRD starts as `draft`, and a revised `defined` PRD goes back to `draft`.
+The PRD, a Doc child of the Idea titled `PRD`, including resolution of its accepted findings. A new PRD starts as `draft`, and a revised `defined` PRD goes back to `draft`.
 
 ## Done
 
-Report the PRD's ID, assumptions, Open Questions, incomplete work and what the Succinctness pass cut.
+Report the PRD's ID and anything left unaddressed with the reason.
 
 Suggest “req-review”.
 
@@ -98,5 +99,5 @@ If an Open Question stops a check below from passing, say so in your report and 
 ## What not to include
 
 - Leave out time estimates and scheduling.
-- Leave out history and decision logs.
+- Leave history and decision logs out of the requirements body; review records belong on the Doc ticket so later Runs can use them.
 - Leave out deferred features and follow-up work.

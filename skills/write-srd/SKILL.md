@@ -1,6 +1,6 @@
 ---
 name: write-srd
-description: "Write or revise an Idea's Software Requirements Document (SRD) from its PRD and codebase, and model in TLA+ any requirements with concurrency or a state machine."
+description: "Write or revise an Idea's Software Requirements Document (SRD) from its PRD, codebase and recorded findings and change requests, with TLA+ models for concurrency or state machines."
 ---
 
 # write-srd
@@ -15,7 +15,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 ## Input
 
-An Idea ID, with optional review findings or change notes for a revision.
+An Idea ID.
 
 ## Required Reading
 
@@ -24,7 +24,7 @@ An Idea ID, with optional review findings or change notes for a revision.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
-- **The Idea, its Docs and Plan:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, find the SRD and TLA+ specs to revise, ground changes in current requirements and supplied findings, and identify the Plan and active Epics affected by a revision.
+- **The Idea, its Docs and Plan:** through the Ticket System Protocol File, using the input Idea ID. Why: to understand the PRD, read accepted findings on the SRD and the Managing Intelligence's change requests on the Idea or SRD, find TLA+ specs to revise, and identify the Plan and active Epics affected by a revision.
 - **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes. Why: to ground constraints in the Project's engineering conventions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
@@ -41,10 +41,10 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 3. **Model in TLA+ only what needs it.** Model an SR group when it has concurrency (things happening at the same time, retries, partial failure) or a state machine, because those hide ordering bugs that reading and tests miss. Include already-modelled groups a revision changed. Most SRDs need neither, so skip this step. The checker is slow, so each model is reviewed before it runs. For each picked SR group, in parallel:
    1. **Write.** Dispatch a TLA+ Writer with the SR group and what to model. It writes the model as a TLA+ spec Doc on the Idea, with the model files attached to that Doc, and doesn't run it yet.
-   2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec and the SRD, so the check is independent of the Writer's reasoning. It reports whether the model matches the SRD and its invariants are meaningful.
-   3. **Fix.** If there are findings, resume the same Writer with them, then go back to 2 with a fresh Reviewer.
-   4. **Run.** Once a review has no findings, resume the Writer to run the TLA+ model checker. It returns the checker results and any SRD bugs they show.
-   5. **Fix the SRD.** If the run shows an SRD bug, fix the SRD, save it, and repeat from 3 for that SR group, giving the Writer the SRD change.
+   2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec Doc and SRD IDs, so the check is independent of the Writer's reasoning. Record its findings on the spec Doc so the Writer can read them there.
+   3. **Fix.** If there are findings, resume the same Writer with the spec Doc ID, then go back to 2 with a fresh Reviewer.
+   4. **Run.** Once a review has no findings, resume the Writer to run the TLA+ model checker. Record the checker results on the spec Doc and any SRD bugs on the SRD, so later Runs can check them.
+   5. **Fix the SRD.** If the run shows an SRD bug, fix and save the SRD, mark the finding resolved there, and repeat from 3 for that SR group with the SRD ID.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
@@ -56,7 +56,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. Keep an explicit boundary only when the Managing Intelligence wants it stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
 
-   If self-review changed a modelled SR group or found another that needs a model, go back to step 3. Otherwise, save the final SRD.
+   If self-review changed a modelled SR group or found another that needs a model, go back to step 3. Otherwise, save the final SRD and mark each finding folded into it resolved on that Doc, so req-review can check what changed.
 
 ## Dispatches
 
@@ -66,19 +66,17 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 ## Writes
 
-The SRD, a Doc child of the Idea titled `SRD`. A new SRD starts as `draft`, and a revised `defined` SRD goes back to `draft`.
+The SRD, a Doc child of the Idea titled `SRD`, including resolution of its accepted findings. A new SRD starts as `draft`, and a revised `defined` SRD goes back to `draft`.
 
 The Idea's Plan, set back to `draft` when a revision changes an SRD it was built from.
 
-Each modelled SR group's TLA+ spec Doc, a Doc child of the Idea with the model files attached, written by its TLA+ Writer.
+Each modelled SR group's TLA+ spec Doc, a Doc child of the Idea with the model files attached, written by its TLA+ Writer. Review findings and checker results are recorded on that Doc.
 
 Research tickets in the Research store, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds, because req-review checks the SRD decisions they inform.
 
 ## Done
 
-Report the SRD's ID, each SR group with a one-line description, any incomplete work, and what the Succinctness pass cut. Report which SR groups were modelled, their spec Doc IDs, TLA+ review findings and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
-
-Report the Research tickets filed and what each settled.
+Report the SRD's ID, its spec Doc and Research ticket IDs, and anything left unaddressed with the reason. If the Plan was reset, report its ID.
 
 - If the SRD and all its modelling are complete, suggest “req-review”.
 - Otherwise, say what must be settled before write-srd can finish.
@@ -114,4 +112,4 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - Put TLA+ models in their spec Docs, not in the SRD.
 - Include defaults, fallbacks, validation, schemas, error rules and guards only when grounded in the input or applicable guidance.
 - Omit time estimates and scheduling.
-- Omit history, decision logs and deferred work.
+- Leave history, decision logs and deferred work out of the requirements body; review records belong on the Doc ticket so later Runs can use them.
