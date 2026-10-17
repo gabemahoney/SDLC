@@ -58,7 +58,10 @@ None: teardown-worktree merges and removes the worktrees itself.
 
 ## Done
 
-Report the ticket ID, and any findings or feedback left unaddressed with the reason.
+Report the ticket ID and which repos merged.
+
+- If the Plan is `done` and its worktrees are merged, suggest idea-review.
+- If a merge stopped on a conflict, report what the Managing Intelligence needs to decide.
 
 ## Merge guidance
 
