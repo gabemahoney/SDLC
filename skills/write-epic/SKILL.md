@@ -41,7 +41,7 @@ Run only when all of these are true:
 1. **Write or revise the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's choices, using the Task template below. Account for sibling Epics and plan on prerequisite Epics delivering their outcomes before execution, so their work is planned once.
    - If Tasks already exist, revise every affected Task and Subtask, whatever its status, from recorded progress and current requirements. Include removing delivered functionality that the requirements withdraw, so the software will match them. Add new work, remove obsolete unimplemented work, and leave unaffected work as it is.
 
-2. **Plan each draft Task's Subtasks.** Work in Dependency order. For each Task, save it, then dispatch the Engineer, Test Writer and Doc Writer planners described in Dispatches. Each reads the code, tests or docs its part needs and proposes that part's Subtasks, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below. Assign each draft Task a `thinking_level:<label>` tag suited to its complexity and risk, because develop-epic uses it for the Task's executors.
+2. **Plan each draft Task's Subtasks.** Work in Dependency order. For each Task, save it, then dispatch the Engineer, Test Writer and Doc Writer planners described in Dispatches. Each reads the code, tests or docs its part needs and proposes that part's Subtasks, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below. Assign each draft Task a `thinking_level:<label>` tag, as the Thinking Level guidance below describes, because develop-epic uses it for the Task's executors.
    - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
    - If planning raises a product question, or a planner's proposal conflicts with the SRD, ask the Managing Intelligence, because planning follows the defined requirements.
 
@@ -52,7 +52,7 @@ Run only when all of these are true:
 ## Dispatches
 
 - **Engineer planner:** launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
-- **Test Writer planner:** launch for each Task needing source or unit-test changes, after engineering proposals it needs are available. Expect unit-test Subtasks, fixture planning, suggested Test Writer Lanes and the final full-unit-suite Subtask.
+- **Test Writer planner:** launch for each Task needing source or unit-test changes, after engineering proposals it needs are available. Expect unit-test Subtasks, fixture planning, suggested Test Writer Lanes, the final full-unit-suite Subtask, and a unit-test review Subtask, so the tests are checked for coverage and quality as well as passing.
 - **Doc Writer planner:** launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
 - **Product Manager:** launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
 
@@ -99,6 +99,16 @@ Every Subtask follows the Project's Guidance Documents, because they hold the Pr
 Plan the work each guide requires, such as a test type or an engineering step, inside the Task it belongs to.
 
 develop-epic runs its Integration Tester after a Task that changes an interface between components. Flag each Task changing a contract, API, schema or other cross-component interface with a `## Run Integration After This Task` section. In it, state `Interface changed:` followed by the interface and the change. This tells develop-epic to run its integration check after that Task.
+
+## Thinking Level guidance
+
+A Task's tag sets how hard its Engineer, Test Writer and Doc Writer think, so match it to what a mistake in that Task would cost and how much judgement it needs:
+- `medium`: routine work that follows an established pattern, such as adding a field or a small, well-understood change.
+- `high`: work that needs real design judgement, touches several modules, or changes behaviour other code relies on.
+- `xhigh`: work where a mistake is costly or hard to spot, such as concurrency, security, data migrations or an interface between components.
+- `max`: the hardest, highest-risk Tasks only, because it is the slowest and most expensive.
+
+Prefer the lower level when unsure between two, and raise it when a Task's Context shows the risk.
 
 ## Fixture planning and Test Writer Lanes
 
