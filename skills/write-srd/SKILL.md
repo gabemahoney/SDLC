@@ -1,6 +1,6 @@
 ---
 name: write-srd
-description: "Write or revise an Idea's Software Requirements Document (SRD) from its PRD and codebase, and model the parts that need TLA+."
+description: "Write or revise an Idea's Software Requirements Document (SRD) from its PRD and codebase, and model in TLA+ the requirements that need it."
 ---
 
 # write-srd
@@ -39,12 +39,12 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
-3. **Model the parts whose correctness needs a TLA+ model.** Select the concurrency, state machines, protocols or invariants that need one, including modelled parts affected by a revision. The checker is slow, so each model is reviewed before it runs. For each part, in parallel with the other parts:
+3. **Model in TLA+ the SR groups whose correctness needs it.** Pick the SR groups that describe concurrency, state machines, protocols or invariants worth checking, including already-modelled groups a revision changed. The checker is slow, so each model is reviewed before it runs. For each picked SR group, in parallel:
    1. **Write.** Dispatch a TLA+ Writer with the SR group and what to model. It writes the model as a TLA+ spec Doc on the Idea, with the model files attached to that Doc, and doesn't run it yet.
    2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec and the SRD. It reports whether the model matches the SRD and its invariants are meaningful.
    3. **Fix.** If there are findings, resume the same Writer with them, then go back to 2 with a fresh Reviewer.
    4. **Run.** Once a review has no findings, resume the Writer to run the TLA+ model checker. It returns the checker results and any SRD bugs they show.
-   5. **Fix the SRD.** If the run shows an SRD bug, fix the SRD, save it, and repeat from 3 for that part, giving the Writer the SRD change.
+   5. **Fix the SRD.** If the run shows an SRD bug, fix the SRD, save it, and repeat from 3 for that SR group, giving the Writer the SRD change.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
@@ -56,11 +56,11 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
    - **Dropped ideas:** remove every trace of ideas discussed and dropped. Keep an explicit boundary only when the Managing Intelligence wants it stated.
    - **Quality checklist:** check every item in the Quality checklist below, and fix what fails.
 
-   If self-review changed a modelled part or found another part that needs a model, go back to step 3. Otherwise, save the final SRD.
+   If self-review changed a modelled SR group or found another that needs a model, go back to step 3. Otherwise, save the final SRD.
 
 ## Dispatches
 
-- **TLA+ Writer:** one per modelled part, kept for that part's whole cycle (write, fix, run), as step 3 says. Expect a TLA+ spec Doc; after a run, the checker results and any SRD bugs they show.
+- **TLA+ Writer:** one per modelled SR group, kept for that group's whole cycle (write, fix, run), as step 3 says. Expect a TLA+ spec Doc; after a run, the checker results and any SRD bugs they show.
 - **TLA+ Reviewer:** a fresh one for each review in step 3. Expect findings with references and suggested fixes, or none.
 - **Researcher:** launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report. Use it to settle the decision, then set the ticket `done`.
 
@@ -70,17 +70,17 @@ The SRD, a Doc child of the Idea titled `SRD`. A new SRD starts as `draft`, and 
 
 The Idea's Plan, set back to `draft` when a revision changes an SRD it was built from.
 
-Each modelled part's TLA+ spec Doc, a Doc child of the Idea with the model files attached, written by its TLA+ Writer.
+Each modelled SR group's TLA+ spec Doc, a Doc child of the Idea with the model files attached, written by its TLA+ Writer.
 
 Research tickets in the Research store, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds.
 
 ## Done
 
-Report the SRD's ID, each SR group with a one-line description, any incomplete work, and what the Succinctness pass cut. Report which parts were modelled, their spec Doc IDs, TLA+ review findings and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
+Report the SRD's ID, each SR group with a one-line description, any incomplete work, and what the Succinctness pass cut. Report which SR groups were modelled, their spec Doc IDs, TLA+ review findings and checker results, and the SRD bugs corrected from model findings, or why modelling was unnecessary. If you reset the Plan, list the Epics that were `active` and the SRs that changed, so write-plan knows what to reconsider.
 
 Report the Research tickets filed and what each settled.
 
-- If the SRD and all selected modelling are complete, suggest “req-review”.
+- If the SRD and all its modelling are complete, suggest “req-review”.
 - Otherwise, say what must be settled before write-srd can finish.
 
 ## Style rules
@@ -105,7 +105,7 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - [ ] The SRD agrees with the PRD and uses its defined terms consistently.
 - [ ] References to existing code name real modules and patterns, and anything new is marked as new.
 - [ ] Numeric constraints have a stated basis, and modelling bounds remain modelling assumptions.
-- [ ] Each selected part has a checked TLA+ spec matching the final SRD, and model findings have been resolved.
+- [ ] Each modelled SR group has a TLA+ spec that matches the final SRD and passes the model checker.
 
 ## What not to include
 
