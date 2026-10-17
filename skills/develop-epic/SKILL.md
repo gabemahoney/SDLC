@@ -102,7 +102,7 @@ Keep the Epic's progress concise: current Task and phase, repo checkouts, integr
 
 ## Context boundary
 
-Before each Task after the first in a Run, check context use through the Agent Protocol File. At 75% or more, or with a reading older than its freshness window, record progress and stop for a fresh `develop-epic <epic-id>` session, so context pressure is handled between Tasks. The Managing Intelligence arranges the restart. With no reading, continue and record that it was unavailable.
+Before each Task after the first in a Run, read how full the context is, as the Agent Protocol File describes. At 75% or more, record progress and stop for a fresh `develop-epic <epic-id>` session, because an Agent with a nearly full context makes mistakes. The Managing Intelligence arranges the restart. If no reading can be made, stop the same way and report it, because project-setup should have ensured one.
 
 ## Integration gate
 
