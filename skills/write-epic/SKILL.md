@@ -19,13 +19,13 @@ An Epic ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read requirements and existing work, and write Tasks, Subtasks, Dependencies, tags and statuses.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read requirements and existing work, and write Tasks, Subtasks, Dependencies, tags and statuses.
 - **Epic, Plan, all sibling Epics and existing Tasks and Subtasks:** to establish the Epic's outcome, account for its Dependencies, avoid overlapping work and reconcile earlier planning and progress.
 - **Idea and its Docs:** the Plan's Idea, through the Ticket System Protocol File. Why: to follow the PRD, SRD and recorded decisions, including findings and Managing Intelligence answers recorded on the tickets they concern.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` for each affected code folder, found as `workflow.md` describes, so the Tasks and Subtasks it writes follow the Project's engineering, testing and documentation guidance.
+- **Guidance Documents:** `guide:engineering-best-practices.md`, `guide:test-guide.md` and `guide:doc-writing-guide.md` for each affected code folder, found as `~/.apiary/system/workflow.md` describes, so the Tasks and Subtasks it writes follow the Project's engineering, testing and documentation guidance.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -52,7 +52,7 @@ Run only when all of these are true:
 ## Child Agents
 
 - **`engineer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
-- **`test-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task once any engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `test-guide.md` requires, fixture planning, suggested Lanes and the final full-unit-suite Subtask. develop-epic's `test-review` checks test quality independently.
+- **`test-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task once any engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `guide:test-guide.md` requires, fixture planning, suggested Lanes and the final full-unit-suite Subtask. develop-epic's `test-review` checks test quality independently.
 - **`doc-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
 - **`product-manager`:** Start fresh every time so each assessment is independent. Launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
 
@@ -106,7 +106,7 @@ When unsure between two levels, choose the higher one.
 
 ## Writing the testing Subtasks
 
-Assign each Task's unit and integration testing Subtasks to `test-writer` Child Agents, following `test-guide.md` so coverage matches the work. Write them with two goals in mind:
+Assign each Task's unit and integration testing Subtasks to `test-writer` Child Agents, following `guide:test-guide.md` so coverage matches the work. Write them with two goals in mind:
 
 1. **Reuse the Project's test setup.** Say which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
 2. **Let `test-writer` Child Agents work in parallel.** develop-epic can run several `test-writer` Child Agents on one Task, one per Lane. A **Lane** is a group of test files one writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so writers don't edit the same helper or test the same thing twice. Give every independent group its own Lane, so as many writers as possible work at once. develop-epic adjusts them to the actual code.

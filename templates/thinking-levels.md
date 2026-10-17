@@ -1,6 +1,6 @@
 # Recommended Thinking Levels
 
-Each line maps a skill name to its default Thinking Level. Task and Bug tags override the executor skills as `workflow.md` describes.
+Each line maps a skill name to its default Thinking Level. Task and Bug tags override the executor skills as `~/.apiary/system/workflow.md` describes.
 
 ```text
 project-setup: medium

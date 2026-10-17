@@ -19,13 +19,13 @@ An Idea or Epic ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea or Epic and record merge and cleanup decisions on it.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea or Epic and record merge and cleanup decisions on it.
 - **The Idea or Epic and its Plan:** for completion, worktree and Main Agent records, merge targets, cleanup choices and earlier results.
 - **Repo and merge state:** each main checkout and the ticket's registered worktrees and target checkouts. Why: to verify ownership, branches, uncommitted changes and merges against the ticket's record.
 
-When managing agents, read `launcher.md` for inspection and verified shutdown. If committing outstanding changes, read `release-guide.md`, found as `workflow.md` describes, for applicable permissions.
+When managing agents, read `protocol:launcher.md` for inspection and verified shutdown. If committing outstanding changes, read `guide:release-guide.md`, found as `~/.apiary/system/workflow.md` describes, for applicable permissions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -40,7 +40,7 @@ Run only when all of these are true:
 
 1. **Settle teardown from the ticket.** Use its repos, merge targets, Main Agent assignment and cleanup choices. Default each target to its main checkout's branch. The Managing Intelligence settles missing choices; record them before changes so another Run can continue. A worktree-only choice means the Managing Intelligence ends the Main Agents and this Run handles only git.
    - In worktree-only mode, require the Managing Intelligence's confirmation that Main Agents and Child Agents using the ticket's worktrees have ended, so cleanup cannot remove a running Main Agent's files.
-   - Otherwise, read `launcher.md` and reconcile the recorded Main Agent, its Child Agents and any other live agents using the ticket's worktree folder. If another agent is live, or the assigned Main Agent or any of its Child Agents is pending or working, stop for the Managing Intelligence to settle that work before merging, so the source stays stable.
+   - Otherwise, read `protocol:launcher.md` and reconcile the recorded Main Agent, its Child Agents and any other live agents using the ticket's worktree folder. If another agent is live, or the assigned Main Agent or any of its Child Agents is pending or working, stop for the Managing Intelligence to settle that work before merging, so the source stays stable.
 
 2. **Prepare and merge each repo.** Follow the Merge guidance below. Record each result as work proceeds, so a failure leaves a usable handoff for the remaining repos. On a resumed Run, reconcile the recorded results with git and continue unfinished work.
 

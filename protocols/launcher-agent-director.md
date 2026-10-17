@@ -1,6 +1,6 @@
 # agent-director Launcher Protocol File
 
-Select this file with `launcher: agent-director`. It installs as `~/.apiary/system/protocols/launcher-agent-director.md` and is the `launcher.md` that skills refer to.
+Select this file with `setting:launcher` set to `agent-director`. It installs as `~/.apiary/system/protocols/launcher-agent-director.md` and is the `protocol:launcher.md` that skills refer to.
 
 ## Prerequisites
 
@@ -18,11 +18,11 @@ Record the returned `instance_id` on the ticket. Use `get` and `status` to confi
 
 Run `spawn` from the Main Agent's environment. agent-director records the caller's `AGENT_DIRECTOR_INSTANCE_ID` as the new row's `parent_id`, and gives the Child Agent its own instance ID. Verify that `get` returns the intended Main Agent ID as `parent_id`, so the Child Agent remains attached to its parent.
 
-Use the same spawn arguments as for a Main Agent, with the Child Agent's assignment and launch context from `workflow.md`. Record its instance ID, skill, assignment and Thinking Level on the ticket for continuation.
+Use the same spawn arguments as for a Main Agent, with the Child Agent's assignment and launch context from `~/.apiary/system/workflow.md`. Record its instance ID, skill, assignment and Thinking Level on the ticket for continuation.
 
 ## Model and Thinking Level at launch
 
-Resolve the model and effort from `thinking_levels` and the chosen Agent's `levels_claude_code` or `levels_codex` mapping. Apply Task or Bug overrides before resolving that mapping. Model and effort are launch arguments, so the same skill can run in either Agent.
+Resolve the model and effort from `setting:thinking_levels` and the chosen Agent's `setting:levels_claude_code` or `setting:levels_codex` mapping. Apply Task or Bug overrides before resolving that mapping. Model and effort are launch arguments, so the same skill can run in either Agent.
 
 Claude Code example, with placeholders filled from the assignment and settings:
 
@@ -40,7 +40,7 @@ Replace `engineer` with the assigned skill and include its launch context in the
 
 ## Resume a Child Agent
 
-Read its recorded identity and current state with `get`, then apply `workflow.md`'s reused Child Agent Context rule using the reading below. Continue an idle `waiting` Child Agent with:
+Read its recorded identity and current state with `get`, then apply `~/.apiary/system/workflow.md`'s reused Child Agent Context rule using the reading below. Continue an idle `waiting` Child Agent with:
 
 ```sh
 agent-director send-keys --instance-id '<child-id>' --text 'Continue from <ticket-id>.'
@@ -81,7 +81,7 @@ Use `last_token_usage` because `total_token_usage` accumulates across requests. 
 
 ### Validate the reading
 
-Retain the child's session identity, source, history position, model, provider and capacity basis so later turns, compaction or configuration changes can be accounted for. Match usage and capacity accounting: Claude Code's status-line percentage measures input, while its transcript estimate includes output. Missing identity or usage, nonpositive capacity, an unchecked capacity default, incompatible accounting, incomplete writes or unresolved history means unknown, never zero. `workflow.md` decides whether to resume or replace.
+Retain the child's session identity, source, history position, model, provider and capacity basis so later turns, compaction or configuration changes can be accounted for. Match usage and capacity accounting: Claude Code's status-line percentage measures input, while its transcript estimate includes output. Missing identity or usage, nonpositive capacity, an unchecked capacity default, incompatible accounting, incomplete writes or unresolved history means unknown, never zero. `~/.apiary/system/workflow.md` decides whether to resume or replace.
 
 ## Know when a Child Agent's state changes
 

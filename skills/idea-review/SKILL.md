@@ -19,12 +19,12 @@ An Idea ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read requirements and progress, record review results and file feedback in the Plan.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read requirements and progress, record review results and file feedback in the Plan.
 - **The Idea, its PRD, SRD, Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID and the Plan's Association to it. Why: to review the requirements, resume round progress and follow earlier findings, fixes, integration results, waivers and Managing Intelligence decisions.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `build-commands.md` for each reviewed repo, found as `workflow.md` describes, to judge the work against the Project's guidance and demonstrate acceptance criteria.
+- **Guidance Documents:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md` and `guide:build-commands.md` for each reviewed repo, found as `~/.apiary/system/workflow.md` describes, to judge the work against the Project's guidance and demonstrate acceptance criteria.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -72,7 +72,7 @@ Report the Idea's ID, and the Round Feedback Epic's ID if one was filed.
 
 A non-trivial finding is an unmet requirement or acceptance criterion, or a real defect in the Idea's work. Everything else is trivial. Judge by evidence and impact, so review rounds converge on a working product. Combine duplicate findings and explain why each needs work or can be left unaddressed.
 
-Keep corrections within the PRD's requirements and the SRD's choices. Include missing functionality, regressions and excess functionality that conflicts with those requirements. Honour recorded Managing Intelligence decisions. Work outside the Idea follows `workflow.md`'s “Work outside the ticket”.
+Keep corrections within the PRD's requirements and the SRD's choices. Include missing functionality, regressions and excess functionality that conflicts with those requirements. Honour recorded Managing Intelligence decisions. Work outside the Idea follows `~/.apiary/system/workflow.md`'s “Work outside the ticket”.
 
 Keep demonstrated behaviour, observed failures and checks left for manual validation distinct, so testing instructions cannot be mistaken for passing evidence. Reference the Epics' integration results and waivers in the acceptance evidence to show the limits of earlier testing.
 

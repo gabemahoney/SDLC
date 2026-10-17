@@ -19,9 +19,9 @@ An Idea ID or one of its PRD or SRD Doc IDs.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea and its Docs, record findings and decisions, and set their approved statuses.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, record findings and decisions, and set their approved statuses.
 - **The Idea and every Doc child:** to see which Docs are `draft`, read unresolved findings and decisions, and review the current requirements.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.

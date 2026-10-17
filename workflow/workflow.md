@@ -21,17 +21,17 @@
   - **model-writer (Model Writer):** writes a Formal Model and runs its checker.
   - **model-review (Model Reviewer):** checks a Formal Model against the SRD before its checker runs.
 - **Launcher:** the program that launches, resumes, watches and stops Main Agents and Child Agents, keeping their parent–child relationships.
-- **Launcher Protocol File (`launcher.md`):** instructions for Launcher operations and Child Agent context readings. The `launcher` setting selects `~/.apiary/system/protocols/launcher-<launcher>.md`; `ticket_system` selects `ticket-<ticket_system>.md` there.
+- **Launcher Protocol File (`protocol:launcher.md`):** instructions for Launcher operations and Child Agent context readings. `setting:launcher` selects `~/.apiary/system/protocols/launcher-<launcher>.md`; `setting:ticket_system` selects `protocol:ticket-<ticket_system>.md` there.
 - **Project:** the software the Managing Intelligence builds with Apiary, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.apiary` the default settings.
-- **Guidance Document:** one of seven instruction files: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `release-guide.md`, `bug-writing-guide.md` and `research-guide.md`. They set the Project's engineering, testing, documentation, build, release, Bug and research rules.
-- **Build Commands:** named sections in `build-commands.md` for sequencing checks. Each code folder needs the first four, containing a command or `none` with a reason so required work is explicit.
-  - **Compile** (`## Compile`): compilation or type-checking.
-  - **Lint** (`## Lint`): lint and format checks.
-  - **Unit Tests** (`## Unit tests`): the full unit suite.
-  - **Integration Tests** (`## Integration tests`): the integration suites.
-  - **Model Check** (`## Model check`): an optional section naming the formal-modelling language and the command that runs its checker. If a Formal Model needs checking and this section is missing, write-srd stops and asks the Managing Intelligence.
+- **Guidance Document:** one of seven instruction files: `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md`, `guide:release-guide.md`, `guide:bug-writing-guide.md` and `guide:research-guide.md`. They set the Project's engineering, testing, documentation, build, release, Bug and research rules.
+- **Build Commands:** named sections in `guide:build-commands.md` for sequencing checks. Each code folder needs the first four, containing a command or `none` with a reason so required work is explicit.
+  - **Compile** (`guide:build-commands.md ## Compile`): compilation or type-checking.
+  - **Lint** (`guide:build-commands.md ## Lint`): lint and format checks.
+  - **Unit Tests** (`guide:build-commands.md ## Unit tests`): the full unit suite.
+  - **Integration Tests** (`guide:build-commands.md ## Integration tests`): the integration suites.
+  - **Model Check** (`guide:build-commands.md ## Model check`): an optional section naming the formal-modelling language and the command that runs its checker. If a Formal Model needs checking and this section is missing, write-srd stops and asks the Managing Intelligence.
 
   Any other `##` section belongs to the Project; skills use it as the file describes.
 - **Formal Model:** a formal specification checked by a model checker. **Model checking** means running that checker. A **Model Doc** holds a Formal Model and its attached files.
@@ -100,49 +100,60 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 ### Project Folder, paths and worktrees
 
-- **Project Folder:** the nearest folder, from the working directory up, that holds `.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `research_location`.
+- **Project Folder:** the nearest folder, from the working directory up, that holds `<Project Folder>/.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `setting:research_location`.
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
 - **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree and release make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts without editing repository files.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
 - **Guidance Documents come from the main checkout,** because worktree guides may still be in development. Load only the guides your skill names. For each, read copies in the main checkout's `.apiary` (or the current code folder's, outside a repo), then parent `.apiary` folders and `~/.apiary`. Combine copies cumulatively; the Managing Intelligence settles conflicts. With no user copy, use `~/.apiary/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
-- **Pushing:** push only as the Project's `release-guide.md` allows.
+- **Pushing:** push only as the Project's `guide:release-guide.md` allows.
 
 ### Settings
 
-Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
+Read settings only from `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
 
-`research_location` locates Research tickets, Reports and artifacts through the Ticket System Protocol File, including linked Research. A home default shares Research across Projects and bots because answers may serve more than one Project; a Project setting overrides it. Research always uses the requesting Project's guidance.
+`setting:research_location` locates Research tickets, Reports and artifacts through the Ticket System Protocol File, including linked Research. A home default shares Research across Projects and bots because answers may serve more than one Project; a Project setting overrides it. Research always uses the requesting Project's guidance.
 
 If a setting the Run needs is missing from both files, stop before any change and point to project-setup.
 
-Record Dependencies, Associations and Source References as the Ticket System Protocol File says, or as the `ticket_links` setting says where that file doesn't cover one.
+Record Dependencies, Associations and Source References as the Ticket System Protocol File says, or as `setting:ticket_links` says where that file doesn't cover one.
+
+### References
+
+Use these references, each in one pair of backticks, so an Agent knows whether to read a setting, walk up for a Guidance Document or open a Protocol File:
+
+- A setting: `setting:<name>`, for example `setting:research_location`, in the settings files above.
+- A Guidance Document: `guide:<file>`, for example `guide:research-guide.md`, found by the Guidance Document walk.
+- A named guide section: `guide:<file> ## <Section>`, for example `guide:build-commands.md ## Integration tests`.
+- A Protocol File: `protocol:<file>`, for example `protocol:agent-codex.md`, under `~/.apiary/system/protocols/`; `protocol:launcher.md` means the file selected by `setting:launcher`.
+- A named protocol section: `protocol:<file> ## <Section>`, for example `protocol:launcher.md ## Launch a Child Agent`.
+- A file with one fixed place: its full path, for example `~/.apiary/system/workflow.md` or `<Project Folder>/.apiary/project_settings.md`.
 
 ### Launcher operations
 
-`launcher.md` defines these named sections so project-setup can check every operation the skills rely on:
+`protocol:launcher.md` defines these named sections so project-setup can check every operation the skills rely on:
 
-- `## Launch a Main Agent`: start the skill assigned by the Managing Intelligence.
-- `## Launch a Child Agent`: start its assigned skill and keep it a child of its Main Agent.
-- `## Resume a Child Agent`: continue that Child Agent's recorded session.
-- `## Know when a Child Agent's state changes`: how the Main Agent learns that a Child Agent has finished, asked a question or stopped, so it never waits on a Child Agent that is already done.
-- `## Stop a Child Agent`: stop it and verify that it has exited.
-- `## Read a Child Agent's context`: read or estimate that Child Agent's context fraction.
+- `protocol:launcher.md ## Launch a Main Agent`: start the skill assigned by the Managing Intelligence.
+- `protocol:launcher.md ## Launch a Child Agent`: start its assigned skill and keep it a child of its Main Agent.
+- `protocol:launcher.md ## Resume a Child Agent`: continue that Child Agent's recorded session.
+- `protocol:launcher.md ## Know when a Child Agent's state changes`: how the Main Agent learns that a Child Agent has finished, asked a question or stopped, so it never waits on a Child Agent that is already done.
+- `protocol:launcher.md ## Stop a Child Agent`: stop it and verify that it has exited.
+- `protocol:launcher.md ## Read a Child Agent's context`: read or estimate that Child Agent's context fraction.
 
 Each section must give usable instructions, because a heading alone cannot support the agent lifecycle. The file also describes watching both classes and stopping a Main Agent.
 
 ### Thinking Levels
 
-A Thinking Level picks an Agent's model and effort. The caller resolves it before launch, as `launcher.md` describes, so every session starts with the intended settings.
+A Thinking Level picks an Agent's model and effort. The caller resolves it before launch, as `protocol:launcher.md` describes, so every session starts with the intended settings.
 
-- `thinking_levels` maps skill names to levels, one `<skill>: <label>` line each:
+- `setting:thinking_levels` maps skill names to levels, one `<skill>: <label>` line each:
   ```
   ## thinking_levels
   write-plan: max
   code-review: xhigh
   engineer: high
   ```
-- `levels_claude_code` and `levels_codex` map each level (`low` < `medium` < `high` < `xhigh` < `max`) to a model and effort for that Agent. Use the model names in those settings.
+- `setting:levels_claude_code` and `setting:levels_codex` map each level (`low` < `medium` < `high` < `xhigh` < `max`) to a model and effort for that Agent. Use the model names in those settings.
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so effort follows the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
@@ -150,7 +161,7 @@ If a skill line or model mapping is missing, stop and point to project-setup. A 
 
 ### Child Agents
 
-Launch Child Agents through `launcher.md` with the skill, ticket IDs and checkout paths. Supply resolved settings and Protocol File locations, including its Agent protocol, so each uses the same Project configuration. It reads work from tickets and reports their IDs and unresolved work to the Main Agent.
+Launch Child Agents through `protocol:launcher.md` with the skill, ticket IDs and checkout paths. Supply resolved settings and Protocol File locations, including its Agent protocol, so each uses the same Project configuration. It reads work from tickets and reports their IDs and unresolved work to the Main Agent.
 
 Start Child Agents fresh unless the skill retains them, so unrelated work does not fill context. Each loads its named guides for every assigned repo and may read other repos for context. The Main Agent coordinates their work through files and tickets.
 
@@ -158,7 +169,7 @@ Start Child Agents fresh unless the skill retains them, so unrelated work does n
 
 Before each new unit of work, every Main Agent checks its own context fraction as its Agent Protocol File describes. At 75% or more, or when the fraction is unknown, record progress on the ticket and stop for the Managing Intelligence to start a fresh session with the same skill and ticket IDs, because a nearly full context causes mistakes.
 
-Before resuming any reused Child Agent, read its context fraction as `launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains.
+Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains.
 
 ### Tickets carry the information
 

@@ -47,9 +47,10 @@ Rules for writing a skill (see also docs/goals.md):
 - State what a skill does and takes; don't list what it doesn't.
 - Write a step that branches as if/then bullets, one per path. Write straight-line steps as plain sentences.
 - Quote the `description` value: an unquoted colon breaks the frontmatter.
-- Everything specific to this skill is in the skill. Rules more than one skill needs are in `workflow.md`; do not repeat them.
+- Everything specific to this skill is in the skill. Rules more than one skill needs are in `~/.apiary/system/workflow.md`; do not repeat them.
 - Say exactly where everything is: full paths, and how a setting value maps to a file.
+- Use `setting:<name>`, `guide:<file>`, `guide:<file> ## <Section>`, `protocol:<file>` and `protocol:<file> ## <Section>`, each in one pair of backticks; use full paths for files with one fixed place, so an Agent knows how to find each reference.
 - Capable Agents: no edge cases, no fault handling a capable Agent does anyway.
 - No random subsets: list every case or state a general rule.
 - Glossary terms in Title Case. Skill names use their installed names.
-- A skill that launches Child Agents lists `launcher.md` in Required Reading, for operations and Child Agent context readings. The Agent Protocol File covers the Main Agent's own context. Shared Context rules belong in `workflow.md`; retain only skill-specific check timing here.
+- A skill that launches Child Agents lists `protocol:launcher.md` in Required Reading, for operations and Child Agent context readings. The Agent Protocol File covers the Main Agent's own context. Shared Context rules belong in `~/.apiary/system/workflow.md`; retain only skill-specific check timing here.

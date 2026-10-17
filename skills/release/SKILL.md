@@ -1,6 +1,6 @@
 ---
 name: release
-description: "Release a Project by following its release-guide.md, including its permissions and human approvals."
+description: "Release a Project by following its `guide:release-guide.md`, including its permissions and human approvals."
 ---
 
 # release
@@ -19,10 +19,10 @@ The release target required by the Project's guide, such as a ticket ID or versi
 
 ## Required Reading
 
-- **Release guidance:** `release-guide.md`, found as `workflow.md` describes, and the files it points to. Why: to follow the Project's release process, permissions and approvals.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Release guidance:** `guide:release-guide.md`, found as `~/.apiary/system/workflow.md` describes, and the files it points to. Why: to follow the Project's release process, permissions and approvals.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
 
-If the guide uses tickets, read `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`, and the Ticket System Protocol File `~/.apiary/system/protocols/ticket-<ticket_system>.md` selected by `ticket_system`, so ticket changes use the Project's ticket system.
+If the guide uses tickets, read `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`, and the Ticket System Protocol File `protocol:ticket-<ticket_system>.md` selected by `setting:ticket_system`, so ticket changes use the Project's ticket system.
 
 ## Gate
 
@@ -43,7 +43,7 @@ None: release follows the guide itself.
 
 ## Writes
 
-The files, release artifacts and ticket changes specified by `release-guide.md`. Ticket status transitions come from the guide because release processes differ between Projects.
+The files, release artifacts and ticket changes specified by `guide:release-guide.md`. Ticket status transitions come from the guide because release processes differ between Projects.
 
 ## Done
 

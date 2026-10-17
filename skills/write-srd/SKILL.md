@@ -19,12 +19,12 @@ An Idea ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **The Idea, its Docs and Plan:** to understand the PRD, read accepted findings on the SRD and the Managing Intelligence's change requests on the Idea or SRD, find Model Docs to revise, and identify the Plan and active Epics affected by a revision.
-- **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes, to ground constraints in the Project's engineering conventions.
+- **Engineering guidance:** `guide:engineering-best-practices.md` for each explored repo, found as `~/.apiary/system/workflow.md` describes, to ground constraints in the Project's engineering conventions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -36,9 +36,9 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 1. **Pause a Plan built from the SRD before revising it.** Set that Plan `draft`, including a completed Plan, because changed requirements need replanning. Record changed SRs and previously active Epics on it as the revision proceeds. Tell the Managing Intelligence to pause running write-epic and develop-epic work; their Runs stop at the next Task boundary.
 
-2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, read `research-guide.md`, found as `workflow.md` describes, file a question at `research_location` and associate it with the SRD. Save the SRD before launching `researcher` so it reads the current requirements.
+2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, read `guide:research-guide.md`, found as `~/.apiary/system/workflow.md` describes, file a question at `setting:research_location` and associate it with the SRD. Save the SRD before launching `researcher` so it reads the current requirements.
 
-3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `build-commands.md`, found as `workflow.md` describes, for the language and checker in `## Model check`. If missing, ask the Managing Intelligence to supply it. For each group, independently and in parallel where possible:
+3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `guide:build-commands.md`, found as `~/.apiary/system/workflow.md` describes, for the language and checker in `guide:build-commands.md ## Model check`. If missing, ask the Managing Intelligence to supply it. For each group, independently and in parallel where possible:
    - Have `model-writer` write or update its Formal Model and attach the files to its Model Doc.
    - Have `model-review` check it against the SRD before running the checker, because checker runs can be slow. Judge findings under the shared rule and record repairs on the Model Doc. Resume the writer for repairs, then review again.
    - Once accepted findings are fixed, resume the writer to run the checker and retain its results on the Model Doc. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
@@ -61,7 +61,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 - **SRD:** create or update the Idea's Doc titled `SRD`, set `draft` because new or revised requirements need approval.
 - **Plan:** reset to `draft` when revising the SRD it was built from, with changed SRs and previously active Epics recorded.
 - **Model Docs:** one per modelled SR group, maintained by `model-writer`. Keep model files attached to the Doc, outside repos, so they stay with requirements. Record repair instructions, checker evidence and outstanding findings there.
-- **Research:** file questions `defined` at `research_location` and associate them with the SRD. The researcher writes each Report `defined`; set the ticket `done` after using the answer. These questions skip research's review rounds because req-review checks the SRD decisions they inform.
+- **Research:** file questions `defined` at `setting:research_location` and associate them with the SRD. The researcher writes each Report `defined`; set the ticket `done` after using the answer. These questions skip research's review rounds because req-review checks the SRD decisions they inform.
 
 ## Done
 
@@ -76,7 +76,7 @@ Report the SRD's ID, its Model Doc and Research ticket IDs, and anything left un
 - **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because `model-writer` Child Agents, req-review and write-plan cite them by number.
 - **Software requirements:** define what must be true. Name actual modules and established patterns where they constrain the work.
 - **Linked models:** link each modelled SR group to its Model Doc so reviewers can find the Formal Model and checker results.
-- **Code in poor shape:** where the code this Idea changes is in poor shape, decide whether delivering the Idea needs it refactored. If it does, state the refactor as a requirement with its reason. If it doesn't, it's work outside the Idea, as `workflow.md` describes.
+- **Code in poor shape:** where the code this Idea changes is in poor shape, decide whether delivering the Idea needs it refactored. If it does, state the refactor as a requirement with its reason. If it doesn't, it's work outside the Idea, as `~/.apiary/system/workflow.md` describes.
 - **Technology and architecture:** state each choice the SRD makes, with its reason in a sentence, and link the Research ticket if one informed it.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the Idea. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
@@ -93,7 +93,7 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - [ ] The SRD agrees with the PRD and uses its defined terms consistently.
 - [ ] References to existing code name real modules and patterns, and anything new is marked as new.
 - [ ] Numeric constraints have a stated basis, and modelling bounds remain modelling assumptions.
-- [ ] Each modelled SR group has a Formal Model that matches the final SRD and passes the checker named in `## Model check`.
+- [ ] Each modelled SR group has a Formal Model that matches the final SRD and passes the checker named in `guide:build-commands.md ## Model check`.
 
 ## What not to include
 

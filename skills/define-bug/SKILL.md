@@ -19,12 +19,12 @@ A Bug ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read and update the Bug, its status and its tags.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read and update the Bug, its status and its tags.
 - **The Bug and its Dependencies:** to check readiness and read the report, earlier validation, retained reproduction and Managing Intelligence decisions, including why a fix was returned.
-- **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes, to complete the Bug's write-up in the Project's format.
-- **Build commands:** `build-commands.md`, found as `workflow.md` describes, to run the relevant commands for each repo involved in reproduction.
+- **Bug writing guidance:** `guide:bug-writing-guide.md`, found as `~/.apiary/system/workflow.md` describes, to complete the Bug's write-up in the Project's format.
+- **Build commands:** `guide:build-commands.md`, found as `~/.apiary/system/workflow.md` describes, to run the relevant commands for each repo involved in reproduction.
 
 For Source References, read `~/.apiary/system/resolvers/<resolver>.md`, selected by kind, to access the original report.
 
@@ -39,7 +39,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Complete the report.** Fill out the Bug from its supplied evidence and any Source References, following `bug-writing-guide.md`. Incorporate earlier validation and the Managing Intelligence's decisions into the write-up so fix-bug has one current account of the defect.
+1. **Complete the report.** Fill out the Bug from its supplied evidence and any Source References, following `guide:bug-writing-guide.md`. Incorporate earlier validation and the Managing Intelligence's decisions into the write-up so fix-bug has one current account of the defect.
 
 2. **Validate the reported behaviour.** Reproduce it in the main checkouts using the guidance below. Keep scratch scripts and inputs outside the repos so validation leaves repository files unchanged. For a returned fix, check the retained reproduction and new evidence against the current software, because the earlier validation predates the repair.
    - If reproduction cannot establish whether the report is real or would require repository edits, review the source for evidence that settles it.

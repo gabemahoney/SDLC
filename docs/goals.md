@@ -11,13 +11,13 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
 6. **Intake per Project:** how Ideas and Bugs come in is a setting.
 7. **Ideas span several repos.**
 8. **In proportion:** plans, code, tests and docs are sized to the change. More is not safer.
-9. **Fresh reads:** skills, `workflow.md` and Guidance Documents are read from disk on every Run, so changes need no restart.
+9. **Fresh reads:** skills, `~/.apiary/system/workflow.md` and Guidance Documents are read from disk on every Run, so changes need no restart.
 10. **Written for capable models:** intent and gates, not scripts.
 
 ## How skills are written
 - **Opinionated where it matters, flexible where it doesn't.** Fixed: ticket categories, the store hierarchy, status ownership, and the gates. Swappable: ticket system, intake, toolchain and Launcher, which live in settings, Guidance Documents and Protocol Files.
 - **No logic specific to one template, intake, resolver, ticket system, Launcher or Agent in a generic skill.** Say "follow the …", and put the specifics in that file.
-- **Self-contained:** everything specific to a skill is in the skill. `workflow.md` holds the bird's-eye view and the rules several skills share.
+- **Self-contained:** everything specific to a skill is in the skill. `~/.apiary/system/workflow.md` holds the bird's-eye view and the rules several skills share.
 - **Say exactly where everything is,** and why each file is read.
 - **No edge cases or fault handling a capable Agent handles anyway.** Keep real product decisions and guards against real harm.
 - **Plain, positive and complete:** say what a skill does, never what it doesn't; no random subsets; no jargon.
@@ -29,7 +29,7 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
   - bees-, tmux- or Claude-Code-specific mechanics, which move to Protocol Files;
   - edge cases and over-prescribed fault handling;
   - anything a decision in `/tmp/b-v38-pending-edits-next.md` reverses;
-  - repetition of `workflow.md`;
+  - repetition of `~/.apiary/system/workflow.md`;
   - steps a capable model doesn't need spelled out.
 
 ## How a skill change is made

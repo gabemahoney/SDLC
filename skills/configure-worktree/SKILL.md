@@ -19,13 +19,13 @@ An Idea or Epic ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea or Epic and record decisions on it.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea or Epic and record decisions on it.
 - **The Idea or Epic:** to read its setup choices and earlier preparation or launch results so a resumed Run continues existing work.
 - **Repo state:** each main checkout at `<Project Folder>/<repo path>` and its registered worktrees. Why: to check branches, base commits, uncommitted changes and worktrees available for reuse.
 
-When launching, read `launcher.md` and the assigned skill before making changes, for launch requirements and input IDs. If committing main-checkout changes, read `release-guide.md`, found as `workflow.md` describes, for applicable permissions.
+When launching, read `protocol:launcher.md` and the assigned skill before making changes, for launch requirements and input IDs. If committing main-checkout changes, read `guide:release-guide.md`, found as `~/.apiary/system/workflow.md` describes, for applicable permissions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -35,7 +35,7 @@ Run only when all of these are true:
 
 - The Idea or Epic is `defined` or `active`, so preparation serves work ready to proceed. Otherwise, stop and report its status.
 - The Run starts outside `<Project Folder>/.worktrees/`, so setup uses the main checkouts as its starting point. Otherwise, stop and ask the Managing Intelligence to run it from the Project Folder or a main checkout.
-- For a Main Agent launch, the Project Folder has `.apiary/project_settings.md`, so the Main Agent finds the same Project Folder from its worktree. If it is absent, stop and suggest project-setup or worktree-only preparation.
+- For a Main Agent launch, the Project Folder has `<Project Folder>/.apiary/project_settings.md`, so the Main Agent finds the same Project Folder from its worktree. If it is absent, stop and suggest project-setup or worktree-only preparation.
 
 ## Steps
 
@@ -64,7 +64,7 @@ If a Main Agent was launched, it runs the assigned skill. Otherwise, the work ca
 
 ## Worktree guidance
 
-Name the branch after the ticket ID with dots replaced by underscores, preserving the existing naming convention so later Runs can find it. Use the worktree path `workflow.md` defines.
+Name the branch after the ticket ID with dots replaced by underscores, preserving the existing naming convention so later Runs can find it. Use the worktree path `~/.apiary/system/workflow.md` defines.
 
 - Reuse an existing worktree only when it belongs to the intended repo and is on the ticket's branch. Preserve its changes and original base, because a resumed Run continues that work. Record a newly requested base as unapplied when reusing, so the ticket describes the actual setup.
 - If the expected path holds different work, or the ticket's branch exists without its expected worktree, stop for the Managing Intelligence's decision to protect that work.

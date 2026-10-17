@@ -1,6 +1,6 @@
 # Research guide (Apiary default)
 
-Apiary uses this file only when no user copy of `research-guide.md` is found as `workflow.md` describes.
+Apiary uses this file only when no user copy of `guide:research-guide.md` is found as `~/.apiary/system/workflow.md` describes.
 
 ## Sources and depth
 

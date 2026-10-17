@@ -19,10 +19,10 @@ An Idea ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **PRD template:** the file at the path named by `prd_template`. Why: to structure the PRD.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea and its Docs, and create or update its PRD.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **PRD template:** the file at the path named by `setting:prd_template`. Why: to structure the PRD.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, and create or update its PRD.
 - **The Idea and its existing Docs:** to gather requirements, find the PRD to revise and determine whether an SRD exists.
 
 Read each Source Reference with `~/.apiary/system/resolvers/<resolver>.md`, selected by its kind, when gathering source context.
@@ -39,7 +39,7 @@ None: the PRD can be written or revised at any Idea status.
 
 2. **Interview the Managing Intelligence.** Settle the problem, outcomes, acceptance criteria, boundaries, edge cases, errors, UI/UX, performance, security and dependencies as the Idea needs. Establish users, operators and deployment constraints that affect the product. Follow dependent decisions only where they change product behaviour. Look up facts; ask the Managing Intelligence for decisions. Finish when they confirm the shared understanding; decisions they leave unresolved become Open Questions.
 
-3. **Write or revise the PRD** using `prd_template` and the craft guidance below.
+3. **Write or revise the PRD** using `setting:prd_template` and the craft guidance below.
 
 4. **Review the whole draft** for succinctness, product requirements, dropped ideas and the Quality checklist, in that order. Repeat all four checks after changes until a full round changes nothing, so revisions receive the same scrutiny as a first draft.
    - Fold changes into the affected requirements so readers find one current account. Cut superseded text and padding while preserving current requirements, acceptance criteria, supplied edge cases and Managing Intelligence decisions. Only acceptance criteria and summaries may repeat behaviour.

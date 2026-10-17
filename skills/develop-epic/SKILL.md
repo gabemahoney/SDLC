@@ -19,13 +19,13 @@ An Epic ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
-- **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read requirements and progress, and record results, fix Tasks, Dependencies and statuses.
+- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
+- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read requirements and progress, and record results, fix Tasks, Dependencies and statuses.
 - **Epic, its Tasks and Subtasks, Plan and sibling Epics:** to follow Dependencies, resume unfinished work and check Plan completion.
 - **Idea and its Docs:** through the Plan's Association to its Idea. Why: to follow the PRD, SRD and decisions recorded on the tickets they concern.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes, to judge findings, plan repairs, check builds and tests, and handle documentation, commits and pushing.
+- **Guidance Documents:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for each affected repo, found as `~/.apiary/system/workflow.md` describes, to judge findings, plan repairs, check builds and tests, and handle documentation, commits and pushing.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -46,7 +46,7 @@ Run only when all of these are true:
 2. **Complete Tasks in Dependency order, one at a time.**
    - Before each Task, including fix Tasks, check the Plan and apply the shared Main Agent Context rule. Stop if the Plan returned to `draft`, because an SRD revision paused execution.
    - Update instructions made stale by earlier Tasks' code, then set the Task `active` and follow the Task pipeline.
-   - Once Subtasks are `done` and accepted findings are fixed, require passing Compile, Lint and the full Unit Tests for every affected code folder. Use `build-commands.md`, skipping only sections marked `none` with a reason. The final `test-writer` owns the unit run. Route failures through the Task pipeline and repeat affected checks after repairs, so the evidence covers the completed work.
+   - Once Subtasks are `done` and accepted findings are fixed, require passing `guide:build-commands.md ## Compile`, `guide:build-commands.md ## Lint` and the full `guide:build-commands.md ## Unit tests` for every affected code folder. Use `guide:build-commands.md`, skipping only sections marked `none` with a reason. The final `test-writer` owns the unit run. Route failures through the Task pipeline and repeat affected checks after repairs, so the evidence covers the completed work.
    - Commit only after all three checks pass, then set the Task `done`.
 
 3. **Finish the Epic.** After all Tasks, run the Integration gate once for their combined work. Then launch `product-manager`. Turn accepted findings into fix Tasks and complete them through step 2. Rerun integration after all repairs, rather than between Tasks, so it checks the completed Epic.
@@ -58,8 +58,8 @@ Run only when all of these are true:
 ## Child Agents
 
 - **`engineer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for source changes, including integration fixes. Expect implementation, targeted checks and any deviations or effects on design and documentation.
-- **`test-writer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for testing Subtasks after their source changes, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration coverage following `test-guide.md`, fixture changes, test repairs, remaining gaps and assigned test results.
-- **`doc-writer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch when source and testing Subtasks finish and documentation is affected. Expect updates following `doc-writing-guide.md`, including gaps found in the implementation.
+- **`test-writer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for testing Subtasks after their source changes, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration coverage following `guide:test-guide.md`, fixture changes, test repairs, remaining gaps and assigned test results.
+- **`doc-writer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch when source and testing Subtasks finish and documentation is affected. Expect updates following `guide:doc-writing-guide.md`, including gaps found in the implementation.
 - **`code-review`:** Start fresh every time so each assessment is independent. Launch after source changes, alongside `test-writer` Child Agents. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
 - **`test-review`:** Start fresh every time so each assessment is independent. Launch after unit-test or integration-test changes finish. Expect findings on test quality, coverage and duplication across the suite, or none.
 - **`doc-review`:** Start fresh every time so each assessment is independent. Launch after documentation changes finish. Expect findings on complete touched documents and missing or outdated documentation, or none.
@@ -92,7 +92,7 @@ Run engineer first; code-review and test-writer in parallel; then test-review an
 
 Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order; give doc-writer one pass after the round's code and tests. Reviewers check repairs. Repeat until accepted findings are fixed. Product questions and conflicts with the SRD go to the Managing Intelligence because execution follows approved requirements.
 
-Assign the final full-unit-suite Subtask to the sole test-writer or a final writer after multiple Lanes. It runs `## Unit tests` after the combined changes and any later source or unit-test repairs. Route source failures through engineer, testing and review; the writer fixes test failures. Other executors run targeted checks so each does not repeat the full suite. Ensure a final writer owns the unit check even for a Task with no test edits, because every Task commit has the same gate.
+Assign the final full-unit-suite Subtask to the sole test-writer or a final writer after multiple Lanes. It runs `guide:build-commands.md ## Unit tests` after the combined changes and any later source or unit-test repairs. Route source failures through engineer, testing and review; the writer fixes test failures. Other executors run targeted checks so each does not repeat the full suite. Ensure a final writer owns the unit check even for a Task with no test edits, because every Task commit has the same gate.
 
 ## Testing Lanes
 
@@ -102,10 +102,10 @@ Each Lane owns whole files and exclusively used setup. Writers record shared cha
 
 ## Integration gate
 
-develop-epic runs `## Integration tests` for every affected code folder after the Epic's Tasks, following `test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Epic.
+develop-epic runs `guide:build-commands.md ## Integration tests` for every affected code folder after the Epic's Tasks, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Epic.
 
 The gate passes when required suites pass or the Managing Intelligence explicitly waives remaining failures. Keep the Epic `active` until then. If suites cannot run, stop for environment repair or a waiver.
 
-Route test failures to test-writer, then test-review. Apply the Task's Compile, Lint and full-unit checks before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Finish draft repair planning before execution so interrupted work resumes safely. After all repairs are committed, rerun integration over their combined result.
+Route test failures to test-writer, then test-review. Apply the Task's `guide:build-commands.md ## Compile`, `guide:build-commands.md ## Lint` and `guide:build-commands.md ## Unit tests` checks before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Finish draft repair planning before execution so interrupted work resumes safely. After all repairs are committed, rerun integration over their combined result.
 
 If a failure persists after its fix Task, stop for the Managing Intelligence's decision so failed repairs cannot become an automatic loop. Record the unfinished gate. Results and waivers cover only the files checked; later changes require a new result or waiver.
