@@ -69,8 +69,7 @@ The PRD, a Doc child of the Idea titled `PRD`. A new PRD starts as `draft`, and 
 
 Report the PRD's ID, assumptions, Open Questions, incomplete work and what the Succinctness pass cut.
 
-- If the Idea has no SRD, suggest “write-srd”.
-- Otherwise, suggest “req-review, or, on a `draft` Idea, mark the Idea defined”.
+Suggest “req-review”.
 
 ## Style rules
 
