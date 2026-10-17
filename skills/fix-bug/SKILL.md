@@ -61,7 +61,7 @@ Record the current phase, next work, integration repair-round count and executor
 
 ## Writes
 
-The Bug is the only ticket changed. Set it `active` at start and leave it `active` after merge for the Managing Intelligence's acceptance. Keep testing assignments, progress, decisions, reproduction and regression evidence, check results, waivers, commits and merges on it. Apply the shared finding-record rule.
+The Bug is the only ticket changed. Set it `active` at start and leave it `active` after merge for the Managing Intelligence's acceptance. Keep testing assignments, progress, decisions, reproduction and regression evidence, check results, any failures the Managing Intelligence accepted, commits and merges on it. Apply the shared finding-record rule.
 
 ## Done
 
@@ -91,8 +91,8 @@ Each Lane owns whole files and exclusively used setup. Writers record shared cha
 
 After implementation and review, fix-bug runs `guide:build-commands.md ## Integration tests` for every affected code folder, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Bug.
 
-Required suites pass or the Managing Intelligence explicitly waives remaining failures. Record waivers; if suites cannot run, stop for environment repair or a waiver.
+The gate passes when the suites pass, or when the Managing Intelligence accepts the remaining failures; record what it accepted. If the suites can't run, stop and ask the Managing Intelligence.
 
 Send test failures to test-writer, followed by test-review and accepted repairs. Source failures go through the Repair pipeline. Rerun integration over the combined repairs. Stop for the Managing Intelligence if source-fix rounds fail to reduce failures or failures remain after three rounds, to bound unsuccessful attempts.
 
-Results and waivers cover only the files checked. Later source or integration-test changes require a new result or waiver; source changes also require new regression and reproduction evidence. Record unfinished work so a later Run can resume the gate.
+If repairs stop making progress, stop and ask the Managing Intelligence, so a repair loop doesn't burn the budget. Record unfinished work so a later Run can resume the gate.

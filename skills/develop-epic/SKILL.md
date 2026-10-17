@@ -68,7 +68,7 @@ Record executor IDs, skills, testing assignments and Thinking Levels on the Task
 ## Writes
 
 - **Idea and Plan:** set `active` at execution start; set the Plan `done` in step 4.
-- **Epic:** set `active` at start and `done` in step 3. Keep the current Task and phase, checkout paths, integration evidence, waivers and next work here.
+- **Epic:** set `active` at start and `done` in step 3. Keep the current Task and phase, checkout paths, integration evidence, any failures the Managing Intelligence accepted, and next work here.
 - **Tasks and Subtasks:** update stale instructions. Record decisions, Lane assignments, checks and commits on the Task. Set it `active` at start and `done` after commit. Executors set assigned Subtasks `active`, then `done`.
 - **Fix Tasks:** create Epic children for source integration failures and accepted final product findings, with repair Subtasks. Start them `draft`, then set them `defined` when planning is complete. Include outcomes, acceptance criteria, Dependencies, a complexity-appropriate `thinking_level:<label>` tag and Subtasks with Context, What Needs to Change, Key Files and Acceptance Criteria. Plan required coverage, a final full-unit-suite Subtask, affected docs and Testing Lanes so repairs receive the original work's checks.
 
@@ -102,8 +102,8 @@ Each Lane owns whole files and exclusively used setup. Writers record shared cha
 
 develop-epic runs `guide:build-commands.md ## Integration tests` for every affected code folder after the Epic's Tasks, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Epic.
 
-The gate passes when required suites pass or the Managing Intelligence explicitly waives remaining failures. Keep the Epic `active` until then. If suites cannot run, stop for environment repair or a waiver.
+The gate passes when the suites pass, or when the Managing Intelligence accepts the remaining failures. Keep the Epic `active` until then. If the suites can't run, stop and ask the Managing Intelligence.
 
 Route test failures to test-writer, then test-review. Apply the Task's `guide:build-commands.md ## Compile`, `guide:build-commands.md ## Lint` and `guide:build-commands.md ## Unit tests` checks before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Finish draft repair planning before execution so interrupted work resumes safely. After all repairs are committed, rerun integration over their combined result.
 
-If a failure persists after its fix Task, stop for the Managing Intelligence's decision so failed repairs cannot become an automatic loop. Record the unfinished gate. Results and waivers cover only the files checked; later changes require a new result or waiver.
+If repairs stop making progress, stop and ask the Managing Intelligence, so a repair loop doesn't burn the budget. Record the unfinished gate.
