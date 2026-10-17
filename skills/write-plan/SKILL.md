@@ -45,10 +45,10 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
    - If the Idea has no Plan, create one and its Epics as `draft`.
    - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
-3. **Check the Plan with the Product Manager.** Save the Plan and Epics, then dispatch the Product Manager for an independent check of product, scope and proportion. Revise from its findings and check the whole Plan against the Quality checklist below before finalizing it.
+3. **Check the Plan with the Product Manager.** Save the Plan and Epics, then dispatch the Product Manager. Fix what its findings show, and dispatch a fresh one after any significant change, until its findings are resolved. Then check the whole Plan against the Quality checklist below.
 
-4. **Set the Plan's status.**
-   - If any Epic is `done` or `active`, set the Plan `active` to reflect work already underway.
+4. **Set the Plan's status.** Only once the Product Manager's findings are resolved and the Quality checklist passes:
+   - If any Epic is `done` or `active`, set the Plan `active`, because work is already underway.
    - Otherwise, set the Plan `defined`.
 
 ## Dispatches
@@ -57,7 +57,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 ## Writes
 
-- **The Plan:** one per Idea, in the Plans store, with an Association to its Idea so later skills can find the requirements. A new Plan starts `draft`. After the Product Manager's check, set it `defined`, or `active` if any Epic is `done` or `active`.
+- **The Plan:** one per Idea, in the Plans store, with an Association to its Idea so later skills can find the requirements. A new Plan starts `draft`, and becomes `defined` or `active` in step 4.
 - **Its Epics:** children of the Plan, with a Dependency on each Epic that must finish first. New and changed Epics are `draft`; Epics no longer needed are removed.
 
 ## Done
