@@ -88,7 +88,7 @@ Order the Epics so each one can be demoed when it's `done`, rather than a chain 
 
 Acceptance criteria describe that demo. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
-Plan documentation only as `doc-writing-guide.md` allows: it decides which doc files exist and what changes belong in them. Plan required test types and engineering steps within the Epics they support.
+Plan documentation as `doc-writing-guide.md` guides, including which doc files to write and what belongs in them. Plan the test types and engineering steps the Guidance Documents call for inside the Epics they support.
 
 ## Quality checklist
 
