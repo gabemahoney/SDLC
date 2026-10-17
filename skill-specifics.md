@@ -32,16 +32,6 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Specific rules:** Changes no tracked file. When it cannot reproduce or settle the report from source, leaves Bug `draft`, records what it tried and asks the Managing Intelligence whether it is real.
 
-## write-epic
-
-**Required Reading:** Epic, Plan, sibling Epics, Idea requirements and source references; proposed Key Files and interfaces, planner reports and Managing Intelligence answers. Without a planner, its guidance: `engineering-best-practices` for Engineer; `test-guide` for Test Writer; `doc-writing-guide` and `maintained-docs` for Doc Writer.
-
-**Gate:** Epic `draft`; its Plan `defined` or `active`.
-
-**Owned transitions:** Creates Tasks and Subtasks `draft`; after the Product Manager's check and revision, sets them, then Epic, `defined`.
-
-**Specific rules:** Plans the test fixtures (moved from the SRD, 2026-10-16): which existing fixtures, factories, helpers and constants tests reuse, what they need for this change, which new fixtures are needed and where, and which test files to extend or add, so tests don't hand-roll shared setup. Sets its Tasks' `thinking_level:` tags. Dispatches executor planners where useful. Records suggested Test Writer lanes and flags Tasks changing interfaces for integration checks. Each Subtask names its executor, scope, acceptance criteria and concrete Key Files from a named repo's root; Managing Intelligence decisions are carried word for word.
-
 ## develop-epic
 
 **Required Reading:** Epic work, dependencies, Idea requirements, progress and findings; `build-commands`, checkout state, changes, Subagent reports and its own context reading, to execute and resume Tasks.
