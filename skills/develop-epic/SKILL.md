@@ -46,7 +46,7 @@ Run only when all of these are true:
    - Otherwise, set the Idea, Plan and Epic `active`, to show that work has begun. If an earlier Run did some of the work, continue from the progress recorded on the Epic, checked against the tickets and git, so finished work isn't redone. A Task that write-epic reopened counts as unfinished, even if an earlier version was committed.
 
 2. **Work on each Task,** one at a time in Dependency order.
-   - **Before it starts:** re-check the Plan. If it's back in `draft`, record progress and stop for write-plan, because an SRD change has paused the work. Check your context as the Context boundary guidance below says. Then review the work earlier Tasks committed against what this Task's instructions assume, such as the files, functions and interfaces they name, and fix any instruction those changes made wrong, because the Tasks were written before that work existed.
+   - **Before it starts:** re-check the Plan. If it's back in `draft`, record progress and stop for write-plan, because an SRD change has paused the work. From the second Task on, check how full your context is, as the Agent Protocol File describes. At 75% or more, or if you can't tell, record progress and stop for a fresh `develop-epic <epic-id>` session, which the Managing Intelligence starts, because an Agent with a nearly full context makes mistakes. Then review the work earlier Tasks committed against what this Task's instructions assume, such as the files, functions and interfaces they name, and fix any instruction those changes made wrong, because the Tasks were written before that work existed.
    - **While it runs:** set the Task `active` and follow the Task pipeline below. Once its Subtasks are `done`, accepted findings are resolved and required checks pass, commit its work.
    - **After its commit:** judge whether it changed an interface between components, such as a contract, API or schema. If it did, run the Integration gate before the next Task, so a broken interface is caught before later Tasks build on it, and keep the Task `active` until the gate passes. Otherwise, set it `done`. The last Task waits for the end-of-Epic gate in step 3, so the same files aren't tested twice. Integration fix Tasks use the combined repair check described below.
 
@@ -101,10 +101,6 @@ Each Lane owns its files and exclusively used fixtures and helpers, including ex
 Start fresh executors for each Task and retain them for its fix rounds, so fixes reuse their knowledge. Keep each Lane's Test Writer and the final Test Writer where there are multiple Lanes. Resume the executors whose work is affected; replace an unavailable executor with a fresh one reading the Task's progress. Reviewers, Product Managers and Integration Testers start fresh each time for an independent assessment.
 
 Keep the Epic's progress concise: current Task and phase, repo checkouts, integration gate and next work. On each Task, record retained executors' Roles, Lane or final-Writer assignments, Agent IDs, names if available and Thinking Levels after each report, so a later Run can resume them. Dispatches name the assigned repo checkouts so code changes land in the intended worktrees. After compaction, reconcile ticket and git state before dispatching or committing, because a summary may omit completed work.
-
-## Context boundary
-
-Before each Task after the first in a Run, read how full the context is, as the Agent Protocol File describes. At 75% or more, record progress and stop for a fresh `develop-epic <epic-id>` session, because an Agent with a nearly full context makes mistakes. The Managing Intelligence arranges the restart. If no reading can be made, stop the same way and report it, because project-setup should have ensured one.
 
 ## Integration gate
 
