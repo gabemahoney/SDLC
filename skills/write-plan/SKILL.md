@@ -42,7 +42,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
    - If either required Doc is not `defined`, stop and ask the Managing Intelligence: confirm planning without review. Continue only on an explicit yes.
    - If both are `defined`, continue with planning.
 
-2. **Write the Plan and Epics.** Establish the outcome from the PRD's Goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Use the templates and craft guidance below to write the Plan itself and set its Epic dependencies.
+2. **Write the Plan and Epics.** Establish the outcome from the PRD's goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Use the templates and craft guidance below to write the Plan itself and set its Epic dependencies.
    - If the Idea has no Plan, create one and its Epics as `draft`.
    - If the Idea has a `draft` or `defined` Plan, finish or revise that Plan. For a Plan write-srd reset, use its report to reconsider the changed SRs and the Epics that were `active`. Preserve `done` Epics; revise, add or drop the remaining Epics to fit the changed SRD. Revised Epics return to `draft` for write-epic to reconcile their Tasks before execution resumes. Remove dropped Epics from the Plan through the Ticket System Protocol File, preserving completed work. Put any further work needed on a completed capability into the remaining Epics, so completed work stays recorded.
 
