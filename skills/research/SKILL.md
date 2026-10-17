@@ -7,7 +7,7 @@ description: Track a research task as a Research Bee — file it, run its review
 
 Research tasks live as Bees in the Research hive. This skill moves a Research Bee through its states and keeps its record: the question, a Report child holding the findings, research artifacts in the Bee's folder, and a log of review rounds.
 
-This skill does **not** define how the research is done. Use whatever methods the question, the requester and the reviewer call for.
+This skill does **not** define how the research is done. Follow the research guide below where it specifies methods; otherwise use whatever methods the question, the requester and the reviewer call for.
 
 ## Arguments
 
@@ -20,6 +20,13 @@ This skill does **not** define how the research is done. Use whatever methods th
 **No-questions mode**: on when you are given `--no-questions`, or when you run as an agent-director worker (`AGENT_DIRECTOR_INSTANCE_ID` is set in your environment; such workers usually cannot use AskUserQuestion). In this mode never use AskUserQuestion. Wherever this skill asks the reviewer or the caller, stop instead: put what you know in your output, end it with exactly one `research: needs review:` or `research: needs input:` line as given in the steps, and end your turn. The driver answers in this session, or starts a fresh session and gives the answer after the ID (e.g. `/research b.xxx accept`).
 
 In Codex CLI, which has no AskUserQuestion, ask in plain text in your reply and end your turn.
+
+## Location and guide
+
+Before filing or continuing a Bee:
+1. Read `research_location` from `<Project Folder>/.apiary/project_settings.md`. If it is unset or the file is absent, read it from `~/.apiary/default_project_settings.md`.
+2. If set, use that path as the Research hive itself (the bees hive named `Research` at that location), for the Bee, Report and artifacts. Ensure bees operations address that hive, not a different project's Research hive. If unset in both files, keep the existing lookup: use the Research hive path from `bees list-hives`.
+3. Read `<Project Folder>/.apiary/research-guide.md`, or, if absent, `~/.apiary/research-guide.md`. Follow the selected guide for research methods, the Report's shape where specified, and required extra outputs after acceptance. If neither exists, use this skill's defaults.
 
 ## Prerequisites
 
@@ -67,14 +74,14 @@ A round with no **Reviewer**/**Verdict** lines is awaiting review.
 
 ## Bee folder and artifacts
 
-- The Bee's folder is `<research hive path>/<bee-id>/` (hive path from `bees list-hives`). The Report lives in `<bee-id>/<report-id>/`.
+- The Bee's folder is `<research hive path>/<bee-id>/` (hive path resolved under Location and guide). The Report lives in `<bee-id>/<report-id>/`.
 - Put research artifacts (data, scripts, logs, screenshots, notes, excerpts) in `<research hive path>/<bee-id>/artifacts/`.
 - Do not name any folder in there like a ticket ID (`b.xxx`, `t1.xxx`), and do not create a `<dir>/<dir>.md` file pair: bees would take either for a ticket.
 - Keep secrets and tokens out of artifacts.
 
 ## The Report
 
-One t1 child of the Bee, titled `Report: <Bee title>`. Its body is a well-written, standalone document a reader can use without the Bee or the conversation:
+One t1 child of the Bee, titled `Report: <Bee title>`. Its body is a well-written, standalone document a reader can use without the Bee or the conversation. Use the guide's Report shape where specified; otherwise use:
 
 1. **Summary** — the answer first, in a few lines.
 2. **Findings** — organised by theme or sub-question, with evidence.
@@ -119,9 +126,10 @@ Add **Reviewer** and **Verdict** to the round. Record the request verbatim.
 
 ### 6. Complete (`active` → `done`)
 
-1. Check the Report meets the bar above (summary first, citations, references, artifact links).
+1. Check the Report meets the guide's requirements and the defaults above where the guide does not specify them.
 2. Set the Report and the Bee to `done`.
-3. Report the Bee ID, the Report ID and the one-line answer.
+3. Do every extra output the guide requires (e.g. updating a wiki), on each accepted round, including accepted revisions. Before starting, record the accepted round and required outputs on the Bee; then record what was updated, including paths and completion for each output. If an output cannot be completed, record what remains and why on the Bee. Acceptance stands: keep the Bee and Report `done`.
+4. Report the Bee ID, the Report ID, the one-line answer, and any extra outputs completed or left unfinished.
 
 ### Continuing a Bee (`/research <bee-id>`)
 
@@ -129,5 +137,5 @@ Read the Bee and its Report, then by status:
 - `defined` → step 2.
 - `active`, latest round awaiting review → with a verdict given after the ID, step 5; otherwise step 4 (present it again).
 - `active`, latest verdict is more work → step 3.
-- `done` → report that it is done, with the Report ID. Reopen it only if a reviewer asks for more work now: set the Bee and Report to `active`, start a new round with that request as its input, and go to step 3. If it is unclear whether they want it reopened, ask (no-questions mode: `research: needs input: <bee-id> is done — reopen it for more work? Say what to do`).
+- `done` → check the latest accepted round's extra outputs against the guide and the Bee's record; resume any required outputs not recorded as complete via step 6.3, keeping the Bee and Report `done`. Report that it is done, with the Report ID and any unfinished outputs. Reopen it only if a reviewer asks for more research work now: set the Bee and Report to `active`, start a new round with that request as its input, and go to step 3. If it is unclear whether they want it reopened, ask (no-questions mode: `research: needs input: <bee-id> is done — reopen it for more work? Say what to do`).
 - Any other status → stop and report it; do not guess. An old value (`new`, `completed`, `larva`, `pupa`, `worker` or `finished`) means the hive needs `/apiary-setup` to migrate it.

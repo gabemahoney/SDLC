@@ -134,14 +134,18 @@ Unlike `/do-bee`, `/fix-bug` manages its own isolated worktree: it creates a fre
 
 ### Research
 Run `/research "<question>"` to file a research task as a bee in the Research Hive, or `/research <bee-id>` to continue one.
+Set `research_location` in `<Project Folder>/.apiary/project_settings.md`, or in `~/.apiary/default_project_settings.md` as a fallback, to use a shared Research hive. The path is the hive itself. With no setting, `/research` keeps using the Research hive from `bees list-hives`.
 The skill defines only the ticket flow, not how the research is done: `defined` → `active` → `done`. A research bee is `defined` as soon as it is filed, since a question is ready once it is written.
 `active` is a review loop. Each round, the researcher presents its findings and a reviewer (the User, or an orchestrator Claude, which decides each round whether to review it itself or send it to the User) accepts them or asks for more work. Each round and its verdict are recorded in the bee's `## Review rounds` section.
 The findings go in a Report child of the bee: a standalone document with inline citations and a numbered References list. Research artifacts (data, scripts, logs) go in the bee's `artifacts/` folder, and the Report links to them by relative path.
+`/research` follows `<Project Folder>/.apiary/research-guide.md`, falling back to `~/.apiary/research-guide.md` if absent, for methods and Report shape where specified. After each accepted round, it completes all extra outputs required by the guide (such as a wiki update) and records the changes on the bee. Unfinished outputs are recorded and reported without undoing acceptance; continuing the bee resumes them.
 Accepted research is kept: never run the undertaker on the Research Hive or give it an undertaker schedule. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe, but Research uses `done` like every other hive, so check which hive a sweep is pointed at.
 
 
 ## Releases
 Apiary versions are annotated git tags `vX.Y.Z` on GitHub, starting at `v1.0.0`.
+Pending patch release: `v3.0.2` — research location and guide settings, with guide outputs after acceptance.
+
 - Patch: fixes and wording.
 - Minor: new skills or behaviour.
 - Major: anything that needs a migration or breaks other bots' hives or prompts.
