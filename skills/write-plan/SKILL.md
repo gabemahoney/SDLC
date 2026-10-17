@@ -43,7 +43,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 2. **Write the Plan and Epics.** Establish the outcome from the PRD's goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Use the Plan and Epic templates and craft guidance below to write the Plan itself and set its Epic dependencies.
    - If the Idea has no Plan, create one and its Epics as `draft`.
-   - If the Idea has a `draft` or `defined` Plan, finish or revise it. For a Plan write-srd reset, use the note on the Plan naming the changed SRs and the Epics that were `active`. If an SRD change affects a `done` Epic, set it back to `draft` and note what changed. Revise, add or drop the other unfinished Epics to fit the changed SRD. A revised Epic returns to `draft` so write-epic can update its Tasks.
+   - If the Idea has a `draft` or `defined` Plan, finish or revise it. For a Plan write-srd reset, use the note on the Plan naming the changed SRs and the Epics that were `active`. Revise, add or drop Epics to fit the changed SRD, including `done` ones. Set every revised Epic to `draft`, so write-epic updates its Tasks.
 
 3. **Check the Plan with the Product Manager.** Save the Plan and Epics, then dispatch the Product Manager for an independent check of product, scope and proportion. Revise from its findings and check the whole Plan against the Quality checklist below before finalizing it.
 
