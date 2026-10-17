@@ -57,9 +57,8 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 ## Writes
 
-The Plan in the Plans store starts as `draft`, with a dependency on the Idea and a reference linking back to it, recorded through the Ticket System Protocol File. An existing `draft` or `defined` Plan is updated in place. After the Product Manager's check and revision, set the Plan `defined`, or `active` if any Epic is `done` or `active`.
-
-Epics are children of the Plan, created as `draft` with their dependencies recorded. Revised Epics return to `draft`; unchanged Epics keep their statuses and `done` Epics are preserved. Dropped Epics are removed from the Plan through the Ticket System Protocol File.
+- **The Plan:** one per Idea, in the Plans store, linked to its Idea so later skills can find the requirements. A new Plan starts `draft`. After the Product Manager's check, set it `defined`, or `active` if any Epic is `done` or `active`.
+- **Its Epics:** children of the Plan, with their dependencies. New and changed Epics are `draft`; Epics no longer needed are removed.
 
 ## Done
 
