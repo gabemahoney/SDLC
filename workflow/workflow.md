@@ -115,7 +115,11 @@ If a line or mapping you need is missing, stop before any change and point to pr
 
 - A skill starts every Subagent fresh, with no earlier context, unless the skill says to reuse one.
 - A Subagent loads the Guidance Documents of each repo it works in, and may read any repo for context.
-- Subagents never talk to each other. The skill reads each report and passes on what the next Subagent needs. Their work passes through the files.
+- Subagents never talk to each other. Their work passes through the files.
+
+### Tickets carry the information
+
+Skills and Subagents record findings, decisions, progress and handoffs on the ticket they concern, and the next skill or Subagent reads them from there. A dispatch, launch or report names the tickets to read rather than repeating their contents, because copying information between Agents spends tokens and drifts from the record.
 
 ### Questions and stops
 
