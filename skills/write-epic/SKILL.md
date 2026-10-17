@@ -98,7 +98,7 @@ Every Subtask follows the Project's Guidance Documents, because they hold the Pr
 
 Plan the work each guide requires, such as a test type or an engineering step, inside the Task it belongs to.
 
-Integration Tester writes and runs integration tests during develop-epic. Flag each Task changing a contract, API, schema or other cross-component interface with a `## Run Integration After This Task` section. In it, state `Interface changed:` followed by the interface and the change. This tells develop-epic to run its integration check after that Task.
+develop-epic runs its Integration Tester after a Task that changes an interface between components. Flag each Task changing a contract, API, schema or other cross-component interface with a `## Run Integration After This Task` section. In it, state `Interface changed:` followed by the interface and the change. This tells develop-epic to run its integration check after that Task.
 
 ## Fixture planning and Test Writer Lanes
 
