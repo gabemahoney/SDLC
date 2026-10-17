@@ -91,6 +91,8 @@ Read settings only from the Project Folder's `.apiary/project_settings.md`, then
 
 If a setting the Run needs is missing from both files, stop before any change and point to project-setup.
 
+Record Dependencies, Associations and Source References as the Ticket System Protocol File says, or as the `ticket_links` setting says where that file doesn't cover one.
+
 Pass the settings and the Ticket System and Agent Protocol Files in every dispatch. Subagents use the supplied settings and Protocol Files, not their own lookup.
 
 ### Thinking Levels

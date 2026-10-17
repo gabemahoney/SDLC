@@ -19,7 +19,7 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 
 ## Required Reading
 
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `launcher`, `prd_template`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `ticket_links`, `launcher`, `prd_template`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: how to ask the Managing Intelligence questions, report in this Agent and identify its expected installed skills and Subagent definitions.
 - **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
 - **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check the Launcher's prerequisites.
@@ -75,6 +75,8 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       The Managing Intelligence may change any line.
 
 4. **Create or check the ticket stores.** Through the selected Ticket System Protocol File, create or check the four stores with the child tiers and status values defined in the rulebook. Keep every store at the top level, never nested in another.
+   - Check that the Ticket System Protocol File says how to record each link type in the rulebook: Dependency, Association and Source Reference, because every later skill relies on them.
+   - If it doesn't cover one, agree with the Managing Intelligence how to record it in this ticket system, and write the answer to the `ticket_links` setting in `<Project Folder>/.apiary/project_settings.md`.
 
 5. **Write the Guidance Documents.**
 
@@ -104,7 +106,7 @@ None: project-setup does the setup itself.
 
 ## Writes
 
-- `<Project Folder>/.apiary/project_settings.md` and, as agreed, `~/.apiary/default_project_settings.md`.
+- `<Project Folder>/.apiary/project_settings.md` and, as agreed, `~/.apiary/default_project_settings.md`, including `ticket_links` when step 4 needed it.
 - The Ideas, Plans, Bugs and Research stores through the selected Ticket System Protocol File.
 - Each supplied Guidance Document at `<Project Folder>/<code folder path>/.apiary/<name>.md` or `<Project Folder>/.apiary/<name>.md`, where `<name>` is `engineering-best-practices`, `test-guide`, `doc-writing-guide`, `maintained-docs` or `build-commands`.
 - `<Project Folder>/.apiary/release-guide.md`.
