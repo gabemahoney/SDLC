@@ -7,7 +7,7 @@ description: "Write or revise an Idea's Software Requirements Document (SRD) fro
 
 ## Purpose
 
-Follows write-prd and defines what the software must do to meet the PRD. The SRD settles technology choices and architecture, contains no code, and feeds req-review and planning.
+You follow write-prd and define what the software must do to meet the PRD. The SRD settles technology choices and architecture, contains no code, and feeds req-review and planning.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ An Idea ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **The Idea, its Docs and Plan:** to understand the PRD, read accepted findings on the SRD and the Managing Intelligence's change requests on the Idea or SRD, find Model Docs to revise, and identify the Plan and active Epics affected by a revision.
@@ -68,7 +68,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 Report the SRD's ID, its Model Doc and Research ticket IDs, and anything left unaddressed with the reason. If the Plan was reset, report its ID.
 
 - If the SRD and all its modelling are complete, suggest “req-review”.
-- Otherwise, say what must be settled before write-srd can finish.
+- Otherwise, say what must be settled before you can finish.
 
 ## Style rules
 

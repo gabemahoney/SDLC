@@ -53,4 +53,5 @@ Rules for writing a skill (see also docs/goals.md):
 - Capable Agents: no edge cases, no fault handling a capable Agent does anyway.
 - No random subsets: list every case or state a general rule.
 - Glossary terms in Title Case. Skill names use their installed names.
+- Address the running Agent as "you" and "your Child Agents" so responsibility is clear; keep other skills named. Plain imperatives are fine.
 - A skill that launches Child Agents lists `protocol:launcher.md` in Required Reading, for operations and Child Agent context readings. The Agent Protocol File covers the Main Agent's own context. Shared Context rules belong in `~/.apiary/system/workflow.md`; retain only skill-specific check timing here.

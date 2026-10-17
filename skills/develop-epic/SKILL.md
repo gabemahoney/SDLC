@@ -7,7 +7,7 @@ description: "Build, review and commit one Epic's Tasks and pass its integration
 
 ## Purpose
 
-Builds one Epic's planned work through executors and independent reviewers. Commits the completed Tasks and checks their integration before handing the Epic back to the Managing Intelligence.
+You build one Epic's planned work through executors and independent reviewers. You commit the completed Tasks and check their integration before handing the Epic back to the Managing Intelligence.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ An Epic ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read requirements and progress, and record results, fix Tasks, Dependencies and statuses.
 - **Epic, its Tasks and Subtasks, Plan and sibling Epics:** to follow Dependencies, resume unfinished work and check Plan completion.
@@ -37,7 +37,7 @@ Run only when all of these are true:
 - Every Epic it depends on is `done`. Otherwise, stop and report the unfinished Dependency.
 - Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff. Otherwise, stop and suggest write-plan.
 - The Idea's PRD and SRD are `defined`, because execution follows approved requirements. Otherwise, stop and return the requirements to the Managing Intelligence.
-- The Epic has planned Tasks with Subtasks. Every unfinished Task and Subtask is `defined` or `active`, except `draft` fix Tasks and their Subtasks, whose planning this skill resumes so interrupted repairs can continue. Otherwise, stop and suggest write-epic to finish planning.
+- The Epic has planned Tasks with Subtasks. Every unfinished Task and Subtask is `defined` or `active`, except `draft` fix Tasks and their Subtasks, whose planning you resume so interrupted repairs can continue. Otherwise, stop and suggest write-epic to finish planning.
 
 ## Steps
 
@@ -78,13 +78,13 @@ Keep only declined or unaddressed findings with reasons, under the shared rule.
 
 Report the Epic's ID, and any review findings left unaddressed with the reason.
 
-- If it stopped at a Task boundary, suggest re-running develop-epic on this Epic.
+- If you stopped at a Task boundary, suggest re-running develop-epic on this Epic.
 - If more Epics remain, suggest the next one: write-epic if it's `draft`, otherwise develop-epic.
 - If the Plan is `done`, suggest teardown-worktree for any Epic worktrees, then idea-review.
 
-## Coordination
+## Handling Reviewer Feedback
 
-develop-epic coordinates the work; its Child Agents do it. Its one judgement is how to handle reviewer feedback from code-review, test-review, doc-review and product-manager. For each finding:
+You coordinate the work; your Child Agents do it. Your one judgement is how to handle reviewer feedback from code-review, test-review, doc-review and product-manager. For each finding:
 - **Fix it:** send it back to the executor that owns the files.
 - **Decline it:** when it's minor, record it with its reason on the Task or Epic and in the Done report, so the Managing Intelligence sees what was left.
 - **Ask the Managing Intelligence:** when it's a product question or conflicts with the PRD or SRD, because those are the Managing Intelligence's approved decisions.
@@ -93,7 +93,7 @@ develop-epic coordinates the work; its Child Agents do it. Its one judgement is 
 
 Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the work's applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Repeat product review after fixes affecting behaviour.
 
-Group the findings to fix into repair rounds, as Coordination below describes. Resume affected executors in source → tests → documentation order; give doc-writer one pass after the round's code and tests. Reviewers check repairs. Repeat until those findings are fixed.
+Group the findings to fix into repair rounds, as Handling Reviewer Feedback describes. Resume affected executors in source → tests → documentation order; give doc-writer one pass after the round's code and tests. Reviewers check repairs. Repeat until those findings are fixed.
 
 Assign the final full-unit-suite Subtask to the sole test-writer or a final writer after multiple Lanes. It runs `guide:build-commands.md ## Unit tests` after the combined changes and any later source or unit-test repairs. Route source failures through engineer, testing and review; the writer fixes test failures. Other executors run targeted checks so each does not repeat the full suite. Ensure a final writer owns the unit check even for a Task with no test edits, because every Task commit has the same gate.
 
@@ -105,7 +105,7 @@ Each Lane owns whole files and exclusively used setup. Writers record shared cha
 
 ## Integration gate
 
-develop-epic runs `guide:build-commands.md ## Integration tests` for every affected code folder after the Epic's Tasks, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Epic.
+You run `guide:build-commands.md ## Integration tests` for every affected code folder after the Epic's Tasks, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Epic.
 
 The gate passes when the suites pass, or when the Managing Intelligence accepts the remaining failures. Keep the Epic `active` until then. If the suites can't run, stop and ask the Managing Intelligence.
 

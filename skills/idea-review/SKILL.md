@@ -7,7 +7,7 @@ description: "Review an Idea's merged work against its requirements and file a R
 
 ## Purpose
 
-Reviews the whole Idea after its Plan is done and Epic worktrees are merged. Files corrections for write-epic and develop-epic, or hands the result to the Managing Intelligence for testing and acceptance.
+You review the whole Idea after its Plan is done and Epic worktrees are merged. You file corrections for write-epic and develop-epic, or hand the result to the Managing Intelligence for testing and acceptance.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ An Idea ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read requirements and progress, record review results and file feedback in the Plan.
 - **The Idea, its PRD, SRD, Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID and the Plan's Association to it. Why: to review the requirements, resume round progress and follow earlier findings, fixes, integration results and Managing Intelligence decisions, including failures it accepted.
@@ -32,7 +32,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 Run only when all of these are true:
 
-- The Idea's Plan is `done`, or is `active` and this Run only finishes recording an already reviewed round's feedback and handoff. Otherwise, stop and report the unfinished planning or execution work, because a new review needs completed execution.
+- The Idea's Plan is `done`, or is `active` and you only need to finish recording an already reviewed round's feedback and handoff. Otherwise, stop and report the unfinished planning or execution work, because a new review needs completed execution.
 - The PRD and SRD are `defined`, because the review needs approved requirements. Otherwise, stop and return the requirements to the Managing Intelligence.
 - Every Epic worktree has been merged into the checkouts being reviewed, so the review covers the combined product. Otherwise, stop and suggest teardown-worktree from outside the unmerged worktrees.
 

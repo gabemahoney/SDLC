@@ -7,7 +7,7 @@ description: "Create or reuse an Idea's or Epic's git worktrees and optionally l
 
 ## Purpose
 
-Prepares isolated worktrees for an Idea or Epic before implementation. By default, it uses the Launcher to start the next Main Agent there on the Managing Intelligence's recorded assignment.
+You prepare isolated worktrees for an Idea or Epic before implementation. By default, you use the Launcher to start the next Main Agent there on the Managing Intelligence's recorded assignment.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ An Idea or Epic ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea or Epic and record decisions on it.
 - **The Idea or Epic:** to read its setup choices and earlier preparation or launch results so a resumed Run continues existing work.
 - **Repo state:** each main checkout at `<Project Folder>/<repo path>` and its registered worktrees. Why: to check branches, base commits, uncommitted changes and worktrees available for reuse.
@@ -49,11 +49,11 @@ Run only when all of these are true:
 
 ## Child Agents
 
-None: configure-worktree prepares the worktrees itself; the Launcher starts the Main Agent.
+None: you prepare the worktrees yourself; the Launcher starts the Main Agent.
 
 ## Writes
 
-- **The input Idea or Epic:** record setup choices, each repo's worktree path and branch, whether it was created or reused, its base ref and commit when created, and Main Agent identity and launch result or worktree-only completion. Record any failure, what remains and what needs resolving so another Run can resume. Ticket statuses stay unchanged because this skill prepares the workspace.
+- **The input Idea or Epic:** record setup choices, each repo's worktree path and branch, whether it was created or reused, its base ref and commit when created, and Main Agent identity and launch result or worktree-only completion. Record any failure, what remains and what needs resolving so another Run can resume. Ticket statuses stay unchanged because you prepare the workspace.
 - **Repos:** create branches and worktrees; commit main-checkout changes only when the Managing Intelligence chooses them.
 
 ## Done

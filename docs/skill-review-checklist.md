@@ -23,6 +23,7 @@ Every lesson from the User's reviews of `~/.apiary/system/workflow.md`, write-id
 12b. **References use the shared notation.** Require `setting:<name>`, `guide:<file>`, `guide:<file> ## <Section>`, `protocol:<file>` and `protocol:<file> ## <Section>`, each in one pair of backticks, and full paths for files with one fixed place, so an Agent knows how to find each reference.
 
 ## Wording
+12c. **Address the reader.** Use "you" and "your Child Agents" so responsibility is clear; keep other skills named. Plain imperatives are fine.
 13. **Phrase things positively.** Say what the skill takes, does and writes, never what it doesn't. "No ticket ID" is wrong; "it also doesn't take a watermelon".
 14. **No random subsets.** List every case, or state a general rule. A partial list implies the missing cases differ.
 15. **No undefined terms.** Use Glossary terms in Title Case, including Run. If a word like "scope", "approach" or "gate" isn't defined, either define it once or say it plainly.

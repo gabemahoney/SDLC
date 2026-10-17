@@ -7,7 +7,7 @@ description: "Validate a draft Bug from its report, Source References and code, 
 
 ## Purpose
 
-Validates a Bug report and preserves the evidence and reproduction for fix-bug. It also revalidates Bugs whose fixes the Managing Intelligence returned.
+You validate a Bug report and preserve the evidence and reproduction for fix-bug. You also revalidate Bugs whose fixes the Managing Intelligence returned.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ A Bug ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read and update the Bug, its status and its tags.
 - **The Bug and its Dependencies:** to check readiness and read the report, earlier validation, retained reproduction and Managing Intelligence decisions, including why a fix was returned.
 - **Bug writing guidance:** `guide:bug-writing-guide.md`, found as `~/.apiary/system/workflow.md` describes, to complete the Bug's write-up in the Project's format.
@@ -51,7 +51,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-None: define-bug validates the Bug itself.
+None: you validate the Bug yourself.
 
 ## Writes
 

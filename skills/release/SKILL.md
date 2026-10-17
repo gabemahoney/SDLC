@@ -7,7 +7,7 @@ description: "Release a Project by following its `guide:release-guide.md`, inclu
 
 ## Purpose
 
-Carries out the Project's release process. The Project's guide defines what releasing means and who may authorize each step.
+You carry out the Project's release process. The Project's guide defines what releasing means and who may authorize each step.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ The release target required by the Project's guide, such as a ticket ID or versi
 ## Required Reading
 
 - **Release guidance:** `guide:release-guide.md`, found as `~/.apiary/system/workflow.md` describes, and the files it points to. Why: to follow the Project's release process, permissions and approvals.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 
 If the guide uses tickets, read `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`, and the Ticket System Protocol File `protocol:ticket-<ticket_system>.md` selected by `setting:ticket_system`, so ticket changes use the Project's ticket system.
 
@@ -39,7 +39,7 @@ Run only when both of these are true:
 
 ## Child Agents
 
-None: release follows the guide itself.
+None: you follow the guide yourself.
 
 ## Writes
 

@@ -7,7 +7,7 @@ description: "Fix a defined Bug, prove the regression is covered, review and mer
 
 ## Purpose
 
-Follows define-bug and takes a confirmed Bug through implementation, review, testing and merge. The Managing Intelligence checks the merged fix and accepts or returns it.
+You follow define-bug and take a confirmed Bug through implementation, review, testing and merge. The Managing Intelligence checks the merged fix and accepts or returns it.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ A Bug ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Bug and its dependencies and record execution evidence, decisions and status.
 - **The Bug and its Dependencies:** to read the confirmed behaviour, retained reproduction, `thinking_level:<label>` tag, progress and Managing Intelligence decisions, including why an earlier fix was returned.
@@ -34,7 +34,7 @@ Run only when all of these are true:
 
 - The Bug is `defined`, or `active` when resuming. If it is `draft`, stop and suggest define-bug. For any other status, stop and report it.
 - Every ticket the Bug depends on is `done`, so the repair uses completed prerequisites. If any isn't, stop and report the blocking ticket IDs.
-- The Run starts outside `<Project Folder>/.worktrees/`, because it merges and removes its own worktrees. If it starts inside, stop and say to run from the Project Folder.
+- You start outside `<Project Folder>/.worktrees/`, because you merge and remove your own worktrees. If you start inside, stop and say to run from the Project Folder.
 
 ## Steps
 
@@ -71,7 +71,7 @@ Suggest the Managing Intelligence check the fix: they set the Bug `done` on acce
 
 ## Repair pipeline
 
-fix-bug coordinates executors and independent reviewers and owns commits. Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the skills the repair needs, including doc-writer assessment for every Bug so restored behaviour does not hide documentation gaps.
+You coordinate executors and independent reviewers and own commits. Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the skills the repair needs, including doc-writer assessment for every Bug so restored behaviour does not hide documentation gaps.
 
 Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order. Give doc-writer one pass after source and tests finish; reviewers check repairs. Repeat until accepted findings are fixed.
 
@@ -89,7 +89,7 @@ Each Lane owns whole files and exclusively used setup. Writers record shared cha
 
 ## Integration gate
 
-After implementation and review, fix-bug runs `guide:build-commands.md ## Integration tests` for every affected code folder, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Bug.
+After implementation and review, you run `guide:build-commands.md ## Integration tests` for every affected code folder, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Bug.
 
 The gate passes when the suites pass, or when the Managing Intelligence accepts the remaining failures; record what it accepted. If the suites can't run, stop and ask the Managing Intelligence.
 

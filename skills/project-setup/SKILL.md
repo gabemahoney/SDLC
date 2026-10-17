@@ -20,7 +20,7 @@ The Project Folder resolved by `~/.apiary/system/workflow.md`, and optionally an
 ## Required Reading
 
 - The Project and default settings, when present, to preserve existing choices.
-- The running Agent's Protocol File under `~/.apiary/system/protocols/`, for installation locations and the Main Agent's own context readings.
+- Your Agent Protocol File under `~/.apiary/system/protocols/`, for installation locations and your own context readings.
 - `~/.apiary/system/templates/thinking-levels.md`, for the recommended skill levels.
 
 As choices are settled, read the selected Ticket System Protocol File for ticket operations and `protocol:launcher.md` for lifecycle operations and Child Agent context readings. If selected, read `~/.apiary/system/templates/<template-name>.md` (lowercase with hyphens). Inspect confirmed code folders and their inherited Guidance Documents to propose commands and preserve existing guidance.
@@ -39,7 +39,7 @@ None. Missing settings, stores and Guidance Documents are repaired here rather t
 
 4. **Set up guidance.** Follow Guidance below for every confirmed code folder. Project-wide release and research guidance also applies when there is no code folder.
 
-5. **Check the installation.** Check the workflow and every Main Agent and Child Agent skill in the running Agent's install scope. Report missing files and direct the Managing Intelligence to `install.sh`. Check the selected Launcher's prerequisites and every named section in `~/.apiary/system/workflow.md`'s Launcher operations, including usable instructions for reading Child Agent context, watching both classes and stopping Main Agents. Check each used Agent Protocol File explains the Main Agent's own context reading. Stop and name missing files, sections or instructions, because later skills rely on them.
+5. **Check the installation.** Check the workflow and every Main Agent and Child Agent skill in your install scope. Report missing files and direct the Managing Intelligence to `install.sh`. Check the selected Launcher's prerequisites and every named section in `~/.apiary/system/workflow.md`'s Launcher operations, including usable instructions for reading Child Agent context, watching both classes and stopping Main Agents. Check each used Agent Protocol File explains the Main Agent's own context reading. Stop and name missing files, sections or instructions, because later skills rely on them.
 
 ## Child Agents
 
@@ -53,7 +53,7 @@ None.
 
 ## Done
 
-Report the Project Folder and any incomplete setup or failed installation checks. Guidance written in repos needs a commit by the Managing Intelligence, because project-setup works without git. Next: write-idea or write-bug.
+Report the Project Folder and any incomplete setup or failed installation checks. Guidance written in repos needs a commit by the Managing Intelligence, because you work without git. Next: write-idea or write-bug.
 
 ## Settings guidance
 

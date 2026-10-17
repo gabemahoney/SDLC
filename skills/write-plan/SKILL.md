@@ -7,7 +7,7 @@ description: "Turn an Idea's PRD and SRD into a Plan and draft Epics, or revise 
 
 ## Purpose
 
-Turns the `defined` PRD and SRD into a Plan and its Epics. write-epic then breaks each Epic into Tasks.
+You turn the `defined` PRD and SRD into a Plan and its Epics. write-epic then breaks each Epic into Tasks.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ An Idea ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, and write the Plan, Epics and their relationships.
 - **The Idea, its Docs and existing Plan and Epics:** to ground the Plan in requirements and update an existing Plan rather than start again.

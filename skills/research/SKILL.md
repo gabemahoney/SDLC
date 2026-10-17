@@ -7,7 +7,7 @@ description: "Investigate a Research ticket's question and complete its cited Re
 
 ## Purpose
 
-Keeps a research question, its evidence and review rounds together until the Managing Intelligence accepts the Report.
+You keep a research question, its evidence and review rounds together until the Managing Intelligence accepts the Report.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ A Research ticket ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read and write the Research ticket, its Report and review log, and store and link research artifacts.
 - **Research guidance:** `guide:research-guide.md`, found as `~/.apiary/system/workflow.md` describes, to follow the Project's research methods, evidence requirements and Report guidance.
 - **Research ticket and its existing Report:** at `setting:research_location` to understand the question, constraints, findings and latest review decision, and resume the right round.
@@ -50,7 +50,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-None: research does the investigation and brings each round to the Managing Intelligence.
+None: you investigate the question and bring each round to the Managing Intelligence.
 
 ## Writes
 

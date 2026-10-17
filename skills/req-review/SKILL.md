@@ -7,7 +7,7 @@ description: "Review an Idea's PRD or SRD, record findings and the Managing Inte
 
 ## Purpose
 
-Reviews draft requirements independently: the PRD before write-srd, then the SRD against the approved PRD before write-plan.
+You review draft requirements independently: the PRD before write-srd, then the SRD against the approved PRD before write-plan.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ An Idea ID or one of its PRD or SRD Doc IDs.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, record findings and decisions, and set their approved statuses.
 - **The Idea and every Doc child:** to see which Docs are `draft`, read unresolved findings and decisions, and review the current requirements.
 
@@ -45,11 +45,11 @@ If this session wrote the PRD or SRD you'd review, stop and suggest a fresh sess
 
 ## Child Agents
 
-None: req-review reviews the Docs itself.
+None: you review the Docs yourself.
 
 ## Writes
 
-req-review records readiness verdicts and declined or unaddressed findings with reasons on the Doc tickets. Requirements changes belong to the writing skills, so the review remains independent of the writers' work.
+You record readiness verdicts and declined or unaddressed findings with reasons on the Doc tickets. Requirements changes belong to the writing skills, so the review remains independent of the writers' work.
 
 - The PRD or SRD: set to `defined` when the Managing Intelligence approves it.
 - The Idea: set from `draft` to `defined` once its PRD and SRD are both `defined`.

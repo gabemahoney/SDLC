@@ -7,7 +7,7 @@ description: "Break one draft Epic into Tasks and Subtasks, or reconcile its exi
 
 ## Purpose
 
-Breaks one Epic into Tasks and Subtasks for develop-epic, after write-plan or a round of idea-review. Revises existing work when the Epic's requirements change.
+You break one Epic into Tasks and Subtasks for develop-epic, after write-plan or a round of idea-review. You revise existing work when the Epic's requirements change.
 
 ## Loading Apiary
 
@@ -20,12 +20,12 @@ An Epic ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read requirements and existing work, and write Tasks, Subtasks, Dependencies, tags and statuses.
 - **Epic, Plan, all sibling Epics and existing Tasks and Subtasks:** to establish the Epic's outcome, account for its Dependencies, avoid overlapping work and reconcile earlier planning and progress.
 - **Idea and its Docs:** the Plan's Idea, through the Ticket System Protocol File. Why: to follow the PRD, SRD and recorded decisions, including findings and Managing Intelligence answers recorded on the tickets they concern.
-- **Guidance Documents:** `guide:engineering-best-practices.md`, `guide:test-guide.md` and `guide:doc-writing-guide.md` for each affected code folder, found as `~/.apiary/system/workflow.md` describes, so the Tasks and Subtasks it writes follow the Project's engineering, testing and documentation guidance.
+- **Guidance Documents:** `guide:engineering-best-practices.md`, `guide:test-guide.md` and `guide:doc-writing-guide.md` for each affected code folder, found as `~/.apiary/system/workflow.md` describes, so the Tasks and Subtasks you write follow the Project's engineering, testing and documentation guidance.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

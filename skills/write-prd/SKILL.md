@@ -7,7 +7,7 @@ description: "Write or revise an Idea's Product Requirements Document (PRD) from
 
 ## Purpose
 
-Follows write-idea and writes the product requirements for write-srd, req-review and planning.
+You follow write-idea and write the product requirements for write-srd, req-review and planning.
 
 ## Loading Apiary
 
@@ -21,7 +21,7 @@ An Idea ID.
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
 - **PRD template:** the file at the path named by `setting:prd_template`. Why: to structure the PRD.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, and create or update its PRD.
 - **The Idea and its existing Docs:** to gather requirements, find the PRD to revise and determine whether an SRD exists.
 
@@ -50,7 +50,7 @@ None: the PRD can be written or revised at any Idea status.
 
 ## Child Agents
 
-None: write-prd interviews and writes the PRD itself.
+None: you interview the Managing Intelligence and write the PRD yourself.
 
 ## Writes
 

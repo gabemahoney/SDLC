@@ -7,7 +7,7 @@ description: "File a new Idea from a description of the work or intake input suc
 
 ## Purpose
 
-Files a new Idea in `draft`. It is the first step of the Idea flow; write-prd comes next.
+You file a new Idea in `draft` as the first step of the Idea flow; write-prd comes next.
 
 ## Loading Apiary
 
@@ -21,12 +21,12 @@ A description of the work, or intake input such as an issue URL.
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the Source Reference resolver named by `setting:new_idea_intake`. Why: to check the input and prepare the Idea according to that intake.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to create the Idea and store its body and any Source Reference.
 
 ## Gate
 
-None: write-idea creates a new ticket.
+None: you create a new ticket.
 
 ## Steps
 
@@ -40,7 +40,7 @@ None: write-idea creates a new ticket.
 
 ## Child Agents
 
-None: write-idea files the Idea itself.
+None: you file the Idea yourself.
 
 ## Writes
 

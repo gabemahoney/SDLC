@@ -7,7 +7,7 @@ description: "File a new Bug from a report or intake input such as an issue URL,
 
 ## Purpose
 
-Records a new defect report as a Bug for define-bug to complete and validate.
+You record a new defect report as a Bug for define-bug to complete and validate.
 
 ## Loading Apiary
 
@@ -15,13 +15,13 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A defect report or intake input such as an issue URL, because this skill creates the Bug ticket.
+A defect report or intake input such as an issue URL, because you create the Bug ticket.
 
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the Source Reference resolver named by `setting:new_bug_intake`. Why: to check the input and prepare the Bug according to that intake.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to create the Bug and store its body and any Source Reference.
 - **Bug writing guidance:** `guide:bug-writing-guide.md`, found as `~/.apiary/system/workflow.md` describes, to write the supplied report in the Project's format.
 
@@ -40,7 +40,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-None: write-bug files the Bug itself.
+None: you file the Bug yourself.
 
 ## Writes
 
