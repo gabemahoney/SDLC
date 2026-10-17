@@ -1,6 +1,6 @@
 ---
 name: write-srd
-description: "Write or revise an Idea's Software Requirements Document (SRD) from its PRD and codebase, and model in TLA+ any requirements with concurrency or a non-trivial state machine."
+description: "Write or revise an Idea's Software Requirements Document (SRD) from its PRD and codebase, and model in TLA+ any requirements with concurrency or a state machine."
 ---
 
 # write-srd
@@ -39,7 +39,7 @@ The Idea's PRD is `defined`, because the SRD builds on settled product requireme
 
 2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
-3. **Model in TLA+ only what needs it.** Model an SR group when it has concurrency (things happening at the same time, retries, partial failure) or a state machine with more than a few states or transitions, because those hide ordering bugs that reading and tests miss. Include already-modelled groups a revision changed. Most SRDs need neither, so skip this step. The checker is slow, so each model is reviewed before it runs. For each picked SR group, in parallel:
+3. **Model in TLA+ only what needs it.** Model an SR group when it has concurrency (things happening at the same time, retries, partial failure) or a state machine, because those hide ordering bugs that reading and tests miss. Include already-modelled groups a revision changed. Most SRDs need neither, so skip this step. The checker is slow, so each model is reviewed before it runs. For each picked SR group, in parallel:
    1. **Write.** Dispatch a TLA+ Writer with the SR group and what to model. It writes the model as a TLA+ spec Doc on the Idea, with the model files attached to that Doc, and doesn't run it yet.
    2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec and the SRD. It reports whether the model matches the SRD and its invariants are meaningful.
    3. **Fix.** If there are findings, resume the same Writer with them, then go back to 2 with a fresh Reviewer.
