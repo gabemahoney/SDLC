@@ -32,36 +32,6 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Specific rules:** Changes no tracked file. When it cannot reproduce or settle the report from source, leaves Bug `draft`, records what it tried and asks the Managing Intelligence whether it is real.
 
-## develop-epic
-
-**Required Reading:** Epic work, dependencies, Idea requirements, progress and findings; `build-commands`, checkout state, changes, Subagent reports and its own context reading, to execute and resume Tasks.
-
-**Gate:** Epic `defined` or `active`; every Epic it depends on `done`; its Plan `defined` or `active`. Re-check the Plan before each Task and stop cleanly if it went back to `draft`. A re-run on a `done` Epic may only finish the Plan's completion check.
-
-**Owned transitions:** **Idea:** develop-epic sets `active` when starting an Epic
-
-**Plan:** develop-epic sets `active` when starting an Epic
-
-**Plan:** develop-epic sets `done` when finishing an Epic leaves every Epic in the Plan `done`
-
-**Epic:** develop-epic sets `active`, then `done`.
-
-**Task:** develop-epic also creates integration fix Tasks `draft`, sets their `thinking_level:` tags and sets them `defined`
-
-**Task:** develop-epic sets Tasks `active`, then `done`
-
-**Task:** `done` requires every Subtask to be `done`.
-
-**Subtask:** creates `draft`, then sets `defined` for its integration fix Tasks
-
-**Specific rules:** Before each Task after the first, develop-epic checks its own context use per the Agent Protocol File. At 75% or more, or a reading older than its freshness window, stop at that Task boundary and name the re-run for a new session. The Managing Intelligence restarts it, through the Launcher for a Worker, per its Launcher Protocol File. With no reading, continue and report it.
-
-The Code Reviewer starts after the Engineer, while Test Writers work; Test Reviewer after Test Writers when tests changed, while Doc Writer works; Doc Reviewer after Doc Writer; Product Manager last. Collects all findings before one fix round, resuming each affected executor once; re-reviews changed work with the same pipeline.
-
-Dispatches Integration Tester after flagged Tasks and the last Task. Flagged Task and Epic wait for a pass or Managing Intelligence waiver. Source failures become fix Tasks in the same Epic, grouped and tagged by develop-epic, with the full Task review pipeline and no Product Manager plan check. Re-runs Integration Tester; a failure an earlier fix Task was meant to fix that still stands stops for the Managing Intelligence.
-
-Gets the Product Manager's end-of-Epic check after integration; records its report without making it a blocker. Records commits, integration results and unacted-on review feedback on the Epic.
-
 ## idea-review
 
 **Required Reading:** Idea requirements, Plan and Epics, round progress and earlier feedback; `build-commands`, finished product, recorded commits and review reports, to check the whole Idea.
@@ -144,7 +114,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 **Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
 
-**Specific rules:** Unit tests only. Each lane changes its own files and exclusively used fixtures/helpers; last Test Writer makes needed shared changes and runs the full unit suite in each changed repo. Every source-changing pass has one. For a Bug, adds a unit test failing before and passing after the fix. Never commit.
+**Specific rules:** Unit tests only. Each lane changes its own files and exclusively used fixtures/helpers; last Test Writer makes needed shared changes and runs the full unit suite in each changed repo. For a Bug, adds a unit test failing before and passing after the fix. Never commit.
 
 ## Doc Writer
 
@@ -284,20 +254,19 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 **Bug:** the Managing Intelligence sets it back to `draft` to send it back to define-bug.
 
-## Executor rules (moved from workflow.md, for develop-epic and fix-bug)
+## Executor rules for fix-bug
 
-Fold these into develop-epic and fix-bug when they are written, and define "lane" there.
+Fold these into fix-bug when it is written, and define "lane" there. develop-epic now holds its executor rules.
 
 
 A Subagent loads the Guidance Documents of each repo it works in and may read any repo for context.
 
 **Fresh start:** a new dispatch with no earlier context.
 
-**Reuse:** resume the same Subagent for its Task or Bug. Keep its Guidance Documents. Add the Guidance Documents of any newly assigned repos.
+**Reuse:** resume the same Subagent for its Bug. Keep its Guidance Documents. Add the Guidance Documents of any newly assigned repos.
 
-- **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for each Task (or for the Bug in fix-bug). Fix rounds reuse only the executors whose work the findings touch. The next Task or Bug starts fresh executors.
-- **TLA+ Writer:** write-srd resumes the same Writer for each model's fixes and checker runs.
-- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Researcher, the TLA+ Reviewer and the Integration Tester.
+- **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for the Bug. Every source-changing pass has a Test Writer. Fix rounds reuse only the executors whose work the findings touch. The next Bug starts fresh executors.
+- **Code, Test and Doc Reviewers and Integration Tester:** start fresh on every dispatch.
 
 #### Replacing an executor
 
@@ -309,7 +278,7 @@ Subagents never talk to each other. The skill coordinates them: it reads each Su
 
 #### Progress record
 
-On the skill's ticket, record each Subagent kept for reuse: its Subagent Role, its Task or Bug, its ID from the Agent, its name if available, and its dispatch Thinking Level.
+On the skill's ticket, record each Subagent kept for reuse: its Subagent Role, its Bug, its ID from the Agent, its name if available, and its dispatch Thinking Level.
 
 Update the record after each report. After compaction or a re-run, use the record to resume each Subagent by name if available, otherwise by ID.
 
