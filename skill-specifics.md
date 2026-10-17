@@ -32,16 +32,6 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Specific rules:** Changes no tracked file. When it cannot reproduce or settle the report from source, leaves Bug `draft`, records what it tried and asks the Managing Intelligence whether it is real.
 
-## idea-review
-
-**Required Reading:** Idea requirements, Plan and Epics, round progress and earlier feedback; `build-commands`, finished product, recorded commits and review reports, to check the whole Idea.
-
-**Gate:** Plan `done`; no worktree of its Epics still unmerged.
-
-**Owned transitions:** Creates a Round Feedback Epic `draft`; sets Plan `done` → `active` when filing it.
-
-**Specific rules:** Each round dispatches Code, Test and Doc Reviewers and Product Manager, and demonstrates acceptance criteria. Has no executors. Files all unmet requirements/acceptance criteria and real defects as one `Round <N> Feedback` Epic without asking. A trivial-only round files nothing and lists findings in its final report. A finding an earlier feedback Epic was meant to fix that still stands stops for the Managing Intelligence. Problems outside the Idea are report suggestions for write-bug or write-idea.
-
 ## fix-bug
 
 **Required Reading:** Bug, dependencies, tag, progress and source references; `build-commands`, fix and merge context and Subagent reports, to fix and resume the Bug.
