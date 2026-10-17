@@ -38,7 +38,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Write or revise the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's choices, using the Task template below. Account for sibling Epics and plan on prerequisite Epics delivering their outcomes before execution, so their work is planned once.
+1. **Write or revise the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's choices, using the Task template below. Leave out work that a sibling or prerequisite Epic already covers, and assume prerequisite Epics are `done` before this one runs, so no work is written twice.
    - If Tasks already exist, revise every affected Task and Subtask, whatever its status, from recorded progress and current requirements. Include removing delivered functionality that the requirements withdraw, so the software will match them. Add new work, remove obsolete unimplemented work, and leave unaffected work as it is.
 
 2. **Plan each draft Task's Subtasks.** Work in Dependency order. For each Task, save it, then dispatch the Engineer, Test Writer and Doc Writer planners described in Dispatches. Each reads the code, tests or docs its part needs and proposes that part's Subtasks, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below. Assign each draft Task a `thinking_level:<label>` tag, as the Thinking Level guidance below describes, because develop-epic uses it for the Task's executors.
@@ -52,14 +52,14 @@ Run only when all of these are true:
 ## Dispatches
 
 - **Engineer planner:** launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
-- **Test Writer planner:** launch for each Task needing source or unit-test changes, after engineering proposals it needs are available. Expect unit-test Subtasks, fixture planning, suggested Test Writer Lanes, the final full-unit-suite Subtask, and a unit-test review Subtask, so the tests are checked for coverage and quality as well as passing.
+- **Test Writer planner:** launch for each Task needing source or unit-test changes, after engineering proposals it needs are available. Expect unit-test Subtasks, fixture planning, suggested Test Writer Lanes, and the final full-unit-suite Subtask. develop-epic's Test Reviewer checks the tests' quality independently.
 - **Doc Writer planner:** launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
 - **Product Manager:** launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
 
 ## Writes
 
 - **Tasks and Subtasks:** children of the Epic and its Tasks respectively, in the Plans store. New and revised tickets start `draft` in steps 1–2. Reset affected tickets and their parent Tasks even if previously `active` or `done`, so develop-epic executes the revised work. Delete obsolete unimplemented work. Each Task gets a `thinking_level:<label>` tag; each Subtask names its executor. Record a Dependency from each waiting Task or Subtask to its prerequisite so execution follows the required order.
-- **The Epic and its draft children:** set to `defined` in step 4. The Epic holds incomplete planning work so a later Run can resume it.
+- **The Epic and its draft children:** set to `defined` in step 4. The Epic records any unfinished writing, so a later Run can resume it.
 
 ## Done
 
@@ -85,7 +85,7 @@ Every Subtask names its executor: Engineer, Test Writer or Doc Writer. Include a
 - **Key Files:** give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
 - **Acceptance Criteria:** state observable, testable conditions for completion. For example, a CSV export's fields are correctly quoted and its existing JSON export still works.
 
-## Planning guidance
+## Writing guidance
 
 Keep each Task's implementation, tests and documentation together so its outcome can be checked and committed as a whole. Reference the tickets holding applicable Managing Intelligence decisions so executors follow the current decisions.
 
@@ -96,7 +96,7 @@ Every Subtask follows the Project's Guidance Documents, because they hold the Pr
 - `test-guide.md` for what kinds of tests are needed and how they're written and organized;
 - `doc-writing-guide.md` for which documents need work and what belongs in them.
 
-Plan the work each guide requires, such as a test type or an engineering step, inside the Task it belongs to.
+Write the work each guide requires, such as a test type or an engineering step, into the Task it belongs to.
 
 ## Thinking Level guidance
 
@@ -109,14 +109,14 @@ A Task's tag sets how hard its Engineer, Test Writer and Doc Writer think, so ma
 
 When unsure between two levels, choose the higher one.
 
-## Planning the tests
+## Writing the testing Subtasks
 
-Plan each Task's testing Subtasks with two goals in mind:
+Write each Task's testing Subtasks with two goals in mind:
 
-1. **Reuse the Project's test setup.** Plan which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
+1. **Reuse the Project's test setup.** Say which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
 2. **Let Test Writers work in parallel.** develop-epic can run several Test Writers on one Task, one per Lane. A **Lane** is a group of test files one Writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so Writers don't edit the same helper or test the same thing twice. develop-epic adjusts them to the actual code.
 
-Test each behaviour in one place only, so the same thing isn't tested twice. Plan tests to update, obsolete tests to remove and missing coverage to add. The full unit suite runs once, at the end, by the last Test Writer, so one Writer checks everyone's changes together.
+Don't write two tests that check the same thing at the same level, such as two unit tests of the same quoting rule; tests at different levels, such as a unit test and an end-to-end test, can cover the same behaviour. Include tests to update, obsolete tests to remove and missing coverage to add. The full unit suite runs once, at the end, by the last Test Writer, so one Writer checks everyone's changes together.
 
 ## Quality checklist
 
@@ -124,9 +124,9 @@ Test each behaviour in one place only, so the same thing isn't tested twice. Pla
 - [ ] Every proposed change serves the requirements or applicable Guidance Documents, and its size fits the outcome.
 - [ ] Prerequisite and sibling Epic work is accounted for, and each Task has a coherent outcome and the Dependencies it needs.
 - [ ] Each Subtask has an executor, the four template sections and concrete Key Files in a named repo or code folder.
-- [ ] Test proposals identify fixture reuse and changes, test each behaviour in one place, and keep test files that share changed setup in the same Lane.
+- [ ] Test proposals identify fixture reuse and changes, avoid duplicate checks at the same level, and keep test files that share changed setup in the same Lane.
 - [ ] Every Task changing source or unit tests has a final full-unit-suite Subtask following its other unit-test work.
 - [ ] Documentation work follows its implementation and tests and is allowed by the doc-writing guide.
 - [ ] Every Task to execute has a Thinking Level suited to its complexity and risk.
 - [ ] A revision covers every affected Task and Subtask, whatever its earlier status, and leaves it ready for develop-epic.
-- [ ] The Product Manager has checked the whole Epic's planned work, and its findings have been addressed.
+- [ ] The Product Manager has checked the whole Epic's Tasks and Subtasks, and its findings have been addressed.
