@@ -38,12 +38,12 @@ Run only when both of these are true:
 
 ## Steps
 
-1. **Outline the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's settled choices. Account for all sibling Epics and assume prerequisite Epics deliver their stated outcomes before execution. Use the Task template below.
+1. **Outline the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's choices. Account for all sibling Epics and assume prerequisite Epics deliver their stated outcomes before execution. Use the Task template below.
    - If Tasks already exist, reconcile them with current requirements and recorded progress. Preserve `done` Tasks and Subtasks. Revise, add or drop unfinished work; put further changes to completed capabilities into unfinished Tasks.
 
 2. **Plan each Task's Subtasks.** Work through Tasks in dependency order. Use executor planners for detailed research, because this skill needs its context for the remaining Tasks. Combine their proposals using the guidance below. Assign each unfinished Task a `thinking_level:<label>` tag suited to its complexity and risk.
    - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
-   - If proposals require a product decision or conflict with the SRD's settled choices, stop for the Managing Intelligence's decision. Record it on the affected ticket.
+   - If proposals require a product decision or conflict with the SRD's choices, stop for the Managing Intelligence's decision. Record it on the affected ticket.
 
 3. **Check the whole Epic with the Product Manager.** Save the proposed Tasks and Subtasks, then dispatch the Product Manager. Revise from its findings and check the Quality checklist below. Record findings and their resolution on the tickets they concern.
 

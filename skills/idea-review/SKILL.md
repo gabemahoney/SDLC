@@ -75,7 +75,7 @@ Report the Idea ID, round number, reviewed commits, reviewer results, acceptance
 
 A non-trivial finding is an unmet requirement or acceptance criterion, or a real defect in the Idea's work. Everything else is trivial. Judge by evidence and impact, so review rounds converge on a working product. Combine duplicate findings and cite the affected requirement, repo and file or observed behaviour, explaining the problem and the result a fix must achieve.
 
-Keep the work within the Idea's requirements and the SRD's settled choices. Include missing functionality, regressions and excess functionality that conflicts with those requirements. Honour recorded Managing Intelligence decisions when judging findings. Problems outside the Idea become suggestions for write-bug or write-idea in the report.
+Keep the work within the Idea's requirements and the SRD's choices. Include missing functionality, regressions and excess functionality that conflicts with those requirements. Honour recorded Managing Intelligence decisions when judging findings. Problems outside the Idea become suggestions for write-bug or write-idea in the report.
 
 Keep demonstrated behaviour, observed failures and checks left for manual validation clearly apart. Include relevant earlier integration results and waivers so the Managing Intelligence can see what was tested.
 

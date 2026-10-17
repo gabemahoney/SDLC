@@ -7,7 +7,7 @@ description: "Turn an Idea's PRD and SRD into a Plan and draft Epics, or revise 
 
 ## Purpose
 
-Turns settled product and software requirements into a Plan and its Epics. write-epic then breaks each Epic into Tasks.
+Turns the `defined` PRD and SRD into a Plan and its Epics. write-epic then breaks each Epic into Tasks.
 
 ## Loading Apiary
 
@@ -94,7 +94,7 @@ Plan documentation only as `doc-writing-guide.md` allows: it decides which doc f
 
 ## Quality checklist
 
-- [ ] The Plan covers the PRD's Goals and acceptance criteria and the SRD's requirements and settled choices.
+- [ ] The Plan covers the PRD's goals and acceptance criteria and the SRD's requirements and choices.
 - [ ] Each Epic meets the workflow's Epic rule and has one coherent outcome with a concrete demonstration of success.
 - [ ] Each Epic leaves the software working, and its prerequisites are recorded as dependencies.
 - [ ] The Epic count fits the size of the change, with a reason for any departure from the guidance range.
