@@ -7,7 +7,7 @@ description: "Review an Idea's PRD, or its PRD and SRD together, and mark them d
 
 ## Purpose
 
-Reviews the PRD before write-srd, then the PRD and SRD together before write-plan. It checks them for consistency, completeness and clarity, to ensure their quality. Run it in a fresh session, not the one that wrote the PRD or SRD, so the review is independent.
+Reviews the PRD before write-srd, then the PRD and SRD together before write-plan. It checks them for consistency, completeness and clarity, to ensure their quality.
 
 ## Loading Apiary
 
@@ -29,9 +29,11 @@ An Idea ID or one of its PRD or SRD Doc IDs, with any earlier findings and Manag
 
 ## Gate
 
-Run only when both are true:
+Run only when both of these are true:
 - The Idea's PRD or SRD is `draft`. If neither is, there's nothing to review; say so and stop. If the Idea has no PRD, suggest write-prd.
 - The Idea isn't `done`, because done work is already shipped. If it is, stop and say so.
+
+If this session wrote the PRD or SRD you'd review, stop and suggest a fresh session, so the review is independent.
 
 ## Steps
 
@@ -40,8 +42,6 @@ Run only when both are true:
 2. **Get the Managing Intelligence's decision.** Present your findings and a readiness verdict for each Doc. The Managing Intelligence decides which findings to accept and which Docs to approve. Only when the Managing Intelligence approves a PRD or SRD, set it `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
    - If revisions are needed, hand off the accepted findings and declined findings separately. Suggest that the Managing Intelligence run write-prd for product changes or write-srd for software changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
    - Once both the PRD and SRD are `defined`, set a `draft` Idea `defined`.
-
-3. **Settle other Docs separately.** For each `draft` Doc other than the PRD, SRD or a TLA+ spec, ask the Managing Intelligence whether to mark it `defined`, and do so on yes. These approvals are independent of the Idea's approval.
 
 ## Dispatches
 
@@ -53,7 +53,6 @@ The PRD and SRD, Doc children of the Idea, each set `defined` when the Managing 
 
 The Idea, set from `draft` to `defined` once its PRD and SRD are both `defined`.
 
-Other Docs, excluding TLA+ specs, move from `draft` to `defined` on their own approval.
 
 ## Done
 
