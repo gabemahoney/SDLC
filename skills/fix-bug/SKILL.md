@@ -45,9 +45,9 @@ Run only when all of these are true:
 
 3. **Prove the repair.** Once code, unit tests and documentation settle, pass the Integration gate below. Rerun define-bug's recorded reproduction against the repaired worktrees, using the same inputs and setup, and record the observed result alongside the regression evidence.
    - If the symptom remains, route it through the repair pipeline.
-   - If the reproduction still cannot run, record why and stop for the Managing Intelligence to arrange verification. Resume this check when its conditions are available.
+   - If the reproduction can't run, record why and stop for the Managing Intelligence's decision on how to verify the fix. Record that decision on the Bug and follow it.
 
-4. **Commit, merge and hand off.** Once accepted findings are resolved, regression evidence is complete, the original reproduction shows the expected behaviour, required checks pass and the integration gate is met, commit the Bug's changes in each worktree. Merge each into its recorded target from the main checkout, following `release-guide.md`. Record successful merges and remove their worktrees and branches. Leave the Bug `active` for the Managing Intelligence's check.
+4. **Commit, merge and hand off.** Once accepted findings are resolved, regression evidence is complete, the original reproduction, or the verification the Managing Intelligence chose, shows the expected behaviour, required checks pass and the integration gate is met, commit the Bug's changes in each worktree. Merge each into its recorded target from the main checkout, following `release-guide.md`. Record successful merges and remove their worktrees and branches. Leave the Bug `active` for the Managing Intelligence's check.
    - If a merge conflicts, preserve that worktree and record the conflicting files and completed merges. Stop for resolution; a later Run resumes the unfinished merge and cleanup.
 
 ## Dispatches
