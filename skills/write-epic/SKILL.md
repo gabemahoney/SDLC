@@ -107,7 +107,7 @@ A Task's tag sets how hard its Engineer, Test Writer and Doc Writer think, so ma
 - `xhigh`: work where a mistake is costly or hard to spot, such as concurrency, security, data migrations or an interface between components.
 - `max`: the hardest, highest-risk Tasks only, because it is the slowest and most expensive.
 
-Prefer the higher level when unsure between two, and raise it when a Task's Context shows the risk.
+When unsure between two levels, choose the higher one.
 
 ## Fixture planning and Test Writer Lanes
 
