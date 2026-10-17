@@ -62,7 +62,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 ## Done
 
-Report the Plan's ID and any incomplete work.
+Report the Plan's ID, and any Product Manager findings left unaddressed with the reason.
 
 Suggest write-epic on each `draft` Epic in dependency order.
 
