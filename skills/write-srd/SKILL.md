@@ -20,8 +20,8 @@ An Idea ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **The Idea, its Docs and Plan:** to understand the PRD, read accepted findings on the SRD and the Managing Intelligence's change requests on the Idea or SRD, find Model Docs to revise, and identify the Plan and active Epics affected by a revision.
 - **Engineering guidance:** `engineering-best-practices.md` for each explored repo, found as `workflow.md` describes, to ground constraints in the Project's engineering conventions.
@@ -40,7 +40,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `build-commands.md`, found as `workflow.md` describes, for the language and checker in `## Model check`. If missing, ask the Managing Intelligence to supply it. For each group, independently and in parallel where possible:
    - Have `model-writer` write or update its Formal Model and attach the files to its Model Doc.
-   - Have a fresh `model-review` check it against the SRD before running the checker, because checker runs can be slow. Judge findings under the shared rule and record repairs on the Model Doc. Resume the writer for repairs, then review again.
+   - Have `model-review` check it against the SRD before running the checker, because checker runs can be slow. Judge findings under the shared rule and record repairs on the Model Doc. Resume the writer for repairs, then review again.
    - Once accepted findings are fixed, resume the writer to run the checker and retain its results on the Model Doc. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
 
 4. **Review the whole draft** for succinctness, software obligations, dropped ideas and the Quality checklist, in that order. Repeat after changes until a full round changes nothing, so revisions receive the same scrutiny as a first draft.
@@ -50,11 +50,11 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
    Return changed or newly modelled groups to step 3 so models cover the final requirements, then save the SRD.
 
-## Dispatches
+## Child Agents
 
-- **`model-writer`:** Launch for each modelled SR group. Retain it for the group's write, fix and run cycle under the shared Context rule. Expect a Model Doc, checker results and any SRD bugs they show.
-- **`model-review`:** Launch fresh for each review in step 3. Expect findings with references and suggested fixes, or none.
-- **`researcher`:** Launch one per question needing real digging, in parallel. Expect a cited answer in that Research ticket's Report.
+- **`model-writer`:** Start fresh for each modelled SR group and reuse it for the write, fix and run cycle to preserve its knowledge of the model. Expect a Model Doc, checker results and any SRD bugs they show.
+- **`model-review`:** Start fresh for each review in step 3 so each assessment is independent. Expect findings with references and suggested fixes, or none.
+- **`researcher`:** Start fresh for each question needing real digging so its context stays focused on that question. Launch in parallel. Expect a cited answer in that Research ticket's Report.
 
 ## Writes
 

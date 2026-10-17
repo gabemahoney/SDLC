@@ -20,7 +20,7 @@ A Bug ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read and update the Bug, its status and its tags.
 - **The Bug and its Dependencies:** to check readiness and read the report, earlier validation, retained reproduction and Managing Intelligence decisions, including why a fix was returned.
 - **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes, to complete the Bug's write-up in the Project's format.
@@ -49,7 +49,7 @@ Run only when all of these are true:
    - If the reported behaviour cannot happen or is intended, set the Bug `invalid` and explain why, citing the evidence or the Managing Intelligence's decision.
    - If the result is inconclusive, leave the Bug `draft`, record what was tried and why it is inconclusive, and ask the Managing Intelligence whether the Bug is real. Record their decision on the Bug and apply the corresponding outcome above.
 
-## Dispatches
+## Child Agents
 
 None: define-bug validates the Bug itself.
 

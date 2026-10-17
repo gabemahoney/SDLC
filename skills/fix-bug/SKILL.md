@@ -20,8 +20,8 @@ A Bug ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Bug and its dependencies and record execution evidence, decisions and status.
 - **The Bug and its Dependencies:** to read the confirmed behaviour, retained reproduction, `thinking_level:<label>` tag, progress and Managing Intelligence decisions, including why an earlier fix was returned.
 - **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes, to judge findings, check the fix and affected documentation, and commit, merge and push as permitted.
@@ -48,14 +48,16 @@ Run only when all of these are true:
 
    Merge from the main checkouts into the recorded targets. If a target or conflict resolution changes the repair, review and check the combined result before cleanup because earlier evidence no longer covers it. Record successful merges, then remove merged worktrees and branches. Leave the Bug `active` for acceptance. If a merge conflicts, preserve its worktree, record conflicts and completed merges, and stop for resolution; a later Run resumes there.
 
-## Dispatches
+## Child Agents
 
-- **`engineer`:** Launch for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
-- **`test-writer`:** Launch for testing assignments and after every source-changing pass, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and assigned test results.
-- **`doc-writer`:** Launch after source and testing assignments finish to assess and update documentation following `doc-writing-guide.md`. Resume when review findings or repairs affect documentation. Expect changes or a reason none are needed.
-- **`code-review`:** Launch after source changes, while `test-writer` Child Agents work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
-- **`test-review`:** Launch after testing assignments finish, while the `doc-writer` works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
-- **`doc-review`:** Launch after the `doc-writer` finishes. Expect findings on complete touched documents and documentation missing or made outdated by the fix, or no findings.
+- **`engineer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
+- **`test-writer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch for testing assignments and after every source-changing pass, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and assigned test results.
+- **`doc-writer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch after source and testing assignments finish to assess and update documentation following `doc-writing-guide.md`. Include review findings or repairs that affect documentation. Expect changes or a reason none are needed.
+- **`code-review`:** Start fresh every time so each assessment is independent. Launch after source changes, while `test-writer` Child Agents work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
+- **`test-review`:** Start fresh every time so each assessment is independent. Launch after testing assignments finish, while the `doc-writer` works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
+- **`doc-review`:** Start fresh every time so each assessment is independent. Launch after the `doc-writer` finishes. Expect findings on complete touched documents and documentation missing or made outdated by the fix, or no findings.
+
+Record the current phase, next work, integration repair-round count and executor IDs, skills, testing assignments and Thinking Levels on the Bug so later Runs can resume.
 
 ## Writes
 
@@ -71,7 +73,7 @@ Suggest the Managing Intelligence check the fix: they set the Bug `done` on acce
 
 fix-bug coordinates executors and independent reviewers and owns commits. Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the skills the repair needs, including doc-writer assessment for every Bug so restored behaviour does not hide documentation gaps.
 
-Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order. Give doc-writer one pass after source and tests finish; fresh reviewers check repairs. Repeat until accepted findings are fixed.
+Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order. Give doc-writer one pass after source and tests finish; reviewers check repairs. Repeat until accepted findings are fixed.
 
 The sole test-writer or final writer after multiple Lanes owns the full `## Unit tests` run for every affected code folder. Run after the combined changes and later source or unit-test repairs, skipping sections marked `none`. The writer fixes test failures; source failures return through engineer, testing and review. Other executors run targeted checks so they do not each repeat the full suite.
 
@@ -85,18 +87,12 @@ A **Lane** is a group of test files one test-writer can change independently. Re
 
 Each Lane owns whole files and exclusively used setup. Writers record shared changes and gaps for a final test-writer after all Lanes finish. That writer changes shared files, closes gaps and runs the full unit suite. A sole writer owns all tests and helpers. Keep this ownership during repairs.
 
-## Executor reuse and progress
-
-Retain executors for repair rounds and apply the shared retained Child Agent Context rule before resuming. If continuation fails or the approach changes, resolve uncertain delivery before replacing the executor so two agents cannot share an assignment. Reviewers start fresh for independence.
-
-Record the current phase, next work, integration repair-round count and executor IDs, skills, testing assignments and Thinking Levels on the Bug so later Runs can resume.
-
 ## Integration gate
 
 After implementation and review, fix-bug runs `## Integration tests` for every affected code folder, following `test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Bug.
 
 Required suites pass or the Managing Intelligence explicitly waives remaining failures. Record waivers; if suites cannot run, stop for environment repair or a waiver.
 
-Send test failures to test-writer, followed by fresh test-review and accepted repairs. Source failures go through the Repair pipeline. Rerun integration over the combined repairs. Stop for the Managing Intelligence if source-fix rounds fail to reduce failures or failures remain after three rounds, to bound unsuccessful attempts.
+Send test failures to test-writer, followed by test-review and accepted repairs. Source failures go through the Repair pipeline. Rerun integration over the combined repairs. Stop for the Managing Intelligence if source-fix rounds fail to reduce failures or failures remain after three rounds, to bound unsuccessful attempts.
 
 Results and waivers cover only the files checked. Later source or integration-test changes require a new result or waiver; source changes also require new regression and reproduction evidence. Record unfinished work so a later Run can resume the gate.

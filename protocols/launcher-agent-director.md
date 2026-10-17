@@ -40,7 +40,7 @@ Replace `engineer` with the assigned skill and include its launch context in the
 
 ## Resume a Child Agent
 
-Read its recorded identity and current state with `get`, then apply `workflow.md`'s retained Child Agent Context rule using the reading below. Continue an idle `waiting` Child Agent with:
+Read its recorded identity and current state with `get`, then apply `workflow.md`'s reused Child Agent Context rule using the reading below. Continue an idle `waiting` Child Agent with:
 
 ```sh
 agent-director send-keys --instance-id '<child-id>' --text 'Continue from <ticket-id>.'
@@ -54,7 +54,34 @@ When a fresh replacement is needed, resolve any uncertain delivery and stop the 
 
 Get its `session_id`, `jsonl_path` and Agent with `agent-director get --instance-id '<child-id>'`. Confirm `parent_id` and match the session file's identity, because a parent's context says nothing about its child.
 
-Follow that Agent Protocol File's **Context use** instructions on the child's session. Retain the reading's session identity, source, history position, model, provider and capacity basis. Return unknown if identity, usage or compatible capacity cannot be established; `workflow.md` decides whether to resume or replace.
+### Claude Code
+
+Read the latest retained `statusLine` payload matching the child's `session_id`. Its context fraction is `context_window.used_percentage / 100`, which measures input including cached input. A status-line collector must already be configured to retain that payload.
+
+For a transcript estimate, use the child's recorded `jsonl_path`, normally `~/.claude/projects/{project}/{sessionId}.jsonl` (under `CLAUDE_CONFIG_DIR` when configured). On the active history after the latest compaction, take the latest valid assistant usage:
+
+```text
+used = input_tokens + cache_creation_input_tokens + cache_read_input_tokens + output_tokens
+context_fraction = used / capacity
+```
+
+Count each category once because cached input occupies context. For multi-iteration usage, use the last ordinary `message` or `fallback_message` iteration, excluding advisor and compaction iterations. Establish capacity from the child's model, provider and session data, including any tighter cap; a transcript usage count alone does not establish capacity.
+
+### Codex
+
+Use the child's recorded `jsonl_path`, or find its rollout under `$CODEX_HOME/sessions` (normally `~/.codex/sessions`) by matching `session_meta.payload.id` to its `session_id`. Read the latest complete `event_msg` with `payload.type` of `token_count` and non-null `info` on the active history after the latest compaction:
+
+```text
+used = payload.info.last_token_usage.total_tokens
+capacity = payload.info.model_context_window
+context_fraction = used / capacity
+```
+
+Use `last_token_usage` because `total_token_usage` accumulates across requests. Cached input and reasoning output are already included. A captured app-server `thread/tokenUsage/updated` reading for the same thread is another source. Validate capacity against the child's model, provider and configuration, including any tighter cap and reported reduction to the usable window.
+
+### Validate the reading
+
+Retain the child's session identity, source, history position, model, provider and capacity basis so later turns, compaction or configuration changes can be accounted for. Match usage and capacity accounting: Claude Code's status-line percentage measures input, while its transcript estimate includes output. Missing identity or usage, nonpositive capacity, an unchecked capacity default, incompatible accounting, incomplete writes or unresolved history means unknown, never zero. `workflow.md` decides whether to resume or replace.
 
 ## Know when a Child Agent's state changes
 

@@ -20,7 +20,7 @@ An Idea or Epic ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea or Epic and record merge and cleanup decisions on it.
 - **The Idea or Epic and its Plan:** for completion, worktree and Main Agent records, merge targets, cleanup choices and earlier results.
 - **Repo and merge state:** each main checkout and the ticket's registered worktrees and target checkouts. Why: to verify ownership, branches, uncommitted changes and merges against the ticket's record.
@@ -48,7 +48,7 @@ Run only when all of these are true:
 
 4. **Remove the completed worktrees and branches.** Remove each clean worktree once its branch is fully merged into the recorded target, then delete that branch. Keep anything git refuses to remove and record the failure, to preserve work that needs a decision. Remove the ticket's worktree folder once it is empty.
 
-## Dispatches
+## Child Agents
 
 None: teardown-worktree merges and removes the worktrees itself.
 

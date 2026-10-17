@@ -17,7 +17,7 @@ Every lesson from the User's reviews of `workflow.md`, write-idea and project-se
 10. **Say exactly where everything is.** Give full paths, and say how a setting value maps to a file (for example, `ticket_system: bees` → `~/.apiary/system/protocols/ticket-bees.md`). Never write "as your settings choose" or "load the X file". The paths are:
     - Apiary's installed files: `~/.apiary/system/` (`workflow.md`, `protocols/`, `templates/`);
     - settings: `<Project Folder>/.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`.
-11. **Every Read says why**, in the form "- **Name:** path. Why: …". A file the skill doesn't use is not a Read. Being covered in `workflow.md` doesn't exempt a file the skill does use. List `launcher.md` for skills that launch, resume, stop or inspect Main Agents or Child Agents, or check Launcher prerequisites, so lifecycle instructions are available when needed.
+11. **Every Read says why**, in the form "- **Name:** path. Why: …". A file the skill doesn't use is not a Read. Being covered in `workflow.md` doesn't exempt a file the skill does use. List `launcher.md` for skills that launch, resume, stop or inspect Main Agents or Child Agents, or check Launcher prerequisites, so lifecycle instructions are available when needed. Child Agent context readings belong in `launcher.md`; the Agent Protocol File covers the Main Agent's own context.
 12. **Templates the skill uses are named in its Required Reading,** with their paths.
 12a. **Thinking Levels are resolved by the caller.** A skill that launches an Agent reads `thinking_levels` and the selected Agent's model mapping for the target skill. Apply Task or Bug tag overrides as `workflow.md` describes, so launch settings follow the assignment.
 
@@ -38,7 +38,8 @@ Every lesson from the User's reviews of `workflow.md`, write-idea and project-se
 23. **Only real gates.** If the skill has no gate, say "None: <why>"; never write a weak gate like "check the creation input".
 24. **The skill is self-consistent.** Never tell the Agent to skip something an earlier step already ruled out. Never let one step contradict another.
 24a. **Child Agent skills require a Main Agent.** Their own Gate checks that relationship, because the Main Agent owns their assignment and receives their result.
-24b. **Launcher operations have named sections.** project-setup checks each heading and its instructions against `workflow.md` and stops on omissions, because the skills depend on those operations.
+24b. **The `## Child Agents` entries state fresh or reused.** Each names when to launch, the expected result, whether it starts fresh every time or is reused, the scope of reuse and a short reason, so its lifecycle is clear. Keep the context guard in `workflow.md` so every reused Child Agent follows the same rule.
+24c. **Launcher operations have named sections.** project-setup checks each heading and its instructions against `workflow.md` and stops on omissions, because the skills depend on those operations.
 25. **Nothing the User already reversed.** Check `/tmp/b-v38-pending-edits-next.md` (the DECIDED / REVISED lines are the User's decisions, and later lines override earlier ones), so no reversed decision creeps back in.
 
 ## Process

@@ -20,8 +20,8 @@ An Idea ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea and its Docs, and write the Plan, Epics and their relationships.
 - **The Idea, its Docs and existing Plan and Epics:** to ground the Plan in requirements and update an existing Plan rather than start again.
 - **Engineering, testing and documentation guidance:** `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` for each affected code folder, found as `workflow.md` describes, to plan engineering, testing and documentation work according to the Project's guidance.
@@ -44,15 +44,15 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
    - If the Idea has no Plan, create one and its Epics as `draft`.
    - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
-3. **Check the Plan with the `product-manager`.** Save the Plan and Epics, then launch `product-manager`. Judge every finding under the shared rule and launch a fresh review after significant changes. Then check the whole Plan against the Quality checklist below.
+3. **Check the Plan with the `product-manager`.** Save the Plan and Epics, then launch `product-manager`. Judge every finding under the shared rule and review again after significant changes. Then check the whole Plan against the Quality checklist below.
 
 4. **Set the Plan's status.** Only once the `product-manager`'s accepted findings are fixed and the Quality checklist passes:
    - If any Epic is `done` or `active`, or was before this revision, set the Plan `active`, because work is already underway.
    - Otherwise, set the Plan `defined`.
 
-## Dispatches
+## Child Agents
 
-- **`product-manager`:** Launch fresh after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes. An independent read checks the planner's judgement before the Plan is finalized.
+- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes.
 
 ## Writes
 

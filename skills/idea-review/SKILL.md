@@ -20,8 +20,8 @@ An Idea ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read requirements and progress, record review results and file feedback in the Plan.
 - **The Idea, its PRD, SRD, Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID and the Plan's Association to it. Why: to review the requirements, resume round progress and follow earlier findings, fixes, integration results, waivers and Managing Intelligence decisions.
 - **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `build-commands.md` for each reviewed repo, found as `workflow.md` describes, to judge the work against the Project's guidance and demonstrate acceptance criteria.
@@ -46,12 +46,12 @@ Run only when all of these are true:
 
 4. **Finish the round.** File its non-trivial findings in one `Round <N> Feedback` Epic, using the contents below. Reuse that round's Epic if filing was interrupted, so a restart creates no duplicate work. Record the handoff on the Idea: write-epic for feedback, then develop-epic, merging and another idea-review; or the Managing Intelligence's testing and acceptance when only trivial findings or none remain.
 
-## Dispatches
+## Child Agents
 
-- **`code-review`:** Launch in each round for the whole Idea's source changes. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
-- **`test-review`:** Launch in each round for the whole Idea's tests. Expect coverage, quality and duplication findings across the suite, or none.
-- **`doc-review`:** Launch in each round for the whole Idea's documentation. Expect findings on complete touched documents, including breaches anywhere in them and missing or outdated documentation, or none.
-- **`product-manager`:** Launch after the reviewers and acceptance demonstrations in each round. Expect findings against the PRD and SRD on coverage, scope and proportion, including incomplete work, conflicting decisions and unaddressed feedback.
+- **`code-review`:** Start fresh every time so each assessment is independent. Launch in each round for the whole Idea's source changes. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
+- **`test-review`:** Start fresh every time so each assessment is independent. Launch in each round for the whole Idea's tests. Expect coverage, quality and duplication findings across the suite, or none.
+- **`doc-review`:** Start fresh every time so each assessment is independent. Launch in each round for the whole Idea's documentation. Expect findings on complete touched documents, including breaches anywhere in them and missing or outdated documentation, or none.
+- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after the reviewers and acceptance demonstrations in each round. Expect findings against the PRD and SRD on coverage, scope and proportion, including incomplete work, conflicting decisions and unaddressed feedback.
 
 ## Writes
 

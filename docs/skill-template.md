@@ -29,7 +29,7 @@ What must be true before it changes anything, or "None: <why>". A skill for a Ch
 The work, in a few numbered steps: what to do, not how a capable Agent would do it. Name a stop for the Managing Intelligence's decision only where the design needs one.
 
 ## Child Agents
-For each skill it needs: launch a Child Agent with the <name> skill, as `launcher.md` describes. Say when and what result to expect, or "None: <why>".
+For each Child Agent skill, say when to launch it and what result to expect. State whether it starts fresh every time or is reused, with the scope of reuse and a short reason, so its lifecycle is clear. If none are needed, write "None: <why>".
 
 ## Writes
 Each ticket or file it creates or changes: which store or path, and which status (the transitions it owns).
@@ -52,4 +52,4 @@ Rules for writing a skill (see also docs/goals.md):
 - Capable Agents: no edge cases, no fault handling a capable Agent does anyway.
 - No random subsets: list every case or state a general rule.
 - Glossary terms in Title Case. Skill names use their installed names.
-- A skill that launches Child Agents lists `launcher.md` in Required Reading, with why it needs it. Shared Context rules belong in `workflow.md`; retain only skill-specific check timing here.
+- A skill that launches Child Agents lists `launcher.md` in Required Reading, for operations and Child Agent context readings. The Agent Protocol File covers the Main Agent's own context. Shared Context rules belong in `workflow.md`; retain only skill-specific check timing here.

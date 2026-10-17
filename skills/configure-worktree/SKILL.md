@@ -20,7 +20,7 @@ An Idea or Epic ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read the Idea or Epic and record decisions on it.
 - **The Idea or Epic:** to read its setup choices and earlier preparation or launch results so a resumed Run continues existing work.
 - **Repo state:** each main checkout at `<Project Folder>/<repo path>` and its registered worktrees. Why: to check branches, base commits, uncommitted changes and worktrees available for reuse.
@@ -47,7 +47,7 @@ Run only when all of these are true:
    - For worktree-only mode, finish after all repos are prepared.
    - Otherwise, follow the Launcher Protocol File to start or reuse the assignment's Main Agent at `<Project Folder>/.worktrees/<ticket id>/`, using the chosen Agent and its skill's Thinking Level. Confirm delivery of the skill and ticket IDs, and record the Main Agent identity and launch result so teardown-worktree can find it. On a resumed Run, reconcile the recorded Main Agent through the Launcher before launching, to avoid duplicate Main Agents.
 
-## Dispatches
+## Child Agents
 
 None: configure-worktree prepares the worktrees itself; the Launcher starts the Main Agent.
 

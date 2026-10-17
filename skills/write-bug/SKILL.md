@@ -21,7 +21,7 @@ A defect report or intake input such as an issue URL, because this skill creates
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the Source Reference resolver named by `new_bug_intake`. Why: to check the input and prepare the Bug according to that intake.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to create the Bug and store its body and any Source Reference.
 - **Bug writing guidance:** `bug-writing-guide.md`, found as `workflow.md` describes, to write the supplied report in the Project's format.
 
@@ -38,7 +38,7 @@ Run only when all of these are true:
 
 2. **File the Bug** as described under Writes.
 
-## Dispatches
+## Child Agents
 
 None: write-bug files the Bug itself.
 

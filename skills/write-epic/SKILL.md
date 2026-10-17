@@ -20,8 +20,8 @@ An Epic ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read requirements and existing work, and write Tasks, Subtasks, Dependencies, tags and statuses.
 - **Epic, Plan, all sibling Epics and existing Tasks and Subtasks:** to establish the Epic's outcome, account for its Dependencies, avoid overlapping work and reconcile earlier planning and progress.
 - **Idea and its Docs:** the Plan's Idea, through the Ticket System Protocol File. Why: to follow the PRD, SRD and recorded decisions, including findings and Managing Intelligence answers recorded on the tickets they concern.
@@ -45,16 +45,16 @@ Run only when all of these are true:
    - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
    - If planning raises a product question, or a planner's proposal conflicts with the SRD, ask the Managing Intelligence, because planning follows the defined requirements.
 
-3. **Check the whole Epic with the `product-manager`.** Save the Tasks and Subtasks, then launch `product-manager`. Judge every finding under the shared rule and launch a fresh review after significant revisions. Check the Quality checklist below.
+3. **Check the whole Epic with the `product-manager`.** Save the Tasks and Subtasks, then launch `product-manager`. Judge every finding under the shared rule and review again after significant revisions. Check the Quality checklist below.
 
 4. **Finalize the Epic.** Re-check the Plan's Gate condition, because an SRD revision may have paused planning. Only once the `product-manager`'s accepted findings are fixed and the Quality checklist passes, set draft Subtasks and Tasks `defined`, then the Epic `defined`.
 
-## Dispatches
+## Child Agents
 
-- **`engineer-planner`:** Launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
-- **`test-writer-planner`:** Launch for each Task once any engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `test-guide.md` requires, fixture planning, suggested Lanes and the final full-unit-suite Subtask. develop-epic's `test-review` checks test quality independently.
-- **`doc-writer-planner`:** Launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
-- **`product-manager`:** Launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
+- **`engineer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
+- **`test-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task once any engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `test-guide.md` requires, fixture planning, suggested Lanes and the final full-unit-suite Subtask. develop-epic's `test-review` checks test quality independently.
+- **`doc-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
+- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
 
 ## Writes
 

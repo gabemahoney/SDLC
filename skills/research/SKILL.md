@@ -20,7 +20,7 @@ A Research ticket ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read and write the Research ticket, its Report and review log, and store and link research artifacts.
 - **Research guidance:** `research-guide.md`, found as `workflow.md` describes, to follow the Project's research methods, evidence requirements and Report guidance.
 - **Research ticket and its existing Report:** at `research_location` to understand the question, constraints, findings and latest review decision, and resume the right round.
@@ -48,7 +48,7 @@ Run only when all of these are true:
 
 4. **Complete any extra outputs.** After the Report is accepted, produce any extra outputs `research-guide.md` requires from it. Record their locations and completion on the Research ticket, so an interrupted Run can finish what remains without repeating completed work. Apply this step to each newly accepted revision too, so the extra outputs stay current.
 
-## Dispatches
+## Child Agents
 
 None: research does the investigation and brings each round to the Managing Intelligence.
 

@@ -20,8 +20,8 @@ An Epic ID.
 ## Required Reading
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
-- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
+- **Launcher Protocol File:** `launcher.md`, selected as `workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to read requirements and progress, and record results, fix Tasks, Dependencies and statuses.
 - **Epic, its Tasks and Subtasks, Plan and sibling Epics:** to follow Dependencies, resume unfinished work and check Plan completion.
 - **Idea and its Docs:** through the Plan's Association to its Idea. Why: to follow the PRD, SRD and decisions recorded on the tickets they concern.
@@ -55,15 +55,17 @@ Run only when all of these are true:
 
 4. **Check Plan completion.** Set the Plan `done` when every Epic is `done`. Record remaining Epics or the handoff to teardown-worktree, then idea-review after merging.
 
-## Dispatches
+## Child Agents
 
-- **`engineer`:** Launch for source changes, including integration fixes. Expect implementation, targeted checks and any deviations or effects on design and documentation.
-- **`test-writer`:** Launch for testing Subtasks after their source changes, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration coverage following `test-guide.md`, fixture changes, test repairs, remaining gaps and assigned test results.
-- **`doc-writer`:** Launch when source and testing Subtasks finish and documentation is affected. Expect updates following `doc-writing-guide.md`, including gaps found in the implementation.
-- **`code-review`:** Launch after source changes, alongside `test-writer` Child Agents. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
-- **`test-review`:** Launch after unit-test or integration-test changes finish. Expect findings on test quality, coverage and duplication across the suite, or none.
-- **`doc-review`:** Launch after documentation changes finish. Expect findings on complete touched documents and missing or outdated documentation, or none.
-- **`product-manager`:** Launch after each Task's executors and reviewers finish, again after fixes affecting product behaviour, and after the Epic's integration gate. Expect findings on requirements, scope and proportion, including incomplete work and decisions needing the Managing Intelligence.
+- **`engineer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for source changes, including integration fixes. Expect implementation, targeted checks and any deviations or effects on design and documentation.
+- **`test-writer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for testing Subtasks after their source changes, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration coverage following `test-guide.md`, fixture changes, test repairs, remaining gaps and assigned test results.
+- **`doc-writer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch when source and testing Subtasks finish and documentation is affected. Expect updates following `doc-writing-guide.md`, including gaps found in the implementation.
+- **`code-review`:** Start fresh every time so each assessment is independent. Launch after source changes, alongside `test-writer` Child Agents. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
+- **`test-review`:** Start fresh every time so each assessment is independent. Launch after unit-test or integration-test changes finish. Expect findings on test quality, coverage and duplication across the suite, or none.
+- **`doc-review`:** Start fresh every time so each assessment is independent. Launch after documentation changes finish. Expect findings on complete touched documents and missing or outdated documentation, or none.
+- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after each Task's executors and reviewers finish, again after fixes affecting product behaviour, and after the Epic's integration gate. Expect findings on requirements, scope and proportion, including incomplete work and decisions needing the Managing Intelligence.
+
+Record executor IDs, skills, testing assignments and Thinking Levels on the Task after reports so another Run can continue.
 
 ## Writes
 
@@ -86,9 +88,9 @@ Report the Epic's ID, and any review findings left unaddressed with the reason.
 
 Executors change files; reviewers check them independently. develop-epic judges findings and commits.
 
-Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the work's applicable executors and reviewers, followed by a fresh product-manager for every Task so it sees the combined result. Repeat product review after fixes affecting behaviour.
+Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the work's applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Repeat product review after fixes affecting behaviour.
 
-Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order; give doc-writer one pass after the round's code and tests. Fresh reviewers check repairs. Repeat until accepted findings are fixed. Product questions and conflicts with the SRD go to the Managing Intelligence because execution follows approved requirements.
+Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order; give doc-writer one pass after the round's code and tests. Reviewers check repairs. Repeat until accepted findings are fixed. Product questions and conflicts with the SRD go to the Managing Intelligence because execution follows approved requirements.
 
 Assign the final full-unit-suite Subtask to the sole test-writer or a final writer after multiple Lanes. It runs `## Unit tests` after the combined changes and any later source or unit-test repairs. Route source failures through engineer, testing and review; the writer fixes test failures. Other executors run targeted checks so each does not repeat the full suite. Ensure a final writer owns the unit check even for a Task with no test edits, because every Task commit has the same gate.
 
@@ -98,18 +100,12 @@ A **Lane** is a group of test files one test-writer can change independently. Ad
 
 Each Lane owns whole files and exclusively used setup. Writers record shared changes or gaps for a final test-writer after all Lanes finish. That writer changes shared files, closes gaps and runs the full unit suite. A sole writer owns all tests and helpers. Keep the same ownership during repairs.
 
-## Executor reuse and progress
-
-Start fresh executors per Task and retain them for repairs, including Lane and final test-writers. Apply the shared retained Child Agent Context rule before resuming. If continuation fails or the approach changes, resolve uncertain delivery and replace the executor so two agents cannot share an assignment.
-
-Record executor IDs, skills, testing assignments and Thinking Levels on the Task after reports so another Run can continue. After compaction, reconcile ticket and git state before launches or commits because a summary may omit completed work.
-
 ## Integration gate
 
 develop-epic runs `## Integration tests` for every affected code folder after the Epic's Tasks, following `test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Epic.
 
 The gate passes when required suites pass or the Managing Intelligence explicitly waives remaining failures. Keep the Epic `active` until then. If suites cannot run, stop for environment repair or a waiver.
 
-Route test failures to test-writer, then fresh test-review. Apply the Task's Compile, Lint and full-unit checks before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Finish draft repair planning before execution so interrupted work resumes safely. After all repairs are committed, rerun integration over their combined result.
+Route test failures to test-writer, then test-review. Apply the Task's Compile, Lint and full-unit checks before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Finish draft repair planning before execution so interrupted work resumes safely. After all repairs are committed, rerun integration over their combined result.
 
 If a failure persists after its fix Task, stop for the Managing Intelligence's decision so failed repairs cannot become an automatic loop. Record the unfinished gate. Results and waivers cover only the files checked; later changes require a new result or waiver.

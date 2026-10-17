@@ -21,7 +21,7 @@ A description of the work, or intake input such as an issue URL.
 
 - **Settings:** Project and default settings, resolved as `workflow.md` describes, for this Run's configuration.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the Source Reference resolver named by `new_idea_intake`. Why: to check the input and prepare the Idea according to that intake.
-- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for context readings and skill invocation.
+- **Agent Protocol File:** `agent-claude-code.md` or `agent-codex.md` under `~/.apiary/system/protocols/`, for the Main Agent's own context readings and skill invocation.
 - **Ticket System Protocol File:** selected by `ticket_system` as `workflow.md` describes, to create the Idea and store its body and any Source Reference.
 
 ## Gate
@@ -38,7 +38,7 @@ None: write-idea creates a new ticket.
    Follow the intake's instructions for the Idea's body.
 3. **File the Idea.** Create it in the Ideas store with status `draft`.
 
-## Dispatches
+## Child Agents
 
 None: write-idea files the Idea itself.
 
