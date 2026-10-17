@@ -57,8 +57,8 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 ## Writes
 
-- **The Plan:** one per Idea, in the Plans store, linked to its Idea so later skills can find the requirements. A new Plan starts `draft`. After the Product Manager's check, set it `defined`, or `active` if any Epic is `done` or `active`.
-- **Its Epics:** children of the Plan, with their dependencies. New and changed Epics are `draft`; Epics no longer needed are removed.
+- **The Plan:** one per Idea, in the Plans store, with an Association to its Idea so later skills can find the requirements. A new Plan starts `draft`. After the Product Manager's check, set it `defined`, or `active` if any Epic is `done` or `active`.
+- **Its Epics:** children of the Plan, with a Dependency on each Epic that must finish first. New and changed Epics are `draft`; Epics no longer needed are removed.
 
 ## Done
 
@@ -69,8 +69,8 @@ Suggest write-epic on each `draft` Epic in dependency order.
 ## Plan template
 
 - **Goal and scope:** summarize the outcome and the work included in two or three sentences, grounded in the PRD's goals and the SRD.
-- **Requirements:** link the Idea, PRD and SRD so the Plan's basis is clear.
-- **Epics and order:** list the Epics, each one's outcome and the dependencies that determine their order.
+- **Requirements:** name the Idea, PRD and SRD the Plan is based on.
+- **Epics and order:** list the Epics, each one's outcome and the Dependencies that set their order.
 - **Proportion:** state the size class, the Epic count and why that decomposition fits the change.
 
 ## Epic template
@@ -78,7 +78,7 @@ Suggest write-epic on each `draft` Epic in dependency order.
 - **Outcome:** state the single user- or system-visible capability the Epic delivers and its measurable success condition.
 - **Work and requirements:** describe the work needed for that outcome, cite the requirements it serves, and identify the affected code folders. Include the engineering, testing and documentation work the Guidance Documents require within the Epic it supports.
 - **Acceptance criteria:** describe how the Managing Intelligence can demonstrate the outcome using the resulting artifact. Where direct interaction is unavailable, explain how the Agent will demonstrate completion with observable evidence.
-- **Dependencies:** name the Epics that must be complete before this one can be worked on, and explain why.
+- **Dependencies:** name the Epics that must be `done` before this one can start, and explain why.
 
 ## Planning guidance
 
@@ -94,7 +94,7 @@ Plan documentation only as `doc-writing-guide.md` allows: it decides which doc f
 
 - [ ] The Plan covers the PRD's goals and acceptance criteria and the SRD's requirements and choices.
 - [ ] Each Epic meets the workflow's Epic rule and has one coherent outcome with a concrete demonstration of success.
-- [ ] Each Epic leaves the software working, and its prerequisites are recorded as dependencies.
+- [ ] Each Epic leaves the software working, and its prerequisites are recorded as Dependencies.
 - [ ] The Epic count fits the size of the change, with a reason for any departure from the guidance range.
 - [ ] Engineering and testing work required by the Guidance Documents belongs to the Epics it supports.
 - [ ] Every planned documentation change is allowed by the doc-writing guide.
