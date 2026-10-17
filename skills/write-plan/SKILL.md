@@ -84,8 +84,6 @@ Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small
 
 Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new.
 
-Order the Epics so each one can be demoed when it's `done`, rather than a chain whose middle Epics can't be shown.
-
 Acceptance criteria describe that demo. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
 Plan documentation as `doc-writing-guide.md` guides, including which doc files to write and what belongs in them. Plan the test types and engineering steps the Guidance Documents call for inside the Epics they support.
