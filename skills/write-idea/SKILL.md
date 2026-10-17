@@ -17,7 +17,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 A description of the work, or intake input such as an issue URL.
 
-## Reads
+## Required Reading
 
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the intake and the Ticket System Protocol File.
 - **Intake instructions:** `~/.apiary/system/intakes/interview.md` for the interview intake, or `~/.apiary/system/resolvers/<resolver>.md` for the Source Reference resolver named by `new_idea_intake`. Why: to check the input and prepare the Idea according to that intake.

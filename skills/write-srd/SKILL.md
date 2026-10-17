@@ -17,7 +17,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 An Idea ID, with optional review findings or change notes for a revision.
 
-## Reads
+## Required Reading
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the TLA+ Writer's, TLA+ Reviewer's and Researcher's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.

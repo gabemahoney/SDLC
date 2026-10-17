@@ -19,14 +19,14 @@ You are running an Apiary software development workflow. Before anything else, r
 ## Input
 What it is given.
 
-## Reads
+## Required Reading
 Every file and setting it uses, with its full path or the setting that picks it, including any templates. Each one says why the skill needs it.
 
 ## Gate
 What must be true before it changes anything, or "None: <why>".
 
 ## Steps
-The work, in numbered order: what to do, not how a capable Agent would do it. Put each deliberate stop at its step as "stop and ask the Managing Intelligence: …". List only stops the design chose; never generic "ask when unsure".
+The work, in a few numbered steps: what to do, not how a capable Agent would do it. Name a stop for the Managing Intelligence's decision only where the design needs one.
 
 ## Dispatches
 Each Subagent Role it starts, when, and what it passes, or "None".

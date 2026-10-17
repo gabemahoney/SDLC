@@ -2,9 +2,9 @@
 
 Remaining b.v38 draft notes: gates, owned transitions, specific reads and rules. Draft from `docs/goals.md`, `workflow/workflow.md` and today's Apiary skill and any Role it folds in. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks. Remove an entry once its finished skill or Role absorbs it.
 
-## Reads for remaining drafts
+## Required Reading for remaining drafts
 
-Per-entry Reads name specific inputs only. Shared startup, settings, Protocol File paths, Guidance Document walks and dispatch rules are in `workflow/workflow.md`. Guidance names below mean their `.md` files loaded by that walk; `maintained-docs` also means the documents it lists. Roles use the settings and Protocol Files their dispatch prompt supplies.
+Per-entry Required Reading names specific inputs only. Shared startup, settings, Protocol File paths, Guidance Document walks and dispatch rules are in `workflow/workflow.md`. Guidance names below mean their `.md` files loaded by that walk; `maintained-docs` also means the documents it lists. Roles use the settings and Protocol Files their dispatch prompt supplies.
 
 **Thinking Levels (2026-10-16):** only skills that dispatch a Subagent or launch a Worker read `thinking_levels` and the relevant `levels_<agent>` mapping, before that dispatch or launch. They check the target Role or Worker's skill, not their own skill line. Whoever launches a skill sets its own level. Executors use their Task's or Bug's tag; the dispatcher maps it. No Role below dispatches or launches, so none reads thinking levels itself.
 
@@ -12,7 +12,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 ## write-bug
 
-**Reads:** `new_bug_intake`, supplied input and `bug-writing-guide`, to file the report.
+**Required Reading:** `new_bug_intake`, supplied input and `bug-writing-guide`, to file the report.
 
 **Gate:** None specified.
 
@@ -22,7 +22,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 ## define-bug
 
-**Reads:** Bug and source references; `bug-writing-guide`, `build-commands`, reproduction source, tests and configuration in the main checkouts, to validate the report.
+**Required Reading:** Bug and source references; `bug-writing-guide`, `build-commands`, reproduction source, tests and configuration in the main checkouts, to validate the report.
 
 **Gate:** Bug `draft`.
 
@@ -34,7 +34,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 ## write-epic
 
-**Reads:** Epic, Plan, sibling Epics, Idea requirements and source references; proposed Key Files and interfaces, planner reports and Managing Intelligence answers. Without a planner, its guidance: `engineering-best-practices` for Engineer; `test-guide` for Test Writer; `doc-writing-guide` and `maintained-docs` for Doc Writer.
+**Required Reading:** Epic, Plan, sibling Epics, Idea requirements and source references; proposed Key Files and interfaces, planner reports and Managing Intelligence answers. Without a planner, its guidance: `engineering-best-practices` for Engineer; `test-guide` for Test Writer; `doc-writing-guide` and `maintained-docs` for Doc Writer.
 
 **Gate:** Epic `draft`; its Plan `defined` or `active`.
 
@@ -44,7 +44,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 ## develop-epic
 
-**Reads:** Epic work, dependencies, Idea requirements, progress and findings; `build-commands`, checkout state, changes, Subagent reports and its own context reading, to execute and resume Tasks.
+**Required Reading:** Epic work, dependencies, Idea requirements, progress and findings; `build-commands`, checkout state, changes, Subagent reports and its own context reading, to execute and resume Tasks.
 
 **Gate:** Epic `defined` or `active`; every Epic it depends on `done`; its Plan `defined` or `active`. Re-check the Plan before each Task and stop cleanly if it went back to `draft`. A re-run on a `done` Epic may only finish the Plan's completion check.
 
@@ -74,7 +74,7 @@ Gets the Product Manager's end-of-Epic check after integration; records its repo
 
 ## idea-review
 
-**Reads:** Idea requirements, Plan and Epics, round progress and earlier feedback; `build-commands`, finished product, recorded commits and review reports, to check the whole Idea.
+**Required Reading:** Idea requirements, Plan and Epics, round progress and earlier feedback; `build-commands`, finished product, recorded commits and review reports, to check the whole Idea.
 
 **Gate:** Plan `done`; no worktree of its Epics still unmerged.
 
@@ -84,7 +84,7 @@ Gets the Product Manager's end-of-Epic check after integration; records its repo
 
 ## fix-bug
 
-**Reads:** Bug, dependencies, tag, progress and source references; `build-commands`, fix and merge context and Subagent reports, to fix and resume the Bug.
+**Required Reading:** Bug, dependencies, tag, progress and source references; `build-commands`, fix and merge context and Subagent reports, to fix and resume the Bug.
 
 **Gate:** Bug `defined`, or `active` when resuming; every ticket it depends on `done`. Started inside `.worktrees/`, stops and says to run from the Project Folder.
 
@@ -94,7 +94,7 @@ Gets the Product Manager's end-of-Epic check after integration; records its repo
 
 ## research
 
-**Reads:** Question, evidence, Research ticket, Report and review log, to continue the research and its review rounds.
+**Required Reading:** Question, evidence, Research ticket, Report and review log, to continue the research and its review rounds.
 
 **Gate:** None specified.
 
@@ -108,7 +108,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## configure-worktree
 
-**Reads:** Idea or Epic, repo, branch and worktree state; outside worktree-only mode, `launcher`, Launcher Protocol File, Worker prompt and its named skill, to create worktrees and launch the Worker.
+**Required Reading:** Idea or Epic, repo, branch and worktree state; outside worktree-only mode, `launcher`, Launcher Protocol File, Worker prompt and its named skill, to create worktrees and launch the Worker.
 
 **Gate:** Idea or Epic `defined` or `active`. Starts outside `.worktrees/`.
 
@@ -118,7 +118,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## teardown-worktree
 
-**Reads:** Idea or Epic, worktree, branch and merge state; outside worktree-only mode, `launcher` and Launcher Protocol File, to merge and stop the Worker.
+**Required Reading:** Idea or Epic, worktree, branch and merge state; outside worktree-only mode, `launcher` and Launcher Protocol File, to merge and stop the Worker.
 
 **Gate:** Merge an Idea's worktrees only once the Idea is `done`, and an Epic's only once the Epic is `done`. Starts outside the folder it removes; before merging, stops if the Launcher reports another live Worker under that ticket's worktrees.
 
@@ -128,7 +128,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## release
 
-**Reads:** `release-guide` and its plain reference targets; Ticket System Protocol File only if the guide uses tickets.
+**Required Reading:** `release-guide` and its plain reference targets; Ticket System Protocol File only if the guide uses tickets.
 
 **Gate:** Follows the conditions in `release-guide.md`; stops without a release process.
 
@@ -138,7 +138,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Engineer
 
-**Reads:** Assigned Subtasks or Bug, source context and handed-off findings; `engineering-best-practices`, `build-commands`.
+**Required Reading:** Assigned Subtasks or Bug, source context and handed-off findings; `engineering-best-practices`, `build-commands`.
 
 **Gate:** None specified.
 
@@ -148,7 +148,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Test Writer
 
-**Reads:** Assigned Subtasks or Bug, tests, fixtures and source changes; `test-guide`, `build-commands`.
+**Required Reading:** Assigned Subtasks or Bug, tests, fixtures and source changes; `test-guide`, `build-commands`.
 
 **Gate:** None specified.
 
@@ -158,7 +158,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Doc Writer
 
-**Reads:** Assigned Subtasks or Bug, source/test diff and Engineer report; `doc-writing-guide`, `maintained-docs`.
+**Required Reading:** Assigned Subtasks or Bug, source/test diff and Engineer report; `doc-writing-guide`, `maintained-docs`.
 
 **Gate:** None specified.
 
@@ -168,7 +168,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Engineer planner
 
-**Reads:** Proposed Task, Epic, Idea requirements, repo context and Managing Intelligence decisions from dispatch; `engineering-best-practices`.
+**Required Reading:** Proposed Task, Epic, Idea requirements, repo context and Managing Intelligence decisions from dispatch; `engineering-best-practices`.
 
 **Gate:** None specified.
 
@@ -178,7 +178,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Test Writer planner
 
-**Reads:** Proposed Task and requirements from dispatch, tests and fixtures; `test-guide`.
+**Required Reading:** Proposed Task and requirements from dispatch, tests and fixtures; `test-guide`.
 
 **Gate:** None specified.
 
@@ -188,7 +188,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Doc Writer planner
 
-**Reads:** Proposed Task and requirements from dispatch, product context; `doc-writing-guide`, `maintained-docs`.
+**Required Reading:** Proposed Task and requirements from dispatch, product context; `doc-writing-guide`, `maintained-docs`.
 
 **Gate:** None specified.
 
@@ -198,7 +198,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Code Reviewer
 
-**Reads:** Task, Idea or Bug review scope, source changes and context; `engineering-best-practices`, `build-commands`.
+**Required Reading:** Task, Idea or Bug review scope, source changes and context; `engineering-best-practices`, `build-commands`.
 
 **Gate:** None specified.
 
@@ -208,7 +208,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Test Reviewer
 
-**Reads:** Task, Idea or Bug review scope, test changes and whole suite; `test-guide`.
+**Required Reading:** Task, Idea or Bug review scope, test changes and whole suite; `test-guide`.
 
 **Gate:** None specified.
 
@@ -218,7 +218,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Doc Reviewer
 
-**Reads:** Task, Idea or Bug review scope, product changes and complete touched docs; `doc-writing-guide`, `maintained-docs`.
+**Required Reading:** Task, Idea or Bug review scope, product changes and complete touched docs; `doc-writing-guide`, `maintained-docs`.
 
 **Gate:** None specified.
 
@@ -228,7 +228,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Product Manager
 
-**Reads:** Idea requirements, planned work, product changes and recorded commits; no Guidance Documents.
+**Required Reading:** Idea requirements, planned work, product changes and recorded commits; no Guidance Documents.
 
 **Gate:** None specified.
 
@@ -238,7 +238,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Researcher
 
-**Reads:** The question, why the SRD needs it, the Idea, SRD and Research ticket supplied by write-srd, and relevant sources, to ground the answer; no Guidance Documents.
+**Required Reading:** The question, why the SRD needs it, the Idea, SRD and Research ticket supplied by write-srd, and relevant sources, to ground the answer; no Guidance Documents.
 
 **Gate:** None specified.
 
@@ -248,7 +248,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## TLA+ Writer
 
-**Reads:** Assigned SRD part, existing spec, model files and checker output; `build-commands` for Model check.
+**Required Reading:** Assigned SRD part, existing spec, model files and checker output; `build-commands` for Model check.
 
 **Gate:** None specified.
 
@@ -260,7 +260,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## TLA+ Reviewer
 
-**Reads:** Assigned TLA+ spec and SRD; no Guidance Documents.
+**Required Reading:** Assigned TLA+ spec and SRD; no Guidance Documents.
 
 **Gate:** None specified.
 
@@ -270,7 +270,7 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 ## Integration Tester
 
-**Reads:** Gated changes, changed repo checkouts and earlier results from dispatch; integration tests and interfaces, `test-guide`, `build-commands`.
+**Required Reading:** Gated changes, changed repo checkouts and earlier results from dispatch; integration tests and interfaces, `test-guide`, `build-commands`.
 
 **Gate:** None specified.
 

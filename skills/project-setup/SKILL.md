@@ -17,7 +17,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 The folder to set up as the Project Folder: the nearest folder up from where you started that holds `.apiary/project_settings.md`, else the folder you started in. Optionally, the name of an Apiary template. Without a template, it interviews the Managing Intelligence.
 
-## Reads
+## Required Reading
 
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `launcher`, `prd_template`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: how to ask the Managing Intelligence questions, report in this Agent and identify its expected installed skills and Subagent definitions.

@@ -18,7 +18,7 @@ Every lesson from the User's reviews of `workflow.md`, write-idea and project-se
     - Apiary's installed files: `~/.apiary/system/` (`workflow.md`, `protocols/`, `templates/`);
     - settings: `<Project Folder>/.apiary/project_settings.md`, else `~/.apiary/default_project_settings.md`.
 11. **Every Read says why**, in the form "- **Name:** path. Why: …". A file the skill doesn't use is not a Read. Being covered in `workflow.md` doesn't exempt a file the skill does use. The Launcher Protocol File is needed only by skills that start, stop or inspect Workers, or that check Launcher prerequisites.
-12. **Templates the skill uses are named in its Reads,** with their paths.
+12. **Templates the skill uses are named in its Required Reading,** with their paths.
 12a. **Thinking levels only where the skill dispatches or launches.** A skill's own level is set by whoever launches it. Only a skill that dispatches a Subagent or launches a Worker reads `thinking_levels` and its Agent's `levels_<agent>` mapping, for what it starts. A skill that starts nothing never mentions thinking levels.
 
 ## Wording
