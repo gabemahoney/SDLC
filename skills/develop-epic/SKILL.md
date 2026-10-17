@@ -41,7 +41,10 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Resume the Epic.** Reconcile recorded progress with tickets and git, including any unfinished integration gate, so a restart continues from the work already done. Update stale paths and descriptions to reflect completed prerequisites while following the SRD's choices. A Task reopened by write-epic needs its revised work executed even if its earlier version was committed. Set the Idea, Plan and Epic `active` when work starts; a `done` Epic goes straight to step 4.
+1. **Start or resume the Epic.**
+   - If the Epic is `done`, go straight to step 4.
+   - Otherwise, set the Idea, Plan and Epic `active`. If an earlier Run did some of the work, continue from the progress recorded on the Epic, checked against the tickets and git, so finished work isn't redone. A Task that write-epic reopened counts as unfinished, even if an earlier version was committed.
+   - Where a finished prerequisite changed something a Task describes, such as a file path, update the Task first, so executors get accurate instructions.
 
 2. **Complete the Tasks in Dependency order.** Before each Task, including an integration fix Task, re-check the Plan. If it returned to `draft`, record progress and stop for write-plan, because an SRD revision has paused execution. Apply the Context boundary guidance below.
    - Set the Task `active` and follow the Task pipeline.
