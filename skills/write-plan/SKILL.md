@@ -41,7 +41,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
    - If either required Doc is not `defined`, stop and ask the Managing Intelligence: confirm planning without review. Continue only on an explicit yes.
    - If both are `defined`, continue with planning.
 
-2. **Write the Plan and Epics.** Establish the outcome from the PRD's goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Use the Plan and Epic templates and craft guidance below to write the Plan itself and set its Epic Dependencies.
+2. **Write the Plan and Epics.** Establish the outcome from the PRD's goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Write each ticket as "What to write in each ticket" below says, and follow the Planning guidance.
    - If the Idea has no Plan, create one and its Epics as `draft`.
    - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
@@ -66,25 +66,25 @@ Report the Plan's ID, and any Product Manager findings left unaddressed with the
 
 Suggest write-epic on each `draft` Epic in dependency order.
 
-## Plan template
+## What to write in each ticket
 
-- **Goal and scope:** summarize the outcome and the work included in two or three sentences, grounded in the PRD's goals and the SRD.
-- **Requirements:** name the Idea, PRD and SRD the Plan is based on.
-- **Epics and order:** list the Epics, each one's outcome and the Dependencies that set their order.
-- **Proportion:** state the size class, the Epic count and why that decomposition fits the change.
+**The Plan ticket's body:** the goal and scope in two or three sentences, and why this number of Epics fits the change.
 
-## Epic template
-
-- **Outcome:** state the single user- or system-visible capability the Epic delivers and its measurable success condition.
-- **Work and requirements:** describe the work needed for that outcome, cite the requirements it serves, and identify the affected code folders. Include the engineering, testing and documentation work the Guidance Documents require within the Epic it supports.
-- **Acceptance criteria:** describe how the Managing Intelligence can demonstrate the outcome using the resulting artifact. Where direct interaction is unavailable, explain how the Agent will demonstrate completion with observable evidence.
-- **Dependencies:** name the Epics that must be `done` before this one can start, and explain why.
+**Each Epic ticket's body:**
+- **Outcome:** the one user- or system-visible capability it delivers, and how success is measured.
+- **Work:** what it takes to deliver that outcome, the requirements it serves and the code folders it touches, including the engineering, testing and documentation work the Guidance Documents require.
+- **Acceptance criteria:** how the Managing Intelligence can check the outcome on the result. Where they can't interact with it directly, how the Agent will show it with observable evidence.
+- **Dependencies:** why each Epic it depends on must be `done` first.
 
 ## Planning guidance
 
 Keep the Plan and its Epics short and in proportion to the change. Use these Epic counts as guidance: small, 1–3; medium, 3–6; large, 6–9; new product, 10+. Choose the count by judgement and state a reason when it falls outside its range. A single Epic can be enough.
 
-Every Epic must leave the software working with existing tests passing. Each outcome should be independently testable and demonstrable when its Dependencies are complete. Watch for chains whose intermediate states cannot be tested and for pervasive refactors mixed into feature work without serving its outcome.
+Every Epic must leave the software working with existing tests passing. Each outcome should be independently testable and demonstrable when its Dependencies are complete.
+
+Slice Epics by capability, not by layer. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not, because none of them delivers something a user can check on its own.
+
+Common Dependencies: a capability depends on the infrastructure it uses; a screen depends on the data and services it shows; processing depends on the import that supplies its data; protected features depend on authentication. For each Epic, ask what must be `done` before it can start. Watch for chains whose intermediate states cannot be tested and for pervasive refactors mixed into feature work without serving its outcome.
 
 Acceptance criteria describe a concrete demonstration. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
