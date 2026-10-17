@@ -37,7 +37,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Settle teardown from the ticket.** Use its repos, merge targets, Worker assignment and cleanup choices. Default each target to its main checkout's branch. The Managing Intelligence settles missing choices; record them before changes so another Run can continue. A worktree-only choice means the Managing Intelligence ends the Workers and this Run handles only git. A no-questions choice means an unresolved decision stops the Run for the caller to settle on the ticket.
+1. **Settle teardown from the ticket.** Use its repos, merge targets, Worker assignment and cleanup choices. Default each target to its main checkout's branch. The Managing Intelligence settles missing choices; record them before changes so another Run can continue. A worktree-only choice means the Managing Intelligence ends the Workers and this Run handles only git.
    - In worktree-only mode, require the Managing Intelligence's confirmation that Workers using the ticket's worktrees have ended, so cleanup cannot remove a running Worker's files.
    - Otherwise, read `~/.apiary/system/protocols/launcher-<launcher>.md` and reconcile the recorded Worker and all live Workers using the ticket's worktree folder. If another Worker is live, or the assigned Worker is pending or working, stop for the Managing Intelligence to settle that work before merging, so the source stays stable.
 
