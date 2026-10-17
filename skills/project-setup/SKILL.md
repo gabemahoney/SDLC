@@ -111,6 +111,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
    - `## Launch a Main Agent`: start the assigned skill.
    - `## Launch a Child Agent`: start its skill and keep it a child of its Main Agent.
    - `## Resume a Child Agent`: continue its recorded session.
+   - `## Know when a Child Agent's state changes`: how the Main Agent learns a Child Agent has finished, asked a question or stopped. Some Launchers report this automatically, as Claude Code and Codex Subagents do.
    - `## Stop a Child Agent`: stop it and verify exit.
    - `## Read a Child Agent's context`: read or estimate its context fraction.
 

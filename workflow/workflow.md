@@ -127,6 +127,7 @@ Give each Child Agent the Run's resolved settings and Protocol File locations, i
 - `## Launch a Main Agent`: start the skill assigned by the Managing Intelligence.
 - `## Launch a Child Agent`: start its assigned skill and keep it a child of its Main Agent.
 - `## Resume a Child Agent`: continue that Child Agent's recorded session.
+- `## Know when a Child Agent's state changes`: how the Main Agent learns that a Child Agent has finished, asked a question or stopped, so it never waits on a Child Agent that is already done.
 - `## Stop a Child Agent`: stop it and verify that it has exited.
 - `## Read a Child Agent's context`: read or estimate that Child Agent's context fraction.
 

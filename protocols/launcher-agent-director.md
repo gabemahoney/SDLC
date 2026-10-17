@@ -60,6 +60,10 @@ Follow the selected Agent Protocol File's **Context use** section for that sessi
 
 Keep the session identity, source, history position, model, provider and capacity basis with the reading. Use the active history after compaction and the latest completed turn, because cumulative usage measures consumption rather than current context. If identity, usage or compatible capacity cannot be established, return unknown so the shared Context rule replaces the Child Agent.
 
+## Know when a Child Agent's state changes
+
+agent-director doesn't notify the Main Agent, so the Main Agent watches each Child Agent itself. Right after launching or resuming one, start a background watcher that polls `agent-director status --instance-id '<child-id>'` every few seconds. It reports once the state has held steady for several polls in `waiting`, `ask_user`, `check_permission`, `ended` or `missing`. Run the watcher with the Agent's own background-event tool, so each report wakes the Main Agent, as its Agent Protocol File describes. On a report, read the Child Agent's result: `waiting` means its turn ended; `ask_user` or `check_permission` means it needs an answer or a decision (use `decide` for permissions); `ended` or `missing` means it stopped. Re-arm the watcher whenever the Child Agent is resumed.
+
 ## Watch and collect results
 
 Use `status --instance-id '<id>'` for state, `get --instance-id '<id>'` for the full record and `read-pane --instance-id '<id>' --lines 80` for output. `list --parent '<main-id>'` finds a Main Agent's Child Agents. A `waiting` state means the turn ended; read its result to distinguish completion from a question or an unfinished assignment.
