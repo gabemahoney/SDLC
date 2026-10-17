@@ -22,10 +22,10 @@ An Epic ID.
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system` and map executor tags and the reviewers' and Product Manager's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch and resume Subagents, check context use and ask and report through the Agent.
-- **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and progress, and write execution results, integration fix Tasks, Dependencies and statuses.
+- **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and progress, and record results, fix Tasks, Dependencies and statuses.
 - **Epic, its Tasks and Subtasks, Plan and sibling Epics:** through the Ticket System Protocol File, using the input Epic ID. Why: to follow Dependencies, resume unfinished work and check Plan completion.
 - **Idea and its Docs:** through the Plan's Association to its Idea. Why: to follow the PRD, SRD and decisions recorded on the tickets they concern.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes. Why: to judge findings, plan integration fixes, check builds and tests, and handle documentation, commits and pushing.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes. Why: to judge findings, plan repairs, check builds and tests, and handle documentation, commits and pushing.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -37,7 +37,7 @@ Run only when all of these are true:
 - Every Epic it depends on is `done`. Otherwise, stop and report the unfinished Dependency.
 - Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff. Otherwise, stop and suggest write-plan.
 - The Idea's PRD and SRD are `defined`, because execution follows approved requirements. Otherwise, stop and return the requirements to the Managing Intelligence.
-- The Epic has planned Tasks with Subtasks. Every unfinished Task and Subtask is `defined` or `active`, except recorded `draft` integration fixes whose planning this skill resumes. Otherwise, stop and suggest write-epic to finish planning.
+- The Epic has planned Tasks with Subtasks. Every unfinished Task and Subtask is `defined` or `active`, except `draft` fix Tasks and their Subtasks, whose planning this skill resumes so interrupted repairs can continue. Otherwise, stop and suggest write-epic to finish planning.
 
 ## Steps
 
@@ -52,7 +52,11 @@ Run only when all of these are true:
    - **When it's done:** once its Subtasks are `done`, accepted findings are resolved and required checks pass, commit its work.
    - **After its commit:** set the Task `done`, because its work and checks are complete.
 
-3. **Finish the Epic.** Once all Tasks are `done`, run the Integration gate, because the Epic is a complete vertical slice, and catching errors early stops them compounding, even if it costs a little extra time. If an earlier Run already passed the gate, or the Managing Intelligence waived its failures, and no files have changed since, skip it. Then dispatch the Product Manager and save its findings on the Epic for idea-review, which assesses the whole product. This check informs idea-review rather than blocking completion. Re-check the Plan before setting the Epic `done`, because an SRD revision may have paused execution during the final Task. If the Plan is `draft`, record progress and stop for write-plan. Otherwise, set the Epic `done` once all its Tasks are `done` and its integration gate is met.
+3. **Finish the Epic.** Once all Tasks are `done`, run the Integration gate, because the Epic is a complete vertical slice, and catching errors early stops them compounding, even if it costs a little extra time. If an earlier Run already passed the gate, or the Managing Intelligence waived its failures, and no files have changed since, skip it.
+
+   Then dispatch the Product Manager and judge each finding. Turn accepted findings into fix Tasks and complete them through step 2's Task pipeline, so repairs get the same checks and reviews as the original work. If files change, rerun the Integration gate after the fix Tasks finish so it checks the completed repairs. Product questions go to the Managing Intelligence, who decides the expected behaviour. Record only declined findings on the Epic, each with its reason, so idea-review sees what was left.
+
+   Re-check the Plan before setting the Epic `done`, because an SRD revision may have paused execution during the final Task. If the Plan is `draft`, record progress and stop for write-plan. Otherwise, set the Epic `done` once all its Tasks are `done`, accepted findings are resolved and its integration gate is met.
 
 4. **Check Plan completion.** Set the Plan `done` if every Epic is `done`. Record the next work on the Epic: remaining Epics, or merging any Epic worktrees through teardown-worktree from outside them, then idea-review once the work is merged.
 
@@ -69,9 +73,9 @@ Run only when all of these are true:
 ## Writes
 
 - **Idea and Plan:** set `active` when execution starts. Set the Plan `done` in step 4.
-- **Epic:** set `active` when execution starts and `done` in step 3. It holds execution progress, integration evidence and waivers, and the end-of-Epic Product Manager findings for idea-review.
+- **Epic:** set `active` when execution starts and `done` in step 3. Record execution progress, integration evidence and waivers. Of the end-of-Epic Product Manager findings, record only those declined, each with its reason, so idea-review sees what was left.
 - **Tasks and Subtasks:** update descriptions whose implementation details became stale after prerequisite work. Record Task findings, decisions, Lane assignments, checks and commits on the Task. Set Tasks `active` when starting and `done` after step 2's completion conditions. Executors set their assigned Subtasks `active`, then `done`.
-- **Integration fix Tasks:** create as children of this Epic, with Subtasks beneath them, initially `draft`. Set them `defined` when their descriptions are complete, then execute and complete them through step 2. Give each Task a `thinking_level:<label>` tag suited to its complexity and risk, so executor effort matches the repair. Record Dependencies on prerequisites so execution follows the required order.
+- **Fix Tasks:** create children of this Epic for integration failures and accepted end-of-Epic Product Manager findings, with Subtasks beneath them. Record each accepted finding on its fix Task so the repair has its context. Start the Tasks and Subtasks `draft` and set them `defined` once their descriptions are complete, then execute and complete them through step 2. Give each Task a `thinking_level:<label>` tag suited to its complexity and risk, so executor effort matches the repair. Record Dependencies on prerequisites so execution follows the required order.
 
 ## Done
 
