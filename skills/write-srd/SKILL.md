@@ -89,6 +89,7 @@ Report the Research tickets filed and what each settled.
 - **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because TLA+ Writers, req-review and write-plan cite them by number.
 - **Software requirements:** define what must be true. Name actual modules and established patterns where they constrain the work.
 - **Linked models:** name each modelled SR group's TLA+ spec Doc beside it.
+- **Code in poor shape:** where the code this Idea changes is in poor shape, decide whether delivering the Idea needs it refactored. If it does, state the refactor as a requirement with its reason. If it doesn't, suggest to the Managing Intelligence a separate refactor Idea for that work, because whether to take it on is their call.
 - **Technology and architecture:** state each choice the SRD makes, with its reason in a sentence, and link the Research ticket if one informed it.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the Idea. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.
