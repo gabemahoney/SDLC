@@ -10,16 +10,6 @@ Per-entry Required Reading names specific inputs only. Shared startup, settings,
 
 The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug. configure-worktree reads its Worker's skill line and Worker's Agent mapping only when launching, outside worktree-only mode.
 
-## fix-bug
-
-**Required Reading:** Bug, dependencies, tag, progress and source references; `build-commands`, fix and merge context and Subagent reports, to fix and resume the Bug.
-
-**Gate:** Bug `defined`, or `active` when resuming; every ticket it depends on `done`. Started inside `.worktrees/`, stops and says to run from the Project Folder.
-
-**Owned transitions:** **Bug:** fix-bug sets `active`
-
-**Specific rules:** Creates, commits in, merges and cleans up its own worktrees. Uses develop-epic's executor/reviewer pipeline without a Product Manager or context guard. Integration Tester handles its integration gate; source failures go through its fix round and full unit suite before a fresh integration check. Failed suites need a pass or waiver; asks when suites cannot run, a fix round does not reduce failures, or after three rounds. Leaves the Bug `active` for the Managing Intelligence's check.
-
 ## research
 
 **Required Reading:** Question, evidence, Research ticket, Report and review log, to continue the research and its review rounds.
@@ -221,32 +211,3 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 **Bug:** the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note
 
 **Bug:** the Managing Intelligence sets it back to `draft` to send it back to define-bug.
-
-## Executor rules for fix-bug
-
-Fold these into fix-bug when it is written, and define "lane" there. develop-epic now holds its executor rules.
-
-
-A Subagent loads the Guidance Documents of each repo it works in and may read any repo for context.
-
-**Fresh start:** a new dispatch with no earlier context.
-
-**Reuse:** resume the same Subagent for its Bug. Keep its Guidance Documents. Add the Guidance Documents of any newly assigned repos.
-
-- **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for the Bug. Every source-changing pass has a Test Writer. Fix rounds reuse only the executors whose work the findings touch. The next Bug starts fresh executors.
-- **Code, Test and Doc Reviewers and Integration Tester:** start fresh on every dispatch.
-
-#### Replacing an executor
-
-Resume the executor for each fix round. If the executor can't continue, start a fresh executor with the findings and the work so far.
-
-#### Handoff
-
-Subagents never talk to each other. The skill coordinates them: it reads each Subagent's report and passes what the next one needs in that one's dispatch or resume message. The work itself passes through the files: each Subagent sees the changes earlier ones made in its checkouts.
-
-#### Progress record
-
-On the skill's ticket, record each Subagent kept for reuse: its Subagent Role, its Bug, its ID from the Agent, its name if available, and its dispatch Thinking Level.
-
-Update the record after each report. After compaction or a re-run, use the record to resume each Subagent by name if available, otherwise by ID.
-

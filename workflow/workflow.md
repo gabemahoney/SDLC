@@ -102,7 +102,7 @@ A Thinking Level picks the model and effort a Subagent or Worker runs at. Two se
   ```
 - `levels_claude_code` and `levels_codex` say what each level (`low` < `medium` < `high` < `xhigh` < `max`) means for that Agent, one line per level. Use only the model names they give.
 
-Executors (Engineer, Test Writer, Doc Writer) have no line. They use their Task's or Bug's `thinking_level:` tag, and a Subtask uses its Task's. write-epic and develop-epic set the tags.
+Executors (Engineer, Test Writer, Doc Writer) have no line. They use their Task's or Bug's `thinking_level:` tag, and a Subtask uses its Task's. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
 If a line or mapping you need is missing, stop before any change and point to project-setup.
 
