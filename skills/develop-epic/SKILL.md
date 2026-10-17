@@ -90,7 +90,7 @@ The last Test Writer owns the full unit-suite run in each affected repo with uni
 
 ## Test Writer Lanes
 
-A **Lane** is a group of unit-test files one Test Writer can change independently. Start from the Task's `## Test Writer Lanes` suggestions and adjust them to the implementation. Record the assignments and reasons for adjustments on the Task, including each Lane's files and behaviours and shared fixtures or helpers, so Writers can avoid overlapping changes and coverage. Keep files together when they share a fixture or helper being changed or cover overlapping behaviour.
+A **Lane** is a group of unit-test files one Test Writer can change independently. Start from the Lanes the Task suggests and adjust them to the implementation. Record the assignments and reasons for adjustments on the Task, including each Lane's files and behaviours and shared fixtures or helpers, so Writers can avoid overlapping changes and coverage. Keep files together when they share a fixture or helper being changed or cover overlapping behaviour.
 
 Each Lane owns its files and exclusively used fixtures and helpers, including exclusively used entries in common helper files. Writers record newly discovered shared changes and gaps outside their files on the Task for the final Writer. After multiple Lanes finish, dispatch one final Test Writer to make shared changes, close remaining gaps and run the full unit suite. A sole Writer owns all the Task's tests and helpers. The same ownership applies in fix rounds, so parallel repairs remain independent.
 

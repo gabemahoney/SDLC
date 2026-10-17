@@ -109,20 +109,14 @@ A Task's tag sets how hard its Engineer, Test Writer and Doc Writer think, so ma
 
 When unsure between two levels, choose the higher one.
 
-## Fixture planning and Test Writer Lanes
+## Planning the tests
 
-For each Task's tests, plan:
-- which existing test setup (fixtures, factories, helpers, constants) they reuse, and any changes it needs;
-- what new setup they need, and where it goes;
-- which test files to extend, and which to add.
+Plan each Task's tests for two goals:
 
-Reusing existing setup keeps tests consistent and stops each one rebuilding its own.
+1. **Reuse the Project's test setup.** Plan which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
+2. **Let Test Writers work in parallel.** develop-epic can run several Test Writers on one Task, one per Lane. A **Lane** is a group of test files one Writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so Writers don't edit the same helper or test the same thing twice. develop-epic adjusts them to the actual code.
 
-Organize unit-test Subtasks by test file or logical group of files. Give each behaviour one coverage owner, so parallel Writers do not duplicate tests. Account for tests to update, obsolete tests to remove and missing coverage to add.
-
-A **Lane** is a group of unit-test files one Test Writer can change independently. Keep files together when they share a fixture or helper the Task creates or changes, or when their tested behaviours overlap, so parallel Writers do not conflict or duplicate coverage. Give each resulting independent group a Lane. The final full-unit-suite Subtask follows all Lanes and belongs to the final Test Writer, so one Writer checks their combined changes.
-
-For each Task with unit-test Subtasks, end its description with a `## Test Writer Lanes` section. State the suggested number of Lanes, list each Lane's test files with their repo or code folder, and name shared fixtures or helpers, or state that there are none. These are suggestions for develop-epic to reconcile with the code at execution time.
+Give each behaviour one test owner, and account for tests to update, obsolete tests to remove and missing coverage to add. The full unit suite runs once, at the end, by the last Test Writer, so one Writer checks everyone's changes together.
 
 ## Quality checklist
 
