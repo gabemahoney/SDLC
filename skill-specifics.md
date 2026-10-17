@@ -8,17 +8,7 @@ Per-entry Required Reading names specific inputs only. Shared startup, settings,
 
 **Thinking Levels (2026-10-16):** only skills that dispatch a Subagent or launch a Worker read `thinking_levels` and the relevant `levels_<agent>` mapping, before that dispatch or launch. They check the target Role or Worker's skill, not their own skill line. Whoever launches a skill sets its own level. Executors use their Task's or Bug's tag; the dispatcher maps it. No Role below dispatches or launches, so none reads thinking levels itself.
 
-The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug. configure-worktree reads its Worker's skill line and Worker's Agent mapping only when launching, outside worktree-only mode.
-
-## configure-worktree
-
-**Required Reading:** Idea or Epic, repo, branch and worktree state; outside worktree-only mode, `launcher`, Launcher Protocol File, Worker prompt and its named skill, to create worktrees and launch the Worker.
-
-**Gate:** Idea or Epic `defined` or `active`. Starts outside `.worktrees/`.
-
-**Owned transitions:** None.
-
-**Specific rules:** May create worktrees in several repos; defaults each base branch to the main checkout's branch. Worker starts in `.worktrees/<ticket id>/`. Worktree-only mode launches none.
+The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug.
 
 ## teardown-worktree
 
