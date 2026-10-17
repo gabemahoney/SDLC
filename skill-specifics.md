@@ -4,7 +4,7 @@ Remaining b.v38 draft notes: gates, owned transitions, specific reads and rules.
 
 ## Required Reading for remaining drafts
 
-Per-entry Required Reading names specific inputs only. Shared startup, settings, Protocol File paths, Guidance Document walks and dispatch rules are in `workflow/workflow.md`. Guidance names below mean their `.md` files loaded by that walk; `maintained-docs` also means the documents it lists. Roles use the settings and Protocol Files their dispatch prompt supplies.
+Per-entry Required Reading names specific inputs only. Shared startup, settings, Protocol File paths, Guidance Document walks and dispatch rules are in `workflow/workflow.md`. Guidance names below mean their `.md` files loaded by that walk. Roles use the settings and Protocol Files their dispatch prompt supplies.
 
 **Thinking Levels (2026-10-16):** only skills that dispatch a Subagent or launch a Worker read `thinking_levels` and the relevant `levels_<agent>` mapping, before that dispatch or launch. They check the target Role or Worker's skill, not their own skill line. Whoever launches a skill sets its own level. Executors use their Task's or Bug's tag; the dispatcher maps it. No Role below dispatches or launches, so none reads thinking levels itself.
 
@@ -32,13 +32,13 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 ## Doc Writer
 
-**Required Reading:** Assigned Subtasks or Bug, source/test diff and Engineer report; `doc-writing-guide`, `maintained-docs`.
+**Required Reading:** Assigned Subtasks or Bug, source/test diff and Engineer report; `doc-writing-guide`.
 
 **Gate:** None specified.
 
 **Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
 
-**Specific rules:** Writes user-facing, contributor and design docs from the diff and Engineer report. Never commit.
+**Specific rules:** Updates documentation from the diff and Engineer report following `doc-writing-guide.md`, so the Project's guide determines which documents need work. Never commit.
 
 ## Engineer planner
 
@@ -62,7 +62,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 ## Doc Writer planner
 
-**Required Reading:** Proposed Task and requirements from dispatch, product context; `doc-writing-guide`, `maintained-docs`.
+**Required Reading:** Proposed Task and requirements from dispatch, product context; `doc-writing-guide`.
 
 **Gate:** None specified.
 
@@ -92,7 +92,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 ## Doc Reviewer
 
-**Required Reading:** Task, Idea or Bug review scope, product changes and complete touched docs; `doc-writing-guide`, `maintained-docs`.
+**Required Reading:** Task, Idea or Bug review scope, product changes and complete touched docs; `doc-writing-guide`.
 
 **Gate:** None specified.
 

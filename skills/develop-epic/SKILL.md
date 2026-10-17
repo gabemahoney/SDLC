@@ -25,7 +25,7 @@ An Epic ID.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and progress, and write execution results, integration fix Tasks, Dependencies and statuses.
 - **Epic, its Tasks and Subtasks, Plan and sibling Epics:** through the Ticket System Protocol File, using the input Epic ID. Why: to follow Dependencies, resume unfinished work and check Plan completion.
 - **Idea and its Docs:** through the Plan's Association to its Idea. Why: to follow the PRD, SRD and decisions recorded on the tickets they concern.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `maintained-docs.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes, including the documents `maintained-docs.md` lists. Why: to judge findings, plan integration fixes, check builds and tests, and handle documentation, commits and pushing.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes. Why: to judge findings, plan integration fixes, check builds and tests, and handle documentation, commits and pushing.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -56,7 +56,7 @@ Run only when all of these are true:
 
 - **Engineer:** launch for source changes, including integration fixes. Expect implementation, targeted checks and any deviations or effects on design and documentation.
 - **Test Writer:** launch after source changes or for unit-test work, one per Lane and a final Writer after multiple Lanes. Expect unit coverage, fixture changes, remaining gaps and assigned test results.
-- **Doc Writer:** launch after source and unit-test work finishes when documentation is affected. Expect updates allowed by the documentation guidance, including gaps found in the implementation.
+- **Doc Writer:** launch after source and unit-test work finishes when documentation is affected. Expect updates following `doc-writing-guide.md`, including gaps found in the implementation.
 - **Code Reviewer:** launch after source changes, alongside Test Writers. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
 - **Test Reviewer:** launch after unit-test or integration-test changes finish. Expect findings on test quality, coverage and duplication across the suite, or none.
 - **Doc Reviewer:** launch after documentation changes finish. Expect findings on complete touched documents and missing or outdated documentation, or none.

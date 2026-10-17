@@ -25,7 +25,7 @@ An Epic ID.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and existing work, and write Tasks, Subtasks, Dependencies, tags and statuses.
 - **Epic, Plan, all sibling Epics and existing Tasks and Subtasks:** through the Ticket System Protocol File, using the input Epic ID. Why: to establish the Epic's outcome, account for its Dependencies, avoid overlapping work and reconcile earlier planning and progress.
 - **Idea and its Docs:** the Plan's Idea, through the Ticket System Protocol File. Why: to follow the PRD, SRD and recorded decisions, including findings and Managing Intelligence answers recorded on the tickets they concern.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `maintained-docs.md` for each affected code folder, found as `workflow.md` describes, including the documents `maintained-docs.md` lists. Why: so the Tasks and Subtasks it writes follow the Project's engineering, testing and documentation guidance.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` for each affected code folder, found as `workflow.md` describes. Why: so the Tasks and Subtasks it writes follow the Project's engineering, testing and documentation guidance.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -91,7 +91,7 @@ Keep each Task's implementation, tests and documentation together so its outcome
 
 Put testing after its implementation and documentation after its implementation and tests, so each checks the work it describes. Every Task changing source or unit tests includes a final unit-test Subtask to run the full unit suite and fix failures, to check the combined changes. Its acceptance criterion is a passing full unit suite in each affected code folder with unit tests.
 
-Plan documentation as `doc-writing-guide.md` allows. Consider user-facing documentation when behaviour, installation or setup changes, and architecture documentation when source changes affect the design. Use the maintained documents to identify which files need revision.
+Follow `doc-writing-guide.md` when planning documentation changes, so the Project's guide determines which documents need work and what belongs in them.
 
 Integration Tester writes and runs integration tests during develop-epic. Flag each Task changing a contract, API, schema or other cross-component interface with a `## Run Integration After This Task` section. In it, state `Interface changed:` followed by the interface and the change. This tells develop-epic to run its integration check after that Task.
 

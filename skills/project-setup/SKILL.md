@@ -50,7 +50,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 3. **Fill in the settings.**
 
    a. **Choose the setup settings.**
-      - If a template is named, follow its Markdown instructions and resolve its answers before writing settings. Required: Name, New Idea intake, New Bug intake. Optional engineering, test, doc-writing and maintained-doc sections give paths, ask, or skip.
+      - If a template is named, follow its Markdown instructions and resolve its answers before writing settings. Required: Name, New Idea intake, New Bug intake. Optional engineering, test and doc-writing sections give paths, ask, or skip.
       - Otherwise, interview the Managing Intelligence, including both intakes.
 
       For `ticket_system`, `launcher`, `prd_template` and, when no template is selected, both intakes, show the defaults and first offer “use the default for all”; otherwise ask default or Project value for each.
@@ -80,7 +80,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
 5. **Write the Guidance Documents.**
 
-   a. **Set up each code folder's guidance.** The four Guidance Documents here are `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `maintained-docs.md`. For documents the template leaves to the Managing Intelligence, first offer “use the default for all”; otherwise ask per document. For each:
+   a. **Set up each code folder's guidance.** The three Guidance Documents here are `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md`. For documents the template leaves to the Managing Intelligence, first offer “use the default for all”; otherwise ask per document. For each:
       - If the template gives it, use the template's answer.
       - Else stop and ask the Managing Intelligence: point to your own guide, or use Apiary's default?
       - If the default and user copies exist on the Guidance Document walk, stop and ask the Managing Intelligence: keep them, or remove them so the default applies? Follow the answer.
@@ -108,7 +108,7 @@ None: project-setup does the setup itself.
 
 - `<Project Folder>/.apiary/project_settings.md` and, as agreed, `~/.apiary/default_project_settings.md`, including `ticket_links` when step 4 needed it.
 - The Ideas, Plans, Bugs and Research stores through the selected Ticket System Protocol File.
-- Each supplied Guidance Document at `<Project Folder>/<code folder path>/.apiary/<name>.md` or `<Project Folder>/.apiary/<name>.md`, where `<name>` is `engineering-best-practices`, `test-guide`, `doc-writing-guide`, `maintained-docs` or `build-commands`.
+- Each supplied Guidance Document at `<Project Folder>/<code folder path>/.apiary/<name>.md` or `<Project Folder>/.apiary/<name>.md`, where `<name>` is `engineering-best-practices`, `test-guide`, `doc-writing-guide` or `build-commands`.
 - `<Project Folder>/.apiary/release-guide.md`.
 
 ## Done

@@ -24,7 +24,7 @@ A Bug ID.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch and resume Subagents and ask and report through the Agent.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Bug and its dependencies and record execution evidence, decisions and status.
 - **The Bug and its Dependencies:** through the Ticket System Protocol File, using the input ID. Why: to read the confirmed behaviour, retained reproduction, `thinking_level:<label>` tag, progress and Managing Intelligence decisions, including why an earlier fix was returned.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `maintained-docs.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes. Include the documents `maintained-docs.md` lists. Why: to judge findings, check the fix and affected documentation, and commit, merge and push as permitted.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md` and `release-guide.md` for each affected repo, found as `workflow.md` describes. Why: to judge findings, check the fix and affected documentation, and commit, merge and push as permitted.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -53,7 +53,7 @@ Run only when all of these are true:
 
 - **Engineer:** launch for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
 - **Test Writer:** launch for regression coverage and after every source-changing pass, one per Lane and a final Writer after multiple Lanes. Expect unit tests, before-and-after regression evidence, fixture changes, gaps and assigned test results.
-- **Doc Writer:** launch after source and unit-test work finishes to assess and update maintained documentation. Resume for documentation findings or repairs affecting docs. Expect changes or a reason none are needed.
+- **Doc Writer:** launch after source and unit-test work finishes to assess and update documentation following `doc-writing-guide.md`. Resume for documentation findings or repairs affecting docs. Expect changes or a reason none are needed.
 - **Code Reviewer:** launch after source changes, while Test Writers work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
 - **Test Reviewer:** launch after unit-test changes finish, while the Doc Writer works, and after integration-test changes. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
 - **Doc Reviewer:** launch after the Doc Writer finishes. Expect findings on complete touched documents and documentation missing or made outdated by the fix, or no findings.

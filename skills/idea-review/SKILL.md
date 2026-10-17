@@ -24,7 +24,7 @@ An Idea ID.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and progress, record review results and file feedback in the Plan.
 - **The Idea, its PRD, SRD, Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID and the Plan's Association to it. Why: to review the requirements, resume round progress and follow earlier findings, fixes, integration results, waivers and Managing Intelligence decisions.
-- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `maintained-docs.md` and `build-commands.md` for each reviewed repo, found as `workflow.md` describes, including the documents `maintained-docs.md` lists. Why: to judge the work against the Project's guidance and demonstrate acceptance criteria.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `build-commands.md` for each reviewed repo, found as `workflow.md` describes. Why: to judge the work against the Project's guidance and demonstrate acceptance criteria.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

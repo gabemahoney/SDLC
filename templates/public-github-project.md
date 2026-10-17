@@ -19,8 +19,4 @@ Write the same intake choice to `new_bug_intake` in `<Project Folder>/.apiary/pr
 
 ## Guidance Documents
 
-Ask the Managing Intelligence for `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` for the confirmed code folders.
-
-## Maintained docs
-
-Ask the Managing Intelligence for contributor-doc and customer-doc path lists for the confirmed code folders. Use these lists as the contents of `maintained-docs.md` for those code folders.
+Ask the Managing Intelligence for `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` for the confirmed code folders. For `doc-writing-guide.md`, ask which documents the Project keeps current and how strict its documentation requirements should be, so the guide reflects the Project's choices.

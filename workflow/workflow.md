@@ -11,7 +11,7 @@
 - **Project:** the software the Managing Intelligence builds with Apiary, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.apiary` the default settings.
-- **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `maintained-docs.md`, `release-guide.md`, `bug-writing-guide.md`.
+- **Guidance Document:** one of six user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `release-guide.md`, `bug-writing-guide.md`. The Project's `doc-writing-guide.md` says how it handles documentation, including which documents it keeps current and how strict its requirements are.
 - **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no user copy of that Guidance Document is found.
 - **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent.
 - **Dependency:** a link meaning one ticket can't start until another is `done`, such as between Epics or between Tasks.
