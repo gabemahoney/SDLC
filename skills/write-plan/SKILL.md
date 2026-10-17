@@ -58,7 +58,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 ## Writes
 
 - **The Plan:** one per Idea, in the Plans store, with an Association to its Idea so later skills can find the requirements. A new Plan starts `draft`, and becomes `defined` or `active` in step 4.
-- **Its Epics:** children of the Plan, with a Dependency on each Epic that must finish first. New and changed Epics are `draft`; Epics no longer needed are removed.
+- **Its Epics:** children of the Plan. When one Epic can't start until another is `done`, record a Dependency from the waiting Epic on the one it waits for. New and changed Epics are `draft`; Epics no longer needed are removed.
 
 ## Done
 
