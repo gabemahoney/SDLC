@@ -58,7 +58,7 @@ None: the PRD can be written or revised at any Idea status.
    - Otherwise, create it.
    Keep only declined or unaddressed findings on the Doc ticket, each with its reason, so req-review sees what remains.
 
-## Dispatches
+## Child Agents
 
 None: write-prd interviews and writes the PRD itself.
 

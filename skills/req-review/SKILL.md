@@ -44,7 +44,7 @@ If this session wrote the PRD or SRD you'd review, stop and suggest a fresh sess
    - If revisions are needed, suggest write-prd for product changes or write-srd for software changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
    - Once both the PRD and SRD are `defined`, set a `draft` Idea `defined`.
 
-## Dispatches
+## Child Agents
 
 None: req-review reviews the Docs itself.
 

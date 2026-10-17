@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Install (or update) Apiary's skills and agents for Claude Code, Codex CLI or both.
-# It copies Apiary's skills, agents, document templates and protocols.
+# Install Apiary skills for Main Agents and Child Agents, plus legacy agent files.
+# Shared files include the workflow, templates and Agent, Ticket System and Launcher protocols.
 set -euo pipefail
 
 usage() {
@@ -17,8 +17,10 @@ Claude Code:  skills/<name>/ -> ~/.claude/skills/<name>/
 Codex CLI:    skills/<name>/ -> ~/.agents/skills/<name>/
               agents/*.md    -> ~/.codex/agents/<name>.toml (rendered; needs python3)
               (--repo: <repo>/.agents/skills, <repo>/.codex/agents)
-Shared:       doc-templates/ -> ~/.apiary/system/doc-templates/ (also with --repo)
-              protocols/    -> ~/.apiary/system/protocols/ (also with --repo)
+Shared:       workflow/workflow.md -> ~/.apiary/system/workflow.md
+              templates/, intakes/, resolvers/ -> ~/.apiary/system/ (also with --repo)
+              doc-templates/ -> ~/.apiary/system/doc-templates/ (also with --repo)
+              protocols/    -> ~/.apiary/system/protocols/ (includes launcher-*.md)
               dot-apiary/*-default-fallback.md -> ~/.apiary/ (also with --repo)
 EOF
 }
@@ -121,6 +123,14 @@ case "$AGENT" in
   codex) install_codex ;;
   both) install_claude; install_codex ;;
 esac
+
+# Main Agents and Child Agents share these instructions and selected protocols.
+run mkdir -p "$HOME/.apiary/system"
+run cp "$SRC/workflow/workflow.md" "$HOME/.apiary/system/workflow.md"
+for shared in templates intakes resolvers; do
+  run mkdir -p "$HOME/.apiary/system/$shared"
+  run cp -R "$SRC/$shared/." "$HOME/.apiary/system/$shared/"
+done
 
 run mkdir -p "$HOME/.apiary/system/doc-templates"
 run cp -R "$SRC/doc-templates/." "$HOME/.apiary/system/doc-templates/"

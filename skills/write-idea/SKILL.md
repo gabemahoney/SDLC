@@ -38,7 +38,7 @@ None: write-idea creates a new ticket.
    Follow the intake's instructions for the Idea's body.
 3. **File the Idea.** Create it in the Ideas store with status `draft`.
 
-## Dispatches
+## Child Agents
 
 None: write-idea files the Idea itself.
 

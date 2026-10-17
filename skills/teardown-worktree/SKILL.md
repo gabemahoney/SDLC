@@ -1,6 +1,6 @@
 ---
 name: teardown-worktree
-description: "Merge an Idea's or Epic's completed worktrees, stop its Worker and remove the worktrees, with a worktree-only mode for caller-managed Workers."
+description: "Merge an Idea's or Epic's completed worktrees, stop its Main Agent and remove the worktrees, with a worktree-only mode for caller-managed Main Agents."
 ---
 
 # teardown-worktree
@@ -20,11 +20,13 @@ An Idea or Epic ID.
 ## Required Reading
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md` if present, then `~/.apiary/default_project_settings.md`. Why: to select `ticket_system` and, when managing the Worker, `launcher`.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md` if present, then `~/.apiary/default_project_settings.md`. Why: to select `ticket_system` and, when managing the Main Agent, `launcher`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to ask and report through the Agent.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea or Epic and record merge and cleanup decisions on it.
-- **The Idea or Epic:** through the Ticket System Protocol File, using the input ID. Why: to read its worktree and Worker records, merge targets, cleanup choices and earlier results so a resumed Run continues existing work.
+- **The Idea or Epic:** through the Ticket System Protocol File, using the input ID. Why: to read its worktree and Main Agent records, merge targets, cleanup choices and earlier results so a resumed Run continues existing work.
 - **Repo and merge state:** each main checkout and the ticket's registered worktrees and target checkouts. Why: to verify ownership, branches, uncommitted changes and merges against the ticket's record.
+
+When managing agents, read `launcher.md`, selected by `launcher` as `workflow.md` describes, to inspect and stop the Main Agent and its Child Agents before removing their worktrees.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -37,23 +39,23 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Settle teardown from the ticket.** Use its repos, merge targets, Worker assignment and cleanup choices. Default each target to its main checkout's branch. The Managing Intelligence settles missing choices; record them before changes so another Run can continue. A worktree-only choice means the Managing Intelligence ends the Workers and this Run handles only git.
-   - In worktree-only mode, require the Managing Intelligence's confirmation that Workers using the ticket's worktrees have ended, so cleanup cannot remove a running Worker's files.
-   - Otherwise, read `~/.apiary/system/protocols/launcher-<launcher>.md` and reconcile the recorded Worker and all live Workers using the ticket's worktree folder. If another Worker is live, or the assigned Worker is pending or working, stop for the Managing Intelligence to settle that work before merging, so the source stays stable.
+1. **Settle teardown from the ticket.** Use its repos, merge targets, Main Agent assignment and cleanup choices. Default each target to its main checkout's branch. The Managing Intelligence settles missing choices; record them before changes so another Run can continue. A worktree-only choice means the Managing Intelligence ends the Main Agents and this Run handles only git.
+   - In worktree-only mode, require the Managing Intelligence's confirmation that Main Agents and Child Agents using the ticket's worktrees have ended, so cleanup cannot remove a running Main Agent's files.
+   - Otherwise, read `launcher.md` and reconcile the recorded Main Agent, its Child Agents and any other live agents using the ticket's worktree folder. If another agent is live, or the assigned Main Agent or any of its Child Agents is pending or working, stop for the Managing Intelligence to settle that work before merging, so the source stays stable.
 
 2. **Prepare and merge each repo.** Follow the Merge guidance below. Record each result as work proceeds, so a failure leaves a usable handoff for the remaining repos. On a resumed Run, reconcile the recorded results with git and continue unfinished work.
 
-3. **Finish the Worker assignment.** After every repo's merge succeeds, follow the Launcher Protocol File to stop the assigned Worker and verify it has exited before cleanup. Keep the worktrees if stopping fails, because the Worker may still be using them. In worktree-only mode, the Managing Intelligence has already ended the Workers. Delaying shutdown until merges succeed preserves the Worker's session for fixing conflicts.
+3. **Finish the Main Agent assignment.** After every repo's merge succeeds, follow the Launcher Protocol File to stop the assigned Main Agent and its Child Agents and verify they have exited before cleanup. Keep the worktrees if stopping fails, because the Main Agent may still be using them. In worktree-only mode, the Managing Intelligence has already ended the Main Agents. Delaying shutdown until merges succeed preserves the Main Agent's session for fixing conflicts.
 
 4. **Remove the completed worktrees and branches.** Remove each clean worktree once its branch is fully merged into the recorded target, then delete that branch. Keep anything git refuses to remove and record the failure, to preserve work that needs a decision. Remove the ticket's worktree folder once it is empty.
 
-## Dispatches
+## Child Agents
 
 None: teardown-worktree merges and removes the worktrees itself.
 
 ## Writes
 
-- **The input Idea or Epic:** record merge targets and checkouts, cleanup choices, each repo's resulting commit and worktree and branch removal results, and the Worker's shutdown result or caller confirmation. Record failures, what remains and what needs resolving so another Run can resume. Ticket statuses stay unchanged because teardown integrates completed work.
+- **The input Idea or Epic:** record merge targets and checkouts, cleanup choices, each repo's resulting commit and worktree and branch removal results, and the Main Agent's shutdown result or caller confirmation. Record failures, what remains and what needs resolving so another Run can resume. Ticket statuses stay unchanged because teardown integrates completed work.
 - **Repos:** commit or discard worktree changes as the Managing Intelligence chooses, merge into target branches, and remove completed worktrees and their merged branches.
 
 ## Done

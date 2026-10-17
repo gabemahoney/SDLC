@@ -49,7 +49,7 @@ Run only when all of these are true:
 
 4. **Complete any extra outputs.** After the Report is accepted, produce any extra outputs `research-guide.md` requires from it. Record their locations and completion on the Research ticket, so an interrupted Run can finish what remains without repeating completed work. Apply this step to each newly accepted revision too, so the extra outputs stay current.
 
-## Dispatches
+## Child Agents
 
 None: research does the investigation and brings each round to the Managing Intelligence.
 

@@ -2,19 +2,26 @@
 
 ## Terms
 
-- **Managing Intelligence:** the person, or a bot acting for one, who drives Apiary: runs the skills, answers their questions, decides what work happens next and tests the results.
+- **Managing Intelligence:** the person, or a bot acting for one, who orchestrates Apiary: chooses the next skill, starts its Main Agent, answers questions and tests the results.
 - **Agent:** the AI coding tool Apiary runs in: Claude Code or Codex CLI.
-- **Subagent:** a helper an Agent starts inside its own session, with fresh context, to do one Subagent Role's work for a skill and report back.
-- **Subagent Role:** the job a Subagent does, defined by its Subagent definition. Executors change files. Writers write tickets. Read-only Subagent Roles change nothing.
-- **The Subagent Roles:**
-  - **Engineer**, **Test Writer** and **Doc Writer:** executors that change source, tests and documentation for a Task or Bug. The Test Writer writes unit and integration tests and runs suites.
-  - **Engineer, Test Writer and Doc Writer planners:** read the code for one Task and propose its Subtasks for write-epic.
-  - **Code, Test and Doc Reviewers:** check executors' changes independently.
-  - **Product Manager:** checks a Plan, an Epic's planned work or finished work against the requirements, for scope and proportion.
-  - **Researcher:** answers one research question for write-srd with a cited Report.
-  - **Model Writer** and **Model Reviewer:** the Writer creates a Formal Model of an SRD part and runs its checker; the Reviewer checks the model before each run.
-- **Worker:** a separate Agent session the Launcher starts to run one skill.
-- **Launcher:** the program that starts, watches and stops Workers.
+- **Main Agent:** an Agent started by the Managing Intelligence to run one skill and report back.
+- **Child Agent:** an Agent started by a Main Agent to run one skill for it and report back. The Launcher keeps the parent–child relationship.
+- **Skills Child Agents run:**
+  - **engineer:** changes source code for a Task or Bug.
+  - **test-writer:** writes unit and integration tests and runs assigned suites.
+  - **doc-writer:** updates documentation for a Task or Bug.
+  - **engineer-planner:** reads a Task's source context and proposes implementation Subtasks.
+  - **test-writer-planner:** proposes testing Subtasks, fixtures and groups of tests that can be written in parallel.
+  - **doc-writer-planner:** proposes a Task's documentation Subtasks.
+  - **code-review:** checks source changes independently.
+  - **test-review:** checks test quality, coverage and duplication independently.
+  - **doc-review:** checks documentation changes and gaps independently.
+  - **product-manager:** checks planned or finished work against requirements, for scope and proportion.
+  - **researcher:** answers one research question with a cited Report.
+  - **model-writer:** writes a Formal Model and runs its checker.
+  - **model-review:** checks a Formal Model against the SRD before its checker runs.
+- **Launcher:** the program that launches, resumes, watches and stops Main Agents and Child Agents, keeping their parent–child relationships.
+- **Launcher Protocol File (`launcher.md`):** the instructions for those operations, including reading a Child Agent's context. The `launcher` setting selects `~/.apiary/system/protocols/launcher-<launcher>.md`, just as `ticket_system` selects `ticket-<ticket_system>.md`. Skills call the selected file `launcher.md`.
 - **Project:** the software the Managing Intelligence builds with Apiary, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.apiary` the default settings.
@@ -35,7 +42,7 @@
 - **Source Reference:** a link on a ticket to where it came from outside the ticket system, such as a GitHub issue or a file. Read it as context.
 - **Resolver:** the instructions for reading one kind of Source Reference, picked by its kind (a GitHub URL uses `github`, a file path uses `file`).
 - **Run:** one execution of a skill, from its first steps to its report.
-- **Thinking Level:** the model and effort a Subagent or Worker runs at (see Thinking Levels).
+- **Thinking Level:** the model and effort an Agent runs at (see Thinking Levels).
 
 ## Stores and ticket terms
 
@@ -67,7 +74,7 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 ## Status Ownership
 
-Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` or Subagent definition gives you.
+Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` gives you.
 
 The Managing Intelligence accepts Ideas and Bugs, returns Bugs and manages Docs other than the PRD, SRD and Model Docs.
 
@@ -85,9 +92,9 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 ### Every Run
 
-- Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers the `SKILL.md`, a Subagent definition, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
+- Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers the `SKILL.md`, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
 - If your skill's Gate fails, change nothing and say why.
-- No skill or Subagent runs another Apiary skill, because the Managing Intelligence decides what work happens next.
+- Every workflow skill runs in a Main Agent, because the Managing Intelligence orchestrates the work. A skill assigned to a Child Agent runs for its Main Agent; its own Gate requires that relationship. The Managing Intelligence chooses the next workflow skill, while a Main Agent launches the Child Agents its skill calls for.
 - After a compaction, re-read the Protocol Files and Guidance Documents you loaded, because summaries can omit their rules.
 - Report pass, fail or not applicable for every required check and gate in the `SKILL.md` and its Guidance Documents, and name the Guidance Document copies or Default Fallback Files used.
 
@@ -97,7 +104,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
 - **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree make repository changes and commits only inside repo checkouts.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
-- **Guidance Documents come from the main checkout,** never a worktree, because a worktree may hold guides still in development. Load only the ones your `SKILL.md` or Subagent definition names. Read every copy of each, starting from the `.apiary` Folder in the main checkout of the repo you're working in (or, outside a repo, the code folder you're working in), then each parent folder's `.apiary` up to `~/.apiary`. Use all the copies together (they are meant to be cumalitive), and ask the Managing Intelligence if they conflict. If there's no copy at all, use `~/.apiary/<name>-default-fallback.md`.
+- **Guidance Documents come from the main checkout,** never a worktree, because a worktree may hold guides still in development. Load only the ones your `SKILL.md` names. Read every copy of each, starting from the `.apiary` Folder in the main checkout of the repo you're working in (or, outside a repo, the code folder you're working in), then each parent folder's `.apiary` up to `~/.apiary`. Use all the copies together (they are meant to be cumalitive), and ask the Managing Intelligence if they conflict. If there's no copy at all, use `~/.apiary/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
 - **Pushing:** push only as the Project's `release-guide.md` allows.
 
@@ -111,35 +118,54 @@ If a setting the Run needs is missing from both files, stop before any change an
 
 Record Dependencies, Associations and Source References as the Ticket System Protocol File says, or as the `ticket_links` setting says where that file doesn't cover one.
 
-Pass the settings and the Ticket System and Agent Protocol Files in every dispatch. Subagents use the supplied settings and Protocol Files, not their own lookup, so all Subagents use the Run's configuration.
+Give each Child Agent the Run's resolved settings and Protocol File locations, including the Agent Protocol File for the tool it uses, so it follows the same Project configuration as its Main Agent.
+
+### Launcher operations
+
+`launcher.md` defines these named sections so project-setup can check every operation the skills rely on:
+
+- `## Launch a Main Agent`: start the skill assigned by the Managing Intelligence.
+- `## Launch a Child Agent`: start its assigned skill and keep it a child of its Main Agent.
+- `## Resume a Child Agent`: continue that Child Agent's recorded session.
+- `## Stop a Child Agent`: stop it and verify that it has exited.
+- `## Read a Child Agent's context`: read or estimate that Child Agent's context fraction.
+
+Each section must give usable instructions, because a heading alone cannot support the agent lifecycle. The file also describes watching both classes and stopping a Main Agent.
 
 ### Thinking Levels
 
-A Thinking Level picks the model and effort a Subagent or Worker runs at. Two settings turn a level into a model:
+A Thinking Level picks an Agent's model and effort. The caller resolves it before launch, as `launcher.md` describes, so every session starts with the intended settings.
 
-- `thinking_levels` gives each skill and each non-executor Subagent Role a level, one `<name>: <label>` line each:
+- `thinking_levels` maps skill names to levels, one `<skill>: <label>` line each:
   ```
   ## thinking_levels
   write-plan: max
-  Code Reviewer: xhigh
+  code-review: xhigh
+  engineer: high
   ```
-- `levels_claude_code` and `levels_codex` say what each level (`low` < `medium` < `high` < `xhigh` < `max`) means for that Agent, one line per level. Use only the model names they give.
+- `levels_claude_code` and `levels_codex` map each level (`low` < `medium` < `high` < `xhigh` < `max`) to a model and effort for that Agent. Use the model names in those settings.
 
-Executors (Engineer, Test Writer, Doc Writer) have no line. They use their Task's or Bug's `thinking_level:` tag, and a Subtask uses its Task's, so effort follows the work's complexity and risk. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
+For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so effort follows the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
-If a line or mapping you need is missing, stop before any change and point to project-setup.
+If a required skill line, tag or model mapping is missing, stop before any change and point to project-setup.
 
-### Subagents
+### Child Agents
 
-- A skill starts every Subagent fresh, with no earlier context, unless the skill says to reuse one.
-- A Subagent loads the Guidance Documents of each repo it works in, and may read any repo for context.
-- Subagents never talk to each other. Their work passes through the files.
+A Main Agent launches a Child Agent with the assigned skill, as `launcher.md` describes. It gives the Child Agent ticket IDs, checkout paths and the Run's configuration so the Child Agent reads its instructions and progress from the tickets. Each Child Agent reports back to its Main Agent with the relevant ticket IDs and anything left unaddressed.
+
+Start each Child Agent fresh unless the calling skill says to retain it, so unrelated work does not fill its context. Each Child Agent loads the Guidance Documents its skill names for every repo it works in and may read other repos for context. Work passes between Child Agents through files and tickets, coordinated by their Main Agent, so assignments and findings stay in one record.
+
+### Context
+
+Before each new unit of work, every Main Agent checks its own context fraction as its Agent Protocol File describes. At 75% or more, or when the fraction is unknown, record progress on the ticket and stop for the Managing Intelligence to start a fresh session with the same skill and ticket IDs, because a nearly full context causes mistakes.
+
+Before resuming a retained Child Agent, read its context fraction as `launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains.
 
 ### Tickets carry the information
 
-Skills judge every finding returned by a reviewer or the Product Manager and fix the ones they accept. Record only declined or unaddressed findings on the ticket they concern, each with its reason, so the next skill sees what remains. Product questions go to the Managing Intelligence, who decides the expected behaviour. idea-review hands its final findings to the Managing Intelligence to act on.
+Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. Record only declined or unaddressed findings on the ticket they concern, each with its reason, so the next skill sees what remains. Product questions go to the Managing Intelligence, who decides the expected behaviour. idea-review hands its final findings to the Managing Intelligence to act on.
 
-Skills and Subagents keep decisions, repair instructions, progress and handoffs on the ticket they concern so later work can continue from the record. A dispatch, launch or report names those tickets rather than repeating their contents, because copied instructions can drift from the record.
+Main Agents and Child Agents keep decisions, repair instructions, progress and handoffs on the ticket they concern so later work can continue from the record. A launch, continuation or report names those tickets rather than repeating their contents, because copied instructions can drift from the record.
 
 ### Work outside the ticket
 

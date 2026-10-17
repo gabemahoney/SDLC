@@ -20,12 +20,12 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 ## Required Reading
 
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see the existing ticket, Research location, Launcher, template, intake and Thinking Level settings, offer them back, and fill what's missing.
-- **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: how to ask the Managing Intelligence questions, report in this Agent and identify its expected installed skills and Subagent definitions.
+- **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: to check this Main Agent's context, invoke installed skills, and ask and report through the Agent.
 - **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
-- **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check the Launcher's prerequisites.
+- **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check how it launches both Main Agents and Child Agents, keeps their parent relationship, resumes Child Agents, reads their context, watches them and stops them.
 - **The chosen template**, if any: `~/.apiary/system/templates/<template-name>.md`, the name lowercase with hyphens. Why: it supplies that template's answers, such as how intake works.
 - **The recommended Thinking Level list:** `~/.apiary/system/templates/thinking-levels.md`. Why: the lines to write into `thinking_levels`.
-- **Apiary's installed files:** `~/.apiary/system/workflow.md`, and for your Agent its skills and Subagent definitions: `~/.claude/skills/<skill>/SKILL.md` and `~/.claude/agents/apiary-<role>.md` in Claude Code, `~/.agents/skills/<skill>/SKILL.md` and `~/.codex/agents/apiary-<role>.toml` in Codex CLI. Why: to check and report that Apiary is installed: workflow.md and every Apiary skill and Subagent definition is present.
+- **Apiary's installed files:** `~/.apiary/system/workflow.md` and the skills in the running Agent's install scope, as its Agent Protocol File describes. Why: to check that the workflow and skills for both Main Agents and Child Agents are present.
 - **The existing `release-guide.md` and `research-guide.md`**, found as `workflow.md` describes, when available. Why: to offer existing guidance as the starting point when writing these guides.
 - **Each confirmed code folder** under `<Project Folder>/<code folder path>/`. Why: to work out how it builds and tests, and propose its build commands.
 - **Existing Guidance Documents:** each Guidance Document on the Guidance Document walk for each confirmed code folder, and any guide the Managing Intelligence supplies. Why: to offer existing guidance as the starting answer, and to find inherited copies before applying the choice in step 5.
@@ -68,7 +68,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If already set and valid, keep it.
       - Otherwise, stop and ask the Managing Intelligence for the model and effort for `low`, `medium`, `high`, `xhigh` and `max`, one line per label. Suggest no models, because model names change often and depend on the account. Ask for default versus Project value as in 3a.
 
-   d. **Complete the Thinking Level list.** Stop and ask the Managing Intelligence for `thinking_levels` as in 3a. Complete the list in the selected file, using its existing lines. Write the complete list from `~/.apiary/system/templates/thinking-levels.md`, skills first, then Subagent Roles:
+   d. **Complete the Thinking Level list.** Stop and ask the Managing Intelligence for `thinking_levels` as in 3a. Complete the list in the selected file, using its existing lines. Write the complete list from `~/.apiary/system/templates/thinking-levels.md`, one line per skill, including every skill Child Agents run:
       - If a valid line exists, keep it.
       - If a line is missing, add its recommended level.
       - If a line is invalid, stop and ask the Managing Intelligence for its corrected Thinking Level.
@@ -107,9 +107,16 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
    d. **Write or locate the research guide.** Offer to use existing `research-guide.md` guidance, write a guide with the Managing Intelligence, point to their own guide, or use Apiary's default. Cover preferred and banned sources, depth, evidence to retain, Report shape, extra outputs after acceptance and when to involve a human. Agree where a user copy belongs on the Guidance Document walk; use `<Project Folder>/.apiary/research-guide.md` for Project-wide rules, including when there are no code folders. If they choose the default, settle any inherited user copies as in step 5a so the Default Fallback File applies. The guide follows the requesting Project even when its Research store is shared.
 
-6. **Check the installation and Launcher prerequisites.** Follow your Agent's Protocol File for the expected installed skills, Subagent definitions and their filenames. Check and report whether Apiary is installed for the running Agent. Report missing files inspected only for installation completeness here. Report what is missing and say "run Apiary's `install.sh`". Check and report the prerequisites named by the Launcher Protocol File in effect. Check that each used Agent's Protocol File says how to read or estimate both its own context fraction and a retained Subagent's, because develop-epic stops for a fresh session or replaces an executor before its context fills. If either is missing, report it as missing from that Protocol File.
+6. **Check the installation and Launcher.** Check the workflow and every skill in the running Agent's install scope, as its Agent Protocol File describes. Report missing installed files and say to run Apiary's `install.sh`, so an incomplete installation is visible before work starts. Check the prerequisites in the selected `launcher.md` and require each named section below, with usable instructions, because later skills rely on every operation:
+   - `## Launch a Main Agent`: start the assigned skill.
+   - `## Launch a Child Agent`: start its skill and keep it a child of its Main Agent.
+   - `## Resume a Child Agent`: continue its recorded session.
+   - `## Stop a Child Agent`: stop it and verify exit.
+   - `## Read a Child Agent's context`: read or estimate its context fraction.
 
-## Dispatches
+   If any section is absent, empty or does not describe its operation, stop and name the Launcher Protocol File and every missing section or instruction. Also check that the file describes watching both classes and stopping a Main Agent, and that each used Agent Protocol File describes reading that Agent's own context. Stop and name any missing instructions, because the shared Context rules and worktree cleanup depend on them.
+
+## Child Agents
 
 None: project-setup does the setup itself.
 

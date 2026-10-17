@@ -1,5 +1,7 @@
 # Recommended Thinking Levels
 
+Each line maps a skill name to its default Thinking Level. Task and Bug tags override the executor skills as `workflow.md` describes.
+
 ```text
 project-setup: medium
 write-idea: medium
@@ -17,14 +19,17 @@ research: high
 release: medium
 configure-worktree: medium
 teardown-worktree: medium
-Researcher: high
-Model Writer: xhigh
-Model Reviewer: xhigh
-Engineer planner: high
-Test Writer planner: high
-Doc Writer planner: high
-Code Reviewer: xhigh
-Test Reviewer: xhigh
-Doc Reviewer: high
-Product Manager: xhigh
+engineer: high
+test-writer: high
+doc-writer: high
+researcher: high
+model-writer: xhigh
+model-review: xhigh
+engineer-planner: high
+test-writer-planner: high
+doc-writer-planner: high
+code-review: xhigh
+test-review: xhigh
+doc-review: high
+product-manager: xhigh
 ```

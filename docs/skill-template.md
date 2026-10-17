@@ -23,13 +23,13 @@ What it is given.
 Every file and setting it uses, with its full path or the setting that picks it, including any templates. Each one says why the skill needs it. List only what every Run reads. Code, tests and Research tickets read as the work needs go in one closing line: "Also read the Project's code, tests and any linked Research tickets as the work needs."
 
 ## Gate
-What must be true before it changes anything, or "None: <why>".
+What must be true before it changes anything, or "None: <why>". A skill for a Child Agent requires that it runs for a Main Agent, because that parent owns the assignment.
 
 ## Steps
 The work, in a few numbered steps: what to do, not how a capable Agent would do it. Name a stop for the Managing Intelligence's decision only where the design needs one.
 
-## Dispatches
-Each Subagent Role it starts, when, and what it passes, or "None".
+## Child Agents
+For each skill it needs: launch a Child Agent with the <name> skill, as `launcher.md` describes. Say when and what result to expect, or "None: <why>".
 
 ## Writes
 Each ticket or file it creates or changes: which store or path, and which status (the transitions it owns).
@@ -51,4 +51,5 @@ Rules for writing a skill (see also docs/goals.md):
 - Say exactly where everything is: full paths, and how a setting value maps to a file.
 - Capable Agents: no edge cases, no fault handling a capable Agent does anyway.
 - No random subsets: list every case or state a general rule.
-- Glossary terms in Title Case.
+- Glossary terms in Title Case. Skill names use their installed names.
+- A skill that launches Child Agents lists `launcher.md` in Required Reading, with why it needs it. Shared Context rules belong in `workflow.md`; retain only skill-specific check timing here.

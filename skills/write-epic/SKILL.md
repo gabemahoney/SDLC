@@ -20,8 +20,9 @@ An Epic ID.
 ## Required Reading
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the dispatched planners' and Product Manager's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` and `launcher` select the Protocol Files; `thinking_levels` and `levels_claude_code` or `levels_codex` set the launched skills' model and effort.
+- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to check this Main Agent's context and ask and report through the Agent.
+- **Launcher Protocol File:** `launcher.md`, selected by `launcher` as `workflow.md` describes. Why: to launch, resume and watch Child Agents, keep their parent relationship and read their context before reuse.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and existing work, and write Tasks, Subtasks, Dependencies, tags and statuses.
 - **Epic, Plan, all sibling Epics and existing Tasks and Subtasks:** through the Ticket System Protocol File, using the input Epic ID. Why: to establish the Epic's outcome, account for its Dependencies, avoid overlapping work and reconcile earlier planning and progress.
 - **Idea and its Docs:** the Plan's Idea, through the Ticket System Protocol File. Why: to follow the PRD, SRD and recorded decisions, including findings and Managing Intelligence answers recorded on the tickets they concern.
@@ -41,20 +42,20 @@ Run only when all of these are true:
 1. **Write or revise the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's choices, using the Task template below. Leave out work that a sibling or prerequisite Epic already covers, and assume prerequisite Epics are `done` before this one runs, so no work is written twice.
    - If Tasks already exist, revise every affected Task and Subtask, whatever its status, from recorded progress and current requirements. Include removing delivered functionality that the requirements withdraw, so the software will match them. Add new work, remove obsolete unimplemented work, and leave unaffected work as it is.
 
-2. **Plan each draft Task's Subtasks.** Work in Dependency order. For each Task, save it, then dispatch the Engineer, Test Writer and Doc Writer planners described in Dispatches. Each reads the code, tests or docs its part needs and proposes that part's Subtasks, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below. Assign each draft Task a `thinking_level:<label>` tag, as the Thinking Level guidance below describes, because develop-epic uses it for the Task's executors.
+2. **Plan each draft Task's Subtasks.** Work in Dependency order. For each Task, save it, then launch the `engineer-planner`, `test-writer-planner` and `doc-writer-planner` Child Agents described below. Each reads the code, tests or docs its part needs and proposes that part's Subtasks, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below. Assign each draft Task a `thinking_level:<label>` tag, as the Thinking Level guidance below describes, because develop-epic uses it for the Task's executors.
    - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
    - If planning raises a product question, or a planner's proposal conflicts with the SRD, ask the Managing Intelligence, because planning follows the defined requirements.
 
-3. **Check the whole Epic with the Product Manager.** Save the Tasks and Subtasks, then dispatch the Product Manager. Resolve its findings and dispatch a fresh one after significant revisions, so the revised work has an independent check. Check the Quality checklist below.
+3. **Check the whole Epic with the `product-manager`.** Save the Tasks and Subtasks, then launch a Child Agent with the product-manager skill, as `launcher.md` describes. Resolve its findings and launch a fresh one after significant revisions, so the revised work has an independent check. Check the Quality checklist below.
 
-4. **Finalize the Epic.** Re-check the Plan's Gate condition, because an SRD revision may have paused planning. Only once the Product Manager's findings are resolved and the Quality checklist passes, set draft Subtasks and Tasks `defined`, then the Epic `defined`.
+4. **Finalize the Epic.** Re-check the Plan's Gate condition, because an SRD revision may have paused planning. Only once the `product-manager`'s findings are resolved and the Quality checklist passes, set draft Subtasks and Tasks `defined`, then the Epic `defined`.
 
-## Dispatches
+## Child Agents
 
-- **Engineer planner:** launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
-- **Test Writer planner:** launch for each Task needing source or test changes once the engineering proposals it needs are available. Expect Test Writer Subtasks for the unit and integration coverage `test-guide.md` requires, fixture planning, suggested Lanes and the final full-unit-suite Subtask. develop-epic's Test Reviewer checks test quality independently.
-- **Doc Writer planner:** launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
-- **Product Manager:** launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
+- **`engineer-planner`:** Launch a Child Agent with the engineer-planner skill, as `launcher.md` describes, for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
+- **`test-writer-planner`:** Launch a Child Agent with the test-writer-planner skill, as `launcher.md` describes, for each Task needing source or test changes once the engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `test-guide.md` requires, fixture planning, suggested Lanes and the final full-unit-suite Subtask. develop-epic's `test-review` checks test quality independently.
+- **`doc-writer-planner`:** Launch a Child Agent with the doc-writer-planner skill, as `launcher.md` describes, for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
+- **`product-manager`:** Launch a Child Agent with the product-manager skill, as `launcher.md` describes, after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
 
 ## Writes
 
@@ -63,7 +64,7 @@ Run only when all of these are true:
 
 ## Done
 
-Report the Epic's ID, and any Product Manager findings left unaddressed with the reason.
+Report the Epic's ID, and any `product-manager` findings left unaddressed with the reason.
 
 Suggest develop-epic on this Epic once every Epic it depends on is `done`.
 
@@ -78,7 +79,7 @@ Describe outcomes and constraints, leaving implementation detail to the executor
 
 ## Subtask template
 
-Every Subtask names its executor: Engineer, Test Writer or Doc Writer. Include all four sections, with detail in proportion to the work:
+Every Subtask names its executor: `engineer`, `test-writer` or `doc-writer`. Include all four sections, with detail in proportion to the work:
 
 - **Context:** explain why the Subtask exists and what preconditions it assumes. For testing, name fixtures, factories, helpers and constants it reuses, creates or changes.
 - **What Needs to Change:** describe the work and requirements for that executor's part of the Task.
@@ -100,7 +101,7 @@ Write the work each guide requires, such as a test type or an engineering step, 
 
 ## Thinking Level guidance
 
-A Task's tag sets how hard its Engineer, Test Writer and Doc Writer think, so match it to what a mistake in that Task would cost and how much judgement it needs:
+A Task's tag sets how hard its `engineer`, `test-writer` and `doc-writer` think, so match it to what a mistake in that Task would cost and how much judgement it needs:
 - `low`: trivial, mechanical changes such as wording or config values, where a mistake is obvious and cheap.
 - `medium`: routine work that follows an established pattern, such as adding a field or a small, well-understood change.
 - `high`: work that needs real design judgement, touches several modules, or changes behaviour other code relies on.
@@ -111,12 +112,12 @@ When unsure between two levels, choose the higher one.
 
 ## Writing the testing Subtasks
 
-Assign each Task's unit and integration testing Subtasks to Test Writers, following `test-guide.md` so coverage matches the work. Write them with two goals in mind:
+Assign each Task's unit and integration testing Subtasks to `test-writer` Child Agents, following `test-guide.md` so coverage matches the work. Write them with two goals in mind:
 
 1. **Reuse the Project's test setup.** Say which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
-2. **Let Test Writers work in parallel.** develop-epic can run several Test Writers on one Task, one per Lane. A **Lane** is a group of test files one Writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so Writers don't edit the same helper or test the same thing twice. Give every independent group its own Lane, so as many Writers as possible work at once. develop-epic adjusts them to the actual code.
+2. **Let `test-writer` Child Agents work in parallel.** develop-epic can run several `test-writer` Child Agents on one Task, one per Lane. A **Lane** is a group of test files one writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so writers don't edit the same helper or test the same thing twice. Give every independent group its own Lane, so as many writers as possible work at once. develop-epic adjusts them to the actual code.
 
-Check each behaviour once at each test level, so effort isn't spent on duplicates: one unit test of a quoting rule is enough, though an end-to-end test of the export may check it again from the outside. Include tests to update, obsolete tests to remove and missing coverage to add. The full unit suite runs once, at the end, by the last Test Writer, so one Writer checks everyone's changes together.
+Check each behaviour once at each test level, so effort isn't spent on duplicates: one unit test of a quoting rule is enough, though an end-to-end test of the export may check it again from the outside. Include tests to update, obsolete tests to remove and missing coverage to add. The full unit suite runs once, at the end, by the last `test-writer`, so one writer checks everyone's changes together.
 
 ## Quality checklist
 
@@ -129,4 +130,4 @@ Check each behaviour once at each test level, so effort isn't spent on duplicate
 - [ ] Documentation work follows its implementation and tests and is allowed by the doc-writing guide.
 - [ ] Every Task to execute has a Thinking Level suited to its complexity and risk.
 - [ ] A revision covers every affected Task and Subtask, whatever its earlier status, and leaves it ready for develop-epic.
-- [ ] The Product Manager has checked the whole Epic's Tasks and Subtasks, and its findings have been addressed.
+- [ ] The `product-manager` has checked the whole Epic's Tasks and Subtasks, and its findings have been addressed.

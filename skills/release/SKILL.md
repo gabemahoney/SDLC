@@ -37,7 +37,7 @@ Run only when both of these are true:
 
 2. **Check the result** as the guide requires, so the report reflects what was released.
 
-## Dispatches
+## Child Agents
 
 None: release follows the guide itself.
 

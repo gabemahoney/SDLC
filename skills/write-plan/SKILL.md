@@ -20,12 +20,13 @@ An Idea ID.
 ## Required Reading
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` selects the Ticket System Protocol File, `research_location` locates linked Research when needed, and `thinking_levels` with `levels_claude_code` or `levels_codex` selects the Product Manager's Thinking Level.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch the Product Manager and ask and report through the Agent.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` and `launcher` select the Protocol Files; `thinking_levels` and `levels_claude_code` or `levels_codex` set the launched skills' model and effort. `research_location` locates Research when needed.
+- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to check this Main Agent's context and ask and report through the Agent.
+- **Launcher Protocol File:** `launcher.md`, selected by `launcher` as `workflow.md` describes. Why: to launch, resume and watch Child Agents, keep their parent relationship and read their context before reuse.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and write the Plan, Epics and their relationships.
 - **The Idea, its Docs and existing Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID. Why: to ground the Plan in requirements and update an existing Plan rather than start again.
 - **Engineering, testing and documentation guidance:** `engineering-best-practices.md`, `test-guide.md` and `doc-writing-guide.md` for each affected code folder, found as `workflow.md` describes. Why: to plan engineering, testing and documentation work according to the Project's guidance.
-- **Product Manager's report:** returned during this Run. Why: to revise the Plan from its findings.
+- **`product-manager`'s report:** returned during this Run. Why: to revise the Plan from its findings.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -45,15 +46,15 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
    - If the Idea has no Plan, create one and its Epics as `draft`.
    - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
-3. **Check the Plan with the Product Manager.** Save the Plan and Epics, then dispatch the Product Manager. Fix what its findings show, and dispatch a fresh one after any significant change, until its findings are resolved. Then check the whole Plan against the Quality checklist below.
+3. **Check the Plan with the `product-manager`.** Save the Plan and Epics, then launch a Child Agent with the product-manager skill, as `launcher.md` describes. Fix what its findings show, and launch a fresh one after any significant change, until its findings are resolved. Then check the whole Plan against the Quality checklist below.
 
-4. **Set the Plan's status.** Only once the Product Manager's findings are resolved and the Quality checklist passes:
+4. **Set the Plan's status.** Only once the `product-manager`'s findings are resolved and the Quality checklist passes:
    - If any Epic is `done` or `active`, or was before this revision, set the Plan `active`, because work is already underway.
    - Otherwise, set the Plan `defined`.
 
-## Dispatches
+## Child Agents
 
-- **Product Manager:** launch fresh after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes. An independent read checks the planner's judgement before the Plan is finalized.
+- **`product-manager`:** Launch a Child Agent with the product-manager skill, as `launcher.md` describes, fresh after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes. An independent read checks the planner's judgement before the Plan is finalized.
 
 ## Writes
 
@@ -62,7 +63,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 ## Done
 
-Report the Plan's ID, and any Product Manager findings left unaddressed with the reason.
+Report the Plan's ID, and any `product-manager` findings left unaddressed with the reason.
 
 Suggest write-epic on each `draft` Epic in dependency order.
 
@@ -98,7 +99,7 @@ Plan documentation as `doc-writing-guide.md` guides, including which doc files t
 - [ ] Every planned documentation change is allowed by the doc-writing guide.
 - [ ] Every planned requirement is grounded in the Idea's Docs, supplied decisions or applicable Guidance Documents.
 - [ ] A revision covers every changed SR, and every Epic it affects is back in `draft`.
-- [ ] The Product Manager has checked the Plan, and its findings have been addressed.
+- [ ] The `product-manager` has checked the Plan, and its findings have been addressed.
 
 ## What not to include
 

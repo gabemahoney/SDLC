@@ -4,7 +4,7 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
 
 ## What the new Apiary fixes
 1. **More than bees.** Any shipped ticket system works through its Protocol File.
-2. **An Orchestrator in the loop.** A Managing Intelligence (a person or an LLM) drives the skills, and Workers run them through a Launcher.
+2. **An Orchestrator in the loop.** The Managing Intelligence chooses skills for Main Agents. Main Agents can launch Child Agents with the skills their work needs, through the Launcher Protocol File.
 3. **Shareable configuration.** Templates and `~/.apiary` defaults replace copy-paste between projects.
 4. **Apiary reads its own settings and Guidance Documents,** not each repo's CLAUDE.md.
 5. **Claude Code and Codex CLI,** each through its Agent Protocol File.
@@ -35,4 +35,4 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
 ## How a skill change is made
 The b.v38 PRD Docs are background only; use the Acceptance baseline for checks.
 
-Load today's skill, and any Subagent it folds in, into context (`apiary-main` master `skills/<name>/SKILL.md` and `agents/apiary-<role>.md`). Write the new skill from it, keeping what works and changing what these goals require. Then run a cold read and the checklist (`docs/skill-review-checklist.md`).
+Read the existing skill and any legacy agent instructions it absorbs from the main checkout. Write the new skill from that material, keeping the proven guidance and applying these goals. Then run a cold read and the checklist (`docs/skill-review-checklist.md`).

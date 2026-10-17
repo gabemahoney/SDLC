@@ -39,7 +39,7 @@ Run only when all of these are true:
 
 2. **File the Bug** as described under Writes.
 
-## Dispatches
+## Child Agents
 
 None: write-bug files the Bug itself.
 

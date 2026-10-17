@@ -48,7 +48,7 @@ Run only when all of these are true:
    - If the reported behaviour cannot happen or is intended, set the Bug `invalid` and explain why, citing the evidence or the Managing Intelligence's decision.
    - If the result is inconclusive, leave the Bug `draft`, record what was tried and why it is inconclusive, and ask the Managing Intelligence whether the Bug is real. Record their decision on the Bug and apply the corresponding outcome above.
 
-## Dispatches
+## Child Agents
 
 None: define-bug validates the Bug itself.
 
