@@ -30,7 +30,9 @@ An Idea ID or one of its PRD or SRD Doc IDs, with any earlier findings and Manag
 
 ## Gate
 
-The Idea has a PRD and isn't `done`. If it has no PRD, stop and suggest write-prd.
+Run only when both are true:
+- The Idea has a PRD. If it doesn't, stop and suggest write-prd.
+- The Idea isn't `done`, because done work is already shipped. If it is, stop and say so.
 
 ## Steps
 
