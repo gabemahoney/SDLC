@@ -102,5 +102,5 @@ Plan documentation as `doc-writing-guide.md` guides, including which doc files t
 
 ## What not to include
 
-- Work the PRD, SRD or Guidance Documents don't ask for, such as extra validation or fallbacks, because it grows the Plan without serving the Idea.
+- Work the PRD, SRD or Guidance Documents don't ask for, such as extra validation or fallbacks, because the SRD has already defined the full set of requirements.
 - Task-level detail. Leave it to write-epic, which plans each Epic with a fresh context.
