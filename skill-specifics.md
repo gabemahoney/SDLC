@@ -10,16 +10,6 @@ Per-entry Required Reading names specific inputs only. Shared startup, settings,
 
 The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug. configure-worktree reads its Worker's skill line and Worker's Agent mapping only when launching, outside worktree-only mode.
 
-## write-bug
-
-**Required Reading:** `new_bug_intake`, supplied input and `bug-writing-guide`, to file the report.
-
-**Gate:** None specified.
-
-**Owned transitions:** Creates Bug `draft`, not yet validated.
-
-**Specific rules:** Follows the selected intake and writes what the input gives; define-bug fills the write-up from a source reference.
-
 ## define-bug
 
 **Required Reading:** Bug and source references; `bug-writing-guide`, `build-commands`, reproduction source, tests and configuration in the main checkouts, to validate the report.
