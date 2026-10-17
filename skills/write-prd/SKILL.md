@@ -45,7 +45,7 @@ None: the PRD can be written or revised at any Idea status.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
-     - Fold each accepted finding or change into the body where it belongs. Never append amendments, errata or a review-fixes section.
+     - Fold each accepted finding or change into the body where it belongs. Never append amendments, errata or a review-fixes section, so later skills find one current account of the requirements.
      - Cut text a change superseded, repeated text and padding.
      - Keep every current requirement, acceptance criterion, edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
      - An acceptance criterion may restate the behaviour it checks, and a summary section may restate what the body details. Nothing else repeats.

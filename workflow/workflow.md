@@ -37,7 +37,7 @@
 - A Doc describes an Idea: its Product Requirements Document (PRD, what and why), Software Requirements Document (SRD, what the software must do), TLA+ spec (a model-checked design), or another document.
 - A Research ticket holds a research question. Its one Report holds the answer. A Report is not a Doc.
 
-Every Epic is a vertical slice through the product, never an Epic of only testing, docs or plumbing. The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice.
+Every Epic is a vertical slice through the product, never an Epic of only testing, docs or plumbing, so each delivers something that can be checked on its own. The one exception is a Round Feedback Epic: the Epic titled `Round <N> Feedback` that idea-review files in the Idea's Plan, holding a round's non-trivial findings. It need not be a vertical slice, because it groups corrections from one review round.
 
 ## Statuses
 
@@ -71,8 +71,8 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 - Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers the `SKILL.md`, a Subagent definition, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
 - If your skill's Gate fails, change nothing and say why.
-- No skill or Subagent runs another Apiary skill.
-- After a compaction, re-read the Protocol Files and Guidance Documents you loaded.
+- No skill or Subagent runs another Apiary skill, because the Managing Intelligence decides what work happens next.
+- After a compaction, re-read the Protocol Files and Guidance Documents you loaded, because summaries can omit their rules.
 - Report pass, fail or not applicable for every required check and gate in the `SKILL.md` and its Guidance Documents, and name the Guidance Document copies or Default Fallback Files used.
 
 ### Project Folder, paths and worktrees
@@ -93,7 +93,7 @@ If a setting the Run needs is missing from both files, stop before any change an
 
 Record Dependencies, Associations and Source References as the Ticket System Protocol File says, or as the `ticket_links` setting says where that file doesn't cover one.
 
-Pass the settings and the Ticket System and Agent Protocol Files in every dispatch. Subagents use the supplied settings and Protocol Files, not their own lookup.
+Pass the settings and the Ticket System and Agent Protocol Files in every dispatch. Subagents use the supplied settings and Protocol Files, not their own lookup, so all Subagents use the Run's configuration.
 
 ### Thinking Levels
 
@@ -107,7 +107,7 @@ A Thinking Level picks the model and effort a Subagent or Worker runs at. Two se
   ```
 - `levels_claude_code` and `levels_codex` say what each level (`low` < `medium` < `high` < `xhigh` < `max`) means for that Agent, one line per level. Use only the model names they give.
 
-Executors (Engineer, Test Writer, Doc Writer) have no line. They use their Task's or Bug's `thinking_level:` tag, and a Subtask uses its Task's. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
+Executors (Engineer, Test Writer, Doc Writer) have no line. They use their Task's or Bug's `thinking_level:` tag, and a Subtask uses its Task's, so effort follows the work's complexity and risk. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
 If a line or mapping you need is missing, stop before any change and point to project-setup.
 

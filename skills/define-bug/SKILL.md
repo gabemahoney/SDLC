@@ -41,7 +41,7 @@ The Bug is `draft`. If it isn't, stop and report its status.
    - If reproduction cannot establish whether the report is real, review the source for evidence that settles it.
 
 3. **Record the outcome on the Bug.** Save the evidence, reproduction and conclusion.
-   - If reproduction, source evidence or the Managing Intelligence's recorded decision establishes that the Bug is real, set it `defined` and assign a `thinking_level:<label>` tag suited to the fix's complexity and risk.
+   - If reproduction, source evidence or the Managing Intelligence's recorded decision establishes that the Bug is real, set it `defined` and assign a `thinking_level:<label>` tag suited to the fix's complexity and risk, because fix-bug uses it for the Bug's executors.
    - If the reported behaviour cannot happen or is intended, set the Bug `invalid` and explain why, citing the evidence or the Managing Intelligence's decision.
    - If the result is inconclusive, leave the Bug `draft`, record what was tried and why it is inconclusive, and ask the Managing Intelligence whether the Bug is real. Record their decision on the Bug and apply the corresponding outcome above.
 

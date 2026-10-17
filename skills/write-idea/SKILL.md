@@ -33,7 +33,7 @@ None: write-idea creates a new ticket.
 1. **Check the input.** Follow the intake named by `new_idea_intake`.
    - If the input doesn't fit, stop and ask the Managing Intelligence for what's needed.
 2. **Prepare the Idea.**
-   - If the intake names a Source Reference resolver, store the input as the Idea's Source Reference.
+   - If the intake names a Source Reference resolver, store the input as the Idea's Source Reference, so write-prd can read the original context.
 
    Follow the intake's instructions for the Idea's body.
 3. **File the Idea.** Create it in the Ideas store with status `draft`.

@@ -76,9 +76,9 @@ After merging, ask the Managing Intelligence to check the fix. They set the Bug 
 
 Executors do the file work; reviewers provide independent checks. The skill coordinates their reports, judges findings and commits the result.
 
-Use the same order as develop-epic: Engineer first; then Code Reviewer and Test Writers in parallel; then Test Reviewer and Doc Writer in parallel; then Doc Reviewer. Run roles when their work is required as Dispatches describes. Collect all findings before one batched fix round. Resume each affected executor once in source → unit tests → documentation order, carrying accepted findings and the preceding executors' reports. Batch documentation work into that round's single Doc Writer pass. Re-review changed work with fresh reviewers and repeat for findings still worth fixing.
+Use the same order as develop-epic: Engineer first; then Code Reviewer and Test Writers in parallel; then Test Reviewer and Doc Writer in parallel; then Doc Reviewer. Run roles when their work is required as Dispatches describes. Collect all findings before one batched fix round, so executors address the reviews together instead of repeating work per finding. Resume each affected executor once in source → unit tests → documentation order, carrying accepted findings and the preceding executors' reports. Batch documentation work into that round's single Doc Writer pass, so docs are updated once against settled code and tests. Re-review changed work with fresh reviewers and repeat for findings still worth fixing.
 
-The sole Test Writer, or final Writer after multiple Lanes, owns the full unit-suite run in every affected repo with unit tests. It runs once after its changes, fixes test failures and rechecks. Give each later source- or unit-test-changing pass the same owner. Route source failures to the Engineer, then back through unit testing and review. Other roles use targeted checks; the Integration Tester owns integration-suite runs.
+The sole Test Writer, or final Writer after multiple Lanes, owns the full unit-suite run in every affected repo with unit tests. It runs once after its changes, fixes test failures and rechecks. Give each later source- or unit-test-changing pass the same owner. Route source failures to the Engineer, then back through unit testing and review. Other roles use targeted checks; the Integration Tester owns integration-suite runs, so full suites are not repeated by every role.
 
 ## Regression evidence
 
@@ -86,13 +86,13 @@ Keep at least one unit test that fails against the pre-fix source and passes aga
 
 ## Test Writer Lanes
 
-A **Lane** is a group of unit-test files one Test Writer can change independently. Choose Lanes from the Bug's affected behaviours and files. Keep files together when they share a fixture or helper being changed or cover overlapping behaviour.
+A **Lane** is a group of unit-test files one Test Writer can change independently. Choose Lanes from the Bug's affected behaviours and files. Keep files together when they share a fixture or helper being changed or cover overlapping behaviour, so parallel Writers do not conflict or duplicate coverage.
 
-Give each Lane its files and behaviours, the other Lanes' assignments and the shared fixture/helper list. Each owns its files and exclusively used fixtures and helpers, including exclusively used entries in common helper files. It reports shared changes and gaps outside its files for the final Writer. After multiple Lanes finish, one final Test Writer uses all their reports to make shared changes, close gaps and run the full unit suite. A sole Writer owns all the Bug's unit tests and helpers. Apply the same ownership in fix rounds.
+Give each Lane its files and behaviours, the other Lanes' assignments and the shared fixture/helper list, so Writers know which coverage and helpers another Lane owns. Each owns its files and exclusively used fixtures and helpers, including exclusively used entries in common helper files. It reports shared changes and gaps outside its files for the final Writer. After multiple Lanes finish, one final Test Writer uses all their reports to make shared changes, close gaps and run the full unit suite. A sole Writer owns all the Bug's unit tests and helpers. Apply the same ownership in fix rounds.
 
 ## Executor reuse and progress
 
-Start one fresh Engineer, one Test Writer per Lane and one Doc Writer for the Bug as needed. Retain them, including any final Test Writer, for fix rounds. Resume only affected executors; they keep their Guidance Documents and add those for newly assigned repos. Replace an executor that cannot continue with a fresh one carrying the findings and work so far. Reviewers and Integration Testers start fresh on every dispatch.
+Start one fresh Engineer, one Test Writer per Lane and one Doc Writer for the Bug as needed. Retain them, including any final Test Writer, for fix rounds, so fixes reuse their knowledge of the work. Resume only affected executors; they keep their Guidance Documents and add those for newly assigned repos. Replace an executor that cannot continue with a fresh one carrying the findings and work so far. Reviewers and Integration Testers start fresh on every dispatch, so each assesses the current work independently of its earlier conclusions.
 
 Update the Bug after each report with the current phase, repo checkouts, base revisions and merge targets, pending findings, checks, integration results and repair-round count, commits and merges, and next work. For each retained executor, record its Role, Bug, Lane or final-Writer assignment, Agent ID, name if available and dispatch Thinking Level. After compaction or a re-run, resume by name if available, otherwise by ID, reconciling progress with ticket and git state.
 
@@ -100,7 +100,7 @@ Update the Bug after each report with the current phase, repo checkouts, base re
 
 Run the Integration Tester across the affected worktrees once code, unit tests and documentation settle. The gate passes when every repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives its remaining failures. Record results and waivers on the Bug.
 
-- If integration tests change, get a fresh Test Reviewer check. Resolve accepted test findings with a fresh Integration Tester and obtain its final suite result for the resulting files.
+- If integration tests change, get a fresh Test Reviewer check, because these changes follow the unit-test review. Resolve accepted test findings with a fresh Integration Tester and obtain its final suite result for the resulting files.
 - If source fixes are needed, pass the failures through the repair pipeline, including the full unit suite and affected documentation, then get a fresh Integration Tester result. Stop for the Managing Intelligence's decision if a round does not reduce failures or failures remain after three source-fix rounds.
 - If suites cannot run, stop for the environment to be fixed or an explicit waiver. Keep the unfinished gate and evidence on the Bug so a later Run resumes there.
 

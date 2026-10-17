@@ -41,14 +41,14 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 3. **Model in TLA+ only what needs it.** Model an SR group when it has concurrency (things happening at the same time, retries, partial failure) or a state machine, because those hide ordering bugs that reading and tests miss. Include already-modelled groups a revision changed. Most SRDs need neither, so skip this step. The checker is slow, so each model is reviewed before it runs. For each picked SR group, in parallel:
    1. **Write.** Dispatch a TLA+ Writer with the SR group and what to model. It writes the model as a TLA+ spec Doc on the Idea, with the model files attached to that Doc, and doesn't run it yet.
-   2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec and the SRD. It reports whether the model matches the SRD and its invariants are meaningful.
+   2. **Review.** Dispatch a fresh TLA+ Reviewer with the spec and the SRD, so the check is independent of the Writer's reasoning. It reports whether the model matches the SRD and its invariants are meaningful.
    3. **Fix.** If there are findings, resume the same Writer with them, then go back to 2 with a fresh Reviewer.
    4. **Run.** Once a review has no findings, resume the Writer to run the TLA+ model checker. It returns the checker results and any SRD bugs they show.
    5. **Fix the SRD.** If the run shows an SRD bug, fix the SRD, save it, and repeat from 3 for that SR group, giving the Writer the SRD change.
 
 4. **Review it yourself.** Read the whole draft once for each of the four checks below, one after another. If any check changed something, do all four again. Stop when a full round changes nothing. Do this for a first draft and a revision alike.
    - **Succinctness:** cut repetition and padding with no loss of signal.
-     - Fold each accepted finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section.
+     - Fold each accepted finding or change into the requirement it affects. Never append amendments, errata or a review-fixes section, so later skills find one current account of the requirements.
      - Cut text a change superseded, repeated text and padding.
      - Keep every current software requirement, invariant, acceptance criterion, supplied edge case and Managing Intelligence answer. One the Managing Intelligence withdrew or replaced is no longer current, so cut it.
      - Within the SRD, an acceptance criterion may restate the behaviour it checks, and a summary may restate what the body details. Nothing else repeats; refer to an existing SR when another group needs it.

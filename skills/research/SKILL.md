@@ -38,7 +38,7 @@ None: research files a new Research ticket or continues one at any status.
    - If the ticket is `active`, use its review log to continue unfinished research or requested further work in step 2. For a round awaiting review or already accepted, go to step 3.
    - If the ticket is `done`, report its completion and Report ID and finish unless the Managing Intelligence requests more work. For that request, record it and set the ticket and Report `active` for a new round.
 
-2. **Research the round.** Investigate the question on the first round and the Managing Intelligence's latest request on later rounds. Save the evidence and update the same Report to reflect all findings so far. Check it against the Report guidance below, then append a dated round with a short Presented summary to the Research ticket.
+2. **Research the round.** Investigate the question on the first round and the Managing Intelligence's latest request on later rounds. Save the evidence and update the same Report to reflect all findings so far, so later readers have one current answer. Check it against the Report guidance below, then append a dated round with a short Presented summary to the Research ticket.
 
 3. **Review with the Managing Intelligence.** If a verdict is still needed, present the ticket ID, round summary, Report ID and links to the Report and artifacts, then wait for the Managing Intelligence's decision. Record and apply the verdict, including one already supplied. Record who reviewed the round, keeping any request for more work verbatim.
    - If they request more work, return to step 2 with that request.

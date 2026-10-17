@@ -41,7 +41,7 @@ Run only when both of these are true:
 1. **Outline the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's choices. Account for all sibling Epics and assume prerequisite Epics deliver their stated outcomes before execution. Use the Task template below.
    - If Tasks already exist, reconcile them with current requirements and recorded progress. Preserve `done` Tasks and Subtasks. Revise, add or drop unfinished work; put further changes to completed capabilities into unfinished Tasks.
 
-2. **Plan each Task's Subtasks.** Work through Tasks in dependency order. Use executor planners for detailed research, because this skill needs its context for the remaining Tasks. Combine their proposals using the guidance below. Assign each unfinished Task a `thinking_level:<label>` tag suited to its complexity and risk.
+2. **Plan each Task's Subtasks.** Work through Tasks in dependency order. Use executor planners for detailed research, because this skill needs its context for the remaining Tasks. Combine their proposals using the guidance below. Assign each unfinished Task a `thinking_level:<label>` tag suited to its complexity and risk, because develop-epic uses it for the Task's executors.
    - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
    - If proposals require a product decision or conflict with the SRD's choices, stop for the Managing Intelligence's decision. Record it on the affected ticket.
 
@@ -75,7 +75,7 @@ Suggest develop-epic when its prerequisites are met; otherwise report what remai
 - **Acceptance criteria:** state observable results that demonstrate the Task's outcome.
 - **Dependencies:** name Tasks that must finish first and explain why.
 
-Size each Task for one commit per affected repo. Describe outcomes and constraints, leaving implementation detail to the executor. Name files and modules rather than code snippets or line numbers.
+Size each Task for one commit per affected repo. Describe outcomes and constraints, leaving implementation detail to the executor. Name files and modules rather than code snippets or line numbers, because prerequisite work can change the code before execution.
 
 ## Subtask template
 
@@ -102,9 +102,9 @@ Integration Tester writes and runs integration tests during develop-epic. Flag e
 
 Plan which existing fixtures, factories, helpers and constants tests reuse, what changes they need, which new fixtures are needed and where they belong, and which test files to extend or add. This lets tests share established setup.
 
-Organize unit-test Subtasks by test file or logical group of files. Give each behaviour one coverage owner. Account for tests to update, obsolete tests to remove and missing coverage to add.
+Organize unit-test Subtasks by test file or logical group of files. Give each behaviour one coverage owner, so parallel Writers do not duplicate tests. Account for tests to update, obsolete tests to remove and missing coverage to add.
 
-A Test Writer lane is a group of test files one Test Writer can change independently. Keep files together when they share a fixture or helper the Task creates or changes, or when their tested behaviours overlap. Give each resulting independent group a lane. The final full-unit-suite Subtask follows all lanes and belongs to the final Test Writer.
+A Test Writer lane is a group of test files one Test Writer can change independently. Keep files together when they share a fixture or helper the Task creates or changes, or when their tested behaviours overlap, so parallel Writers do not conflict or duplicate coverage. Give each resulting independent group a lane. The final full-unit-suite Subtask follows all lanes and belongs to the final Test Writer, so one Writer checks their combined changes.
 
 For each Task with unit-test Subtasks, end its description with a `## Test Writer Lanes` section. State the suggested lane count, list each lane's test files with their repo or code folder, and name shared fixtures or helpers, or state that there are none. These are suggestions for develop-epic to reconcile with the code at execution time.
 

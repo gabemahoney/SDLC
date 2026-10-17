@@ -50,7 +50,7 @@ None: req-review reviews the Docs itself.
 
 ## Writes
 
-req-review changes statuses only. It never edits the PRD or SRD.
+req-review changes statuses only. It never edits the PRD or SRD, so it remains an independent check of the writers' work.
 
 - The PRD or SRD: set to `defined` when the Managing Intelligence approves it.
 - The Idea: set from `draft` to `defined` once its PRD and SRD are both `defined`.

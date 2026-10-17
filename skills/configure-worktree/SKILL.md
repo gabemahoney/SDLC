@@ -37,7 +37,7 @@ Run only when both of these are true:
 ## Steps
 
 1. **Settle the worktrees.** For each repo, default the base to its main checkout's branch. Name the worktree branch after the ticket ID with dots replaced by underscores. Record any Managing Intelligence decisions about repos, bases or Worker instructions on the ticket.
-   - If the expected path is already a worktree on the ticket's branch, reuse it; a newly requested base applies only when creating a worktree.
+   - If the expected path is already a worktree on the ticket's branch, reuse it; a newly requested base applies only when creating a worktree, so resuming does not rebase existing work.
    - If the expected path holds different work or the ticket's branch remains without its worktree, stop for the Managing Intelligence's decision.
    - If creating from the main checkout's branch and it has uncommitted changes, the Managing Intelligence decides whether to commit them first or stop, because the worktree would otherwise omit them.
 

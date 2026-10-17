@@ -35,19 +35,19 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 Run only when both of these are true:
 
 - The Idea's Plan is `done`. If it isn't, stop and report the unfinished planning or execution work.
-- Every Epic worktree has been merged into the checkouts being reviewed. If any remains unmerged, stop and suggest teardown-worktree from outside that worktree.
+- Every Epic worktree has been merged into the checkouts being reviewed, so the review covers the combined product. If any remains unmerged, stop and suggest teardown-worktree from outside that worktree.
 
 ## Steps
 
 1. **Establish the round.** Use the Idea's round progress to resume unfinished review work, or start the next numbered round, beginning at 1. Identify the reviewed checkouts and commits across all affected repos.
 
-2. **Review the whole Idea.** Dispatch the Code, Test and Doc Reviewers in parallel. Demonstrate each PRD acceptance criterion against the combined product using tests or scripts. For a criterion needing manual testing, give the Managing Intelligence concrete validation instructions. Record the evidence and any unmet criteria. Then dispatch the Product Manager with the requirements, reviewer reports and acceptance evidence. Repeat this whole-Idea check in every round, including rounds after feedback fixes.
+2. **Review the whole Idea.** Dispatch the Code, Test and Doc Reviewers in parallel. Demonstrate each PRD acceptance criterion against the combined product using tests or scripts. For a criterion needing manual testing, give the Managing Intelligence concrete validation instructions. Record the evidence and any unmet criteria. Then dispatch the Product Manager with the requirements, reviewer reports and acceptance evidence. Repeat this whole-Idea check in every round, including rounds after feedback fixes, because corrections can affect previously working behaviour.
 
 3. **Judge the findings.** Combine the current reports with unacted-on feedback recorded by develop-epic. Use the Findings guidance below. Check whether each earlier feedback fix solved its finding.
-   - If a finding an earlier Round Feedback Epic was meant to fix still stands, record the failed fix and evidence, then stop for the Managing Intelligence's decision before filing more work. Record the decision on that Epic and resume this round from it.
+   - If a finding an earlier Round Feedback Epic was meant to fix still stands, record the failed fix and evidence, then stop for the Managing Intelligence's decision before filing more work, so an unsuccessful fix does not start an automatic loop. Record the decision on that Epic and resume this round from it.
 
 4. **Record the round's outcome.**
-   - If non-trivial findings remain, file all of them as one `Round <N> Feedback` Epic in the Idea's Plan, using the Feedback Epic contents below. Create it `draft`, set the Plan from `done` to `active`, and stop with the handoff to write-epic.
+   - If non-trivial findings remain, file all of them as one `Round <N> Feedback` Epic in the Idea's Plan, using the Feedback Epic contents below, so the round's corrections go through the normal planning and execution checks. Create it `draft`, set the Plan from `done` to `active`, and stop with the handoff to write-epic.
    - If findings are only trivial, or there are none, finish the review and list any trivial findings in the final report. The next step is the Managing Intelligence's testing.
 
 ## Dispatches

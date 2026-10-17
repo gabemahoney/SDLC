@@ -56,7 +56,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       For `ticket_system`, `launcher`, `prd_template` and, when no template is selected, both intakes, show the defaults and first offer “use the default for all”; otherwise ask default or Project value for each.
       - If a value exists in the chosen file, offer it.
       - Otherwise, suggest `bees` for `ticket_system`, `agent-director` for `launcher`, `~/.apiary/system/doc-templates/prd.md` for `prd_template`, and “interview the Managing Intelligence” for both intakes.
-      - For `prd_template`, offer the default first, then their own template file; write its path as the setting's value.
+      - For `prd_template`, offer the default first, then their own template file; write its path as the setting's value, because the PRD covers the whole Project while Guidance Documents can vary by repo.
       - If Project value, write it to `<Project Folder>/.apiary/project_settings.md`.
       - If using an existing default, remove any Project value.
       - If the chosen default is missing from `~/.apiary/default_project_settings.md`, stop and ask the Managing Intelligence: approve adding it? Add it on approval, then remove any Project value.

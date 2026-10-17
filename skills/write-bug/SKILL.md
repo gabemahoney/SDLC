@@ -34,7 +34,7 @@ None: write-bug creates a new ticket.
 1. **Check the input.** Follow the intake named by `new_bug_intake`.
    - If the input doesn't fit, stop and ask the Managing Intelligence for what's needed.
 2. **Prepare the Bug.**
-   - If the intake names a Source Reference resolver, store the input as the Bug's Source Reference.
+   - If the intake names a Source Reference resolver, store the input as the Bug's Source Reference, so define-bug can read the original report.
 
    Follow the intake's instructions for the Bug's body and `bug-writing-guide.md`, using what the input supplies. Preserve the reporter's exact symptom and any supplied reproduction. define-bug fills out the report from its Source References and validates it.
 3. **File the Bug.** Create it in the Bugs store with status `draft`.

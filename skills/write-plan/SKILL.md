@@ -104,4 +104,4 @@ Plan documentation only as `doc-writing-guide.md` allows: it decides which doc f
 
 ## What not to include
 
-Include defaults, fallbacks, validation, edge-case rules, schemas and guards only when the Idea's Docs or applicable Guidance Documents require them. Keep Task and Subtask detail for write-epic.
+Include defaults, fallbacks, validation, edge-case rules, schemas and guards only when the Idea's Docs or applicable Guidance Documents require them. Keep Task and Subtask detail for write-epic, so detailed planning has a fresh context for each Epic.
