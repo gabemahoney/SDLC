@@ -84,7 +84,7 @@ Report the Epic's ID, and any review findings left unaddressed with the reason.
 
 ## Task pipeline
 
-Executors change files; reviewers check them independently. develop-epic judges findings and commits.
+develop-epic coordinates: executors change files, reviewers check them independently, and develop-epic decides which findings to fix and commits the result.
 
 Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the work's applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Repeat product review after fixes affecting behaviour.
 
