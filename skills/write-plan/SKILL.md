@@ -43,7 +43,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 2. **Write the Plan and Epics.** Establish the outcome from the PRD's goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Write each ticket as "What to write in each ticket" below says, and follow the Planning guidance.
    - If the Idea has no Plan, create one and its Epics as `draft`.
-   - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
+   - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
 3. **Check the Plan with the Product Manager.** Save the Plan and Epics, then dispatch the Product Manager. Fix what its findings show, and dispatch a fresh one after any significant change, until its findings are resolved. Then check the whole Plan against the Quality checklist below.
 
@@ -68,7 +68,7 @@ Suggest write-epic on each `draft` Epic in dependency order.
 
 ## What to write in each ticket
 
-**The Plan ticket's body:** the goal and scope in two or three sentences, and why this number of Epics fits the change.
+**The Plan ticket's body:** the goal and scope in two or three sentences, and why this number of Epics fits the Idea.
 
 **Each Epic ticket's body:**
 - **Outcome:** the one user- or system-visible capability it delivers, and how success is measured.
@@ -78,7 +78,7 @@ Suggest write-epic on each `draft` Epic in dependency order.
 
 ## Planning guidance
 
-Keep the Plan and its Epics short and in proportion to the change. Use these Epic counts as guidance: small, 1–3; medium, 3–6; large, 6–9; new product, 10+. Choose the count by judgement and state a reason when it falls outside its range. A single Epic can be enough.
+Keep the Plan and its Epics short and in proportion to the Idea. Use these Epic counts as guidance: small, 1–3; medium, 3–6; large, 6–9; new product, 10+. Choose the count by judgement and state a reason when it falls outside its range. A single Epic can be enough.
 
 Every Epic must leave the software working with existing tests passing. Each outcome should be independently testable and demonstrable when its Dependencies are complete.
 
@@ -95,7 +95,7 @@ Plan documentation only as `doc-writing-guide.md` allows: it decides which doc f
 - [ ] The Plan covers the PRD's goals and acceptance criteria and the SRD's requirements and choices.
 - [ ] Each Epic meets the workflow's Epic rule and has one coherent outcome with a concrete demonstration of success.
 - [ ] Each Epic leaves the software working, and its prerequisites are recorded as Dependencies.
-- [ ] The Epic count fits the size of the change, with a reason for any departure from the guidance range.
+- [ ] The Epic count fits the size of the Idea, with a reason for any departure from the guidance range.
 - [ ] Engineering and testing work required by the Guidance Documents belongs to the Epics it supports.
 - [ ] Every planned documentation change is allowed by the doc-writing guide.
 - [ ] Every planned requirement is grounded in the Idea's Docs, supplied decisions or applicable Guidance Documents.
