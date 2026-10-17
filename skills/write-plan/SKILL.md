@@ -41,7 +41,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
    - If either required Doc is not `defined`, stop and ask the Managing Intelligence: confirm planning without review. Continue only on an explicit yes.
    - If both are `defined`, continue with planning.
 
-2. **Write the Plan and Epics.** Establish the outcome from the PRD's goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Use the Plan and Epic templates and craft guidance below to write the Plan itself and set its Epic dependencies.
+2. **Write the Plan and Epics.** Establish the outcome from the PRD's goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Use the Plan and Epic templates and craft guidance below to write the Plan itself and set its Epic Dependencies.
    - If the Idea has no Plan, create one and its Epics as `draft`.
    - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
@@ -62,7 +62,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 ## Done
 
-Report the Plan's ID and status, and each Epic's ID, title, status, dependencies and one-line outcome in dependency order. Include the size class and reason for its Epic count, the Product Manager's findings and resulting revisions, ambiguous decomposition decisions and their rationale, and any incomplete work. For a revised Plan, identify the changed SRs addressed and the Epics preserved, revised, added or dropped.
+Report the Plan's ID and status, and each Epic's ID, title, status, Dependencies and one-line outcome in dependency order. Include the size class and reason for its Epic count, the Product Manager's findings and resulting revisions, ambiguous decomposition decisions and their rationale, and any incomplete work. For a revised Plan, identify the changed SRs addressed and the Epics preserved, revised, added or dropped.
 
 Suggest write-epic on each `draft` Epic in dependency order.
 
@@ -84,7 +84,7 @@ Suggest write-epic on each `draft` Epic in dependency order.
 
 Keep the Plan and its Epics short and in proportion to the change. Use these Epic counts as guidance: small, 1–3; medium, 3–6; large, 6–9; new product, 10+. Choose the count by judgement and state a reason when it falls outside its range. A single Epic can be enough.
 
-Every Epic must leave the software working with existing tests passing. Each outcome should be independently testable and demonstrable when its dependencies are complete. Watch for chains whose intermediate states cannot be tested and for pervasive refactors mixed into feature work without serving its outcome.
+Every Epic must leave the software working with existing tests passing. Each outcome should be independently testable and demonstrable when its Dependencies are complete. Watch for chains whose intermediate states cannot be tested and for pervasive refactors mixed into feature work without serving its outcome.
 
 Acceptance criteria describe a concrete demonstration. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
