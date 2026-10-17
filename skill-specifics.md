@@ -10,16 +10,6 @@ Per-entry Required Reading names specific inputs only. Shared startup, settings,
 
 The dispatching skills are write-srd, req-review, write-plan, write-epic, develop-epic, idea-review and fix-bug.
 
-## release
-
-**Required Reading:** `release-guide` and its plain reference targets; Ticket System Protocol File only if the guide uses tickets.
-
-**Gate:** Follows the conditions in `release-guide.md`; stops without a release process.
-
-**Owned transitions:** Ticket changes come from `release-guide.md`.
-
-**Specific rules:** A human step requires a human's yes.
-
 ## Engineer
 
 **Required Reading:** Assigned Subtasks or Bug, source context and handed-off findings; `engineering-best-practices`, `build-commands`.
