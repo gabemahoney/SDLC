@@ -41,7 +41,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
    - If either required Doc is not `defined`, stop and ask the Managing Intelligence: confirm planning without review. Continue only on an explicit yes.
    - If both are `defined`, continue with planning.
 
-2. **Write the Plan and Epics.** Establish the outcome from the PRD's goals, acceptance criteria and constraints, and follow the SRD's software requirements, technology choices and architecture. Write each ticket as "What to write in each ticket" below says, and follow the Planning guidance.
+2. **Write the Plan and Epics.** First state in a sentence what changes for the user or system when the Idea is done, from the PRD's goals, acceptance criteria and constraints. If you can't, stop and raise it with the Managing Intelligence, because Epics cut without a clear outcome won't add up to one. Follow the SRD's software requirements, technology choices and architecture. Write each ticket as "What to write in each ticket" below says, and follow the Planning guidance.
    - If the Idea has no Plan, create one and its Epics as `draft`.
    - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
