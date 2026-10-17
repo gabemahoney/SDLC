@@ -1,6 +1,6 @@
 ---
 name: research
-description: "File or continue a Research ticket, investigate its question, and complete its cited Report through review rounds with the Managing Intelligence."
+description: "Investigate a Research ticket's question and complete its cited Report through review rounds with the Managing Intelligence."
 ---
 
 # research
@@ -15,7 +15,7 @@ You are running an Apiary software development workflow. Before anything else, r
 
 ## Input
 
-A Research ticket ID to continue, or a question to file as a new Research ticket.
+A Research ticket ID.
 
 ## Required Reading
 
@@ -23,24 +23,26 @@ A Research ticket ID to continue, or a question to file as a new Research ticket
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to present rounds, receive decisions and use research skills provided by the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the Research ticket, its Report and review log, and store and link research artifacts.
-- **Research ticket, Report and evidence:** through the Ticket System Protocol File, using the input ID when continuing. Why: to understand the question, constraints, findings and latest review decision, and resume the right round.
-- **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read source material supplied with the question.
+- **Research ticket and its existing Report:** through the Ticket System Protocol File, using the input ID. Why: to understand the question, constraints, findings and latest review decision, and resume the right round.
+
+Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 
-None: research files a new Research ticket or continues one at any status.
+Run only when all of these are true:
+
+- The Research ticket states its question. If it doesn't, stop for the Managing Intelligence to supply it, because the question determines what to investigate.
+- The Research ticket is `defined`, `active` or `done`. Otherwise, stop for the Managing Intelligence to finish defining it, so research starts from a written question.
 
 ## Steps
 
-1. **File or continue the question.**
-   - If given a new question, create a Research ticket as `defined`, using the Research ticket template below. If asked only to file it, report its ID and finish.
-   - If the ticket is `defined`, set it `active` and create its Report as `active` when starting the first round.
-   - If the ticket is `active`, use its review log to continue unfinished research or requested further work in step 2. For a round awaiting review or already accepted, go to step 3.
-   - If the ticket is `done`, report its completion and Report ID and finish unless the Managing Intelligence requests more work. For that request, record it and set the ticket and Report `active` for a new round.
+1. **Start or resume the research.**
+   - For a `defined` or `active` ticket, go to step 3 if the latest round awaits review or has an acceptance to apply. Otherwise, set the ticket and Report `active`, creating the Report if needed, and continue research in step 2. This lets an interrupted Run continue with the same Report.
+   - For a `done` ticket, finish unless the Managing Intelligence has requested further work since acceptance. Record that request and set both the ticket and Report `active` for a new round, because the revised answer needs review too.
 
 2. **Research the round.** Investigate the question on the first round and the Managing Intelligence's latest request on later rounds. Save the evidence and update the same Report to reflect all findings so far, so later readers have one current answer. Check it against the Report guidance below, then append a dated round with a short Presented summary to the Research ticket.
 
-3. **Review with the Managing Intelligence.** If a verdict is still needed, present the ticket ID, round summary, Report ID and links to the Report and artifacts, then wait for the Managing Intelligence's decision. Record and apply the verdict, including one already supplied. Record who reviewed the round, keeping any request for more work verbatim.
+3. **Review with the Managing Intelligence.** Refer them to the Research ticket and Report IDs for any round awaiting a verdict. They decide whether to accept the Report or request more work. Record who reviewed the round and their verdict, keeping requests for more work verbatim so later rounds follow the actual request. Apply a verdict already recorded for this round when resuming.
    - If they request more work, return to step 2 with that request.
    - If they accept the Report, set the Report and Research ticket `done`.
 
@@ -50,16 +52,17 @@ None: research does the investigation and brings each round to the Managing Inte
 
 ## Writes
 
-- Create the Research ticket in the Research store as `defined` with its question and constraints, then set it `active` when research starts. Its review log records each round and the Managing Intelligence's decisions.
-- Create its one Report child, titled `Report: <Research ticket title>`, as `active` in the first round and update it throughout the investigation.
-- Both tickets become `done` only when the Managing Intelligence accepts the Report. Both return to `active` when the Managing Intelligence requests more work after acceptance.
-- Store research artifacts with the Research ticket through the Ticket System Protocol File. Keep accepted tickets, Reports and artifacts available as the research record.
+- **The Research ticket:** update its question and scope when the Managing Intelligence revises them, and its review log after each round and verdict. Its status follows steps 1 and 3.
+- **Its Report:** create the Report child, titled `Report: <Research ticket title>`, when research starts, and update it after each round. Its status follows steps 1 and 3, including revisions to an accepted Report.
+- **Artifacts:** store and link them with the Research ticket through the Ticket System Protocol File, so the evidence stays with the answer.
+
+Retain accepted Research tickets, Reports and artifacts in the Research store, with automatic archival disabled, so their citations remain usable.
 
 ## Done
 
-Report the Research ticket ID and status, the Report ID when it exists, and the one-line answer or work still awaiting review. For an unfinished round, name the remaining work or decision needed from the Managing Intelligence.
+Report the Research ticket ID and any findings or feedback left unaddressed, with the reason.
 
-## Research ticket template
+## Research ticket record
 
 - **Question:** state the question in the requester's words where possible.
 - **Scope:** record who asked, why, and the supplied constraints and boundaries. State when none were given.
