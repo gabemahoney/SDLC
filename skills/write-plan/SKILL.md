@@ -23,7 +23,7 @@ An Idea ID.
 - **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the Product Manager's Thinking Level through `thinking_levels` and `levels_claude_code` or `levels_codex`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch the Product Manager and ask and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs, and write the Plan, Epics and their relationships.
-- **The Idea, its Docs and existing Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID. Why: to ground the Plan in requirements, reuse existing planning and preserve completed work.
+- **The Idea, its Docs and existing Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID. Why: to ground the Plan in requirements and update an existing Plan rather than start again.
 - **Engineering, testing and documentation guidance:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `maintained-docs.md` for each affected code folder, found as `workflow.md` describes, including the documents listed by `maintained-docs.md`. Why: to understand the existing design, plan required engineering and testing work, and limit documentation work to what its guide allows.
 - **Product Manager's report:** returned during this Run. Why: to revise the Plan from its findings.
 
@@ -48,7 +48,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 3. **Check the Plan with the Product Manager.** Save the Plan and Epics, then dispatch the Product Manager. Fix what its findings show, and dispatch a fresh one after any significant change, until its findings are resolved. Then check the whole Plan against the Quality checklist below.
 
 4. **Set the Plan's status.** Only once the Product Manager's findings are resolved and the Quality checklist passes:
-   - If any Epic is `done` or `active`, set the Plan `active`, because work is already underway.
+   - If any Epic is `done` or `active`, or was before this revision, set the Plan `active`, because work is already underway.
    - Otherwise, set the Plan `defined`.
 
 ## Dispatches
@@ -82,7 +82,7 @@ Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small
 
 **An Epic is a vertical slice of the end product.** It delivers one new feature, or one working part of a feature, through the whole stack: the code, its tests and its docs. Think of each Epic as a sprint demo: when it's `done`, you could show the product doing at least a little something new. Code alone or a set of tests isn't a demo. Every Epic leaves the software working with existing tests passing.
 
-Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new.
+Slice by capability, not by layer or component. "User places an order and sees confirmation", "System retries a failed payment" and "Metrics are emitted for each order" are good Epics. "Database", "API", "UI", "Testing" and "Documentation" are not. Nor is an Epic that only shows a new technology component working on its own, such as a message queue passing test messages. None of them shows the product doing something new. Keep broad refactoring out of a feature Epic unless the feature needs it, so each Epic stays one outcome.
 
 Acceptance criteria describe that demo. For example, “Start the server and request its health endpoint; it returns the SRD's expected response” gives a checkable result. “The server is available” leaves success undefined.
 
@@ -97,7 +97,7 @@ Plan documentation as `doc-writing-guide.md` guides, including which doc files t
 - [ ] Engineering and testing work required by the Guidance Documents belongs to the Epics it supports.
 - [ ] Every planned documentation change is allowed by the doc-writing guide.
 - [ ] Every planned requirement is grounded in the Idea's Docs, supplied decisions or applicable Guidance Documents.
-- [ ] A revision accounts for changed SRs and preserves completed Epics.
+- [ ] A revision covers every changed SR, and every Epic it affects is back in `draft`.
 - [ ] The Product Manager has checked the Plan, and its findings have been addressed.
 
 ## What not to include
