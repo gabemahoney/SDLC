@@ -78,7 +78,7 @@ Suggest write-epic on each `draft` Epic in dependency order.
 
 ## Planning guidance
 
-Keep the Plan and its Epics short and in proportion to the Idea. Use these Epic counts as guidance: small, 1–3; medium, 3–6; large, 6–9; new product, 10+. Choose the count by judgement and state a reason when it falls outside its range. A single Epic can be enough.
+Keep the Plan and its Epics in proportion to the Idea. Use these Epic counts as guidance: small, 1–3; medium, 3–6; large, 6–9; new product, 10+. Choose the count by judgement and state a reason when it falls outside its range. A single Epic can be enough.
 
 Every Epic must leave the software working with existing tests passing. Each outcome should be independently testable and demonstrable when its Dependencies are complete.
 
