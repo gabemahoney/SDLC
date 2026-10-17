@@ -27,7 +27,7 @@ An Epic ID.
 - **Epic, Plan, all sibling Epics and existing Tasks and Subtasks:** through the Ticket System Protocol File, using the input Epic ID. Why: to establish the Epic's outcome, account for its dependencies, avoid overlapping work and reconcile earlier planning and progress.
 - **Idea and its Docs:** through the Idea reference on the Plan and the Ticket System Protocol File. Why: to follow the PRD, SRD and settled decisions, including findings and Managing Intelligence answers recorded on the tickets they concern.
 - **Codebase, tests and interfaces:** the affected code folders under `<Project Folder>`, if any, identified from the Epic and requirements. Why: to ground proposed Key Files and distinguish existing capabilities from work planned in prerequisite Epics.
-- **Guidance Documents:** `<folder on the Guidance Document walk>/.apiary/<name>.md`, or `~/.apiary/<name>-default-fallback.md`, for `engineering-best-practices`, `test-guide`, `doc-writing-guide` and `maintained-docs`, including the documents the last one lists. Why: to judge proposals against engineering conventions, plan tests and fixture reuse, and limit documentation work to what its guide allows.
+- **Guidance Documents:** `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md` and `maintained-docs.md` for each affected code folder, found as `workflow.md` describes, including the documents `maintained-docs.md` lists. Why: to judge proposals against engineering conventions, plan tests and fixture reuse, and limit documentation work to what its guide allows.
 
 ## Gate
 
@@ -41,7 +41,7 @@ Run only when both of these are true:
 1. **Outline the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's settled choices. Account for all sibling Epics and assume prerequisite Epics deliver their stated outcomes before execution. Use the Task template below.
    - If Tasks already exist, reconcile them with current requirements and recorded progress. Preserve `done` Tasks and Subtasks. Revise, add or drop unfinished work; put further changes to completed capabilities into unfinished Tasks.
 
-2. **Plan each Task's Subtasks.** Work through Tasks in dependency order. Use executor planners for detailed research, because this skill needs its context for the remaining Tasks. Give them the Task, requirements and relevant earlier proposals. Combine their proposals using the guidance below. Assign each unfinished Task a `thinking_level:<label>` tag suited to its complexity and risk.
+2. **Plan each Task's Subtasks.** Work through Tasks in dependency order. Use executor planners for detailed research, because this skill needs its context for the remaining Tasks. Combine their proposals using the guidance below. Assign each unfinished Task a `thinking_level:<label>` tag suited to its complexity and risk.
    - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
    - If proposals require a product decision or conflict with the SRD's settled choices, stop for the Managing Intelligence's decision. Record it on the affected ticket.
 
