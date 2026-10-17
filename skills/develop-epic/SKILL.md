@@ -82,13 +82,18 @@ Report the Epic's ID, and any review findings left unaddressed with the reason.
 - If more Epics remain, suggest the next one: write-epic if it's `draft`, otherwise develop-epic.
 - If the Plan is `done`, suggest teardown-worktree for any Epic worktrees, then idea-review.
 
-## Task pipeline
+## Coordination
 
-develop-epic coordinates: executors change files, reviewers check them independently, and develop-epic decides which findings to fix and commits the result.
+develop-epic coordinates the work; its Child Agents do it. Its one judgement is how to handle reviewer feedback from code-review, test-review, doc-review and product-manager. For each finding:
+- **Fix it:** send it back to the executor that owns the files.
+- **Decline it:** when it's minor, record it with its reason on the Task or Epic and in the Done report, so the Managing Intelligence sees what was left.
+- **Ask the Managing Intelligence:** when it's a product question or conflicts with the PRD or SRD, because those are the Managing Intelligence's approved decisions.
+
+## Task pipeline
 
 Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the work's applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Repeat product review after fixes affecting behaviour.
 
-Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order; give doc-writer one pass after the round's code and tests. Reviewers check repairs. Repeat until accepted findings are fixed. Product questions and conflicts with the SRD go to the Managing Intelligence because execution follows approved requirements.
+Group the findings to fix into repair rounds, as Coordination below describes. Resume affected executors in source → tests → documentation order; give doc-writer one pass after the round's code and tests. Reviewers check repairs. Repeat until those findings are fixed.
 
 Assign the final full-unit-suite Subtask to the sole test-writer or a final writer after multiple Lanes. It runs `guide:build-commands.md ## Unit tests` after the combined changes and any later source or unit-test repairs. Route source failures through engineer, testing and review; the writer fixes test failures. Other executors run targeted checks so each does not repeat the full suite. Ensure a final writer owns the unit check even for a Task with no test edits, because every Task commit has the same gate.
 
