@@ -98,12 +98,10 @@ Every Subtask follows the Project's Guidance Documents, because they hold the Pr
 
 Plan the work each guide requires, such as a test type or an engineering step, inside the Task it belongs to.
 
-develop-epic runs its Integration Tester after a Task that changes an interface between components. Flag each Task changing a contract, API, schema or other cross-component interface with a `## Run Integration After This Task` section. In it, state `Interface changed:` followed by the interface and the change. This tells develop-epic to run its integration check after that Task.
-
 ## Thinking Level guidance
 
 A Task's tag sets how hard its Engineer, Test Writer and Doc Writer think, so match it to what a mistake in that Task would cost and how much judgement it needs:
-- `low`: trivial, mechanical changes such as renames, wording or config values, where a mistake is obvious and cheap.
+- `low`: trivial, mechanical changes such as wording or config values, where a mistake is obvious and cheap.
 - `medium`: routine work that follows an established pattern, such as adding a field or a small, well-understood change.
 - `high`: work that needs real design judgement, touches several modules, or changes behaviour other code relies on.
 - `xhigh`: work where a mistake is costly or hard to spot, such as concurrency, security, data migrations or an interface between components.
@@ -129,7 +127,6 @@ For each Task with unit-test Subtasks, end its description with a `## Test Write
 - [ ] Each Subtask has an executor, the four template sections and concrete Key Files in a named repo or code folder.
 - [ ] Test proposals identify fixture reuse and changes, give behaviours a single coverage owner and group dependent test files in the same Lane.
 - [ ] Every Task changing source or unit tests has a final full-unit-suite Subtask following its other unit-test work.
-- [ ] Each Task changing an interface carries the integration flag, and the flag identifies that change.
 - [ ] Documentation work follows its implementation and tests and is allowed by the doc-writing guide.
 - [ ] Every Task to execute has a Thinking Level suited to its complexity and risk.
 - [ ] A revision covers every affected Task and Subtask, whatever its earlier status, and leaves it ready for develop-epic.
