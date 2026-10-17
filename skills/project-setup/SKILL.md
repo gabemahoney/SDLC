@@ -36,7 +36,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
 ## Steps
 
-1. **Choose and mark the Project Folder.** Project Folders don't nest.
+1. **Choose and mark the Project Folder.** Project Folders don't nest, so every folder belongs to exactly one Project.
    - If another Project exists above or below, stop and ask the Managing Intelligence: use it or choose another folder?
    - Otherwise, read existing settings.
    - If `<Project Folder>/.apiary/project_settings.md` is absent, create it.
@@ -66,7 +66,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
    c. **Set the Agents' model mappings.** Stop and ask the Managing Intelligence: Claude Code, Codex CLI or both? For each used Agent's mapping (`levels_claude_code` or `levels_codex`):
       - If already set and valid, keep it.
-      - Otherwise, stop and ask the Managing Intelligence for the model and effort for `low`, `medium`, `high`, `xhigh` and `max`, one line per label. Suggest no models. Ask for default versus Project value as in 3a.
+      - Otherwise, stop and ask the Managing Intelligence for the model and effort for `low`, `medium`, `high`, `xhigh` and `max`, one line per label. Suggest no models, because model names change often and depend on the account. Ask for default versus Project value as in 3a.
 
    d. **Complete the Thinking Level list.** Stop and ask the Managing Intelligence for `thinking_levels` as in 3a. Complete the list in the selected file, using its existing lines. Write the complete list from `~/.apiary/system/templates/thinking-levels.md`, skills first, then Subagent Roles:
       - If a valid line exists, keep it.
@@ -74,7 +74,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If a line is invalid, stop and ask the Managing Intelligence for its corrected Thinking Level.
       The Managing Intelligence may change any line.
 
-4. **Create or check the ticket stores.** Through the selected Ticket System Protocol File, create or check the four stores with the child tiers and status values defined in the rulebook. Keep every store at the top level, never nested in another.
+4. **Create or check the ticket stores.** Through the selected Ticket System Protocol File, create or check the four stores with the child tiers and status values defined in the rulebook. Keep every store at the top level, so each store's tickets can be found and listed on their own.
    - Check that the Ticket System Protocol File says how to record each link type in the rulebook: Dependency, Association and Source Reference, because every later skill relies on them.
    - If it doesn't cover one, agree with the Managing Intelligence how to record it in this ticket system, and write the answer to the `ticket_links` setting in `<Project Folder>/.apiary/project_settings.md`.
 
@@ -113,4 +113,4 @@ None: project-setup does the setup itself.
 
 ## Done
 
-Report the setup and the installation and Launcher prerequisite checks, naming anything missing and saying "run Apiary's `install.sh`" for missing Apiary files. For Guidance Documents written to git repos, tell the Managing Intelligence to commit them. Next step: “write-idea or write-bug”.
+Report the setup and the installation and Launcher prerequisite checks, naming anything missing and saying "run Apiary's `install.sh`" for missing Apiary files. For Guidance Documents written to git repos, tell the Managing Intelligence to commit them, because project-setup works without git. Next step: “write-idea or write-bug”.

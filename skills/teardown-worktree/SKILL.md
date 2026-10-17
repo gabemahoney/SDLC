@@ -43,10 +43,10 @@ Run only when all of these are true:
    - If a ticket worktree has uncommitted changes, the Managing Intelligence decides whether to commit them, discard them or stop. Apply only their chosen action.
    - If outside worktree-only mode and the Launcher reports the assigned Worker is still working, stop for the Managing Intelligence to settle that work before merging.
 
-2. **Merge every repo.** Merge each ticket branch into its target, creating a merge commit for new work even when a fast-forward is possible. On a resumed Run, use the existing merge state to continue the remaining work.
+2. **Merge every repo.** Merge each ticket branch into its target, creating a merge commit for new work even when a fast-forward is possible, so the history shows which commits belong to the ticket. On a resumed Run, use the existing merge state to continue the remaining work.
    - If a merge conflicts, stop for the Managing Intelligence to choose whether to abort it or resolve it. Continue only once the merge is committed.
 
-3. **Finish the Worker assignment.** Only after every repo's merge succeeds:
+3. **Finish the Worker assignment.** Only after every repo's merge succeeds, so a failed merge can still be fixed in the Worker's session:
    - If worktree-only mode was requested, proceed to cleanup.
    - Otherwise, ask the Launcher to stop the ticket's Worker and confirm it has ended before cleanup. If it has already ended, proceed.
 

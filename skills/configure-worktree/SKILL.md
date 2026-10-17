@@ -32,11 +32,11 @@ An Idea or Epic ID. The ticket holds the repos to prepare, any chosen base refs 
 Run only when both of these are true:
 
 - The Idea or Epic is `defined` or `active`. Otherwise, stop and report its status.
-- The Run starts outside `<Project Folder>/.worktrees/`. Otherwise, stop and ask the Managing Intelligence to run it from the Project Folder or a main checkout.
+- The Run starts outside `<Project Folder>/.worktrees/`, because it creates worktrees there and a worktree can't hold another. Otherwise, stop and ask the Managing Intelligence to run it from the Project Folder or a main checkout.
 
 ## Steps
 
-1. **Settle the worktrees.** For each repo, default the base to its main checkout's branch. Name the worktree branch after the ticket ID with dots replaced by underscores. Record any Managing Intelligence decisions about repos, bases or Worker instructions on the ticket.
+1. **Settle the worktrees.** For each repo, default the base to its main checkout's branch. Name the worktree branch after the ticket ID with dots replaced by underscores, because some git tools treat dots in branch names specially. Record any Managing Intelligence decisions about repos, bases or Worker instructions on the ticket.
    - If the expected path is already a worktree on the ticket's branch, reuse it; a newly requested base applies only when creating a worktree, so resuming does not rebase existing work.
    - If the expected path holds different work or the ticket's branch remains without its worktree, stop for the Managing Intelligence's decision.
    - If creating from the main checkout's branch and it has uncommitted changes, the Managing Intelligence decides whether to commit them first or stop, because the worktree would otherwise omit them.

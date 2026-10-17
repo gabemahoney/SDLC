@@ -72,7 +72,7 @@ The Idea's Plan, set back to `draft` when a revision changes an SRD it was built
 
 Each modelled SR group's TLA+ spec Doc, a Doc child of the Idea with the model files attached, written by its TLA+ Writer.
 
-Research tickets in the Research store, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds.
+Research tickets in the Research store, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds, because req-review checks the SRD decisions they inform.
 
 ## Done
 

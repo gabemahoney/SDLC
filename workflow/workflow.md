@@ -77,7 +77,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 ### Project Folder, paths and worktrees
 
-- **Project Folder:** the nearest folder, from the working directory up, that holds `.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest.
+- **Project Folder:** the nearest folder, from the working directory up, that holds `.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest, so every folder belongs to exactly one Project's settings and tickets.
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
 - **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree make repository changes and commits only inside repo checkouts.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
@@ -87,7 +87,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 ### Settings
 
-Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value.
+Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
 
 If a setting the Run needs is missing from both files, stop before any change and point to project-setup.
 
