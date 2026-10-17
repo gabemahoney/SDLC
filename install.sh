@@ -19,6 +19,7 @@ Codex CLI:    skills/<name>/ -> ~/.agents/skills/<name>/
               (--repo: <repo>/.agents/skills, <repo>/.codex/agents)
 Shared:       doc-templates/ -> ~/.apiary/system/doc-templates/ (also with --repo)
               protocols/    -> ~/.apiary/system/protocols/ (also with --repo)
+              dot-apiary/*-default-fallback.md -> ~/.apiary/ (also with --repo)
 EOF
 }
 
@@ -125,6 +126,8 @@ run mkdir -p "$HOME/.apiary/system/doc-templates"
 run cp -R "$SRC/doc-templates/." "$HOME/.apiary/system/doc-templates/"
 run mkdir -p "$HOME/.apiary/system/protocols"
 run cp -R "$SRC/protocols/." "$HOME/.apiary/system/protocols/"
+run mkdir -p "$HOME/.apiary"
+run cp "$SRC"/dot-apiary/*-default-fallback.md "$HOME/.apiary/"
 
 if [ "$DRY" -eq 1 ]; then
   echo "Dry run: nothing was written."

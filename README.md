@@ -33,7 +33,7 @@ cd ~/projects/apiary
 ./install.sh --agent both
 ```
 
-Add `--repo <path>` to install skills and agents into one repository instead of your user-level folders (to try Apiary on one project), and `--dry-run` to print what it would do. It copies each skill folder and each agent, overwriting earlier Apiary copies in place. It also copies `doc-templates/` to `~/.apiary/system/doc-templates/`, including with `--repo`.
+Add `--repo <path>` to install skills and agents into one repository instead of your user-level folders (to try Apiary on one project), and `--dry-run` to print what it would do. It copies each skill folder and each agent, overwriting earlier Apiary copies in place. Shared files always go under `~/.apiary`, including with `--repo`: document templates in `system/doc-templates/`, protocols in `system/protocols/`, and the `dot-apiary/*-default-fallback.md` guides directly in `~/.apiary/`.
 
 The `prd_template` setting names the PRD template file. project-setup offers `~/.apiary/system/doc-templates/prd.md` as the shipped default or records your own file's path. Settings resolve from `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The installer does not create or update these settings files; project-setup writes them.
 
@@ -47,6 +47,7 @@ Skills and agents are a paired copy: always install both to the same scope. Code
 To install by hand instead:
 
 - Copy `doc-templates/` to `~/.apiary/system/doc-templates/` for either Agent.
+- Copy `dot-apiary/*-default-fallback.md` to `~/.apiary/` for either Agent, including `research-guide-default-fallback.md`.
 - Claude Code: copy each `skills/<name>/` to `~/.claude/skills/<name>/` and `agents/*.md` to `~/.claude/agents/`.
 - Codex CLI: copy each `skills/<name>/` to `~/.agents/skills/<name>/`, then run `python3 scripts/codex_agents.py render --out ~/.codex/agents`.
 
@@ -60,9 +61,9 @@ Apiary's execution skills spawn role players (Engineer, Test Writer, Doc Writer,
 - **Codex CLI**: each agent is a Codex custom agent in `.codex/agents/apiary-<role>.toml`, which the installer renders from the same `agents/*.md`: the instructions unchanged, plus a few generated Codex notes. Skills spawn them with `spawn_agent` (`agent_type: "apiary-<role>"`, cold start) and collect results with `wait_agent`. Models map from the frontmatter: Opus → `gpt-6-astra`, Sonnet → `gpt-6.1-sol`, Haiku → `gpt-6-luna`, with the same reasoning effort; set `APIARY_CODEX_MODEL_OPUS`, `_SONNET` or `_HAIKU` before installing to change one (empty: Codex's default). Subagents inherit the parent's sandbox and approvals, so the read-only roles are read-only by instruction only. Codex runs a few agents at once (`agents.max_concurrent_threads_per_session`, 4 by default including the parent), so parallel dispatches run in batches.
 
 ### 3. Configure
-Run `/apiary-setup` to configure hives for the Apiary workflow: Bugs, Ideas, Plans and Research.
-It can also record your project's documentation locations and integration test command in the repo's CLAUDE.md; you may skip either step.
-Without a configured command, the integration Test Writer looks in the repo's docs or CI config, and reports "no integration suite found" if there is none.
+Run `/project-setup` to configure the Project's settings, ticket stores and Guidance Documents. It recommends a shared Research location, such as `~/research/tickets`, and also offers a Project-local folder. Shared Research uses `research_location` in `~/.apiary/default_project_settings.md`; a Project-local value goes in the Project's `.apiary/project_settings.md`. Setup checks that the location exists and the ticket system can use it.
+
+Setup also offers `research-guide.md` for the Project's source preferences, research depth, evidence, Report shape and human involvement. The guide is found as `workflow.md` describes, with `research-guide-default-fallback.md` used when there is no user copy. A shared Research store still uses the requesting Project's guidance.
 
 Hives set up with older states still have the old status values. Run `/apiary-setup` to migrate them, Bugs, Ideas, Plans and Research alike, with every child ticket (Docs, Epics, Tasks, Subtasks, Reports):
 - From the interim set, on any hive: `larva` → `draft`, `pupa` → `defined`, `worker` → `active`, `finished` → `done`.
@@ -137,11 +138,11 @@ The same suite ownership applies at bug scope: the Test Writer of each pass runs
 Unlike `/do-bee`, `/fix-bug` manages its own isolated worktree: it creates a fresh worktree for the Bug ID, does all the work and commits there, then merges back and cleans up automatically (unless it stops at the integration gate, leaving the uncommitted fix in the worktree) — no separate `/configure-worktree` or `/teardown-worktree` needed.
 
 ### Research
-Run `/research "<question>"` to file a research task as a bee in the Research Hive, or `/research <bee-id>` to continue one.
-The skill defines only the ticket flow, not how the research is done: `defined` → `active` → `done`. A research bee is `defined` as soon as it is filed, since a question is ready once it is written.
-`active` is a review loop. Each round, the researcher presents its findings and a reviewer (the User, or an orchestrator Claude, which decides each round whether to review it itself or send it to the User) accepts them or asks for more work. Each round and its verdict are recorded in the bee's `## Review rounds` section.
-The findings go in a Report child of the bee: a standalone document with inline citations and a numbered References list. Research artifacts (data, scripts, logs) go in the bee's `artifacts/` folder, and the Report links to them by relative path.
-Accepted research is kept: never run the undertaker on the Research Hive or give it an undertaker schedule. The undertaker only touches the hive it is pointed at, so sweeping other hives is safe, but Research uses `done` like every other hive, so check which hive a sweep is pointed at.
+Run `/research <ticket-id>` to investigate a Research ticket's written question or continue its review. Research tickets, Reports and artifacts live at `research_location`, resolved from the Project settings and then the home defaults. Skills use that setting through the Ticket System Protocol File when filing Research or following a linked Research ticket.
+
+The skill manages `defined` → `active` → `done` and follows `research-guide.md` for the investigation and Report. Findings and citations go in the ticket's Report child, with artifacts stored and linked through the Ticket System Protocol File. Each round and verdict stay on the Research ticket. The Managing Intelligence accepts the Report or requests more work; acceptance sets both ticket and Report `done`. The skill then completes any extra outputs the guide requires and records their locations on the ticket so interrupted work can resume.
+
+Accepted Research tickets, Reports and artifacts stay at `research_location` with automatic archival disabled, so Projects and bots can keep using their evidence.
 
 
 ## Releases
@@ -168,4 +169,3 @@ or wholesale with your own guidelines.
 **Note:** These guidelines are enforced across all repos.
 Repo-specific guidelines are listed in the repo's CLAUDE.md under `## Documentation Locations`, which `/apiary-setup` can write for you (see Configure).
 `/apiary-setup` does not modify the above-listed skills.
-

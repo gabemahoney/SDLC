@@ -114,7 +114,7 @@ The calling skill runs `## Integration tests` itself and saves output to a file,
 
 ## Researcher
 
-**Required Reading:** The question, why the SRD needs it, the Idea, SRD and Research ticket supplied by write-srd, and relevant sources, to ground the answer; no Guidance Documents.
+**Required Reading:** The question, why the SRD needs it, the Idea, SRD and Research ticket supplied by write-srd, and relevant sources, to ground the answer. Read `research-guide.md`, found as `workflow.md` describes, so the investigation follows the Project's guidance. Use the supplied `research_location` to read the Research ticket and write its Report through the Ticket System Protocol File.
 
 **Gate:** None specified.
 

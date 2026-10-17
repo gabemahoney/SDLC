@@ -20,7 +20,7 @@ An Idea ID.
 ## Required Reading
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the Model Writer's, Model Reviewer's and Researcher's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: `ticket_system` selects the Ticket System Protocol File, `research_location` locates Research when needed, and `thinking_levels` with `levels_claude_code` or `levels_codex` selects the Model Writer's, Model Reviewer's and Researcher's Thinking Levels.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read and write the SRD, Plan and Research tickets and read their supporting Docs and Reports.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
@@ -37,7 +37,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 1. **If you're revising an SRD that a Plan was built from, pause that Plan.** If the Idea has a `defined` or `active` Plan, set it back to `draft`, because the Plan must be reconsidered once the SRD changes, and note on the Plan which SRs changed and which Epics were `active`, so write-plan knows what to revise. Tell the Managing Intelligence to pause any develop-epic or write-epic work now running: those Runs stop at their next Task, and anything built until then follows the SRD as it was.
 
-2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, file a Research ticket, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
+2. **Write the SRD from the PRD and any existing code.** Make the software, technology and architecture decisions yourself. For a question that needs real digging, read `research-guide.md`, found as `workflow.md` describes, so the investigation follows the Project's guidance. File a Research ticket at `research_location`, dispatch a Researcher and link the ticket from the SRD. Look up small things yourself. Save the SRD before dispatching any Subagent, so it can read the SRD.
 
 3. **Write Formal Models where they help.** Model an SR group when concurrency (things happening at the same time, retries, partial failure) or a state machine hides ordering bugs that reading and tests can miss. Include already-modelled groups a revision changed. Skip modelling when no group needs it. For groups that do, read `build-commands.md`, found as `workflow.md` describes, and use the language and checker command in `## Model check`. If that section is missing, stop and ask the Managing Intelligence, because the Project must supply the modelling language and a way to check the model. Review each Formal Model before model checking, because checker runs can be slow. For each chosen SR group, in parallel:
    1. **Write.** Dispatch a Model Writer with the SRD ID and assigned SR group. It writes a Formal Model in the language named by `## Model check` and attaches its files to a Model Doc under the Idea so the model stays with its requirements.
@@ -72,7 +72,7 @@ The Idea's Plan, set back to `draft` when a revision changes an SRD it was built
 
 Each modelled SR group has a Model Doc under the Idea, with the Formal Model's files written and attached by its Model Writer. The Doc holds repair instructions and checker results so work can resume from the evidence. Its finding record contains only declined or unaddressed findings, each with its reason, so later review sees what remains.
 
-Research tickets in the Research store, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds, because req-review checks the SRD decisions they inform.
+Research tickets at `research_location`, filed `defined` with the question; the Researcher writes each one's Report, and write-srd sets the ticket `done` once it uses the answer. They skip the research skill's review rounds, because req-review checks the SRD decisions they inform.
 
 ## Done
 

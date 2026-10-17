@@ -18,7 +18,7 @@
 - **Project:** the software the Managing Intelligence builds with Apiary, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.apiary` the default settings.
-- **Guidance Document:** one of six user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `release-guide.md`, `bug-writing-guide.md`. The Project's `doc-writing-guide.md` says how it handles documentation, including which documents it keeps current and how strict its requirements are.
+- **Guidance Document:** one of seven user-written instruction files with fixed names: `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `release-guide.md`, `bug-writing-guide.md` and `research-guide.md`. The Project's `doc-writing-guide.md` sets its documentation rules. Its `research-guide.md` guides sources, depth, evidence, Report shape, extra outputs after acceptance and when to involve a human.
 - **Build Commands:** `build-commands.md` defines named sections for each code folder. Apiary names these sets of work as Terms so skills can sequence them: Lint before a commit, Unit Tests at the end of each Task and Integration Tests at the end of each Epic. Each code folder needs the first four sections below, each containing a command or `none` with a reason, so an empty entry never leaves the required work unclear.
   - **Compile** (`## Compile`): compilation or type-checking.
   - **Lint** (`## Lint`): lint and format checks.
@@ -93,7 +93,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 ### Project Folder, paths and worktrees
 
-- **Project Folder:** the nearest folder, from the working directory up, that holds `.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest, so every folder belongs to exactly one Project's settings and tickets.
+- **Project Folder:** the nearest folder, from the working directory up, that holds `.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `research_location`.
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
 - **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, define-bug, fix-bug, configure-worktree and teardown-worktree make repository changes and commits only inside repo checkouts.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
@@ -104,6 +104,8 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 ### Settings
 
 Read settings only from the Project Folder's `.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
+
+`research_location` names where Research tickets, their Reports and artifacts live. Every skill that reads or files Research uses this setting through the Ticket System Protocol File, including when following a linked Research ticket. Set it in `~/.apiary/default_project_settings.md` to share Research across Projects and bots using that default, because an answer may be useful beyond the Project that requested it. A Project value can select its own location. Research guidance still comes from the requesting Project's Guidance Documents.
 
 If a setting the Run needs is missing from both files, stop before any change and point to project-setup.
 

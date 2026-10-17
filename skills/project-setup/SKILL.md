@@ -19,14 +19,14 @@ The folder to set up as the Project Folder: the nearest folder up from where you
 
 ## Required Reading
 
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see what is already set (`ticket_system`, `ticket_links`, `launcher`, `prd_template`, `new_idea_intake`, `new_bug_intake`, `levels_claude_code`, `levels_codex`, `thinking_levels`), offer it back, and fill only what's missing.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to see the existing ticket, Research location, Launcher, template, intake and Thinking Level settings, offer them back, and fill what's missing.
 - **Your Agent's Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` or `~/.apiary/system/protocols/agent-codex.md`. Why: how to ask the Managing Intelligence questions, report in this Agent and identify its expected installed skills and Subagent definitions.
 - **The Ticket System Protocol File** named by `ticket_system`: `~/.apiary/system/protocols/ticket-<ticket_system>.md`. Why: how to check and create the Ideas, Plans, Bugs and Research stores.
 - **The Launcher Protocol File** named by `launcher`: `~/.apiary/system/protocols/launcher-<launcher>.md`. Why: to check the Launcher's prerequisites.
 - **The chosen template**, if any: `~/.apiary/system/templates/<template-name>.md`, the name lowercase with hyphens. Why: it supplies that template's answers, such as how intake works.
 - **The recommended Thinking Level list:** `~/.apiary/system/templates/thinking-levels.md`. Why: the lines to write into `thinking_levels`.
 - **Apiary's installed files:** `~/.apiary/system/workflow.md`, and for your Agent its skills and Subagent definitions: `~/.claude/skills/<skill>/SKILL.md` and `~/.claude/agents/apiary-<role>.md` in Claude Code, `~/.agents/skills/<skill>/SKILL.md` and `~/.codex/agents/apiary-<role>.toml` in Codex CLI. Why: to check and report that Apiary is installed: workflow.md and every Apiary skill and Subagent definition is present.
-- **The existing `release-guide.md`**, if any, at `<folder on the Guidance Document walk>/.apiary/release-guide.md`, or `~/.apiary/release-guide-default-fallback.md` as the rulebook specifies. Why: you help the Managing Intelligence write it, starting from what exists.
+- **The existing `release-guide.md` and `research-guide.md`**, found as `workflow.md` describes, when available. Why: to offer existing guidance as the starting point when writing these guides.
 - **Each confirmed code folder** under `<Project Folder>/<code folder path>/`. Why: to work out how it builds and tests, and propose its build commands.
 - **Existing Guidance Documents:** each Guidance Document on the Guidance Document walk for each confirmed code folder, and any guide the Managing Intelligence supplies. Why: to offer existing guidance as the starting answer, and to find inherited copies before applying the choice in step 5.
 
@@ -36,7 +36,7 @@ None: this skill sets up the Project. During startup and throughout this Run, re
 
 ## Steps
 
-1. **Choose and mark the Project Folder.** Project Folders don't nest, so every folder belongs to exactly one Project.
+1. **Choose and mark the Project Folder.** Project Folders don't nest, so each folder resolves one Project's settings.
    - If another Project exists above or below, stop and ask the Managing Intelligence: use it or choose another folder?
    - Otherwise, read existing settings.
    - If `<Project Folder>/.apiary/project_settings.md` is absent, create it.
@@ -74,7 +74,13 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If a line is invalid, stop and ask the Managing Intelligence for its corrected Thinking Level.
       The Managing Intelligence may change any line.
 
+   e. **Choose the Research location.** Ask whether Research should be shared across Projects and bots or kept inside this Project, and where it should live. Offer the existing `research_location` if set. Recommend a shared location such as `~/research/tickets`, because research is often useful beyond the Project that requested it; also offer a folder inside the Project.
+      - For shared Research, write `research_location` to `~/.apiary/default_project_settings.md` and remove any Project override so this Project uses the shared setting.
+      - For Project-local Research, write `research_location` to `<Project Folder>/.apiary/project_settings.md`.
+      Record an absolute path for a folder location so it resolves the same way from every working directory. Explain that changing the home default affects every Project and bot using it.
+
 4. **Create or check the ticket stores.** Through the selected Ticket System Protocol File, create or check the four stores with the child tiers and status values defined in the rulebook. Keep every store at the top level, so each store's tickets can be found and listed on their own.
+   - Create or check the Research store at `research_location`. Confirm the location exists and the selected ticket system can read and write Research tickets, Reports and artifacts there, so later Runs can use it. Keep automatic archival disabled so accepted research remains available to other Projects.
    - Check that the Ticket System Protocol File says how to record each link type in the rulebook: Dependency, Association and Source Reference, because every later skill relies on them.
    - If it doesn't cover one, agree with the Managing Intelligence how to record it in this ticket system, and write the answer to the `ticket_links` setting in `<Project Folder>/.apiary/project_settings.md`.
 
@@ -99,6 +105,8 @@ None: this skill sets up the Project. During startup and throughout this Run, re
       - If a guide exists, use or point to it.
       - Otherwise, write it with the Managing Intelligence.
 
+   d. **Write or locate the research guide.** Offer to use existing `research-guide.md` guidance, write a guide with the Managing Intelligence, point to their own guide, or use Apiary's default. Cover preferred and banned sources, depth, evidence to retain, Report shape, extra outputs after acceptance and when to involve a human. Agree where a user copy belongs on the Guidance Document walk; use `<Project Folder>/.apiary/research-guide.md` for Project-wide rules, including when there are no code folders. If they choose the default, settle any inherited user copies as in step 5a so the Default Fallback File applies. The guide follows the requesting Project even when its Research store is shared.
+
 6. **Check the installation and Launcher prerequisites.** Follow your Agent's Protocol File for the expected installed skills, Subagent definitions and their filenames. Check and report whether Apiary is installed for the running Agent. Report missing files inspected only for installation completeness here. Report what is missing and say "run Apiary's `install.sh`". Check and report the prerequisites named by the Launcher Protocol File in effect. Check that each used Agent's Protocol File says how to read or estimate both its own context fraction and a retained Subagent's, because develop-epic stops for a fresh session or replaces an executor before its context fills. If either is missing, report it as missing from that Protocol File.
 
 ## Dispatches
@@ -108,9 +116,10 @@ None: project-setup does the setup itself.
 ## Writes
 
 - `<Project Folder>/.apiary/project_settings.md` and, as agreed, `~/.apiary/default_project_settings.md`, including `ticket_links` when step 4 needed it.
-- The Ideas, Plans, Bugs and Research stores through the selected Ticket System Protocol File.
+- The Ideas, Plans and Bugs stores, and the Research store at `research_location`, through the selected Ticket System Protocol File.
 - Each supplied Guidance Document at `<Project Folder>/<code folder path>/.apiary/<name>.md` or `<Project Folder>/.apiary/<name>.md`, where `<name>` is `engineering-best-practices`, `test-guide`, `doc-writing-guide` or `build-commands`.
 - `<Project Folder>/.apiary/release-guide.md`.
+- `research-guide.md` at the agreed place on the Guidance Document walk, when the Managing Intelligence chooses a user copy.
 
 ## Done
 
