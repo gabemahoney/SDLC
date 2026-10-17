@@ -20,7 +20,6 @@ teardown-worktree: medium
 Researcher: high
 TLA+ Writer: xhigh
 TLA+ Reviewer: xhigh
-Requirements Reviewer: max
 Engineer planner: high
 Test Writer planner: high
 Doc Writer planner: high

@@ -236,16 +236,6 @@ Research tickets filed by write-srd are researched by its Researcher and closed 
 
 **Specific rules:** Checks the product, scope and proportion for every Plan, Epic's planned Tasks/Subtasks, completed Task, end-of-Epic and finished Idea. Edit no files, change no tickets, never commit.
 
-## Requirements Reviewer
-
-**Reads:** Idea requirements Docs and codebase context; no Guidance Documents.
-
-**Gate:** None specified.
-
-**Owned transitions:** None.
-
-**Specific rules:** Edit no files, change no tickets, never commit.
-
 ## Researcher
 
 **Reads:** The question, why the SRD needs it, the Idea, SRD and Research ticket supplied by write-srd, and relevant sources, to ground the answer; no Guidance Documents.
@@ -317,7 +307,7 @@ A Subagent loads the Guidance Documents of each repo it works in and may read an
 
 - **Executors (Engineer, Test Writer, Doc Writer):** dispatch one Engineer, one Doc Writer and one Test Writer per lane for each Task (or for the Bug in fix-bug). Fix rounds reuse only the executors whose work the findings touch. The next Task or Bug starts fresh executors.
 - **TLA+ Writer:** write-srd resumes the same Writer for each model's fixes and checker runs.
-- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Requirements Reviewer, the Researcher, the TLA+ Reviewer and the Integration Tester.
+- **Every other Subagent Role:** starts fresh on every dispatch. These are the planners, the Code, Test and Doc Reviewers, the Product Manager, the Researcher, the TLA+ Reviewer and the Integration Tester.
 
 #### Replacing an executor
 

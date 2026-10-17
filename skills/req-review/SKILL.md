@@ -7,7 +7,7 @@ description: "Review an Idea's PRD, or its PRD and SRD together, and mark them d
 
 ## Purpose
 
-Reviews the PRD before write-srd, then the PRD and SRD together before write-plan. A fresh Requirements Reviewer checks them for consistency, completeness and clarity, to ensure their quality.
+Reviews the PRD before write-srd, then the PRD and SRD together before write-plan. It checks them for consistency, completeness and clarity, to ensure their quality. Run it in a fresh session, not the one that wrote the PRD or SRD, so the review is independent.
 
 ## Loading Apiary
 
@@ -20,25 +20,24 @@ An Idea ID or one of its PRD or SRD Doc IDs, with any earlier findings and Manag
 ## Reads
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and the Requirements Reviewer's Thinking Level through `thinking_levels` and `levels_claude_code` or `levels_codex`.
-- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch Subagents and ask and report through the Agent.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`.
+- **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to ask and report through the Agent.
 - **The Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Idea and its Docs and set their approved statuses.
 - **Resolver:** `~/.apiary/system/resolvers/<resolver>.md`, selected by each Source Reference's kind. Why: to read the Idea's source material as context.
-- **The Idea and every Doc child:** through the Ticket System Protocol File, using the input ID. Why: to see which Docs are `draft`, supply the requirements to the reviewer, and identify other `draft` Docs.
-- **Codebase and docs:** the affected code folders under `<Project Folder>`, if any, identified from the Idea and requirements. Why: to give the Requirements Reviewer the context needed to judge whether the requirements fit the existing software.
-- **Review reports:** returned by the Requirements Reviewer dispatched during this Run. Why: to present findings and readiness for the Managing Intelligence's decision.
+- **The Idea and every Doc child:** through the Ticket System Protocol File, using the input ID. Why: to see which Docs are `draft` and review them.
+- **Codebase and docs:** the affected code folders under `<Project Folder>`, if any, identified from the Idea and requirements. Why: to judge whether the requirements fit the existing software.
 
 ## Gate
 
 Run only when both are true:
-- The Idea's PRD or SRD is `draft`. If neither is, there's nothing to review; say so and stop. 
+- The Idea's PRD or SRD is `draft`. If neither is, there's nothing to review; say so and stop. If the Idea has no PRD, suggest write-prd.
 - The Idea isn't `done`, because done work is already shipped. If it is, stop and say so.
 
 ## Steps
 
-1. **Review whatever is `draft`.** Dispatch the Requirements Reviewer on the `draft` PRD, SRD or both.
+1. **Review whatever is `draft`:** the PRD, the SRD or both, using the Review criteria below.
 
-2. **Get the Managing Intelligence's decision.** Present the findings and readiness verdicts. The Managing Intelligence decides which findings to accept and which Docs to approve. Set each approved PRD or SRD `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
+2. **Get the Managing Intelligence's decision.** Present your findings and a readiness verdict for each Doc. The Managing Intelligence decides which findings to accept and which Docs to approve. Set each approved PRD or SRD `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
    - If revisions are needed, hand off the accepted findings and declined findings separately. Suggest that the Managing Intelligence run write-prd for product changes or write-srd for software changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
    - Once both the PRD and SRD are `defined`, set a `draft` Idea `defined`.
 
@@ -46,7 +45,7 @@ Run only when both are true:
 
 ## Dispatches
 
-- **Requirements Reviewer:** launch for each review, with the Idea and requirements Doc IDs, relevant code folders, earlier decisions and the review criteria below. Expect findings ordered by criticality, suggested fixes, a separate cut-only pass and a readiness verdict for each reviewed Doc.
+None: req-review reviews the Docs itself.
 
 ## Writes
 
@@ -68,7 +67,7 @@ Report the reviewed Doc IDs and titles, findings ordered by criticality, suggest
 
 Value content over form. Prefer concise, direct requirements and clear organization; user stories are useful when they clarify the requirement.
 
-The Requirements Reviewer checks the relevant code and docs as well as the requirements. Review for:
+Check the relevant code and docs as well as the requirements. Review for:
 
 - **Consistency:** statements agree, terms keep their meanings, and control flows have complete outcomes without unintended gaps or cycles. When an SRD is reviewed, it agrees with the PRD and covers every PRD acceptance criterion.
 - **Completeness:** requirements state the dependencies, assumptions, boundaries and expected behaviour for relevant edge cases and errors. Cover the decisions this change needs in proportion to the change.
