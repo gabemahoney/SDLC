@@ -7,11 +7,10 @@
 - **Subagent:** a helper an Agent starts inside its own session, with fresh context, to do one Subagent Role's work for a skill and report back.
 - **Subagent Role:** the job a Subagent does, defined by its Subagent definition. Executors change files. Writers write tickets. Read-only Subagent Roles change nothing.
 - **The Subagent Roles:**
-  - **Engineer**, **Test Writer** (unit tests) and **Doc Writer**: executors that change source, unit tests and documentation for a Task or Bug.
+  - **Engineer**, **Test Writer** and **Doc Writer:** executors that change source, tests and documentation for a Task or Bug. The Test Writer writes unit and integration tests and runs suites.
   - **Engineer, Test Writer and Doc Writer planners:** read the code for one Task and propose its Subtasks for write-epic.
   - **Code, Test and Doc Reviewers:** check executors' changes independently.
   - **Product Manager:** checks a Plan, an Epic's planned work or finished work against the requirements, for scope and proportion.
-  - **Integration Tester:** writes and runs integration tests across the affected repos.
   - **Researcher:** answers one research question for write-srd with a cited Report.
   - **TLA+ Writer** and **TLA+ Reviewer:** write and run a TLA+ model of an SRD part, and check it before each run.
 - **Worker:** a separate Agent session the Launcher starts to run one skill.

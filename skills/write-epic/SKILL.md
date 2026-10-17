@@ -52,7 +52,7 @@ Run only when all of these are true:
 ## Dispatches
 
 - **Engineer planner:** launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
-- **Test Writer planner:** launch for each Task needing source or unit-test changes, after engineering proposals it needs are available. Expect unit-test Subtasks, fixture planning, suggested Test Writer Lanes, and the final full-unit-suite Subtask. develop-epic's Test Reviewer checks the tests' quality independently.
+- **Test Writer planner:** launch for each Task needing source or test changes once the engineering proposals it needs are available. Expect Test Writer Subtasks for the unit and integration coverage `test-guide.md` requires, fixture planning, suggested Lanes and the final full-unit-suite Subtask. develop-epic's Test Reviewer checks test quality independently.
 - **Doc Writer planner:** launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
 - **Product Manager:** launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
 
@@ -111,7 +111,7 @@ When unsure between two levels, choose the higher one.
 
 ## Writing the testing Subtasks
 
-Write each Task's testing Subtasks with two goals in mind:
+Assign each Task's unit and integration testing Subtasks to Test Writers, following `test-guide.md` so coverage matches the work. Write them with two goals in mind:
 
 1. **Reuse the Project's test setup.** Say which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
 2. **Let Test Writers work in parallel.** develop-epic can run several Test Writers on one Task, one per Lane. A **Lane** is a group of test files one Writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so Writers don't edit the same helper or test the same thing twice. Give every independent group its own Lane, so as many Writers as possible work at once. develop-epic adjusts them to the actual code.

@@ -20,7 +20,7 @@ An Epic ID.
 ## Required Reading
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and map Task tags and the reviewers', Product Manager's and Integration Tester's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system` and map executor tags and the reviewers' and Product Manager's Thinking Levels through `thinking_levels` and `levels_claude_code` or `levels_codex`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch and resume Subagents, check context use and ask and report through the Agent.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read requirements and progress, and write execution results, integration fix Tasks, Dependencies and statuses.
 - **Epic, its Tasks and Subtasks, Plan and sibling Epics:** through the Ticket System Protocol File, using the input Epic ID. Why: to follow Dependencies, resume unfinished work and check Plan completion.
@@ -50,29 +50,28 @@ Run only when all of these are true:
    - **Check and update its instructions:** compare this Task's instructions with the code earlier Tasks committed, such as the files, functions and interfaces the instructions name. Fix any instruction that code made wrong, because every Task was written before any of that code existed.
    - **While it runs:** set the Task `active` and follow the Task pipeline below.
    - **When it's done:** once its Subtasks are `done`, accepted findings are resolved and required checks pass, commit its work.
-   - **After its commit:** judge whether it changed an interface between components, such as a contract, API or schema. If it did, run the Integration gate before the next Task, so a broken interface is caught before later Tasks build on it, and keep the Task `active` until the gate passes. Otherwise, set it `done`. The last Task waits for the end-of-Epic gate in step 3, so the same files aren't tested twice. Integration fix Tasks use the combined repair check described below.
+   - **After its commit:** set the Task `done`, because its work and checks are complete.
 
-3. **Finish the Epic.** Run the Integration gate after the last Task's commit, unless the current files already have a passing result or an applicable waiver. Then dispatch the Product Manager for the end-of-Epic check and save its findings on the Epic for idea-review. This check informs idea-review rather than blocking completion, because idea-review assesses the whole product. Re-check the Plan before completion, because an SRD revision may have paused execution during the final Task. If it is `draft`, record progress and stop for write-plan. Otherwise, set the Epic `done` once all its Tasks are `done` and its integration gate is met.
+3. **Finish the Epic.** Once all Tasks are `done`, run the Integration gate, because the Epic is a complete vertical slice, and catching errors early stops them compounding, even if it costs a little extra time. On resume, use a passing result or waiver that covers the current files. Then dispatch the Product Manager and save its findings on the Epic for idea-review, which assesses the whole product. This check informs idea-review rather than blocking completion. Re-check the Plan before setting the Epic `done`, because an SRD revision may have paused execution during the final Task. If the Plan is `draft`, record progress and stop for write-plan. Otherwise, set the Epic `done` once all its Tasks are `done` and its integration gate is met.
 
 4. **Check Plan completion.** Set the Plan `done` if every Epic is `done`. Record the next work on the Epic: remaining Epics, or merging any Epic worktrees through teardown-worktree from outside them, then idea-review once the work is merged.
 
 ## Dispatches
 
 - **Engineer:** launch for source changes, including integration fixes. Expect implementation, targeted checks and any deviations or effects on design and documentation.
-- **Test Writer:** launch after source changes or for unit-test work, one per Lane and a final Writer after multiple Lanes. Expect unit coverage, fixture changes, remaining gaps and assigned test results.
-- **Doc Writer:** launch after source and unit-test work finishes when documentation is affected. Expect updates following `doc-writing-guide.md`, including gaps found in the implementation.
+- **Test Writer:** launch for testing Subtasks after their source changes, one per Lane and a final Writer after multiple Lanes. Expect unit and integration coverage following `test-guide.md`, fixture changes, remaining gaps and assigned test results. Dispatch a fresh Test Writer for the end-of-Epic Integration gate to keep suite output out of this skill's context. Expect a result per affected repo with commands and evidence.
+- **Doc Writer:** launch when source and testing Subtasks finish and documentation is affected. Expect updates following `doc-writing-guide.md`, including gaps found in the implementation.
 - **Code Reviewer:** launch after source changes, alongside Test Writers. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
 - **Test Reviewer:** launch after unit-test or integration-test changes finish. Expect findings on test quality, coverage and duplication across the suite, or none.
 - **Doc Reviewer:** launch after documentation changes finish. Expect findings on complete touched documents and missing or outdated documentation, or none.
 - **Product Manager:** launch after each Task's executors and reviewers finish, again after fixes affecting product behaviour, and after the Epic's integration gate. Expect findings on requirements, scope and proportion, including incomplete work and decisions needing the Managing Intelligence.
-- **Integration Tester:** launch at each integration gate after all file-changing Subagents finish. Expect integration-test changes and a result for each affected repo: `passed`, `source failures`, `could not run` or `no suites found`, with commands and evidence.
 
 ## Writes
 
 - **Idea and Plan:** set `active` when execution starts. Set the Plan `done` in step 4.
 - **Epic:** set `active` when execution starts and `done` in step 3. It holds execution progress, integration evidence and waivers, and the end-of-Epic Product Manager findings for idea-review.
 - **Tasks and Subtasks:** update descriptions whose implementation details became stale after prerequisite work. Record Task findings, decisions, Lane assignments, checks and commits on the Task. Set Tasks `active` when starting and `done` after step 2's completion conditions. Executors set their assigned Subtasks `active`, then `done`.
-- **Integration fix Tasks:** create as children of this Epic, with Subtasks beneath them, initially `draft`. Set them `defined` when their descriptions are complete, then execute them through step 2 and complete them as the Integration gate describes. Give each Task a `thinking_level:<label>` tag suited to its complexity and risk. Record a Dependency from each waiting Task or Subtask to its prerequisite so execution follows the required order.
+- **Integration fix Tasks:** create as children of this Epic, with Subtasks beneath them, initially `draft`. Set them `defined` when their descriptions are complete, then execute and complete them through step 2. Give each Task a `thinking_level:<label>` tag suited to its complexity and risk, so executor effort matches the repair. Record Dependencies on prerequisites so execution follows the required order.
 
 ## Done
 
@@ -88,31 +87,33 @@ Executors change files; reviewers check them independently. develop-epic coordin
 
 Run the Engineer first, then the Code Reviewer and Test Writers in parallel. After the Test Writers finish, run the Test Reviewer and Doc Writer in parallel. Follow the Doc Writer with the Doc Reviewer, then run the Product Manager after all reviews finish, so it sees the whole Task. Use the roles the work needs; every source-changing pass includes unit testing, and every Task gets its initial Product Manager check.
 
-Collect findings before a batched fix round, so executors address them together. Resume affected executors in source → unit tests → documentation order, with one Doc Writer pass after that round's code and tests finish. Re-review changed work with fresh reviewers and repeat for findings worth fixing. Record each finding's disposition and reason on its Task for idea-review. The Managing Intelligence decides product questions and conflicts with the SRD, because execution follows the defined requirements.
+Collect findings before a fix round so executors address them together. Resume affected executors in source → tests → documentation order, so tests and documentation follow the implementation. Give the Doc Writer one pass after the round's code and tests finish. Re-review changed work with fresh reviewers and repeat for findings worth fixing. Record each finding's disposition and reason on its Task for idea-review. The Managing Intelligence decides product questions and conflicts with the SRD, because execution follows the defined requirements.
 
 The last Test Writer owns the full unit-suite run in each affected repo with unit tests. Assign it the Task's final full-unit-suite Subtask: the sole Writer for one Lane, or the final Writer after multiple Lanes. It runs the suite after its changes and fixes and rechecks failures. Each later source- or unit-test-changing pass has the same owner. Other roles use targeted checks, so full suites are not repeated by every role. Route unit-test source failures through the Engineer, unit testing and review before completing the Task.
 
 ## Test Writer Lanes
 
-A **Lane** is a group of unit-test files one Test Writer can change independently. Start from the Lanes the Task suggests and adjust them to the implementation. Record the assignments and reasons for adjustments on the Task, including each Lane's files and behaviours and shared fixtures or helpers, so Writers can avoid overlapping changes and coverage. Keep files together when they share a fixture or helper being changed or cover overlapping behaviour.
+A **Lane** is a group of test files one Test Writer can change independently. Adjust the Task's proposed Lanes to the implementation and record their files, behaviours, shared fixtures and helpers on the Task. Record why assignments changed so later Runs can follow them. Keep files together when they share changed setup or cover overlapping behaviour, so Writers avoid conflicting edits and duplicate coverage.
 
 Each Lane owns its files and exclusively used fixtures and helpers, including exclusively used entries in common helper files. Writers record newly discovered shared changes and gaps outside their files on the Task for the final Writer. After multiple Lanes finish, dispatch one final Test Writer to make shared changes, close remaining gaps and run the full unit suite. A sole Writer owns all the Task's tests and helpers. The same ownership applies in fix rounds, so parallel repairs remain independent.
 
 ## Executor reuse and progress
 
-Start fresh executors for each Task and retain them for its fix rounds, so fixes reuse their knowledge. Keep each Lane's Test Writer and the final Test Writer where there are multiple Lanes. Resume the executors whose work is affected; replace an unavailable executor with a fresh one reading the Task's progress. Reviewers, Product Managers and Integration Testers start fresh each time for an independent assessment.
+Start fresh executors for each Task and retain them for its fix rounds so fixes reuse their knowledge. Keep each Lane's Test Writer and any final Test Writer. Resume the executors whose work is affected, replacing unavailable ones with fresh executors reading the Task's progress. Reviewers and Product Managers start fresh each time for an independent assessment.
 
 Keep the Epic's progress concise: current Task and phase, repo checkouts, integration gate and next work. On each Task, record retained executors' Roles, Lane or final-Writer assignments, Agent IDs, names if available and Thinking Levels after each report, so a later Run can resume them. Dispatches name the assigned repo checkouts so code changes land in the intended worktrees. After compaction, reconcile ticket and git state before dispatching or committing, because a summary may omit completed work.
 
 ## Integration gate
 
-At each gate, dispatch a fresh Integration Tester once all file-changing Subagents have finished. It writes or updates the integration tests the work needs and runs the integration suites of every affected repo, as `test-guide.md` and `build-commands.md` describe, then reports a result for each repo. The gate passes when each affected repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives the remaining failures. Record the evidence and any waiver on the Epic and the gated Task, keep both `active` until the gate passes, and commit the gate's integration-test changes before the next Task.
+After the Epic's last Task, dispatch a fresh Test Writer to run every affected repo's integration suites as `test-guide.md` and `build-commands.md` describe. The Test Writer fixes only failures caused by the tests themselves, leaving source repairs to the Task pipeline. It reports `passed`, `source failures`, `could not run` or `no suites found` for each repo, with commands and evidence.
 
-If integration tests change, get a Test Reviewer check because these tests were written after the Task's review. Resolve accepted findings with a fresh Integration Tester and obtain a suite result for the resulting files.
+The gate passes when each affected repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives the remaining failures. Record evidence and waivers on the Epic and keep it `active` until the gate passes, so completion reflects the integration result.
 
-For source failures within the Epic's scope, create integration fix Tasks describing the outcome, acceptance criteria and prerequisites. On resume, finish any recorded draft repairs before executing them, so interruptions during repair planning are recoverable. Each Subtask names its executor and has Context, What Needs to Change, Key Files and Acceptance Criteria sections, so the fix is as executable as the original planning. Include unit coverage and the final full-unit-suite Subtask, documentation where affected, and Test Writer Lanes.
+If the run changes tests, get a fresh Test Reviewer check because these repairs follow the Task's review. Have the Test Writer resolve accepted findings and rerun the affected suites. Commit the reviewed repairs so the evidence covers the committed tests.
 
-Execute fix Tasks through the full Task pipeline in Dependency order and mark each `done` after its checks, reviews and commit. Defer their own integration gates to one check over the combined repairs, so dependent fixes can proceed. Keep the original gated Task and Epic `active` until that check passes. Use the original Task's committed implementation as repair context; Dependencies between fix Tasks order their execution.
+For source failures within the Epic's scope, create integration fix Tasks with outcomes, acceptance criteria and prerequisites. Complete recorded draft repairs before executing them so interrupted planning can resume. Each Subtask names its executor and has Context, What Needs to Change, Key Files and Acceptance Criteria sections, so repairs are as executable as the original work. Include the unit and integration coverage `test-guide.md` requires, the final full-unit-suite Subtask, affected documentation and Test Writer Lanes.
+
+Execute the fix Tasks through the full Task pipeline in Dependency order. After all fixes are committed and their Tasks are `done`, dispatch a fresh Test Writer for one integration run over the combined repairs, so the result covers their interactions.
 
 If a failure an earlier fix Task was meant to fix persists, stop for the Managing Intelligence's decision, so failed repairs do not become an automatic loop. If suites cannot run, stop for the environment to be fixed or a waiver. Record the unfinished gate so a later Run resumes there.
 

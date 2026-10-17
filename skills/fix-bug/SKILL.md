@@ -20,7 +20,7 @@ A Bug ID.
 ## Required Reading
 
 - **Workflow:** `~/.apiary/system/workflow.md`. Why: to follow the shared Run rules.
-- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system`, and map the Bug's tag and the reviewers' and Integration Tester's `thinking_levels` through `levels_claude_code` or `levels_codex`.
+- **Settings files:** `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. Why: to select the Ticket System Protocol File through `ticket_system` and map the Bug's executor tag and the reviewers' `thinking_levels` through `levels_claude_code` or `levels_codex`.
 - **Agent Protocol File:** `~/.apiary/system/protocols/agent-claude-code.md` in Claude Code, or `~/.apiary/system/protocols/agent-codex.md` in Codex CLI. Why: to dispatch and resume Subagents and ask and report through the Agent.
 - **Ticket System Protocol File:** `~/.apiary/system/protocols/ticket-<ticket_system>.md`, selected by `ticket_system`. Why: to read the Bug and its dependencies and record execution evidence, decisions and status.
 - **The Bug and its Dependencies:** through the Ticket System Protocol File, using the input ID. Why: to read the confirmed behaviour, retained reproduction, `thinking_level:<label>` tag, progress and Managing Intelligence decisions, including why an earlier fix was returned.
@@ -40,7 +40,7 @@ Run only when all of these are true:
 
 1. **Prepare or resume the repair.** Set the Bug `active` when work starts. Use an isolated Bug worktree for each affected repo to keep concurrent work separate, based on its main checkout's current branch. Record worktree paths, base revisions and merge targets on the Bug. Resume from its progress and actual git state, including unfinished merges and cleanup. For a returned fix, address the revised write-up against current code, because the earlier merge predates the new evidence.
 
-2. **Implement and review the fix.** Follow the Repair pipeline and Regression evidence guidance below. Judge the review findings and record each disposition and its reason on the Bug. The Managing Intelligence decides questions about the expected behaviour, because the defined Bug is the repair's requirements.
+2. **Implement and review the fix.** Record Test Writer Subtasks on the Bug for the unit and integration coverage `test-guide.md` requires, so regression tests are written and reviewed with the repair. Follow the Repair pipeline and Regression evidence guidance below. Judge review findings and record each disposition and reason on the Bug. The Managing Intelligence decides expected behaviour because the defined Bug is the repair's requirements.
 
 3. **Prove the repair.** After implementation and review finish, pass the Integration gate below. Rerun the Bug's retained reproduction against the repaired worktrees with the same inputs and setup, to check the reporter's exact symptom.
    - If the symptom remains, route it through the repair pipeline.
@@ -52,16 +52,15 @@ Run only when all of these are true:
 ## Dispatches
 
 - **Engineer:** launch for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
-- **Test Writer:** launch for regression coverage and after every source-changing pass, one per Lane and a final Writer after multiple Lanes. Expect unit tests, before-and-after regression evidence, fixture changes, gaps and assigned test results.
-- **Doc Writer:** launch after source and unit-test work finishes to assess and update documentation following `doc-writing-guide.md`. Resume for documentation findings or repairs affecting docs. Expect changes or a reason none are needed.
+- **Test Writer:** launch for testing Subtasks and after every source-changing pass, one per Lane and a final Writer after multiple Lanes. Expect unit and integration tests, before-and-after regression evidence, fixture changes, gaps and assigned test results. Dispatch a fresh Test Writer for the Integration gate to keep suite output out of this skill's context. Expect a result per affected repo with commands and evidence.
+- **Doc Writer:** launch after source and testing Subtasks finish to assess and update documentation following `doc-writing-guide.md`. Resume when review findings or repairs affect documentation. Expect changes or a reason none are needed.
 - **Code Reviewer:** launch after source changes, while Test Writers work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
-- **Test Reviewer:** launch after unit-test changes finish, while the Doc Writer works, and after integration-test changes. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
+- **Test Reviewer:** launch after testing Subtasks finish, while the Doc Writer works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
 - **Doc Reviewer:** launch after the Doc Writer finishes. Expect findings on complete touched documents and documentation missing or made outdated by the fix, or no findings.
-- **Integration Tester:** launch at the integration gate after all file-changing Subagents finish. Expect integration tests written or updated as needed, test-side repairs and a result per affected repo: `passed`, `source failures`, `could not run` or `no suites found`, with commands and evidence.
 
 ## Writes
 
-The Bug is the only ticket changed. Set it `active` when work starts and leave it `active` after merge, because the Managing Intelligence accepts the fix. Record progress, reproduction and regression evidence, review findings and decisions, checks, integration results and waivers, commits and merges on it so a later Run can continue the repair.
+The Bug is the only ticket changed. Set it `active` when work starts and leave it `active` after merge, because the Managing Intelligence accepts the fix. Record Test Writer Subtasks and their progress, reproduction and regression evidence, review findings and decisions, checks, integration results and waivers, commits and merges on the Bug so a later Run can continue the repair.
 
 ## Done
 
@@ -75,32 +74,34 @@ Executors change files; reviewers check them independently. fix-bug coordinates 
 
 Run the Engineer first, then the Code Reviewer and Test Writers in parallel. After the Test Writers finish, run the Test Reviewer and Doc Writer in parallel, then the Doc Reviewer. Use the roles the work needs, with a Doc Writer assessment for every Bug so documentation gaps are checked even when source behaviour is restored.
 
-Collect findings before a batched fix round, so executors address them together. Resume affected executors in source → unit tests → documentation order, with one Doc Writer pass after that round's source and tests finish. Re-review changed work with fresh reviewers and repeat for findings worth fixing.
+Collect findings before a fix round so executors address them together. Resume affected executors in source → tests → documentation order, so coverage and documentation follow the repair. Give the Doc Writer one pass after the round's source and tests finish. Re-review changed work with fresh reviewers and repeat for findings worth fixing.
 
-The sole Test Writer, or final Writer after multiple Lanes, owns the full unit-suite run in each affected repo with unit tests. It runs after its changes, fixes test failures and rechecks. Every source- or unit-test-changing pass includes this check, so later repairs are tested too. Route source failures through the Engineer, unit testing and review. Other roles use targeted checks; the Integration Tester owns integration-suite runs, so full suites are not repeated by every role.
+The sole Test Writer, or final Writer after multiple Lanes, runs the full unit suite in each affected repo with unit tests. It fixes failures caused by tests and rechecks them. Include this run after every source- or unit-test-changing pass so later repairs are tested too. Route source failures through the Engineer, unit testing and review. Other roles use targeted checks so every role does not repeat the full suite.
 
 ## Regression evidence
 
-Preserve an automated test that demonstrates the defect at the boundary where it occurs. Use unit coverage where it captures the failure, or integration coverage when the defect requires interacting components. The responsible Test Writer or Integration Tester records failing-before and passing-after results, commands, revisions and coverage limits on the Bug, because a passing test alone does not prove it catches this regression. If automated coverage is impractical, the Managing Intelligence decides what repeatable verification is sufficient, with the decision and evidence recorded on the Bug.
+The Test Writer preserves an automated regression test at the boundary where the defect occurs, using unit coverage or integration coverage for interacting components as `test-guide.md` describes. It records failing-before and passing-after results, commands, revisions and coverage limits on the Bug, because a passing test alone does not prove it catches the regression. If automated coverage is impractical, the Managing Intelligence decides what repeatable verification is sufficient. Record that decision and evidence on the Bug so acceptance uses the agreed check.
 
 ## Test Writer Lanes
 
-A **Lane** is a group of unit-test files one Test Writer can change independently. Choose Lanes from the Bug's affected behaviours and files. Keep files together when they share a fixture or helper being changed or cover overlapping behaviour, so parallel Writers do not conflict or duplicate coverage.
+A **Lane** is a group of test files one Test Writer can change independently. Group the Bug's affected files by the behaviours they cover and the fixtures or helpers they change, so parallel Writers avoid conflicting edits and duplicate coverage.
 
-Record Lane assignments, covered behaviours and shared fixtures or helpers on the Bug so Writers can avoid overlapping changes and coverage. Each Lane owns its files and exclusively used fixtures and helpers, including exclusively used entries in common helper files. Writers record shared changes and gaps outside their files on the Bug for the final Writer. After multiple Lanes finish, one final Test Writer makes shared changes, closes gaps and runs the full unit suite. A sole Writer owns all the Bug's unit tests and helpers. The same ownership applies in fix rounds, so parallel repairs stay independent.
+Record Lane assignments, covered behaviours and shared fixtures or helpers on the Bug so Writers can follow their boundaries. Each Lane owns its files and exclusively used setup, including entries in common helper files. Writers record shared changes and coverage gaps on the Bug for a final Test Writer, which makes those changes and runs the full unit suite after all Lanes finish. A sole Writer owns all the Bug's tests and helpers. Keep this ownership in fix rounds so parallel repairs stay independent.
 
 ## Executor reuse and progress
 
-Retain executors for the Bug's fix rounds, including any final Test Writer, so repairs reuse their knowledge. Replace an unavailable executor with a fresh one reading the Bug's progress. Reviewers and Integration Testers start fresh each time to avoid carrying forward earlier conclusions.
+Retain the repair's executors for fix rounds, including any final Test Writer, so repairs reuse their knowledge. Replace unavailable executors with fresh ones reading the Bug's progress. Start reviewers fresh each time for an independent assessment.
 
 Keep the current phase, next work and integration repair-round count on the Bug. Record retained executors' Roles, Lane or final-Writer assignments, Agent IDs, names if available and Thinking Levels so a later Run can resume them.
 
 ## Integration gate
 
-The gate passes when every affected repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives its remaining failures. Record results and waivers on the Bug.
+After the repair's implementation and review finish, dispatch a fresh Test Writer for one integration run across every affected repo, following `test-guide.md` and `build-commands.md`. It fixes only failures caused by the tests themselves, leaving source repairs to the Repair pipeline. It reports `passed`, `source failures`, `could not run` or `no suites found` for each repo, with commands and evidence.
 
-- If integration tests change, get a fresh Test Reviewer check, because these changes follow the unit-test review. Resolve accepted test findings with a fresh Integration Tester and obtain its final suite result for the resulting files.
-- If source fixes are needed, pass the failures through the repair pipeline, then get a fresh Integration Tester result. Stop for the Managing Intelligence's decision if a round does not reduce failures or failures remain after three source-fix rounds, to bound unsuccessful repair attempts.
+The gate passes when every affected repo reports `passed` or `no suites found`, or the Managing Intelligence explicitly waives its remaining failures. Record results and waivers on the Bug so acceptance and later Runs have the evidence.
+
+- If the run changes tests, get a fresh Test Reviewer check because those repairs follow the earlier review. Have the Test Writer resolve accepted findings and rerun the affected suites so the result covers the reviewed tests.
+- If source fixes are needed, pass the failures through the Repair pipeline, then dispatch a fresh Test Writer for one run over the combined repairs. Stop for the Managing Intelligence's decision if a round does not reduce failures or failures remain after three source-fix rounds, to bound unsuccessful repair attempts.
 - If suites cannot run, stop for the environment to be fixed or an explicit waiver. Keep the unfinished gate and evidence on the Bug so a later Run resumes there.
 
 Results and waivers apply to the files they covered. Further source or integration-test changes need a new result or explicit waiver; source changes also need the regression and reproduction or agreed verification checked again, so the evidence covers the final repair.

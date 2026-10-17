@@ -23,7 +23,6 @@ TLA+ Reviewer: xhigh
 Engineer planner: high
 Test Writer planner: high
 Doc Writer planner: high
-Integration Tester: xhigh
 Code Reviewer: xhigh
 Test Reviewer: xhigh
 Doc Reviewer: high

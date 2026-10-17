@@ -22,13 +22,15 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 ## Test Writer
 
-**Required Reading:** Assigned Subtasks or Bug, tests, fixtures and source changes; `test-guide`, `build-commands`.
+**Required Reading:** Assigned Task, Epic or Bug, testing Subtasks, affected repo checkouts and recorded results; tests, fixtures and source changes; `test-guide`, `build-commands`.
 
 **Gate:** None specified.
 
 **Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
 
-**Specific rules:** Unit tests only. Each lane changes its own files and exclusively used fixtures/helpers; last Test Writer makes needed shared changes and runs the full unit suite in each changed repo. For a Bug, adds a unit test failing before and passing after the fix. Never commit.
+**Specific rules:** Writes unit and integration tests as Subtask work following `test-guide.md`, so coverage matches the Project's guidance. Each Lane owns its files and exclusively used fixtures and helpers so parallel Writers avoid conflicting edits. The last Test Writer makes shared changes and runs the full unit suite in each affected repo with unit tests to check the combined work. For a Bug, records failing-before and passing-after regression evidence so the test proves it catches the defect. The calling skill owns commits.
+
+A fresh Test Writer runs every affected repo's integration suites at the end of an Epic or Bug repair, following `test-guide.md` and `build-commands.md`, to keep suite output out of the calling skill's context. It fixes failures caused by tests and reports source failures for the calling skill's repair pipeline. It returns `passed`, `source failures`, `could not run` or `no suites found` per repo, with commands and evidence so the calling skill can judge its gate.
 
 ## Doc Writer
 
@@ -58,7 +60,7 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 
 **Owned transitions:** None.
 
-**Specific rules:** Proposes unit-test Subtasks and Test Writer lanes to write-epic. Edit no files, change no tickets, never commit.
+**Specific rules:** Proposes unit and integration testing Subtasks and Test Writer Lanes following `test-guide.md`, so write-epic plans the coverage the work needs. Returns proposals to write-epic, which owns the tickets.
 
 ## Doc Writer planner
 
@@ -141,16 +143,6 @@ The dispatching skills are write-srd, req-review, write-plan, write-epic, develo
 **Owned transitions:** None.
 
 **Specific rules:** Dispatched fresh by write-srd for each model after writing or fixes, before each checker run. Checks that the model matches the SRD and its invariants are meaningful; returns findings with references and suggested fixes, or no findings. Edit no files, change no tickets, never commit.
-
-## Integration Tester
-
-**Required Reading:** Gated changes, changed repo checkouts and earlier results from dispatch; integration tests and interfaces, `test-guide`, `build-commands`.
-
-**Gate:** None specified.
-
-**Owned transitions:** None.
-
-**Specific rules:** Writes and runs integration tests, fixes test-caused failures without editing source, and reports pass, source failure, cannot run or no suites found. Works no Subtasks. Never commit.
 
 ## Managing Intelligence
 
