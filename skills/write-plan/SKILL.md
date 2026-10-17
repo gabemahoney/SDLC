@@ -62,7 +62,7 @@ Finish the Idea's existing Plan when it is `draft` or `defined`; create a Plan o
 
 ## Done
 
-Report the Plan's ID and status, and each Epic's ID, title, status, Dependencies and one-line outcome in dependency order. Include the size class and reason for its Epic count, the Product Manager's findings and resulting revisions, ambiguous decomposition decisions and their rationale, and any incomplete work. For a revised Plan, identify the changed SRs addressed and the Epics preserved, revised, added or dropped.
+Report the Plan's ID and any incomplete work.
 
 Suggest write-epic on each `draft` Epic in dependency order.
 
