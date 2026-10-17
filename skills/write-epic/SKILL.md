@@ -51,10 +51,10 @@ Run only when all of these are true:
 
 ## Dispatches
 
-- **Engineer planner:** launch for each Task needing source changes. Expect implementation Subtasks grounded in the code and engineering guidance.
+- **Engineer planner:** launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
 - **Test Writer planner:** launch for each Task needing source or unit-test changes, after engineering proposals it needs are available. Expect unit-test Subtasks, fixture planning, suggested Test Writer Lanes and the final full-unit-suite Subtask.
 - **Doc Writer planner:** launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
-- **Product Manager:** launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
+- **Product Manager:** launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
 
 ## Writes
 
@@ -91,7 +91,12 @@ Keep each Task's implementation, tests and documentation together so its outcome
 
 Put testing after its implementation and documentation after its implementation and tests, so each checks the work it describes. Every Task changing source or unit tests includes a final unit-test Subtask to run the full unit suite and fix failures, to check the combined changes. Its acceptance criterion is a passing full unit suite in each affected code folder with unit tests.
 
-Follow `doc-writing-guide.md` when planning documentation changes, so the Project's guide determines which documents need work and what belongs in them.
+Every Subtask follows the Project's Guidance Documents, because they hold the Project's own rules, which the executors also follow:
+- `engineering-best-practices.md` for how the code is structured and written;
+- `test-guide.md` for what kinds of tests are needed and how they're written and organized;
+- `doc-writing-guide.md` for which documents need work and what belongs in them.
+
+Plan the work each guide requires, such as a test type or an engineering step, inside the Task it belongs to.
 
 Integration Tester writes and runs integration tests during develop-epic. Flag each Task changing a contract, API, schema or other cross-component interface with a `## Run Integration After This Task` section. In it, state `Interface changed:` followed by the interface and the change. This tells develop-epic to run its integration check after that Task.
 
