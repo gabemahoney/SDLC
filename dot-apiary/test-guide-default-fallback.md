@@ -1,0 +1,9 @@
+# Test guide
+
+Apiary uses this default when the Project has no `test-guide.md` of its own.
+
+## Reuse the Project's test setup
+
+Before writing a test, find the fixtures, factories, helpers and constants the Project already has, and reuse or extend them. Add new setup only where nothing fits, in the place the Project keeps shared setup. Extend existing test files before adding new ones. This keeps tests consistent and stops each test building its own setup.
+
+When planning testing Subtasks, name the setup each one reuses, changes or adds, and the test files it extends or creates, so parallel writers don't duplicate or clash over it.
