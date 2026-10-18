@@ -32,8 +32,8 @@ Also read the Project's code and tests as the work needs.
 
 Run only when all of these are true:
 
-- For a question: it's clear enough to research. Otherwise, ask the Managing Intelligence to sharpen it, because the question determines what to investigate.
-- For a Research ticket: it states its question and is `defined`, `active` or `done`. Otherwise, stop for the Managing Intelligence to finish defining it, so research starts from a written question.
+- The question, whether given to you or on the Research ticket, is clear enough to research. Otherwise, ask the Managing Intelligence to sharpen it, because the question determines what to investigate.
+- A Research ticket is `defined`, `active` or `done`. Otherwise, stop for the Managing Intelligence to finish defining it, so research starts from a written question.
 
 ## Steps
 
