@@ -23,7 +23,6 @@ A Task, Epic, Idea or Bug ID.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task, Epic, Idea or Bug:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:doc-writing-guide.md` for which documents to maintain and their standards.
-
 - **All the Project's docs:** read every doc the doc-writing guide covers, so you can spot gaps, leftovers and duplicates anywhere.
 
 Also read the code where the docs must describe it, as the work needs.
