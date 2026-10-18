@@ -42,7 +42,7 @@ None: you perform the assigned implementation yourself.
 
 - Change source files only and leave changes uncommitted, because other executors own tests and documentation and the Main Agent owns commits.
 - Set each assigned Subtask `active` when starting and `done` when complete, so its status tracks your work.
-- On the assigned Subtask or Bug, record changed files, deviations, unfinished work and effects on design or documentation under `## Progress` for the Main Agent and doc-writer. Record targeted check results under `## Checks` so review has evidence.
+- On the assigned ticket, record only deviations from the Subtask or Bug with reasons, unfinished work, and effects on documentation or other work under `## Progress`, so the Main Agent can coordinate what remains.
 
 ## Done
 

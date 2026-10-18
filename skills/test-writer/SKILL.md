@@ -42,7 +42,7 @@ None: you perform the assigned testing work yourself.
 
 - Change only assigned test and fixture/helper files. Each testing Subtask owns a distinct set of files so writers can work in parallel. Leave changes uncommitted because the Main Agent owns commits.
 - Set your Subtask `active` when starting and `done` when complete, so its status tracks your work.
-- On the assigned ticket, record changes, deviations, gaps and unfinished work under `## Progress`, and targeted results under `## Checks`, for review.
+- On the assigned ticket, record only deviations from the Subtask or Bug with reasons, unfinished work, and effects on documentation or other work under `## Progress`, so the Main Agent can coordinate what remains.
 - On a Bug, record failing-before and passing-after results, commands, revisions and coverage limits under `## Regression evidence`, so the regression test proves it catches the defect.
 
 ## Done
