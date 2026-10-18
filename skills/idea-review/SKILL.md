@@ -32,7 +32,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 Run only when all of these are true:
 
-- The Idea's Plan is `done`, or is `active` and you only need to finish recording an already reviewed round's feedback and handoff. Otherwise, stop and report the unfinished planning or execution work, because a new review needs completed execution.
+- The Idea's Plan is `done`. Otherwise, stop and report the unfinished planning or execution work, because a new review needs completed execution.
 - The PRD and SRD are `defined`, because the review needs approved requirements. Otherwise, stop and return the requirements to the Managing Intelligence.
 - Every Epic worktree has been merged into the checkouts being reviewed, so the review covers the combined product. Otherwise, stop and suggest teardown-worktree from outside the unmerged worktrees.
 
