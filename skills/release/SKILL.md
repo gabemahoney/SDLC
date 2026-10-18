@@ -19,20 +19,18 @@ The release target required by the Project's guide, such as a ticket ID or versi
 
 ## Required Reading
 
-- **Settings:** Project and defaults when the release guide uses tickets, for ticket configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, for Agent instructions; the Ticket System Protocol File selected by `setting:ticket_system` when the guide uses tickets, for ticket operations.
+- **Agent:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, for Agent instructions.
 - **Guidance:** `guide:release-guide.md` and the files it points to, for the release process, permissions and approvals.
+
+If the guide uses tickets, also read Project and default settings and `protocol:ticket.md` for ticket operations.
 
 ## Gate
 
-Run only when both of these are true:
-
-- The Project has a release process in its guide. If it doesn't, stop and suggest project-setup, because that skill helps write the process.
-- The guide's release conditions are met. If any fail, stop and report what remains, because the Project sets its own release readiness.
+Run only when the guide defines a release process. Otherwise, stop and suggest project-setup, which helps the Managing Intelligence write it.
 
 ## Steps
 
-1. **Follow the guide's release process.** Carry out its steps under its permissions. A step requiring a human's approval waits for that human's yes, because a bot acting as Managing Intelligence cannot supply human approval.
+1. **Follow the release process.** Follow the guide's order, readiness checks and permissions. Stop at any unmet condition, because the Project controls release readiness. A step requiring human approval waits for that human's approval, because a bot acting as Managing Intelligence cannot supply it.
 
 2. **Check the result** as the guide requires, so the report reflects what was released.
 
