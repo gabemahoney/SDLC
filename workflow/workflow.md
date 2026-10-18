@@ -155,6 +155,8 @@ Each section gives usable instructions, because skills depend on these operation
 
 `protocol:launcher.md` defines these named sections so project-setup can check every operation the skills rely on:
 
+- `protocol:launcher.md ## Main Agents and Child Agents`: what each class is and how a Main Agent and its Child Agents communicate: how the Main Agent sends work and follow-ups, and how a Child Agent reports its result and asks a question, so both sides know how to reach the other.
+- `protocol:launcher.md ## Report to your Main Agent`: how a Child Agent hands back its result.
 - `protocol:launcher.md ## Launch a Main Agent`: start the skill assigned by the Managing Intelligence.
 - `protocol:launcher.md ## Launch a Child Agent`: start its assigned skill and keep it a child of its Main Agent.
 - `protocol:launcher.md ## Resume a Child Agent`: continue that Child Agent's recorded session.

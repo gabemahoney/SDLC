@@ -4,7 +4,12 @@ Select this file with `setting:launcher` set to `agent-director`. It installs as
 
 ## Main Agents and Child Agents
 
-A Main Agent runs a skill assigned by the Managing Intelligence. A Child Agent runs a skill assigned by a Main Agent and reports back to it.
+A Main Agent runs a skill assigned by the Managing Intelligence. A Child Agent runs a skill assigned by a Main Agent and reports back to it. Both are separate agent-director sessions.
+
+How they communicate:
+- **Main Agent to Child Agent:** the first task goes in at launch (`## Launch a Child Agent`). Follow-ups, such as a fix round, go in with `agent-director send-keys --instance-id '<child-id>' --text '<message>'`. Messages name ticket IDs rather than copying ticket contents.
+- **Child Agent to Main Agent:** end your turn with your report or your question as your final message (`## Report to your Main Agent`). Your Main Agent learns your turn ended (`## Know when a Child Agent's state changes`) and reads it with `agent-director read-pane`.
+- **Questions:** a Child Agent that needs a decision asks its Main Agent in its final message and waits. The Main Agent answers with `send-keys`, or asks the Managing Intelligence first.
 
 ## Prerequisites
 
