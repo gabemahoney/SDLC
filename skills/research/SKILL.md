@@ -21,11 +21,9 @@ A research question, or an existing Research ticket ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **The Research ticket, and its Report if one exists:** the ticket for the question, scope and latest review decision; the Report for the current findings.
+- **The Research ticket and its Report, if they exist:** the ticket for the question, scope and latest review decision; the Report for the current findings.
 - **Guidance:** `guide:research-guide.md`, for research methods, evidence and Report requirements.
 - **Existing research:** relevant earlier Research tickets and Reports at `setting:research_location`, and anything relevant that `guide:research-guide.md` names, so you build on what's already known instead of repeating it.
-
-Also read the Project's code and tests as the work needs.
 
 ## Gate
 
@@ -38,7 +36,7 @@ Run only when all of these are true:
 
 1. **Start or resume.** Given a question, file it as a `defined` Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Then pick up where the ticket stands, so work isn't repeated:
    - A round awaiting review goes to step 3.
-   - A `done` ticket goes to step 4, unless the Managing Intelligence asks for more research. Then record that request as a new round and continue below, because the revised answer needs acceptance too.
+   - A `done` ticket goes to step 4, unless the Managing Intelligence asks for more research. Then record that request with the last round's verdict and continue with the next bullet, because the revised answer needs acceptance too.
    - Otherwise, set the Research ticket and its Report `active`, creating the Report if needed, and go to step 2.
 
 2. **Research the round.** Investigate the question or latest review request under `guide:research-guide.md`. Update the same Report so readers have one current answer with cited evidence. Check it against the guide and record the round before presenting it.
