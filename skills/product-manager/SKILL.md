@@ -39,7 +39,7 @@ Otherwise, stop and report its status.
 
 ## Steps
 
-1. **Check the work as a whole.** Compare the planned or implemented work with its requirements and acceptance criteria. Flag missing outcomes, conflicting behaviour, extra functionality and duplicated testing so the result meets the requirements at an appropriate size.
+1. **Check the work as a whole.** Compare the planned or implemented work with its requirements and acceptance criteria. Flag missing outcomes, conflicting behavior, extra functionality and duplicated testing so the result meets the requirements at an appropriate size.
 2. **Surface decisions.** Report product questions and conflicting design choices to your Main Agent for the Managing Intelligence, because they own expected behaviour and approved requirements.
 
 Leave full unit and integration suites to your Main Agent, which owns those checks.
@@ -61,6 +61,6 @@ Report ticket IDs, findings with references and suggested corrections, incomplet
 Report every requirement or scope violation, because your Main Agent decides which findings to act on.
 
 Tag every finding with one level, so your Main Agent can weigh it:
-- **blocker:** it misses or breaks a requirement, or adds functionality outside the approved scope.
-- **suggestion:** it meets requirements, but is unnecessarily complex, duplicates work or confuses users.
-- **nit:** it's a matter of style, such as wording.
+- **blocker:** functionality that's missing, or functionality nobody asked for.
+- **suggestion:** functionality you believe could be improved.
+- **nit:** cosmetic, minor or style.
