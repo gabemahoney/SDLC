@@ -1,6 +1,6 @@
 # Skill specifics
 
-Skills still to write for b.v38: engineer-planner, test-writer-planner, doc-writer-planner, doc-review, product-manager, researcher, model-writer and model-review. req-review is already a Child Agent skill used by write-prd and write-srd. The other existing review skills are legacy versions; these notes describe their replacements. Remove an entry once its finished skill absorbs it.
+Skills still to write for b.v38: engineer-planner, test-writer-planner, doc-writer-planner, product-manager, researcher, model-writer and model-review. req-review, code-review, test-review and doc-review are Child Agent skills. Remove an entry once its finished skill absorbs it.
 
 Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
@@ -35,16 +35,6 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 **Owned transitions:** None.
 
 **Specific rules:** Proposes doc Subtasks to write-epic. Return findings or proposals to the Main Agent, which owns their ticket record; keep the reviewed files unchanged.
-
-## doc-review
-
-**Required Reading:** Task, Idea or Bug review scope, product changes and complete touched docs; `guide:doc-writing-guide.md`.
-
-**Owned transitions:** None.
-
-**Specific rules:** Re-reads touched docs in full, flagging breaches anywhere and docs made wrong or left missing. Return findings or proposals to the Main Agent, which owns their ticket record; keep the reviewed files unchanged.
-
-**Subtask acceptance criteria (TODO, don't forget):** check the work against each reviewed Subtask's `## Acceptance criteria`, and report any unmet one as a finding, because they define when the Subtask is complete.
 
 ## product-manager
 
