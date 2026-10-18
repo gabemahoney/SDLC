@@ -1,6 +1,6 @@
 # Skill specifics
 
-Skills still to write for b.v38: researcher and model-review. req-review, code-review, test-review and doc-review are Child Agent skills. Remove an entry once its finished skill absorbs it.
+Skills still to write for b.v38: researcher. req-review, code-review, test-review and doc-review are Child Agent skills. Remove an entry once its finished skill absorbs it.
 
 Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
@@ -19,14 +19,6 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 **Owned transitions:** Creates the Research ticket's Report child `defined` with a cited answer.
 
 **Specific rules:** Answer write-srd's research question in the cited Report, using research tools or skills available to the Agent. Write only that Report and its evidence artifacts at `setting:research_location`, so research stays with the answer. Return unresolved decisions to write-srd for the Managing Intelligence.
-
-## model-review
-
-**Required Reading:** Assigned Model Doc, its attached Formal Model and the SRD; no Guidance Documents.
-
-**Owned transitions:** None.
-
-**Specific rules:** Review independently after writing or fixes, before checking. Check that the model matches the SRD and has meaningful invariants. Return findings with references and suggested fixes to write-srd, which owns their ticket record; keep model files unchanged.
 
 ## Managing Intelligence
 
