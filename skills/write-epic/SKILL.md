@@ -101,7 +101,11 @@ When unsure between two levels, choose the higher one.
 
 ## Writing the testing Subtasks
 
-Tests split into independent files more easily than code does, so several `test-writer` Child Agents can write a Task's tests at once, as long as they don't edit the same files. To allow that, split the Task's test files into **Lanes**, so that no two Lanes edit the same file. If test files share a helper or fixture the Task changes, put them in the same Lane. Each Lane gets its own `test-writer`. List the Lanes under `## Testing Lanes` in the Task; develop-epic adjusts them to the real code.
+Tests are easier to split up than code, so several `test-writer` Child Agents can work on one Task at once.
+
+Split each Task's test files into **Lanes**. Each Lane gets its own `test-writer`. Two Lanes must never edit the same file, so put tests that share a changed helper in the same Lane.
+
+List the Lanes under `## Testing Lanes` in the Task.
 
 ## Quality checklist
 
