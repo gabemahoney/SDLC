@@ -7,11 +7,11 @@ description: "Write, repair and check a Formal Model for an SRD group. Takes SRD
 
 ## Purpose
 
-You model an SR group for write-srd. Start fresh per group and continue through its write, fix and run cycle so you retain the model's context.
+You write, repair and check a Formal Model of an assigned SR group for write-srd.
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -21,7 +21,7 @@ An SRD ID and, when available, its assigned Model Doc ID.
 
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
-- **Your SRD and existing Model Doc:** Read them; they hold everything you need to do.
+- **Your SRD and existing Model Doc:** for requirements, modelling scope and repair instructions.
 - **Guidance:** Read `guide:build-commands.md ## Model check` for the modelling language and checker command.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
@@ -32,8 +32,8 @@ Run only when the SRD is `draft` and any existing Model Doc is `defined`, becaus
 
 ## Steps
 
-1. **Write or repair the model.** Model the assigned SR group in the configured language, applying accepted repairs so the model follows the current SRD.
-2. **Check when assigned.** Run the configured checker only when your Main Agent assigns checking after accepted review findings are fixed, because review precedes potentially slow checker runs.
+1. **Write or repair the model.** Model the assigned SR group in the configured language. Apply accepted repairs so the model matches the current SRD.
+2. **Check when assigned.** Run the configured checker when your Main Agent requests it after review and repairs, because checker runs can be slow. Report SRD bugs for your Main Agent to resolve.
 
 ## Child Agents
 
