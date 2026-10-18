@@ -7,30 +7,30 @@ description: "Check planned or implemented work against the PRD and SRD for requ
 
 ## Purpose
 
-You review Plans for write-plan, proposed Tasks and Subtasks for write-epic, completed Task and Epic work for develop-epic, and the combined product for idea-review. Start fresh every time, including fix rounds, so each assessment is independent.
+You review planned or implemented work for write-plan, write-epic, develop-epic and idea-review.
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
-The Plan, Epic, Task or Idea ID being checked and its requirements ticket IDs.
+A Plan, Epic, Task or Idea ID.
 
 ## Required Reading
 
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
-- **Your Plan, Epic, Task or Idea:** Read it; it holds everything you need to do.
-- **Requirements:** Read the PRD and SRD so the assessment follows the product requirements and software decisions.
+- **Your Plan, Epic, Task or Idea and its child tickets:** for scope, acceptance criteria, progress and decisions.
+- **Requirements:** Read the PRD and SRD, and the parent Epic for Task reviews, so the assessment follows the product requirements and software decisions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 
-Run only in these ticket states, so planning revisions and implementation reviews happen at the appropriate stage:
+Run only when your assigned ticket is in one of these states:
 
-- A Plan is `draft`, `defined` or `active`.
+- A Plan is `draft`, `defined`, `active` or `done`, because write-plan can revise a completed Plan.
 - An Epic is `draft` for planning review, or `active` or `done` for implementation review.
 - A Task is `active` or `done`.
 - An Idea is `active`.
@@ -39,8 +39,10 @@ Otherwise, stop and report its status.
 
 ## Steps
 
-1. **Check requirements, scope and proportion.** Compare the planned or implemented work with the PRD, SRD and assigned ticket's acceptance criteria. Flag missing outcomes, conflicting behaviour, unnecessary work and duplicated testing so the result meets the requirements at an appropriate size.
-2. **Surface decisions.** Identify product questions and conflicts needing the Managing Intelligence's decision, because they own expected behaviour and approved requirements.
+1. **Check the work as a whole.** Compare the planned or implemented work with its requirements and acceptance criteria. Flag missing outcomes, conflicting behaviour, extra functionality and duplicated testing so the result meets the requirements at an appropriate size.
+2. **Surface decisions.** Report product questions and conflicting design choices to your Main Agent for the Managing Intelligence, because they own expected behaviour and approved requirements.
+
+Leave full unit and integration suites to your Main Agent, which owns those checks.
 
 ## Child Agents
 
@@ -48,15 +50,17 @@ None: you perform the independent assessment yourself.
 
 ## Writes
 
-None: keep files and tickets unchanged, because the Main Agent owns corrections and records declined findings.
-
-## Review judgement
-
-Tag every finding with one level, so your Main Agent can weigh it:
-- **blocker:** it's wrong: it misses or breaks a requirement.
-- **suggestion:** it works, but it's out of proportion: more or less than the requirements ask, or likely to confuse users.
-- **nit:** it's a matter of style, such as wording.
+None: your review is read-only, because the Main Agent coordinates corrections and records declined findings.
 
 ## Done
 
 Report ticket IDs, findings with references and suggested corrections, incomplete work and decisions needed to your Main Agent as `protocol:launcher.md` describes. State when there are no findings.
+
+## Review judgement
+
+Report every requirement or scope violation, because your Main Agent decides which findings to act on.
+
+Tag every finding with one level, so your Main Agent can weigh it:
+- **blocker:** it misses or breaks a requirement, or adds functionality outside the approved scope.
+- **suggestion:** it meets requirements, but is unnecessarily complex, duplicates work or confuses users.
+- **nit:** it's a matter of style, such as wording.
