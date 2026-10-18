@@ -7,7 +7,7 @@ description: "Research a question and write the answer, with sources, in a Repor
 
 ## Purpose
 
-You research a question and write the answer, with sources, in a Report. The question lives on a Research ticket, and the Report is a child ticket of that Research ticket. You revise the Report in review rounds until the Managing Intelligence accepts it, recording each round on the Research ticket.
+You research a question and write the answer, with sources, in a Report. The question lives on a Research ticket, and the Report is a child ticket of that Research ticket. You work in rounds. A round is one pass of researching and updating the Report, then presenting it to the Managing Intelligence, who either accepts it or asks for more. You repeat rounds until it's accepted, recording each one on the Research ticket.
 
 ## Loading Apiary
 
@@ -39,7 +39,7 @@ Run only when all of these are true:
    - A `done` ticket goes to step 4, unless the Managing Intelligence asks for more research. Then record that request with the last round's verdict and continue with the next bullet, because the revised answer needs acceptance too.
    - Otherwise, set the Research ticket and its Report `active`, creating the Report if needed, and go to step 2.
 
-2. **Research the round.** Research the question, or the Managing Intelligence's latest request, following `guide:research-guide.md`. Write the answer into the Research ticket's one Report, revising it each round rather than starting a new one, so there is always one current answer. Check it against the guide, then record the round under `## Review rounds`.
+2. **Research.** Research the question, or the Managing Intelligence's latest request, following `guide:research-guide.md`. Write the answer into the Research ticket's one Report, revising it each round rather than starting a new one, so there is always one current answer. Check it against the guide, then record the round under `## Review rounds`.
 
 3. **Review with the Managing Intelligence.** Present the Research ticket and Report IDs. Record the reviewer's identity and verdict under `## Review rounds`, keeping requests verbatim so later work follows the actual request.
    - More work: repeat step 2 with that request.
