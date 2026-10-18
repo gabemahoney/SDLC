@@ -29,6 +29,7 @@ One of these:
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **The Research ticket and its Report, if they exist:** the ticket for the question and scope; the Report for the current answer.
 - **Guidance:** `guide:research-guide.md`, for research methods, evidence and Report requirements.
+- **Anything your launch names**, such as the SRD a question serves, for the question's context.
 - **Existing research:** relevant earlier Research tickets and Reports at `setting:research_location`, and anything relevant that `guide:research-guide.md` names, so you build on what's already known instead of repeating it.
 
 ## Gate
@@ -40,7 +41,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Set up.** For a new question, file a Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Create its Report if it has none. Set both `active`.
+1. **Set up.** For a new question, file a Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Create the ticket's Report if it has none, and set both `active`.
 
 2. **Research.** Research the question, or your reviewer's latest request, following `guide:research-guide.md`. Update the Report with the answer, so there is always one current answer.
 

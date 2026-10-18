@@ -87,7 +87,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. Bugs whose fixes are returned go back to `draft` for define-bug.
 
-**Research:** research → the Managing Intelligence accepts the Report.
+**Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 
 ## Shared rules
 

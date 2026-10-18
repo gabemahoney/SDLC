@@ -25,4 +25,4 @@ Write a standalone answer so readers can use it without the ticket or conversati
 
 ## Human involvement
 
-Bring unresolved scope or evidence questions to the Managing Intelligence when their answer could change the investigation. They decide when a human needs to be involved, because they know who can settle the question.
+Bring unresolved scope or evidence questions to your reviewer when their answer could change the investigation.

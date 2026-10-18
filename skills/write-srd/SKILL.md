@@ -34,7 +34,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 1. **Pause a Plan built from the SRD before revising it.** Set that Plan `draft`, including a completed Plan, because changed requirements need replanning. Record changed SRs and previously active Epics under `## SRD changes` on it as the revision proceeds. Tell the Managing Intelligence to pause running write-epic and develop-epic work; their Runs stop at the next Task boundary.
 
-2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, save the SRD so it reads the current requirements, then launch `research` with the question and associate its Research ticket with the SRD. You are its reviewer: accept each Report or send back what more to research.
+2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, save the SRD, then launch `research` with the question, the SRD's ID and any constraints, and associate the Research ticket it files with the SRD. You are its reviewer: answer its questions, accept each Report or send back what more to research, and take product questions to the Managing Intelligence. Launch independent questions in parallel.
 
 3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `guide:build-commands.md`, found as `~/.apiary/system/workflow.md` describes, for the language and checker in `guide:build-commands.md ## Model check`. If missing, ask the Managing Intelligence to supply it. Save the SRD first, so your Child Agents read the current requirements. For each group, independently and in parallel where possible:
    - Have `model-writer` write or update the Formal Model for that group and attach the files to its Model Doc.
@@ -55,7 +55,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 - **`req-review`:** Launch after writing or revising the SRD and passing its models, fresh every round so each review is independent. Expect findings with references and suggested fixes, or none.
 - **`model-writer`:** Start fresh for each modelled SR group and reuse it for the write, fix and run cycle to preserve its knowledge of the model. Expect a Model Doc, checker results and any SRD bugs they show.
 - **`model-review`:** Start fresh for each review in step 3 so each assessment is independent. Expect findings with references and suggested fixes, or none.
-- **`research`:** Start fresh for each question needing real digging so its context stays focused on that question, and reuse it for that question's review rounds. Launch in parallel. Expect a cited answer in that Research ticket's Report.
+- **`research`:** Start fresh for each question needing real digging so its context stays focused on that question, and reuse it for that question's review rounds. Expect a cited answer in that Research ticket's Report.
 
 ## Writes
 
