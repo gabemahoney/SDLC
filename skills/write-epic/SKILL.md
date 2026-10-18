@@ -90,7 +90,7 @@ Follow the Guidance Documents when writing each Task and Subtask.
 
 ## Thinking Level guidance
 
-A Task's tag sets how hard its `engineer`, `test-writer` and `doc-writer` think, so match it to what a mistake in that Task would cost and how much judgement it needs:
+A Task's tag sets how hard its `engineer`, `test-writer` and `doc-writer` think, so match it to how hard the engineering problem in that Task is and what a mistake in it would cost:
 - `low`: trivial, mechanical changes such as wording or config values, where a mistake is obvious and cheap.
 - `medium`: routine work that follows an established pattern, such as adding a field or a small, well-understood change.
 - `high`: work that needs real design judgement, touches several modules, or changes behaviour other code relies on.
