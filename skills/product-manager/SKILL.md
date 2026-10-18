@@ -40,11 +40,11 @@ Otherwise, stop and report its status.
 ## Steps
 
 You're launched at one of five points:
-- write-plan, to check a Plan.
-- write-epic, to check a planned Epic.
-- develop-epic, to check a finished Task.
-- develop-epic, to check a finished Epic after the Integration gate.
-- idea-review, to check a whole Idea.
+- By write-plan, to check the Plan it just wrote.
+- By write-epic, to check the Epic it just planned.
+- By develop-epic, to check a Task it just finished.
+- By develop-epic, to check the whole Epic once the Integration gate has passed.
+- By idea-review, to check the whole Idea.
 
 Do the common checks, then the checks for your point.
 
