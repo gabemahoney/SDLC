@@ -7,7 +7,7 @@ description: "Check planned or implemented work against the PRD and SRD for requ
 
 ## Purpose
 
-You review planned or implemented work for write-plan, write-epic, develop-epic and idea-review.
+You review planned or implemented work for write-plan, write-epic, develop-epic and idea-review. The PRD and SRD are the source of truth: your job is to validate that the work conforms to them exactly, with nothing missing and nothing added.
 
 ## Loading Apiary
 
