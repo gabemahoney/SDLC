@@ -39,7 +39,7 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
    - Does any doc need updating, and which sections?
    - Does any doc need trimming, and which sections?
    - Should any doc be deleted?
-3. **Review complete documents.** Re-read every touched document in full against the guide and its own stated rules. Report violations anywhere in it, including unchanged text, because touched documents must meet their rules throughout.
+3. **Review every document.** Read every doc in full against the guide and its own stated rules, and report breaches anywhere, including text nobody changed, because the docs must meet their rules throughout.
 4. **Check completion.** Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
 
 ## Child Agents
