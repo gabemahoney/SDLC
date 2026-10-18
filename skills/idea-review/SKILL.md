@@ -38,7 +38,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Establish the round.** Resume the Idea's unfinished round, or start the next numbered round, beginning at 1. If only feedback filing or the handoff remains, continue at step 4 from the recorded findings. Record the reviewed checkouts and commits. Reuse recorded checks only for the requirements and files they covered, so a resumed review assesses the current product.
+1. **Start the round.** Number it one more than the last round recorded on the Idea, starting at 1, and record the checkouts and commits you review, so later rounds can see what changed.
 
 2. **Review the whole Idea.** Launch code-review, test-review and doc-review in parallel for independent checks. Demonstrate each PRD acceptance criterion with tests or scripts; record concrete manual validation instructions where direct demonstration needs the Managing Intelligence. Judge their findings under the shared rule. Save acceptance evidence and declined or unaddressed findings with reasons on the Idea, then launch `product-manager` with the ticket IDs. Each new round covers the whole Idea, because corrections can affect previously working behaviour.
 
