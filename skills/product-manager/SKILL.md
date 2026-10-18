@@ -39,7 +39,14 @@ Otherwise, stop and report its status.
 
 ## Steps
 
-You're launched at one of five points. Do the common checks, then the checks for your point.
+You're launched at one of five points:
+- write-plan, to check a Plan.
+- write-epic, to check a planned Epic.
+- develop-epic, to check a finished Task.
+- develop-epic, to check a finished Epic after the Integration gate.
+- idea-review, to check a whole Idea.
+
+Do the common checks, then the checks for your point.
 
 **Common checks, every time:**
 1. **It does what was asked.** Compare the work with the PRD, SRD and acceptance criteria. Flag anything missing, and anything that behaves differently from the requirements.
