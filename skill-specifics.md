@@ -1,6 +1,6 @@
 # Skill specifics
 
-Skills still to write for b.v38: researcher, model-writer and model-review. req-review, code-review, test-review and doc-review are Child Agent skills. Remove an entry once its finished skill absorbs it.
+Skills still to write for b.v38: researcher and model-review. req-review, code-review, test-review and doc-review are Child Agent skills. Remove an entry once its finished skill absorbs it.
 
 Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
@@ -19,14 +19,6 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 **Owned transitions:** Creates the Research ticket's Report child `defined` with a cited answer.
 
 **Specific rules:** Answer write-srd's research question in the cited Report, using research tools or skills available to the Agent. Write only that Report and its evidence artifacts at `setting:research_location`, so research stays with the answer. Return unresolved decisions to write-srd for the Managing Intelligence.
-
-## model-writer
-
-**Required Reading:** Assigned SRD part, any existing Model Doc, model files and checker output; `guide:build-commands.md` for the language and checker command in `guide:build-commands.md ## Model check`.
-
-**Owned transitions:** **Model Doc:** the `model-writer`, launched by write-srd, creates it `defined`, one Doc per modelled SRD part. A revision updates its Formal Model and leaves it `defined`.
-
-**Specific rules:** Writes the assigned SRD part's Formal Model in the language named by `guide:build-commands.md ## Model check`. Attaches the model files to its Model Doc as the Ticket System Protocol File describes, so they stay with the requirements. Model files stay out of repos. Resumed to fix accepted review findings or update the Formal Model after an SRD change, then to run the checker command once accepted findings are fixed, because review catches mistakes before a potentially slow checker run. Records checker results and SRD findings on the Model Doc and returns its ID to write-srd so later work uses that evidence.
 
 ## model-review
 
