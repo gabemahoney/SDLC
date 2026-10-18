@@ -22,7 +22,7 @@ Assigned Subtask IDs or a Bug ID.
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
 - **Your Subtask or Bug:** Read it; it holds everything you need to do.
-- **Changes:** Read the engineer's `## Progress` on your Subtask, which says what changed and what it means for the docs.
+- **Changes:** Read the engineer's `## Progress` on the Bug or source Subtasks, for deviations and effects on documentation.
 - **Guidance:** Read `guide:doc-writing-guide.md` for which documents to maintain and how to write them.
 
 Also read the Project's existing docs, and the code where the docs must describe it, as the work needs.

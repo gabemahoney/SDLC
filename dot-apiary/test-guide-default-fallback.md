@@ -15,3 +15,7 @@ One unit test of a rule is enough; an end-to-end test may check the same behavio
 ## Keep the suite lean
 
 Avoid duplicated tests across files and needless test complexity, because they add maintenance without adding coverage.
+
+## Cover regressions where they occur
+
+Exercise the boundary where the defect occurs. Use unit coverage for an isolated rule and integration coverage for interacting components, because a component test can pass while the reported interaction still fails.
