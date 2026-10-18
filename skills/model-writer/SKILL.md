@@ -7,7 +7,7 @@ description: "Write or repair the Formal Model for one SR group, and run its mod
 
 ## Purpose
 
-You write, repair and check a Formal Model of an assigned SR group for write-srd.
+You write and repair the Formal Model of one SR group for write-srd, and run its model checker. You keep the model in a **Model Doc**: a Doc under the Idea, next to the PRD and SRD, holding the model files, review notes and checker results. Each checker result says which SRD version it ran against, so a later Run can tell whether it's still current.
 
 ## Loading Apiary
 
