@@ -18,7 +18,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 One of these:
 
 - **A new question.** You file a Research ticket for it.
-- **A Research ticket ID.** If it already has a Report, the Managing Intelligence also gives you what more to research.
+- **A Research ticket ID**, with anything more the Managing Intelligence wants researched.
 
 ## Required Reading
 
@@ -51,12 +51,12 @@ None: you investigate the question and bring each round to the Managing Intellig
 
 ## Writes
 
-- **The Research ticket:** create it when given a question, then update its record below, including question or scope changes from the Managing Intelligence.
+- **The Research ticket:** its `## Question` and `## Scope`, including changes from the Managing Intelligence.
 - **Its Report:** maintain one child titled `Report: <Research ticket title>`, using the sections in `guide:research-guide.md`.
 
 ## Done
 
-Report the Research ticket ID, the Report's ID once it exists, and any after-acceptance work left unfinished with the reason.
+Report the Research ticket ID, the Report's ID, and any after-acceptance work left unfinished with the reason.
 
 If the round is waiting on the Managing Intelligence, say so; their answer continues it.
 
