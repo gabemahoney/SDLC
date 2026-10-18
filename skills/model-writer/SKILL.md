@@ -1,13 +1,13 @@
 ---
 name: model-writer
-description: "Write or repair the Formal Model for one SR group, and run its model checker. Takes an SRD ID, the SR group, and its Model Doc ID if one exists."
+description: "Write or repair the Formal Model for an SR group, and run its model checker. Takes an SRD ID and its Model Doc ID if one exists."
 ---
 
 # model-writer
 
 ## Purpose
 
-You write and repair the Formal Model of one SR group for write-srd, and run its model checker. You keep the model in a **Model Doc**: a Doc under the Idea, next to the PRD and SRD, holding the model files, review notes and checker results. Each checker result says which SRD version it ran against, so a later Run can tell whether it's still current.
+You write and repair the Formal Model of an SR group for write-srd, and run its model checker. Each checker result says which SRD version it ran against, so a later Run can tell whether it's still current.
 
 ## Loading Apiary
 
@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-An SRD ID, the SR group you own (for example SR-3), and its Model Doc ID if one exists.
+An SRD ID, and its Model Doc ID if one exists.
 
 ## Required Reading
 

@@ -35,7 +35,7 @@
   - **Model Check** (`guide:build-commands.md ## Model check`): an optional section naming the formal-modelling language and the command that runs its checker. If a Formal Model needs checking and this section is missing, write-srd stops and asks the Managing Intelligence.
 
   Any other `##` section belongs to the Project; skills use it as the file describes.
-- **Formal Model:** a formal specification checked by a model checker. **Model checking** means running that checker. A **Model Doc** holds a Formal Model and its attached files.
+- **Formal Model:** a formal specification checked by a model checker. **Model checking** means running that checker. A **Model Doc** is a Doc under the Idea, next to the PRD and SRD, that holds a Formal Model, its attached files, review notes and checker results.
 - **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no user copy of that Guidance Document is found.
 - **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent. `protocol:ticket.md` means the Ticket System Protocol File selected by `setting:ticket_system`.
 - **Dependency:** a link meaning one ticket can't start until another is `done`, such as between Epics or between Tasks.
