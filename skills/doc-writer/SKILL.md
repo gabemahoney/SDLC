@@ -33,8 +33,9 @@ Run only when your Subtask is `defined` or `active`, or your Bug is `active`. Ot
 
 ## Steps
 
-1. **Update documentation.** Follow the documentation guidance, using the diff and recorded findings to cover the assignment and documentation gaps the changes reveal. Apply accepted repairs together so the documentation reflects the round's combined changes.
-2. **Check completion.** Verify each Subtask's `## Acceptance criteria` before marking it complete, because they define completion.
+1. **Update documentation.** Follow the documentation guidance to cover what the changes need documented.
+2. **Remove what's no longer true or needed.** Delete documentation the changes made outdated, and anything now duplicated elsewhere. Removing is as important as adding, because stale or repeated docs mislead readers and LLM-written docs tend to be too long.
+3. **Check completion.** Verify each Subtask's `## Acceptance criteria` before marking it complete, because they define completion.
 
 ## Child Agents
 
