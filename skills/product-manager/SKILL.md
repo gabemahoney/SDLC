@@ -39,12 +39,20 @@ Otherwise, stop and report its status.
 
 ## Steps
 
-1. **Check it does what was asked.** Compare the planned or implemented work with the PRD, SRD and acceptance criteria. Flag anything missing, and any outcome that behaves differently from what the requirements describe.
-2. **Check it does only what was asked.** Flag functionality the PRD or SRD didn't ask for, because extra work adds cost and risk nobody approved. For example, if the PRD calls for no legacy support but a Subtask adds backwards compatibility, call it out.
-3. **Check it fits with the rest of the work.** Read the Epic's other Tasks, and any earlier Epics this work touches. Flag anything this work changes that they rely on, because each Task is reviewed on its own and a clash between them would otherwise go unseen.
-4. **When checking a whole Epic or Idea,** check the combined work meets every acceptance criterion, covers everything the Epic or Idea needs, and adds nothing it didn't ask for.
-5. **Check it's in proportion.** Flag work that is far bigger or smaller than the need, including duplicated tests or docs, so the result is the right size.
-6. **Surface decisions.** Report product questions, conflicts with the PRD or SRD, and disagreements between executors (for example, the engineer and a test-writer chose different approaches) to your Main Agent for the Managing Intelligence, because they own expected behaviour and approved requirements.
+You're launched at one of five points. Do the common checks, then the checks for your point.
+
+**Common checks, every time:**
+1. **It does what was asked.** Compare the work with the PRD, SRD and acceptance criteria. Flag anything missing, and anything that behaves differently from the requirements.
+2. **It does only what was asked.** Flag functionality the PRD or SRD didn't ask for, because extra work adds cost and risk nobody approved. For example, if the PRD calls for no legacy support but the work adds backwards compatibility, call it out.
+3. **It's in proportion.** Flag work far bigger or smaller than the need, including duplicated tests or docs.
+4. **Surface decisions.** Report product questions, conflicts with the PRD or SRD, and disagreements between executors (for example, the engineer and a test-writer chose different approaches) to your Main Agent for the Managing Intelligence, because they own expected behaviour and approved requirements.
+
+**Then, depending on what you were given:**
+- **A Plan (from write-plan):** check the Epics together cover every PRD and SRD requirement, without overlapping or adding work the requirements don't ask for.
+- **A planned Epic (from write-epic):** check its Tasks and Subtasks together will meet every acceptance criterion of the Epic, and fit with sibling Epics without overlapping them.
+- **A finished Task (from develop-epic):** check the work fits with the rest of the Epic. Read its other Tasks and any earlier Epics this work touches, and flag anything this Task changes that they rely on, because each Task is reviewed on its own and a clash between them would otherwise go unseen.
+- **A finished Epic (from develop-epic, after the Integration gate):** check the combined work of all its Tasks meets every acceptance criterion of the Epic and covers everything it needs.
+- **A whole Idea (from idea-review):** check the combined work of all its Epics meets every PRD acceptance criterion and requirement.
 
 Leave full unit and integration suites to your Main Agent, which owns those checks.
 
