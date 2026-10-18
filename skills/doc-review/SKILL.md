@@ -32,7 +32,11 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
 
 ## Steps
 
-1. **Find gaps and leftovers.** Find docs the changes need but don't have, docs the changes made outdated, and docs now duplicated elsewhere, even in files nobody touched.
+1. **Check the docs match the changes.** Following `guide:doc-writing-guide.md`, check for the changes being reviewed, including docs nobody touched:
+   - Is a new doc needed that's missing?
+   - Does any doc need updating, and which sections?
+   - Does any doc need trimming, and which sections?
+   - Should any doc be deleted?
 2. **Review complete documents.** Re-read every touched document in full against the guide and its own stated rules. Report violations anywhere in it, including unchanged text, because touched documents must meet their rules throughout.
 3. **Check completion.** Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
 
