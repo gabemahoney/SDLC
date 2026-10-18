@@ -1,6 +1,6 @@
 ---
 name: model-writer
-description: "Write, repair and check a Formal Model for an SRD group. Takes SRD and existing Model Doc IDs."
+description: "Write or repair the Formal Model for one SR group, and run its model checker. Takes an SRD ID, the SR group, and its Model Doc ID if one exists."
 ---
 
 # model-writer
@@ -15,14 +15,14 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-An SRD ID and, when available, its assigned Model Doc ID.
+An SRD ID, the SR group you own (for example SR-3), and its Model Doc ID if one exists.
 
 ## Required Reading
 
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
 - **Your SRD and existing Model Doc:** for requirements, modelling scope and repair instructions.
-- **Guidance:** Read `guide:build-commands.md ## Model check` for the modelling language and checker command.
+- **Guidance:** Read `guide:build-commands.md ## Model check` for the modeling language and checker command.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -33,11 +33,11 @@ Run only when the SRD is `draft` and any existing Model Doc is `defined`, becaus
 ## Steps
 
 1. **Write or repair the model.** Model the assigned SR group in the configured language. Apply accepted repairs so the model matches the current SRD.
-2. **Check when assigned.** Run the configured checker when your Main Agent requests it after review and repairs, because checker runs can be slow. Report SRD bugs for your Main Agent to resolve.
+2. **Run the model checker when your Main Agent asks.** It asks after the model has been reviewed and repaired, because checker runs can be slow. Report SRD bugs for your Main Agent to resolve.
 
 ## Child Agents
 
-None: you write and check the model yourself.
+None: you write the model and run its checker yourself.
 
 ## Writes
 

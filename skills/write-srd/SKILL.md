@@ -36,9 +36,9 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, read `guide:research-guide.md`, found as `~/.apiary/system/workflow.md` describes, file a question at `setting:research_location` and associate it with the SRD. Save the SRD before launching `researcher` so it reads the current requirements.
 
-3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `guide:build-commands.md`, found as `~/.apiary/system/workflow.md` describes, for the language and checker in `guide:build-commands.md ## Model check`. If missing, ask the Managing Intelligence to supply it. For each group, independently and in parallel where possible:
-   - Have `model-writer` write or update its Formal Model and attach the files to its Model Doc.
-   - Have `model-review` check it against the SRD before running the checker, because checker runs can be slow. Judge findings under the shared rule and record repair instructions under `## Progress` on the Model Doc. Resume the writer for repairs, then review again.
+3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `guide:build-commands.md`, found as `~/.apiary/system/workflow.md` describes, for the language and checker in `guide:build-commands.md ## Model check`. If missing, ask the Managing Intelligence to supply it. Save the SRD first, so your Child Agents read the current requirements. For each group, independently and in parallel where possible:
+   - Have `model-writer` write or update the Formal Model for that group, telling it which SR group it owns, and attach the files to its Model Doc.
+   - Have `model-review` review it against the SRD before the checker runs, because checker runs can be slow. Judge findings under the shared rule and record repair instructions under `## Progress` on the Model Doc. Resume the writer for repairs, then review again.
    - Once accepted findings are fixed, resume the writer to run the checker and retain its results under `## Checks` on the Model Doc. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
 
 4. **Review the whole draft** for succinctness, software obligations, dropped ideas and the Quality checklist, in that order. Repeat after changes until a full round changes nothing, so revisions receive the same scrutiny as a first draft.
@@ -46,9 +46,9 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
    - Make each SR a verifiable obligation grounded in the PRD and existing code.
    - Include a boundary from a dropped idea only if the Managing Intelligence wants it stated.
 
-   Return changed or newly modelled groups to step 3 so models cover the final requirements, then save the SRD.
+   Save the SRD, then return changed or newly modelled groups to step 3 so models cover the final requirements.
 
-5. **Review the SRD with `req-review` once its models pass.** Launch a fresh Child Agent each round so each review is independent. Judge every finding: fix it, decline a minor finding with its reason, or take a product question to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
+5. **Review the SRD with `req-review` once every model has been reviewed and its checker run has passed.** Launch a fresh Child Agent each round so each review is independent. Judge every finding: fix it, decline a minor finding with its reason, or take a product question to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
 
 ## Child Agents
 
