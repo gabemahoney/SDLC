@@ -35,17 +35,17 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Start or resume the research.**
-   - For a `defined` or `active` ticket, go to step 3 if the latest round awaits review or has an acceptance to apply. Otherwise, set the ticket and Report `active`, creating the Report if needed, and continue research in step 2. This lets an interrupted Run continue with the same Report.
-   - For a `done` ticket, go to step 4 unless the Managing Intelligence has requested further work since acceptance. If they have, record that request under `## Review rounds` and set both the ticket and Report `active` for a new round, because the revised answer needs review too.
+1. **Start or resume.** Set the Research ticket and its Report `active` when research starts, creating the Report if needed. Continue an existing round from its recorded progress or verdict so work isn't repeated.
+   - A round awaiting review goes to step 3.
+   - A `done` ticket goes to step 4 unless the Managing Intelligence requests more research. Record that request and set both tickets `active`, because the revised answer needs acceptance too.
 
-2. **Research the round.** Follow `guide:research-guide.md` to investigate the question on the first round and the Managing Intelligence's latest request on later rounds. Update the same Report with the findings and their citations, so later readers have one current answer with traceable evidence. Check the Report against the guide, then append a dated round with a short Presented summary under `## Review rounds` on the Research ticket.
+2. **Research the round.** Investigate the question or latest review request under `guide:research-guide.md`. Update the same Report so readers have one current answer with cited evidence. Check it against the guide and record the round before presenting it.
 
-3. **Review with the Managing Intelligence.** Refer them to the Research ticket and Report IDs for any round awaiting a verdict. They decide whether to accept the Report or request more work. Under `## Review rounds`, record who reviewed the round and their verdict, keeping requests for more work verbatim so later rounds follow the actual request. Apply a verdict already recorded for this round when resuming.
-   - If they request more work, return to step 2 with that request.
-   - If they accept the Report, set the Report and Research ticket `done`.
+3. **Review with the Managing Intelligence.** Present the Research ticket and Report IDs. Record the reviewer's identity and verdict under `## Review rounds`, keeping requests verbatim so later work follows the actual request.
+   - More work: repeat step 2 with that request.
+   - Acceptance: set the Report and Research ticket `done`.
 
-4. **Complete any extra outputs.** After the Report is accepted, produce any extra outputs `guide:research-guide.md` requires from it. Record their locations and completion under `## Extra outputs` on the Research ticket, so an interrupted Run can finish what remains without repeating completed work. Apply this step to each newly accepted revision too, so the extra outputs stay current.
+4. **Complete extra outputs.** For each accepted round, record the outputs `guide:research-guide.md` requires under `## Extra outputs` before producing them, so an interrupted Run can continue. Keep their locations, completion and unfinished work there. Leave both tickets `done`, because Report acceptance stands.
 
 ## Child Agents
 
@@ -53,10 +53,10 @@ None: you investigate the question and bring each round to the Managing Intellig
 
 ## Writes
 
-- **The Research ticket:** update `## Question` and `## Scope` when the Managing Intelligence revises them, `## Review rounds` after each round and verdict, and `## Extra outputs` with output locations and completion. Its status follows steps 1 and 3.
-- **Its Report:** create the Report child, titled `Report: <Research ticket title>`, when research starts, and update it after each round using the Report sections in `guide:research-guide.md`. Its status follows steps 1 and 3, including revisions to an accepted Report.
+- **The Research ticket:** update its record below, including question or scope changes from the Managing Intelligence. Its status follows steps 1 and 3.
+- **Its Report:** maintain one child titled `Report: <Research ticket title>`, using the sections in `guide:research-guide.md`. Its status follows steps 1 and 3.
 - **Artifacts:** store them with the Research ticket and link them under `## Artifacts` through the Ticket System Protocol File, so the evidence stays with the answer. Remove secrets and tokens because the research record may be shared.
-- **Extra outputs:** create or update them where `guide:research-guide.md` requires, after Report acceptance in step 4.
+- **Extra outputs:** create or update them after acceptance as step 4 describes.
 
 Keep Research tickets, Reports and artifacts at `setting:research_location`. Retain accepted research with automatic archival disabled, so its citations remain usable.
 
@@ -71,3 +71,4 @@ If the round awaits review, say so; the Managing Intelligence's verdict continue
 - `## Question`: state the question in the requester's words where possible.
 - `## Scope`: record who asked, why, and the supplied constraints and boundaries. State when none were given.
 - `## Review rounds`: give each round a number and date. Its Presented summary briefly describes the findings or changes. Record the reviewer's identity and verdict when received; a round without a verdict awaits review.
+- `## Extra outputs`: track each accepted round's required outputs, locations, completion and any unfinished work with reasons.
