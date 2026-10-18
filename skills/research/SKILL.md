@@ -15,7 +15,11 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A research question, or an existing Research ticket ID.
+One of these three:
+
+- **A new question.** You file a Research ticket for it and start round 1.
+- **A Research ticket with no research yet.** You start round 1.
+- **A Research ticket with earlier rounds.** You continue from where the last round left off.
 
 ## Required Reading
 
@@ -34,10 +38,11 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Start or resume.** Given a question, file it as a `defined` Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Then pick up where the ticket stands, so work isn't repeated:
-   - A round awaiting review goes to step 3.
-   - A `done` ticket goes to step 4, unless the Managing Intelligence asks for more research. Then record that request with the last round's verdict and continue with the next bullet, because the revised answer needs acceptance too.
-   - Otherwise, set the Research ticket and its Report `active`, creating the Report if needed, and go to step 2.
+1. **Start.** Pick up from the input, so work isn't repeated:
+   - A new question: file it as a `defined` Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Then treat it as a ticket with no research yet.
+   - A round presented but without a verdict: go to step 3.
+   - An accepted (`done`) ticket: go to step 4, unless the Managing Intelligence asks for more research. Then record that request with the last round's verdict and continue with the next bullet, because the revised answer needs acceptance too.
+   - Otherwise: set the Research ticket and its Report `active`, creating the Report if needed, and go to step 2.
 
 2. **Research.** Research the question, or the Managing Intelligence's latest request, following `guide:research-guide.md`. Write the answer into the Research ticket's one Report, revising it each round rather than starting a new one, so there is always one current answer. Check it against the guide, then record the round under `## Review rounds`.
 
