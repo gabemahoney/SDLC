@@ -24,7 +24,9 @@ A research question, or an existing Research ticket ID.
 - **The Research ticket, and its Report if one exists:** for the question, constraints, findings and latest review decision.
 - **Guidance:** `guide:research-guide.md`, for research methods, evidence and Report requirements.
 
-Also read the Project's code, tests and any linked Research tickets as the work needs.
+- **Existing research:** every earlier Research ticket and Report at `setting:research_location`, and anything else `guide:research-guide.md` names, so you build on what's already known instead of repeating it.
+
+Also read the Project's code and tests as the work needs.
 
 ## Gate
 
@@ -35,7 +37,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Start or resume.** Given a question, file it first as a `defined` Research ticket at `setting:research_location`, with `## Question` and `## Scope`, so the question and its answer stay together. Set the Research ticket and its Report `active` when research starts, creating the Report if needed. Continue an existing round from its recorded progress or verdict so work isn't repeated.
+1. **Start or resume.** Given a question, file it first as a `defined` Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Set the Research ticket and its Report `active` when research starts, creating the Report if needed. Continue an existing round from its recorded progress or verdict so work isn't repeated.
    - A round awaiting review goes to step 3.
    - A `done` ticket goes to step 4 unless the Managing Intelligence requests more research. Record that request and set both tickets `active`, because the revised answer needs acceptance too.
 
