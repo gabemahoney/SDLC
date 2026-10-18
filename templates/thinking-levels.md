@@ -21,7 +21,6 @@ teardown-worktree: medium
 engineer: high
 test-writer: high
 doc-writer: high
-researcher: high
 model-writer: xhigh
 model-review: xhigh
 engineer-planner: high

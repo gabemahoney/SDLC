@@ -18,7 +18,7 @@
   - **test-review:** checks test quality, coverage and duplication independently.
   - **doc-review:** checks documentation changes and gaps independently.
   - **product-manager:** checks planned or finished work against requirements, for scope and proportion.
-  - **researcher:** answers one research question with a cited Report.
+  - **research:** answers one research question with a cited Report. It also runs as a Main Agent.
   - **model-writer (Model Writer):** writes a Formal Model and runs its checker.
   - **model-review (Model Reviewer):** checks a Formal Model against the SRD before its checker runs.
 - **Launcher:** the program that launches, resumes, watches and stops Main Agents and Child Agents, keeping their parent–child relationships.

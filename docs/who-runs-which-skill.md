@@ -19,7 +19,7 @@ flowchart LR
   M["write-srd<br/>(Main Agent)"]
   M --> C0["model-writer"]
   M --> C1["model-review"]
-  M --> C2["researcher"]
+  M --> C2["research"]
   M --> C3["req-review"]
 ```
 
