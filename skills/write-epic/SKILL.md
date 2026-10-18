@@ -101,9 +101,7 @@ When unsure between two levels, choose the higher one.
 
 ## Writing the testing Subtasks
 
-Each Task's tests are written inside that Task, as `test-writer` Subtasks. That includes integration tests: the end-of-Epic Integration gate only runs them, it doesn't write them.
-
-Split the Task's test files into **Lanes**, so several `test-writer` Child Agents can work at once. A Lane is a set of test files one writer can change without touching another writer's files. Put files in the same Lane when they share a helper the Task changes, so two writers don't edit it at once. List the Lanes under `## Testing Lanes` in the Task. develop-epic adjusts them to the real code.
+Group each Task's testing Subtasks into **Lanes**. During develop-epic, each Lane goes to its own `test-writer` Child Agent, and the Lanes are written at the same time. A Lane is a set of test files one `test-writer` can change without touching another's. Put files in the same Lane when they share a helper the Task changes, so two `test-writer` Child Agents don't edit it at once. List the Lanes under `## Testing Lanes` in the Task. develop-epic adjusts them to the real code.
 
 ## Quality checklist
 
