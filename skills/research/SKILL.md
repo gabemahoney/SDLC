@@ -57,7 +57,6 @@ None: you investigate the question and bring each round to the Managing Intellig
 
 - **The Research ticket:** create it when given a question, then update its record below, including question or scope changes from the Managing Intelligence. Its status follows steps 1 and 3.
 - **Its Report:** maintain one child titled `Report: <Research ticket title>`, using the sections in `guide:research-guide.md`. Its status follows steps 1 and 3.
-- **Artifacts:** store them with the Research ticket and link them under `## Artifacts` through the Ticket System Protocol File, so the evidence stays with the answer. Remove secrets and tokens because the research record may be shared.
 
 Keep Research tickets, Reports and artifacts at `setting:research_location`. Retain accepted research with automatic archival disabled, so its citations remain usable.
 

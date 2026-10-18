@@ -10,7 +10,7 @@ Choose sources and depth to suit the question, its constraints and the latest re
 
 Use methods that suit the question, including research skills the Agent provides as its Agent Protocol File describes. A small runnable prototype can settle a design question; keep it as an artifact and record what it demonstrated.
 
-Keep enough evidence to support the findings. Put bulky data, scripts, logs, screenshots, notes and excerpts in artifacts so the Report stays readable. Link artifacts from the findings they support through the Ticket System Protocol File.
+Keep enough evidence to support the findings. Put bulky data, scripts, logs, screenshots, notes and excerpts in artifacts so the Report stays readable. Link artifacts from the findings they support through the Ticket System Protocol File. Remove secrets and tokens from them, because the research record may be shared.
 
 ## Report
 
