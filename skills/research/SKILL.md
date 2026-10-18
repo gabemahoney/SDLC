@@ -38,7 +38,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Start.** Pick up from the input, so work isn't repeated:
+1. **Start.** Depending on your input:
    - A new question: file it as a `defined` Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Then treat it as a ticket with no research yet.
    - A round presented but without a verdict: go to step 3.
    - An accepted (`done`) ticket: go to step 4, unless the Managing Intelligence asks for more research. Then record that request with the last round's verdict and continue with the next bullet, because the revised answer needs acceptance too.
