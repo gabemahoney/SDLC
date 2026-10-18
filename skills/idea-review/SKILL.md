@@ -1,13 +1,13 @@
 ---
 name: idea-review
-description: "Review an Idea's merged work against its requirements and file a Round Feedback Epic for non-trivial findings."
+description: "Review an Idea's merged work and file one feedback Epic per round."
 ---
 
 # idea-review
 
 ## Purpose
 
-You review the whole Idea after its Plan is done and Epic worktrees are merged. Each Run is one numbered **round**. If a round finds real problems, you file them all as one Epic, Round Feedback Epic N, for write-epic and develop-epic, and the next round reviews again once it's done. When a round finds only trivial problems, you hand the result to the Managing Intelligence for testing and acceptance.
+You review the whole Idea before the Managing Intelligence's acceptance. Each Run is one numbered round.
 
 ## Loading Apiary
 
@@ -19,12 +19,10 @@ An Idea ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-- **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
-- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read requirements and progress, record review results and file feedback in the Plan.
-- **The Idea, its PRD, SRD, Plan and Epics:** through the Ticket System Protocol File, using the input Idea ID and the Plan's Association to it. Why: to review the requirements, resume round progress and follow earlier findings, fixes, integration results and Managing Intelligence decisions, including failures it accepted.
-- **Guidance Documents:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md` and `guide:build-commands.md` for each reviewed repo, found as `~/.apiary/system/workflow.md` describes, to judge the work against the Project's guidance and demonstrate acceptance criteria.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Idea, PRD, SRD, Plan and Epics:** for requirements, decisions and completed work.
+- **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md` and `guide:build-commands.md` for review standards in each repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -32,55 +30,37 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 Run only when all of these are true:
 
-- The Idea's Plan is `done`. Otherwise, stop and report the unfinished planning or execution work, because a new review needs completed execution.
-- The Idea's PRD and SRD are `defined`, because you review the work against them. Otherwise, stop and tell the Managing Intelligence which one isn't approved.
-- Every Epic worktree has been merged into the checkouts being reviewed, so the review covers the combined product. Otherwise, stop and suggest teardown-worktree from outside the unmerged worktrees.
+- The Plan is `done`, because execution must finish first. Otherwise, report unfinished work.
+- The PRD and SRD are `defined`, to review approved requirements. Otherwise, return them to the Managing Intelligence.
+- Every Epic worktree is merged into the reviewed checkouts, to review the combined product. Otherwise, suggest teardown-worktree.
 
 ## Steps
 
-1. **Start the round.** Number it one more than the last round recorded on the Idea, starting at 1, and record the checkouts and commits you review, so later rounds can see what changed.
-
-2. **Review the whole Idea.** Launch code-review, test-review and doc-review in parallel for independent checks. Demonstrate each PRD acceptance criterion with tests or scripts; record concrete manual validation instructions where direct demonstration needs the Managing Intelligence. Judge their findings under the shared rule. Save acceptance evidence and declined or unaddressed findings with reasons on the Idea, then launch `product-manager` with the ticket IDs. Each new round covers the whole Idea, because corrections can affect previously working behaviour.
-
-3. **Judge the findings.** Use the Findings guidance below, including unaddressed feedback from develop-epic and the Tasks behind it. Check whether earlier feedback fixes resolved their findings. If an earlier fix failed, record the evidence on that feedback Epic and stop for the Managing Intelligence's decision before filing more work, so a failed fix does not start an automatic loop. Resume from their recorded decision.
-
-4. **Finish the round.** File its non-trivial findings in one `Round <N> Feedback` Epic, using the contents below. Reuse that round's Epic if filing was interrupted, so a restart creates no duplicate work. Record the handoff on the Idea: write-epic for feedback, then develop-epic, merging and another idea-review; or the Managing Intelligence's testing and acceptance when only trivial findings or none remain.
+1. **Start the round.** Number it one more than the last recorded on the Idea, starting at 1. Record checkouts and commits to identify the reviewed work.
+2. **Review the whole Idea.** Launch Child Agents and handle their feedback as below.
+3. **Hand off.** Hand off feedback for write-epic, develop-epic, merging and another idea-review. With nothing worth fixing, hand off for the Managing Intelligence's testing and acceptance.
 
 ## Child Agents
 
-- **`code-review`:** Start fresh every time so each assessment is independent. Launch in each round for the whole Idea's source changes. Expect correctness, engineering and lint findings with references and suggested fixes, or none.
-- **`test-review`:** Start fresh every time so each assessment is independent. Launch in each round for the whole Idea's tests. Expect coverage, quality and duplication findings across the suite, or none.
-- **`doc-review`:** Start fresh every time so each assessment is independent. Launch in each round for the whole Idea's documentation. Expect findings on complete touched documents, including breaches anywhere in them and missing or outdated documentation, or none.
-- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after the reviewers and acceptance demonstrations in each round. Expect findings against the PRD and SRD on coverage, scope and proportion, including incomplete work, conflicting decisions and unaddressed feedback.
+- **`code-review`:** Start fresh every time for independence. Launch across the Idea's source changes. Expect correctness, engineering and lint findings.
+- **`test-review`:** Start fresh every time for independence. Launch across the Idea's tests. Expect quality, coverage and duplication findings.
+- **`doc-review`:** Start fresh every time for independence. Launch across the Idea's documentation. Expect incomplete, missing or outdated documentation findings.
+- **`product-manager`:** Start fresh every time for independence. Launch after those reviewers so it sees the combined result. Expect requirements, scope and proportion findings against the PRD and SRD.
+
+## Handling Reviewer Feedback
+
+For each finding:
+
+- **Fix it:** group all findings worth fixing into one `Round <N> Feedback` Epic for write-epic and develop-epic, so corrections receive planning and review. A non-trivial finding is an unmet PRD requirement or acceptance criterion, or a real defect in the Idea's work.
+- **Decline it:** when minor, record why on the Idea for the Managing Intelligence.
+- **Ask the Managing Intelligence:** for product questions or PRD/SRD conflicts, because they own those decisions.
 
 ## Writes
 
-- **Idea:** record the round number, reviewed checkouts and commits, acceptance evidence and manual checks, declined or unaddressed findings with reasons, feedback Epic ID and next work as the round progresses, so a later Run can resume it. Its status remains for the Managing Intelligence to decide.
-- **Round Feedback Epic:** create one per round with non-trivial findings, as a `draft` child of the Plan. When revising findings, update every feedback Epic they affect, whatever its status, and return it to `draft`, so write-epic replans its affected Tasks and Subtasks. Use Associations to earlier Epics for context; record a Dependency only where the feedback Epic must wait for another ticket to be `done`.
-- **Plan:** set it `active` when feedback is filed or revised, because execution has more work.
-- **Earlier Round Feedback Epics:** record failed fixes and the Managing Intelligence's decisions on the Epics that held them, so the next review can judge the attempted corrections.
+- **Idea:** record the round, checkouts, commits, declined findings with reasons and feedback Epic ID or testing handoff.
+- **Round Feedback Epic:** create a `draft` Plan child with outcome, findings with evidence and the requirement each serves, acceptance criteria and prerequisites. Leave Task planning to write-epic.
+- **Plan:** set it `active` when filing feedback, because work remains.
 
 ## Done
 
-Report the Idea's ID, and the Round Feedback Epic's ID if one was filed.
-
-- If feedback was filed, suggest write-epic on it, then develop-epic, then idea-review again.
-- If an earlier fix failed, report what decision is needed to resume.
-- Otherwise, the Idea is ready for the Managing Intelligence's testing.
-
-## Findings guidance
-
-A non-trivial finding is an unmet requirement or acceptance criterion, or a real defect in the Idea's work. Everything else is trivial. Judge by evidence and impact, so review rounds converge on a working product. Combine duplicate findings and explain why each needs work or can be left unaddressed.
-
-Keep corrections within the PRD's requirements and the SRD's choices. Include missing functionality, regressions and excess functionality that conflicts with those requirements. Honour recorded Managing Intelligence decisions. Work outside the Idea follows `~/.apiary/system/workflow.md`'s “Work outside the ticket”.
-
-Keep demonstrated behaviour, observed failures and checks left for manual validation distinct, so testing instructions cannot be mistaken for passing evidence. Reference the Epics' integration results, and any failures the Managing Intelligence accepted, in the acceptance evidence to show the limits of earlier testing.
-
-## Feedback Epic contents
-
-- **Outcome:** the defects and requirement gaps this round must resolve.
-- **Findings and requirements:** each non-trivial finding, its evidence, the requirement it serves, affected repos and files, and the result a correction must achieve. Reference earlier feedback tickets where relevant.
-- **Acceptance criteria:** observable checks showing each finding is resolved, including the failing scenario to repeat.
-- **Prerequisites:** any work that must finish before these corrections can start, and why.
-
-Size corrections to the findings. Leave Task and Subtask planning to write-epic, so the corrections receive the same planning checks as the original work.
+Report the Idea ID, round, declined findings with reasons, and next step: write-epic (feedback Epic ID) or the Managing Intelligence's testing.
