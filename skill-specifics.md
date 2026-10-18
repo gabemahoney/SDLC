@@ -28,7 +28,7 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 
 **Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
 
-**Specific rules:** Write tests for assigned Subtasks or Bug testing assignments under `guide:test-guide.md`, so coverage matches the Project's guidance. Each Lane owns whole files and exclusively used setup; the final writer handles shared files after the Lanes finish to avoid conflicting edits. The last `test-writer` makes shared changes and runs `guide:build-commands.md ## Unit tests` for each affected code folder, skipping sections marked `none`, to check the combined work. For a Bug, records failing-before and passing-after regression evidence so the test proves it catches the defect.
+**Specific rules:** Write tests for assigned Subtasks or Bug testing assignments under `guide:test-guide.md`, so coverage matches the Project's guidance. Each Lane owns whole files and exclusively used setup; the final writer handles shared files after the Lanes finish to avoid conflicting edits. Run only targeted checks on your own work, because the Main Agent runs the full suites. For a Bug, record failing-before and passing-after regression evidence so the test proves it catches the defect.
 
 Repair test failures from the calling skill's Integration gate; return source failures to that Main Agent. The Main Agent runs and reruns the integration suites itself.
 

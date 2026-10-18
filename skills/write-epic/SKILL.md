@@ -49,7 +49,7 @@ Run only when all of these are true:
 ## Child Agents
 
 - **`engineer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
-- **`test-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task once any engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `guide:test-guide.md` requires, fixture planning, suggested Lanes and the final full-unit-suite Subtask. develop-epic's `test-review` checks test quality independently.
+- **`test-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task once any engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `guide:test-guide.md` requires, fixture planning and suggested Lanes. develop-epic's `test-review` checks test quality independently.
 - **`doc-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
 - **`product-manager`:** Start fresh every time so each assessment is independent. Launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
 
@@ -84,7 +84,7 @@ Every Subtask has these sections, with detail in proportion to the work:
 
 ## Writing guidance
 
-Put testing after its implementation and documentation after its implementation and tests, so each checks the work it describes. Every Task includes a final unit-test Subtask to run the full unit suite and fix failures, to check the combined changes. Its acceptance criterion is a passing full unit suite in each affected code folder with unit tests.
+Put testing after its implementation and documentation after its implementation and tests, so each checks the work it describes.
 
 Follow the Guidance Documents when writing each Task and Subtask.
 
@@ -105,8 +105,6 @@ Each Task's tests are written inside that Task, as `test-writer` Subtasks. That 
 
 Split the Task's test files into **Lanes**, so several `test-writer` Child Agents can work at once. A Lane is a set of test files one writer can change without touching another writer's files. Put files in the same Lane when they share a helper the Task changes, so two writers don't edit it at once. List the Lanes under `## Testing Lanes` in the Task. develop-epic adjusts them to the real code.
 
-The last `test-writer` runs the full unit suite after the Task's changes, so the whole Task is checked before it's committed.
-
 ## Quality checklist
 
 - [ ] The Tasks cover the Epic's acceptance criteria and follow the PRD, SRD and recorded Managing Intelligence decisions.
@@ -114,7 +112,6 @@ The last `test-writer` runs the full unit suite after the Task's changes, so the
 - [ ] Prerequisite and sibling Epic work is accounted for, and each Task has a coherent outcome and the Dependencies it needs.
 - [ ] Each Subtask has an executor, the template sections and concrete key files in a named repo or code folder.
 - [ ] Test proposals identify fixture reuse and changes, avoid duplicate checks at the same level, and keep test files that share changed setup in the same Lane.
-- [ ] Every Task has a final full-unit-suite Subtask following its other unit-test work.
 - [ ] Documentation work follows its implementation and tests and is allowed by the doc-writing guide.
 - [ ] Every Task to execute has a Thinking Level suited to its complexity and risk.
 - [ ] A revision covers every affected Task and Subtask, whatever its earlier status, and leaves it ready for develop-epic.

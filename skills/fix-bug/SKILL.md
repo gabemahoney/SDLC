@@ -42,14 +42,16 @@ Run only when all of these are true:
 
 3. **Prove the repair.** Pass the Integration gate after implementation and review. Rerun the retained reproduction with its original inputs and setup. Route a remaining symptom through the Repair pipeline. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision under `## Decisions` and evidence under `## Regression evidence`.
 
-4. **Commit and merge.** Require fixed accepted findings, complete regression evidence, successful reproduction or agreed verification, and a passed integration gate. Run `guide:build-commands.md ## Compile` and `guide:build-commands.md ## Lint` for every affected code folder; the final test-writer's full `guide:build-commands.md ## Unit tests` must also pass for the completed repair. Skip only sections marked `none` with a reason. Route failures through the Repair pipeline and repeat affected checks before committing, so evidence covers the final files.
+4. **Commit and merge.** Require fixed accepted findings, complete regression evidence, successful reproduction or agreed verification, and a passed integration gate.
+
+   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the repair changed. Skip only sections marked `none` with a reason. Send each failure to the executor that owns the files through the Repair pipeline, then rerun all three. Commit only when all three pass, so every commit leaves working code.
 
    Merge from the main checkouts into the recorded targets. If a target or conflict resolution changes the repair, review and check the combined result before cleanup because earlier evidence no longer covers it. Record successful merges under `## Worktrees`, then remove merged worktrees and branches. Leave the Bug `active` for acceptance. If a merge conflicts, preserve its worktree, record conflicts and completed merges under `## Worktrees`, and stop for resolution; a later Run resumes there.
 
 ## Child Agents
 
 - **`engineer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
-- **`test-writer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch for testing assignments and after every source-changing pass, one per Lane and a final writer after multiple Lanes, and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and assigned test results.
+- **`test-writer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch for testing assignments and after every source-changing pass, one per Lane, then for shared changes and gaps after multiple Lanes, and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and only targeted checks on its own work, because you run the full suites.
 - **`doc-writer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch after source and testing assignments finish to assess and update documentation following `guide:doc-writing-guide.md`. Include review findings or repairs that affect documentation. Expect changes or a reason none are needed.
 - **`code-review`:** Start fresh every time so each assessment is independent. Launch after source changes, while `test-writer` Child Agents work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
 - **`test-review`:** Start fresh every time so each assessment is independent. Launch after testing assignments finish, while the `doc-writer` works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
@@ -82,8 +84,6 @@ You coordinate executors and independent reviewers and own commits. Run engineer
 
 Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order. Give doc-writer one pass after source and tests finish; reviewers check repairs. Repeat until accepted findings are fixed.
 
-The sole test-writer or final writer after multiple Lanes owns the full `guide:build-commands.md ## Unit tests` run for every affected code folder. Run after the combined changes and later source or unit-test repairs, skipping sections marked `none`. The writer fixes test failures; source failures return through engineer, testing and review. Other executors run targeted checks so they do not each repeat the full suite.
-
 ## Regression evidence
 
 The `test-writer` preserves an automated regression test at the boundary where the defect occurs, using unit coverage or integration coverage for interacting components as `guide:test-guide.md` describes. It records failing-before and passing-after results, commands, revisions and coverage limits under `## Regression evidence` on the Bug, because a passing test alone does not prove it catches the regression. If automated coverage is impractical, the Managing Intelligence decides what repeatable verification is sufficient. Record that decision under `## Decisions` and evidence under `## Regression evidence` on the Bug so acceptance uses the agreed check.
@@ -92,7 +92,7 @@ The `test-writer` preserves an automated regression test at the boundary where t
 
 A **Lane** is a group of test files one test-writer can change independently. Record each Lane's files, behaviours, fixtures and helpers under `## Testing Lanes` on the Bug. Group overlapping behaviour and changed shared setup together to avoid conflicting edits and duplicate coverage.
 
-Each Lane owns whole files and exclusively used setup. Writers record shared changes and gaps under `## Progress` for a final test-writer after all Lanes finish. That writer changes shared files, closes gaps and runs the full unit suite. A sole writer owns all tests and helpers. Keep this ownership during repairs.
+Each Lane owns whole files and exclusively used setup. Writers record shared changes and gaps under `## Progress` for a final test-writer after all Lanes finish. That writer changes shared files and closes gaps. A sole writer owns all tests and helpers. Keep this ownership during repairs.
 
 ## Integration gate
 
