@@ -1,6 +1,6 @@
 ---
 name: research
-description: Track a research task as a Research Bee — file it, run its review rounds, and complete it with a cited Report. Defines only the ticket state flow, not how the research is done.
+description: Track a research task as a Research Bee — file it, run its review rounds, and complete it with a cited Report and an LLM wiki update. Does not define how the research is done.
 ---
 
 # Overview
@@ -25,7 +25,7 @@ In Codex CLI, which has no AskUserQuestion, ask in plain text in your reply and 
 
 Before filing or continuing a Bee:
 1. Read `research_location` from `<Project Folder>/.apiary/project_settings.md`. If it is unset or the file is absent, read it from `~/.apiary/default_project_settings.md`.
-2. If set, use that path as the Research hive itself (the bees hive named `Research` at that location), for the Bee, Report and artifacts. Ensure bees operations address that hive, not a different project's Research hive. If unset in both files, keep the existing lookup: use the Research hive path from `bees list-hives`.
+2. If set, use that path as the Research hive itself (the bees hive at that location), for the Bee, Report and artifacts. Ensure bees operations address that hive, not a different project's Research hive. If unset in both files, keep the existing lookup: use the Research hive path from `bees list-hives`.
 3. Read `<Project Folder>/.apiary/research-guide.md`, or, if absent, `~/.apiary/research-guide.md`. Follow the selected guide for research methods, the Report's shape where specified, and required extra outputs after acceptance. If neither exists, use this skill's defaults.
 
 ## Prerequisites
@@ -92,6 +92,16 @@ One t1 child of the Bee, titled `Report: <Bee title>`. Its body is a well-writte
 
 Put bulky raw material in artifacts, not in the Report body.
 
+## LLM wiki
+
+After acceptance, update the wiki in step 6 on every accepted round, including revisions. Use `~/research/wiki/` unless the research guide names another folder; follow the guide's different or extra output requirements as well. This follows [Karpathy's LLM wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
+
+- For a new wiki, create `raw/` for preserved source material, kept unchanged; `pages/` for linked Markdown source summaries, topic and entity pages, comparisons and conclusions; `AGENTS.md` for structure and maintenance rules; `index.md` linking every page with a one-line description; and an append-only dated `log.md`.
+- Read `AGENTS.md` and `index.md` first. Integrate accepted findings into existing or new pages and cross-link related pages. Cite the sources and the accepted Report. Mark conflicting evidence and superseded claims on the page instead of silently overwriting them.
+- Update `index.md` and append a dated `log.md` entry naming the Research ticket, the Report and the pages changed.
+- Lint the pages touched for broken links, orphan pages, stale claims and unresolved contradictions; fix them. Where evidence cannot settle a contradiction, state it explicitly with its sources.
+- Record the updated paths and completion on the Research Bee. If the update cannot be finished, record what remains and why. Acceptance stands either way: keep the Bee and Report `done`.
+
 ## Steps
 
 ### 1. File (`defined`)
@@ -128,7 +138,7 @@ Add **Reviewer** and **Verdict** to the round. Record the request verbatim.
 
 1. Check the Report meets the guide's requirements and the defaults above where the guide does not specify them.
 2. Set the Report and the Bee to `done`.
-3. Do every extra output the guide requires (e.g. updating a wiki), on each accepted round, including accepted revisions. Before starting, record the accepted round and required outputs on the Bee; then record what was updated, including paths and completion for each output. If an output cannot be completed, record what remains and why on the Bee. Acceptance stands: keep the Bee and Report `done`.
+3. Update the LLM wiki as above and do every extra output the guide requires, on each accepted round, including accepted revisions. Before starting, record the accepted round and required outputs on the Bee; then record what was updated, including paths and completion for each output. If an output cannot be completed, record what remains and why on the Bee. Acceptance stands: keep the Bee and Report `done`.
 4. Report the Bee ID, the Report ID, the one-line answer, and any extra outputs completed or left unfinished.
 
 ### Continuing a Bee (`/research <bee-id>`)
@@ -137,5 +147,5 @@ Read the Bee and its Report, then by status:
 - `defined` → step 2.
 - `active`, latest round awaiting review → with a verdict given after the ID, step 5; otherwise step 4 (present it again).
 - `active`, latest verdict is more work → step 3.
-- `done` → check the latest accepted round's extra outputs against the guide and the Bee's record; resume any required outputs not recorded as complete via step 6.3, keeping the Bee and Report `done`. Report that it is done, with the Report ID and any unfinished outputs. Reopen it only if a reviewer asks for more research work now: set the Bee and Report to `active`, start a new round with that request as its input, and go to step 3. If it is unclear whether they want it reopened, ask (no-questions mode: `research: needs input: <bee-id> is done — reopen it for more work? Say what to do`).
+- `done` → check the latest accepted round's wiki update and extra outputs against this skill, the guide and the Bee's record; resume any required outputs not recorded as complete via step 6.3, keeping the Bee and Report `done`. Report that it is done, with the Report ID and any unfinished outputs. Reopen it only if a reviewer asks for more research work now: set the Bee and Report to `active`, start a new round with that request as its input, and go to step 3. If it is unclear whether they want it reopened, ask (no-questions mode: `research: needs input: <bee-id> is done — reopen it for more work? Say what to do`).
 - Any other status → stop and report it; do not guess. An old value (`new`, `completed`, `larva`, `pupa`, `worker` or `finished`) means the hive needs `/apiary-setup` to migrate it.
