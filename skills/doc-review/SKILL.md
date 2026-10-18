@@ -25,7 +25,7 @@ A Task, Epic, Idea or Bug ID.
 - **Guidance:** Read `guide:doc-writing-guide.md` for which documents to maintain and their standards.
 - **All the Project's docs:** read every doc the doc-writing guide covers, so you can spot gaps, leftovers and duplicates anywhere.
 
-Also read the code where the docs must describe it, as the work needs.
+Also read any other code where the docs must describe it, as the work needs.
 
 ## Gate
 
@@ -33,13 +33,14 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
 
 ## Steps
 
-1. **Check the docs match the changes.** Following `guide:doc-writing-guide.md`, check for the changes being reviewed:
+1. **Review the code changes.** Read every code change made in this Task carefully, so you know exactly what the docs now have to say.
+2. **Check the docs match those changes.** Following `guide:doc-writing-guide.md`, check:
    - Is a new doc needed that's missing?
    - Does any doc need updating, and which sections?
    - Does any doc need trimming, and which sections?
    - Should any doc be deleted?
-2. **Review complete documents.** Re-read every touched document in full against the guide and its own stated rules. Report violations anywhere in it, including unchanged text, because touched documents must meet their rules throughout.
-3. **Check completion.** Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
+3. **Review complete documents.** Re-read every touched document in full against the guide and its own stated rules. Report violations anywhere in it, including unchanged text, because touched documents must meet their rules throughout.
+4. **Check completion.** Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
 
 ## Child Agents
 
