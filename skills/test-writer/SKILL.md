@@ -20,7 +20,7 @@ A testing Subtask, Task or Bug ID.
 ## Required Reading
 
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
-- **Assignment:** Read the Task and its testing Subtasks, or the Bug, for requirements, file ownership, fixtures, source changes and recorded repairs. Subtasks specify `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria`; Bug assignments use `## Progress`.
+- **Your Subtask or Bug:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:test-guide.md` and `guide:build-commands.md` for coverage standards and checks.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
