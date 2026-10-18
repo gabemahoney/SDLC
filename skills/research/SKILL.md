@@ -40,7 +40,7 @@ Run only when all of these are true:
 
 1. **Start.** Depending on your input:
    - A new question: file it as a `defined` Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Then treat it as a ticket with no research yet.
-   - An accepted (`done`) ticket: go to step 4, unless the Managing Intelligence asks for more research. Then record that request on the last round and continue with the next bullet, because the revised answer needs acceptance too.
+   - An accepted (`done`) ticket with a request for more research: record the request on the last round, then continue with the next bullet.
    - Otherwise: set the Research ticket and its Report `active`, creating the Report if needed, and go to step 2.
 
 2. **Research.** Research the question, or the Managing Intelligence's latest request, following `guide:research-guide.md`. Write the answer into the Research ticket's one Report, revising it each round rather than starting a new one, so there is always one current answer. Check it against the guide, then record the round under `## Review rounds`.
