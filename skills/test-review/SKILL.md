@@ -32,7 +32,7 @@ Run only when your Task, Idea or Bug is `active`, because review precedes comple
 
 ## Steps
 
-1. **Review the tests.** Read the whole test suite to assess changed tests for correctness, coverage and duplication against the assignment and testing guidance. Review by inspection without running tests, because the Main Agent owns suite execution.
+1. **Review the tests.** Assess the changed tests for correctness and coverage against the assignment and testing guidance, and check whether they duplicate tests the suite already has. Review by inspection without running tests, because the Main Agent owns suite execution.
 2. **Check completion.** Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
 
 ## Child Agents
