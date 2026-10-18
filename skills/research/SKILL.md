@@ -1,13 +1,13 @@
 ---
 name: research
-description: "Investigate a Research ticket's question and complete its cited Report through review rounds with the Managing Intelligence."
+description: "Research a question and write the answer, with sources, in a Report, through review rounds with the Managing Intelligence. Takes a question, or an existing Research ticket ID."
 ---
 
 # research
 
 ## Purpose
 
-You research the question on an existing Research ticket and write up the answer in a cited Report under it. You revise the Report in review rounds until the Managing Intelligence accepts it, recording the evidence and each round on the ticket.
+You research a question and write the answer, with sources, in a Report ticket under its Research ticket. You revise the Report in review rounds until the Managing Intelligence accepts it, recording the evidence and each round on the Research ticket.
 
 ## Loading Apiary
 
@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A Research ticket ID.
+A research question, or an existing Research ticket ID.
 
 ## Required Reading
 
@@ -30,12 +30,12 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 Run only when all of these are true:
 
-- The Research ticket states its question. If it doesn't, stop for the Managing Intelligence to supply it, because the question determines what to investigate.
-- The Research ticket is `defined`, `active` or `done`. Otherwise, stop for the Managing Intelligence to finish defining it, so research starts from a written question.
+- For a question: it's clear enough to research. Otherwise, ask the Managing Intelligence to sharpen it, because the question determines what to investigate.
+- For a Research ticket: it states its question and is `defined`, `active` or `done`. Otherwise, stop for the Managing Intelligence to finish defining it, so research starts from a written question.
 
 ## Steps
 
-1. **Start or resume.** Set the Research ticket and its Report `active` when research starts, creating the Report if needed. Continue an existing round from its recorded progress or verdict so work isn't repeated.
+1. **Start or resume.** Given a question, file it first as a `defined` Research ticket at `setting:research_location`, with `## Question` and `## Scope`, so the question and its answer stay together. Set the Research ticket and its Report `active` when research starts, creating the Report if needed. Continue an existing round from its recorded progress or verdict so work isn't repeated.
    - A round awaiting review goes to step 3.
    - A `done` ticket goes to step 4 unless the Managing Intelligence requests more research. Record that request and set both tickets `active`, because the revised answer needs acceptance too.
 
@@ -53,7 +53,7 @@ None: you investigate the question and bring each round to the Managing Intellig
 
 ## Writes
 
-- **The Research ticket:** update its record below, including question or scope changes from the Managing Intelligence. Its status follows steps 1 and 3.
+- **The Research ticket:** create it when given a question, then update its record below, including question or scope changes from the Managing Intelligence. Its status follows steps 1 and 3.
 - **Its Report:** maintain one child titled `Report: <Research ticket title>`, using the sections in `guide:research-guide.md`. Its status follows steps 1 and 3.
 - **Artifacts:** store them with the Research ticket and link them under `## Artifacts` through the Ticket System Protocol File, so the evidence stays with the answer. Remove secrets and tokens because the research record may be shared.
 - **Extra outputs:** create or update them after acceptance as step 4 describes.
