@@ -7,7 +7,7 @@ description: "Investigate a Research ticket's question and complete its cited Re
 
 ## Purpose
 
-You keep a research question, its evidence and review rounds together until the Managing Intelligence accepts the Report.
+You research a question and write up the answer in a cited Report. You revise it in review rounds until the Managing Intelligence accepts it, keeping the question, the evidence and each round on the Research ticket.
 
 ## Loading Apiary
 
