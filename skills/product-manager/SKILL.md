@@ -22,7 +22,7 @@ A Plan, Epic, Task or Idea ID.
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Plan, Epic, Task or Idea and its child tickets:** for scope, acceptance criteria, progress and decisions.
-- **Requirements:** Read the PRD and SRD, and the parent Epic for Task reviews, so the assessment follows the product requirements and software decisions.
+- **Requirements:** Read the PRD and SRD, so you check the work against the product requirements and software decisions. When you're checking a Task, also read its Epic, because the Epic holds the acceptance criteria the Task works towards.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
