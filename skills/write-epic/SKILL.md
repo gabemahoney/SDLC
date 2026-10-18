@@ -86,7 +86,7 @@ Every Subtask has these sections, with detail in proportion to the work:
 
 Put testing after its implementation and documentation after its implementation and tests, so each checks the work it describes. Every Task includes a final unit-test Subtask to run the full unit suite and fix failures, to check the combined changes. Its acceptance criterion is a passing full unit suite in each affected code folder with unit tests.
 
-Include each guide's required work in the Task it supports.
+Follow the Guidance Documents when writing each Task and Subtask.
 
 ## Thinking Level guidance
 
