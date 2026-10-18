@@ -7,7 +7,7 @@ description: "Research a question and write the answer, with sources, in a Repor
 
 ## Purpose
 
-You research a question and write the answer, with sources, in a Report. The question lives on a Research ticket, and the Report is a child ticket of that Research ticket. You work in rounds. A round is one pass of researching and updating the Report, then presenting it to the Managing Intelligence, who either accepts it or asks for more. You repeat rounds until it's accepted, recording each one on the Research ticket.
+You research a question and write the answer, with sources, in a Report. The question lives on a Research ticket, and the Report is a child ticket of that Research ticket. You work in rounds. A round is one pass of researching and updating the Report, then presenting it to the Managing Intelligence, who either accepts it or asks for more. You repeat rounds until it's accepted.
 
 ## Loading Apiary
 
@@ -15,17 +15,16 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-One of these three:
+One of these:
 
-- **A new question.** You file a Research ticket for it and start round 1.
-- **A Research ticket with no research yet.** You start round 1.
-- **A Research ticket with earlier rounds.** You continue from where the last round left off.
+- **A new question.** You file a Research ticket for it.
+- **A Research ticket ID.** If it already has a Report, the Managing Intelligence also gives you what more to research.
 
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **The Research ticket and its Report, if they exist:** the ticket for the question, scope and latest review decision; the Report for the current findings.
+- **The Research ticket and its Report, if they exist:** the ticket for the question and scope; the Report for the current answer.
 - **Guidance:** `guide:research-guide.md`, for research methods, evidence and Report requirements.
 - **Existing research:** relevant earlier Research tickets and Reports at `setting:research_location`, and anything relevant that `guide:research-guide.md` names, so you build on what's already known instead of repeating it.
 
@@ -42,7 +41,7 @@ Run only when all of these are true:
 
 2. **Research.** Research the question, or the Managing Intelligence's latest request, following `guide:research-guide.md`. Update the Report with the answer, so there is always one current answer.
 
-3. **Review.** Present the Report to the Managing Intelligence and record the round under `## Review rounds`, keeping their requests verbatim so the next round answers what they actually asked.
+3. **Review.** Present the Report to the Managing Intelligence.
    - If they ask for more, go back to step 2.
    - If they accept it, set both tickets `done`, then do whatever `guide:research-guide.md` requires after acceptance.
 
@@ -65,4 +64,3 @@ If the round is waiting on the Managing Intelligence, say so; their answer conti
 
 - `## Question`: state the question in the requester's words where possible.
 - `## Scope`: record who asked, why, and the supplied constraints and boundaries. State when none were given.
-- `## Review rounds`: for each round, its number and date, a short summary of what was presented, and, once received, the reviewer and their answer, with any requests verbatim. A round with no answer is waiting for review.
