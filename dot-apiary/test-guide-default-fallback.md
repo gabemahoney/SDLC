@@ -11,3 +11,7 @@ When planning testing Subtasks, name the setup each one reuses, changes or adds,
 ## Test each behaviour once at each level
 
 One unit test of a rule is enough; an end-to-end test may check the same behaviour again from the outside. Update tests the change affects, remove tests it makes obsolete and add missing coverage.
+
+## Keep the suite lean
+
+Avoid duplicated tests across files and needless test complexity, because they add maintenance without adding coverage.
