@@ -17,8 +17,6 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
 ## How skills are written
 - **Opinionated where it matters, flexible where it doesn't.** Fixed: ticket categories, the store hierarchy, status ownership, and the gates. Swappable: ticket system, intake, toolchain and Launcher, which live in settings, Guidance Documents and Protocol Files.
 
-The `apiary-skill-writing` skill, installed by box setup, defines the writing rules, checklist and template, so they have one maintained home.
-
 ## What to keep from today's skills
 - **Proven guidance:** keep workflow and ticket contracts in skills; place craft in Guidance Documents and their default fallbacks so Projects can customize it.
 - **Proven process steps,** unless a goal above changes them.
@@ -32,4 +30,4 @@ The `apiary-skill-writing` skill, installed by box setup, defines the writing ru
 ## How a skill change is made
 The b.v38 PRD Docs are background only; use the Acceptance baseline for checks.
 
-Read the existing skill and any legacy agent instructions it absorbs from the main checkout. Apply these goals and the `apiary-skill-writing` skill, including its checklist, so the revision preserves useful guidance and follows the current design.
+Read the existing skill and any legacy agent instructions it absorbs from the main checkout. Apply these goals, so the revision preserves useful guidance and follows the current design.
