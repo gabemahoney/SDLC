@@ -19,13 +19,12 @@ An Idea or Epic ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea or Epic and record decisions on it.
-- **The Idea or Epic:** to read its setup choices and earlier preparation or launch results so a resumed Run continues existing work.
-- **Repo state:** each main checkout at `<Project Folder>/<repo path>` and its registered worktrees. Why: to check branches, base commits, uncommitted changes and worktrees available for reuse.
-
-When launching, read `protocol:launcher.md` and the assigned skill before making changes, for launch requirements and input IDs. If committing main-checkout changes, read `guide:release-guide.md`, found as `~/.apiary/system/workflow.md` describes, for applicable permissions.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Idea or Epic:** for setup choices and earlier preparation or launch results.
+- **Repos:** main checkouts and registered worktrees, for branches, base commits, uncommitted changes and reuse.
+- **Assigned skill:** when launching, for launch requirements and input IDs.
+- **Guidance:** `guide:release-guide.md` when committing main-checkout changes, for permissions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

@@ -19,10 +19,9 @@ The release target required by the Project's guide, such as a ticket ID or versi
 
 ## Required Reading
 
-- **Release guidance:** `guide:release-guide.md`, found as `~/.apiary/system/workflow.md` describes, and the files it points to. Why: to follow the Project's release process, permissions and approvals.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-
-If the guide uses tickets, read `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`, and the Ticket System Protocol File `protocol:ticket-<ticket_system>.md` selected by `setting:ticket_system`, so ticket changes use the Project's ticket system.
+- **Settings:** Project and defaults when the release guide uses tickets, for ticket configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, for Agent instructions; the Ticket System Protocol File selected by `setting:ticket_system` when the guide uses tickets, for ticket operations.
+- **Guidance:** `guide:release-guide.md` and the files it points to, for the release process, permissions and approvals.
 
 ## Gate
 

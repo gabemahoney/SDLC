@@ -31,14 +31,14 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 Run only when all of these are true:
 
 - The Plan is `done`, because execution must finish first. Otherwise, report unfinished work.
-- The PRD and SRD are `defined`, to review approved requirements. Otherwise, return them to the Managing Intelligence.
+- The Idea's PRD and SRD are `defined`, because you review the work against them. Otherwise, stop and tell the Managing Intelligence which one isn't approved.
 - Every Epic worktree is merged into the reviewed checkouts, to review the combined product. Otherwise, suggest teardown-worktree.
 
 ## Steps
 
 1. **Start the round.** Number it one more than the last recorded on the Idea, starting at 1. Record checkouts and commits to identify the reviewed work.
 2. **Review the whole Idea.** Launch Child Agents and handle their feedback as below.
-3. **Hand off.** Hand off feedback for write-epic, develop-epic, merging and another idea-review. With nothing worth fixing, hand off for the Managing Intelligence's testing and acceptance.
+3. **Hand off.** If any findings are worth fixing, create one Epic titled `Round <N> Feedback` in the Idea's Plan, with contents as Writes describes. Set the Plan `active` because work remains, and hand off to write-epic. Otherwise, hand the Idea to the Managing Intelligence for testing and acceptance.
 
 ## Child Agents
 
@@ -52,13 +52,13 @@ Run only when all of these are true:
 For each finding:
 
 - **Fix it:** group all findings worth fixing into one `Round <N> Feedback` Epic for write-epic and develop-epic, so corrections receive planning and review. A non-trivial finding is an unmet PRD requirement or acceptance criterion, or a real defect in the Idea's work.
-- **Decline it:** when minor, record why on the Idea for the Managing Intelligence.
+- **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason on the Idea for the Managing Intelligence.
 - **Ask the Managing Intelligence:** for product questions or PRD/SRD conflicts, because they own those decisions.
 
 ## Writes
 
 - **Idea:** record the round, checkouts, commits, declined findings with reasons and feedback Epic ID or testing handoff.
-- **Round Feedback Epic:** create a `draft` Plan child with outcome, findings with evidence and the requirement each serves, acceptance criteria and prerequisites. Leave Task planning to write-epic.
+- **Round Feedback Epic:** when findings are worth fixing, create one `draft` child of the Idea's Plan titled `Round <N> Feedback`, with outcome, findings with evidence and the requirement each serves, acceptance criteria and prerequisites. Leave Task planning to write-epic.
 - **Plan:** set it `active` when filing feedback, because work remains.
 
 ## Done

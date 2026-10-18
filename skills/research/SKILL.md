@@ -19,11 +19,10 @@ A Research ticket ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read and write the Research ticket, its Report and review log, and store and link research artifacts.
-- **Research guidance:** `guide:research-guide.md`, found as `~/.apiary/system/workflow.md` describes, to follow the Project's research methods, evidence requirements and Report guidance.
-- **Research ticket and its existing Report:** at `setting:research_location` to understand the question, constraints, findings and latest review decision, and resume the right round.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Research ticket and its existing Report:** for the question, constraints, findings and latest review decision.
+- **Guidance:** `guide:research-guide.md`, for research methods, evidence and Report requirements.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

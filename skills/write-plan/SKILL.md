@@ -19,12 +19,10 @@ An Idea ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-- **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
-- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, and write the Plan, Epics and their relationships.
-- **The Idea, its Docs and existing Plan and Epics:** to ground the Plan in requirements and update an existing Plan rather than start again.
-- **Engineering, testing and documentation guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md` and `guide:doc-writing-guide.md` for each affected code folder, found as `~/.apiary/system/workflow.md` describes, to plan engineering, testing and documentation work according to the Project's guidance.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Idea, its Docs and existing Plan and Epics:** for requirements and earlier planning.
+- **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md` and `guide:doc-writing-guide.md` for engineering, testing and documentation planning in each affected code folder.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

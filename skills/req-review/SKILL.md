@@ -19,8 +19,9 @@ A PRD or SRD Doc ID.
 
 ## Required Reading
 
-- **Settings and Protocol Files:** use those supplied by your Main Agent to read tickets and follow your Agent's instructions.
-- **The Doc, its Idea and supporting Docs:** to review the current requirements against their context and recorded decisions. For an SRD, read the approved PRD and Model Docs to check coverage and modelling evidence.
+- **Settings:** supplied by the Main Agent, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, supplied by the Main Agent, for operations.
+- **Doc, Idea and supporting Docs:** for requirements, context and decisions; the approved PRD and Model Docs for SRD coverage and modelling evidence.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

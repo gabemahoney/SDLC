@@ -19,13 +19,11 @@ An Idea or Epic ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea or Epic and record merge and cleanup decisions on it.
-- **The Idea or Epic and its Plan:** for completion, worktree and Main Agent records, merge targets, cleanup choices and earlier results.
-- **Repo and merge state:** each main checkout and the ticket's registered worktrees and target checkouts. Why: to verify ownership, branches, uncommitted changes and merges against the ticket's record.
-
-When managing agents, read `protocol:launcher.md` for inspection and verified shutdown. If committing outstanding changes, read `guide:release-guide.md`, found as `~/.apiary/system/workflow.md` describes, for applicable permissions.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Idea or Epic and its Plan:** for completion, worktree and Main Agent records, merge targets, cleanup choices and earlier results.
+- **Repos:** main checkouts, registered worktrees and target checkouts, for ownership, branches, uncommitted changes and merge state.
+- **Guidance:** `guide:release-guide.md` when committing outstanding changes, for permissions.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

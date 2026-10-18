@@ -19,14 +19,11 @@ An Idea ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **PRD template:** the file at the path named by `setting:prd_template`. Why: to structure the PRD.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-- **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
-- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, and create or update its PRD.
-- **The Idea and its existing Docs:** to gather requirements, find the PRD to revise and determine whether an SRD exists.
-
-Read each Source Reference with `~/.apiary/system/resolvers/<resolver>.md`, selected by its kind, when gathering source context.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Idea and its existing Docs:** for requirements and existing PRD and SRD context.
+- **Template:** `setting:prd_template`, for PRD structure.
+- **Resolvers:** selected by Source Reference kind, for source context.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

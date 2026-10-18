@@ -19,14 +19,11 @@ A Bug ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read and update the Bug, its status and its tags.
-- **The Bug and its Dependencies:** to check readiness and read the report, earlier validation, retained reproduction and Managing Intelligence decisions, including why a fix was returned.
-- **Bug writing guidance:** `guide:bug-writing-guide.md`, found as `~/.apiary/system/workflow.md` describes, to complete the Bug's write-up in the Project's format.
-- **Build commands:** `guide:build-commands.md`, found as `~/.apiary/system/workflow.md` describes, to run the relevant commands for each repo involved in reproduction.
-
-For Source References, read `~/.apiary/system/resolvers/<resolver>.md`, selected by kind, to access the original report.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Bug and its Dependencies:** for readiness, the report, validation, reproduction and decisions.
+- **Guidance:** `guide:bug-writing-guide.md` and `guide:build-commands.md`, for the report format and reproduction commands.
+- **Resolvers:** selected by Source Reference kind, for the original report.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

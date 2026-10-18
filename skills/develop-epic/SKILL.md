@@ -19,13 +19,10 @@ An Epic ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, for your context readings and skill invocation.
-- **Launcher Protocol File:** `protocol:launcher.md`, for Child Agent operations and context readings.
-- **Ticket System Protocol File:** selected by `setting:ticket_system`, for requirements, progress and ticket changes.
-- **Epic, Tasks, Subtasks, Plan and sibling Epics:** for Dependencies, unfinished work and Plan completion.
-- **Idea and its Docs:** through the Plan's Association, for requirements and recorded decisions.
-- **Guidance Documents:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for each affected repo, for implementation, reviews, checks and commits.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Epic, Tasks, Subtasks, Plan, sibling Epics, Idea and its Docs:** for requirements, decisions, Dependencies, unfinished work and Plan completion.
+- **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for implementation, reviews, checks and commits in each affected repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -80,7 +77,7 @@ Report the Epic's ID and unaddressed findings with reasons.
 You coordinate the work; your Child Agents do it. For each finding from code-review, test-review, doc-review or product-manager:
 
 - **Fix it:** return it to the executor that owns the files.
-- **Decline it:** when minor, record it with its reason on the Task or Epic and in the Done report, so the Managing Intelligence sees what was left.
+- **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason on the Task or Epic and in the Done report, so the Managing Intelligence sees what was left.
 - **Ask the Managing Intelligence:** for product questions or conflicts with the PRD or SRD, because those are their approved decisions.
 
 ## Task pipeline

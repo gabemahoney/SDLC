@@ -19,11 +19,10 @@ The Project Folder resolved by `~/.apiary/system/workflow.md`, and optionally an
 
 ## Required Reading
 
-- The Project and default settings, when present, to preserve existing choices.
-- Your Agent Protocol File under `~/.apiary/system/protocols/`, for installation locations and your own context readings.
-- `~/.apiary/system/templates/thinking-levels.md`, for the recommended skill levels.
-
-As choices are settled, read the selected Ticket System Protocol File for ticket operations and `protocol:launcher.md` for lifecycle operations and Child Agent context readings. If selected, read `~/.apiary/system/templates/<template-name>.md` (lowercase with hyphens). Inspect confirmed code folders and their inherited Guidance Documents to propose commands and preserve existing guidance.
+- **Settings:** Project and defaults, when present, for existing choices.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for installation and ticket operations.
+- **Templates:** `thinking-levels.md` and any selected Apiary template, for recommended skill levels and setup choices.
+- **Code folders and Guidance:** confirmed folders and their inherited Guidance Documents, for commands and existing guidance.
 
 ## Gate
 
