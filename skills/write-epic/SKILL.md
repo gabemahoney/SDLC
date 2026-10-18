@@ -1,6 +1,6 @@
 ---
 name: write-epic
-description: "Break one draft Epic into Tasks and Subtasks, or reconcile its existing work after the Plan changes."
+description: Break one draft Epic into Tasks and Subtasks
 ---
 
 # write-epic
