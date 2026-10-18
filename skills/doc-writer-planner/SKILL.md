@@ -32,7 +32,7 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 
 ## Steps
 
-1. **Plan documentation.** Work out which docs the Task's changes make necessary, and which existing docs they make outdated or duplicated, following `guide:doc-writing-guide.md`. Plan removals as well as additions, because stale docs mislead readers.
+1. **Plan documentation.** Work out what the Task's changes mean for the docs, following `guide:doc-writing-guide.md`: existing docs to update, new docs to add, and docs to remove because they're now outdated or duplicated. Plan removals as well as additions, because stale docs mislead readers.
 2. **Write Subtasks.** Create or revise your Subtasks as `draft` children of the Task using the template below. Identify implementation and testing prerequisites so documentation follows the work it describes.
 3. **Make edits.** When your Main Agent sends edits, apply them to your Subtasks.
 
