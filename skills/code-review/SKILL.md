@@ -49,4 +49,6 @@ Report the ticket ID, findings and any review limitations to your Main Agent as 
 
 ## Review judgement
 
+Your job is to interpret the Guidance Documents very strictly: report every breach of them as a finding, however small, because your Main Agent decides which findings are worth fixing.
+
 Focus on substantive, actionable issues in the assigned changes, in proportion to the requirements. Separate engineering defects from personal style preferences so review does not create unnecessary work.

@@ -1,6 +1,6 @@
 # Skill specifics
 
-Skills still to write for b.v38: test-writer-planner, doc-writer-planner, researcher, model-writer and model-review. req-review, code-review, test-review and doc-review are Child Agent skills. Remove an entry once its finished skill absorbs it.
+Skills still to write for b.v38: doc-writer-planner, researcher, model-writer and model-review. req-review, code-review, test-review and doc-review are Child Agent skills. Remove an entry once its finished skill absorbs it.
 
 Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
@@ -11,14 +11,6 @@ Each entry names its specific inputs. Shared startup, settings, Protocol File lo
 The Main Agent resolves Thinking Levels under `~/.apiary/system/workflow.md`. These Child Agent skills launch no Agents.
 
 The workflow skills that launch Child Agents are write-prd, write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill's Gate checks its assigned ticket's state, so work starts at the right stage. All file changes remain uncommitted for the Main Agent to check and commit.
-
-## test-writer-planner
-
-**Required Reading:** Proposed Task and requirements on the tickets, tests and fixtures; `guide:test-guide.md`.
-
-**Owned transitions:** None.
-
-**Specific rules:** Proposes unit and integration testing Subtasks following `guide:test-guide.md`, so write-epic plans the coverage the work needs. Returns proposals to write-epic, which owns the tickets.
 
 ## doc-writer-planner
 

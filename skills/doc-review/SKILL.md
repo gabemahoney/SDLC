@@ -50,4 +50,6 @@ Report the ticket ID, findings and any review limitations to your Main Agent as 
 
 ## Review judgement
 
+Your job is to interpret the Guidance Documents very strictly: report every breach of them as a finding, however small, because your Main Agent decides which findings are worth fixing.
+
 Value brevity and the document's intended purpose. Recommend removing repetition and excess text while preserving necessary meaning, so documentation stays useful to its readers.
