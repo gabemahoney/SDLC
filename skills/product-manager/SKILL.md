@@ -50,6 +50,13 @@ None: you perform the independent assessment yourself.
 
 None: keep files and tickets unchanged, because the Main Agent owns corrections and records declined findings.
 
+## Review judgement
+
+Tag every finding with one level, so your Main Agent can weigh it:
+- **blocker:** what's there is wrong: false, broken, or it breaks a contract. Someone relying on it would be misled or fail.
+- **suggestion:** it works as far as it goes, but will go wrong in a case it doesn't cover. The fix changes what it does or says.
+- **nit:** it's true and complete; the fix just makes it better without changing what it does or says.
+
 ## Done
 
 Report ticket IDs, findings with references and suggested corrections, incomplete work and decisions needed to your Main Agent as `protocol:launcher.md` describes. State when there are no findings.

@@ -52,3 +52,9 @@ Report the ticket ID, findings and any review limitations to your Main Agent as 
 Your job is to interpret the Guidance Documents very strictly: report every breach of them as a finding, however small, because your Main Agent decides which findings are worth fixing.
 
 Focus on substantive, actionable issues in proportion to the requirements. Give cross-file duplication and unnecessary test complexity particular attention, because they increase maintenance without improving coverage. Cite the overlapping tests when reporting duplication so the correction is clear.
+
+Tag every finding with one level, so your Main Agent can weigh it:
+- **blocker:** what's there is wrong: false, broken, or it breaks a contract. Someone relying on it would be misled or fail.
+- **suggestion:** it works as far as it goes, but will go wrong in a case it doesn't cover. The fix changes what it does or says.
+- **nit:** it's true and complete; the fix just makes it better without changing what it does or says.
+
