@@ -35,7 +35,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Write or revise the Tasks.** Follow the Epic's acceptance criteria, the PRD and the SRD's choices, using the Task template below. Leave out work that a sibling or prerequisite Epic already covers, and assume prerequisite Epics are `done` before this one runs, so no work is written twice.
+1. **Write or revise the Tasks,** using the Task template below. Leave out work another Epic already covers, so no work is planned twice.
    - If Tasks already exist, revise every affected Task and Subtask, whatever its status, from recorded progress and current requirements. Include removing delivered functionality that the requirements withdraw, so the software will match them. Add new work, remove obsolete unimplemented work, and leave unaffected work as it is.
 
 2. **Plan each draft Task's Subtasks.** Work in Dependency order. For each Task, save it, then launch the `engineer-planner`, `test-writer-planner` and `doc-writer-planner` Child Agents described below. Each reads the code, tests or docs its part needs and proposes that part's Subtasks, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below. Assign each draft Task a `thinking_level:<label>` tag, as the Thinking Level guidance below describes, because develop-epic uses it for the Task's executors.
