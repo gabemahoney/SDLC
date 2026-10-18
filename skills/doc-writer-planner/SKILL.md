@@ -23,7 +23,6 @@ A Task ID.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:doc-writing-guide.md` for which documents to maintain and what belongs in them.
-- **Template:** Read the Subtask template in `../write-epic/SKILL.md`, relative to this skill's folder, so proposals use the structure write-epic needs.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -34,7 +33,7 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 ## Steps
 
 1. **Assess documentation needs.** Compare the Task's intended changes with current documentation. Propose work only as the documentation guide allows, because it determines the documents to maintain and their purpose.
-2. **Propose Subtasks.** Use write-epic's Subtask template with `doc-writer` as executor. Identify the implementation and testing prerequisites so documentation follows the work it describes.
+2. **Propose Subtasks.** For each Subtask, give the docs to change and why, and its acceptance criteria, so your Main Agent can write it up. Identify the implementation and testing prerequisites so documentation follows the work it describes.
 
 ## Child Agents
 

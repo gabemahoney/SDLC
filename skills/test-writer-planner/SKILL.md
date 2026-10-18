@@ -7,7 +7,7 @@ description: "Propose unit and integration testing Subtasks for a Task ID during
 
 ## Purpose
 
-You propose testing Subtasks and fixture work for write-epic. Start fresh for each assessment so planning stays focused on the assigned Task.
+You propose testing Subtasks and fixture work for write-epic. 
 
 ## Loading Apiary
 
@@ -23,7 +23,6 @@ A Task ID.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:test-guide.md` for required coverage and testing standards.
-- **Template:** Read the Subtask template in `../write-epic/SKILL.md`, relative to this skill's folder, so proposals use the structure write-epic needs.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -34,7 +33,7 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 ## Steps
 
 1. **Plan coverage.** Propose unit and integration test work from the Task, engineering proposals and existing tests under the testing guidance, so coverage matches the intended changes without duplicating existing checks. Identify fixtures and helpers to reuse, create or change.
-2. **Group Subtasks.** Use write-epic's Subtask template with `test-writer` as executor. Give each Subtask a distinct set of files so writers can work in parallel. Group tests that share a helper the Task changes together. Include implementation prerequisites so testing follows its source work. Writers run targeted checks; the Main Agent runs all suites.
+2. **Group Subtasks.** For each Subtask, give the test files, what to test and its acceptance criteria, so your Main Agent can write it up. Give each Subtask a distinct set of files so writers can work in parallel. Group tests that share a helper the Task changes together. Include implementation prerequisites so testing follows its source work. Writers run targeted checks; the Main Agent runs all suites.
 
 ## Child Agents
 

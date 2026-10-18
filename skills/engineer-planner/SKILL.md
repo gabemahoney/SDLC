@@ -23,7 +23,6 @@ A Task ID.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:engineering-best-practices.md` for implementation constraints.
-- **Template:** Read the Subtask template in `../write-epic/SKILL.md`, relative to this skill's folder, so proposals use the structure write-epic needs.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -35,7 +34,7 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 
 1. **Plan the implementation.** Ground the proposed source changes in the Task, its requirements and current code, following the SRD's decisions so execution stays within the agreed design.
 2. **Ask before choosing.** When the SRD leaves open a design choice the Subtasks must commit to, ask your Main Agent rather than pick, because design choices belong to the Managing Intelligence.
-3. **Propose Subtasks.** Use write-epic's Subtask template with `engineer` as executor, so each proposal gives the implementer its context, work and completion conditions. Identify prerequisites so write-epic can order the work. Also report any rule this Task sets up that later Tasks must follow, such as an ordering, a shared resource or an invariant, so your Main Agent can add it to those Tasks.
+3. **Propose Subtasks.** For each Subtask, give the work, the files it touches, what it depends on in the code and its acceptance criteria, so your Main Agent can write it up. Identify prerequisites so write-epic can order the work. Also report any rule this Task sets up that later Tasks must follow, such as an ordering, a shared resource or an invariant, so your Main Agent can add it to those Tasks.
 
 ## Child Agents
 
