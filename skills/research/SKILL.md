@@ -24,7 +24,7 @@ A research question, or an existing Research ticket ID.
 - **The Research ticket, and its Report if one exists:** for the question, constraints, findings and latest review decision.
 - **Guidance:** `guide:research-guide.md`, for research methods, evidence and Report requirements.
 
-- **Existing research:** every earlier Research ticket and Report at `setting:research_location`, and anything else `guide:research-guide.md` names, so you build on what's already known instead of repeating it.
+- **Existing research:** relevant earlier Research tickets and Reports at `setting:research_location`, and anything relevant that `guide:research-guide.md` names, so you build on what's already known instead of repeating it.
 
 Also read the Project's code and tests as the work needs.
 
