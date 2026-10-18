@@ -62,7 +62,7 @@ For a Child Agent, Required Reading opens with:
 Its Gate names the assigned ticket's allowed states. Its Done takes this form:
 
 ```markdown
-Report the ticket IDs and unresolved work or questions to your Main Agent as `protocol:launcher.md` describes.
+Report the ticket IDs, unresolved work with reasons, any questions and the next step to your Main Agent as `protocol:launcher.md` describes.
 ```
 
 Add sections for skill-specific workflow contracts when needed: ticket body shapes, review judgement or an integration gate. Craft is referenced through Guidance Documents.

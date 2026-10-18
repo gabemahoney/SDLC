@@ -2,66 +2,47 @@
 
 Check the skill and its documentation against [the writing guide](skill-writing-guide.md), which gives the reasons. Apply each check where relevant.
 
-- [ ] The revision preserves today's proven guidance in its appropriate home.
-- [ ] The result follows the latest approved decisions and product goals.
-- [ ] Unclear paragraphs have been rewritten around their purpose.
-- [ ] The revision considers additions, updates, trimming and deletion.
-- [ ] Every paragraph adds useful workflow, ownership or outcomes.
-- [ ] Rules address real decisions or likely harm.
-- [ ] Content describes only current requirements.
-- [ ] Numeric limits are confirmed; qualitative needs use judgement.
-- [ ] Rules cover all cases or use a general rubric.
-- [ ] Prerequisites match what the work actually needs.
-- [ ] Sentences are short, complete and use clear subjects and concrete verbs.
-- [ ] Instructions use positive phrasing.
-- [ ] Each rule gives its reason in the same sentence.
-- [ ] The running agent is addressed as “you”.
-- [ ] Main Agent, Child Agent and Glossary terms are consistent.
-- [ ] Novel terms are defined briefly before use.
-- [ ] Decisions name their owner.
-- [ ] Detail fits the audience and work; shortening preserves information.
-- [ ] The skill contains its own gates, transitions and special rules.
-- [ ] Workflow rules shared by multiple skills live in workflow.md, which each skill references.
-- [ ] Craft lives in Guidance Documents and their default fallbacks.
-- [ ] Configuration-specific logic lives in its template or Protocol File.
-- [ ] The skill respects its selected template's structure.
-- [ ] Each rule appears once in its proper place.
-- [ ] References use the shared notation or fixed full paths.
-- [ ] Selected files identify their setting or resolved protocol reference.
-- [ ] Guidance Documents come from the main checkout.
-- [ ] Required Reading names every mandatory source and justifies its use by this skill.
-- [ ] Conditional reading is one closing line suited to the work.
-- [ ] Child Agent reading starts with the Launcher entry.
-- [ ] Executor assignment reading points to its Subtask or Bug.
-- [ ] Core sections follow the template; the quoted description states purpose and when to use the skill.
-- [ ] Gates check the appropriate ticket and prerequisite states.
-- [ ] Gate conditions state what happens when they fail.
-- [ ] Steps are short, numbered and labelled by goal, with related substeps grouped and branches only where needed.
-- [ ] Writes names outputs, locations, status changes and decision owners.
-- [ ] Ticket writers define the bodies they create.
-- [ ] Writing, reading and checking instructions agree.
-- [ ] Ticket IDs identify inputs and durable handoffs.
-- [ ] Later Tasks carry their prerequisites in `## Context`.
-- [ ] Executor progress records deviations, unfinished work and effects.
-- [ ] Done gives IDs, unaddressed work with reasons and the next step.
-- [ ] Delegation serves independence, scale or parallel work.
-- [ ] Each Child Agent entry states launch timing, result and fresh or reused lifecycle.
-- [ ] Planners write draft Subtasks and retain their revision work.
-- [ ] Testing Subtasks assign distinct files to their writers.
-- [ ] Main Agents own full checks; executors run targeted checks.
-- [ ] Documentation review reads code changes and every applicable document in full.
-- [ ] Reviewers read the main brief before reviewing a child document.
-- [ ] Reviewers apply Guidance Documents strictly and define severity tags.
-- [ ] Findings are vetted against intent and the actual files.
-- [ ] The Main Agent fixes, records declined minor findings or refers product decisions.
-- [ ] Genuine conflicts include a reason and recommended resolution.
-- [ ] Review covers clarity, logical consistency, comparison with the previous skill and this checklist, with trimming after each round.
-- [ ] Review rounds stop at trivial findings or cuts that would lose information.
-- [ ] Purpose and goals precede detail; the PRD preserves the Idea's problem statement.
-- [ ] PRD requirements use succinct bullets and explanations as needed; the SRD's format suits agents.
-- [ ] Requirements state problems and required outcomes, with user stories where helpful.
-- [ ] Completion checks are identified as Acceptance Criteria.
-- [ ] Headings and links make related documents easy to find.
-- [ ] Large documents split into a core brief and linked sections, with diagrams beside their subjects.
-- [ ] Diagrams distinguish skills and participants, show each Child Agent's job and caller separately, and include review loops.
-- [ ] Diagram boxes focus on the flow; shared conventions appear once in a legend or caption.
+## Keep what matters
+
+- [ ] Proven guidance from the current skill and absorbed instructions is preserved under approved decisions and product goals.
+- [ ] Rules concern workflow, ownership, outcomes or likely harm.
+- [ ] Requirements are current, numeric limits are confirmed and qualitative needs allow judgement.
+
+## Write plainly
+
+- [ ] Sentences are short and complete, with clear subjects and concrete verbs; rewritten paragraphs preserve their intended meaning.
+- [ ] Every rule gives its reason in the same sentence.
+- [ ] The reader is “you”; role and Glossary terms are consistent; novel terms are defined before use.
+
+## Give each rule one home
+
+- [ ] Each rule appears once in its proper home: skill, workflow.md, Guidance Document, template or Protocol File.
+- [ ] The skill references those homes and follows its selected template's structure.
+
+## Name the reading
+
+- [ ] References use the shared notation, including section syntax, or fixed full paths.
+- [ ] Selected files identify their setting or resolved protocol reference; Guidance Documents come from the main checkout.
+- [ ] Mandatory reading has a skill-specific purpose; conditional reading is separate.
+
+## Make handoffs explicit
+
+- [ ] Gates check the input ticket and necessary prerequisite states and explain failure responses.
+- [ ] Writes names outputs, locations, owned status changes and decision owners; ticket writers define their bodies.
+- [ ] Writing and reading instructions agree; checks derive from stated requirements.
+- [ ] Ticket IDs identify inputs; findings, decisions, progress and handoffs live on affected tickets.
+- [ ] Done reports ticket IDs, unresolved work with reasons and the next step.
+
+## Delegate with ownership
+
+- [ ] Each delegation serves independence, scale or parallel work and specifies launch timing, result, fresh or reused lifecycle, scope and reason.
+- [ ] Parallel writers own distinct files; original planners handle revisions.
+- [ ] Main Agents own combined checks; executors own targeted checks.
+
+## Review with judgement
+
+- [ ] Reviews use the main brief, approved intent, Guidance Documents and actual files.
+- [ ] Findings use defined blocker, suggestion and nit severities.
+- [ ] Main Agents fix accepted findings, record declined minor findings and refer product decisions or requirements conflicts with recommendations.
+- [ ] Review includes a cold read, comparison with the previous version, the checklist and trimming after each round.
+- [ ] Review stops at trivial findings or cuts that would lose information.
