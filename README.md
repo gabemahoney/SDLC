@@ -4,7 +4,7 @@ Apiary is an opinionated workflow for taking an idea from inception to working s
 
 This branch contains the b.v38 workflow refactor. req-review is a Child Agent skill; the remaining Child Agent skills are listed in [skill-specifics.md](skill-specifics.md) and are still to be written. Legacy skills and `agents/` remain available during the transition.
 
-For changes to Apiary's skills or docs, use the [apiary-skill-writing skill](.claude/skills/apiary-skill-writing/SKILL.md) for writing rules, a checklist and a template. It lives in this repository's `.claude/skills/` alongside apiary-work; `install.sh` takes skills only from `skills/` and does not copy these project skills to Projects.
+For changes to Apiary's skills or docs, use the `apiary-skill-writing` skill for writing rules, a checklist and a template. It's installed on each box by box setup, not by this repository.
 
 ## Execution
 

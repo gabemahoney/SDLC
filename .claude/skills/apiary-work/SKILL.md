@@ -67,7 +67,7 @@ didn't supply one, ask.
 ### 2. Gather context
 
 - Before changing an Apiary skill or doc, use the
-  [apiary-skill-writing skill](../apiary-skill-writing/SKILL.md), and run its
+  `apiary-skill-writing` skill (installed by box setup), and run its
   checklist before reporting.
 - Fetch the ticket: `bees show-ticket --ids <id>`.
 - Scan the ticket body for linked PRD/SRD/design-doc ticket IDs and fetch
