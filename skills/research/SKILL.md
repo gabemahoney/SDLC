@@ -40,13 +40,13 @@ Run only when all of these are true:
 
 1. **Start.** Depending on your input:
    - A new question: file it as a `defined` Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Then treat it as a ticket with no research yet.
-   - A round presented but without a verdict: go to step 3.
-   - An accepted (`done`) ticket: go to step 4, unless the Managing Intelligence asks for more research. Then record that request with the last round's verdict and continue with the next bullet, because the revised answer needs acceptance too.
+   - A round presented to the Managing Intelligence but not yet answered: go to step 3.
+   - An accepted (`done`) ticket: go to step 4, unless the Managing Intelligence asks for more research. Then record that request on the last round and continue with the next bullet, because the revised answer needs acceptance too.
    - Otherwise: set the Research ticket and its Report `active`, creating the Report if needed, and go to step 2.
 
 2. **Research.** Research the question, or the Managing Intelligence's latest request, following `guide:research-guide.md`. Write the answer into the Research ticket's one Report, revising it each round rather than starting a new one, so there is always one current answer. Check it against the guide, then record the round under `## Review rounds`.
 
-3. **Review with the Managing Intelligence.** Present the Research ticket and Report IDs. Record the reviewer's identity and verdict under `## Review rounds`, keeping requests verbatim so later work follows the actual request.
+3. **Review with the Managing Intelligence.** Present the Research ticket and Report IDs. Record who reviewed it and their answer (accept, or what more to do) under `## Review rounds`, keeping requests verbatim so later work follows the actual request.
    - More work: repeat step 2 with that request.
    - Acceptance: set the Report and Research ticket `done`.
 
@@ -65,10 +65,10 @@ None: you investigate the question and bring each round to the Managing Intellig
 
 Report the Research ticket ID, the Report's ID once it exists, and any after-acceptance work left unfinished with the reason.
 
-If the round awaits review, say so; the Managing Intelligence's verdict continues it.
+If the round is waiting on the Managing Intelligence, say so; their answer continues it.
 
 ## Research ticket record
 
 - `## Question`: state the question in the requester's words where possible.
 - `## Scope`: record who asked, why, and the supplied constraints and boundaries. State when none were given.
-- `## Review rounds`: for each round, its number and date, a short summary of what was presented, and, once received, the reviewer, their verdict and their requests verbatim. A round without a verdict awaits review.
+- `## Review rounds`: for each round, its number and date, a short summary of what was presented, and, once received, the reviewer and their answer, with any requests verbatim. A round with no answer is waiting for review.
