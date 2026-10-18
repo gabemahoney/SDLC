@@ -1,6 +1,6 @@
 # Goals of the new Apiary
 
-Read this before changing any skill. Today's Apiary is effective and its skills are generally good. The new Apiary keeps what works and changes what these goals require. When unsure whether to keep a piece of an old skill, keep it unless a goal below says otherwise.
+Read this before changing any skill. Today's Apiary is effective and its skills are generally good. The new Apiary keeps what works and changes what these goals and approved decisions require.
 
 ## What the new Apiary fixes
 1. **More than bees.** Any shipped ticket system works through its Protocol File.
@@ -16,23 +16,20 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
 
 ## How skills are written
 - **Opinionated where it matters, flexible where it doesn't.** Fixed: ticket categories, the store hierarchy, status ownership, and the gates. Swappable: ticket system, intake, toolchain and Launcher, which live in settings, Guidance Documents and Protocol Files.
-- **No logic specific to one template, intake, resolver, ticket system, Launcher or Agent in a generic skill.** Say "follow the …", and put the specifics in that file.
-- **Self-contained:** everything specific to a skill is in the skill. `~/.apiary/system/workflow.md` holds the bird's-eye view and the rules several skills share.
-- **Say exactly where everything is,** and why each file is read.
-- **No edge cases or fault handling a capable Agent handles anyway.** Keep real product decisions and guards against real harm.
-- **Plain, positive and complete:** say what a skill does, never what it doesn't; no random subsets; no jargon.
+
+The [skill-writing guide](skill-writing-guide.md) defines the writing rules, so they have one maintained home.
 
 ## What to keep from today's skills
-- **Craft guidance that makes the output good:** section templates and what each holds, style rules, quality checklists, "what not to include" lists, interview topics, and report contents.
+- **Proven guidance:** keep workflow and ticket contracts in skills; place craft in Guidance Documents and their default fallbacks so Projects can customize it.
 - **Proven process steps,** unless a goal above changes them.
 - **Strip only:**
   - bees-, tmux- or Claude-Code-specific mechanics, which move to Protocol Files;
   - edge cases and over-prescribed fault handling;
-  - anything a decision in `/tmp/b-v38-pending-edits-next.md` reverses;
-  - repetition of `~/.apiary/system/workflow.md`;
+  - anything the latest approved decisions reverse;
+  - redundant wording;
   - steps a capable model doesn't need spelled out.
 
 ## How a skill change is made
 The b.v38 PRD Docs are background only; use the Acceptance baseline for checks.
 
-Read the existing skill and any legacy agent instructions it absorbs from the main checkout. Write the new skill from that material, keeping the proven guidance and applying these goals. Then run a cold read and the checklist (`docs/skill-review-checklist.md`).
+Read the existing skill and any legacy agent instructions it absorbs from the main checkout. Apply these goals and [the writing guide](skill-writing-guide.md), then review with [the checklist](skill-review-checklist.md), so the revision preserves useful guidance and follows the current design.

@@ -66,6 +66,8 @@ didn't supply one, ask.
 
 ### 2. Gather context
 
+- For a ticket changing an Apiary skill or doc, read `docs/skill-writing-guide.md`
+  first so the change follows Apiary's writing rules.
 - Fetch the ticket: `bees show-ticket --ids <id>`.
 - Scan the ticket body for linked PRD/SRD/design-doc ticket IDs and fetch
   those too.
@@ -83,6 +85,9 @@ self-contained prompt containing:
 - instructions to: implement the change, run any local checks (grep-based
   acceptance criteria, etc.), commit locally on `master`, and STOP before
   pushing
+- for skill or doc changes: read `docs/skill-writing-guide.md` before editing
+  and run `docs/skill-review-checklist.md` before reporting, so the result is
+  checked against the same writing rules
 - required report format: files changed, commit SHA, one-paragraph summary,
   any open questions or concerns it chose to set aside
 
