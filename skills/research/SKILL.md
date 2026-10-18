@@ -47,7 +47,7 @@ Run only when all of these are true:
    - More work: repeat step 2 with that request.
    - Acceptance: set the Report and Research ticket `done`.
 
-4. **Complete extra outputs.** For each accepted round, record the outputs `guide:research-guide.md` requires under `## Extra outputs` before producing them, so an interrupted Run can continue. Keep their locations, completion and unfinished work there. Leave both tickets `done`, because Report acceptance stands.
+4. **After acceptance.** Do whatever `guide:research-guide.md` requires after a Report is accepted. Leave both tickets `done`, because Report acceptance stands.
 
 ## Child Agents
 
@@ -58,13 +58,12 @@ None: you investigate the question and bring each round to the Managing Intellig
 - **The Research ticket:** create it when given a question, then update its record below, including question or scope changes from the Managing Intelligence. Its status follows steps 1 and 3.
 - **Its Report:** maintain one child titled `Report: <Research ticket title>`, using the sections in `guide:research-guide.md`. Its status follows steps 1 and 3.
 - **Artifacts:** store them with the Research ticket and link them under `## Artifacts` through the Ticket System Protocol File, so the evidence stays with the answer. Remove secrets and tokens because the research record may be shared.
-- **Extra outputs:** create or update them after acceptance as step 4 describes.
 
 Keep Research tickets, Reports and artifacts at `setting:research_location`. Retain accepted research with automatic archival disabled, so its citations remain usable.
 
 ## Done
 
-Report the Research ticket ID, the Report's ID once it exists, and any required extra outputs left unfinished with the reason.
+Report the Research ticket ID, the Report's ID once it exists, and any after-acceptance work left unfinished with the reason.
 
 If the round awaits review, say so; the Managing Intelligence's verdict continues it.
 
@@ -73,4 +72,3 @@ If the round awaits review, say so; the Managing Intelligence's verdict continue
 - `## Question`: state the question in the requester's words where possible.
 - `## Scope`: record who asked, why, and the supplied constraints and boundaries. State when none were given.
 - `## Review rounds`: give each round a number and date. Its Presented summary briefly describes the findings or changes. Record the reviewer's identity and verdict when received; a round without a verdict awaits review.
-- `## Extra outputs`: track each accepted round's required outputs, locations, completion and any unfinished work with reasons.
