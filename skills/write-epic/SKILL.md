@@ -68,7 +68,6 @@ Suggest develop-epic on this Epic once every Epic it depends on is `done`.
 
 - `## Context`: explain why the Task exists, the requirements it serves and what prerequisite work it assumes.
 - `## Work`: state the work and affected code folders, following the SRD's decisions.
-- `## Acceptance criteria`: state observable results that demonstrate the Task's outcome.
 - `## Dependencies`: name Tasks that must finish first and explain why.
 
 Describe outcomes and constraints, leaving implementation detail to the executor. Name files and modules rather than code snippets or line numbers, because prerequisite work can change the code before execution.
