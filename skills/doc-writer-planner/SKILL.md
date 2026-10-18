@@ -24,7 +24,7 @@ A Task ID.
 - **Your Task:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:doc-writing-guide.md` for which documents to maintain and what belongs in them.
 
-Also read the Project's code, tests and any linked Research tickets as the work needs.
+Also read the Project's existing docs, and the code where the docs must describe it, as the work needs.
 
 ## Gate
 
@@ -32,10 +32,9 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 
 ## Steps
 
-1. **Plan documentation.** Compare the Task's changes with current documentation. Plan work only as `guide:doc-writing-guide.md` allows, because it determines the documents to maintain and their purpose.
-2. **Ask before choosing.** When the SRD leaves open a design choice the Subtasks must commit to, ask your Main Agent, because design choices belong to the Managing Intelligence.
-3. **Write Subtasks.** Create or revise your Subtasks as `draft` children of the Task using the template below. Identify implementation and testing prerequisites so documentation follows the work it describes.
-4. **Make edits.** When your Main Agent sends edits, apply them to your Subtasks.
+1. **Plan documentation.** Work out which docs the Task's changes make necessary, and which existing docs they make outdated or duplicated, following `guide:doc-writing-guide.md`. Plan removals as well as additions, because stale docs mislead readers.
+2. **Write Subtasks.** Create or revise your Subtasks as `draft` children of the Task using the template below. Identify implementation and testing prerequisites so documentation follows the work it describes.
+3. **Make edits.** When your Main Agent sends edits, apply them to your Subtasks.
 
 ## Child Agents
 
@@ -54,7 +53,7 @@ Report the Subtask IDs, incomplete planning and questions to your Main Agent as 
 Every Subtask has these sections, with detail in proportion to the work:
 
 - `## Executor`: `doc-writer`, so develop-epic knows which Child Agent works it.
-- `## Context`: explain why the Subtask exists and what preconditions it assumes. For code, name what depends on the code it changes and what that code depends on, so the executor sees what a change could break.
-- `## Work`: describe the work and requirements for that executor's part of the Task.
+- `## Context`: explain why the Subtask exists and which code or test work it describes.
+- `## Work`: say which docs to add, change or remove, and why.
 - `## Key files`: give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
-- `## Acceptance criteria`: state observable, testable conditions for completion. For example, a CSV export's fields are correctly quoted and its existing JSON export still works.
+- `## Acceptance criteria`: state checkable conditions, for example: the README's setup steps match the new install command, and the old section on manual setup is gone.
