@@ -32,7 +32,7 @@ Run only when your Task, Idea or Bug is `active`, because review precedes comple
 
 ## Steps
 
-1. **Review the source changes.** Assess correctness, security and engineering quality against the assignment and engineering guidance. Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
+1. **Review the source changes and the code around them.** Assess correctness, security and engineering quality against the assignment and engineering guidance. Also review the code that calls the changed code and the code it calls, because a change can break its neighbours without breaking itself. Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
 2. **Include lint findings.** Use `guide:build-commands.md ## Lint` in check-only mode so lint issues inform the review without changing files. The Main Agent owns full-suite runs.
 
 ## Child Agents
