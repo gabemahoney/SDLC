@@ -12,7 +12,7 @@ Check the skill and its documentation against [the writing guide](skill-writing-
 - [ ] Numeric limits are confirmed; qualitative needs use judgement.
 - [ ] Rules cover all cases or use a general rubric.
 - [ ] Prerequisites match what the work actually needs.
-- [ ] Sentences are short, complete and use concrete verbs.
+- [ ] Sentences are short, complete and use clear subjects and concrete verbs.
 - [ ] Instructions use positive phrasing.
 - [ ] Each rule gives its reason in the same sentence.
 - [ ] The running agent is addressed as “you”.
@@ -21,6 +21,7 @@ Check the skill and its documentation against [the writing guide](skill-writing-
 - [ ] Decisions name their owner.
 - [ ] Detail fits the audience and work; shortening preserves information.
 - [ ] The skill contains its own gates, transitions and special rules.
+- [ ] Workflow rules shared by multiple skills live in workflow.md, which each skill references.
 - [ ] Craft lives in Guidance Documents and their default fallbacks.
 - [ ] Configuration-specific logic lives in its template or Protocol File.
 - [ ] The skill respects its selected template's structure.
@@ -28,14 +29,14 @@ Check the skill and its documentation against [the writing guide](skill-writing-
 - [ ] References use the shared notation or fixed full paths.
 - [ ] Selected files identify their setting or resolved protocol reference.
 - [ ] Guidance Documents come from the main checkout.
-- [ ] Required Reading names every mandatory source and its purpose.
+- [ ] Required Reading names every mandatory source and justifies its use by this skill.
 - [ ] Conditional reading is one closing line suited to the work.
 - [ ] Child Agent reading starts with the Launcher entry.
 - [ ] Executor assignment reading points to its Subtask or Bug.
-- [ ] Core sections follow the template and the description is quoted.
+- [ ] Core sections follow the template; the quoted description states purpose and when to use the skill.
 - [ ] Gates check the appropriate ticket and prerequisite states.
 - [ ] Gate conditions state what happens when they fail.
-- [ ] Steps are short and numbered, with branches only where needed.
+- [ ] Steps are short, numbered and labelled by goal, with related substeps grouped and branches only where needed.
 - [ ] Writes names outputs, locations, status changes and decision owners.
 - [ ] Ticket writers define the bodies they create.
 - [ ] Writing, reading and checking instructions agree.
@@ -49,11 +50,18 @@ Check the skill and its documentation against [the writing guide](skill-writing-
 - [ ] Testing Subtasks assign distinct files to their writers.
 - [ ] Main Agents own full checks; executors run targeted checks.
 - [ ] Documentation review reads code changes and every applicable document in full.
+- [ ] Reviewers read the main brief before reviewing a child document.
 - [ ] Reviewers apply Guidance Documents strictly and define severity tags.
 - [ ] Findings are vetted against intent and the actual files.
 - [ ] The Main Agent fixes, records declined minor findings or refers product decisions.
 - [ ] Genuine conflicts include a reason and recommended resolution.
-- [ ] Review covers clarity, comparison with the previous skill, succinctness and this checklist.
-- [ ] Purpose and goals precede detail; PRD requirements use succinct bullets.
+- [ ] Review covers clarity, logical consistency, comparison with the previous skill and this checklist, with trimming after each round.
+- [ ] Review rounds stop at trivial findings or cuts that would lose information.
+- [ ] Purpose and goals precede detail; the PRD preserves the Idea's problem statement.
+- [ ] PRD requirements use succinct bullets and explanations as needed; the SRD's format suits agents.
+- [ ] Requirements state problems and required outcomes, with user stories where helpful.
+- [ ] Completion checks are identified as Acceptance Criteria.
 - [ ] Headings and links make related documents easy to find.
-- [ ] Diagrams show each Child Agent separately and who calls it.
+- [ ] Large documents split into a core brief and linked sections, with diagrams beside their subjects.
+- [ ] Diagrams distinguish skills and participants, show each Child Agent's job and caller separately, and include review loops.
+- [ ] Diagram boxes focus on the flow; shared conventions appear once in a legend or caption.
