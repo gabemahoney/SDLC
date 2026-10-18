@@ -7,7 +7,7 @@ description: "Write unit and integration tests for a testing Subtask, Task or Bu
 
 ## Purpose
 
-You write and repair tests for develop-epic or fix-bug, including failures their checks return.
+You write and repair tests for develop-epic or fix-bug.
 
 ## Loading Apiary
 
@@ -31,7 +31,7 @@ Run only when your Subtask is `defined` or `active`, or your Bug is `active`. Ot
 
 ## Steps
 
-1. **Cover the work.** Write unit and integration tests under the test guidance so coverage matches the assignment. Repair accepted test findings and test failures; return source failures to your Main Agent because engineer owns source repairs.
+1. **Cover the work.** Write unit and integration tests under the test guidance so coverage matches the assignment. In a fix round, fix the tests you're given. If a test fails because the code is wrong rather than the test, don't change the code: tell your Main Agent, because the engineer fixes code.
 2. **Check.** Run only targeted checks on your own work, because the Main Agent runs all suites. Verify the Subtask's `## Acceptance criteria` before completion, because they define completion.
 
 ## Child Agents
