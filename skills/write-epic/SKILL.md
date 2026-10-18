@@ -38,7 +38,7 @@ Run only when all of these are true:
 1. **Write or revise the Tasks,** using the Task template below. Leave out work another Epic already covers, so no work is planned twice.
    - If Tasks already exist, revise every affected Task and Subtask, whatever its status, from recorded progress and current requirements. Include removing delivered functionality that the requirements withdraw, so the software will match them. Add new work, remove obsolete unimplemented work, and leave unaffected work as it is.
 
-2. **Plan each draft Task's Subtasks.** Work in Dependency order. For each Task, save it, then launch the `engineer-planner`, `test-writer-planner` and `doc-writer-planner` Child Agents described below. Each reads the code, tests or docs its part needs and proposes that part's Subtasks, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below, and write any contracts the `engineer-planner` reports into the Task's `## Contracts`. Assign each draft Task a `thinking_level:<label>` tag, as the Thinking Level guidance below describes, because develop-epic uses it for the Task's executors.
+2. **Plan each draft Task's Subtasks.** Work in Dependency order. For each Task, save it, then launch the `engineer-planner`, `test-writer-planner` and `doc-writer-planner` Child Agents described below. Each reads the code, tests or docs its part needs and proposes that part's Subtasks, because reading every Task's code yourself would fill your context before the Epic is planned. Combine their proposals using the guidance below. When a planner reports a rule this Task sets up that later Tasks must follow, put it in the `## Context` of each later Task it affects, so their executors and reviewers see it. Assign each draft Task a `thinking_level:<label>` tag, as the Thinking Level guidance below describes, because develop-epic uses it for the Task's executors.
    - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
    - If planning raises a product question, or a planner's proposal conflicts with the SRD, ask the Managing Intelligence, because planning follows the defined requirements.
 
@@ -69,7 +69,6 @@ Suggest develop-epic on this Epic once every Epic it depends on is `done`.
 - `## Context`: explain why the Task exists, the requirements it serves and what prerequisite work it assumes.
 - `## Work`: state the work and affected code folders, following the SRD's decisions.
 - `## Dependencies`: name Tasks that must finish first and explain why.
-- `## Contracts`: anything other Tasks must respect, such as an ordering, a shared resource or an invariant this Task sets up, so reviewers can check the other Tasks against it. Write "None" if there are none.
 
 Describe outcomes and constraints, leaving implementation detail to the executor. Name files and modules rather than code snippets or line numbers, because prerequisite work can change the code before execution.
 
