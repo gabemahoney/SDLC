@@ -1,6 +1,6 @@
 # Skill specifics
 
-Skills still to write for b.v38: researcher. req-review, code-review, test-review and doc-review are Child Agent skills. Remove an entry once its finished skill absorbs it.
+All b.v38 Child Agent skills are drafted. Their requirements now live in their skills.
 
 Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
@@ -11,14 +11,6 @@ Each entry names its specific inputs. Shared startup, settings, Protocol File lo
 The Main Agent resolves Thinking Levels under `~/.apiary/system/workflow.md`. These Child Agent skills launch no Agents.
 
 The workflow skills that launch Child Agents are write-prd, write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill's Gate checks its assigned ticket's state, so work starts at the right stage. All file changes remain uncommitted for the Main Agent to check and commit.
-
-## researcher
-
-**Required Reading:** The question, why the SRD needs it, the Idea, SRD and Research ticket supplied by write-srd, and relevant sources, to ground the answer. Read `guide:research-guide.md`, found as `~/.apiary/system/workflow.md` describes, so the investigation follows the Project's guidance. Use the supplied `setting:research_location` to read the Research ticket and write its Report through the Ticket System Protocol File.
-
-**Owned transitions:** Creates the Research ticket's Report child `defined` with a cited answer.
-
-**Specific rules:** Answer write-srd's research question in the cited Report, using research tools or skills available to the Agent. Write only that Report and its evidence artifacts at `setting:research_location`, so research stays with the answer. Return unresolved decisions to write-srd for the Managing Intelligence.
 
 ## Managing Intelligence
 
