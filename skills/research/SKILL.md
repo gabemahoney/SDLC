@@ -39,7 +39,7 @@ Run only when all of these are true:
    - A `done` ticket goes to step 4, unless the Managing Intelligence asks for more research. Then record that request with the last round's verdict and continue with the next bullet, because the revised answer needs acceptance too.
    - Otherwise, set the Research ticket and its Report `active`, creating the Report if needed, and go to step 2.
 
-2. **Research the round.** Investigate the question or latest review request under `guide:research-guide.md`. Update the same Report so readers have one current answer with cited evidence. Check it against the guide and record the round before presenting it.
+2. **Research the round.** Investigate the question or latest review request, following `guide:research-guide.md`. Update the same Report so readers have one current answer with cited evidence. Check it against the guide and record the round before presenting it.
 
 3. **Review with the Managing Intelligence.** Present the Research ticket and Report IDs. Record the reviewer's identity and verdict under `## Review rounds`, keeping requests verbatim so later work follows the actual request.
    - More work: repeat step 2 with that request.
