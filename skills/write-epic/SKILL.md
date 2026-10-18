@@ -38,8 +38,7 @@ Run only when all of these are true:
 1. **Write or revise the Tasks,** using the Task template below. Leave out work another Epic already covers, so no work is planned twice.
    - If Tasks already exist, revise every affected Task from recorded progress and current requirements. Have planners revise its affected Subtasks, whatever their status. Include removing delivered functionality that the requirements withdraw, so the software will match them. Add new work, remove obsolete unimplemented work, and leave unaffected work as it is.
 
-2. **Plan each draft Task's Subtasks.** Work in Dependency order. Save each Task, then launch the `engineer-planner`, `test-writer-planner` and `doc-writer-planner` Child Agents described below. Each reads its part's code, tests or docs and writes its Subtasks as `draft`, so your context lasts through the Epic. Review all of the Task's Subtasks together for overlaps, gaps, order and file conflicts between testing Subtasks. Send edits back to the planner that wrote them. Set the Subtasks `defined` when they are right. When a planner reports a rule this Task sets up that later Tasks must follow, put it in each affected Task's `## Context`, so its executors and reviewers see it. Assign each draft Task a `thinking_level:<label>` tag using the Thinking Level guidance below, because develop-epic uses it for the Task's executors.
-   - Before each Task, re-check the Plan. If it has returned to `draft`, stop at that boundary so planning can resume from the revised Plan.
+2. **Plan each draft Task's Subtasks.** Launch the `engineer-planner`, `test-writer-planner` and `doc-writer-planner` Child Agents described below. Each reads its part's code, tests or docs and writes its Subtasks as `draft`, so your context lasts through the Epic. Review all of the Task's Subtasks together for overlaps, gaps, order and file conflicts between testing Subtasks. Send edits back to the planner that wrote them. Set the Subtasks `defined` when they are right. When a planner reports a rule this Task sets up that later Tasks must follow, put it in each affected Task's `## Context`, so its executors and reviewers see it. Assign each draft Task a `thinking_level:<label>` tag using the Thinking Level guidance below, because develop-epic uses it for the Task's executors.
    - If planning raises a product question or conflicts with the SRD, ask the Managing Intelligence, because planning follows the defined requirements.
 
 3. **Check the whole Epic with the `product-manager`.** Launch `product-manager` to review the saved Tasks and Subtasks. Judge every finding under the shared rule and review again after significant revisions. Check the Quality checklist below.
@@ -92,12 +91,6 @@ A Task's tag sets how hard its `engineer`, `test-writer` and `doc-writer` think,
 - `max`: the hardest, highest-risk Tasks only, because it is the slowest and most expensive.
 
 When unsure between two levels, choose the higher one.
-
-## Writing the testing Subtasks
-
-Tests are easier to split up than code, so during develop-epic several `test-writer` Child Agents can work on one Task at once, one per testing Subtask.
-
-Check that no two testing Subtasks in a Task edit the same file. Tests that share a helper the Task changes go in one Subtask.
 
 ## Quality checklist
 
