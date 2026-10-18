@@ -38,18 +38,13 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Start.** Depending on your input:
-   - A new question: file it as a `defined` Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Then treat it as a ticket with no research yet.
-   - An accepted (`done`) ticket with a request for more research: record the request on the last round, then continue with the next bullet.
-   - Otherwise: set the Research ticket and its Report `active`, creating the Report if needed, and go to step 2.
+1. **Set up.** For a new question, file a Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Create its Report if it has none. Set both `active`.
 
-2. **Research.** Research the question, or the Managing Intelligence's latest request, following `guide:research-guide.md`. Write the answer into the Research ticket's one Report, revising it each round rather than starting a new one, so there is always one current answer. Check it against the guide, then record the round under `## Review rounds`.
+2. **Research.** Research the question, or the Managing Intelligence's latest request, following `guide:research-guide.md`. Update the Report with the answer, so there is always one current answer.
 
-3. **Review with the Managing Intelligence.** Present the Research ticket and Report IDs. Record who reviewed it and their answer (accept, or what more to do) under `## Review rounds`, keeping requests verbatim so later work follows the actual request.
-   - More work: repeat step 2 with that request.
-   - Acceptance: set the Report and Research ticket `done`.
-
-4. **After acceptance.** Do whatever `guide:research-guide.md` requires after a Report is accepted.
+3. **Review.** Present the Report to the Managing Intelligence and record the round under `## Review rounds`, keeping their requests verbatim so the next round answers what they actually asked.
+   - If they ask for more, go back to step 2.
+   - If they accept it, set both tickets `done`, then do whatever `guide:research-guide.md` requires after acceptance.
 
 ## Child Agents
 
