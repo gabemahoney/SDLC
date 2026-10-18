@@ -28,7 +28,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 ## Gate
 
-Run only when your Task, Idea or Bug is `active`, because review precedes completion or acceptance. Otherwise, stop and report its status.
+Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because review comes before it's finished. Otherwise, stop and report its status.
 
 ## Steps
 

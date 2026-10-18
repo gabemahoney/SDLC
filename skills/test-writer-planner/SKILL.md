@@ -34,7 +34,7 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 
 1. **Plan coverage.** Plan unit and integration tests from the Task, implementation Subtasks and existing tests under `guide:test-guide.md`. Match coverage to the changes without duplicating checks. Identify fixtures and helpers to reuse, create or change.
 2. **Ask before choosing.** When the SRD leaves open a design choice the Subtasks must commit to, ask your Main Agent, because design choices belong to the Managing Intelligence.
-3. **Split the tests into parallel Subtasks.** In develop-epic, each testing Subtask gets its own `test-writer`, and they all run at the same time. So:
+3. **Split the tests into parallel Subtasks.** In develop-epic, each testing Subtask gets its own `test-writer`, and they all run in parallel. So to allow for that parallelization:
    - Never let two Subtasks edit the same file.
    - If tests share a helper this Task changes, put them in one Subtask.
 4. **Write Subtasks.** Create or revise your Subtasks as `draft` children of the Task using the template below. Include implementation prerequisites so testing follows its source work.
