@@ -7,11 +7,11 @@ description: "Review a Formal Model against its SRD and return findings. Takes M
 
 ## Purpose
 
-You review a Formal Model for write-srd before its checker runs. Start fresh every round, including repairs, so each review is independent.
+You review a Formal Model against its SRD for write-srd before its checker runs.
 
 ## Loading Apiary
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -21,7 +21,7 @@ A Model Doc ID and its SRD ID.
 
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
-- **Your Model Doc and SRD:** Read them; they hold everything you need to do.
+- **Your Model Doc and SRD:** for the model, requirements, assumptions and repair instructions.
 - **Guidance:** Read `guide:build-commands.md ## Model check` for the configured modelling language and checker.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
@@ -32,7 +32,7 @@ Run only when your Model Doc is `defined`, because review needs a written model.
 
 ## Steps
 
-1. **Review the attached Formal Model.** Check it matches the assigned SR group, has meaningful invariants and keeps modelling assumptions distinct from product limits. Review by inspection; model-writer runs the checker after review.
+1. **Review the attached Formal Model.** Check that it represents the assigned SR group, can expose the ordering bugs it models, and keeps modelling assumptions distinct from product limits. Review by inspection because model-writer runs the checker after accepted findings are fixed.
 
 ## Child Agents
 
@@ -52,6 +52,6 @@ Your job is to interpret the Guidance Documents very strictly: report every brea
 
 Tag every finding with one level, so your Main Agent can weigh it:
 
-- **blocker:** it's wrong: the model doesn't match the SRD, or can't find the errors it's meant to.
-- **suggestion:** it's fragile or hard to maintain: misses a case, duplicated, or needlessly complex.
+- **blocker:** the model doesn't match the SRD or can't expose an error it is meant to find.
+- **suggestion:** it's hard to understand or maintain: duplicated or needlessly complex.
 - **nit:** it's a matter of style, such as naming or formatting.
