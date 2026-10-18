@@ -95,7 +95,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 - Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers the `SKILL.md`, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
 - If your skill's Gate fails, change nothing and say why.
-- The Managing Intelligence runs no skills itself. It assigns each workflow skill to a Main Agent, which launches the Child Agents its skill names. Each Child Agent skill's Gate requires that parent, because the Main Agent owns the assignment.
+- The Managing Intelligence runs no skills itself. It assigns each workflow skill to a Main Agent, which launches the Child Agents its skill names.
 - After a compaction, re-read this workflow and the Protocol Files and Guidance Documents you loaded, because summaries can omit their rules.
 - Report pass, fail or not applicable for every required check and gate in the `SKILL.md` and its Guidance Documents, and name the Guidance Document copies or Default Fallback Files used.
 

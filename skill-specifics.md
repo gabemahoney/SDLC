@@ -10,7 +10,7 @@ Each entry names its specific inputs. Shared startup, settings, Protocol File lo
 
 The Main Agent resolves Thinking Levels under `~/.apiary/system/workflow.md`. These Child Agent skills launch no Agents.
 
-The workflow skills that launch Child Agents are write-prd, write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill needs a Gate requiring a Main Agent parent, because that parent owns its assignment and judges the result. Include that Gate when moving these notes into the skill. All file changes remain uncommitted for the Main Agent to check and commit.
+The workflow skills that launch Child Agents are write-prd, write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill's Gate checks its assigned ticket's state, so work starts at the right stage. All file changes remain uncommitted for the Main Agent to check and commit.
 
 ## doc-writer
 

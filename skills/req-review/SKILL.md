@@ -27,11 +27,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 ## Gate
 
-Run only when all of these are true:
-
-- You have a parent Main Agent running write-prd or write-srd, because it owns the assignment and judges your findings. If not, stop and say so.
-- The assigned Doc is `draft`, because you review requirements before approval. If not, stop and say so.
-- The Idea isn't `done`, because a completed Idea has already been accepted. If it is, stop and say so.
+Run only when the assigned Doc is `draft`, because you review requirements before approval. Otherwise, stop and report its status.
 
 ## Steps
 

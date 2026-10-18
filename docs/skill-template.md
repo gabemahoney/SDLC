@@ -23,7 +23,7 @@ What it is given.
 Every file and setting it uses, with its full path or the setting that picks it, including any templates. Each one says why the skill needs it. List only what every Run reads. Code, tests and Research tickets read as the work needs go in one closing line: "Also read the Project's code, tests and any linked Research tickets as the work needs."
 
 ## Gate
-What must be true before it changes anything, or "None: <why>". A skill for a Child Agent requires that it runs for a Main Agent, because that parent owns the assignment.
+What must be true before it changes anything, or "None: <why>". A Child Agent skill's Gate checks its assigned ticket's state, so work starts at the right stage.
 
 ## Steps
 The work, in a few numbered steps: what to do, not how a capable Agent would do it. Name a stop for the Managing Intelligence's decision only where the design needs one.

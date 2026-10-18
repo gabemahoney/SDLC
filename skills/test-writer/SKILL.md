@@ -27,7 +27,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 ## Gate
 
-Run only for a Main Agent, because it owns your assignment and judges the result. Otherwise, stop and report that this skill needs a Main Agent parent.
+Run only when your Subtask is `defined` or `active`, or your Bug is `active`. Otherwise, stop and report its status.
 
 ## Steps
 
