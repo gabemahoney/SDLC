@@ -74,8 +74,9 @@ Describe outcomes and constraints, leaving implementation detail to the executor
 
 ## Subtask template
 
-Every Subtask names its executor under `## Executor`: `engineer`, `test-writer` or `doc-writer`. Include these work sections, with detail in proportion to the work:
+Every Subtask has these sections, with detail in proportion to the work:
 
+- `## Executor`: `engineer`, `test-writer` or `doc-writer`, so develop-epic knows which Child Agent works it.
 - `## Context`: explain why the Subtask exists and what preconditions it assumes. For testing, name fixtures, factories, helpers and constants it reuses, creates or changes.
 - `## Work`: describe the work and requirements for that executor's part of the Task.
 - `## Key files`: give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
