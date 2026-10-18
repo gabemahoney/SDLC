@@ -7,7 +7,7 @@ description: "Review an Idea's merged work against its requirements and file a R
 
 ## Purpose
 
-You review the whole Idea after its Plan is done and Epic worktrees are merged. Each Run is one numbered **round**. If a round finds real problems, you file them as one Round Feedback Epic for write-epic and develop-epic, and the next round reviews again once it's done. When a round finds only trivial problems, you hand the result to the Managing Intelligence for testing and acceptance.
+You review the whole Idea after its Plan is done and Epic worktrees are merged. Each Run is one numbered **round**. If a round finds real problems, you file them all as one Epic, Round Feedback Epic N, for write-epic and develop-epic, and the next round reviews again once it's done. When a round finds only trivial problems, you hand the result to the Managing Intelligence for testing and acceptance.
 
 ## Loading Apiary
 
