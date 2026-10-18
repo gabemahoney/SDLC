@@ -22,10 +22,9 @@ An Idea or Epic ID.
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Idea or Epic and its Plan:** for completion, worktree and Main Agent records, merge targets, cleanup choices and earlier results.
-- **Repos:** main checkouts, registered worktrees and target checkouts, for ownership, branches, uncommitted changes and merge state.
-- **Guidance:** `guide:release-guide.md` when committing outstanding changes, for permissions.
+- **Guidance:** `guide:release-guide.md` for permissions on source and merge commits.
 
-Also read the Project's code, tests and any linked Research tickets as the work needs.
+Read `protocol:launcher.md` when managing agents.
 
 ## Gate
 
@@ -36,15 +35,15 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Settle teardown from the ticket.** Use its repos, merge targets, Main Agent assignment and cleanup choices. Default each target to its main checkout's branch. The Managing Intelligence settles missing choices; record them under `## Worktrees` before changes so another Run can continue. A worktree-only choice means the Managing Intelligence ends the Main Agents and you handle only git.
-   - In worktree-only mode, require the Managing Intelligence's confirmation that Main Agents and Child Agents using the ticket's worktrees have ended, so cleanup cannot remove a running Main Agent's files.
-   - Otherwise, read `protocol:launcher.md` and reconcile the recorded Main Agent, its Child Agents and any other live agents using the ticket's worktree folder. If another agent is live, or the assigned Main Agent or any of its Child Agents is pending or working, stop for the Managing Intelligence to settle that work before merging, so the source stays stable.
+1. **Settle teardown.** Use the ticket's repos, merge targets and cleanup choices. Default each target to its main checkout's branch. The Managing Intelligence settles missing choices.
+   - In worktree-only mode, require their confirmation that all agents using the worktrees have exited, because they own agent shutdown.
+   - Otherwise, use `protocol:launcher.md` to confirm the assigned Main Agent and its Child Agents are idle or have exited, and no other live agent uses the worktrees. Stop for the Managing Intelligence if this isn't true, so the source stays stable during merging.
 
-2. **Prepare and merge each repo.** Follow the Merge guidance below. Record each result under `## Worktrees` as work proceeds, so a failure leaves a usable handoff for the remaining repos. On a resumed Run, reconcile the recorded results with git and continue unfinished work.
+2. **Merge each repo** under the Merge rules below. Preserve completed merges if another repo fails, so a later Run can finish the remaining work.
 
-3. **Finish the Main Agent assignment.** After every repo's merge succeeds, follow the Launcher Protocol File to stop the assigned Main Agent and its Child Agents and verify they have exited before cleanup. Keep the worktrees if stopping fails, because the Main Agent may still be using them. In worktree-only mode, the Managing Intelligence has already ended the Main Agents. Delaying shutdown until merges succeed preserves the Main Agent's session for fixing conflicts.
+3. **End the assignment.** Once all merges succeed, use `protocol:launcher.md` to stop the assigned Main Agent and its Child Agents and verify exit. Keep the worktrees if shutdown fails, because agents may still use them. Delaying shutdown until merges succeed preserves the session for conflict repairs. In worktree-only mode, shutdown is already complete.
 
-4. **Remove the completed worktrees and branches.** Remove each clean worktree once its branch is fully merged into the recorded target, then delete that branch. Keep anything git refuses to remove and record the failure under `## Worktrees`, to preserve work that needs a decision. Remove the ticket's worktree folder once it is empty.
+4. **Remove merged work.** Remove each clean worktree whose branch is fully merged into its recorded target, then delete that branch. Keep anything git refuses to remove, to protect remaining work. Remove the ticket's worktree folder only when empty.
 
 ## Child Agents
 
@@ -52,20 +51,20 @@ None: you merge and remove the worktrees yourself.
 
 ## Writes
 
-- **The input Idea or Epic:** under `## Worktrees`, record merge targets and checkouts, cleanup choices, each repo's resulting commit and worktree and branch removal results, and the Main Agent's shutdown result or caller confirmation. Record failures, what remains and what needs resolving so another Run can resume. Ticket statuses stay unchanged because you integrate completed work.
+- **The input Idea or Epic:** under `## Worktrees`, record targets and checkouts, cleanup choices, each repo's resulting commit and removal results, agent shutdown or caller confirmation, and unfinished work with reasons. This record lets a later Run continue partial merges or cleanup. Ticket statuses stay unchanged because you integrate completed work.
 - **Repos:** commit or discard worktree changes as the Managing Intelligence chooses, merge into target branches, and remove completed worktrees and their merged branches.
 
 ## Done
 
-Report the ticket ID and which repos merged.
+Report the ticket ID, which repos merged and any unfinished cleanup.
 
 - If the Plan is `done` and its worktrees are merged, suggest idea-review.
 - If a merge stopped on a conflict, report what the Managing Intelligence needs to decide.
 
-## Merge guidance
+## Merge rules
 
 - Match each worktree's repo and branch to the ticket's setup record before changing it. If they differ, stop for the Managing Intelligence's decision to protect unrelated work.
-- Use a clean checkout of a local target branch distinct from the ticket's branch. The Managing Intelligence chooses a checkout if the target needs one; unrelated changes stay with their owner to handle before merging.
+- Merge into a clean local target branch distinct from the ticket's branch, so unrelated changes stay with their owner.
 - For uncommitted worktree changes, use the Managing Intelligence's recorded choice to commit, discard or stop. If it is missing, they decide, because cleanup may otherwise lose work.
-- Merge with `--no-ff` when the target lacks ticket commits, so history shows which commits belong to the ticket. Preserve completed merges when another repo fails, so resuming continues from recorded progress.
-- For a conflict, record the conflicting files under `## Worktrees` on the ticket and stop for the Managing Intelligence to decide whether to abort or resolve it. Resume an unfinished merge only when it belongs to this ticket's teardown; continue only once it is committed, so cleanup preserves the result.
+- Merge with `--no-ff` when the target lacks ticket commits, so history shows which commits belong to the ticket.
+- For a conflict, record the files under `## Worktrees` and stop for the Managing Intelligence to decide whether to abort or resolve it. Continue only a merge belonging to this teardown, and finish its commit before cleanup, to preserve its result and unrelated work.
