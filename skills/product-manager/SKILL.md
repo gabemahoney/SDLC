@@ -19,6 +19,7 @@ The Plan, Epic, Task or Idea ID being checked and its requirements ticket IDs.
 
 ## Required Reading
 
+- **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Plan, Epic, Task or Idea:** Read it; it holds everything you need to do.
 - **Requirements:** Read the PRD and SRD so the assessment follows the product requirements and software decisions.
@@ -51,4 +52,4 @@ None: keep files and tickets unchanged, because the Main Agent owns corrections 
 
 ## Done
 
-Return ticket IDs, findings with references and suggested corrections, incomplete work and decisions needed to your Main Agent to judge and raise with the Managing Intelligence. State when there are no findings.
+Report ticket IDs, findings with references and suggested corrections, incomplete work and decisions needed to your Main Agent as `protocol:launcher.md` describes. State when there are no findings.

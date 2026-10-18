@@ -19,6 +19,7 @@ Assigned Subtask IDs or a Bug ID.
 
 ## Required Reading
 
+- **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
 - **Your Subtask or Bug:** it holds everything you need to do.
 - **Guidance:** Read `guide:engineering-best-practices.md` and `guide:build-commands.md` for implementation standards and checks.
@@ -46,4 +47,4 @@ None: you perform the assigned implementation yourself.
 
 ## Done
 
-Report the ticket IDs and unresolved work or questions to your Main Agent for review and continuation.
+Report the ticket IDs and unresolved work or questions to your Main Agent as `protocol:launcher.md` describes.

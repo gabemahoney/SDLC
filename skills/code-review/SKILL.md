@@ -19,6 +19,7 @@ A Task, Idea or Bug ID.
 
 ## Required Reading
 
+- **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task, Idea or Bug:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:engineering-best-practices.md` and `guide:build-commands.md` for review standards and lint commands.
@@ -44,7 +45,7 @@ None: keep files and tickets unchanged, because executors own repairs and the Ma
 
 ## Done
 
-Return the ticket ID, findings and any review limitations to your Main Agent to judge. Give each finding its impact, source reference and suggested fix so it can be acted on. State when there are no findings.
+Report the ticket ID, findings and any review limitations to your Main Agent as `protocol:launcher.md` describes. Give each finding its impact, source reference and suggested fix so it can be acted on. State when there are no findings.
 
 ## Review judgement
 

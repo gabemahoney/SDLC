@@ -19,6 +19,7 @@ A Task ID.
 
 ## Required Reading
 
+- **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:engineering-best-practices.md` for implementation constraints.
@@ -45,4 +46,4 @@ None: keep files and tickets unchanged, because write-epic combines the proposal
 
 ## Done
 
-Return the Task ID, proposed Subtasks, incomplete planning and questions to your Main Agent. Flag product questions or conflicts with the SRD for the Managing Intelligence, because they own those decisions. Explain when no implementation Subtasks are needed.
+Report the Task ID, proposed Subtasks, incomplete planning and questions to your Main Agent as `protocol:launcher.md` describes. Flag product questions or conflicts with the SRD for the Managing Intelligence, because they own those decisions. Explain when no implementation Subtasks are needed.

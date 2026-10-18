@@ -19,6 +19,7 @@ A testing Subtask, Task or Bug ID.
 
 ## Required Reading
 
+- **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
 - **Your Subtask or Bug:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:test-guide.md` and `guide:build-commands.md` for coverage standards and checks.
@@ -47,4 +48,4 @@ None: you perform the assigned testing work yourself.
 
 ## Done
 
-Report the ticket ID and unresolved work or questions to your Main Agent for review and continuation.
+Report the ticket ID and unresolved work or questions to your Main Agent as `protocol:launcher.md` describes.

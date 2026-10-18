@@ -19,6 +19,7 @@ A PRD or SRD Doc ID.
 
 ## Required Reading
 
+- **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Settings:** supplied by the Main Agent, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, supplied by the Main Agent, for operations.
 - **Doc, Idea and supporting Docs:** for requirements, context and decisions; the approved PRD and Model Docs for SRD coverage and modelling evidence.
@@ -44,7 +45,7 @@ None: your Main Agent owns the Doc's record.
 
 ## Done
 
-Report the Doc ID and your findings to your Main Agent, or say there are none.
+Report the Doc ID and your findings to your Main Agent as `protocol:launcher.md` describes. State when there are no findings.
 
 ## Review criteria
 

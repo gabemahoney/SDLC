@@ -2,6 +2,10 @@
 
 Select this file with `setting:launcher` set to `agent-director`. It installs as `~/.apiary/system/protocols/launcher-agent-director.md` and is the `protocol:launcher.md` that skills refer to.
 
+## Main Agents and Child Agents
+
+A Main Agent runs a skill assigned by the Managing Intelligence. A Child Agent runs a skill assigned by a Main Agent and reports back to it.
+
 ## Prerequisites
 
 Use agent-director with working hooks for each chosen Agent, tmux, the Agent's installed skills and access to the assigned checkouts and ticket system. Run `agent-director version` and `agent-director --help` to check the installed commands. Run lifecycle commands as the same user and on the same tmux server as the agents, because another server cannot establish their liveness.
@@ -19,6 +23,10 @@ Record the returned `instance_id` on the ticket. Use `get` and `status` to confi
 Run `spawn` from the Main Agent's environment. agent-director records the caller's `AGENT_DIRECTOR_INSTANCE_ID` as the new row's `parent_id`, and gives the Child Agent its own instance ID. Verify that `get` returns the intended Main Agent ID as `parent_id`, so the Child Agent remains attached to its parent.
 
 Use the same spawn arguments as for a Main Agent, with the Child Agent's assignment and launch context from `~/.apiary/system/workflow.md`. Record its instance ID, skill, assignment and Thinking Level on the ticket for continuation.
+
+## Report to your Main Agent
+
+As a Child Agent, end your turn with the report as your final message. Your Main Agent reads it with `agent-director read-pane`.
 
 ## Model and Thinking Level at launch
 
