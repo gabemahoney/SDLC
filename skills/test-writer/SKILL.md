@@ -31,7 +31,7 @@ Run only when your Subtask is `defined` or `active`, or your Bug is `active`. Ot
 
 ## Steps
 
-1. **Cover the work.** Write unit and integration tests under the test guidance so coverage matches the assignment. In a fix round, fix the tests you're given. If a test fails because the code is wrong rather than the test, don't change the code: tell your Main Agent, because the engineer fixes code.
+1. **Cover the work.** Write unit and integration tests under the test guidance so coverage matches the assignment. When your Main Agent sends your tests back to fix, after a review finding or a failed check, fix them. If a test fails because the code is wrong rather than the test, don't change the code: tell your Main Agent, because the engineer fixes code.
 2. **Check.** Run only targeted checks on your own work, because the Main Agent runs all suites. Verify the Subtask's `## Acceptance criteria` before completion, because they define completion.
 
 ## Child Agents
