@@ -1,6 +1,6 @@
 # Skill specifics
 
-Skills still to write for b.v38: test-writer, doc-writer, engineer-planner, test-writer-planner, doc-writer-planner, code-review, test-review, doc-review, product-manager, researcher, model-writer and model-review. req-review is already a Child Agent skill used by write-prd and write-srd. The other existing review skills are legacy versions; these notes describe their replacements. Remove an entry once its finished skill absorbs it.
+Skills still to write for b.v38: doc-writer, engineer-planner, test-writer-planner, doc-writer-planner, code-review, test-review, doc-review, product-manager, researcher, model-writer and model-review. req-review is already a Child Agent skill used by write-prd and write-srd. The other existing review skills are legacy versions; these notes describe their replacements. Remove an entry once its finished skill absorbs it.
 
 Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
@@ -11,18 +11,6 @@ Each entry names its specific inputs. Shared startup, settings, Protocol File lo
 The Main Agent resolves Thinking Levels under `~/.apiary/system/workflow.md`. These Child Agent skills launch no Agents.
 
 The workflow skills that launch Child Agents are write-prd, write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill needs a Gate requiring a Main Agent parent, because that parent owns its assignment and judges the result. Include that Gate when moving these notes into the skill. All file changes remain uncommitted for the Main Agent to check and commit.
-
-## test-writer
-
-**Required Reading:** Assigned Task or Bug, testing Subtasks or Bug assignments, affected repo checkouts and recorded results; tests, fixtures and source changes; `guide:test-guide.md`, `guide:build-commands.md`.
-
-**Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
-
-**Specific rules:** Write tests for the assigned testing Subtask or Bug testing assignment under `guide:test-guide.md`, so coverage matches the Project's guidance. Stay within its files so writers can work in parallel. Run only targeted checks on your own work, because the Main Agent runs the full suites. For a Bug, record failing-before and passing-after regression evidence so the test proves it catches the defect.
-
-Repair test failures from the calling skill's Integration gate; return source failures to that Main Agent. The Main Agent runs and reruns the integration suites itself.
-
-**Subtask acceptance criteria (TODO, don't forget):** check your work against the Subtask's `## Acceptance criteria` before reporting it done, because they define when the Subtask is complete.
 
 ## doc-writer
 
