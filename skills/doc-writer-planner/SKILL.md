@@ -1,13 +1,13 @@
 ---
 name: doc-writer-planner
-description: "Propose documentation Subtasks for a Task ID during write-epic."
+description: "Write documentation Subtasks for a Task ID during write-epic."
 ---
 
 # doc-writer-planner
 
 ## Purpose
 
-You propose documentation Subtasks for write-epic. Start fresh for each assessment so planning stays focused on the assigned Task.
+You write documentation Subtasks for write-epic.
 
 ## Loading Apiary
 
@@ -32,17 +32,29 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 
 ## Steps
 
-1. **Assess documentation needs.** Compare the Task's intended changes with current documentation. Propose work only as the documentation guide allows, because it determines the documents to maintain and their purpose.
-2. **Propose Subtasks.** For each Subtask, give the docs to change and why, and its acceptance criteria, so your Main Agent can write it up. Identify the implementation and testing prerequisites so documentation follows the work it describes.
+1. **Plan documentation.** Compare the Task's changes with current documentation. Plan work only as `guide:doc-writing-guide.md` allows, because it determines the documents to maintain and their purpose.
+2. **Ask before choosing.** When the SRD leaves open a design choice the Subtasks must commit to, ask your Main Agent, because design choices belong to the Managing Intelligence.
+3. **Write Subtasks.** Create or revise your Subtasks as `draft` children of the Task using the template below. Identify implementation and testing prerequisites so documentation follows the work it describes.
+4. **Make edits.** When your Main Agent sends edits, apply them to your Subtasks.
 
 ## Child Agents
 
-None: you research and propose the documentation work yourself.
+None: you plan and write the documentation Subtasks yourself.
 
 ## Writes
 
-None: keep files and tickets unchanged, because write-epic combines the proposals and owns the tickets.
+Your Subtask tickets, `draft` only.
 
 ## Done
 
-Report the Task ID, proposed Subtasks, incomplete planning and questions to your Main Agent as `protocol:launcher.md` describes. Explain when no documentation Subtasks are needed.
+Report the Subtask IDs, incomplete planning and questions to your Main Agent as `protocol:launcher.md` describes. Explain when no documentation Subtasks are needed.
+
+## Subtask template
+
+Every Subtask has these sections, with detail in proportion to the work:
+
+- `## Executor`: `doc-writer`, so develop-epic knows which Child Agent works it.
+- `## Context`: explain why the Subtask exists and what preconditions it assumes. For code, name what depends on the code it changes and what that code depends on, so the executor sees what a change could break.
+- `## Work`: describe the work and requirements for that executor's part of the Task.
+- `## Key files`: give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
+- `## Acceptance criteria`: state observable, testable conditions for completion. For example, a CSV export's fields are correctly quoted and its existing JSON export still works.

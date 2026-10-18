@@ -1,13 +1,13 @@
 ---
 name: test-writer-planner
-description: "Propose unit and integration testing Subtasks for a Task ID during write-epic."
+description: "Write unit and integration testing Subtasks for a Task ID during write-epic."
 ---
 
 # test-writer-planner
 
 ## Purpose
 
-You propose testing Subtasks and fixture work for write-epic. 
+You write testing Subtasks and plan fixture work for write-epic.
 
 ## Loading Apiary
 
@@ -32,17 +32,29 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 
 ## Steps
 
-1. **Plan coverage.** Propose unit and integration test work from the Task, engineering proposals and existing tests under the testing guidance, so coverage matches the intended changes without duplicating existing checks. Identify fixtures and helpers to reuse, create or change.
-2. **Group Subtasks.** For each Subtask, give the test files, what to test and its acceptance criteria, so your Main Agent can write it up. Give each Subtask a distinct set of files so writers can work in parallel. Group tests that share a helper the Task changes together. Include implementation prerequisites so testing follows its source work. Writers run targeted checks; the Main Agent runs all suites.
+1. **Plan coverage.** Plan unit and integration tests from the Task, implementation Subtasks and existing tests under `guide:test-guide.md`. Match coverage to the changes without duplicating checks. Identify fixtures and helpers to reuse, create or change.
+2. **Ask before choosing.** When the SRD leaves open a design choice the Subtasks must commit to, ask your Main Agent, because design choices belong to the Managing Intelligence.
+3. **Write Subtasks.** Create or revise your Subtasks as `draft` children of the Task using the template below. No two testing Subtasks may edit the same file, so writers can work in parallel. Tests that share a helper the Task changes go in one Subtask. Include implementation prerequisites so testing follows its source work. Writers run targeted checks; the Main Agent runs all suites.
+4. **Make edits.** When your Main Agent sends edits, apply them to your Subtasks.
 
 ## Child Agents
 
-None: you research and propose the testing work yourself.
+None: you plan and write the testing Subtasks yourself.
 
 ## Writes
 
-None: keep files and tickets unchanged, because write-epic combines the proposals and owns the tickets.
+Your Subtask tickets, `draft` only.
 
 ## Done
 
-Report the Task ID, proposed Subtasks, incomplete planning and questions to your Main Agent as `protocol:launcher.md` describes. Explain when no testing Subtasks are needed.
+Report the Subtask IDs, incomplete planning and questions to your Main Agent as `protocol:launcher.md` describes. Explain when no testing Subtasks are needed.
+
+## Subtask template
+
+Every Subtask has these sections, with detail in proportion to the work:
+
+- `## Executor`: `test-writer`, so develop-epic knows which Child Agent works it.
+- `## Context`: explain why the Subtask exists and what preconditions it assumes. For code, name what depends on the code it changes and what that code depends on, so the executor sees what a change could break.
+- `## Work`: describe the work and requirements for that executor's part of the Task.
+- `## Key files`: give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
+- `## Acceptance criteria`: state observable, testable conditions for completion. For example, a CSV export's fields are correctly quoted and its existing JSON export still works.

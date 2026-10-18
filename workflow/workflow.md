@@ -10,9 +10,9 @@
   - **engineer:** changes source code for a Task or Bug.
   - **test-writer:** writes unit and integration tests and runs assigned suites.
   - **doc-writer:** updates documentation for a Task or Bug.
-  - **engineer-planner:** reads a Task's source context and proposes implementation Subtasks.
-  - **test-writer-planner:** proposes testing Subtasks that can be written in parallel and plans their fixtures.
-  - **doc-writer-planner:** proposes a Task's documentation Subtasks.
+  - **engineer-planner:** reads a Task's source context and writes draft implementation Subtasks.
+  - **test-writer-planner:** writes draft testing Subtasks that can be implemented in parallel and plans their fixtures.
+  - **doc-writer-planner:** writes a Task's draft documentation Subtasks.
   - **req-review:** reviews one PRD or SRD independently for write-prd or write-srd.
   - **code-review:** checks source changes independently.
   - **test-review:** checks test quality, coverage and duplication independently.
