@@ -20,6 +20,8 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 
 **Specific rules:** Change source files only. Record changes affecting design or docs on the assigned ticket for doc-writer.
 
+**Subtask acceptance criteria (TODO, don't forget):** check your work against the Subtask's `## Acceptance criteria` before reporting it done, because they define when the Subtask is complete.
+
 ## test-writer
 
 **Required Reading:** Assigned Task or Bug, testing Subtasks or Bug assignments, affected repo checkouts and recorded results; tests, fixtures and source changes; `guide:test-guide.md`, `guide:build-commands.md`.
@@ -30,6 +32,8 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 
 Repair test failures from the calling skill's Integration gate; return source failures to that Main Agent. The Main Agent runs and reruns the integration suites itself.
 
+**Subtask acceptance criteria (TODO, don't forget):** check your work against the Subtask's `## Acceptance criteria` before reporting it done, because they define when the Subtask is complete.
+
 ## doc-writer
 
 **Required Reading:** Assigned Subtasks or Bug, source/test diff and source findings on the ticket; `guide:doc-writing-guide.md`.
@@ -37,6 +41,8 @@ Repair test failures from the calling skill's Integration gate; return source fa
 **Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
 
 **Specific rules:** Update documentation from the diff and recorded source findings under `guide:doc-writing-guide.md`, which determines the documents to change.
+
+**Subtask acceptance criteria (TODO, don't forget):** check your work against the Subtask's `## Acceptance criteria` before reporting it done, because they define when the Subtask is complete.
 
 ## engineer-planner
 
@@ -70,6 +76,8 @@ Repair test failures from the calling skill's Integration gate; return source fa
 
 **Specific rules:** Reviews source changes with lint findings. Return findings or proposals to the Main Agent, which owns their ticket record; keep the reviewed files unchanged.
 
+**Subtask acceptance criteria (TODO, don't forget):** check the work against each reviewed Subtask's `## Acceptance criteria`, and report any unmet one as a finding, because they define when the Subtask is complete.
+
 ## test-review
 
 **Required Reading:** Task, Idea or Bug review scope, test changes and whole suite; `guide:test-guide.md`.
@@ -78,6 +86,8 @@ Repair test failures from the calling skill's Integration gate; return source fa
 
 **Specific rules:** Reviews tests against the whole suite without running it. Return findings or proposals to the Main Agent, which owns their ticket record; keep the reviewed files unchanged.
 
+**Subtask acceptance criteria (TODO, don't forget):** check the work against each reviewed Subtask's `## Acceptance criteria`, and report any unmet one as a finding, because they define when the Subtask is complete.
+
 ## doc-review
 
 **Required Reading:** Task, Idea or Bug review scope, product changes and complete touched docs; `guide:doc-writing-guide.md`.
@@ -85,6 +95,8 @@ Repair test failures from the calling skill's Integration gate; return source fa
 **Owned transitions:** None.
 
 **Specific rules:** Re-reads touched docs in full, flagging breaches anywhere and docs made wrong or left missing. Return findings or proposals to the Main Agent, which owns their ticket record; keep the reviewed files unchanged.
+
+**Subtask acceptance criteria (TODO, don't forget):** check the work against each reviewed Subtask's `## Acceptance criteria`, and report any unmet one as a finding, because they define when the Subtask is complete.
 
 ## product-manager
 
