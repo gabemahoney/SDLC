@@ -39,7 +39,7 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
    - Does any doc need updating, and which sections?
    - Does any doc need trimming, and which sections?
    - Should any doc be deleted?
-3. **Find every doc that mentions the changed code.** Read every doc, and check that each one that describes the code this Task changed was updated to match, because a doc nobody touched can still be made wrong by the change.
+3. **Read every doc, not just the ones you expect to be affected.** Check that every doc mentioning the code this Task changed was updated to match, because a doc you didn't expect can still be made wrong by the change.
 4. **Check completion.** Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
 
 ## Child Agents
