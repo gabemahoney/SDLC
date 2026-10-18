@@ -55,7 +55,7 @@ Your job is to interpret the Guidance Documents very strictly: report every brea
 Value brevity and the document's intended purpose. Recommend removing repetition and excess text while preserving necessary meaning, so documentation stays useful to its readers.
 
 Tag every finding with one level, so your Main Agent can weigh it:
-- **blocker:** what's there is wrong: false, broken, or it breaks a contract. Someone relying on it would be misled or fail.
-- **suggestion:** it works, but it will go wrong in a case it doesn't cover, or it's hard to maintain, for example duplicated or needlessly complex.
-- **nit:** it works and is easy to maintain; the fix is cosmetic, such as wording or naming.
+- **blocker:** the doc is wrong: it says something false or outdated, or leaves out something a reader needs. Someone following it would be misled or fail.
+- **suggestion:** the doc is correct, but it's hard to use or maintain: duplicated elsewhere, longer than it needs to be, unclear, or in the wrong place.
+- **nit:** the doc is correct and easy to use; the fix is cosmetic, such as wording, formatting or naming.
 
