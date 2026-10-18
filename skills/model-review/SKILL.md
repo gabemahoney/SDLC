@@ -32,7 +32,7 @@ Run only when your Model Doc is `defined`, because review needs a written model.
 
 ## Steps
 
-1. **Review the attached Formal Model.** Check that it represents the assigned SR group, can expose the ordering bugs it models, and keeps modelling assumptions distinct from product limits. Review by inspection because model-writer runs the checker after accepted findings are fixed.
+1. **Review the Formal Model in your Model Doc.** Check that it matches the SR group it models, can expose the ordering bugs it's meant to catch, and keeps modelling assumptions separate from real product limits. Review by reading it; don't run the checker, because model-writer runs it once your accepted findings are fixed.
 
 ## Child Agents
 
