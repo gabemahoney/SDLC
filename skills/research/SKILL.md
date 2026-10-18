@@ -21,7 +21,7 @@ A research question, or an existing Research ticket ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Research ticket and its existing Report:** for the question, constraints, findings and latest review decision.
+- **The Research ticket, and its Report if one exists:** for the question, constraints, findings and latest review decision.
 - **Guidance:** `guide:research-guide.md`, for research methods, evidence and Report requirements.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
