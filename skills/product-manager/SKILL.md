@@ -53,9 +53,9 @@ None: keep files and tickets unchanged, because the Main Agent owns corrections 
 ## Review judgement
 
 Tag every finding with one level, so your Main Agent can weigh it:
-- **blocker:** what's there is wrong: false, broken, or it breaks a contract. Someone relying on it would be misled or fail.
-- **suggestion:** it works, but it will go wrong in a case it doesn't cover, or it's hard to maintain, for example duplicated or needlessly complex.
-- **nit:** it works and is easy to maintain; the fix is cosmetic, such as wording or naming.
+- **blocker:** it's wrong: it misses or breaks a requirement.
+- **suggestion:** it works, but it's out of proportion: more or less than the requirements ask, or likely to confuse users.
+- **nit:** it's a matter of style, such as wording.
 
 ## Done
 

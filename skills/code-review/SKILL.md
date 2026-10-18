@@ -54,7 +54,7 @@ Your job is to interpret the Guidance Documents very strictly: report every brea
 Focus on substantive, actionable issues in the assigned changes, in proportion to the requirements. Separate engineering defects from personal style preferences so review does not create unnecessary work.
 
 Tag every finding with one level, so your Main Agent can weigh it:
-- **blocker:** what's there is wrong: false, broken, or it breaks a contract. Someone relying on it would be misled or fail.
-- **suggestion:** it works, but it will go wrong in a case it doesn't cover, or it's hard to maintain, for example duplicated or needlessly complex.
-- **nit:** it works and is easy to maintain; the fix is cosmetic, such as wording or naming.
+- **blocker:** it's wrong: broken, insecure, or it breaks a contract.
+- **suggestion:** it's fragile or hard to maintain: misses a case, duplicated, or needlessly complex.
+- **nit:** it's a matter of style, such as naming or formatting.
 
