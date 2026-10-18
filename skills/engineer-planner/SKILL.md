@@ -34,7 +34,8 @@ Run only when your Task is `draft`, because write-epic is planning its work. Oth
 ## Steps
 
 1. **Plan the implementation.** Ground the proposed source changes in the Task, its requirements and current code, following the SRD's decisions so execution stays within the agreed design.
-2. **Propose Subtasks.** Use write-epic's Subtask template with `engineer` as executor, so each proposal gives the implementer its context, work and completion conditions. Identify prerequisites so write-epic can order the work.
+2. **Ask before choosing.** When the SRD leaves open a design choice the Subtasks must commit to, ask your Main Agent rather than pick, because design choices belong to the Managing Intelligence.
+3. **Propose Subtasks.** Use write-epic's Subtask template with `engineer` as executor, so each proposal gives the implementer its context, work and completion conditions. Identify prerequisites so write-epic can order the work.
 
 ## Child Agents
 
