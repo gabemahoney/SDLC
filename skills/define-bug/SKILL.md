@@ -22,10 +22,9 @@ A Bug ID.
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Bug and its Dependencies:** for readiness, the report, validation, reproduction and decisions.
-- **Guidance:** `guide:bug-writing-guide.md` and `guide:build-commands.md`, for the report format and reproduction commands.
-- **Resolvers:** selected by Source Reference kind, for the original report.
+- **Guidance:** `guide:bug-writing-guide.md` and `guide:build-commands.md`, for the report, validation standards and reproduction commands.
 
-Also read the Project's code, tests and any linked Research tickets as the work needs.
+Also read the Project's code, tests and linked Research as needed, and any Source References through their Resolvers.
 
 ## Gate
 
@@ -36,15 +35,14 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Complete the report.** Fill out `## Report` on the Bug from its supplied evidence and any Source References, following `guide:bug-writing-guide.md`. Incorporate earlier validation and the Managing Intelligence's decisions into the write-up so fix-bug has one current account of the defect.
+1. **Complete the report.** Follow `guide:bug-writing-guide.md` using the supplied evidence, Source References and earlier decisions, so fix-bug has one current account of the defect. The Managing Intelligence settles unclear expected behaviour.
 
-2. **Validate the reported behaviour.** Reproduce it in the main checkouts using the guidance below. Keep scratch scripts and inputs outside the repos so validation leaves repository files unchanged. For a returned fix, check the retained reproduction and new evidence against the current software, because the earlier validation predates the repair.
-   - If reproduction cannot establish whether the report is real or would require repository edits, review the source for evidence that settles it.
+2. **Validate the behaviour.** Reproduce it in the main checkouts under the Bug-writing guidance. Keep scratch scripts and inputs outside repos so validation leaves repository files unchanged. For a returned fix, use the retained scenario and new evidence against current software, because the earlier validation predates the repair. If reproduction is inconclusive or requires repository edits, use source evidence to settle the report.
 
-3. **Record the outcome on the Bug.** Save evidence and the conclusion under `## Validation`, and the runnable scenario under `## Reproduction`.
-   - If reproduction, source evidence or the Managing Intelligence's recorded decision establishes that the Bug is real, set it `defined` for fix-bug.
-   - If the reported behaviour cannot happen or is intended, set the Bug `invalid` and explain why, citing the evidence or the Managing Intelligence's decision.
-   - If the result is inconclusive, leave the Bug `draft`, record what was tried and why it is inconclusive under `## Validation`, and ask the Managing Intelligence whether the Bug is real. Record their decision under `## Decisions` on the Bug and apply the corresponding outcome above.
+3. **Record the outcome** using the Bug sections below.
+   - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set `defined` for fix-bug.
+   - Evidence or a Managing Intelligence decision establishes that the behaviour cannot happen or is intended: set `invalid`, with the reason.
+   - Inconclusive: leave `draft`, record the limitation and ask the Managing Intelligence whether the Bug is real. Record their decision and apply the corresponding outcome.
 
 ## Child Agents
 
@@ -52,17 +50,18 @@ None: you validate the Bug yourself.
 
 ## Writes
 
-The Bug's `## Report` holds the write-up, `## Validation` the evidence and conclusion, `## Reproduction` the retained scenario, and `## Decisions` the Managing Intelligence's decisions, with its status set by step 3. Before setting a confirmed Bug `defined`, save its evidence and set or replace its `thinking_level:<label>` tag to match the fix's current complexity and risk, so fix-bug receives the evidence and Thinking Level its executors need.
+Update the Bug in the Bugs store, setting its status in step 3:
+
+- `## Report`: the current write-up under `guide:bug-writing-guide.md`.
+- `## Validation`: evidence, conclusion and any limitations.
+- `## Reproduction`: commands or scripts, inputs, setup and observed result, so fix-bug can rerun the reported scenario. Retain it across returned fixes and incorporate new evidence; explain when it cannot run.
+- `## Decisions`: the Managing Intelligence's decisions.
+
+Set or replace `thinking_level:<label>` when confirming the Bug, matching the fix's current complexity and risk, because fix-bug uses it for its executors.
 
 ## Done
 
-Report the Bug's ID and its status.
+Report the Bug's ID, status and unresolved work with reasons.
 
 - If it's `defined`, suggest fix-bug.
 - If it's still `draft`, report what is needed to settle it.
-
-## Reproduction guidance
-
-- **Keep the exact symptom.** Follow the reporter's steps with their inputs, setup and expected and actual behaviour. Exercise the boundary where the real interaction happens, because an isolated component test can miss the reported failure.
-- **Keep it runnable.** Store the commands or script contents, required inputs, setup and observed result under `## Reproduction` on the Bug, so fix-bug can rerun the original scenario after the fix. Retain the reproduction across a returned fix and update it with the reporter's new evidence.
-- **Separate evidence from inference.** Record what actually ran and what it showed. If source inspection settles the report, cite the relevant code and explain why it proves the conclusion. Keep any attempted reproduction and state what prevented it from demonstrating the symptom.
