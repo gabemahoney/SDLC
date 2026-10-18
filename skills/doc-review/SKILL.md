@@ -33,13 +33,13 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
 
 ## Steps
 
-1. **Review the code changes.** Read every code change made in this Task carefully, so you know exactly what the docs now have to say.
-2. **Check the docs match those changes.** Following `guide:doc-writing-guide.md`, check:
+1. **Read the code changes.** Read every code change made in this Task carefully, so you know exactly what changed.
+2. **Read every document.** Read all of the Project's docs, in full, so nothing the change affects is missed.
+3. **Check the docs against the changes.** Following `guide:doc-writing-guide.md`, check:
    - Is a new doc needed that's missing?
    - Does any doc need updating, and which sections?
    - Does any doc need trimming, and which sections?
    - Should any doc be deleted?
-3. **Read every doc, not just the ones you expect to be affected.** Check that every doc mentioning the code this Task changed was updated to match, because a doc you didn't expect can still be made wrong by the change.
 4. **Check completion.** Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
 
 ## Child Agents
