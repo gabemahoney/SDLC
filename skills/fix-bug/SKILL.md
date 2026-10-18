@@ -36,15 +36,15 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Prepare or resume.** Set the Bug `active`. Create an isolated Bug worktree for each affected repo from its main checkout's current branch, using the workflow's worktree path. Record paths, bases and merge targets. Reconcile progress with git, including unfinished merges and cleanup. A returned fix follows the revised Bug against current code.
+1. **Prepare or resume.** Set the Bug `active`. Create an isolated Bug worktree for each affected repo from its main checkout's current branch, using the workflow's worktree path. Record paths, bases and merge targets under `## Worktrees`. Reconcile progress with git, including unfinished merges and cleanup. A returned fix follows the revised Bug against current code.
 
-2. **Implement and review.** Record testing assignments in the Bug body for the coverage `guide:test-guide.md` requires. Follow the Repair pipeline and Regression evidence guidance. Judge findings under the shared rule. The Managing Intelligence settles expected behaviour because the defined Bug is the repair's requirements.
+2. **Implement and review.** Record testing assignments under `## Progress` on the Bug for the coverage `guide:test-guide.md` requires. Follow the Repair pipeline and Regression evidence guidance. Judge findings under the shared rule. The Managing Intelligence settles expected behaviour because the defined Bug is the repair's requirements.
 
-3. **Prove the repair.** Pass the Integration gate after implementation and review. Rerun the retained reproduction with its original inputs and setup. Route a remaining symptom through the Repair pipeline. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision and evidence.
+3. **Prove the repair.** Pass the Integration gate after implementation and review. Rerun the retained reproduction with its original inputs and setup. Route a remaining symptom through the Repair pipeline. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision under `## Decisions` and evidence under `## Regression evidence`.
 
 4. **Commit and merge.** Require fixed accepted findings, complete regression evidence, successful reproduction or agreed verification, and a passed integration gate. Run `guide:build-commands.md ## Compile` and `guide:build-commands.md ## Lint` for every affected code folder; the final test-writer's full `guide:build-commands.md ## Unit tests` must also pass for the completed repair. Skip only sections marked `none` with a reason. Route failures through the Repair pipeline and repeat affected checks before committing, so evidence covers the final files.
 
-   Merge from the main checkouts into the recorded targets. If a target or conflict resolution changes the repair, review and check the combined result before cleanup because earlier evidence no longer covers it. Record successful merges, then remove merged worktrees and branches. Leave the Bug `active` for acceptance. If a merge conflicts, preserve its worktree, record conflicts and completed merges, and stop for resolution; a later Run resumes there.
+   Merge from the main checkouts into the recorded targets. If a target or conflict resolution changes the repair, review and check the combined result before cleanup because earlier evidence no longer covers it. Record successful merges under `## Worktrees`, then remove merged worktrees and branches. Leave the Bug `active` for acceptance. If a merge conflicts, preserve its worktree, record conflicts and completed merges under `## Worktrees`, and stop for resolution; a later Run resumes there.
 
 ## Child Agents
 
@@ -55,11 +55,20 @@ Run only when all of these are true:
 - **`test-review`:** Start fresh every time so each assessment is independent. Launch after testing assignments finish, while the `doc-writer` works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
 - **`doc-review`:** Start fresh every time so each assessment is independent. Launch after the `doc-writer` finishes. Expect findings on complete touched documents and documentation missing or made outdated by the fix, or no findings.
 
-Record the current phase, next work, integration repair-round count and executor IDs, skills, testing assignments and Thinking Levels on the Bug so later Runs can resume.
+Record the current phase, next work, integration repair-round count and executor IDs, skills, testing assignments and Thinking Levels under `## Progress` on the Bug so later Runs can resume.
 
 ## Writes
 
-The Bug is the only ticket changed. Set it `active` at start and leave it `active` after merge for the Managing Intelligence's acceptance. Keep testing assignments, progress, decisions, reproduction and regression evidence, check results, any failures the Managing Intelligence accepted, commits and merges on it. Apply the shared finding-record rule.
+The Bug is the only ticket changed. Set it `active` at start and leave it `active` after merge for the Managing Intelligence's acceptance. Write these sections on the Bug:
+
+- `## Progress`: testing assignments, phase, next work, repair-round count, executor IDs, skills, Thinking Levels and commits.
+- `## Decisions`: Managing Intelligence decisions.
+- `## Reproduction`: the retained scenario and its rerun.
+- `## Regression evidence`: before-and-after verification.
+- `## Checks`: check results and accepted failures.
+- `## Worktrees`: preparation, merges and cleanup.
+- `## Testing Lanes`: writer ownership of files, behaviours, fixtures and helpers.
+- `## Declined findings`: declined or unaddressed review findings with reasons.
 
 ## Done
 
@@ -77,20 +86,20 @@ The sole test-writer or final writer after multiple Lanes owns the full `guide:b
 
 ## Regression evidence
 
-The `test-writer` preserves an automated regression test at the boundary where the defect occurs, using unit coverage or integration coverage for interacting components as `guide:test-guide.md` describes. It records failing-before and passing-after results, commands, revisions and coverage limits on the Bug, because a passing test alone does not prove it catches the regression. If automated coverage is impractical, the Managing Intelligence decides what repeatable verification is sufficient. Record that decision and evidence on the Bug so acceptance uses the agreed check.
+The `test-writer` preserves an automated regression test at the boundary where the defect occurs, using unit coverage or integration coverage for interacting components as `guide:test-guide.md` describes. It records failing-before and passing-after results, commands, revisions and coverage limits under `## Regression evidence` on the Bug, because a passing test alone does not prove it catches the regression. If automated coverage is impractical, the Managing Intelligence decides what repeatable verification is sufficient. Record that decision under `## Decisions` and evidence under `## Regression evidence` on the Bug so acceptance uses the agreed check.
 
 ## Testing Lanes
 
-A **Lane** is a group of test files one test-writer can change independently. Record each Lane's files, behaviours, fixtures and helpers on the Bug. Group overlapping behaviour and changed shared setup together to avoid conflicting edits and duplicate coverage.
+A **Lane** is a group of test files one test-writer can change independently. Record each Lane's files, behaviours, fixtures and helpers under `## Testing Lanes` on the Bug. Group overlapping behaviour and changed shared setup together to avoid conflicting edits and duplicate coverage.
 
-Each Lane owns whole files and exclusively used setup. Writers record shared changes and gaps for a final test-writer after all Lanes finish. That writer changes shared files, closes gaps and runs the full unit suite. A sole writer owns all tests and helpers. Keep this ownership during repairs.
+Each Lane owns whole files and exclusively used setup. Writers record shared changes and gaps under `## Progress` for a final test-writer after all Lanes finish. That writer changes shared files, closes gaps and runs the full unit suite. A sole writer owns all tests and helpers. Keep this ownership during repairs.
 
 ## Integration gate
 
-After implementation and review, you run `guide:build-commands.md ## Integration tests` for every affected code folder, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths on the Bug.
+After implementation and review, you run `guide:build-commands.md ## Integration tests` for every affected code folder, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures so suite output stays out of context. Record commands, exit statuses and output paths under `## Checks` on the Bug.
 
-The gate passes when the suites pass, or when the Managing Intelligence accepts the remaining failures; record what it accepted. If the suites can't run, stop and ask the Managing Intelligence.
+The gate passes when the suites pass, or when the Managing Intelligence accepts the remaining failures; record what it accepted under `## Checks`. If the suites can't run, stop and ask the Managing Intelligence.
 
 Send test failures to test-writer, followed by test-review and accepted repairs. Source failures go through the Repair pipeline. Rerun integration over the combined repairs. Stop for the Managing Intelligence if source-fix rounds fail to reduce failures or failures remain after three rounds, to bound unsuccessful attempts.
 
-If repairs stop making progress, stop and ask the Managing Intelligence, so a repair loop doesn't burn the budget. Record unfinished work so a later Run can resume the gate.
+If repairs stop making progress, stop and ask the Managing Intelligence, so a repair loop doesn't burn the budget. Record unfinished work under `## Progress` so a later Run can resume the gate.

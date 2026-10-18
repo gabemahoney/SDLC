@@ -40,7 +40,7 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 
 2. **Write the Plan and Epics.** First state in a sentence what changes for the user or system when the Idea is done, from the PRD's goals, acceptance criteria and constraints. If you can't, stop and raise it with the Managing Intelligence, because Epics cut without a clear outcome won't add up to one. Follow the SRD's software requirements, technology choices and architecture. Write each ticket as "What to write in each ticket" below says, and follow the Planning guidance.
    - If the Idea has no Plan, create one and its Epics as `draft`.
-   - If the Idea already has a Plan, bring it up to date with the SRD; write-srd's note on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
+   - If the Idea already has a Plan, bring it up to date with the SRD; `## SRD changes` on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
 
 3. **Check the Plan with the `product-manager`.** Save the Plan and Epics, then launch `product-manager`. Judge every finding under the shared rule and review again after significant changes. Then check the whole Plan against the Quality checklist below.
 
@@ -65,17 +65,23 @@ Suggest write-epic on each `draft` Epic in dependency order.
 
 ## What to write in each ticket
 
-**The Plan ticket's body:** the goal and scope in two or three sentences, and why this number of Epics fits the Idea.
+**The Plan ticket's body:**
+
+- `## Goal and scope`: the goal and scope in two or three sentences.
+- `## Epic count`: why this number of Epics fits the Idea.
+- `## Declined findings`: declined or unaddressed review findings, with reasons.
 
 **Each Epic ticket's body:**
-- **Outcome:** the one user- or system-visible capability it delivers, and how success is measured.
-- **Work:** what it takes to deliver that outcome, the requirements it serves and the code folders it touches, including the engineering, testing and documentation work the Guidance Documents require.
-- **Acceptance criteria:** how the Managing Intelligence can check the outcome on the result. Where they can't interact with it directly, how the Agent will show it with observable evidence.
-- **Dependencies:** why each Epic it depends on must be `done` first.
+
+- `## Outcome`: the one user- or system-visible capability it delivers, and how success is measured.
+- `## Work`: what it takes to deliver that outcome, the requirements it serves and the code folders it touches, including the engineering, testing and documentation work the Guidance Documents require.
+- `## Acceptance criteria`: how the Managing Intelligence can check the outcome on the result. Where they can't interact with it directly, how the Agent will show it with observable evidence.
+- `## Dependencies`: why each Epic it depends on must be `done` first.
+- `## Declined findings`: declined or unaddressed review findings about this Epic, with reasons.
 
 ## Planning guidance
 
-Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small Idea has 1–3 Epics, a medium one 3–6, a large one 6–9 and a new product 10 or more. These are guidance, not limits: choose the count by judgement, and when it falls outside the range, give a good reason for it in the Plan's body.
+Keep the Plan and its Epics in proportion to the Idea. As a rough guide, a small Idea has 1–3 Epics, a medium one 3–6, a large one 6–9 and a new product 10 or more. These are guidance, not limits: choose the count by judgement, and when it falls outside the range, give a good reason for it under `## Epic count` on the Plan.
 
 Slice by capability, following the workflow's Epic rule. “User places an order and sees confirmation” is a coherent demo. Grouping by layer, such as database or UI, hides whether the product works. A refactor's demo shows existing behaviour still working. Leave every Epic working with existing tests passing.
 

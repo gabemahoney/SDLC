@@ -32,9 +32,9 @@ None: you create a new ticket.
 1. **Check the input.** Follow the intake named by `setting:new_idea_intake`.
    - If the input doesn't fit, stop and ask the Managing Intelligence for what's needed.
 2. **Prepare the Idea.**
-   - If the intake names a Source Reference resolver, store the input as the Idea's Source Reference, so write-prd can read the original context.
+   - If the intake names a Source Reference resolver, store the input under `## Source References` as the Idea's Source Reference, so write-prd can read the original context.
 
-   Follow the intake's instructions for the Idea's body.
+   Follow the intake's instructions for `## Description` in the Idea's body.
 3. **File the Idea.** Create it in the Ideas store with status `draft`.
 
 ## Child Agents
@@ -43,7 +43,7 @@ None: you file the Idea yourself.
 
 ## Writes
 
-- A new Idea in the Ideas store, status `draft`.
+- A new Idea in the Ideas store, status `draft`, with `## Description` holding the intake's account of the work and `## Source References` holding any original input links or paths.
 
 ## Done
 

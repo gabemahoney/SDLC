@@ -37,7 +37,7 @@
   Any other `##` section belongs to the Project; skills use it as the file describes.
 - **Formal Model:** a formal specification checked by a model checker. **Model checking** means running that checker. A **Model Doc** holds a Formal Model and its attached files.
 - **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no user copy of that Guidance Document is found.
-- **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent.
+- **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent. `protocol:ticket.md` means the Ticket System Protocol File selected by `setting:ticket_system`.
 - **Dependency:** a link meaning one ticket can't start until another is `done`, such as between Epics or between Tasks.
 - **Association:** a link between related tickets where neither waits on the other, such as a Plan and its Idea, or an SRD and a Research ticket it cites.
 - **Source Reference:** a link to a ticket's origin outside the ticket system, such as a GitHub issue or file. write-prd and define-bug use it to establish requirements. Downstream skills use the requirements on the tickets so external changes cannot silently change their scope.
@@ -129,6 +129,27 @@ Use these references, each in one pair of backticks, so an Agent knows whether t
 - A Protocol File: `protocol:<file>`, for example `protocol:agent-codex.md`, under `~/.apiary/system/protocols/`; `protocol:launcher.md` means the file selected by `setting:launcher`.
 - A named protocol section: `protocol:<file> ## <Section>`, for example `protocol:launcher.md ## Launch a Child Agent`.
 - A file with one fixed place: its full path, for example `~/.apiary/system/workflow.md` or `<Project Folder>/.apiary/project_settings.md`.
+
+### Ticket system operations
+
+`protocol:ticket.md` defines these named sections so project-setup can check every operation the skills rely on:
+
+- `protocol:ticket.md ## Prerequisites`: installed tools and store access.
+- `protocol:ticket.md ## Create or check stores`: configure the four stores, child tiers and statuses, including shared Research.
+- `protocol:ticket.md ## Create a ticket`: create a ticket or child with its body and initial status.
+- `protocol:ticket.md ## Read a ticket`: read its body, fields and relationships.
+- `protocol:ticket.md ## Find tickets`: list and find tickets and their children or prerequisites.
+- `protocol:ticket.md ## Update a ticket section`: add or update a named body section while preserving the others.
+- `protocol:ticket.md ## Set status`: apply the skill's status transition.
+- `protocol:ticket.md ## Add a Dependency`: maintain prerequisite links.
+- `protocol:ticket.md ## Add an Association`: link related tickets without blocking work.
+- `protocol:ticket.md ## Add a Source Reference`: retain original intake links or paths.
+- `protocol:ticket.md ## Attach a file`: store files with a ticket and read them later.
+- `protocol:ticket.md ## Set tags`: maintain Thinking Level tags.
+- `protocol:ticket.md ## Delete a ticket`: remove obsolete work and its links.
+- `protocol:ticket.md ## Retain Research`: keep accepted Reports and artifacts available without automatic archival.
+
+Each section gives usable instructions, because skills depend on these operations.
 
 ### Launcher operations
 

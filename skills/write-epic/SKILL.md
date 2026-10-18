@@ -55,8 +55,8 @@ Run only when all of these are true:
 
 ## Writes
 
-- **Tasks and Subtasks:** children of the Epic and its Tasks respectively, in the Plans store. New and revised tickets start `draft` in steps 1–2. Reset affected tickets and their parent Tasks even if previously `active` or `done`, so develop-epic executes the revised work. Delete obsolete unimplemented work. Each Task gets a `thinking_level:<label>` tag; each Subtask names its executor. Record a Dependency from each waiting Task or Subtask to its prerequisite so execution follows the required order.
-- **The Epic and its draft children:** set to `defined` in step 4. The Epic records any unfinished writing, so a later Run can resume it.
+- **Tasks and Subtasks:** children of the Epic and its Tasks respectively, in the Plans store. New and revised tickets start `draft` in steps 1–2. Reset affected tickets and their parent Tasks even if previously `active` or `done`, so develop-epic executes the revised work. Delete obsolete unimplemented work. Each Task gets a `thinking_level:<label>` tag; each Subtask names its executor under `## Executor`. Record a Dependency from each waiting Task or Subtask to its prerequisite so execution follows the required order.
+- **The Epic and its draft children:** set to `defined` in step 4. Record unfinished writing under `## Progress` on the Epic, so a later Run can resume it. Record declined or unaddressed review findings with reasons under `## Declined findings` on the Task or Epic they concern.
 
 ## Done
 
@@ -66,21 +66,21 @@ Suggest develop-epic on this Epic once every Epic it depends on is `done`.
 
 ## Task template
 
-- **Context:** explain why the Task exists, the requirements it serves and what prerequisite work it assumes.
-- **What needs to change:** state the work and affected code folders, following the SRD's decisions.
-- **Acceptance criteria:** state observable results that demonstrate the Task's outcome.
-- **Dependencies:** name Tasks that must finish first and explain why.
+- `## Context`: explain why the Task exists, the requirements it serves and what prerequisite work it assumes.
+- `## Work`: state the work and affected code folders, following the SRD's decisions.
+- `## Acceptance criteria`: state observable results that demonstrate the Task's outcome.
+- `## Dependencies`: name Tasks that must finish first and explain why.
 
 Describe outcomes and constraints, leaving implementation detail to the executor. Name files and modules rather than code snippets or line numbers, because prerequisite work can change the code before execution.
 
 ## Subtask template
 
-Every Subtask names its executor: `engineer`, `test-writer` or `doc-writer`. Include all four sections, with detail in proportion to the work:
+Every Subtask names its executor under `## Executor`: `engineer`, `test-writer` or `doc-writer`. Include these work sections, with detail in proportion to the work:
 
-- **Context:** explain why the Subtask exists and what preconditions it assumes. For testing, name fixtures, factories, helpers and constants it reuses, creates or changes.
-- **What Needs to Change:** describe the work and requirements for that executor's part of the Task.
-- **Key Files:** give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
-- **Acceptance Criteria:** state observable, testable conditions for completion. For example, a CSV export's fields are correctly quoted and its existing JSON export still works.
+- `## Context`: explain why the Subtask exists and what preconditions it assumes. For testing, name fixtures, factories, helpers and constants it reuses, creates or changes.
+- `## Work`: describe the work and requirements for that executor's part of the Task.
+- `## Key files`: give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
+- `## Acceptance criteria`: state observable, testable conditions for completion. For example, a CSV export's fields are correctly quoted and its existing JSON export still works.
 
 ## Writing guidance
 
@@ -106,7 +106,7 @@ When unsure between two levels, choose the higher one.
 Assign each Task's unit and integration testing Subtasks to `test-writer` Child Agents, following `guide:test-guide.md` so coverage matches the work. Write them with two goals in mind:
 
 1. **Reuse the Project's test setup.** Say which existing fixtures, factories, helpers and constants the tests reuse, any changes they need, any new setup and where it goes, and which test files to extend or add, so tests don't each build their own setup.
-2. **Let `test-writer` Child Agents work in parallel.** develop-epic can run several `test-writer` Child Agents on one Task, one per Lane. A **Lane** is a group of test files one writer can change without touching another's. Suggest the Lanes in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so writers don't edit the same helper or test the same thing twice. Give every independent group its own Lane, so as many writers as possible work at once. develop-epic adjusts them to the actual code.
+2. **Let `test-writer` Child Agents work in parallel.** develop-epic can run several `test-writer` Child Agents on one Task, one per Lane. A **Lane** is a group of test files one writer can change without touching another's. Suggest the Lanes under `## Testing Lanes` in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so writers don't edit the same helper or test the same thing twice. Give every independent group its own Lane, so as many writers as possible work at once. develop-epic adjusts them to the actual code.
 
 Check each behaviour once at each test level, so effort isn't spent on duplicates: one unit test of a quoting rule is enough, though an end-to-end test of the export may check it again from the outside. Include tests to update, obsolete tests to remove and missing coverage to add. The last `test-writer` runs the full unit suite after the Task's changes and again after repairs, so it checks the combined work before commit.
 
@@ -115,7 +115,7 @@ Check each behaviour once at each test level, so effort isn't spent on duplicate
 - [ ] The Tasks cover the Epic's acceptance criteria and follow the PRD, SRD and recorded Managing Intelligence decisions.
 - [ ] Every proposed change serves the requirements or applicable Guidance Documents, and its size fits the outcome.
 - [ ] Prerequisite and sibling Epic work is accounted for, and each Task has a coherent outcome and the Dependencies it needs.
-- [ ] Each Subtask has an executor, the four template sections and concrete Key Files in a named repo or code folder.
+- [ ] Each Subtask has an executor, the template sections and concrete key files in a named repo or code folder.
 - [ ] Test proposals identify fixture reuse and changes, avoid duplicate checks at the same level, and keep test files that share changed setup in the same Lane.
 - [ ] Every Task has a final full-unit-suite Subtask following its other unit-test work.
 - [ ] Documentation work follows its implementation and tests and is allowed by the doc-writing guide.

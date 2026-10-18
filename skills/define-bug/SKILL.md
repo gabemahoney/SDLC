@@ -36,15 +36,15 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Complete the report.** Fill out the Bug from its supplied evidence and any Source References, following `guide:bug-writing-guide.md`. Incorporate earlier validation and the Managing Intelligence's decisions into the write-up so fix-bug has one current account of the defect.
+1. **Complete the report.** Fill out `## Report` on the Bug from its supplied evidence and any Source References, following `guide:bug-writing-guide.md`. Incorporate earlier validation and the Managing Intelligence's decisions into the write-up so fix-bug has one current account of the defect.
 
 2. **Validate the reported behaviour.** Reproduce it in the main checkouts using the guidance below. Keep scratch scripts and inputs outside the repos so validation leaves repository files unchanged. For a returned fix, check the retained reproduction and new evidence against the current software, because the earlier validation predates the repair.
    - If reproduction cannot establish whether the report is real or would require repository edits, review the source for evidence that settles it.
 
-3. **Record the outcome on the Bug.** Save the evidence, reproduction and conclusion.
+3. **Record the outcome on the Bug.** Save evidence and the conclusion under `## Validation`, and the runnable scenario under `## Reproduction`.
    - If reproduction, source evidence or the Managing Intelligence's recorded decision establishes that the Bug is real, set it `defined` for fix-bug.
    - If the reported behaviour cannot happen or is intended, set the Bug `invalid` and explain why, citing the evidence or the Managing Intelligence's decision.
-   - If the result is inconclusive, leave the Bug `draft`, record what was tried and why it is inconclusive, and ask the Managing Intelligence whether the Bug is real. Record their decision on the Bug and apply the corresponding outcome above.
+   - If the result is inconclusive, leave the Bug `draft`, record what was tried and why it is inconclusive under `## Validation`, and ask the Managing Intelligence whether the Bug is real. Record their decision under `## Decisions` on the Bug and apply the corresponding outcome above.
 
 ## Child Agents
 
@@ -52,7 +52,7 @@ None: you validate the Bug yourself.
 
 ## Writes
 
-The Bug's write-up, validation evidence, retained reproduction and Managing Intelligence decisions, with its status set by step 3. Before setting a confirmed Bug `defined`, save its evidence and set or replace its `thinking_level:<label>` tag to match the fix's current complexity and risk, so fix-bug receives the evidence and Thinking Level its executors need.
+The Bug's `## Report` holds the write-up, `## Validation` the evidence and conclusion, `## Reproduction` the retained scenario, and `## Decisions` the Managing Intelligence's decisions, with its status set by step 3. Before setting a confirmed Bug `defined`, save its evidence and set or replace its `thinking_level:<label>` tag to match the fix's current complexity and risk, so fix-bug receives the evidence and Thinking Level its executors need.
 
 ## Done
 
@@ -64,5 +64,5 @@ Report the Bug's ID and its status.
 ## Reproduction guidance
 
 - **Keep the exact symptom.** Follow the reporter's steps with their inputs, setup and expected and actual behaviour. Exercise the boundary where the real interaction happens, because an isolated component test can miss the reported failure.
-- **Keep it runnable.** Store the commands or script contents, required inputs, setup and observed result on the Bug, so fix-bug can rerun the original scenario after the fix. Retain the reproduction across a returned fix and update it with the reporter's new evidence.
+- **Keep it runnable.** Store the commands or script contents, required inputs, setup and observed result under `## Reproduction` on the Bug, so fix-bug can rerun the original scenario after the fix. Retain the reproduction across a returned fix and update it with the reporter's new evidence.
 - **Separate evidence from inference.** Record what actually ran and what it showed. If source inspection settles the report, cite the relevant code and explain why it proves the conclusion. Keep any attempted reproduction and state what prevented it from demonstrating the symptom.

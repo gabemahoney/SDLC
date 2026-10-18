@@ -36,7 +36,7 @@ Run only when all of these are true:
 ## Steps
 
 1. **Review the Doc** using the Review criteria below and its recorded findings and decisions.
-2. **Return your findings to your Main Agent** to judge and record on the Doc.
+2. **Return your findings to your Main Agent** to judge and record declined or unaddressed findings under `## Declined findings` on the Doc.
 
 ## Child Agents
 

@@ -60,9 +60,9 @@ Use the Task pipeline and Integration gate for sequencing.
 
 ## Writes
 
-- **Idea, Plan and Epic:** set statuses in steps 1, 3 and 4. Keep the current Task, phase, checkout paths and integration evidence on the Epic.
-- **Tasks and Subtasks:** update stale instructions and set Task statuses in step 2. Executors set assigned Subtasks `active`, then `done`. Record executor IDs, skills, testing assignments, Thinking Levels, Lane assignments, checks and commits on the Task so another Run can continue.
-- **Fix Tasks:** create Epic children for source integration failures and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Include outcomes, acceptance criteria, Dependencies, a complexity-appropriate `thinking_level:<label>` tag and Subtasks with Context, What Needs to Change, Key Files and Acceptance Criteria. Include required coverage, a final full-unit-suite Subtask, affected docs and Testing Lanes so repairs receive the original work's checks.
+- **Idea, Plan and Epic:** set statuses in steps 1, 3 and 4. Keep the current Task, phase and checkout paths under `## Progress` and integration evidence under `## Checks` on the Epic.
+- **Tasks and Subtasks:** update stale instructions and set Task statuses in step 2. Executors set assigned Subtasks `active`, then `done`. Record executor IDs, skills, testing assignments, Thinking Levels, checks and commits under `## Progress` and Lane assignments under `## Testing Lanes` on the Task so another Run can continue.
+- **Fix Tasks:** create Epic children for source integration failures and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work`, `## Acceptance criteria` and `## Dependencies` for each Task's purpose, changes, outcomes and prerequisites. Set a complexity-appropriate `thinking_level:<label>` tag. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage, a final full-unit-suite Subtask, affected docs and Testing Lanes so repairs receive the original work's checks.
 
 ## Done
 
@@ -77,7 +77,7 @@ Report the Epic's ID and unaddressed findings with reasons.
 You coordinate the work; your Child Agents do it. For each finding from code-review, test-review, doc-review or product-manager:
 
 - **Fix it:** return it to the executor that owns the files.
-- **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason on the Task or Epic and in the Done report, so the Managing Intelligence sees what was left.
+- **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason under `## Declined findings` on the Task or Epic and in the Done report, so the Managing Intelligence sees what was left.
 - **Ask the Managing Intelligence:** for product questions or conflicts with the PRD or SRD, because those are their approved decisions.
 
 ## Task pipeline
@@ -92,15 +92,15 @@ The sole test-writer or final writer after multiple Lanes owns a full-unit-suite
 
 ## Testing Lanes
 
-A **Lane** is a group of test files one test-writer can change independently. Adjust proposed Lanes to the implementation and record their files, behaviours, fixtures, helpers and reasons for changes on the Task. Keep overlapping behaviour and changed shared setup together to avoid conflicts and duplicate coverage.
+A **Lane** is a group of test files one test-writer can change independently. Adjust proposed Lanes to the implementation and record their files, behaviours, fixtures, helpers and reasons for changes under `## Testing Lanes` on the Task. Keep overlapping behaviour and changed shared setup together to avoid conflicts and duplicate coverage.
 
 Each Lane owns whole files and exclusively used setup, including during repairs. After all Lanes finish, a final test-writer handles reported shared changes and gaps and runs the full unit suite. A sole writer owns all tests and helpers.
 
 ## Integration gate
 
-You run `guide:build-commands.md ## Integration tests` for every affected code folder after the Epic's Tasks, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths on the Epic.
+You run `guide:build-commands.md ## Integration tests` for every affected code folder after the Epic's Tasks, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
 
-Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures on the Epic. If suites cannot run, ask the Managing Intelligence.
+Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures under `## Checks` on the Epic. If suites cannot run, ask the Managing Intelligence.
 
 Route test failures to test-writer, then test-review, and pass the Task pipeline's commit checks before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Rerun integration after all repairs are committed to check their combined result.
 

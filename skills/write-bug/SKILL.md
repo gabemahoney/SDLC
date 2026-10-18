@@ -43,7 +43,7 @@ None: you file the Bug yourself.
 
 ## Writes
 
-A new Bug in the Bugs store, with the supplied report in its body and status `draft`, because define-bug still needs to complete and validate it. If the intake names a Resolver, save the input as a Source Reference so define-bug can read the original report.
+A new Bug in the Bugs store, with the supplied report under `## Report`, structured by `guide:bug-writing-guide.md`, and status `draft`, because define-bug still needs to complete and validate it. If the intake names a Resolver, save the input under `## Source References` as a Source Reference so define-bug can read the original report.
 
 ## Done
 

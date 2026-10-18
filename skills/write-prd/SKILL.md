@@ -37,7 +37,7 @@ None: the PRD can be written or revised at any Idea status.
 
 2. **Interview the Managing Intelligence.** Settle the problem, outcomes, acceptance criteria, boundaries, edge cases, errors, UI/UX, performance, security and dependencies as the Idea needs. Establish users, operators and deployment constraints that affect the product. Follow dependent decisions only where they change product behaviour. Look up facts; ask the Managing Intelligence for decisions. Finish when they confirm the shared understanding; decisions they leave unresolved become Open Questions.
 
-3. **Write or revise the PRD** using `setting:prd_template` and the craft guidance below.
+3. **Write or revise the PRD** using the body sections in `setting:prd_template` and the craft guidance below.
 
 4. **Review the whole draft** for succinctness, product requirements, dropped ideas and the Quality checklist, in that order. Repeat all four checks after changes until a full round changes nothing, so revisions receive the same scrutiny as a first draft.
    - Fold changes into the affected requirements so readers find one current account. Cut superseded text and padding while preserving current requirements, acceptance criteria, supplied edge cases and Managing Intelligence decisions. Only acceptance criteria and summaries may repeat behaviour.
@@ -54,7 +54,7 @@ None: the PRD can be written or revised at any Idea status.
 
 ## Writes
 
-Create or update the Idea's Doc titled `PRD`. Set it `draft` because a new or revised PRD needs approval. Apply the shared finding-record rule.
+Create or update the Idea's Doc titled `PRD`. Set it `draft` because a new or revised PRD needs approval. Record declined or unaddressed review findings with their reasons under `## Declined findings` on the PRD.
 
 ## Done
 

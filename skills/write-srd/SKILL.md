@@ -32,14 +32,14 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 ## Steps
 
-1. **Pause a Plan built from the SRD before revising it.** Set that Plan `draft`, including a completed Plan, because changed requirements need replanning. Record changed SRs and previously active Epics on it as the revision proceeds. Tell the Managing Intelligence to pause running write-epic and develop-epic work; their Runs stop at the next Task boundary.
+1. **Pause a Plan built from the SRD before revising it.** Set that Plan `draft`, including a completed Plan, because changed requirements need replanning. Record changed SRs and previously active Epics under `## SRD changes` on it as the revision proceeds. Tell the Managing Intelligence to pause running write-epic and develop-epic work; their Runs stop at the next Task boundary.
 
 2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, read `guide:research-guide.md`, found as `~/.apiary/system/workflow.md` describes, file a question at `setting:research_location` and associate it with the SRD. Save the SRD before launching `researcher` so it reads the current requirements.
 
 3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `guide:build-commands.md`, found as `~/.apiary/system/workflow.md` describes, for the language and checker in `guide:build-commands.md ## Model check`. If missing, ask the Managing Intelligence to supply it. For each group, independently and in parallel where possible:
    - Have `model-writer` write or update its Formal Model and attach the files to its Model Doc.
-   - Have `model-review` check it against the SRD before running the checker, because checker runs can be slow. Judge findings under the shared rule and record repairs on the Model Doc. Resume the writer for repairs, then review again.
-   - Once accepted findings are fixed, resume the writer to run the checker and retain its results on the Model Doc. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
+   - Have `model-review` check it against the SRD before running the checker, because checker runs can be slow. Judge findings under the shared rule and record repair instructions under `## Progress` on the Model Doc. Resume the writer for repairs, then review again.
+   - Once accepted findings are fixed, resume the writer to run the checker and retain its results under `## Checks` on the Model Doc. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
 
 4. **Review the whole draft** for succinctness, software obligations, dropped ideas and the Quality checklist, in that order. Repeat after changes until a full round changes nothing, so revisions receive the same scrutiny as a first draft.
    - Fold changes into the affected requirements. Cut superseded text and padding while preserving current SRs, invariants, acceptance criteria, supplied edge cases and Managing Intelligence decisions. Only acceptance criteria and summaries may repeat behaviour; otherwise reference the existing SR.
@@ -59,10 +59,10 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 ## Writes
 
-- **SRD:** create or update the Idea's Doc titled `SRD`, set `draft` because new or revised requirements need approval.
-- **Plan:** reset to `draft` when revising the SRD it was built from, with changed SRs and previously active Epics recorded.
-- **Model Docs:** one per modelled SR group, maintained by `model-writer`. Keep model files attached to the Doc, outside repos, so they stay with requirements. Record repair instructions, checker evidence and outstanding findings there.
-- **Research:** file questions `defined` at `setting:research_location` and associate them with the SRD. The researcher writes each Report `defined`; set the ticket `done` after using the answer. These questions skip research's review rounds because req-review checks the SRD decisions they inform.
+- **SRD:** create or update the Idea's Doc titled `SRD`, set `draft` because new or revised requirements need approval. Use `## Requirements` for numbered SR groups and their Model Doc links, `## Technology and architecture` for choices, reasons and supporting Research links, and `## Declined findings` for declined or unaddressed review findings with reasons.
+- **Plan:** reset to `draft` when revising the SRD it was built from, with changed SRs and previously active Epics recorded under `## SRD changes`.
+- **Model Docs:** one per modelled SR group, maintained by `model-writer`. Keep model files attached to the Doc, outside repos, so they stay with requirements. Use `## Model` for the modelled SR group and Formal Model, `## Modelling assumptions` for bounds and assumptions, `## Artifacts` for file links, `## Progress` for repair instructions, `## Checks` for checker evidence and exposed SRD bugs, and `## Declined findings` for declined or unaddressed findings with reasons.
+- **Research:** file questions `defined` at `setting:research_location`, with `## Question` for the question and `## Scope` for its purpose, requester and constraints, and associate them with the SRD. The researcher writes each Report `defined` using the Report sections in `guide:research-guide.md`; set the ticket `done` after using the answer. These questions skip research's review rounds because req-review checks the SRD decisions they inform.
 
 ## Done
 

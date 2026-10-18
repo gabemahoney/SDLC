@@ -38,13 +38,13 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Settle the setup from the ticket.** Read the repos, base refs and next Main Agent assignment recorded by the Managing Intelligence. They settle missing choices. Use each main checkout's `HEAD` as its default base and the current Agent tool for the new session unless the assignment says otherwise. Launch by default; a worktree-only choice ends the Run after preparation. Record the choices before preparing worktrees so another Run can continue them.
+1. **Settle the setup from the ticket.** Read the repos, base refs and next Main Agent assignment recorded by the Managing Intelligence. They settle missing choices. Use each main checkout's `HEAD` as its default base and the current Agent tool for the new session unless the assignment says otherwise. Launch by default; a worktree-only choice ends the Run after preparation. Record the choices under `## Worktrees` before preparing worktrees so another Run can continue them.
 
-2. **Prepare the worktrees.** Follow the Worktree guidance below. Record each repo's result as preparation proceeds, so a failure in one repo leaves a usable handoff for the others.
+2. **Prepare the worktrees.** Follow the Worktree guidance below. Record each repo's result under `## Worktrees` as preparation proceeds, so a failure in one repo leaves a usable handoff for the others.
 
 3. **Hand off the work.**
    - For worktree-only mode, finish after all repos are prepared.
-   - Otherwise, follow the Launcher Protocol File to start or reuse the assignment's Main Agent at `<Project Folder>/.worktrees/<ticket id>/`, using the chosen Agent and its skill's Thinking Level. Confirm delivery of the skill and ticket IDs, and record the Main Agent identity and launch result so teardown-worktree can find it. On a resumed Run, reconcile the recorded Main Agent through the Launcher before launching, to avoid duplicate Main Agents.
+   - Otherwise, follow the Launcher Protocol File to start or reuse the assignment's Main Agent at `<Project Folder>/.worktrees/<ticket id>/`, using the chosen Agent and its skill's Thinking Level. Confirm delivery of the skill and ticket IDs, and record the Main Agent identity and launch result under `## Worktrees` so teardown-worktree can find it. On a resumed Run, reconcile the recorded Main Agent through the Launcher before launching, to avoid duplicate Main Agents.
 
 ## Child Agents
 
@@ -52,7 +52,7 @@ None: you prepare the worktrees yourself; the Launcher starts the Main Agent.
 
 ## Writes
 
-- **The input Idea or Epic:** record setup choices, each repo's worktree path and branch, whether it was created or reused, its base ref and commit when created, and Main Agent identity and launch result or worktree-only completion. Record any failure, what remains and what needs resolving so another Run can resume. Ticket statuses stay unchanged because you prepare the workspace.
+- **The input Idea or Epic:** under `## Worktrees`, record setup choices, each repo's worktree path and branch, whether it was created or reused, its base ref and commit when created, and Main Agent identity and launch result or worktree-only completion. Record any failure, what remains and what needs resolving so another Run can resume. Ticket statuses stay unchanged because you prepare the workspace.
 - **Repos:** create branches and worktrees; commit main-checkout changes only when the Managing Intelligence chooses them.
 
 ## Done
@@ -65,8 +65,8 @@ If a Main Agent was launched, it runs the assigned skill. Otherwise, the work ca
 
 Name the branch after the ticket ID with dots replaced by underscores, preserving the existing naming convention so later Runs can find it. Use the worktree path `~/.apiary/system/workflow.md` defines.
 
-- Reuse an existing worktree only when it belongs to the intended repo and is on the ticket's branch. Preserve its changes and original base, because a resumed Run continues that work. Record a newly requested base as unapplied when reusing, so the ticket describes the actual setup.
+- Reuse an existing worktree only when it belongs to the intended repo and is on the ticket's branch. Preserve its changes and original base, because a resumed Run continues that work. Record a newly requested base under `## Worktrees` as unapplied when reusing, so the ticket describes the actual setup.
 - If the expected path holds different work, or the ticket's branch exists without its expected worktree, stop for the Managing Intelligence's decision to protect that work.
-- Resolve each new worktree's base to a commit before creation. If it cannot be resolved, stop and record the failed ref so the Managing Intelligence can correct it.
+- Resolve each new worktree's base to a commit before creation. If it cannot be resolved, stop and record the failed ref under `## Worktrees` so the Managing Intelligence can correct it.
 - When creating from the main checkout's `HEAD` or its branch, the Managing Intelligence decides whether to commit uncommitted changes first or stop, because the new worktree would otherwise omit them. After an approved commit, resolve the base again so it includes that commit.
 - Preserve worktrees and Main Agents already created if preparation or launch fails, so another Run can continue from the recorded state.
