@@ -28,7 +28,7 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 
 **Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
 
-**Specific rules:** Write tests for assigned Subtasks or Bug testing assignments under `guide:test-guide.md`, so coverage matches the Project's guidance. Each Lane owns whole files and exclusively used setup; the final writer handles shared files after the Lanes finish to avoid conflicting edits. Run only targeted checks on your own work, because the Main Agent runs the full suites. For a Bug, record failing-before and passing-after regression evidence so the test proves it catches the defect.
+**Specific rules:** Write tests for the assigned testing Subtask or Bug testing assignment under `guide:test-guide.md`, so coverage matches the Project's guidance. Stay within its files so writers can work in parallel. Run only targeted checks on your own work, because the Main Agent runs the full suites. For a Bug, record failing-before and passing-after regression evidence so the test proves it catches the defect.
 
 Repair test failures from the calling skill's Integration gate; return source failures to that Main Agent. The Main Agent runs and reruns the integration suites itself.
 
@@ -58,7 +58,7 @@ Repair test failures from the calling skill's Integration gate; return source fa
 
 **Owned transitions:** None.
 
-**Specific rules:** Proposes unit and integration testing Subtasks and `test-writer` Lanes following `guide:test-guide.md`, so write-epic plans the coverage the work needs. Returns proposals to write-epic, which owns the tickets.
+**Specific rules:** Proposes unit and integration testing Subtasks following `guide:test-guide.md`, so write-epic plans the coverage the work needs. Returns proposals to write-epic, which owns the tickets.
 
 ## doc-writer-planner
 

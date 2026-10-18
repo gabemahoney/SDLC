@@ -11,7 +11,7 @@
   - **test-writer:** writes unit and integration tests and runs assigned suites.
   - **doc-writer:** updates documentation for a Task or Bug.
   - **engineer-planner:** reads a Task's source context and proposes implementation Subtasks.
-  - **test-writer-planner:** proposes testing Subtasks, fixtures and groups of tests that can be written in parallel.
+  - **test-writer-planner:** proposes testing Subtasks that can be written in parallel and plans their fixtures.
   - **doc-writer-planner:** proposes a Task's documentation Subtasks.
   - **req-review:** reviews one PRD or SRD independently for write-prd or write-srd.
   - **code-review:** checks source changes independently.

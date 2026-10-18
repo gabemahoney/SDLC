@@ -49,9 +49,9 @@ Run only when all of these are true:
 ## Child Agents
 
 - **`engineer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
-- **`test-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task once any engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `guide:test-guide.md` requires, fixture planning and suggested Lanes. develop-epic's `test-review` checks test quality independently.
+- **`test-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task once any engineering proposals it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `guide:test-guide.md` requires and fixture planning. develop-epic's `test-review` checks test quality independently.
 - **`doc-writer-planner`:** Start fresh every time so planning stays focused on the assigned Task. Launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
-- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests and unsafe Lane groupings, with references and suggested fixes.
+- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after saving the Epic's proposed Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests, with references and suggested fixes.
 
 ## Writes
 
@@ -101,11 +101,9 @@ When unsure between two levels, choose the higher one.
 
 ## Writing the testing Subtasks
 
-Tests are easier to split up than code, so during develop-epic several `test-writer` Child Agents can work on one Task at once.
+Tests are easier to split up than code, so during develop-epic several `test-writer` Child Agents can work on one Task at once, one per testing Subtask.
 
-Split each Task's test files into **Lanes**. Each Lane gets its own `test-writer`. Two Lanes must never edit the same file, so put tests that share a changed helper in the same Lane.
-
-List the Lanes under `## Testing Lanes` in the Task.
+Write each Task's testing Subtasks so no two edit the same file. Tests that share a helper the Task changes go in one Subtask.
 
 ## Quality checklist
 
@@ -113,7 +111,7 @@ List the Lanes under `## Testing Lanes` in the Task.
 - [ ] Every proposed change serves the requirements or applicable Guidance Documents, and its size fits the outcome.
 - [ ] Prerequisite and sibling Epic work is accounted for, and each Task has a coherent outcome and the Dependencies it needs.
 - [ ] Each Subtask has an executor, the template sections and concrete key files in a named repo or code folder.
-- [ ] Test proposals identify fixture reuse and changes, avoid duplicate checks at the same level, and keep test files that share changed setup in the same Lane.
+- [ ] Test proposals identify fixture reuse and changes and avoid duplicate checks at the same level.
 - [ ] Documentation work follows its implementation and tests and is allowed by the doc-writing guide.
 - [ ] Every Task to execute has a Thinking Level suited to its complexity and risk.
 - [ ] A revision covers every affected Task and Subtask, whatever its earlier status, and leaves it ready for develop-epic.

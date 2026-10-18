@@ -51,7 +51,7 @@ Run only when all of these are true:
 ## Child Agents
 
 - **`engineer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch for source changes. Expect the implementation, targeted checks, deviations and changes affecting design or documentation.
-- **`test-writer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch for testing assignments and after every source-changing pass, one per Lane, then for shared changes and gaps after multiple Lanes, and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and only targeted checks on its own work, because you run the full suites.
+- **`test-writer`:** Start fresh for each Bug repair and reuse each writer for fix rounds to preserve its knowledge. Launch one per testing assignment, in parallel. Use them after every source-changing pass and for integration failures caused by tests. Expect unit and integration tests, before-and-after regression evidence, fixture changes, test repairs, gaps and only targeted checks on its own work, because you run the full suites.
 - **`doc-writer`:** Start fresh for each Bug repair and reuse it for fix rounds to preserve its knowledge. Launch after source and testing assignments finish to assess and update documentation following `guide:doc-writing-guide.md`. Include review findings or repairs that affect documentation. Expect changes or a reason none are needed.
 - **`code-review`:** Start fresh every time so each assessment is independent. Launch after source changes, while `test-writer` Child Agents work. Expect correctness, engineering and lint findings with references and suggested fixes, or no findings.
 - **`test-review`:** Start fresh every time so each assessment is independent. Launch after testing assignments finish, while the `doc-writer` works, and after test repairs from the Integration gate. Expect findings on test quality, regression coverage and duplication across the suite, or no findings.
@@ -69,7 +69,6 @@ The Bug is the only ticket changed. Set it `active` at start and leave it `activ
 - `## Regression evidence`: before-and-after verification.
 - `## Checks`: check results and accepted failures.
 - `## Worktrees`: preparation, merges and cleanup.
-- `## Testing Lanes`: writer ownership of files, behaviours, fixtures and helpers.
 - `## Declined findings`: declined or unaddressed review findings with reasons.
 
 ## Done
@@ -82,17 +81,13 @@ Suggest the Managing Intelligence check the fix: they set the Bug `done` on acce
 
 You coordinate executors and independent reviewers and own commits. Run engineer first; code-review and test-writer in parallel; then test-review and doc-writer in parallel; then doc-review. Use the skills the repair needs, including doc-writer assessment for every Bug so restored behaviour does not hide documentation gaps.
 
+Keep testing assignments from editing the same file so their writers can work in parallel. Tests that share a helper the repair changes go in one assignment.
+
 Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order. Give doc-writer one pass after source and tests finish; reviewers check repairs. Repeat until accepted findings are fixed.
 
 ## Regression evidence
 
 The `test-writer` preserves an automated regression test at the boundary where the defect occurs, using unit coverage or integration coverage for interacting components as `guide:test-guide.md` describes. It records failing-before and passing-after results, commands, revisions and coverage limits under `## Regression evidence` on the Bug, because a passing test alone does not prove it catches the regression. If automated coverage is impractical, the Managing Intelligence decides what repeatable verification is sufficient. Record that decision under `## Decisions` and evidence under `## Regression evidence` on the Bug so acceptance uses the agreed check.
-
-## Testing Lanes
-
-A **Lane** is a group of test files one test-writer can change independently. Record each Lane's files, behaviours, fixtures and helpers under `## Testing Lanes` on the Bug. Group overlapping behaviour and changed shared setup together to avoid conflicting edits and duplicate coverage.
-
-Each Lane owns whole files and exclusively used setup. Writers record shared changes and gaps under `## Progress` for a final test-writer after all Lanes finish. That writer changes shared files and closes gaps. A sole writer owns all tests and helpers. Keep this ownership during repairs.
 
 ## Integration gate
 
