@@ -101,11 +101,11 @@ When unsure between two levels, choose the higher one.
 
 ## Writing the testing Subtasks
 
-Assign each Task's unit and integration testing Subtasks to `test-writer` Child Agents, following `guide:test-guide.md` so coverage matches the work.
+Each Task's tests are written inside that Task, as `test-writer` Subtasks. That includes integration tests: the end-of-Epic Integration gate only runs them, it doesn't write them.
 
-**Let `test-writer` Child Agents work in parallel.** develop-epic can run several `test-writer` Child Agents on one Task, one per Lane. A **Lane** is a group of test files one writer can change without touching another's. Suggest the Lanes under `## Testing Lanes` in the Task: keep files together when they share a fixture or helper the Task changes, or test overlapping behaviour, so writers don't edit the same helper or test the same thing twice. Give every independent group its own Lane, so as many writers as possible work at once. develop-epic adjusts them to the actual code.
+Split the Task's test files into **Lanes**, so several `test-writer` Child Agents can work at once. A Lane is a set of test files one writer can change without touching another writer's files. Put files in the same Lane when they share a helper the Task changes, so two writers don't edit it at once. List the Lanes under `## Testing Lanes` in the Task. develop-epic adjusts them to the real code.
 
-Check each behaviour once at each test level, so effort isn't spent on duplicates: one unit test of a quoting rule is enough, though an end-to-end test of the export may check it again from the outside. Include tests to update, obsolete tests to remove and missing coverage to add. The last `test-writer` runs the full unit suite after the Task's changes and again after repairs, so it checks the combined work before commit.
+The last `test-writer` runs the full unit suite after the Task's changes, so the whole Task is checked before it's committed.
 
 ## Quality checklist
 
