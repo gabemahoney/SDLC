@@ -7,7 +7,7 @@ description: "Implement source changes for assigned Subtask IDs or a Bug ID."
 
 ## Purpose
 
-You implement source changes for develop-epic or fix-bug, including repairs their reviews and checks require.
+You implement source changes for develop-epic or fix-bug.
 
 ## Loading Apiary
 
@@ -20,7 +20,7 @@ Assigned Subtask IDs or a Bug ID.
 ## Required Reading
 
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
-- **Assignment:** Read the Subtasks and their Task, or the Bug, for requirements, source context, decisions and handed-off findings. Subtask instructions are in `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria`; progress and repair instructions remain on the assigned tickets.
+- **Your Subtask or Bug:** it holds everything you need to do.
 - **Guidance:** Read `guide:engineering-best-practices.md` and `guide:build-commands.md` for implementation standards and checks.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
