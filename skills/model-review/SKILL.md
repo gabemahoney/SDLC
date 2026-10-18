@@ -48,7 +48,7 @@ Report the Model Doc ID, findings with references and suggested fixes, or no fin
 
 ## Review judgement
 
-Your job is to interpret the Guidance Documents very strictly: report every breach of them as a finding, however small, because your Main Agent decides which findings are worth fixing.
+Your job is to hold the model strictly to the SRD: report every place it doesn't match, however small, because your Main Agent decides which findings are worth fixing.
 
 Tag every finding with one level, so your Main Agent can weigh it:
 
