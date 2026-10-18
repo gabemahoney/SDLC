@@ -1,111 +1,51 @@
 ---
 name: test-review
-description: Review test files for quality, coverage, and correctness after task completion. Returns a simple list of improvement work items.
+description: "Review unit and integration tests for a Task, Idea or Bug ID and return findings."
 ---
 
-## Overview
+# test-review
 
-This skill reviews test files changed during some period of work.
-It returns a list of improvement work items for the caller to review.
-Be thorough but not pedantic - focus on substance over style.
+## Purpose
 
-## Parameters
+You review tests for develop-epic, idea-review or fix-bug. Start fresh for every review, including fix rounds, so each assessment is independent.
 
-You will receive some instructions on which set of work to review. It might be a Bees ticket idea, or a git worktree.
+## Loading Apiary
 
-## Your Mission
+You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
 
-Analyze changed test files and return a focused list of actionable improvement work items.
-Understand the work context from the user input.
-Review all commits and changed test files.
-- Focus only on test files. Ignore source code files and natural language documentation.
-If no test files were changed, output "No test files to review" and exit.
+## Input
 
-### Step 0: Understand project best practices
+A Task, Idea or Bug ID.
 
-Find any testing best practices and architecture documentation and understand them.
-Your job is to provide feedback where test work deviates from the guidance therein.
-You may presume the previous agents left the tests in a working state, you do not need to run them.
+## Required Reading
 
-### Step 1: Load the Full Test Suite
+- **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
+- **Your Task, Idea or Bug:** Read it; it holds everything you need to do.
+- **Guidance:** Read `guide:test-guide.md` for testing standards.
 
-Use Glob to find all test files in the project (e.g. `**/test_*.py`, `**/*.test.ts`, `**/*_test.go`, etc.).
-Read ALL of them — not just the changed ones.
-You need the full picture to identify cross-file duplication, redundancy, and parameterization opportunities.
-Changed files are your focus, but you can only spot bloat if you know what already exists elsewhere.
+Also read the Project's code, tests and any linked Research tickets as the work needs.
 
-### Step 2: Review Changed Test Files - Critical Eye
+## Gate
 
-With the full suite loaded, review the changed files and check for issues:
+Run only when your Task, Idea or Bug is `active`, because review precedes completion or acceptance. Otherwise, stop and report its status.
 
-#### 1. Coverage Gaps
-- New functions or behaviors in the codebase with no corresponding tests
-- Missing edge cases (empty inputs, null/None, boundary values, max/min)
-- Missing error/exception cases (only happy path tested)
-- Missing negative tests (things that should fail but aren't verified)
+## Steps
 
-#### 2. Test Correctness
-- Tests that assert the wrong thing (incorrect expectations)
-- Tests that would pass even if the code is broken (vacuous tests)
-- Tests checking implementation details instead of behavior
-- Mocks/stubs that don't accurately reflect real dependencies
-- Assertions that are too loose (e.g., `assert result is not None` when you should check the value)
+1. **Review the tests.** Read the whole test suite to assess changed tests for correctness, coverage and duplication against the assignment and testing guidance. Review by inspection without running tests, because the Main Agent owns suite execution.
+2. **Check completion.** Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
 
-#### 3. Test Structure & Quality
-- Tests that do too much in one test (should be split)
-- Poor test names (unclear what behavior is being verified)
-- Missing or incorrect setup/teardown
-- Shared mutable state between tests (causes flakiness)
-- Tests that depend on execution order
+## Child Agents
 
-#### 4. Bloat & Redundancy (HIGH PRIORITY)
-This is one of the most common and damaging issues in test suites. Be aggressive here.
-- **Parameterization opportunities**: Multiple test functions that run the same logic with different inputs — these should be collapsed into a single parameterized test (`@pytest.mark.parametrize`, `test.each`, etc.). Even 2-3 near-identical tests are a candidate.
-- **Duplicate coverage**: Tests that assert the same behavior already covered elsewhere — find and flag them specifically
-- **Copy-paste tests**: Blocks of nearly identical setup/assertion code repeated across tests — extract shared fixtures or helpers
-- **Over-specified tests**: Tests that assert many things that are already covered by other tests; trim to what's unique
-- When flagging these, always cite the specific test names and line numbers so the fix is unambiguous
+None: you perform the independent review yourself.
 
-#### 5. Stale/Obsolete Tests
-- Old tests that are no longer valid given code changes
-- Tests that test code which no longer exists
+## Writes
 
-#### 6. Test Anti-patterns
-- No assertions (test always passes)
-- `except` that swallows failures silently
-- Hardcoded sleep/delays (use mocks or event-based waits)
-- External I/O in unit tests (network calls, file system) without mocking
-- Tests that are too tightly coupled to internal implementation
+None: keep files and tickets unchanged, because executors own repairs and the Main Agent owns commits and records declined findings.
 
-### Step 3: Prioritize and Filter
+## Done
 
-Focus on important issues only:
-- **Include:** Missing coverage for new code, incorrect assertions, flaky patterns, stale tests
-- **Exclude:** Minor style issues, trivial naming nitpicks, personal preferences
+Return the ticket ID, findings and any review limitations to your Main Agent to judge. Give each finding its impact, test references and suggested fix so it can be acted on. State when there are no findings.
 
-Each work item should be:
-1. Actionable (can become a standalone Task)
-2. Specific (includes file:line where applicable)
-3. Important (not trivial)
-4. Concise (one line description)
-5. Applicable (understand requirements and don't aim for more than is needed)
+## Review judgement
 
-NOTE: It is expected that many times you will return no important issues.
-This is OK. Don't feel obliged to report things. Only report if there is something important.
-In fact, if you keep reporting things it will cause an infinite loop which is very bad!
-
-### Step 4: Generate Work Item List
-
-Output a simple numbered list directly in your response:
-
-```markdown
-## Test Review Work Items
-
-1. Parameterize test_validates_empty/test_validates_null/test_validates_whitespace in test_input.py:10-40 - identical logic, different inputs
-2. Remove test_create_returns_data() in test_orders.py:88 - duplicate of test_create_order():55 which already asserts the same fields
-3. Fix incorrect assertion in test_cache.py:88 - expects 200 but endpoint returns 201 on create
-4. Remove test_legacy_flow() in test_api.py:200 - tests deleted endpoint, always passes vacuously
-5. Mock external HTTP call in test_fetcher.py:55 - test makes real network request, causes flakiness
-```
-
-
+Focus on substantive, actionable issues in proportion to the requirements. Give cross-file duplication and unnecessary test complexity particular attention, because they increase maintenance without improving coverage. Cite the overlapping tests when reporting duplication so the correction is clear.
