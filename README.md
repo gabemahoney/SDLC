@@ -2,7 +2,7 @@
 
 Apiary is an opinionated workflow for taking an idea from inception to working software with Claude Code or Codex CLI. Skills describe the work; tickets hold requirements, decisions and progress.
 
-This branch contains the b.v38 workflow refactor. The skills Child Agents run are listed in [skill-specifics.md](skill-specifics.md) and are still to be written. Legacy skills and `agents/` remain available during the transition.
+This branch contains the b.v38 workflow refactor. req-review is a Child Agent skill; the remaining Child Agent skills are listed in [skill-specifics.md](skill-specifics.md) and are still to be written. Legacy skills and `agents/` remain available during the transition.
 
 ## Execution
 
@@ -63,9 +63,9 @@ For hives created by earlier Apiary releases, use the legacy `apiary-setup` migr
 
 Each workflow skill below runs in its own Main Agent. The Managing Intelligence chooses the next Run from the tickets and the previous Run's handoff. [Who runs which skill](docs/who-runs-which-skill.md) shows which Main Agent skills launch which Child Agent skills.
 
-**Ideas:** write-idea → write-prd → req-review → write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing.
+**Ideas:** write-idea → write-prd → write-srd → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing.
 
-write-srd settles technology and architecture. write-plan divides the Idea into Epics; write-epic plans Tasks and Subtasks. develop-epic coordinates implementation, tests, documentation and independent review, then commits each completed Task. Its Main Agent runs the Epic's `guide:build-commands.md ## Integration tests` and records their evidence. idea-review checks the combined work and files non-trivial findings in a feedback Epic for planning and implementation.
+write-prd and write-srd each launch a fresh req-review Child Agent every review round until nothing remains to fix. They leave the Doc `draft` for the Managing Intelligence to approve and set `defined`. write-srd settles technology and architecture. write-plan divides the Idea into Epics; write-epic plans Tasks and Subtasks. develop-epic coordinates implementation, tests, documentation and independent review, then commits each completed Task. Its Main Agent runs the Epic's `guide:build-commands.md ## Integration tests` and records their evidence. idea-review checks the combined work and files non-trivial findings in a feedback Epic for planning and implementation.
 
 configure-worktree prepares isolated worktrees and can launch the Managing Intelligence's assigned next Main Agent. teardown-worktree merges completed work, stops the assigned agents and removes their worktrees. Decisions and agent identities stay on the ticket so interrupted preparation or cleanup can resume.
 

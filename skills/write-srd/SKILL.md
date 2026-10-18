@@ -7,7 +7,7 @@ description: "Write or revise an Idea's Software Requirements Document (SRD) fro
 
 ## Purpose
 
-You follow write-prd and define what the software must do to meet the PRD. The SRD settles technology choices and architecture, contains no code, and feeds req-review and planning.
+You follow write-prd and define what the software must do to meet the PRD. The SRD settles technology choices and architecture, contains no code, and feeds planning.
 
 ## Loading Apiary
 
@@ -30,7 +30,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 ## Gate
 
-The Idea's PRD is `defined`, because the SRD builds on the approved product requirements. If it isn't, stop and suggest req-review.
+The Idea's PRD is `defined`, because the SRD builds on the approved product requirements. If it isn't, stop and return it to the Managing Intelligence for approval.
 
 ## Steps
 
@@ -50,8 +50,11 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
    Return changed or newly modelled groups to step 3 so models cover the final requirements, then save the SRD.
 
+5. **Review the SRD with `req-review` once its models pass.** Launch a fresh Child Agent each round so each review is independent. Judge every finding: fix it, decline a minor finding with its reason, or take a product question to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
+
 ## Child Agents
 
+- **`req-review`:** Launch after writing or revising the SRD and passing its models, fresh every round so each review is independent. Expect findings with references and suggested fixes, or none.
 - **`model-writer`:** Start fresh for each modelled SR group and reuse it for the write, fix and run cycle to preserve its knowledge of the model. Expect a Model Doc, checker results and any SRD bugs they show.
 - **`model-review`:** Start fresh for each review in step 3 so each assessment is independent. Expect findings with references and suggested fixes, or none.
 - **`researcher`:** Start fresh for each question needing real digging so its context stays focused on that question. Launch in parallel. Expect a cited answer in that Research ticket's Report.
@@ -67,7 +70,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 Report the SRD's ID, its Model Doc and Research ticket IDs, and anything left unaddressed with the reason. If the Plan was reset, report its ID.
 
-- If the SRD and all its modelling are complete, suggest “req-review”.
+- If the SRD, modelling and review are complete, say the SRD remains `draft` and awaits the Managing Intelligence's approval. The Managing Intelligence sets it `defined` on approval.
 - Otherwise, say what must be settled before you can finish.
 
 ## Style rules

@@ -10,7 +10,6 @@ define-bug: high
 fix-bug: medium
 write-prd: xhigh
 write-srd: max
-req-review: medium
 write-plan: max
 write-epic: xhigh
 develop-epic: medium
@@ -28,6 +27,7 @@ model-review: xhigh
 engineer-planner: high
 test-writer-planner: high
 doc-writer-planner: high
+req-review: medium
 code-review: xhigh
 test-review: xhigh
 doc-review: high

@@ -1,6 +1,6 @@
 # Skill specifics
 
-Skills still to write for b.v38: engineer, test-writer, doc-writer, engineer-planner, test-writer-planner, doc-writer-planner, code-review, test-review, doc-review, product-manager, researcher, model-writer and model-review. The existing review skills are legacy versions; these notes describe their replacements. Remove an entry once its finished skill absorbs it.
+Skills still to write for b.v38: engineer, test-writer, doc-writer, engineer-planner, test-writer-planner, doc-writer-planner, code-review, test-review, doc-review, product-manager, researcher, model-writer and model-review. req-review is already a Child Agent skill used by write-prd and write-srd. The other existing review skills are legacy versions; these notes describe their replacements. Remove an entry once its finished skill absorbs it.
 
 Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
@@ -10,7 +10,7 @@ Each entry names its specific inputs. Shared startup, settings, Protocol File lo
 
 The Main Agent resolves Thinking Levels under `~/.apiary/system/workflow.md`. These Child Agent skills launch no Agents.
 
-The workflow skills that launch Child Agents are write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill needs a Gate requiring a Main Agent parent, because that parent owns its assignment and judges the result. Include that Gate when moving these notes into the skill. All file changes remain uncommitted for the Main Agent to check and commit.
+The workflow skills that launch Child Agents are write-prd, write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill needs a Gate requiring a Main Agent parent, because that parent owns its assignment and judges the result. Include that Gate when moving these notes into the skill. All file changes remain uncommitted for the Main Agent to check and commit.
 
 ## engineer
 
@@ -120,7 +120,9 @@ Repair test failures from the calling skill's Integration gate; return source fa
 
 ## Managing Intelligence
 
-**Owned transitions:** **Idea:** the Managing Intelligence sets `done` after testing the Idea.
+**Owned transitions:** **PRD and SRD:** the Managing Intelligence sets each `defined` on approval.
+
+**Idea:** the Managing Intelligence sets a `draft` Idea `defined` once its PRD and SRD are both approved, and `done` after testing the Idea.
 
 **Other Doc (not PRD, SRD or Model Doc):** the Managing Intelligence creates it `draft` and owns its later status changes.
 

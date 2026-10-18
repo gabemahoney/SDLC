@@ -1,13 +1,13 @@
 ---
 name: req-review
-description: "Review an Idea's PRD or SRD, record findings and the Managing Intelligence's decisions on each Doc, and mark approved Docs defined."
+description: "Review one PRD or SRD as a Child Agent and return findings to write-prd or write-srd."
 ---
 
 # req-review
 
 ## Purpose
 
-You review draft requirements independently: the PRD before write-srd, then the SRD against the approved PRD before write-plan.
+You independently review one draft PRD or SRD for your Main Agent.
 
 ## Loading Apiary
 
@@ -15,52 +15,39 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-An Idea ID or one of its PRD or SRD Doc IDs.
+A PRD or SRD Doc ID.
 
 ## Required Reading
 
-- **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
-- **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
-- **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, record findings and decisions, and set their approved statuses.
-- **The Idea and every Doc child:** to see which Docs are `draft`, read unresolved findings and decisions, and review the current requirements.
+- **Settings and Protocol Files:** use those supplied by your Main Agent to read tickets and follow your Agent's instructions.
+- **The Doc, its Idea and supporting Docs:** to review the current requirements against their context and recorded decisions. For an SRD, read the approved PRD and Model Docs to check coverage and modelling evidence.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 
-Run only when both of these are true:
+Run only when all of these are true:
 
-- The Idea's PRD or SRD is `draft`. If neither is, there's nothing to review; say so and stop. If the Idea has no PRD, suggest write-prd.
-- The Idea isn't `done`, because the Idea has already been accepted. If it is, stop and say so.
-
-If this session wrote the PRD or SRD you'd review, stop and suggest a fresh session, so the review is independent.
+- You have a parent Main Agent running write-prd or write-srd, because it owns the assignment and judges your findings. If not, stop and say so.
+- The assigned Doc is `draft`, because you review requirements before approval. If not, stop and say so.
+- The Idea isn't `done`, because a completed Idea has already been accepted. If it is, stop and say so.
 
 ## Steps
 
-1. **Review whatever is `draft`:** the PRD, the SRD or both, using the Review criteria below. Check earlier findings against the current requirements. Record unresolved findings on the affected Doc for its writing skill; remove findings already fixed so the record shows only what remains.
-
-2. **Get the Managing Intelligence's decision.** The Managing Intelligence decides which findings to accept or decline and which Docs to approve. Record the readiness verdict and reasons for declined or unaddressed findings on the Doc so revision follows the decision. Only when the Managing Intelligence approves a PRD or SRD, set it `defined`. The PRD can be approved while the SRD still needs revision, so write-srd can build on settled product requirements.
-   - If revisions are needed, suggest write-prd for product changes or write-srd for software changes, then req-review again. A PRD change goes through approval before write-srd revises the SRD to match.
-   - Once both the PRD and SRD are `defined`, set a `draft` Idea `defined`.
+1. **Review the Doc** using the Review criteria below and its recorded findings and decisions.
+2. **Return your findings to your Main Agent** to judge and record on the Doc.
 
 ## Child Agents
 
-None: you review the Docs yourself.
+None: you review the Doc yourself.
 
 ## Writes
 
-You record readiness verdicts and declined or unaddressed findings with reasons on the Doc tickets. Requirements changes belong to the writing skills, so the review remains independent of the writers' work.
-
-- The PRD or SRD: set to `defined` when the Managing Intelligence approves it.
-- The Idea: set from `draft` to `defined` once its PRD and SRD are both `defined`.
+None: your Main Agent owns the Doc's record.
 
 ## Done
 
-Report the reviewed Doc IDs and any findings left unaddressed with the reason.
-
-- If revisions are needed, suggest the writing skill for the accepted findings, followed by req-review.
-- If the PRD is `defined` and there's no SRD, suggest write-srd.
-- If the PRD and SRD are both `defined`, suggest write-plan.
+Report the Doc ID and your findings to your Main Agent, or say there are none.
 
 ## Review criteria
 

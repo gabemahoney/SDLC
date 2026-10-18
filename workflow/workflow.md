@@ -13,6 +13,7 @@
   - **engineer-planner:** reads a Task's source context and proposes implementation Subtasks.
   - **test-writer-planner:** proposes testing Subtasks, fixtures and groups of tests that can be written in parallel.
   - **doc-writer-planner:** proposes a Task's documentation Subtasks.
+  - **req-review:** reviews one PRD or SRD independently for write-prd or write-srd.
   - **code-review:** checks source changes independently.
   - **test-review:** checks test quality, coverage and duplication independently.
   - **doc-review:** checks documentation changes and gaps independently.
@@ -76,13 +77,13 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` gives you.
 
-The Managing Intelligence sets Ideas and Bugs `done` on acceptance, returns Bugs to `draft` and manages Docs other than the PRD, SRD and Model Docs.
+The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, returns Bugs to `draft` and manages Docs other than the PRD, SRD and Model Docs.
 
 ## Flows
 
-**Idea:** write-idea → write-prd → req-review → write-srd → req-review → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
+**Idea:** write-idea → write-prd → write-srd → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
 
-An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part. Run each req-review in a fresh session, not the one that wrote the PRD or SRD, so the review is independent. req-review is optional: the Managing Intelligence may skip it and mark the PRD, the SRD and the Idea `defined` by hand.
+An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
 
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. Bugs whose fixes are returned go back to `draft` for define-bug.
 

@@ -1,8 +1,16 @@
 # Apiary: who runs which skill (b.v38)
 
 - **Managing Intelligence:** runs no skills itself. It starts one Main Agent per skill.
-- **Main Agent skills that launch no Child Agents:** project-setup, write-idea, write-prd, req-review, write-bug, define-bug, research, configure-worktree, teardown-worktree, release.
+- **Main Agent skills that launch no Child Agents:** project-setup, write-idea, write-bug, define-bug, research, configure-worktree, teardown-worktree, release.
 - **Main Agent skills that launch Child Agents:** one diagram each below.
+
+## write-prd
+
+```mermaid
+flowchart LR
+  M["write-prd<br/>(Main Agent)"]
+  M --> C0["req-review"]
+```
 
 ## write-srd
 
@@ -12,6 +20,7 @@ flowchart LR
   M --> C0["model-writer"]
   M --> C1["model-review"]
   M --> C2["researcher"]
+  M --> C3["req-review"]
 ```
 
 ## write-plan
@@ -71,4 +80,4 @@ flowchart LR
   M --> C3["product-manager"]
 ```
 
-Child Agent skill names are placeholders until those skills are written.
+req-review is a Child Agent skill. Other Child Agent skill names are placeholders until those skills are written.

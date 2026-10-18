@@ -7,7 +7,7 @@ description: "Write or revise an Idea's Product Requirements Document (PRD) from
 
 ## Purpose
 
-You follow write-idea and write the product requirements for write-srd, req-review and planning.
+You follow write-idea and write the product requirements for write-srd and planning.
 
 ## Loading Apiary
 
@@ -22,6 +22,7 @@ An Idea ID.
 - **Settings:** Project and default settings, resolved as `~/.apiary/system/workflow.md` describes, for this Run's configuration.
 - **PRD template:** the file at the path named by `setting:prd_template`. Why: to structure the PRD.
 - **Agent Protocol File:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` under `~/.apiary/system/protocols/`, for your own context readings and skill invocation.
+- **Launcher Protocol File:** `protocol:launcher.md`, selected as `~/.apiary/system/workflow.md` describes, for Child Agent operations and context readings.
 - **Ticket System Protocol File:** selected by `setting:ticket_system` as `~/.apiary/system/workflow.md` describes, to read the Idea and its Docs, and create or update its PRD.
 - **The Idea and its existing Docs:** to gather requirements, find the PRD to revise and determine whether an SRD exists.
 
@@ -48,9 +49,11 @@ None: the PRD can be written or revised at any Idea status.
 
 5. **Save the PRD** as described under Writes.
 
+6. **Review the PRD with `req-review`.** Launch a fresh Child Agent each round so each review is independent. Judge every finding: fix it, decline a minor finding with its reason, or take a product question to the Managing Intelligence. Expect many PRD findings to need product decisions. Save revisions and repeat until a review returns nothing left to fix. Then hand the PRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
+
 ## Child Agents
 
-None: you interview the Managing Intelligence and write the PRD yourself.
+- **`req-review`:** Launch after writing or revising the PRD, fresh every round so each review is independent. Expect findings with references and suggested fixes, or none.
 
 ## Writes
 
@@ -60,7 +63,7 @@ Create or update the Idea's Doc titled `PRD`. Set it `draft` because a new or re
 
 Report the PRD's ID and anything left unaddressed with the reason.
 
-Suggest “req-review”.
+The PRD remains `draft` and awaits the Managing Intelligence's approval. The Managing Intelligence sets it `defined` on approval.
 
 ## Style rules
 
