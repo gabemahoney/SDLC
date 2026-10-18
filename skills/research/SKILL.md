@@ -5,7 +5,7 @@ description: Track a research task as a Research Bee — file it, run its review
 
 # Overview
 
-Research tasks live as Bees in the Research hive. This skill moves a Research Bee through its states and keeps its record: the question, a Report child holding the findings, research artifacts in the Bee's folder, and a log of review rounds.
+Research tasks live as Bees in the Research hive. This skill moves a Research Bee through its states and keeps its record: the question, a Report child holding the findings, raw evidence in the wiki, and a log of review rounds.
 
 This skill does **not** define how the research is done. Follow the research guide below where it specifies methods; otherwise use whatever methods the question, the requester and the reviewer call for.
 
@@ -25,7 +25,7 @@ In Codex CLI, which has no AskUserQuestion, ask in plain text in your reply and 
 
 Before filing or continuing a Bee:
 1. Read `research_location` from `<Project Folder>/.apiary/project_settings.md`. If it is unset or the file is absent, read it from `~/.apiary/default_project_settings.md`.
-2. If set, use that path as the Research hive itself (the bees hive at that location), for the Bee, Report and artifacts. Ensure bees operations address that hive, not a different project's Research hive. If unset in both files, keep the existing lookup: use the Research hive path from `bees list-hives`.
+2. If set, use that path as the Research hive itself (the bees hive at that location), for the Bee and Report. Ensure bees operations address that hive, not a different project's Research hive. If unset in both files, keep the existing lookup: use the Research hive path from `bees list-hives`.
 3. Read `<Project Folder>/.apiary/research-guide.md`, or, if absent, `~/.apiary/research-guide.md`. Follow the selected guide for research methods, the Report's shape where specified, and required extra outputs after acceptance. If neither exists, use this skill's defaults.
 
 ## Prerequisites
@@ -72,17 +72,17 @@ Body sections:
 
 A round with no **Reviewer**/**Verdict** lines is awaiting review.
 
-## Bee folder and artifacts
+## Bee folder and raw evidence
 
 - The Bee's folder is `<research hive path>/<bee-id>/` (hive path resolved under Location and guide). The Report lives in `<bee-id>/<report-id>/`.
-- Put research artifacts (data, scripts, logs, screenshots, notes, excerpts) in `<research hive path>/<bee-id>/artifacts/`.
-- **An artifact must never look like a ticket**, because bees reads anything that looks like one as a ticket, and in the shared Research hive that breaks every bot's bees:
+- Write raw evidence (data, scripts, logs, screenshots, notes, excerpts, snapshots, PDFs) straight into `<wiki>/raw/<bee-id>/` during research. Use `~/research/wiki/` for `<wiki>` unless the research guide names another folder. This is the only evidence location; the Bee and Report link to it.
+- **Raw evidence must never look like a ticket.** Agents still read `raw/`, so within `<wiki>/raw/<bee-id>/`:
   - Never save a folder that holds a `.md` file of the same name (`x/x.md`). This includes copied repo files such as `workflow/workflow.md`.
   - Never save a `.md` file with ticket frontmatter.
   - Never name a folder like a ticket ID (`b.xxx`, `t1.xxx`).
   - Save snapshots of other files as `.txt` (e.g. `workflow.md.txt`) or as an archive (`.tgz`).
-  - Before finishing a round, check the `artifacts/` folder for any of these and fix them.
-- Keep secrets and tokens out of artifacts.
+  - Before finishing a round, check the raw evidence folder for any of these and fix them.
+- Keep secrets and tokens out of `raw/`.
 
 ## The Report
 
@@ -92,16 +92,16 @@ One t1 child of the Bee, titled `Report: <Bee title>`. Its body is a well-writte
 2. **Findings** — organised by theme or sub-question, with evidence.
 3. **Limitations** — what was not checked, uncertainty, open questions.
 4. **Conclusions / recommendations** — if the question calls for them.
-5. **References** — a numbered list. Every claim that is not common knowledge carries an inline `[n]` citation pointing here. Each entry names its source precisely: URL with access date, `path:line` or commit SHA, ticket ID, Slack permalink, or document title and section.
-6. **Artifacts** — each artifact linked by relative path from the Report's folder, `../artifacts/<file>`, with one line on what it is. Link artifacts from the text where they back a finding.
+5. **References** — a numbered list. Every claim that is not common knowledge carries an inline `[n]` citation pointing here. Each entry names its source precisely: URL with access date, `path:line` or commit SHA, ticket ID, Slack permalink, or document title and section. Link raw evidence by its path under `<wiki>/raw/<bee-id>/` (absolute or `~/research/wiki/raw/<bee-id>/<file>` for the default wiki), with one line on what each item is. Link evidence from the text where it backs a finding.
 
-Put bulky raw material in artifacts, not in the Report body.
+Put bulky raw material in `<wiki>/raw/<bee-id>/`, not in the Report body.
 
 ## LLM wiki
 
 After acceptance, update the wiki in step 6 on every accepted round, including revisions. Use `~/research/wiki/` unless the research guide names another folder; follow the guide's different or extra output requirements as well. This follows [Karpathy's LLM wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
-- For a new wiki, create `raw/` for preserved source material, kept unchanged; `pages/` for linked Markdown source summaries, topic and entity pages, comparisons and conclusions; `AGENTS.md` for structure and maintenance rules; `index.md` linking every page with a one-line description; and an append-only dated `log.md`.
+- Raw evidence is already in `raw/<bee-id>/`, written during research. Do not copy it from the ticket. Keep it unchanged during the wiki update and from acceptance onward.
+- For a new wiki, keep the existing `raw/` source material and create `pages/` for linked Markdown source summaries, topic and entity pages, comparisons and conclusions; `AGENTS.md` for structure and maintenance rules; `index.md` linking every page with a one-line description; and an append-only dated `log.md`.
 - Read `AGENTS.md` and `index.md` first. Integrate accepted findings into existing or new pages and cross-link related pages. Cite the sources and the accepted Report. Mark conflicting evidence and superseded claims on the page instead of silently overwriting them.
 - Update `index.md` and append a dated `log.md` entry naming the Research ticket, the Report and the pages changed.
 - Lint the pages touched for broken links, orphan pages, stale claims and unresolved contradictions; fix them. Where evidence cannot settle a contradiction, state it explicitly with its sources.
@@ -119,17 +119,17 @@ For `/research "<question>"`:
 
 1. Set the Bee to `active`.
 2. Create the Report child (t1), status `active`, with a placeholder body.
-3. Create the `artifacts/` folder if this research will have artifacts.
+3. Create `<wiki>/raw/<bee-id>/` if this research will have raw evidence, and link it from the Bee.
 
 ### 3. Work round
 
 1. Do the research for this round: the Question on the first round, the reviewer's latest request on later rounds.
-2. Save artifacts and update the Report body so it reflects all findings so far, not just this round's.
+2. Write raw evidence directly into `<wiki>/raw/<bee-id>/` and update the Report body so it reflects all findings so far, not just this round's. Keep the Bee and Report links to the evidence current.
 3. Append `### Round N — <date>` with its **Presented** line to the Bee's Review rounds.
 
 ### 4. Present
 
-Show the reviewer: the Bee ID, the round's **Presented** summary, the Report ID, and the paths to the Report file and `artifacts/`. Ask them to accept or say what more to do.
+Show the reviewer: the Bee ID, the round's **Presented** summary, the Report ID, and the paths to the Report file and `<wiki>/raw/<bee-id>/`. Ask them to accept or say what more to do.
 - Interactive: ask with AskUserQuestion (options: Accept / More work).
 - No-questions mode: end with `research: needs review: <bee-id> round <N> — reply "accept" or say what more to do`.
 
