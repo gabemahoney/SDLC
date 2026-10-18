@@ -1,6 +1,6 @@
 # Skill specifics
 
-Skills still to write for b.v38: doc-writer, engineer-planner, test-writer-planner, doc-writer-planner, code-review, test-review, doc-review, product-manager, researcher, model-writer and model-review. req-review is already a Child Agent skill used by write-prd and write-srd. The other existing review skills are legacy versions; these notes describe their replacements. Remove an entry once its finished skill absorbs it.
+Skills still to write for b.v38: engineer-planner, test-writer-planner, doc-writer-planner, code-review, test-review, doc-review, product-manager, researcher, model-writer and model-review. req-review is already a Child Agent skill used by write-prd and write-srd. The other existing review skills are legacy versions; these notes describe their replacements. Remove an entry once its finished skill absorbs it.
 
 Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
@@ -11,16 +11,6 @@ Each entry names its specific inputs. Shared startup, settings, Protocol File lo
 The Main Agent resolves Thinking Levels under `~/.apiary/system/workflow.md`. These Child Agent skills launch no Agents.
 
 The workflow skills that launch Child Agents are write-prd, write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill's Gate checks its assigned ticket's state, so work starts at the right stage. All file changes remain uncommitted for the Main Agent to check and commit.
-
-## doc-writer
-
-**Required Reading:** Assigned Subtasks or Bug, source/test diff and source findings on the ticket; `guide:doc-writing-guide.md`.
-
-**Owned transitions:** **Subtask:** the executor working it sets `active`, then `done`.
-
-**Specific rules:** Update documentation from the diff and recorded source findings under `guide:doc-writing-guide.md`, which determines the documents to change.
-
-**Subtask acceptance criteria (TODO, don't forget):** check your work against the Subtask's `## Acceptance criteria` before reporting it done, because they define when the Subtask is complete.
 
 ## engineer-planner
 
