@@ -76,7 +76,12 @@ A round with no **Reviewer**/**Verdict** lines is awaiting review.
 
 - The Bee's folder is `<research hive path>/<bee-id>/` (hive path resolved under Location and guide). The Report lives in `<bee-id>/<report-id>/`.
 - Put research artifacts (data, scripts, logs, screenshots, notes, excerpts) in `<research hive path>/<bee-id>/artifacts/`.
-- Do not name any folder in there like a ticket ID (`b.xxx`, `t1.xxx`), and do not create a `<dir>/<dir>.md` file pair: bees would take either for a ticket.
+- **An artifact must never look like a ticket**, because bees reads anything that looks like one as a ticket, and in the shared Research hive that breaks every bot's bees:
+  - Never save a folder that holds a `.md` file of the same name (`x/x.md`). This includes copied repo files such as `workflow/workflow.md`.
+  - Never save a `.md` file with ticket frontmatter.
+  - Never name a folder like a ticket ID (`b.xxx`, `t1.xxx`).
+  - Save snapshots of other files as `.txt` (e.g. `workflow.md.txt`) or as an archive (`.tgz`).
+  - Before finishing a round, check the `artifacts/` folder for any of these and fix them.
 - Keep secrets and tokens out of artifacts.
 
 ## The Report
