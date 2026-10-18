@@ -24,7 +24,9 @@ A Task, Epic, Idea or Bug ID.
 - **Your Task, Epic, Idea or Bug:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:doc-writing-guide.md` for which documents to maintain and their standards.
 
-Also read the Project's existing docs, and the code where the docs must describe it, as the work needs.
+- **All the Project's docs:** read every doc the doc-writing guide covers, so you can spot gaps, leftovers and duplicates anywhere.
+
+Also read the code where the docs must describe it, as the work needs.
 
 ## Gate
 
@@ -32,7 +34,7 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
 
 ## Steps
 
-1. **Check the docs match the changes.** Following `guide:doc-writing-guide.md`, check for the changes being reviewed, including docs nobody touched:
+1. **Check the docs match the changes.** Following `guide:doc-writing-guide.md`, check for the changes being reviewed:
    - Is a new doc needed that's missing?
    - Does any doc need updating, and which sections?
    - Does any doc need trimming, and which sections?
