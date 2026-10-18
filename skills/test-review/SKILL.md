@@ -55,6 +55,6 @@ Focus on substantive, actionable issues in proportion to the requirements. Give 
 
 Tag every finding with one level, so your Main Agent can weigh it:
 - **blocker:** what's there is wrong: false, broken, or it breaks a contract. Someone relying on it would be misled or fail.
-- **suggestion:** it works as far as it goes, but will go wrong in a case it doesn't cover. The fix changes what it does or says.
-- **nit:** it's true and complete; the fix just makes it better without changing what it does or says.
+- **suggestion:** it works, but it will go wrong in a case it doesn't cover, or it's hard to maintain, for example duplicated or needlessly complex.
+- **nit:** it works and is easy to maintain; the fix is cosmetic, such as wording or naming.
 
