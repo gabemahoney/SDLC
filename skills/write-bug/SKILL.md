@@ -33,9 +33,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Prepare the report.** Follow the selected intake and `guide:bug-writing-guide.md`, using the supplied information. With interview intake, the Managing Intelligence supplies the initial report and decides what to add.
-
-2. **File the Bug** as described under Writes.
+1. **File the report.** Follow the selected intake and create the Bug as described below. Preserve the reporter's symptom and supplied reproduction, including inputs, setup and expected and actual behaviour, so define-bug investigates the reported failure.
 
 ## Child Agents
 
@@ -43,12 +41,8 @@ None: you file the Bug yourself.
 
 ## Writes
 
-A new Bug in the Bugs store, with the supplied report under `## Report`, structured by `guide:bug-writing-guide.md`, and status `draft`, because define-bug still needs to complete and validate it. If the intake names a Resolver, save the input under `## Source References` as a Source Reference so define-bug can read the original report.
+A new Bug in the Bugs store, with `## Report` structured by `guide:bug-writing-guide.md`. Set it `draft`, because define-bug completes and validates it. If the intake names a Resolver, keep its input as a Source Reference so define-bug can read the original report.
 
 ## Done
 
-Report the Bug's ID. Next step: define-bug.
-
-## Writing guidance
-
-Preserve the reporter's exact symptom and any supplied reproduction, including inputs, setup and expected and actual behaviour, so define-bug investigates the reported failure.
+Report the Bug's ID and anything left unresolved with reasons. Suggest define-bug.
