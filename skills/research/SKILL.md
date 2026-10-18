@@ -7,7 +7,7 @@ description: "Research a question and write the answer, with sources, in a Repor
 
 ## Purpose
 
-You research a question and write the answer, with sources, in a Report ticket under its Research ticket. You revise the Report in review rounds until the Managing Intelligence accepts it, recording the evidence and each round on the Research ticket.
+You research a question and write the answer, with sources, in a Report. The question lives on a Research ticket, and the Report is a child ticket of that Research ticket. You revise the Report in review rounds until the Managing Intelligence accepts it, recording the evidence and each round on the Research ticket.
 
 ## Loading Apiary
 
