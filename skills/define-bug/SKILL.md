@@ -60,9 +60,8 @@ Update the Bug in the Bugs store, setting its status in step 3:
 
 Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, and point `## Reproduction` at the attached copies, then delete `<Project Folder>/.scratch/<Bug ID>/`.
 
-Set or replace `thinking_level:<label>` when confirming the Bug, because it sets how hard fix-bug's `engineer`, `test-writer` and `doc-writer` think. Match it to how hard the fix is and what a mistake in it would cost:
-- `low`: trivial, mechanical fixes such as wording or a config value, where a mistake is obvious and cheap.
-- `medium`: routine fixes in one place that follow an established pattern.
+Set or replace `thinking_level:<label>` when confirming the Bug, because it sets how hard fix-bug's `engineer`, `test-writer` and `doc-writer` think. Use `medium` or above, because even a small fix goes through reproduction, regression tests and review. Match it to how hard the fix is and what a mistake in it would cost:
+- `medium`: routine fixes in one place that follow an established pattern, including trivial ones such as wording or a config value.
 - `high`: fixes that need real design judgement, touch several modules, or change behavior other code relies on.
 - `xhigh`: fixes where a mistake is costly or hard to spot, such as concurrency, security, data corruption or an interface between components.
 - `max`: the hardest, highest-risk fixes only, because it is the slowest and most expensive.

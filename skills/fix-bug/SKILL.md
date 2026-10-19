@@ -21,7 +21,7 @@ A Bug ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Bug and its Dependencies:** for confirmed behaviour, reproduction, Thinking Level, progress and decisions.
+- **Bug and its Dependencies:** for confirmed behaviour, reproduction, progress and decisions, and the Thinking Level to launch your Child Agents at.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for reviews, verification and commit and push permissions in each affected repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
