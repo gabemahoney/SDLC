@@ -35,9 +35,9 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Complete the report.** Follow `guide:bug-writing-guide.md` using the supplied evidence, Source References and earlier decisions, so fix-bug has one current account of the defect. The Managing Intelligence settles unclear expected behaviour.
+1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Keep scratch scripts and inputs outside repos, so repository files stay unchanged. For a returned fix, rerun the recorded reproduction against the current code, with any new evidence, because the earlier result predates the fix. If you can't reproduce it without editing the repo, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
 
-2. **Validate the behaviour.** Reproduce it in the main checkouts under the Bug-writing guidance. Keep scratch scripts and inputs outside repos so validation leaves repository files unchanged. For a returned fix, use the retained scenario and new evidence against current software, because the earlier validation predates the repair. If reproduction is inconclusive or requires repository edits, use source evidence to settle the report.
+2. **Write up the report** under `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
 3. **Record the outcome** using the Bug sections below.
    - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set `defined` for fix-bug.
