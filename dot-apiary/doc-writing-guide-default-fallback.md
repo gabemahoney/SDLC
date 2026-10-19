@@ -4,15 +4,19 @@ Apiary uses this file only when the Project has no `guide:doc-writing-guide.md` 
 
 ## The README
 
-The README is for people who want to install and use the Project. A reader should get through it in about a minute and have the Project running in about five.
+The README is for people who want to install and run the Project. A reader should get through it in under a minute and have the Project running in five. Above all, keep it short and simple: how to install, and how to use.
 
-- Cover installing and using it, on the main path. Leave out implementation details, alternative installs, error cases, migration, backups and debugging.
-- Use concrete commands readers can copy and paste. Don't explain common tools.
-- Describe the Project as it is now, not its history or legacy features.
+- No implementation details.
+- No code. Command lines are fine, and should be concrete and copy-pasteable.
+- The happy path only: no theoretical error cases or alternative installs.
+- Don't explain common tools, such as bash or a package manager.
+- No migration, backups or debugging.
+- The Project as it is now: no legacy features and nothing about the past.
+- Don't point to the extended docs; readers can find them.
 
 ## Architecture docs
 
-Keep architecture docs current with the system's components, how they interact, and the design decisions behind them, so readers can find the design without reading all the code. Use the Project's existing architecture docs, or `docs/architecture/` if it has none. Describe the design rather than reproducing code, which readers can open themselves.
+Architecture docs live in `docs/architecture/`. They set the architecture guidelines for their area and serve as a quick reference to the design: its components, how they interact, and the decisions behind them. Don't include code, because agents can read the code themselves.
 
 ## Other guides
 
