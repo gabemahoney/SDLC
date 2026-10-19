@@ -1,13 +1,13 @@
 ---
 name: define-bug
-description: "Validate a draft Bug from its report, Source References and code, preserve its reproduction, and mark it defined or invalid. Takes a Bug ID."
+description: "Reproduce a draft Bug to confirm it's real, record how to reproduce it, and mark it defined or invalid. Takes a Bug ID."
 ---
 
 # define-bug
 
 ## Purpose
 
-You validate a Bug report and preserve the evidence and reproduction for fix-bug. You also revalidate Bugs whose fixes the Managing Intelligence returned.
+You reproduce a reported Bug to confirm it's real, and record how you reproduced it so fix-bug can rerun it. You also re-check Bugs whose fixes the Managing Intelligence returned.
 
 ## Loading Apiary
 
