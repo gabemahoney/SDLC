@@ -1,10 +1,10 @@
 # Apiary 🐝
 
-Apiary is a workflow of skills for Claude Code. It takes an Idea from PRD to SRD, Plan, Epics, code and review, and fixes Bugs. A Managing Intelligence (you, or a bot acting for you) runs it, launching a Main Agent for each skill. Main Agents launch Child Agents to write and review code, tests and docs.
+Apiary is a workflow of skills for Claude Code and Codex CLI. It takes an Idea from PRD to SRD, Plan, Epics, code and review, and fixes Bugs. A Managing Intelligence (you, or a bot acting for you) runs it, launching a Main Agent for each skill. Main Agents launch Child Agents to write and review code, tests and docs.
 
 ## Requirements
 
-- Claude Code
+- Claude Code or Codex CLI
 - [bees](https://github.com/gabemahoney/bees) for tickets
 - [agent-director](https://github.com/gabemahoney/agent-director) and tmux to launch agents
 
@@ -13,7 +13,7 @@ Apiary is a workflow of skills for Claude Code. It takes an Idea from PRD to SRD
 ```bash
 git clone https://github.com/gabemahoney/apiary ~/projects/apiary
 cd ~/projects/apiary
-./install.sh
+./install.sh --agent both
 ```
 
 ## Set up a Project
