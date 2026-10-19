@@ -7,7 +7,7 @@ description: "Create or reuse the git worktrees an Idea or Epic needs, and recor
 
 ## Purpose
 
-You create or reuse the git worktrees an Idea or Epic needs, one per repo it changes, and record them on its ticket. The Managing Intelligence then launches the next Main Agent in them, and teardown-worktree uses your record to merge the work back and clean up.
+You create or reuse the git worktrees an Idea or Epic needs, one per repo it changes, and record them on its ticket.
 
 ## Loading Apiary
 
