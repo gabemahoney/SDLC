@@ -22,7 +22,6 @@ An Idea ID.
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and `protocol:ticket.md`, for operations.
 - **The Idea:** its `## Worktrees` record, for each repo's worktree, branch and base branch.
-- **Guidance:** `guide:release-guide.md`, for permission to commit and merge.
 
 ## Gate
 
