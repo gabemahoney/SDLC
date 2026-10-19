@@ -56,7 +56,7 @@ Run each skill below in a fresh session, such as `claude "/write-idea"`, in the 
 
 ## Customize
 
-project-setup writes these into your Project's `.apiary/` folder; edit them there, or put copies in `~/.apiary/` to apply them to every Project.
+Run project-setup to change these, or edit the files in your Project's `.apiary/` folder. Put a guide in `~/.apiary/` to use it in every Project.
 
 - **Guides:** your own rules for engineering, testing, docs, bug reports, research, build commands and releases. Apiary ships a default for each.
 - **Release:** how your work ships, and whether Apiary may push, tag or publish. By default it only merges to your local main.
