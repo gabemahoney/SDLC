@@ -22,7 +22,6 @@ An Idea ID.
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and `protocol:ticket.md`, for operations.
 - **The Idea and its Plan:** for the repos the work changes and any earlier worktree record.
-- **Guidance:** `guide:release-guide.md`, for permission to commit in main checkouts.
 
 ## Gate
 
@@ -30,7 +29,7 @@ Run only when the Idea is `defined` or `active`, so worktrees serve work that's 
 
 ## Steps
 
-1. **Settle the setup.** Find the repos the Plan changes. Base each branch on its main checkout's current branch unless the Managing Intelligence says otherwise.
+1. **Settle the setup.** Find the repos the Plan changes. Base each branch on its main checkout's current branch unless the Managing Intelligence says otherwise. Check each main checkout is clean, and warn the Managing Intelligence about any that isn't, because the new branch leaves uncommitted changes out.
 2. **Create or reuse the worktrees** under the Worktree rules below.
 3. **Record them** on the Idea.
 
@@ -41,7 +40,7 @@ None: you prepare the worktrees yourself.
 ## Writes
 
 - **The Idea:** under `## Worktrees`, each repo's path, branch, and base branch and commit, so develop-epic, idea-review and teardown-worktree can find the work. Leave its status unchanged.
-- **Repos:** create branches and worktrees. Commit in a main checkout only when the Managing Intelligence asks.
+- **Repos:** create branches and worktrees.
 
 ## Done
 
@@ -52,4 +51,3 @@ Report the Idea's ID and its worktree paths.
 - Name each branch after the Idea's ID with dots replaced by underscores, and put each worktree at the path `~/.apiary/system/workflow.md` defines, so later skills can find them.
 - Reuse a worktree only if it's in the right repo on the Idea's branch, and keep its changes, because they're the Idea's work in progress.
 - If the path holds other work, or the branch exists without its worktree, stop for the Managing Intelligence, to protect that work.
-- If a main checkout has uncommitted changes, ask the Managing Intelligence whether to commit them first, because the new branch would leave them out.
