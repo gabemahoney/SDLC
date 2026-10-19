@@ -14,12 +14,12 @@ Use the Managing Intelligence's recorded skill and ticket, with the model and ef
 
 ```sh
 # Claude Code
-agent-director spawn --template '<template>' --agent claude --cwd '<checkout>' -- --model '<model>' --effort '<effort>' '/<skill> <ticket-id>'
+agent-director spawn --template '<template>' --agent claude --cwd '<checkout>' -- --model '<model>' --effort '<effort>' '/<skill> <ticket-id> <anything the skill says to pass>'
 # Codex
-agent-director spawn --template '<template>' --agent codex --cwd '<checkout>' -- --model '<model>' -c 'model_reasoning_effort="<effort>"' '$<skill> <ticket-id>'
+agent-director spawn --template '<template>' --agent codex --cwd '<checkout>' -- --model '<model>' -c 'model_reasoning_effort="<effort>"' '$<skill> <ticket-id> <anything the skill says to pass>'
 ```
 
-Arguments after `--` replace the template's `agent_args`, so put the template's own `agent_args` first, or the agent loses its sandbox and prompt. Record the returned `instance_id`.
+Arguments after `--` replace the template's `agent_args`, so copy them from `~/.config/agent-director/templates/<template>.toml` first, swapping in your model and effort, or the agent loses its sandbox and prompt. Record the returned `instance_id`.
 
 ## Launching a Child Agent
 
@@ -38,11 +38,11 @@ agent-director status --instance-id '<id>'
 agent-director read-pane --instance-id '<id>' --n-lines 80
 ```
 
-`waiting` means it finished its turn: read the pane for its report or question. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped, though `missing` isn't proof it has exited. A Codex Child Agent can stay `working` after a model error, so also read the pane if it hasn't changed for a long time.
+`waiting` means its turn has ended: read the pane, and treat it as done only once the pane shows its report or question, because a newly launched or prompted agent is also briefly `waiting`. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped, though `missing` isn't proof it has exited. A Codex Child Agent can stay `working` after a model error, so also read the pane if it hasn't changed for a long time.
 
 ## Resuming a Child Agent
 
-For a `waiting` child, send its next assignment with `agent-director send-keys --instance-id '<id>' --text 'Continue from <ticket-id>.'`. For one that has exited, run `agent-director resume --instance-id '<id>'` from your own session first.
+For a `waiting` child, send its next assignment with `agent-director send-keys --instance-id '<id>' --text '<next assignment>'`. For one that has exited, run `agent-director resume --instance-id '<id>'` from your own session first.
 
 ## Reading a Child Agent's context
 
