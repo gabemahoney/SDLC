@@ -1,6 +1,6 @@
 ---
 name: write-idea
-description: "File a new Idea from a freeform description of the work or the Project's `setting:new_idea_intake`."
+description: "File a new Idea from what the Managing Intelligence gives you: plain text describing the work, or input for the Project's `setting:new_idea_intake`."
 ---
 
 # write-idea
@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A description of the work: either freeform, or in the form `setting:new_idea_intake` asks for.
+Whatever the Managing Intelligence gives you about the work: either plain text describing it, or input of the kind `setting:new_idea_intake` takes, such as a link.
 
 ## Required Reading
 
@@ -29,7 +29,7 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Take in the work.** If the input is what the intake takes, follow the intake's instructions. Otherwise, use the freeform description. If you still can't tell what the work is, ask the Managing Intelligence.
+1. **Take in the work.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, treat the input as a plain-text description of the work. If you still can't tell what the work is, ask the Managing Intelligence.
 2. **File the Idea** as Writes describes.
 
 ## Child Agents
@@ -38,7 +38,7 @@ None: you file the Idea yourself.
 
 ## Writes
 
-A new Idea in the Ideas store, status `draft`, with `## Description` holding the account of the work from the intake or the freeform description. Keep the link or path the description came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so write-prd can read the original.
+A new Idea in the Ideas store, status `draft`, with `## Description` saying what the work is, from the intake or from the plain-text input. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so write-prd can read the original.
 
 ## Done
 

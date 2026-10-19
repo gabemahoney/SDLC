@@ -1,6 +1,6 @@
 ---
 name: write-bug
-description: "File a new Bug from a freeform defect report or the Project's `setting:new_bug_intake`."
+description: "File a new Bug from what the Managing Intelligence gives you: plain text describing the defect, or input for the Project's `setting:new_bug_intake`."
 ---
 
 # write-bug
@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A defect report: either freeform, or in the form `setting:new_bug_intake` asks for.
+Whatever the Managing Intelligence gives you about the defect: either plain text describing it, or input of the kind `setting:new_bug_intake` takes, such as a link.
 
 ## Required Reading
 
@@ -30,7 +30,7 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Take in the report.** If the input is what the intake takes, follow the intake's instructions. Otherwise, use the freeform report. If you still can't tell what goes wrong, ask the Managing Intelligence.
+1. **Take in the report.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, treat the input as a plain-text description of the defect. If you still can't tell what goes wrong, ask the Managing Intelligence.
 2. **File the Bug** as Writes describes.
 
 ## Child Agents
@@ -39,7 +39,7 @@ None: you file the Bug yourself.
 
 ## Writes
 
-A new Bug in the Bugs store, status `draft`, with `## Report` arranged as `guide:bug-writing-guide.md` says. Keep the link or path the report came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so define-bug can read the original.
+A new Bug in the Bugs store, status `draft`, with `## Report` arranged as `guide:bug-writing-guide.md` says. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so define-bug can read the original.
 
 ## Done
 
