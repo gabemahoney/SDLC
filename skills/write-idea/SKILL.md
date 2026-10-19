@@ -29,7 +29,7 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Take in the work.** If the input is what the intake takes, follow the intake's instructions. Otherwise, use the freeform description as given. If you still can't tell what the work is, ask the Managing Intelligence.
+1. **Take in the work.** If the input is what the intake takes, follow the intake's instructions. Otherwise, use the freeform description. If you still can't tell what the work is, ask the Managing Intelligence.
 2. **File the Idea** as Writes describes.
 
 ## Child Agents
@@ -38,7 +38,7 @@ None: you file the Idea yourself.
 
 ## Writes
 
-A new Idea in the Ideas store, status `draft`, with `## Description` holding the account of the work from the intake or the freeform description. Keep any link or path the input points to as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so write-prd can read the original.
+A new Idea in the Ideas store, status `draft`, with `## Description` holding the account of the work from the intake or the freeform description. Keep the link or path the description came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so write-prd can read the original.
 
 ## Done
 

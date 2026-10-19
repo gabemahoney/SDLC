@@ -30,8 +30,8 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Take in the report.** If the input is what the intake takes, follow the intake's instructions. Otherwise, use the freeform report as given. If you still can't tell what goes wrong, ask the Managing Intelligence.
-2. **File the Bug** as Writes describes, keeping the reporter's symptom and reproduction, so define-bug investigates the failure they reported.
+1. **Take in the report.** If the input is what the intake takes, follow the intake's instructions. Otherwise, use the freeform report. If you still can't tell what goes wrong, ask the Managing Intelligence.
+2. **File the Bug** as Writes describes.
 
 ## Child Agents
 
@@ -39,7 +39,7 @@ None: you file the Bug yourself.
 
 ## Writes
 
-A new Bug in the Bugs store, status `draft`, with `## Report` arranged as `guide:bug-writing-guide.md` says. Keep any link or path the input points to as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so define-bug can read the original.
+A new Bug in the Bugs store, status `draft`, with `## Report` arranged as `guide:bug-writing-guide.md` says. Keep the link or path the report came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so define-bug can read the original.
 
 ## Done
 
