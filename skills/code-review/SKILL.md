@@ -1,110 +1,60 @@
 ---
 name: code-review
-description: Perform code review of changed files after task completion. Returns a simple list of improvement work items.
+description: "Review source changes for a Task, Idea or Bug ID and return findings."
 ---
 
-## Overview
+# code-review
 
-This skill performs code review on files changed during a Task. 
-It returns a list of improvement work items for the caller to review, 
-Be thorough but not pedantic - focus on substance over style.
+## Purpose
 
-## Parameters
+You review source changes for develop-epic, idea-review or fix-bug. Start fresh for every review, including fix rounds, so each assessment is independent.
 
-You will receive some instructions on which set of work to review. It might be a Bees ticket idea, or a git worktree.
+## Loading Apiary
 
-## Your Mission
+You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
 
-Analyze changed code files and return a focused list of actionable improvement work items.
-Understand the work context from the user input.
-Review all commits and changed files.
-- Focus only on source code files. Ignore natural language documentation and unit test code.
-If no code files were changed, output "No code files to review" and exit.
+## Input
 
-### Step 0: Understand project best practices
-Find any engineering best practices and architecture documentation and understand them. 
-Your job is to provide feedback in any case where the work done deviates from the guidance therein.
-**Human Pro Tip**: Place references to you project specific best practices documents in `project/.Claude.md`
+A Task, Idea or Bug ID.
 
-### Step 1: Run Linter
+## Required Reading
 
-If the project has linters/formatters configured (ruff, black, eslint, etc.), run them:
-Note any linting issues that should be fixed.
+- **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
+- **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
+- **Your Task, Idea or Bug:** Read it; it holds everything you need to do.
+- **Guidance:** Read `guide:engineering-best-practices.md` and `guide:build-commands.md` for review standards and lint commands.
 
-### Step 2: Review Changed Files - Critical Eye
+Also read the Project's code, tests and any linked Research tickets as the work needs.
 
-For each changed file, use Read to load it and check for issues across these categories (in addition to any project specific best practice):
+## Gate
 
-#### 1. Dead/Obsolete Code
-- Commented-out code that should be removed
-- Unused functions, variables, or imports
-- Old implementations left behind
-- Debugging code (print statements, console.log, TODO comments)
+Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because review comes before it's finished. Otherwise, stop and report its status.
 
-#### 2. Architecture & Design
-- Inconsistent interfaces (does this match existing patterns?)
-- Inappropriate mixing of concerns (business logic, API, data access should be separated)
-- Unnecessary abstractions (YAGNI - You Aren't Gonna Need It)
-- Inconsistent patterns with the rest of the codebase
+## Steps
 
-#### 3. Security & Correctness (CRITICAL)
+1. **Review the source changes and the code around them.** Assess correctness, security and engineering quality against the assignment and engineering guidance. Also review the code that calls the changed code and the code it calls, because a change can break its neighbours without breaking itself. Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion.
+2. **Include lint findings.** Use `guide:build-commands.md ## Lint` in check-only mode so lint issues inform the review without changing files. The Main Agent owns full-suite runs.
 
-Check for security vulnerabilities:
-- Input validation: All user inputs should be validated (Pydantic models, type checks)
-- SQL queries: Must use parameterized queries (?, :param), never f-strings
-- File paths: Use Path(), validate against workspace
-- API keys: Loaded from environment/config, never hardcoded
-- Authentication: Proper checks on protected endpoints
-- Error messages: No sensitive data in error responses
+## Child Agents
 
-#### 4. Code Quality
-- Long/complex functions (>50 lines, deep nesting >3 levels)
-- Repeated code blocks (DRY violations)
-- Magic numbers/strings (should be named constants)
-- Poor variable/function names (unclear purpose)
-- Missing comments for complex logic
-- Bare except clauses (anti-pattern)
+None: you perform the independent review yourself.
 
-#### 5. Error Handling
-- Bare except clauses (`except:` instead of specific exceptions)
-- Resources not properly cleaned up (files/connections should use context managers)
-- Missing error handling in critical paths
-- Poor error messages (not actionable for users)
+## Writes
 
-#### 6. Performance
-- Database queries in loops (N+1 problem)
-- Loading entire files into memory (should stream)
-- No connection pooling for databases
-- Synchronous I/O in async functions
-- Missing cache invalidation
+None: keep files and tickets unchanged, because executors own repairs and the Main Agent owns commits and records declined findings.
 
-### Step 8: Prioritize and Filter
+## Done
 
-Focus on important issues only:
-- **Include:** Security vulnerabilities, logic errors, missing tests, architecture problems
-- **Exclude:** Trivial style issues, minor naming nitpicks, personal preferences
+Report the ticket ID, findings and any review limitations to your Main Agent as `protocol:launcher.md` describes. Give each finding its impact, source reference and suggested fix so it can be acted on. State when there are no findings.
 
-Each work item should be:
-1. Actionable (can become a standalone Task)
-2. Specific (includes file:line where applicable)
-3. Important (not trivial)
-4. Concise (one line description)
-5. Applicable (understand requirements and dont aim for more than is needed)
+## Review judgement
 
-NOTE: It is expected that many times you will return no important issues.
-This is OK. Don't feel obliged to report things. Only report if there is something important.
-In fact, if you keep reporting things it will cause an infinite loop which is very bad!
+Your job is to interpret the Guidance Documents very strictly: report every breach of them as a finding, however small, because your Main Agent decides which findings are worth fixing.
 
-### Step 9: Generate Work Item List
+Focus on substantive, actionable issues in the assigned changes, in proportion to the requirements. Separate engineering defects from personal style preferences so review does not create unnecessary work.
 
-Output a simple numbered list directly in your response:
-
-```markdown
-## Code Review Work items
-
-1. Fix SQL injection in transactions.py:85 - use parameterized queries instead of f-strings
-2. Add input validation to cache.py:45 endpoint - validate user input format
-3. Refactor process_transactions() in llm_categorizer.py:120 - function is 60 lines, extract helper functions
-4. Remove commented-out code in llm_categorizer.py:200-210
-```
+Tag every finding with one level, so your Main Agent can weigh it:
+- **blocker:** it's wrong: broken, insecure, or it breaks a contract.
+- **suggestion:** it's fragile or hard to maintain: misses a case, duplicated, or needlessly complex.
+- **nit:** it's a matter of style, such as naming or formatting.
 

@@ -1,95 +1,92 @@
 ---
 name: write-prd
-description: Write a Product Requirements Document (PRD) for a development effort. Adds or modifies a PRD Bee to a Bee in the Ideas hive that downstream skills (write-srd, req-review, hatch-epic) can consume.
+description: "Write or revise an Idea's Product Requirements Document (PRD) from its context, an interview, and findings and change requests recorded on its tickets."
 ---
 
-# Write PRD
+# write-prd
 
-## Overview
+## Purpose
 
-The caller wants to write a PRD — a plain-english description of work to be done, stated as requirements. 
-The PRD is the origin document for a development effort.
-Downstream skills will consume it:
+You follow write-idea and write the product requirements for write-srd and planning.
 
-- `/write-srd` — turns the PRD into software requirements
-- `/req-review` — reviews the PRD for completeness and executability
-- `/hatch-epic` — breaks the work into Epics, Tasks, and Subtasks
+## Loading Apiary
 
-The PRD must be thorough enough that an agent swarm can execute the work
-autonomously, without needing to ask the user clarifying questions.
+Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
 
-You are the **calling agent**. You run the interview with the user, then dispatch the drafting to the `apiary-prd-writer` subagent — a named agent definition installed in `.claude/agents/`, spawned via the Agent tool. You do not write the PRD yourself.
+## Input
 
-## Workflow
+An Idea ID.
 
-### Approval guard
+## Required Reading
 
-Run this first: no question, dispatch or ticket change comes before it. If you were not given an Idea Bee ID, ask for it as step 1 says, then run this before anything else.
+- **Settings:** Project and defaults, for configuration.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Idea and its existing Docs:** for requirements and existing PRD and SRD context.
+- **Template:** `setting:prd_template`, for PRD structure.
+- **Resolvers:** selected by Source Reference kind, for source context.
 
-A PRD is written only once the User has approved the Idea: the Idea Bee's `tags` (`bees show-ticket --ids <idea-id>`) must include `approved:yes`.
+Also read the Project's code, tests and any linked Research tickets as the work needs.
 
-If the tag is missing, stop at once: change no ticket and dispatch nothing. When given `--no-questions`, or when `AGENT_DIRECTOR_INSTANCE_ID` is set, end your output with exactly this line; otherwise tell the user the same and stop:
-- `write-prd: needs input: <idea-id> lacks approved:yes — the User must approve it`
+## Gate
 
-This skill never adds `approved:yes`. Only the User approves.
+None: the PRD can be written or revised at any Idea status.
 
-### 1. Determine the Idea Bee
+## Steps
 
-The PRD will be a child of a Bee in the Ideas hive.
-If the user did not provide a Bee id, ask it which Idea Bee you should build the PRD under.
+1. **Gather requirements** from the Idea, Source References, existing Docs and recorded change requests.
 
-### 2. Gather Requirements
+2. **Interview the Managing Intelligence.** Settle the problem, outcomes, acceptance criteria, boundaries, edge cases, errors, UI/UX, performance, security and dependencies as the Idea needs. Establish users, operators and deployment constraints that affect the product. Follow dependent decisions only where they change product behaviour. Look up facts; ask the Managing Intelligence for decisions. Finish when they confirm the shared understanding; decisions they leave unresolved become Open Questions.
 
-You and the user may already have been chatting about an idea, if so, collect as much
-information as you already have.
+3. **Write or revise the PRD** using the body sections in `setting:prd_template` and the craft guidance below.
 
-Then, interview the user to understand the work. Ask focused questions to fill gaps.
+4. **Review the whole draft** for succinctness, product requirements, dropped ideas and the Quality checklist, in that order. Repeat all four checks after changes until a full round changes nothing, so revisions receive the same scrutiny as a first draft.
+   - Fold changes into the affected requirements so readers find one current account. Cut superseded text and padding while preserving current requirements, acceptance criteria, supplied edge cases and Managing Intelligence decisions. Only acceptance criteria and summaries may repeat behaviour.
+   - State what people need from the product; software design belongs in the SRD.
+   - Include a boundary from a dropped idea only if the Managing Intelligence wants it stated.
 
-Key questions to explore:
-- What is the Problem Statement?
-- What are the Acceptance Criteria?
-- What is explicitly out of scope?
-- Are there edge cases or error scenarios to handle?
-- Are there UI/UX considerations?
-- Are there performance or security constraints?
-- Does this depend on or affect other work?
+5. **Save the PRD** as described under Writes.
 
-Use `AskUserQuestion` to gather information efficiently. Present options where
-possible rather than open-ended questions.
+6. **Review the PRD with `req-review`.** Launch a fresh Child Agent each round so each review is independent. Judge every finding: fix it, decline a minor finding with its reason, or take a product question to the Managing Intelligence. Expect many PRD findings to need product decisions. Save revisions and repeat until a review returns nothing left to fix. Then hand the PRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
 
-### 3. Dispatch the PRD Writer
+## Child Agents
 
-Dispatch `apiary-prd-writer` via the Agent tool:
-`Agent(subagent_type: "apiary-prd-writer", prompt: <dispatch prompt>)`
+- **`req-review`:** Launch after writing or revising the PRD, fresh every round so each review is independent. Expect findings with references and suggested fixes, or none.
 
-Dispatch rules:
+## Writes
 
-- **Background dispatch**: if the Agent tool schema accepts `run_in_background`, pass `run_in_background: true`; otherwise omit it — background is the harness default under Claude Code fork-subagents mode. When the completion notification fires, present the report (step 4).
-- **Cold start**: every dispatch is a fresh spawn with a self-contained prompt. The subagent cannot see this conversation and cannot ask the user anything — everything it needs must be in the dispatch prompt.
+Create or update the Idea's Doc titled `PRD`. Set it `draft` because a new or revised PRD needs approval. Record declined or unaddressed review findings with their reasons under `## Declined findings` on the PRD.
 
-**In Codex CLI**, keep these rules with Codex's tools:
-- Call `spawn_agent` with `agent_type: "apiary-prd-writer"` (pass it even if the tool does not list it; the agent is defined in `~/.codex/agents/apiary-prd-writer.toml` or the repo's `.codex/agents/`), `message`: the dispatch prompt, `fork_turns: "none"` (the cold start; where `spawn_agent` has no `fork_turns`, do not fork) and a `task_name` of lowercase letters, digits and underscores (e.g. `prd_writer_b_abc`). Pass no `model` or `reasoning_effort`: the agent file sets them.
-- Codex sends no completion notification: wait for the report with `wait_agent` (prefer long waits, minutes). Close the agent with `close_agent` where that tool exists.
-- There is no AskUserQuestion (step 2): ask in plain text in your reply and end your turn.
+## Done
 
-The dispatch prompt must contain:
-- The Idea Bee ID (the subagent reads the ticket from the bees CLI itself)
-- The full set of interview answers and any relevant context from your conversation with the user — serialized as text, complete enough that the writer never has to guess
-- On a revision dispatch: the existing PRD ticket ID and the user's change notes
+Report the PRD's ID and anything left unaddressed with the reason.
 
-The subagent drafts the PRD, creates (or updates) it as a child of the Idea Bee with title "PRD" and status `draft`, and returns a report.
+The PRD remains `draft` and awaits the Managing Intelligence's approval. The Managing Intelligence sets it `defined` on approval.
 
-### 4. Report to the User
+## Style rules
 
-When the subagent's report arrives, tell the user the results:
-- The PRD ticket ID
-- One-line description of each section
-- Assumptions the writer made
-- Open questions the writer flagged
+- **Plain English.** Use short sentences, bullet lists and short paragraphs.
+- **Only what the input states.** Include only requirements and guards against real harm grounded in the context and interview answers.
+- **No false precision.** Give a number only when the Managing Intelligence states one or confirms it is a real limit, because the SRD must meet it exactly. Otherwise state the need and how it will be judged. If the Managing Intelligence can't say how a need will be judged, make it an Open Question.
+- **Requirements, not solutions.** State the user's problem and needed outcome; leave the design open.
+  Bad: “Add a red Retry button that calls the retry endpoint.” Good: “Customers can retry a failed payment. An order is charged at most once.”
+- **Conversational wording.** Use direct statements without requirement numbers. Use user stories when actor, goal and benefit add clarity.
+- **Consistent terms.** Write each defined term in Title Case wherever it appears, and briefly explain it at its first use. Never use a synonym for a defined term.
 
-If the user wants changes, gather them and re-dispatch (fresh spawn, with the existing PRD ticket ID and the change notes in the prompt). Repeat until the user is satisfied.
+## Quality checklist
 
-### 5. Next steps
+If an Open Question stops a check below from passing, say so in your report and mark that check incomplete.
 
-Suggest the user run `/req-review <idea-bee-id>` to review and finalize the docs before they can be marked `defined`.
-`/write-srd`, `/make-plan`, `/hatch-epic`, `/do-bee` and `/run-lanes` refuse to run until the User approves the PRD by tagging the PRD ticket `approved:yes`.
+- [ ] The problem statement names who has the problem and why it matters to them.
+- [ ] Every requirement is user-facing product behaviour; nothing describes code, components or data structures.
+- [ ] Nothing mentions an idea that was discussed and dropped, except a Non-Goal the Managing Intelligence asked to keep.
+- [ ] Supplied edge cases and error scenarios have expected behaviours.
+- [ ] Each requirement states one testable obligation, serves a stated need and has an acceptance check.
+- [ ] Supplied priorities and trade-offs are explicit.
+- [ ] Acceptance criteria specify observable outcomes, and the conditions and measures that matter.
+- [ ] Sections agree with each other.
+- [ ] An Agent can implement the resolved requirements without inventing product decisions.
+
+## What not to include
+
+- Leave out time estimates and scheduling.
+- Leave out deferred features and follow-up work.
