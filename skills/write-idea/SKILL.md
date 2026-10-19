@@ -29,7 +29,7 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Take in the work.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, treat the input as a plain-text description of the work. If you still can't tell what the work is, ask the Managing Intelligence.
+1. **Take in the work.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, work out the Idea with the Managing Intelligence however you judge best.
 2. **File the Idea** as Writes describes.
 
 ## Child Agents
@@ -38,7 +38,7 @@ None: you file the Idea yourself.
 
 ## Writes
 
-A new Idea in the Ideas store, status `draft`, with `## Description` saying what the work is, from the intake or from the plain-text input. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so write-prd can read the original.
+A new Idea in the Ideas store, status `draft`, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so write-prd can read the original.
 
 ## Done
 

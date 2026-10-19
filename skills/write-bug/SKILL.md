@@ -30,7 +30,7 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Take in the report.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, treat the input as a plain-text description of the defect. If you still can't tell what goes wrong, ask the Managing Intelligence.
+1. **Take in the report.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, work out the report with the Managing Intelligence however you judge best.
 2. **File the Bug** as Writes describes.
 
 ## Child Agents
