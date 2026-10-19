@@ -33,7 +33,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Merge** each recorded branch into its base branch, keeping a merge commit so history shows the ticket's work. If a merge conflicts, leave the main checkout clean, carry on with the other repos, and tell the Managing Intelligence the conflicting files, so it can be resolved on the ticket's branch.
+1. **Merge** each recorded branch into its base branch, keeping a merge commit so history shows the ticket's work. Merge only once every repo's branch merges cleanly, so no base branch gets half of the change. If any conflicts, leave every main checkout clean and tell the Managing Intelligence the conflicting files, so it can be resolved on the ticket's branch.
 2. **Clean up.** Once every repo has merged, remove the ticket's worktrees and branches, keeping anything git won't remove so no work is lost.
 
 ## Child Agents
@@ -42,7 +42,7 @@ None: you merge and clean up yourself.
 
 ## Writes
 
-- **The Idea or Bug:** under `## Worktrees`, what merged and what was removed, so a later Run can finish the rest. Leave its status unchanged.
+- **The Idea or Bug:** under `## Worktrees`, what merged, any conflicting files, and what was removed, so the skill that resolves a conflict can find it and a later Run can finish the rest. Leave its status unchanged.
 - **Repos:** merge commits on the local base branches, and the removed worktrees and branches.
 
 ## Done
