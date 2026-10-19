@@ -7,7 +7,7 @@ description: "Reproduce a draft Bug to confirm it's real, record how to reproduc
 
 ## Purpose
 
-You reproduce a reported Bug to confirm it's real, and record how you reproduced it so fix-bug can rerun it. You also re-check Bugs whose fixes the Managing Intelligence returned.
+You reproduce a reported Bug to confirm it's real, and record how you reproduced it so fix-bug can rerun it. You also re-check Bugs the Managing Intelligence sent back because the fix failed their testing.
 
 ## Loading Apiary
 
@@ -55,7 +55,7 @@ Update the Bug in the Bugs store, setting its status in step 3:
 
 - `## Report`: the current write-up, holding whatever `guide:bug-writing-guide.md` says a report contains.
 - `## Validation`: evidence, conclusion and anything you couldn't establish.
-- `## Reproduction`: commands or scripts, inputs, setup, the code revision, and the expected and observed results, so fix-bug can rerun the reported scenario. Include each repo's main checkout path for the repos the reproduction touched, so configure-worktree can find them. On a returned fix, keep the original scenario and add the new one. If it cannot run, say why.
+- `## Reproduction`: commands or scripts, inputs, setup, the code revision, and the expected and observed results, so fix-bug can rerun the reported scenario. Include each repo's main checkout path for the repos the reproduction touched, so configure-worktree can find them. For a sent-back Bug, keep the original scenario and add the new one. If it cannot run, say why.
 - `## Decisions`: the Managing Intelligence's decisions, including why they returned a fix.
 
 Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, and point `## Reproduction` at the attached copies, then delete `<Project Folder>/.scratch/<Bug ID>/`.
