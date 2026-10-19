@@ -10,7 +10,7 @@ The README is for people who want to install and run the Project. A reader shoul
 - No code. Command lines are fine, and should be concrete and copy-pasteable.
 - The happy path only: no theoretical error cases or alternative installs.
 - Don't explain common tools, such as bash or a package manager.
-- No debugging.
+- No debugging tips in the README.
 - The Project as it is now: no legacy features and nothing about the past.
 - Don't point to the extended docs; readers can find them.
 
@@ -35,4 +35,4 @@ Keep developer and operational guides current where the Project needs them, such
 - Add a document only when its content has no suitable home, so the docs stay easy to navigate.
 - Remove outdated or duplicated passages and documents. Trimming and deleting matter as much as adding.
 
-Always finish with a succinctness pass: reread what you wrote and cut every word, sentence and section the reader doesn't need. Be on guard for documentation bloat, because docs grow with every change and each extra line makes the useful ones harder to find.
+Always finish any doc writing or reviewing effort with a succinctness pass: reread what was wrote and cut every word, sentence and section the reader doesn't need. Be on guard for documentation bloat, because docs grow with every change and each extra line makes the useful ones harder to find.
