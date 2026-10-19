@@ -15,7 +15,7 @@ Use the Managing Intelligence's recorded skill and ticket, with the model and ef
 ```sh
 # Claude Code
 agent-director spawn --template '<template>' --agent claude --cwd '<checkout>' -- --model '<model>' --effort '<effort>' '/<skill> <ticket-id>'
-# Codex (keep the prompt quoted so the shell keeps the $)
+# Codex
 agent-director spawn --template '<template>' --agent codex --cwd '<checkout>' -- --model '<model>' -c 'model_reasoning_effort="<effort>"' '$<skill> <ticket-id>'
 ```
 
