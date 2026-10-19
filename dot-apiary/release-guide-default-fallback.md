@@ -1,10 +1,10 @@
 # Release guide (Apiary default)
 
-Apiary uses this file when no user copy of `guide:release-guide.md` is found as `~/.apiary/system/workflow.md` describes.
+Apiary uses this file only when the Project has no `guide:release-guide.md` of its own.
 
 ## Permissions
 
-Local commits and merges follow the running skill's permissions and checks. Push, create or change tags, or publish only with explicit human approval covering the action and target, because these actions can expose or distribute work. A bot acting as Managing Intelligence must obtain the human's decision.
+Commit locally and merge into the local main branch. Don't push, tag or publish, because this default doesn't know where the Project's work may go; a Project that wants those writes its own release guide.
 
 ## Release process
 
