@@ -39,7 +39,7 @@ None: you file the Bug yourself.
 
 ## Writes
 
-A new Bug in the Bugs store, status `draft`, with `## Report` arranged as `guide:bug-writing-guide.md` says. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so define-bug can read the original.
+A new Bug in the Bugs store, status `draft`, with `## Report` holding whatever `guide:bug-writing-guide.md` says a report contains. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so define-bug can read the original.
 
 ## Done
 

@@ -4,7 +4,7 @@ Apiary uses this file when no user copy of `guide:bug-writing-guide.md` is found
 
 ## Report
 
-Describe the reported symptom, expected and actual behaviour, and supplied reproduction steps, inputs and setup. Preserve the reporter's exact symptom so validation investigates the reported failure.
+This section sets what a Bug's `## Report` contains. Describe the reported symptom, expected and actual behaviour, and supplied reproduction steps, inputs and setup. Preserve the reporter's exact symptom so validation investigates the reported failure.
 
 ## Validation
 

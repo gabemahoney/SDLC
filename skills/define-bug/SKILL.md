@@ -52,7 +52,7 @@ None: you validate the Bug yourself.
 
 Update the Bug in the Bugs store, setting its status in step 3:
 
-- `## Report`: the current write-up, using `guide:bug-writing-guide.md`.
+- `## Report`: the current write-up, holding whatever `guide:bug-writing-guide.md` says a report contains.
 - `## Validation`: evidence, conclusion and anything you couldn't establish.
 - `## Reproduction`: commands or scripts, inputs, setup and observed result, so fix-bug can rerun the reported scenario. Retain it across returned fixes and incorporate new evidence; explain when it cannot run.
 - `## Decisions`: the Managing Intelligence's decisions.
@@ -62,7 +62,7 @@ Before you finish, attach any script or input fix-bug needs to rerun the reprodu
 Set or replace `thinking_level:<label>` when confirming the Bug, because it sets how hard fix-bug's `engineer`, `test-writer` and `doc-writer` think. Match it to how hard the fix is and what a mistake in it would cost:
 - `low`: trivial, mechanical fixes such as wording or a config value, where a mistake is obvious and cheap.
 - `medium`: routine fixes in one place that follow an established pattern.
-- `high`: fixes that need real design judgement, touch several modules, or change behaviour other code relies on.
+- `high`: fixes that need real design judgement, touch several modules, or change behavior other code relies on.
 - `xhigh`: fixes where a mistake is costly or hard to spot, such as concurrency, security, data corruption or an interface between components.
 - `max`: the hardest, highest-risk fixes only, because it is the slowest and most expensive.
 
