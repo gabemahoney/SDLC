@@ -22,6 +22,6 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 
 **Bug:** write-bug or the Managing Intelligence creates `draft`, not yet validated
 
-**Bug:** the Managing Intelligence sets `done` after checking the merged fix or agreeing with the invalidity note.
+**Bug:** the Managing Intelligence sets `done` after testing and accepting the fix in its worktrees, before teardown-worktree merges it.
 
 **Bug:** the Managing Intelligence sets it back to `draft` to send it back to define-bug.

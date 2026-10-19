@@ -35,12 +35,12 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the main checkouts is fine. For a returned fix, record what's still wrong under `## Decisions` first, then reproduce that, against the current code, because the original scenario may now pass. If reproducing it would need tracked repository files edited, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
+1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. For a returned fix, record what's still wrong under `## Decisions` first, then reproduce that in the Bug's recorded worktrees, because they hold the unmerged fix and the original scenario may now pass. If reproducing it would need tracked repository files edited, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
 
 2. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
 3. **Record the outcome** using the Bug sections below.
-   - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set its Thinking Level tag (below), then set it `defined` for fix-bug.
+   - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set its Thinking Level tag (below), then set it `defined` for configure-worktree.
    - Evidence or a Managing Intelligence decision establishes that the behaviour cannot happen or is intended: set `invalid`, with the reason.
    - On a returned fix, if what's still wrong turns out to be intended: leave the Bug as it is and tell the Managing Intelligence the fix holds, so they can accept it.
    - Inconclusive: leave it `draft`, record what you couldn't establish, and ask the Managing Intelligence for guidance.
@@ -55,7 +55,7 @@ Update the Bug in the Bugs store, setting its status in step 3:
 
 - `## Report`: the current write-up, holding whatever `guide:bug-writing-guide.md` says a report contains.
 - `## Validation`: evidence, conclusion and anything you couldn't establish.
-- `## Reproduction`: commands or scripts, inputs, setup, the code revision, and the expected and observed results, so fix-bug can rerun the reported scenario. On a returned fix, keep the original scenario and add the new one. If it cannot run, say why.
+- `## Reproduction`: commands or scripts, inputs, setup, the code revision, and the expected and observed results, so fix-bug can rerun the reported scenario. Include each repo's main checkout path for the repos the reproduction touched, so configure-worktree can find them. On a returned fix, keep the original scenario and add the new one. If it cannot run, say why.
 - `## Decisions`: the Managing Intelligence's decisions, including why they returned a fix.
 
 Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, and point `## Reproduction` at the attached copies, then delete `<Project Folder>/.scratch/<Bug ID>/`.
@@ -73,5 +73,5 @@ When unsure between two levels, choose the higher one.
 
 Report the Bug's ID, status and unresolved work with reasons.
 
-- If it's `defined`, suggest fix-bug.
+- If it's `defined`, suggest configure-worktree.
 - If it's still `draft`, report what is needed to settle it.

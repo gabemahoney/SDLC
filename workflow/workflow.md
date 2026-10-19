@@ -86,7 +86,7 @@ The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft
 
 An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
 
-**Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence checks the merged fix. Bugs whose fixes are returned go back to `draft` for define-bug.
+**Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree. Bugs whose fixes are returned go back to `draft` for define-bug with what's still wrong, reusing the same worktrees and branches so earlier repair work is retained.
 
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 
@@ -104,7 +104,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 - **Project Folder:** the nearest folder, from the working directory up, that holds `<Project Folder>/.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `setting:research_location`.
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
-- **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree and release make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts without editing repository files.
+- **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree and release make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts, or the Bug's recorded worktrees for a returned fix, without editing repository files.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
 - **Guidance Documents come from the main checkout,** because worktree guides may still be in development. Load only the guides your skill names. For each, read copies in the main checkout's `.apiary` (or the current code folder's, outside a repo), then parent `.apiary` folders and `~/.apiary`. Combine copies cumulatively; the Managing Intelligence settles conflicts. With no user copy, use `~/.apiary/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.

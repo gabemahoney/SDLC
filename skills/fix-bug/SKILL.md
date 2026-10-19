@@ -1,13 +1,13 @@
 ---
 name: fix-bug
-description: "Fix a defined Bug, prove the regression is covered, review and merge the repair, and hand it back for acceptance. Takes a Bug ID."
+description: "Fix a defined Bug in its recorded worktrees, prove the regression is covered, review the repair, and hand it back for acceptance. Takes a Bug ID."
 ---
 
 # fix-bug
 
 ## Purpose
 
-You follow define-bug and take a confirmed Bug through implementation, review, testing and merge. The Managing Intelligence checks the merged fix and accepts or returns it.
+You follow configure-worktree and take a confirmed Bug through implementation, review and testing. The Managing Intelligence tests the fix and accepts or returns it before teardown-worktree merges it.
 
 ## Loading Apiary
 
@@ -22,7 +22,7 @@ A Bug ID.
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Bug and its Dependencies:** for confirmed behaviour, reproduction, Thinking Level, progress and decisions.
-- **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for reviews, verification and commit, merge and push permissions in each affected repo.
+- **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for reviews, verification and commit and push permissions in each affected repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -30,13 +30,13 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 Run only when all of these are true:
 
-- The Bug is `defined`, or `active` when resuming. If it is `draft`, stop and suggest define-bug. For any other status, stop and report it.
+- The Bug is `defined` or `active`. If it's `draft`, stop and suggest define-bug. Otherwise, stop and report its status.
+- The Bug's `## Worktrees` record exists, so the repair uses its prepared worktrees. Otherwise, stop and suggest configure-worktree.
 - Every ticket the Bug depends on is `done`, so the repair uses completed prerequisites. If any isn't, stop and report the blocking ticket IDs.
-- You start outside this Bug's worktrees, because you remove them after merging. Otherwise, stop and say to run from the Project Folder.
 
 ## Steps
 
-1. **Prepare or resume.** Set the Bug `active`. Create or resume an isolated Bug worktree for each affected repo from its main checkout's current branch, using the workflow's worktree path. Record paths, branches, bases and merge targets under `## Worktrees`. A returned fix follows the revised Bug against current code.
+1. **Prepare or resume.** Set the Bug `active`. Work only in the worktrees recorded under the Bug's `## Worktrees`. A returned fix follows the revised Bug in the same worktrees and branches, so earlier repair work is retained.
 
 2. **Implement and review.** Assign Child Agents to the Bug's worktrees. Record testing assignments under `## Progress` for the coverage `guide:test-guide.md` requires. Follow the Repair pipeline, Regression evidence and Handling Reviewer Feedback sections until accepted findings are fixed.
 
@@ -44,9 +44,7 @@ Run only when all of these are true:
 
 3. **Prove the repair.** Pass the Integration gate. Rerun every scenario under `## Reproduction` with its recorded inputs and setup. A remaining symptom returns to step 2, then repeat verification so the evidence covers the final repair. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision under `## Decisions` and evidence under `## Regression evidence`.
 
-4. **Commit and merge.** Commit after steps 2 and 3 pass. Merge from the main checkouts into the recorded targets. If the target or conflict resolution changes the combined result, repeat steps 2 and 3 before cleanup because earlier evidence no longer covers it. If a merge conflicts, preserve its worktree, record conflicts and completed merges under `## Worktrees`, and stop for resolution.
-
-   Record successful merges under `## Worktrees`. Stop Child Agents through `protocol:launcher.md` before removing their worktrees so no live agent loses its checkout. Remove only clean, merged worktrees and their merged branches to preserve unfinished work.
+4. **Commit.** Commit after steps 2 and 3 pass, so the Managing Intelligence tests the verified repair.
 
 ## Child Agents
 
@@ -61,21 +59,20 @@ Use the Repair pipeline and Integration gate for sequencing.
 
 ## Writes
 
-Change source, tests and docs in the Bug's worktrees. The Bug is the only ticket changed; set it `active` in step 1 and leave it `active` after merge for the Managing Intelligence's acceptance. Write these sections on it:
+Change source, tests and docs in the Bug's recorded worktrees. The Bug is the only ticket changed; set it `active` in step 1 and leave it `active` for the Managing Intelligence's acceptance. Write these sections on it:
 
 - `## Progress`: testing assignments, phase, unfinished work, executor IDs, skills, Thinking Levels and commits, so another Run can continue.
 - `## Decisions`: Managing Intelligence decisions.
 - `## Reproduction`: the retained scenario and its rerun.
 - `## Regression evidence`: before-and-after verification.
 - `## Checks`: check results and accepted failures.
-- `## Worktrees`: preparation, merges and cleanup.
 - `## Declined findings`: declined or unaddressed review findings with reasons.
 
 ## Done
 
 Report the Bug's ID and unaddressed work or review findings with reasons.
 
-Suggest the Managing Intelligence check the fix: they set the Bug `done` on acceptance, or return it to `draft` and run define-bug with what's still wrong.
+Suggest the Managing Intelligence test the fix: they set the Bug `done` on acceptance, then run teardown-worktree, or return it to `draft` and run define-bug with what's still wrong.
 
 ## Handling Reviewer Feedback
 
@@ -99,7 +96,7 @@ Require an automated regression test following `guide:test-guide.md`. The test-w
 
 ## Integration gate
 
-After implementation and review, you run `guide:build-commands.md ## Integration tests` for every affected code folder, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output outside the Bug's worktrees so cleanup preserves the evidence; read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Bug.
+After implementation and review, you run `guide:build-commands.md ## Integration tests` for every affected code folder, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output outside the Bug's worktrees so teardown-worktree preserves the evidence; read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Bug.
 
 The gate passes when the suites pass, or when the Managing Intelligence accepts the remaining failures; record what it accepted under `## Checks`. If the suites can't run, stop and ask the Managing Intelligence.
 
