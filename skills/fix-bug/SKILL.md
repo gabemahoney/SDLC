@@ -36,7 +36,7 @@ Run only when all of these are true:
 
 1. **Start or resume.** Set the Bug `active`. If the Managing Intelligence has noted under `## Decisions` what's still wrong after an earlier fix, fix that on top of the earlier commits. Before committing work left by an interrupted Run, have it reviewed.
 
-2. **Write a test that catches the Bug.** Before the fix, have test-writers add a failing regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted, as Regression evidence below describes.
+2. **Write a test that catches the Bug.** Before the fix, have test-writers add a failing regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted, that isn't covered yet, as Regression evidence below describes.
 
 3. **Fix and review.** Follow the Fix pipeline until accepted findings are fixed. If the fix needs a repo with no worktree, stop and suggest configure-worktree.
 

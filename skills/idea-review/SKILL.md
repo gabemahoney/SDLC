@@ -50,7 +50,7 @@ Run only when all of these are true:
 
 For each finding:
 
-- **Fix it:** group all findings worth fixing into one `Round <N> Feedback` Epic for write-epic and develop-epic, so corrections receive planning and review. A non-trivial finding is an unmet PRD requirement or acceptance criterion, or a real defect in the Idea's work.
+- **Fix it:** group all findings worth fixing, including any merge conflict teardown-worktree reported on the Idea, into one `Round <N> Feedback` Epic for write-epic and develop-epic, so corrections receive planning and review. A non-trivial finding is an unmet PRD requirement or acceptance criterion, or a real defect in the Idea's work.
 - **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason under `## Declined findings` on the Idea for the Managing Intelligence.
 - **Ask the Managing Intelligence:** for product questions or PRD/SRD conflicts, because they own those decisions.
 

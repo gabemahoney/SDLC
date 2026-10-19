@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-An Idea or Bug ID.
+An Idea or Bug ID, and any repos the caller names.
 
 ## Required Reading
 
@@ -46,4 +46,4 @@ None: you prepare the worktrees yourself.
 
 ## Done
 
-Report the ticket's ID and worktree paths, and suggest write-epic for the Plan's first `draft` Epic, or fix-bug for a Bug.
+Report the ticket's ID and worktree paths, and suggest the skill that needs them next: write-epic for a new Plan's first `draft` Epic, develop-epic or fix-bug if one sent you here.
