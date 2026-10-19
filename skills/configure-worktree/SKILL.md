@@ -1,13 +1,13 @@
 ---
 name: configure-worktree
-description: "Create or reuse an Idea's branch and worktree in each repo it changes, and record them on the Idea. Takes an Idea ID."
+description: "Create or reuse a branch and worktree for an Idea in every repo its Plan changes, and record them on the Idea. Takes an Idea ID."
 ---
 
 # configure-worktree
 
 ## Purpose
 
-You create or reuse an Idea's branch and worktree in each repo it changes, and record them on the Idea. Every Epic of the Idea is developed in these worktrees, one after another.
+You create or reuse a branch and worktree for an Idea in every repo the Idea's Plan changes, and record them on the Idea. Every Epic of the Idea is developed in these worktrees, one after another.
 
 ## Loading Apiary
 
