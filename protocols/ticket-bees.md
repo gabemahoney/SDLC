@@ -21,7 +21,7 @@ For shared Research, use a scope covering its requesting Projects. Child-tier JS
 - Bugs: `{}`.
 - Research: `{"t1":["Report","Reports"]}`.
 
-Statuses are `["draft","defined","active","done"]`, plus `"invalid"` for Bugs. Repair existing configurations with `bees set-types --scope hive --hive '<store>' --child-tiers '<JSON>'` and `bees set-status-values --scope hive --hive '<store>' --status-values '<JSON>'`. The MCP `colonize_hive` has no status argument; use `set_status_values` after it.
+Statuses are `["draft","defined","active","done"]`, plus `"invalid"` for Bugs. Repair existing configurations with `bees set-types --scope hive --hive '<store>' --child-tiers '<JSON>'` and `bees set-status-values --scope hive --hive '<store>' --status-values '<JSON>'`.
 
 ## Create a ticket
 
