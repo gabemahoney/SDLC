@@ -86,7 +86,7 @@ The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft
 
 An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
 
-**Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree. Bugs whose fixes are returned go back to `draft` for define-bug with what's still wrong, reusing the same worktrees and branches so earlier repair work is retained.
+**Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree. If the fix fails the Managing Intelligence's testing, they send the Bug back: set it `draft` and run define-bug with what's still wrong. It then goes through fix-bug again in the same worktrees and branches, so earlier work on the fix is kept.
 
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 

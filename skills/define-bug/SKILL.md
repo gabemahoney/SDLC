@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A Bug ID. For a Bug whose fix was returned, also what's still wrong.
+A Bug ID. If the Bug was sent back because its fix failed the Managing Intelligence's testing, also what's still wrong.
 
 ## Required Reading
 
@@ -35,14 +35,14 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. For a returned fix, record what's still wrong under `## Decisions` first, then reproduce that in the Bug's recorded worktrees, because they hold the unmerged fix and the original scenario may now pass. If reproducing it would need tracked repository files edited, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
+1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. For a sent-back Bug, record what's still wrong under `## Decisions` first, then reproduce that in the Bug's recorded worktrees, because they hold the unmerged fix and the original scenario may now pass. If reproducing it would need tracked repository files edited, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
 
 2. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
 3. **Record the outcome** using the Bug sections below.
    - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set its Thinking Level tag (below), then set it `defined` for configure-worktree.
    - Evidence or a Managing Intelligence decision establishes that the behaviour cannot happen or is intended: set `invalid`, with the reason.
-   - On a returned fix, if what's still wrong turns out to be intended: leave the Bug as it is and tell the Managing Intelligence the fix holds, so they can accept it.
+   - For a sent-back Bug, if what's still wrong turns out to be intended: leave the Bug as it is and tell the Managing Intelligence the fix holds, so they can accept it.
    - Inconclusive: leave it `draft`, record what you couldn't establish, and ask the Managing Intelligence for guidance.
 
 ## Child Agents

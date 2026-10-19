@@ -36,7 +36,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Prepare or resume.** Set the Bug `active`. Work only in the worktrees recorded under the Bug's `## Worktrees`. A returned fix follows the revised Bug in the same worktrees and branches, so earlier work on the fix is kept.
+1. **Prepare or resume.** Set the Bug `active`. Work only in the worktrees recorded under the Bug's `## Worktrees`. If the Managing Intelligence sent the Bug back because the fix failed their testing, keep working in the same worktrees and branches, so earlier work on the fix is kept.
 
 2. **Implement and review.** Assign Child Agents to the Bug's worktrees. Record testing assignments under `## Progress` for the coverage `guide:test-guide.md` requires. Follow the Fix pipeline, Regression evidence and Handling Reviewer Feedback sections until accepted findings are fixed.
 
