@@ -1,12 +1,13 @@
-This is Apiary's PRD section template; a Project may replace it through `prd_template`. A replacement should keep a Glossary, Acceptance Criteria and Open Questions, because write-srd and req-review use them.
+This is Apiary's PRD section template; a Project may replace it through `prd_template`. A replacement should keep Acceptance Criteria and Open Questions, because write-srd and req-review use them.
 
 # [Feature/Project Name]
 
-## Glossary
+## Glossary (if any)
 Define only novel terms the product coins or uses in its own sense, grouped
 by topic, each in Title Case. Each definition is one to three short sentences:
 what it is and what it is for. Use plain words, common developer terms or other
 Glossary terms; each definition stands alone without pointing to the body.
+Remove this section when there are none.
 
 ## Goals
 List one bullet per feature or goal. Each states a concrete, measurable outcome and makes sense without reading the body.
