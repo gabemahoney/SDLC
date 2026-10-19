@@ -11,5 +11,6 @@ This section sets what a Bug's `## Report` contains. A good bug report lets some
 - **Steps performed:** numbered, in order, with any inputs and setup, so anyone can repeat them exactly.
 - **Expected result:** what should have happened.
 - **Actual result:** what happened instead (the bug), with exact error messages and output, in the reporter's words where possible.
+- **Logs:** the relevant log lines, or paths to the full logs on disk, so the fixer can see what the software recorded.
 
 Keep each report to one bug, and state facts you saw rather than guesses about the cause.
