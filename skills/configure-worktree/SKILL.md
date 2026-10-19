@@ -1,13 +1,13 @@
 ---
 name: configure-worktree
-description: "Create or reuse the git worktrees an Idea or Epic needs, and record them on its ticket. Takes an Idea or Epic ID."
+description: "Create or reuse an Idea's branch and worktree in each repo it changes, and record them on the Idea. Takes an Idea ID."
 ---
 
 # configure-worktree
 
 ## Purpose
 
-You create or reuse the git worktrees an Idea or Epic needs, one per repo it changes, and record them on its ticket.
+You create or reuse an Idea's branch and worktree in each repo it changes, and record them on the Idea. Every Epic of the Idea is developed in these worktrees, one after another.
 
 ## Loading Apiary
 
@@ -15,48 +15,41 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-An Idea or Epic ID.
+An Idea ID.
 
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Idea or Epic:** for setup choices and earlier preparation or launch results.
-
-For a launch, read the assigned skill and `protocol:launcher.md`. Before committing main-checkout changes, read `guide:release-guide.md` for permissions.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and `protocol:ticket.md`, for operations.
+- **The Idea and its Plan:** for the repos the work changes and any earlier worktree record.
+- **Guidance:** `guide:release-guide.md`, for permission to commit in main checkouts.
 
 ## Gate
 
-Run only when all of these are true:
-
-- The Idea or Epic is `defined` or `active`, so preparation serves work ready to proceed. Otherwise, stop and report its status.
-- For a Main Agent launch, the Project Folder has `<Project Folder>/.apiary/project_settings.md`, so the Main Agent finds the same Project Folder from its worktree. If it is absent, stop and suggest project-setup or worktree-only preparation.
+Run only when the Idea is `defined` or `active`, so worktrees serve work that's ready to proceed. Otherwise, stop and report its status.
 
 ## Steps
 
-1. **Settle the setup.** Use the ticket's repos, base refs and next Main Agent assignment. Default to each main checkout's `HEAD` and the current Agent tool. The Managing Intelligence settles missing choices. A recorded worktree-only choice skips the launch.
-
-2. **Prepare the worktrees.** Create or reuse one per assigned repo under the Worktree rules below. Preserve completed preparation if another repo or launch fails, so a later Run can continue.
-
-3. **Hand off.** Unless worktree-only, use `protocol:launcher.md` to start the assigned Main Agent in `<Project Folder>/.worktrees/<ticket id>/`. Use the chosen Agent and the assigned skill's Thinking Level. Check any recorded launch through the Launcher first, because retrying an uncertain launch can start a duplicate Main Agent.
+1. **Settle the setup.** Find the repos the Plan changes. Base each branch on its main checkout's current branch unless the Managing Intelligence says otherwise.
+2. **Create or reuse the worktrees** under the Worktree rules below.
+3. **Record them** on the Idea.
 
 ## Child Agents
 
-None: you prepare the worktrees yourself; the Launcher starts the Main Agent.
+None: you prepare the worktrees yourself.
 
 ## Writes
 
-- **The input Idea or Epic:** under `## Worktrees`, record setup choices, each repo's path, branch and original base ref and commit, Main Agent identity and launch result or worktree-only completion, and unfinished work. This record lets teardown-worktree find the work and later Runs continue it. Ticket statuses stay unchanged because you prepare the workspace.
-- **Repos:** create branches and worktrees; commit main-checkout changes only when the Managing Intelligence chooses them.
+- **The Idea:** under `## Worktrees`, each repo's path, branch, and base branch and commit, so develop-epic, idea-review and teardown-worktree can find the work. Leave its status unchanged.
+- **Repos:** create branches and worktrees. Commit in a main checkout only when the Managing Intelligence asks.
 
 ## Done
 
-Report the ticket ID, worktree paths and any unfinished preparation or launch.
+Report the Idea's ID and its worktree paths.
 
 ## Worktree rules
 
-Name the branch after the ticket ID with dots replaced by underscores, so later Runs can find it. Use the worktree paths defined in `~/.apiary/system/workflow.md`.
-
-- Reuse only a worktree in the intended repo on the ticket's branch. Preserve its changes and original base, because a resumed Run continues that work. Record a newly requested base as unapplied so the ticket describes the actual setup.
-- If the expected path holds different work, or the ticket's branch exists without its expected worktree, stop for the Managing Intelligence's decision to protect that work.
-- If the base is the main checkout's `HEAD` or branch and that checkout has uncommitted changes, the Managing Intelligence decides whether to commit them first or stop, because a worktree would otherwise omit them.
+- Name each branch after the Idea's ID with dots replaced by underscores, and put each worktree at the path `~/.apiary/system/workflow.md` defines, so later skills can find them.
+- Reuse a worktree only if it's in the right repo on the Idea's branch, and keep its changes, because they're the Idea's work in progress.
+- If the path holds other work, or the branch exists without its worktree, stop for the Managing Intelligence, to protect that work.
+- If a main checkout has uncommitted changes, ask the Managing Intelligence whether to commit them first, because the new branch would leave them out.

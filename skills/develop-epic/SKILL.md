@@ -72,7 +72,7 @@ Report the Epic's ID and unaddressed findings with reasons.
 
 - If you stopped at a Task boundary, suggest re-running develop-epic on this Epic.
 - For remaining Epics, suggest write-epic if `draft`, otherwise develop-epic.
-- For a completed Plan, suggest teardown-worktree for Epic worktrees, then idea-review.
+- For a completed Plan, suggest idea-review.
 
 ## Handling Reviewer Feedback
 

@@ -32,7 +32,6 @@ Run only when all of these are true:
 
 - The Plan is `done`, because execution must finish first. Otherwise, report unfinished work.
 - The Idea's PRD and SRD are `defined`, because you review the work against them. Otherwise, stop and tell the Managing Intelligence which one isn't approved.
-- Every Epic worktree is merged into the reviewed checkouts, to review the combined product. Otherwise, suggest teardown-worktree.
 
 ## Steps
 

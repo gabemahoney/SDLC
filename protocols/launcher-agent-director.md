@@ -16,7 +16,7 @@ Send the initial assignment at launch. For a follow-up, use `send-keys` as Resum
 
 ## Launch a Main Agent
 
-Launch the Managing Intelligence's recorded skill and ticket assignment. configure-worktree may do this on its behalf. Resolve model and effort from the workflow's Thinking Levels, including Task or Bug overrides.
+Launch the Managing Intelligence's recorded skill and ticket assignment. Resolve model and effort from the workflow's Thinking Levels, including Task or Bug overrides.
 
 Claude Code:
 
