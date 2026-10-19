@@ -30,8 +30,8 @@ Run only when all of these are true:
 
 - The guide defines a release process. Otherwise, stop and suggest project-setup, which helps the Managing Intelligence write it.
 - Each Idea and Bug is `done`, because only accepted work ships. Otherwise, stop and name the ones the Managing Intelligence hasn't accepted.
-- Each one's `## Worktrees` record shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and tell the Managing Intelligence which ones aren't, suggesting teardown-worktree for an Idea.
-- Each main checkout in those records is on the branch the guide releases from, with no uncommitted changes to tracked files, so the release holds only merged work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
+- Each Idea's `## Worktrees` record shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and suggest teardown-worktree for it.
+- Each main checkout in those tickets' `## Worktrees` records is on the branch the guide releases from, with no uncommitted changes to tracked files, so the release holds only merged work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
 
 ## Steps
 
