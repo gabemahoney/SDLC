@@ -29,7 +29,7 @@ Use the same commands from the Main Agent's own session, so agent-director makes
 
 End your turn with your report or question as the final message, so your Main Agent can read it.
 
-## Know when a Child Agent's state changes
+## Knowing when a Child Agent's state changes
 
 agent-director doesn't notify you, so poll while work is outstanding:
 

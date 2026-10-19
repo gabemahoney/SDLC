@@ -128,7 +128,7 @@ Use these references, each in one pair of backticks, so an Agent knows whether t
 - A Guidance Document: `guide:<file>`, for example `guide:research-guide.md`, found by the Guidance Document walk.
 - A named guide section: `guide:<file> ## <Section>`, for example `guide:build-commands.md ## Integration tests`.
 - A Protocol File: `protocol:<file>`, for example `protocol:agent-codex.md`, under `~/.apiary/system/protocols/`; `protocol:launcher.md` means the file selected by `setting:launcher`.
-- A named protocol section: `protocol:<file> ## <Section>`, for example `protocol:launcher.md ## Launch a Child Agent`.
+- A named protocol section: `protocol:<file> ## <Section>`, for example `protocol:launcher.md ## Launching a Child Agent`.
 - A file with one fixed place: its full path, for example `~/.apiary/system/workflow.md` or `<Project Folder>/.apiary/project_settings.md`.
 
 ### Ticket system operations
@@ -159,11 +159,11 @@ Each section gives usable instructions, because skills depend on these operation
 - `protocol:launcher.md ## Main Agents and Child Agents`: what each class is and how a Main Agent and its Child Agents communicate: how the Main Agent sends work and follow-ups, and how a Child Agent reports its result and asks a question, so both sides know how to reach the other.
 - `protocol:launcher.md ## Reporting to your Main Agent`: how a Child Agent hands back its result.
 - `protocol:launcher.md ## Launch a Main Agent`: start the skill assigned by the Managing Intelligence.
-- `protocol:launcher.md ## Launch a Child Agent`: start its assigned skill and keep it a child of its Main Agent.
-- `protocol:launcher.md ## Resume a Child Agent`: continue that Child Agent's recorded session.
-- `protocol:launcher.md ## Know when a Child Agent's state changes`: how the Main Agent learns that a Child Agent has finished, asked a question or stopped, so it never waits on a Child Agent that is already done.
-- `protocol:launcher.md ## Stop a Child Agent`: stop it and verify that it has exited.
-- `protocol:launcher.md ## Read a Child Agent's context`: read or estimate that Child Agent's context fraction.
+- `protocol:launcher.md ## Launching a Child Agent`: start its assigned skill and keep it a child of its Main Agent.
+- `protocol:launcher.md ## Resuming a Child Agent`: continue that Child Agent's recorded session.
+- `protocol:launcher.md ## Knowing when a Child Agent's state changes`: how the Main Agent learns that a Child Agent has finished, asked a question or stopped, so it never waits on a Child Agent that is already done.
+- `protocol:launcher.md ## Stopping a Child Agent`: stop it and verify that it has exited.
+- `protocol:launcher.md ## Reading a Child Agent's context`: read or estimate that Child Agent's context fraction.
 
 Each section must give usable instructions, because a heading alone cannot support the agent lifecycle. The file also describes watching both classes and stopping a Main Agent.
 
