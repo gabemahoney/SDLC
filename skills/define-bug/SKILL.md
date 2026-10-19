@@ -22,7 +22,7 @@ A Bug ID.
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Bug and its Dependencies:** for readiness, the report, validation, reproduction and decisions.
-- **Guidance:** `guide:bug-writing-guide.md` and `guide:build-commands.md`, for the report, validation standards and reproduction commands.
+- **Guidance:** `guide:bug-writing-guide.md` and `guide:build-commands.md`, for the report, validation standards and the build and test commands a reproduction needs.
 
 Also read the Project's code, tests and linked Research as needed, and any Source References through their Resolvers.
 
@@ -35,7 +35,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so repository files stay unchanged. For a returned fix, rerun the recorded reproduction against the current code, with any new evidence, because the earlier result predates the fix. If you can't reproduce it without editing the repo, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
+1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output is fine. For a returned fix, reproduce the problem the Managing Intelligence gave as the reason for returning it, against the current code, because the original scenario may now pass. If you can't reproduce it without editing the repo, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
 
 2. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
@@ -54,10 +54,10 @@ Update the Bug in the Bugs store, setting its status in step 3:
 
 - `## Report`: the current write-up, holding whatever `guide:bug-writing-guide.md` says a report contains.
 - `## Validation`: evidence, conclusion and anything you couldn't establish.
-- `## Reproduction`: commands or scripts, inputs, setup and observed result, so fix-bug can rerun the reported scenario. Retain it across returned fixes and incorporate new evidence; explain when it cannot run.
-- `## Decisions`: the Managing Intelligence's decisions.
+- `## Reproduction`: commands or scripts, inputs, setup, the code revision and the observed result, so fix-bug can rerun the reported scenario. On a returned fix, keep the original scenario and add the new one. Explain when it cannot run.
+- `## Decisions`: the Managing Intelligence's decisions, including why they returned a fix.
 
-Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, then delete `<Project Folder>/.scratch/<Bug ID>/`.
+Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, and point `## Reproduction` at the attached copies, then delete `<Project Folder>/.scratch/<Bug ID>/`.
 
 Set or replace `thinking_level:<label>` when confirming the Bug, because it sets how hard fix-bug's `engineer`, `test-writer` and `doc-writer` think. Match it to how hard the fix is and what a mistake in it would cost:
 - `low`: trivial, mechanical fixes such as wording or a config value, where a mistake is obvious and cheap.
