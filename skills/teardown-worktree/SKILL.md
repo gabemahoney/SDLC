@@ -30,7 +30,7 @@ Run only when all of these are true:
 - The Idea is `done`, because only accepted work goes back to the base branch. Otherwise, stop and report its status.
 - Each main checkout not yet merged is on its recorded base branch, with no uncommitted changes to tracked files. Otherwise, stop and tell the Managing Intelligence which ones aren't, because merging into uncommitted changes can mix them with the Idea's work or lose them.
 - Each worktree not yet merged is on the branch recorded for it, with no uncommitted changes to tracked files. Otherwise, stop and tell the Managing Intelligence, because uncommitted or unexpected changes are someone's work.
-- You started outside the Idea's worktrees, because you remove them. Otherwise, stop and say so.
+- Your working directory is outside the Idea's worktrees, because you remove them. Otherwise, stop and tell the Managing Intelligence.
 
 ## Steps
 
