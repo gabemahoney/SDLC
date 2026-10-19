@@ -37,7 +37,7 @@ Run only when all of these are true:
 
 1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so repository files stay unchanged. For a returned fix, rerun the recorded reproduction against the current code, with any new evidence, because the earlier result predates the fix. If you can't reproduce it without editing the repo, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
 
-2. **Write up the report** under `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
+2. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
 3. **Record the outcome** using the Bug sections below.
    - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set `defined` for fix-bug.
@@ -52,7 +52,7 @@ None: you validate the Bug yourself.
 
 Update the Bug in the Bugs store, setting its status in step 3:
 
-- `## Report`: the current write-up under `guide:bug-writing-guide.md`.
+- `## Report`: the current write-up, using `guide:bug-writing-guide.md`.
 - `## Validation`: evidence, conclusion and any limitations.
 - `## Reproduction`: commands or scripts, inputs, setup and observed result, so fix-bug can rerun the reported scenario. Retain it across returned fixes and incorporate new evidence; explain when it cannot run.
 - `## Decisions`: the Managing Intelligence's decisions.
