@@ -42,6 +42,7 @@
 - **Association:** a link between related tickets where neither waits on the other, such as a Plan and its Idea, or an SRD and a Research ticket it cites.
 - **Source Reference:** a link to a ticket's origin outside the ticket system, such as a GitHub issue or file. write-prd and define-bug use it to establish requirements. Downstream skills use the requirements on the tickets so external changes cannot silently change their scope.
 - **Resolver:** the instructions for reading one kind of Source Reference, picked by its kind (a GitHub URL uses `github`, a file path uses `file`).
+- **Intake:** the instructions for taking in new Ideas or Bugs, named by `setting:new_idea_intake` and `setting:new_bug_intake` as a file path, such as `~/.apiary/system/intakes/interview.md` or a Resolver under `~/.apiary/system/resolvers/`. write-idea and write-bug also always accept a freeform description.
 - **Run:** one execution of a skill, from its first steps to its report.
 - **Thinking Level:** the model and effort an Agent runs at (see Thinking Levels).
 

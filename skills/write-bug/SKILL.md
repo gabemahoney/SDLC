@@ -21,19 +21,17 @@ A defect report: either freeform, or in the form `setting:new_bug_intake` asks f
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Intake:** interview instructions or the Source Reference Resolver named by `setting:new_bug_intake`, for input requirements and Bug preparation.
+- **Intake:** the instructions `setting:new_bug_intake` names, for what input it takes and how to prepare the Bug.
 - **Guidance:** `guide:bug-writing-guide.md`, for the report format.
 
 ## Gate
 
-Run only when all of these are true:
-
-- The request is to file a new Bug. For an existing Bug, stop and report its ID; suggest define-bug if it is `draft`, because that skill owns completing and validating the report.
-- The report says what goes wrong, whether freeform or through `setting:new_bug_intake`. Otherwise, stop and ask the Managing Intelligence for it.
+Run only when the input isn't an existing Bug's ID. Otherwise, stop and report it, suggesting define-bug if it's `draft`, because that skill completes and validates reports.
 
 ## Steps
 
-1. **File the report.** Use `setting:new_bug_intake` when the input is in its form; otherwise take the freeform report as given. Create the Bug as described below. Preserve the reporter's symptom and supplied reproduction, including inputs, setup and expected and actual behaviour, so define-bug investigates the reported failure.
+1. **Take in the report.** If the input is what the intake takes, follow the intake's instructions. Otherwise, use the freeform report as given. If you still can't tell what goes wrong, ask the Managing Intelligence.
+2. **File the Bug** as Writes describes, keeping the reporter's symptom and reproduction, so define-bug investigates the failure they reported.
 
 ## Child Agents
 
@@ -41,7 +39,7 @@ None: you file the Bug yourself.
 
 ## Writes
 
-A new Bug in the Bugs store, with `## Report` structured by `guide:bug-writing-guide.md`. Set it `draft`, because define-bug completes and validates it. If the intake names a Resolver, keep its input as a Source Reference so define-bug can read the original report.
+A new Bug in the Bugs store, status `draft`, with `## Report` arranged as `guide:bug-writing-guide.md` says. Keep any link or path the input points to as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so define-bug can read the original.
 
 ## Done
 
