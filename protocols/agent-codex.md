@@ -1,5 +1,9 @@
 # Codex Agent Protocol File
 
+## Launch template
+
+Launch every Main Agent and Child Agent with the `CODEX_WORKER` template, because it sets the agent's sandbox and permissions.
+
 ## Skills
 
 Invoke an installed skill as `$<skill> <ticket-id>`. User skills live at `~/.agents/skills/<skill>/SKILL.md`; a repository install uses `<repo>/.agents/skills/<skill>/SKILL.md`. Main Agents and Child Agents use the same skill format, so each skill has one set of instructions.

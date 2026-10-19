@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Use agent-director, with an approved template from `~/.config/agent-director/templates/`, because the template sets the agent's permissions.
+Use agent-director, with the template the Agent Protocol File names under `## Launch template`.
 
 ## Main Agents and Child Agents
 
@@ -26,7 +26,7 @@ Codex:
 agent-director spawn --template '<template>' --agent codex --cwd '<checkout>' -- --model '<model>' -c 'model_reasoning_effort="<effort>"' '$engineer <ticket-id>'
 ```
 
-Replace placeholders and `engineer` with the assignment. Include the workflow's launch context in the prompt. Keep the Codex prompt quoted so the shell preserves `$`. Arguments after `--` replace the template's `agent_args`; carry forward required template arguments, excluding continuation arguments for a fresh session.
+Replace placeholders and `engineer` with the assignment; `<template>` is the Agent Protocol File's launch template. Include the workflow's launch context in the prompt. Keep the Codex prompt quoted so the shell preserves `$`. Arguments after `--` replace the template's `agent_args`; carry forward required template arguments, excluding continuation arguments for a fresh session.
 
 Record the returned `instance_id` and inspect it with `get` and `status` below. A timed-out launch may still be running: follow `--help` before retrying, to avoid duplicate agents.
 
