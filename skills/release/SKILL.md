@@ -7,7 +7,7 @@ description: "Release accepted, merged Ideas and Bugs by following the Project's
 
 ## Purpose
 
-You carry out the Project's release process. The Project's guide defines what releasing means and who may authorize each step.
+You release accepted, merged Ideas and Bugs by following the Project's release guide, which defines what releasing means and who may authorize each step.
 
 ## Loading Apiary
 
