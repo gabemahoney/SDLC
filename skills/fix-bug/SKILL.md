@@ -75,7 +75,7 @@ Change source, tests and docs in the Bug's worktrees. The Bug is the only ticket
 
 Report the Bug's ID and unaddressed work or review findings with reasons.
 
-Suggest the Managing Intelligence check the fix: they set the Bug `done` on acceptance, or return it to `draft` for define-bug.
+Suggest the Managing Intelligence check the fix: they set the Bug `done` on acceptance, or return it to `draft` and run define-bug with what's still wrong.
 
 ## Handling Reviewer Feedback
 
