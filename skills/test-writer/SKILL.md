@@ -44,7 +44,7 @@ None: you perform the assigned testing work yourself.
 - Change only assigned test and fixture/helper files. Each testing Subtask owns a distinct set of files so writers can work in parallel. Leave changes uncommitted because the Main Agent owns commits.
 - Set your Subtask `active` when starting and `done` when complete, so its status tracks your work.
 - On a Subtask, record only deviations with reasons, unfinished work, and effects on documentation or other work under `## Progress`, so the Main Agent can coordinate what remains. On a Bug, report them to fix-bug instead, because several Child Agents work on one Bug at once and fix-bug records them.
-- On a Bug, report failing-before and passing-after results, commands, revisions and coverage limits to fix-bug, so the regression test proves it catches the defect. Run failing-before in the baseline checkout fix-bug names, never by undoing the fix in the Bug's worktrees, because other Child Agents work there at the same time.
+- On a Bug, report failing-before and passing-after results, commands, revisions and coverage limits to fix-bug, so the regression test proves it catches the defect. Never undo the fix in the Bug's worktrees to show the failure, because other Child Agents are working there.
 
 ## Done
 

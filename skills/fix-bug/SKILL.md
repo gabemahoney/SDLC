@@ -34,34 +34,28 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Start or resume.** Set the Bug `active`. An attempt is one fix of the original report, or of one note the Managing Intelligence left under `## Decisions` saying what's still wrong after testing; record under `## Progress` which one each attempt answers. Start a new attempt for any such note no attempt answers yet, on top of the earlier commits. When resuming an interrupted attempt, have reviewers check all uncommitted changes, so nothing unreviewed is committed, then continue from `## Progress`.
+1. **Start or resume.** Set the Bug `active`. If the Managing Intelligence has noted under `## Decisions` that an earlier fix failed their testing, fix what's still wrong on top of the earlier commits. Before committing work left by an interrupted Run, have it reviewed.
 
-2. **Fix and review.** Make the baseline worktrees Regression evidence describes, then follow the Fix pipeline until accepted findings are fixed.
+2. **Fix and review.** Follow the Fix pipeline until accepted findings are fixed.
 
-   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed, skipping only sections marked `none` with a reason. Send each failure to the executor that owns the files as a fix round, then rerun all three. Go on only when all three pass.
+   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Send each failure to the executor that owns the files, then rerun all three. Go on only when all three pass.
 
-3. **Prove the fix.** Rerun every scenario under `## Reproduction`, using the files attached to the Bug, and every failure noted under `## Decisions`, in the Bug's worktrees rather than the main checkouts the scenarios name. A remaining symptom goes back to step 2, with a new regression test if the old one passes. Then pass the Integration gate, and check Regression evidence below is met.
+3. **Prove the fix.** In the Bug's worktrees, rerun every scenario under `## Reproduction` and every failure the Managing Intelligence noted; a remaining symptom goes back to step 2. Then pass the Integration gate and meet Regression evidence below.
 
 4. **Commit** in each worktree the fix changed.
 
 ## Child Agents
 
-Executors are `engineer`, `test-writer` and `doc-writer`. Start them fresh for each Run and reuse them for that Run's fix rounds, to preserve their knowledge. Start reviewers fresh every time, so each assessment is independent.
+Use the Fix pipeline and Integration gate for sequencing. Start executors fresh for each Run and reuse them for its fix rounds, to preserve their knowledge. Start reviewers fresh every time, so each assessment is independent.
 
 - **`engineer`:** Launch for source changes. Expect implementation, targeted checks, deviations and effects on documentation.
-- **`test-writer`:** Launch one per testing assignment, in parallel, naming its assignment and the baseline checkout. Expect tests, fixtures, gaps and regression evidence. It runs only targeted checks, because you run the full suites.
-- **`doc-writer`:** Launch for every Bug, with the engineer's deviations and effects on documentation, because a fix can leave docs wrong even when it only restores documented behaviour. Expect updates and implementation gaps, or a reason none are needed.
-- **`code-review`, `test-review` and `doc-review`:** Launch after source, test and documentation changes respectively. test-review also checks regression coverage.
+- **`test-writer`:** Launch one per testing assignment, in parallel, telling each which assignment is theirs. Expect tests, fixtures, gaps and regression evidence. It runs only targeted checks, because you run the full suites.
+- **`doc-writer`:** Launch for every Bug, because a fix can leave docs wrong even when it only restores documented behaviour. Expect updates and implementation gaps, or a reason none are needed.
+- **`code-review`, `test-review` and `doc-review`:** Launch after source, test and documentation changes respectively.
 
 ## Writes
 
-The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Write these sections on it:
-
-- `## Progress`: attempts, fix rounds, testing assignments, executor IDs, Thinking Levels, executors' deviations, unfinished work and commits, so another Run can continue.
-- `## Decisions`: the Managing Intelligence's answers to your questions.
-- `## Regression evidence`: failing-before and passing-after results, and reproduction reruns.
-- `## Checks`: check results and accepted failures.
-- `## Declined findings`: declined findings with reasons.
+The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Progress`, `## Regression evidence`, `## Checks` and `## Declined findings` current, so another Run can continue and the Managing Intelligence can see what was proved.
 
 ## Done
 
@@ -72,34 +66,30 @@ Report the Bug's ID, each worktree's path, branch and commit, and unaddressed fi
 
 ## Handling Reviewer Feedback
 
-You coordinate the work; your Child Agents change the files, so everything you commit has been reviewed. For each finding from code-review, test-review or doc-review:
+You coordinate the work; your Child Agents do it. For each finding from code-review, test-review or doc-review:
 
 - **Fix it:** return it to the executor that owns the files.
 - **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason under `## Declined findings` and in the Done report.
-- **Ask the Managing Intelligence:** for expected behaviour, or conflicts with the Bug's `## Report` and `## Decisions` not already settled there, because those are theirs to decide. Stop and end the Run with the question; they record their answer under `## Decisions`.
+- **Ask the Managing Intelligence:** for expected behaviour, or conflicts with the Bug's report and decisions, because those are theirs to decide.
 
 ## Fix pipeline
 
 Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers.
 
-Split the testing work into assignments, and keep them from editing the same file so their writers can work in parallel. Tests that share a helper the fix changes go in one assignment.
+Split the testing work into assignments that don't edit the same files, so their writers can work in parallel.
 
 Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 
-If fix rounds or attempts stop making progress, stop for the Managing Intelligence, so a fix loop doesn't burn the budget.
+If fixes stop making progress, stop for the Managing Intelligence, so a fix loop doesn't burn the budget.
 
 ## Regression evidence
 
-Require an automated regression test for each scenario under `## Reproduction` and each failure noted under `## Decisions` that doesn't have one. Each test must fail before the fix and pass after it, because a passing test alone doesn't prove it catches the defect.
-
-For failing-before results, make one detached worktree per repo under `<Project Folder>/.scratch/<Bug ID>/baseline/`, at the base commit recorded under `## Worktrees` for the original report, or at the last fix commit for a noted failure. Never undo the fix in the Bug's worktrees, because other Child Agents work there at the same time. Remove these baseline worktrees, never the Bug's, before Done.
-
-If you can't meet this, for example because a scenario can't run or automated coverage is impractical, ask the Managing Intelligence what verification is enough.
+Each scenario and noted failure needs an automated regression test that fails without the fix and passes with it, because a passing test alone doesn't prove it catches the defect. Never undo the fix in the Bug's worktrees to show the failure, because other Child Agents are working there. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
 
 ## Integration gate
 
-You run `guide:build-commands.md ## Integration tests` for every code folder the fix changed, and every code folder that depends on one of them, skipping only sections marked `none` with a reason. Save output under `<Project Folder>/.scratch/<Bug ID>/checks/`, so it survives teardown, and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks`.
+You run `guide:build-commands.md ## Integration tests` for every code folder the fix affects, following `guide:test-guide.md`. Keep the output somewhere that survives teardown, and record what ran and the results under `## Checks`.
 
 The gate passes when suites pass, or when the Managing Intelligence accepts the remaining failures. If suites can't run, ask the Managing Intelligence.
 
-Send test failures to test-writer, then test-review. Send source failures through the Fix pipeline as a new fix round, so the change gets tests and reviews. Run step 2's commit checks yourself after fixes, then rerun step 3.
+Send failures in tests to test-writer, and source failures through the Fix pipeline, then repeat step 3.
