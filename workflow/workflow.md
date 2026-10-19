@@ -78,15 +78,15 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` gives you.
 
-The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance and manages Docs other than the PRD, SRD and Model Docs.
+The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when teardown-worktree hits a merge conflict, and manages Docs other than the PRD, SRD and Model Docs.
 
 ## Flows
 
-**Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing and acceptance → teardown-worktree. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
+**Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing and acceptance → teardown-worktree → release. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
 
 An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
 
-**Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree. If the fix fails the Managing Intelligence's testing, they note what's still wrong on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
+**Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
 
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 
@@ -182,7 +182,7 @@ A Thinking Level picks an Agent's model and effort. The caller resolves it befor
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so effort follows the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
-If a skill line or model mapping is missing, stop and point to project-setup. A missing Task or Bug tag returns to its planning or definition skill, because that skill judges the work's complexity.
+If a skill line or model mapping is missing, stop and point to project-setup. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
 
 ### Child Agents
 

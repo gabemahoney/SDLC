@@ -7,7 +7,7 @@ description: "Create or reuse a branch and worktree for an Idea or Bug in every 
 
 ## Purpose
 
-You give an Idea or Bug its own branch and worktree in every repo it changes, so its work stays off the main branch until the Managing Intelligence accepts it. Every Epic of an Idea, or every fix of a Bug, is done in these worktrees.
+You give an Idea or Bug its own branch and worktree in every repo it changes, so its work stays off the base branch until the Managing Intelligence accepts it. Every Epic of an Idea, or every fix of a Bug, is done in these worktrees.
 
 ## Loading Apiary
 
@@ -21,7 +21,7 @@ An Idea or Bug ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and `protocol:ticket.md`, for operations.
-- **The Idea and its Plan, or the Bug:** for the repos the work changes, and any earlier worktree record. A Bug's repos come from its `## Reproduction`.
+- **The Idea, its Plan and Epics, or the Bug:** for the repos the work changes, and any earlier worktree record. An Idea's repos come from its Epics' `## Work`; a Bug's from its `## Reproduction`.
 
 ## Gate
 
@@ -46,4 +46,4 @@ None: you prepare the worktrees yourself.
 
 ## Done
 
-Report the ticket's ID and worktree paths, and suggest develop-epic for the Plan's first ready Epic, or fix-bug for a Bug.
+Report the ticket's ID and worktree paths, and suggest write-epic for the Plan's first `draft` Epic, or fix-bug for a Bug.

@@ -63,13 +63,13 @@ For hives created by earlier Apiary releases, use the legacy `apiary-setup` migr
 
 Each workflow skill below runs in its own Main Agent. The Managing Intelligence chooses the next Run from the tickets and the previous Run's handoff. [Who runs which skill](docs/who-runs-which-skill.md) shows which Main Agent skills launch which Child Agent skills.
 
-**Ideas:** write-idea → write-prd → write-srd → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing.
+**Ideas:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing and acceptance → teardown-worktree → release.
 
 write-prd and write-srd each launch a fresh req-review Child Agent every review round until nothing remains to fix. They leave the Doc `draft` for the Managing Intelligence to approve and set `defined`. write-srd settles technology and architecture. write-plan divides the Idea into Epics; write-epic plans Tasks and Subtasks. develop-epic coordinates implementation, tests, documentation and independent review, then commits each completed Task. Its Main Agent runs the Epic's `guide:build-commands.md ## Integration tests` and records their evidence. idea-review checks the combined work and files non-trivial findings in a feedback Epic for planning and implementation.
 
 configure-worktree prepares isolated worktrees for an Idea or Bug and records them on the ticket. Once the Managing Intelligence accepts the work and sets the ticket `done`, teardown-worktree merges it to each repo's base branch and removes its worktrees and branches. The worktree record stays on the ticket so interrupted preparation or cleanup can resume.
 
-**Bugs:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance → teardown-worktree. fix-bug uses the Bug's recorded worktrees, coordinates the repair and review, runs `guide:build-commands.md ## Integration tests` and commits the verified fix. It leaves the Bug `active` for acceptance. If the fix fails the Managing Intelligence's testing, they note what's still wrong on the Bug and run fix-bug again in the same worktrees.
+**Bugs:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance → teardown-worktree → release. fix-bug uses the Bug's recorded worktrees, coordinates the repair and review, runs `guide:build-commands.md ## Integration tests` and commits the verified fix. It leaves the Bug `active` for acceptance. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again in the same worktrees.
 
 **Research:** research investigates a Research ticket, writes its Report and continues review until the Managing Intelligence accepts it. Accepted tickets and artifacts remain at `setting:research_location` with automatic archival disabled so other Projects can use the evidence.
 

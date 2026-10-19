@@ -61,7 +61,7 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 
 Report the Plan's ID, and any `product-manager` findings left unaddressed with the reason.
 
-Suggest write-epic on each `draft` Epic in dependency order.
+Suggest configure-worktree for the Idea, then write-epic on each `draft` Epic in dependency order.
 
 ## What to write in each ticket
 

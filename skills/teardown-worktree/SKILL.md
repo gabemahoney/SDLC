@@ -20,7 +20,7 @@ An Idea or Bug ID.
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and `protocol:ticket.md`, for operations.
+- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and `protocol:ticket.md`, for operations.
 - **The Idea or Bug:** its `## Worktrees` record, for each repo's worktree, branch and base branch, and what earlier Runs already did.
 
 ## Gate
@@ -29,10 +29,11 @@ Run only when all of these are true:
 
 - The Idea or Bug is `done`, because only accepted work goes back to the base branch. Otherwise, stop and report its status.
 - The main checkouts and worktrees still to merge are on their recorded branches with no uncommitted changes, because merging could otherwise mix in or lose someone's work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
+- No agent is still working in the ticket's worktrees, because you remove them. Otherwise, stop and tell the Managing Intelligence.
 
 ## Steps
 
-1. **Merge** each recorded branch into its base branch, keeping a merge commit so history shows the ticket's work. If a merge conflicts, leave the main checkout clean, carry on with the other repos, and tell the Managing Intelligence the conflicting files, so they can get it fixed on the ticket's branch and run you again.
+1. **Merge** each recorded branch into its base branch, keeping a merge commit so history shows the ticket's work. If a merge conflicts, leave the main checkout clean, carry on with the other repos, and tell the Managing Intelligence the conflicting files. They set the ticket back to `active` and have the conflict resolved and tested on its branch (fix-bug for a Bug, a fix Epic for an Idea), then accept it again and run you again.
 2. **Clean up.** Once every repo has merged, remove the ticket's worktrees and branches, keeping anything git won't remove so no work is lost.
 
 ## Child Agents
@@ -46,4 +47,4 @@ None: you merge and clean up yourself.
 
 ## Done
 
-Report the ticket's ID, which repos merged (locally, not pushed), and anything left with the reason.
+Report the ticket's ID, which repos merged (locally, not pushed), and anything left with the reason. Once every repo has merged, suggest release.

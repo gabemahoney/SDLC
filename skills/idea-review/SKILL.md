@@ -1,6 +1,6 @@
 ---
 name: idea-review
-description: "Review an Idea's merged work and file one feedback Epic per round."
+description: "Review an Idea's work in its worktrees and file one feedback Epic per round."
 ---
 
 # idea-review
@@ -21,7 +21,7 @@ An Idea ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Idea, PRD, SRD, Plan and Epics:** for requirements, decisions and completed work.
+- **Idea, PRD, SRD, Plan and Epics:** for requirements, decisions and completed work. The Idea's `## Worktrees` says where the work is, and where your Child Agents review it.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md` and `guide:build-commands.md` for review standards in each repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.

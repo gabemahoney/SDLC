@@ -34,6 +34,7 @@ Run only when all of these are true:
 - Every Epic it depends on is `done`. Otherwise, stop and report the unfinished Dependency.
 - Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff. Otherwise, stop and suggest write-plan.
 - The PRD and SRD are `defined`, because execution follows approved requirements. Otherwise, stop and return them to the Managing Intelligence.
+- The Idea's `## Worktrees` covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
 - The Epic has planned Tasks with Subtasks. Unfinished ones are `defined` or `active`, except `draft` fix Tasks and Subtasks whose planning you resume before execution so interrupted repairs can continue. Otherwise, stop and suggest write-epic.
 
 ## Steps
