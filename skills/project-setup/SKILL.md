@@ -52,7 +52,7 @@ None.
 
 ## Done
 
-Report the Project Folder and any incomplete setup or failed installation checks. Guidance written in repos needs a commit by the Managing Intelligence, because you work without git. Next: write-idea or write-bug.
+Report the Project Folder and any incomplete setup or failed installation checks. Guidance written in repos needs a commit by the Managing Intelligence, because you make no commits. Next: write-idea or write-bug.
 
 ## Settings guidance
 

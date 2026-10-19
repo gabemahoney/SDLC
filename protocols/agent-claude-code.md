@@ -2,7 +2,7 @@
 
 ## Context use
 
-**TBD:** agent-director will report each agent's context use (AD Idea b.17w). Until it does, there's no reading, so skip the context checks rather than treating the fraction as unknown, which would stop every Run.
+**TBD:** agent-director will report each agent's context use (AD Idea b.17w). Until it does, no reading exists, so skip the context checks.
 
 ## Launch template
 

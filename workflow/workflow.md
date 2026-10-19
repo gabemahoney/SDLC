@@ -104,7 +104,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 - **Project Folder:** the nearest folder, from the working directory up, that holds `<Project Folder>/.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `setting:research_location`.
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
-- **Git:** project-setup, write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree and release make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts without editing repository files.
+- **Git:** project-setup may clone or create repos but commits nothing. write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree and release make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts without editing repository files.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
 - **Guidance Documents come from the main checkout,** because worktree guides may still be in development. Load only the guides your skill names. For each, read copies in the main checkout's `.apiary` (or the current code folder's, outside a repo), then parent `.apiary` folders and `~/.apiary`. Combine copies cumulatively; the Managing Intelligence settles conflicts. With no user copy, use `~/.apiary/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
@@ -181,7 +181,7 @@ Start Child Agents fresh unless the skill retains them, so unrelated work does n
 
 ### Context
 
-Before each new unit of work, every Main Agent checks its own context fraction as its Agent Protocol File describes. At 75% or more, or when the fraction is unknown, record progress on the ticket and stop for the Managing Intelligence to start a fresh session with the same skill and ticket IDs, because a nearly full context causes mistakes.
+Before each new unit of work, every Main Agent checks its own context fraction as its Agent Protocol File describes, and skips the check where that file says no reading exists yet. At 75% or more, or when a reading should exist but can't be made, record progress on the ticket and stop for the Managing Intelligence to start a fresh session with the same skill and ticket IDs, because a nearly full context causes mistakes.
 
 Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains.
 
