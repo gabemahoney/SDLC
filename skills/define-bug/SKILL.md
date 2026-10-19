@@ -42,7 +42,7 @@ Run only when all of these are true:
 3. **Record the outcome** using the Bug sections below.
    - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set `defined` for fix-bug.
    - Evidence or a Managing Intelligence decision establishes that the behaviour cannot happen or is intended: set `invalid`, with the reason.
-   - Inconclusive: leave `draft`, record the limitation and ask the Managing Intelligence whether the Bug is real. Record their decision and apply the corresponding outcome.
+   - Inconclusive: leave it `draft`, record what you couldn't establish, and ask the Managing Intelligence for guidance.
 
 ## Child Agents
 
@@ -53,7 +53,7 @@ None: you validate the Bug yourself.
 Update the Bug in the Bugs store, setting its status in step 3:
 
 - `## Report`: the current write-up, using `guide:bug-writing-guide.md`.
-- `## Validation`: evidence, conclusion and any limitations.
+- `## Validation`: evidence, conclusion and anything you couldn't establish.
 - `## Reproduction`: commands or scripts, inputs, setup and observed result, so fix-bug can rerun the reported scenario. Retain it across returned fixes and incorporate new evidence; explain when it cannot run.
 - `## Decisions`: the Managing Intelligence's decisions.
 
