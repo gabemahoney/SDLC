@@ -76,7 +76,7 @@ You coordinate the work; your Child Agents do it. For each finding from code-rev
 
 ## Fix pipeline
 
-Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers.
+After step 2's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers.
 
 Split the testing work into assignments that don't edit the same files, so their writers can work in parallel.
 
@@ -86,7 +86,7 @@ If fixes stop making progress, stop for the Managing Intelligence, so a fix loop
 
 ## Regression evidence
 
-Each scenario and noted failure needs an automated regression test that fails without the fix and passes with it, because a passing test alone doesn't prove it catches the defect. Never undo the fix in the Bug's worktrees to show the failure, because other Child Agents are working there. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
+Each scenario and noted failure needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. Writing it before the fix shows the failure without undoing anything. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
 
 ## Integration gate
 
