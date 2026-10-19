@@ -58,6 +58,6 @@ Every Subtask has these sections, with detail in proportion to the work:
 
 - `## Executor`: `test-writer`, so develop-epic knows which Child Agent works it.
 - `## Context`: explain why the Subtask exists and what preconditions it assumes. For code, name what depends on the code it changes and what that code depends on, so the executor sees what a change could break.
-- `## Work`: describe the work and requirements for that executor's part of the Task.
+- `## Work`: describe the regression risks and coverage outcomes; leave concrete case selection and grouping to the test-writer.
 - `## Key files`: give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
-- `## Acceptance criteria`: state observable, testable conditions for completion. For example, a CSV export's fields are correctly quoted and its existing JSON export still works.
+- `## Acceptance criteria`: state observable evidence that the required behaviour is protected, without prescribing a test inventory.
