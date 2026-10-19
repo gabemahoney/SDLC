@@ -2,9 +2,7 @@
 
 ## Prerequisites
 
-Check `bees --version`, `bees --help` and each command's `--help`. Commands return JSON. Run them from the Project Folder or a checkout covered by its Bees scope.
-
-MCP equivalents use underscores and accept `repo_root` for scope. Use a `ticket_ids` list for `show_ticket`, but a single ID string for `update_ticket` body changes. Use `body_file` for verbatim Markdown without the inline 10,000-character limit.
+Tickets live in bees. bees only shows a hive to commands run inside that hive's scope, so run them from the Project Folder or a checkout under it. Shared Research has its own scope, set when it was created.
 
 ## Create or check stores
 
