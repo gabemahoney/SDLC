@@ -1,6 +1,6 @@
 ---
 name: fix-bug
-description: "Fix a defined Bug in its recorded worktrees, prove the regression is covered, review the repair, and hand it back for acceptance. Takes a Bug ID."
+description: "Fix a defined Bug in its recorded worktrees, prove the regression is covered, review the fix, and hand it back for acceptance. Takes a Bug ID."
 ---
 
 # fix-bug
@@ -31,24 +31,24 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 Run only when all of these are true:
 
 - The Bug is `defined` or `active`. If it's `draft`, stop and suggest define-bug. Otherwise, stop and report its status.
-- The Bug's `## Worktrees` record exists, so the repair uses its prepared worktrees. Otherwise, stop and suggest configure-worktree.
-- Every ticket the Bug depends on is `done`, so the repair uses completed prerequisites. If any isn't, stop and report the blocking ticket IDs.
+- The Bug's `## Worktrees` record exists, so the fix is made in its prepared worktrees. Otherwise, stop and suggest configure-worktree.
+- Every ticket the Bug depends on is `done`, so the fix builds on completed prerequisites. If any isn't, stop and report the blocking ticket IDs.
 
 ## Steps
 
 1. **Prepare or resume.** Set the Bug `active`. Work only in the worktrees recorded under the Bug's `## Worktrees`. A returned fix follows the revised Bug in the same worktrees and branches, so earlier repair work is retained.
 
-2. **Implement and review.** Assign Child Agents to the Bug's worktrees. Record testing assignments under `## Progress` for the coverage `guide:test-guide.md` requires. Follow the Repair pipeline, Regression evidence and Handling Reviewer Feedback sections until accepted findings are fixed.
+2. **Implement and review.** Assign Child Agents to the Bug's worktrees. Record testing assignments under `## Progress` for the coverage `guide:test-guide.md` requires. Follow the Fix pipeline, Regression evidence and Handling Reviewer Feedback sections until accepted findings are fixed.
 
-   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the repair changed. Skip only sections marked `none` with a reason. Send failures through the Repair pipeline, then rerun all three. Require all three to pass before committing, so every commit leaves working code.
+   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Skip only sections marked `none` with a reason. Send failures through the Fix pipeline, then rerun all three. Require all three to pass before committing, so every commit leaves working code.
 
-3. **Prove the repair.** Pass the Integration gate. Rerun every scenario under `## Reproduction` with its recorded inputs and setup. A remaining symptom returns to step 2, then repeat verification so the evidence covers the final repair. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision under `## Decisions` and evidence under `## Regression evidence`.
+3. **Prove the fix.** Pass the Integration gate. Rerun every scenario under `## Reproduction` with its recorded inputs and setup. A remaining symptom returns to step 2, then repeat verification so the evidence covers the final fix. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision under `## Decisions` and evidence under `## Regression evidence`.
 
-4. **Commit.** Commit after steps 2 and 3 pass, so the Managing Intelligence tests the verified repair.
+4. **Commit.** Commit after steps 2 and 3 pass, so the Managing Intelligence tests the verified fix.
 
 ## Child Agents
 
-Use the Repair pipeline and Integration gate for sequencing.
+Use the Fix pipeline and Integration gate for sequencing.
 
 - **`engineer`:** Start fresh for each Bug and reuse it for fix rounds to preserve its knowledge. Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
 - **`test-writer`:** Start fresh for each Bug and reuse each writer for fix rounds to preserve its knowledge. Launch one per testing assignment, in parallel, after source changes and for failures caused by tests. Expect unit and integration tests, fixtures, repairs, gaps, regression evidence and only targeted checks, because you run the full suites.
@@ -80,15 +80,15 @@ You coordinate the work; your Child Agents do it. For each finding from code-rev
 
 - **Fix it:** return it to the executor that owns the files.
 - **Decline it:** use your judgement to decline minor or trivial findings. Record each with its reason under `## Declined findings` on the Bug and in the Done report, so the Managing Intelligence sees what was left.
-- **Ask the Managing Intelligence:** for expected behaviour or conflicts with the defined Bug, because it holds the repair's approved requirements.
+- **Ask the Managing Intelligence:** for expected behaviour or conflicts with the defined Bug, because it holds the fix's approved requirements.
 
-## Repair pipeline
+## Fix pipeline
 
 Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. You own commits.
 
-Keep testing assignments from editing the same file so their writers can work in parallel. Tests that share a helper the repair changes go in one assignment.
+Keep testing assignments from editing the same file so their writers can work in parallel. Tests that share a helper the fix changes go in one assignment.
 
-Group accepted findings into repair rounds. Resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check repairs until accepted findings are fixed.
+Group accepted findings into fix rounds. Resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check repairs until accepted findings are fixed.
 
 ## Regression evidence
 
@@ -100,6 +100,6 @@ After implementation and review, you run `guide:build-commands.md ## Integration
 
 The gate passes when the suites pass, or when the Managing Intelligence accepts the remaining failures; record what it accepted under `## Checks`. If the suites can't run, stop and ask the Managing Intelligence.
 
-Send test failures to test-writer, followed by test-review. Source failures go through the Repair pipeline. Run step 2's commit checks yourself after repairs, then rerun integration to check their combined result.
+Send test failures to test-writer, followed by test-review. Source failures go through the Fix pipeline. Run step 2's commit checks yourself after fixes, then rerun integration to check their combined result.
 
-If repairs stop making progress, stop and ask the Managing Intelligence, so a repair loop doesn't burn the budget. Record unfinished work under `## Progress` so a later Run can resume the gate.
+If fixes stop making progress, stop and ask the Managing Intelligence, so a fix loop doesn't burn the budget. Record unfinished work under `## Progress` so a later Run can resume the gate.
