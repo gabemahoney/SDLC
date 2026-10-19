@@ -22,7 +22,7 @@ A Bug ID.
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Bug and its Dependencies:** for readiness, the report, validation, reproduction and decisions.
-- **Guidance:** `guide:bug-writing-guide.md`, for the report and validation standards, and `guide:build-commands.md` when reproducing needs a build or tests.
+- **Guidance:** `guide:bug-writing-guide.md`, for the report, and `guide:build-commands.md` when reproducing needs a build or tests.
 
 Also read the Project's code, tests and linked Research as needed, and any Source References through their Resolvers.
 
@@ -35,7 +35,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. If reproducing it would need tracked repository files edited, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
+1. **Reproduce the Bug** in the main checkouts, at the boundary where the real interaction happens, because an isolated component test can miss the reported failure. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. If reproducing it would need tracked repository files edited, use source evidence instead, citing the code and why it proves the conclusion. Record what ran and what it showed, keeping what you saw separate from what you infer. The Managing Intelligence settles unclear expected behaviour.
 
 2. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
