@@ -81,7 +81,7 @@ The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft
 
 ## Flows
 
-**Idea:** write-idea → write-prd → write-srd → write-plan → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
+**Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing and acceptance → teardown-worktree. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again.
 
 An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
 
