@@ -42,7 +42,7 @@ Run only when all of these are true:
 
    **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the repair changed. Skip only sections marked `none` with a reason. Send failures through the Repair pipeline, then rerun all three. Require all three to pass before committing, so every commit leaves working code.
 
-3. **Prove the repair.** Pass the Integration gate. Rerun the retained reproduction with its original inputs and setup. A remaining symptom returns to step 2, then repeat verification so the evidence covers the final repair. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision under `## Decisions` and evidence under `## Regression evidence`.
+3. **Prove the repair.** Pass the Integration gate. Rerun every scenario under `## Reproduction` with its recorded inputs and setup. A remaining symptom returns to step 2, then repeat verification so the evidence covers the final repair. If reproduction cannot run or validation used source inspection, the Managing Intelligence decides sufficient verification; record the decision under `## Decisions` and evidence under `## Regression evidence`.
 
 4. **Commit and merge.** Commit after steps 2 and 3 pass. Merge from the main checkouts into the recorded targets. If the target or conflict resolution changes the combined result, repeat steps 2 and 3 before cleanup because earlier evidence no longer covers it. If a merge conflicts, preserve its worktree, record conflicts and completed merges under `## Worktrees`, and stop for resolution.
 

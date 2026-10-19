@@ -35,12 +35,12 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output is fine. For a returned fix, reproduce the problem the Managing Intelligence gave as the reason for returning it, against the current code, because the original scenario may now pass. If you can't reproduce it without editing the repo, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
+1. **Reproduce the Bug** in the main checkouts, following `guide:bug-writing-guide.md`. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output is fine. For a returned fix, reproduce the problem the Managing Intelligence gives you as the reason for returning it, recording that reason under `## Decisions` first, against the current code, because the original scenario may now pass. If reproducing it would need tracked repository files edited, use source evidence instead. The Managing Intelligence settles unclear expected behaviour.
 
 2. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
 3. **Record the outcome** using the Bug sections below.
-   - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set `defined` for fix-bug.
+   - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set its Thinking Level tag (below), then set it `defined` for fix-bug.
    - Evidence or a Managing Intelligence decision establishes that the behaviour cannot happen or is intended: set `invalid`, with the reason.
    - Inconclusive: leave it `draft`, record what you couldn't establish, and ask the Managing Intelligence for guidance.
 
@@ -54,7 +54,7 @@ Update the Bug in the Bugs store, setting its status in step 3:
 
 - `## Report`: the current write-up, holding whatever `guide:bug-writing-guide.md` says a report contains.
 - `## Validation`: evidence, conclusion and anything you couldn't establish.
-- `## Reproduction`: commands or scripts, inputs, setup, the code revision and the observed result, so fix-bug can rerun the reported scenario. On a returned fix, keep the original scenario and add the new one. Explain when it cannot run.
+- `## Reproduction`: commands or scripts, inputs, setup, the code revision and the observed result, so fix-bug can rerun the reported scenario. On a returned fix, keep the original scenario and add the new one. If it cannot run, say why.
 - `## Decisions`: the Managing Intelligence's decisions, including why they returned a fix.
 
 Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, and point `## Reproduction` at the attached copies, then delete `<Project Folder>/.scratch/<Bug ID>/`.
