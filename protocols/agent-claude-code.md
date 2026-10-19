@@ -2,7 +2,7 @@
 
 ## Context use
 
-Your context fraction is the latest assistant message's input, cache and output tokens in your session's transcript, divided by your model's context window. If you can't tell, treat it as unknown, never zero.
+TODO: agent-director will report each agent's context use (AD Idea b.17w); point here once it does. Until then, treat your context fraction as unknown, never zero.
 
 ## Launch template
 
