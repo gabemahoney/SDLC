@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Use agent-director, with the template the Agent Protocol File names under `## Launch template`.
+Use agent-director, with the template the Agent Protocol File names under its optional `## Launch template` section, if it has one.
 
 ## Main Agents and Child Agents
 
