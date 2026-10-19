@@ -78,7 +78,7 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` gives you.
 
-The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, returns Bugs to `draft` and manages Docs other than the PRD, SRD and Model Docs.
+The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance and manages Docs other than the PRD, SRD and Model Docs.
 
 ## Flows
 
@@ -86,7 +86,7 @@ The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft
 
 An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
 
-**Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree. If the fix fails the Managing Intelligence's testing, they send the Bug back: set it `draft` and run define-bug with what's still wrong. It then goes through fix-bug again in the same worktrees and branches, so earlier work on the fix is kept.
+**Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree. If the fix fails the Managing Intelligence's testing, they note what's still wrong on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
 
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 

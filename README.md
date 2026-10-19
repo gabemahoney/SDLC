@@ -69,7 +69,7 @@ write-prd and write-srd each launch a fresh req-review Child Agent every review 
 
 configure-worktree prepares isolated worktrees for an Idea or Bug and records them on the ticket. Once the Managing Intelligence accepts the work and sets the ticket `done`, teardown-worktree merges it to each repo's base branch and removes its worktrees and branches. The worktree record stays on the ticket so interrupted preparation or cleanup can resume.
 
-**Bugs:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance → teardown-worktree. fix-bug uses the Bug's recorded worktrees, coordinates the repair and review, runs `guide:build-commands.md ## Integration tests` and commits the verified fix. It leaves the Bug `active` for acceptance. A returned fix goes back to `draft` for define-bug with what's still wrong and reuses the same worktrees and branches.
+**Bugs:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance → teardown-worktree. fix-bug uses the Bug's recorded worktrees, coordinates the repair and review, runs `guide:build-commands.md ## Integration tests` and commits the verified fix. It leaves the Bug `active` for acceptance. If the fix fails the Managing Intelligence's testing, they note what's still wrong on the Bug and run fix-bug again in the same worktrees.
 
 **Research:** research investigates a Research ticket, writes its Report and continues review until the Managing Intelligence accepts it. Accepted tickets and artifacts remain at `setting:research_location` with automatic archival disabled so other Projects can use the evidence.
 

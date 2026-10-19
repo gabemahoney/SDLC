@@ -45,7 +45,7 @@ None: you perform the assigned documentation work yourself.
 
 - Change documentation files only and leave changes uncommitted, because other executors own source and tests and the Main Agent owns commits.
 - Set each assigned Subtask `active` when starting and `done` when complete, so its status tracks your work.
-- On the assigned ticket, record only deviations from the Subtask or Bug with reasons, unfinished work, and effects on documentation or other work under `## Progress`, so the Main Agent can coordinate what remains.
+- On a Subtask, record only deviations with reasons, unfinished work, and effects on documentation or other work under `## Progress`, so the Main Agent can coordinate what remains. On a Bug, report them to fix-bug instead, because several Child Agents work on one Bug at once and fix-bug records them.
 
 ## Done
 
