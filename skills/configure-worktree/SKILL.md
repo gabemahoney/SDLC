@@ -25,11 +25,14 @@ An Idea ID.
 
 ## Gate
 
-Run only when the Idea is `defined` or `active`, so worktrees serve work that's ready to proceed. Otherwise, stop and report its status.
+Run only when all of these are true:
+
+- The Idea is `defined` or `active`, so worktrees serve work that's ready to proceed. Otherwise, stop and report its status.
+- Each main checkout the Plan changes is clean. Otherwise, stop and tell the Managing Intelligence which ones aren't, because the new branch would leave their uncommitted changes out.
 
 ## Steps
 
-1. **Settle the setup.** Find the repos the Plan changes. Base each branch on its main checkout's current branch unless the Managing Intelligence says otherwise. Check each main checkout is clean, and warn the Managing Intelligence about any that isn't, because the new branch leaves uncommitted changes out.
+1. **Settle the setup.** Find the repos the Plan changes. Base each branch on its main checkout's current branch unless the Managing Intelligence says otherwise.
 2. **Create or reuse the worktrees** under the Worktree rules below.
 3. **Record them** on the Idea.
 
