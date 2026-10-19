@@ -12,7 +12,7 @@ Aim for about 80% coverage with as few lines of test code as possible, because e
 
 ## Reuse the Project's test setup
 
-Before writing a test, find the fixtures, factories, helpers and constants the Project already has, and reuse or extend them. Add new setup only where nothing fits, in the place the Project keeps shared setup. Extend existing test files before adding new ones. This keeps tests consistent and stops each test building its own setup.
+Before writing a test, find the fixtures, factories, helpers and constants the Project already has, and reuse them. If one doesn't do exactly what you need, change it, then update every test that uses it, rather than adding a near-copy. Do that work, because one unified set of fixtures is what keeps the suite consistent and small. Add new setup only where nothing fits, in the place the Project keeps shared setup, and extend existing test files before adding new ones.
 
 When planning testing Subtasks, name the setup each one reuses, changes or adds, and the test files it extends or creates, so parallel writers don't duplicate or clash over it.
 
