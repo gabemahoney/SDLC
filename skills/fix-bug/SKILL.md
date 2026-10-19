@@ -34,15 +34,15 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Start or resume.** Set the Bug `active`. If the Managing Intelligence has noted under `## Decisions` that an earlier fix failed their testing, fix what's still wrong on top of the earlier commits. Before committing work left by an interrupted Run, have it reviewed.
+1. **Start or resume.** Set the Bug `active`. If the Managing Intelligence has noted under `## Decisions` what's still wrong after an earlier fix, fix that on top of the earlier commits. Before committing work left by an interrupted Run, have it reviewed.
 
-2. **Write a test that catches the Bug.** Have test-writers add an automated regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted that has no regression test yet, before the fix, so it fails now and proves the fix when it passes, as Regression evidence below describes.
+2. **Write a test that catches the Bug.** Before the fix, have test-writers add a failing regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted, as Regression evidence below describes.
 
-3. **Fix and review.** Follow the Fix pipeline until accepted findings are fixed. If the fix needs a repo with no worktree, stop and suggest configure-worktree, so nothing is committed on a base branch.
+3. **Fix and review.** Follow the Fix pipeline until accepted findings are fixed. If the fix needs a repo with no worktree, stop and suggest configure-worktree.
 
-   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Send each failure to the executor that owns the files, then rerun all three. Go on only when all three pass.
+   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed, sending failures back through the Fix pipeline, until they pass.
 
-4. **Test the fix.** In the Bug's worktrees, rerun every scenario under `## Reproduction` and every failure the Managing Intelligence noted, to check the Bug is gone; a remaining symptom goes back to step 3. Check each regression test that failed in step 2 now passes. Then pass the Integration gate.
+4. **Test the fix.** Rerun every scenario under `## Reproduction` and every noted failure to check the Bug is gone, then pass the Integration gate.
 
 5. **Commit** in each worktree the fix changed.
 
@@ -51,13 +51,13 @@ Run only when all of these are true:
 Use the Fix pipeline and Integration gate for sequencing. Start executors fresh for each Run and reuse them for its fix rounds, to preserve their knowledge. Start reviewers fresh every time, so each assessment is independent.
 
 - **`engineer`:** Launch for source changes. Expect implementation, targeted checks, deviations and effects on documentation.
-- **`test-writer`:** Launch one per testing assignment, in parallel, telling each which assignment is theirs. Expect tests, fixtures, gaps and regression evidence. It runs only targeted checks, because you run the full suites.
+- **`test-writer`:** Launch one per testing assignment, in parallel, telling each which assignment is theirs. Expect tests, fixtures, gaps and regression evidence.
 - **`doc-writer`:** Launch for every Bug, because a fix can leave docs wrong even when it only restores documented behaviour. Expect updates and implementation gaps, or a reason none are needed.
 - **`code-review`, `test-review` and `doc-review`:** Launch after source, test and documentation changes respectively.
 
 ## Writes
 
-The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Progress` (including the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current, so another Run can continue, doc-writer sees what changed, and the Managing Intelligence can see what was proved.
+The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Progress` (including the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current.
 
 ## Done
 
@@ -86,12 +86,12 @@ If fixes stop making progress, stop for the Managing Intelligence, so a fix loop
 
 ## Regression evidence
 
-Each scenario and noted failure needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. Writing it before the fix shows the failure without undoing anything. If you can't get this evidence, ask the Managing Intelligence what verification is enough, and record their answer under `## Regression evidence`.
+Each scenario and noted failure needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
 
 ## Integration gate
 
-You run `guide:build-commands.md ## Integration tests` for every code folder the fix affects, following `guide:test-guide.md`. Keep the output somewhere that survives teardown, and record what ran and the results under `## Checks`.
+You run `guide:build-commands.md ## Integration tests` for every code folder the fix affects, following `guide:test-guide.md`. Keep the output somewhere that survives teardown.
 
-The gate passes when suites pass, or when the Managing Intelligence accepts the remaining failures, which you record under `## Checks`. If suites can't run, ask the Managing Intelligence.
+The gate passes when suites pass, or when the Managing Intelligence accepts the remaining failures. If suites can't run, ask the Managing Intelligence.
 
-Send failures in tests to test-writer, then test-review, and source failures through the Fix pipeline; then repeat steps 3 and 4, so every change is reviewed and checked before it's committed.
+Send failures back through step 3, so every change is reviewed and checked before it's committed, then repeat step 4.

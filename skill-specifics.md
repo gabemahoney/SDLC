@@ -24,5 +24,5 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 
 **Bug:** the Managing Intelligence sets `done` after testing and accepting the fix in its worktrees, before teardown-worktree merges it.
 
-**Idea or Bug:** the Managing Intelligence sets it back to `active` when teardown-worktree hits a merge conflict, so the conflict can be resolved and tested on its branch.
+**Idea or Bug:** the Managing Intelligence sets it back to `active` when teardown-worktree hits a merge conflict, so the conflict can be resolved and tested on its branch, through fix-bug for a Bug or idea-review for an Idea.
 

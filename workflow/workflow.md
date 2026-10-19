@@ -78,7 +78,7 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` gives you.
 
-The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when teardown-worktree hits a merge conflict, and manages Docs other than the PRD, SRD and Model Docs.
+The Managing Intelligence sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when teardown-worktree hits a merge conflict (then fix-bug resolves it for a Bug, idea-review for an Idea), and manages Docs other than the PRD, SRD and Model Docs.
 
 ## Flows
 

@@ -7,7 +7,7 @@ description: "Create or reuse a branch and worktree for an Idea or Bug in every 
 
 ## Purpose
 
-You give an Idea or Bug its own branch and worktree in every repo it changes, so its work stays off the base branch until the Managing Intelligence accepts it. Every Epic of an Idea, or every fix of a Bug, is done in these worktrees.
+You give an Idea or Bug its own branch and worktree in every repo it changes, so its work stays off the base branch until the Managing Intelligence accepts it.
 
 ## Loading Apiary
 
@@ -32,7 +32,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Create or reuse the worktrees,** one per repo, with the branch and worktree named after the ticket's ID at the paths `~/.apiary/system/workflow.md` defines, so every ticket's worktrees are named the same way and anyone can tell whose work it is. Branch from each main checkout's current branch unless the Managing Intelligence says otherwise. Reuse an existing worktree for the ticket and keep its changes. If something already in the way isn't the ticket's, stop for the Managing Intelligence, to protect that work.
+1. **Create or reuse the worktrees,** one per repo, with the branch and worktree named after the ticket's ID at the paths `~/.apiary/system/workflow.md` defines, so every ticket's worktrees are named the same way and anyone can tell whose work it is. Branch from each main checkout's current branch, and reuse any worktree the ticket already has. If something already in the way isn't the ticket's, stop for the Managing Intelligence.
 2. **Record them** on the ticket.
 
 ## Child Agents
@@ -41,7 +41,7 @@ None: you prepare the worktrees yourself.
 
 ## Writes
 
-- **The Idea or Bug:** under `## Worktrees`, each repo's main checkout, worktree path, branch and base branch, so later skills can find the work and teardown-worktree knows where to merge it. Leave its status unchanged.
+- **The Idea or Bug:** under `## Worktrees`, each repo's main checkout, worktree path, branch and base branch, so later skills can find the work and teardown-worktree knows where to merge it.
 - **Repos:** the ticket's branches and worktrees.
 
 ## Done
