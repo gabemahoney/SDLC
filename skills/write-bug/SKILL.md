@@ -1,6 +1,6 @@
 ---
 name: write-bug
-description: "File a new Bug from a defect report, following the Project's `setting:new_bug_intake`."
+description: File a new Bug from a report or intake input such as an issue URL, following the Project's `setting:new_bug_intake`.
 ---
 
 # write-bug
@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A defect report, in the form `setting:new_bug_intake` asks for.
+A defect report: either freeform, or in the form `setting:new_bug_intake` asks for.
 
 ## Required Reading
 
@@ -29,11 +29,11 @@ A defect report, in the form `setting:new_bug_intake` asks for.
 Run only when all of these are true:
 
 - The request is to file a new Bug. For an existing Bug, stop and report its ID; suggest define-bug if it is `draft`, because that skill owns completing and validating the report.
-- The input fits `setting:new_bug_intake`. If it doesn't, stop and ask the Managing Intelligence for the required input.
+- The report says what goes wrong, whether freeform or through `setting:new_bug_intake`. Otherwise, stop and ask the Managing Intelligence for it.
 
 ## Steps
 
-1. **File the report.** Follow the selected intake and create the Bug as described below. Preserve the reporter's symptom and supplied reproduction, including inputs, setup and expected and actual behaviour, so define-bug investigates the reported failure.
+1. **File the report.** Use `setting:new_bug_intake` when the input is in its form; otherwise take the freeform report as given. Create the Bug as described below. Preserve the reporter's symptom and supplied reproduction, including inputs, setup and expected and actual behaviour, so define-bug investigates the reported failure.
 
 ## Child Agents
 
