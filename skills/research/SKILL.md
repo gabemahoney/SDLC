@@ -37,7 +37,6 @@ One of these:
 Run only when all of these are true:
 
 - The question, whether given to you or on the Research ticket, is clear enough to research. Otherwise, ask your reviewer to sharpen it, because the question determines what to investigate.
-- Given a Research ticket ID: the ticket is `defined`, `active` or `done`. Otherwise, stop for your reviewer to finish defining it, so research starts from a written question.
 
 ## Steps
 
