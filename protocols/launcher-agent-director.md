@@ -2,9 +2,7 @@
 
 ## Prerequisites
 
-Use agent-director, tmux, the chosen Agent's hooks and installed skills. Check `agent-director version` and `agent-director --help` for the installed behavior. Run lifecycle commands as the agents' user on their tmux server, because another server cannot establish their liveness.
-
-Choose an approved template from `~/.config/agent-director/templates/<name>.toml` for its permissions and environment. Record the template on the assignment's ticket for continuation.
+Use agent-director, with an approved template from `~/.config/agent-director/templates/`, because the template sets the agent's permissions.
 
 ## Main Agents and Child Agents
 
