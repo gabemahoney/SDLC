@@ -45,7 +45,7 @@ Run each skill below in a fresh session, such as `claude "/write-idea"`, in the 
 **Fix a Bug**
 
 - **write-bug:** files your Bug report.
-- **define-bug:** reproduces it to confirm it's real.
+- **define-bug:** checks the docs to confirm it's a real Bug, not a design choice, and reproduces it.
 - **configure-worktree:** makes a branch and worktree for the fix.
 - **fix-bug:** writes a test that catches the Bug, then fixes and commits it. Then you test it and accept it.
 - **teardown-worktree** and **release:** as for an Idea.

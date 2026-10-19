@@ -1,13 +1,13 @@
 ---
 name: define-bug
-description: "Reproduce a draft Bug to confirm it's real, record how to reproduce it, and mark it defined or invalid. Takes a Bug ID."
+description: "Check a draft Bug against the docs and reproduce it to confirm it's a real defect, record how to reproduce it, and mark it defined or invalid. Takes a Bug ID."
 ---
 
 # define-bug
 
 ## Purpose
 
-You reproduce a reported Bug to confirm it's real, and record how you reproduced it so fix-bug can rerun it.
+You check a reported Bug is a real defect rather than intended behaviour, reproduce it, and record how you reproduced it so fix-bug can rerun it.
 
 ## Loading Apiary
 
@@ -24,6 +24,8 @@ A Bug ID.
 - **Bug and its Dependencies:** for readiness, the report, validation, reproduction and decisions.
 - **Guidance:** `guide:bug-writing-guide.md`, for the report, and `guide:build-commands.md` when reproducing needs a build or tests.
 
+- **Documentation:** the Project's user and internal docs, such as its README, `docs/`, architecture docs and the PRDs and SRDs behind the feature, for its intended behaviour.
+
 Also read the Project's code, tests and linked Research as needed, and any Source References through their Resolvers.
 
 ## Gate
@@ -35,13 +37,15 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Reproduce the Bug** in the main checkouts, at the boundary where the real interaction happens, because an isolated component test can miss the reported failure. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. If reproducing it would need tracked repository files edited, use source evidence instead, citing the code and why it proves the conclusion. Record what ran and what it showed, keeping what you saw separate from what you infer. The Managing Intelligence settles unclear expected behaviour.
+1. **Check the expected behaviour.** Compare the report's expected result with what the Project's user and internal docs say the software should do, because behaviour the docs describe as a design choice isn't a Bug. If they show the reported behaviour is intended, mark it `invalid` as step 4 describes, citing the docs. The Managing Intelligence settles expected behaviour the docs leave unclear.
 
-2. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
+2. **Reproduce the Bug** in the main checkouts, at the boundary where the real interaction happens, because an isolated component test can miss the reported failure. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. If reproducing it would need tracked repository files edited, use source evidence instead, citing the code and why it proves the conclusion. Record what ran and what it showed, keeping what you saw separate from what you infer.
 
-3. **Record the outcome** using the Bug sections below.
+3. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
+
+4. **Record the outcome** using the Bug sections below.
    - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set its Thinking Level tag (below), then set it `defined` for configure-worktree.
-   - Evidence or a Managing Intelligence decision establishes that the behaviour cannot happen or is intended: set `invalid`, with the reason.
+   - The docs, evidence or a Managing Intelligence decision establish that the behaviour is intended or cannot happen: set `invalid`, with the reason.
    - Inconclusive: leave it `draft`, record what you couldn't establish, and ask the Managing Intelligence for guidance.
 
 ## Child Agents
@@ -50,7 +54,7 @@ None: you validate the Bug yourself.
 
 ## Writes
 
-Update the Bug in the Bugs store, setting its status in step 3:
+Update the Bug in the Bugs store, setting its status in step 4:
 
 - `## Report`: the current write-up, holding whatever `guide:bug-writing-guide.md` says a report contains.
 - `## Validation`: evidence, conclusion and anything you couldn't establish.
