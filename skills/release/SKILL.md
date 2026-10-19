@@ -15,18 +15,23 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-The release target required by the Project's guide, such as a ticket ID or version.
+The Ideas and Bugs going into this release, plus anything else the Project's guide requires, such as a version.
 
 ## Required Reading
 
 - **Agent:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, for Agent instructions.
+- **Settings and protocol:** Project and default settings, and `protocol:ticket.md`, for ticket operations.
+- **The Ideas and Bugs:** their status and `## Worktrees` records, for the Gate.
 - **Guidance:** `guide:release-guide.md` and the files it points to, for the release process, permissions and approvals.
-
-If the guide uses tickets, also read Project and default settings and `protocol:ticket.md` for ticket operations.
 
 ## Gate
 
-Run only when the guide defines a release process. Otherwise, stop and suggest project-setup, which helps the Managing Intelligence write it.
+Run only when all of these are true:
+
+- The guide defines a release process. Otherwise, stop and suggest project-setup, which helps the Managing Intelligence write it.
+- Each Idea and Bug is `done`, because only accepted work ships. Otherwise, stop and name the ones the Managing Intelligence hasn't accepted.
+- Each one's `## Worktrees` record shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and suggest teardown-worktree for an Idea, or fix-bug for a Bug.
+- Each main checkout being released is on the branch the guide releases from, with no uncommitted changes to tracked files, so the release holds only merged work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
 
 ## Steps
 
