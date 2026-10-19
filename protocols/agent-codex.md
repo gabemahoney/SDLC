@@ -2,7 +2,7 @@
 
 ## Context use
 
-TODO: agent-director will report each agent's context use (AD Idea b.17w); point here once it does. Until then, treat your context fraction as unknown, never zero.
+**TBD:** agent-director will report each agent's context use (AD Idea b.17w). Until it does, there's no reading, so skip the context checks rather than treating the fraction as unknown, which would stop every Run.
 
 ## Launch template
 
