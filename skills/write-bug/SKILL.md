@@ -1,6 +1,6 @@
 ---
 name: write-bug
-description: "File a new Bug from a report or intake input such as an issue URL, following the Project's `setting:new_bug_intake`."
+description: "File a new Bug from a defect report, following the Project's `setting:new_bug_intake`."
 ---
 
 # write-bug
@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A defect report or intake input such as an issue URL, because you create the Bug ticket.
+A defect report, in the form `setting:new_bug_intake` asks for.
 
 ## Required Reading
 

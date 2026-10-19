@@ -1,6 +1,6 @@
 ---
 name: write-idea
-description: "File a new Idea from a description of the work or intake input such as an issue URL, following the Project's `setting:new_idea_intake`."
+description: "File a new Idea from a description of the work, following the Project's `setting:new_idea_intake`."
 ---
 
 # write-idea
@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A description of the work, or intake input such as an issue URL.
+A description of the work, in the form `setting:new_idea_intake` asks for.
 
 ## Required Reading
 
