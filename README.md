@@ -53,3 +53,14 @@ Run each skill below in a fresh session, such as `claude "/write-idea"`, in the 
 **Research**
 
 - **research:** answers a question with a cited Report, revising it until you accept it.
+
+## Customize
+
+project-setup writes these into your Project's `.apiary/` folder; edit them there, or put copies in `~/.apiary/` to apply them to every Project.
+
+- **Guides:** your own rules for engineering, testing, docs, bug reports, research, build commands and releases. Apiary ships a default for each.
+- **Release:** how your work ships, and whether Apiary may push, tag or publish. By default it only merges to your local main.
+- **Models and effort:** which model and effort each skill runs with, for Claude Code and Codex CLI.
+- **PRD template:** the layout of your requirements documents.
+- **Intake:** where new Ideas and Bugs come from, such as GitHub issues.
+- **Tickets:** where tickets, Research and Reports are stored.
