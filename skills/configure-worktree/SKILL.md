@@ -27,8 +27,8 @@ An Idea ID.
 
 Run only when all of these are true:
 
-- The Idea is `defined` or `active`, so worktrees serve work that's ready to proceed. Otherwise, stop and report its status.
-- Each main checkout the Plan changes is clean. Otherwise, stop and tell the Managing Intelligence which ones aren't, because the new branch would leave their uncommitted changes out.
+- The Idea is `defined` or `active`, and its Plan is `defined` or `active`, because the Plan says which repos change. Otherwise, stop and report which isn't.
+- Each main checkout that needs a new branch is clean. Otherwise, stop and tell the Managing Intelligence which ones aren't, because the new branch would leave their uncommitted changes out.
 
 ## Steps
 
@@ -42,12 +42,12 @@ None: you prepare the worktrees yourself.
 
 ## Writes
 
-- **The Idea:** under `## Worktrees`, each repo's path, branch, and base branch and commit, so develop-epic, idea-review and teardown-worktree can find the work. Leave its status unchanged.
+- **The Idea:** under `## Worktrees`, each repo's main checkout path, worktree path, branch, and base branch and commit. The base branch is where teardown-worktree merges the work back. This record is how develop-epic, idea-review and teardown-worktree find the work. Leave its status unchanged.
 - **Repos:** create branches and worktrees.
 
 ## Done
 
-Report the Idea's ID and its worktree paths.
+Report the Idea's ID and its worktree paths, and suggest develop-epic for the Plan's first ready Epic.
 
 ## Worktree rules
 
