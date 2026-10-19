@@ -25,7 +25,10 @@ Read its body, status, tags and relationships.
 
 ## Find tickets
 
-Query bees by hive, type, parent or Dependency.
+Query bees by hive, type, parent or Dependency. Skills often need these two:
+
+- A ticket's children, such as an Epic's Tasks: `{stages: [[parent=<id>]], report: [title, ticket_status]}`
+- A ticket's prerequisites: `{stages: [[id=<id>], [up_dependencies]]}`
 
 ## Update a ticket section
 
