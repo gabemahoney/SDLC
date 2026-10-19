@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-A description of the work, in the form `setting:new_idea_intake` asks for.
+A description of the work: either freeform, or in the form `setting:new_idea_intake` asks for.
 
 ## Required Reading
 
@@ -29,8 +29,8 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Check the input.** Follow the intake named by `setting:new_idea_intake`.
-   - If the input doesn't fit, stop and ask the Managing Intelligence for what's needed.
+1. **Check the input.** Use `setting:new_idea_intake` when the input is in its form; otherwise take the freeform description as given.
+   - If it doesn't say what the work is, stop and ask the Managing Intelligence.
 2. **Prepare the Idea.**
    - If the intake names a Source Reference resolver, store the input under `## Source References` as the Idea's Source Reference, so write-prd can read the original context.
 
