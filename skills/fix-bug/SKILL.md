@@ -38,7 +38,7 @@ Run only when all of these are true:
 
 1. **Prepare or resume.** Set the Bug `active`. Work only in the worktrees recorded under the Bug's `## Worktrees`. If the Managing Intelligence sent the Bug back because the fix failed their testing, keep working in the same worktrees and branches, so earlier work on the fix is kept.
 
-2. **Implement and review.** Assign Child Agents to the Bug's worktrees. Record testing assignments under `## Progress` for the coverage `guide:test-guide.md` requires. Follow the Fix pipeline, Regression evidence and Handling Reviewer Feedback sections until accepted findings are fixed.
+2. **Implement and review.** Assign Child Agents to the Bug's worktrees, following the Fix pipeline, Regression evidence and Handling Reviewer Feedback sections below, until accepted findings are fixed.
 
    **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Skip only sections marked `none` with a reason. Send failures through the Fix pipeline, then rerun all three. Require all three to pass before committing, so every commit leaves working code.
 
