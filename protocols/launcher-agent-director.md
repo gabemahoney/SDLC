@@ -8,7 +8,7 @@ Use agent-director, with the template the Agent Protocol File names under `## La
 
 Both run in their own agent-director sessions. The Managing Intelligence launches Main Agents; a Main Agent launches its Child Agents. A Main Agent sends work at launch and follow-ups with `send-keys`. A Child Agent ends its turn with its report or question, and its Main Agent reads it from the pane. Decisions needing the Managing Intelligence go through the Main Agent.
 
-## Launch a Main Agent
+## Launching a Main Agent
 
 Use the Managing Intelligence's recorded skill and ticket, with the model and effort from the workflow's Thinking Levels:
 
