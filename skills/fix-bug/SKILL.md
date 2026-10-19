@@ -7,7 +7,7 @@ description: "Fix a defined Bug in its recorded worktrees, prove the regression 
 
 ## Purpose
 
-You follow configure-worktree and take a confirmed Bug through implementation, review and testing. The Managing Intelligence tests the fix and accepts or returns it before teardown-worktree merges it.
+You follow define-bug and configure-worktree, and take a confirmed Bug through implementation, review and testing. The Managing Intelligence tests the fix and accepts or returns it before teardown-worktree merges it.
 
 ## Loading Apiary
 
