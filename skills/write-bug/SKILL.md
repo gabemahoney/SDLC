@@ -26,7 +26,7 @@ A defect report: either freeform, or in the form `setting:new_bug_intake` asks f
 
 ## Gate
 
-Run only when the input isn't an existing Bug's ID. Otherwise, stop and report it, suggesting define-bug if it's `draft`, because that skill completes and validates reports.
+None: you create a new ticket.
 
 ## Steps
 
