@@ -34,9 +34,7 @@ One of these:
 
 ## Gate
 
-Run only when all of these are true:
-
-- The question, whether given to you or on the Research ticket, is clear enough to research. Otherwise, ask your reviewer to sharpen it, because the question determines what to investigate.
+Run only when the question, whether given to you or on the Research ticket, is clear enough to research. Otherwise, ask your reviewer to sharpen it, because the question determines what to investigate.
 
 ## Steps
 
