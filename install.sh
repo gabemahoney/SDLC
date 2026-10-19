@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install Apiary skills for Main Agents and Child Agents, plus legacy agent files.
+# Install Apiary skills for Main Agents and Child Agents.
 # Shared files include the workflow, templates and Agent, Ticket System and Launcher protocols.
 set -euo pipefail
 
@@ -12,11 +12,9 @@ Usage: ./install.sh [--agent claude|codex|both] [--repo <path>] [--dry-run]
   --dry-run  Print every action; write nothing.
 
 Claude Code:  skills/<name>/ -> ~/.claude/skills/<name>/
-              agents/*.md    -> ~/.claude/agents/
-              (--repo: <repo>/.claude/skills, <repo>/.claude/agents)
+              (--repo: <repo>/.claude/skills)
 Codex CLI:    skills/<name>/ -> ~/.agents/skills/<name>/
-              agents/*.md    -> ~/.codex/agents/<name>.toml (rendered; needs python3)
-              (--repo: <repo>/.agents/skills, <repo>/.codex/agents)
+              (--repo: <repo>/.agents/skills)
 Shared:       workflow/workflow.md -> ~/.apiary/system/workflow.md
               templates/, intakes/, resolvers/ -> ~/.apiary/system/ (also with --repo)
               doc-templates/ -> ~/.apiary/system/doc-templates/ (also with --repo)
@@ -85,38 +83,18 @@ install_claude() {
   local base="${REPO:-$HOME}/.claude"
   echo "== Claude Code: $base"
   install_skills "$base/skills"
-  run mkdir -p "$base/agents"
-  # cp rewrites an existing file in place: Claude Code notices agent files changed that way mid-session.
-  run cp "$SRC"/agents/apiary-*.md "$base/agents/"
 }
 
 install_codex() {
-  local skills agents
+  local skills
   if [ -n "$REPO" ]; then
     skills="$REPO/.agents/skills"
-    agents="$REPO/.codex/agents"
   else
     skills="$HOME/.agents/skills"
-    agents="$HOME/.codex/agents"
   fi
-  echo "== Codex CLI: $skills, $agents"
-  # Render first: it checks every agent before writing any, so a bad one stops the install here.
-  local render=(python3 "$SRC/scripts/codex_agents.py" render --out "$agents")
-  if [ "$DRY" -eq 1 ]; then
-    render+=(--dry-run)
-  fi
-  echo "+ ${render[*]}"
-  "${render[@]}"
+  echo "== Codex CLI: $skills"
   install_skills "$skills"
-  if [ -n "$REPO" ]; then
-    echo "Note: Codex loads $REPO/.codex/agents only when it trusts that project."
-  fi
 }
-
-if [ "$AGENT" != claude ] && ! command -v python3 >/dev/null 2>&1; then
-  echo "install.sh: python3 is required for --agent $AGENT (it renders the Codex agents from agents/*.md); nothing was installed" >&2
-  exit 1
-fi
 
 case "$AGENT" in
   claude) install_claude ;;
