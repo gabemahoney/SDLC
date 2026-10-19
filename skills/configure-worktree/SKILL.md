@@ -32,7 +32,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Create or reuse the worktrees,** one per repo, branched from each main checkout's current branch unless the Managing Intelligence says otherwise. Reuse an existing worktree for the ticket and keep its changes. If something already in the way isn't the ticket's, stop for the Managing Intelligence, to protect that work.
+1. **Create or reuse the worktrees,** one per repo, with the branch and worktree named after the ticket's ID at the paths `~/.apiary/system/workflow.md` defines, so anyone can tell whose work it is. Branch from each main checkout's current branch unless the Managing Intelligence says otherwise. Reuse an existing worktree for the ticket and keep its changes. If something already in the way isn't the ticket's, stop for the Managing Intelligence, to protect that work.
 2. **Record them** on the ticket.
 
 ## Child Agents
@@ -42,7 +42,7 @@ None: you prepare the worktrees yourself.
 ## Writes
 
 - **The Idea or Bug:** under `## Worktrees`, each repo's main checkout, worktree path, branch and base branch, so later skills can find the work and teardown-worktree knows where to merge it. Leave its status unchanged.
-- **Repos:** the ticket's branches and worktrees, named after its ID at the paths `~/.apiary/system/workflow.md` defines.
+- **Repos:** the ticket's branches and worktrees.
 
 ## Done
 
