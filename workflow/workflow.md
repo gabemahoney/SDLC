@@ -181,7 +181,7 @@ Start Child Agents fresh unless the skill retains them, so unrelated work does n
 
 ### Context
 
-Before each new unit of work, every Main Agent checks its own context fraction as its Agent Protocol File describes, and skips the check where that file says no reading exists yet. At 75% or more, or when a reading should exist but can't be made, record progress on the ticket and stop for the Managing Intelligence to start a fresh session with the same skill and ticket IDs, because a nearly full context causes mistakes.
+Before each new unit of work, every Main Agent checks its own context fraction as its Agent Protocol File describes, and skips its own check where that file says no reading exists yet. At 75% or more, or when a reading should exist but can't be made, record progress on the ticket and stop for the Managing Intelligence to start a fresh session with the same skill and ticket IDs, because a nearly full context causes mistakes.
 
 Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains.
 
