@@ -21,4 +21,4 @@ Keep the reading's source, history position and configuration so later turns, co
 
 ## Launch template
 
-Optional, for launchers that use templates. Launch every Main Agent and Child Agent with the `WORKER` template, because it sets the agent's sandbox and permissions.
+Launch every Main Agent and Child Agent with the `WORKER` template, because it sets the agent's sandbox and permissions.

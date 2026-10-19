@@ -22,4 +22,4 @@ Validate the window against this session's model, provider and configuration, in
 
 ## Launch template
 
-Optional, for launchers that use templates. Launch every Main Agent and Child Agent with the `CODEX_WORKER` template, because it sets the agent's sandbox and permissions.
+Launch every Main Agent and Child Agent with the `CODEX_WORKER` template, because it sets the agent's sandbox and permissions.
