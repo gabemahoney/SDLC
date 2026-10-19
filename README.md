@@ -63,4 +63,4 @@ Run project-setup to change these, or edit the files in your Project's `.apiary/
 - **Models and effort:** which model and effort each skill runs with, for Claude Code and Codex CLI.
 - **PRD template:** the layout of your requirements documents.
 - **Intake:** where new Ideas and Bugs come from, such as GitHub issues.
-- **Tickets:** where tickets, Research and Reports are stored.
+- **Tickets:** where and how tickets, Research and Reports are stored.
