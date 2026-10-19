@@ -6,7 +6,7 @@ Use agent-director, with the template the Agent Protocol File names under its op
 
 ## Main Agents and Child Agents
 
-Both run in separate agent-director sessions. The Managing Intelligence assigns Main Agents; a Main Agent assigns its Child Agents.
+Both run in separate agent-director sessions. The Managing Intelligence launches Main Agents; a Main Agent launches its Child Agents.
 
 Send the initial assignment at launch. For a follow-up, use `send-keys` as Resume a Child Agent describes. A Child Agent ends its turn with a report or question; its Main Agent polls its state and reads the pane. Decisions needing the Managing Intelligence go through the Main Agent.
 
