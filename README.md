@@ -1,6 +1,6 @@
 # Apiary 🐝
 
-Apiary is a workflow of skills for Claude Code and Codex CLI. It takes an Idea from PRD to SRD, Plan, Epics, code and review, and fixes Bugs. A Managing Intelligence (you, or a bot acting for you) runs it, launching a Main Agent for each skill. Main Agents launch Child Agents to write and review code, tests and docs.
+Apiary is a workflow of skills for Claude Code and Codex CLI. It takes an Idea from requirements to reviewed, tested code, fixes Bugs, and answers research questions. You (or a bot acting for you) run one skill at a time; each skill launches its own agents to write and review the code, tests and docs.
 
 ## Requirements
 
@@ -27,8 +27,29 @@ It sets up the Project's settings, ticket stores and guides with you.
 
 ## Use
 
-Run each skill in its own Main Agent, such as `claude "/write-idea"`.
+Run each skill below in a fresh session, such as `claude "/write-idea"`, in the order shown. Each one tells you when it's done and what to run next.
 
-- **Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic and develop-epic for each Epic → idea-review → your testing and acceptance → teardown-worktree → release.
-- **Bug:** write-bug → define-bug → configure-worktree → fix-bug → your testing and acceptance → teardown-worktree → release.
-- **Research:** research answers a question with a cited Report, revising it until you accept it.
+**Build an Idea**
+
+- **write-idea:** files your Idea as a ticket.
+- **write-prd:** writes the product requirements with you.
+- **write-srd:** turns them into software requirements.
+- **write-plan:** splits the work into Epics.
+- **configure-worktree:** makes a branch and worktree for the work.
+- **write-epic:** breaks one Epic into Tasks. Run it, then develop-epic, once per Epic.
+- **develop-epic:** builds, tests, reviews and commits one Epic.
+- **idea-review:** reviews the finished Idea and files fixes for anything wrong. Then you test it and accept it.
+- **teardown-worktree:** merges the branch and removes the worktree.
+- **release:** releases it the way your Project's release guide says.
+
+**Fix a Bug**
+
+- **write-bug:** files your Bug report.
+- **define-bug:** reproduces it to confirm it's real.
+- **configure-worktree:** makes a branch and worktree for the fix.
+- **fix-bug:** writes a test that catches the Bug, then fixes and commits it. Then you test it and accept it.
+- **teardown-worktree** and **release:** as for an Idea.
+
+**Research**
+
+- **research:** answers a question with a cited Report, revising it until you accept it.
