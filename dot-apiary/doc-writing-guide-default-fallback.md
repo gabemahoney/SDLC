@@ -28,11 +28,11 @@ Keep developer and operational guides current where the Project needs them, such
 
 ## Write and trim
 
-- Document what the software actually does now, not what it might do later.
+- Document what readers need to do with the software as it is now; requirements are a correctness check, not an outline to reproduce.
 - Use short, plain sentences, and lead with what the reader needs to know.
 - Explain each fact in one place and link to it elsewhere, because repeated explanations drift apart.
 - Use lists for things that really are lists, and paragraphs for everything else.
-- Add a document only when its content has no suitable home, so the docs stay easy to navigate.
+- Prefer a small update to an existing document. Add a document only for a distinct reader task that needs its own explanation.
 - Remove outdated or duplicated passages and documents. Trimming and deleting matter as much as adding.
 
 Always finish any doc writing or reviewing effort with a succinctness pass: reread what was wrote and cut every word, sentence and section the reader doesn't need. Be on guard for documentation bloat, because docs grow with every change and each extra line makes the useful ones harder to find.

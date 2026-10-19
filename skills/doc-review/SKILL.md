@@ -35,7 +35,7 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
 
 1. **Read the code changes.** Read every code change made in this Task carefully, so you know exactly what changed.
 2. **Read every document.** Read all of the Project's docs, in full, so nothing the change affects is missed.
-3. **Check the docs against the changes.** Following `guide:doc-writing-guide.md`, check:
+3. **Check the docs against the changes.** Judge every passage against the document's intended audience, including unchanged material. Report unnecessary or misplaced content even when a Subtask asks to retain it, and recommend cuts or consolidation that preserve required reader information. Following `guide:doc-writing-guide.md`, check:
    - Is a new doc needed that's missing?
    - Does any doc need updating, and which sections?
    - Does any doc need trimming, and which sections?
