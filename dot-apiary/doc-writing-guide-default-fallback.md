@@ -10,9 +10,13 @@ The README is for people who want to install and run the Project. A reader shoul
 - No code. Command lines are fine, and should be concrete and copy-pasteable.
 - The happy path only: no theoretical error cases or alternative installs.
 - Don't explain common tools, such as bash or a package manager.
-- No migration, backups or debugging.
+- No debugging.
 - The Project as it is now: no legacy features and nothing about the past.
 - Don't point to the extended docs; readers can find them.
+
+## User guides
+
+Put fuller detail on using the Project in user-facing guides in `docs/`: anything readers need that doesn't fit in a short README, such as configuration, backups, migration and less common tasks.
 
 ## Architecture docs
 
@@ -20,7 +24,7 @@ Architecture docs live in `docs/architecture/`. They set the architecture guidel
 
 ## Other guides
 
-Keep developer and operational guides current where the Project needs them, including configuration, testing and release instructions.
+Keep developer and operational guides current where the Project needs them, such as testing and release instructions.
 
 ## Write and trim
 
