@@ -1,6 +1,6 @@
 ---
 name: release
-description: "Release a Project by following its `guide:release-guide.md`, including its permissions and human approvals."
+description: "Release accepted, merged Ideas and Bugs by following the Project's `guide:release-guide.md`, including its permissions and human approvals. Takes Idea and Bug IDs."
 ---
 
 # release
@@ -15,7 +15,7 @@ Read `~/.apiary/system/workflow.md` first for shared rules, settings and file lo
 
 ## Input
 
-The Ideas and Bugs going into this release, plus anything else the Project's guide requires, such as a version.
+The IDs of the Ideas and Bugs to release, chosen by the Managing Intelligence, plus anything else the Project's guide requires, such as a version.
 
 ## Required Reading
 
@@ -30,12 +30,12 @@ Run only when all of these are true:
 
 - The guide defines a release process. Otherwise, stop and suggest project-setup, which helps the Managing Intelligence write it.
 - Each Idea and Bug is `done`, because only accepted work ships. Otherwise, stop and name the ones the Managing Intelligence hasn't accepted.
-- Each one's `## Worktrees` record shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and suggest teardown-worktree for an Idea, or fix-bug for a Bug.
-- Each main checkout being released is on the branch the guide releases from, with no uncommitted changes to tracked files, so the release holds only merged work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
+- Each one's `## Worktrees` record shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and tell the Managing Intelligence which ones aren't, suggesting teardown-worktree for an Idea.
+- Each main checkout in those records is on the branch the guide releases from, with no uncommitted changes to tracked files, so the release holds only merged work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
 
 ## Steps
 
-1. **Follow the release process.** Follow the guide's order, readiness checks and permissions. Stop at any unmet condition, because the Project controls release readiness. A step requiring human approval waits for that human's approval, because a bot acting as Managing Intelligence cannot supply it.
+1. **Follow the release process** in the guide's order, with its readiness checks and permissions. Stop at any unmet condition, because the Project controls release readiness. For a step that needs a named human's approval, stop and ask the Managing Intelligence to get it, and continue only on that human's answer, because a bot acting as Managing Intelligence can't give it.
 
 2. **Check the result** as the guide requires, so the report reflects what was released.
 
@@ -45,8 +45,8 @@ None: you follow the guide yourself.
 
 ## Writes
 
-The files, release artifacts and ticket changes specified by `guide:release-guide.md`. Ticket status transitions come from the guide because release processes differ between Projects.
+The files, release artifacts and ticket changes specified by `guide:release-guide.md`. Leave Idea and Bug statuses unchanged, because the Managing Intelligence owns them.
 
 ## Done
 
-Report the ID or version released, anything left incomplete, and the next step from the guide.
+Report the version released, the Idea and Bug IDs it includes, anything left incomplete, and the next step from the guide.
