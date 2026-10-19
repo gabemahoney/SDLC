@@ -1,7 +1,5 @@
 # bees Ticket System Protocol File
 
-Select with `setting:ticket_system` set to `bees`. This file installs as `~/.apiary/system/protocols/ticket-bees.md`, referenced by skills as `protocol:ticket.md`.
-
 ## Prerequisites
 
 Check `bees --version`, `bees --help` and each command's `--help`. Commands return JSON. Run them from the Project Folder or a checkout covered by its Bees scope.

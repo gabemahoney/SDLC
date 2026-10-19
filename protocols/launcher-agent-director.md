@@ -1,7 +1,5 @@
 # agent-director Launcher Protocol File
 
-Select with `setting:launcher` set to `agent-director`. This file installs as `~/.apiary/system/protocols/launcher-agent-director.md`, referenced by skills as `protocol:launcher.md`.
-
 ## Prerequisites
 
 Use agent-director, tmux, the chosen Agent's hooks and installed skills. Check `agent-director version` and `agent-director --help` for the installed behavior. Run lifecycle commands as the agents' user on their tmux server, because another server cannot establish their liveness.
