@@ -1,6 +1,6 @@
 ---
 name: write-idea
-description: "File a new Idea from a description of the work, following the Project's `setting:new_idea_intake`."
+description: "File a new Idea from a freeform description of the work or the Project's `setting:new_idea_intake`."
 ---
 
 # write-idea
@@ -42,4 +42,4 @@ A new Idea in the Ideas store, status `draft`, with `## Description` holding the
 
 ## Done
 
-Report the Idea's ID and anything left unresolved with reasons. Suggest write-prd.
+Report the Idea's ID. Suggest write-prd.

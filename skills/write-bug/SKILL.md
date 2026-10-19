@@ -1,6 +1,6 @@
 ---
 name: write-bug
-description: File a new Bug from a report or intake input such as an issue URL, following the Project's `setting:new_bug_intake`.
+description: "File a new Bug from a freeform defect report or the Project's `setting:new_bug_intake`."
 ---
 
 # write-bug
@@ -43,4 +43,4 @@ A new Bug in the Bugs store, status `draft`, with `## Report` arranged as `guide
 
 ## Done
 
-Report the Bug's ID and anything left unresolved with reasons. Suggest define-bug.
+Report the Bug's ID. Suggest define-bug.
