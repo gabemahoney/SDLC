@@ -42,6 +42,7 @@ Run only when all of these are true:
 3. **Record the outcome** using the Bug sections below.
    - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set its Thinking Level tag (below), then set it `defined` for fix-bug.
    - Evidence or a Managing Intelligence decision establishes that the behaviour cannot happen or is intended: set `invalid`, with the reason.
+   - On a returned fix, if what's still wrong turns out to be intended: leave the Bug as it is and tell the Managing Intelligence the fix holds, so they can accept it.
    - Inconclusive: leave it `draft`, record what you couldn't establish, and ask the Managing Intelligence for guidance.
 
 ## Child Agents
