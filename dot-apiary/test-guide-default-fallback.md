@@ -8,7 +8,7 @@ Aim for about 80% coverage with as few lines of test code as possible, because e
 
 - **Test each behaviour once at each level.** One unit test of a rule is enough; an end-to-end test may check the same behaviour again from the outside.
 - **Parameterize.** When three or more tests differ only in their inputs, make them one parameterized test.
-- **Remove what's redundant.** Delete duplicated tests and tests a change made obsolete, as well as adding missing coverage.
+- **Delete as readily as you add.** Deleting tests matters as much as adding them: remove duplicated tests, tests a change made obsolete, and tests that no longer earn their maintenance, whenever you touch the suite.
 
 ## Reuse the Project's test setup
 
