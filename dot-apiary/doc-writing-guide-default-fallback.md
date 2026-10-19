@@ -30,3 +30,5 @@ Keep developer and operational guides current where the Project needs them, incl
 - Use lists for things that really are lists, and paragraphs for everything else.
 - Add a document only when its content has no suitable home, so the docs stay easy to navigate.
 - Remove outdated or duplicated passages and documents. Trimming and deleting matter as much as adding.
+
+Always finish with a succinctness pass: reread what you wrote and cut every word, sentence and section the reader doesn't need. Be on guard for documentation bloat, because docs grow with every change and each extra line makes the useful ones harder to find.
