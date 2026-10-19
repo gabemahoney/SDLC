@@ -33,8 +33,8 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Check the worktrees.** Each recorded worktree must be clean and on the Idea's branch. Stop for the Managing Intelligence on anything else, because uncommitted or unexpected changes are someone's work.
-2. **Merge.** In each main checkout, merge the Idea's branch into its base branch with `--no-ff`, so history shows which commits were the Idea's. On a conflict, stop and tell the Managing Intelligence the files, leaving the merge for them to resolve or abort.
+1. **Check the worktrees.** Each worktree in the record must be clean and on the branch recorded for it. Stop for the Managing Intelligence on anything else, because uncommitted or unexpected changes are someone's work.
+2. **Merge.** In each main checkout, merge the recorded branch into its base branch with `--no-ff`, so history shows which commits were the Idea's. On a conflict, stop and tell the Managing Intelligence the files, leaving the merge for them to resolve or abort.
 3. **Clean up.** Remove each merged worktree and delete its branch. Keep anything git refuses to remove, so no work is lost.
 
 ## Child Agents
