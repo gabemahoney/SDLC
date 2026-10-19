@@ -22,7 +22,3 @@ Write a standalone answer so readers can use it without the ticket or conversati
 - **Conclusions and recommendations:** include these when the question calls for them.
 - **References:** use a numbered list and inline `[n]` citations for claims beyond common knowledge. Identify each source precisely: a URL and access date, file path and line or commit SHA, ticket ID, message permalink, or document title and section.
 - **Artifacts:** link each through the Ticket System Protocol File and explain what it holds in one line.
-
-## Asking questions
-
-If you hit a question only your reviewer can answer, such as what's in scope or which of two conflicting sources to trust, and the answer would change what you research, ask them before going further rather than guessing.
