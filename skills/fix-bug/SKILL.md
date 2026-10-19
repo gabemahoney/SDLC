@@ -36,11 +36,11 @@ Run only when all of these are true:
 
 1. **Start or resume.** Set the Bug `active`. If the Managing Intelligence has noted under `## Decisions` that an earlier fix failed their testing, fix what's still wrong on top of the earlier commits. Before committing work left by an interrupted Run, have it reviewed.
 
-2. **Fix and review.** Follow the Fix pipeline until accepted findings are fixed.
+2. **Fix it, and write a test that catches it.** Follow the Fix pipeline until accepted findings are fixed. The engineer fixes the source; test-writers add a regression test for the Bug, as Regression evidence below describes.
 
    **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Send each failure to the executor that owns the files, then rerun all three. Go on only when all three pass.
 
-3. **Prove the fix.** In the Bug's worktrees, rerun every scenario under `## Reproduction` and every failure the Managing Intelligence noted; a remaining symptom goes back to step 2. Then pass the Integration gate and meet Regression evidence below.
+3. **Test the fix.** In the Bug's worktrees, rerun every scenario under `## Reproduction` and every failure the Managing Intelligence noted, to check the Bug is gone; a remaining symptom goes back to step 2. Check each new regression test fails without the fix and passes with it. Then pass the Integration gate.
 
 4. **Commit** in each worktree the fix changed.
 
