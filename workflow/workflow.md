@@ -133,24 +133,13 @@ Use these references, each in one pair of backticks, so an Agent knows whether t
 
 ### Ticket system operations
 
-`protocol:ticket.md` defines these named sections so project-setup can check every operation the skills rely on:
+`protocol:ticket.md` defines these named sections, so project-setup can check the ticket system covers what the skills rely on:
 
-- `protocol:ticket.md ## Prerequisites`: installed tools and store access.
-- `protocol:ticket.md ## Create or check stores`: configure the four stores, child tiers and statuses, including shared Research.
-- `protocol:ticket.md ## Create a ticket`: create a ticket or child with its body and initial status.
-- `protocol:ticket.md ## Read a ticket`: read its body, fields and relationships.
-- `protocol:ticket.md ## Find tickets`: list and find tickets and their children or prerequisites.
-- `protocol:ticket.md ## Update a ticket section`: add or update a named body section while preserving the others.
-- `protocol:ticket.md ## Set status`: apply the skill's status transition.
-- `protocol:ticket.md ## Add a Dependency`: maintain prerequisite links.
-- `protocol:ticket.md ## Add an Association`: link related tickets without blocking work.
-- `protocol:ticket.md ## Add a Source Reference`: retain original intake links or paths.
-- `protocol:ticket.md ## Attach a file`: store files with a ticket and read them later.
-- `protocol:ticket.md ## Set tags`: maintain Thinking Level tags.
-- `protocol:ticket.md ## Delete a ticket`: remove obsolete work and its links.
-- `protocol:ticket.md ## Retain Research`: keep accepted Reports and artifacts available without automatic archival.
+- `protocol:ticket.md ## Prerequisites`: the ticket system and how to reach the stores.
+- `protocol:ticket.md ## Create or check stores`: the four stores, their child tiers and statuses, including shared Research.
+- `protocol:ticket.md ## Apiary's records in bees`: how to keep the records that have no direct equivalent in the ticket system: updating one body section, Dependencies, Associations, Source References, attached files, Thinking Level tags, deleting a ticket and its links, and keeping Research from automatic archival.
 
-Each section gives usable instructions, because skills depend on these operations.
+Plain operations (create, read, find and update tickets, set status) use the ticket system directly.
 
 ### Launcher operations
 

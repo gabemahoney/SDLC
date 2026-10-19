@@ -38,7 +38,7 @@ None: you file the Idea yourself.
 
 ## Writes
 
-A new Idea in the Ideas store, status `draft`, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md ## Add a Source Reference`, so write-prd can read the original.
+A new Idea in the Ideas store, status `draft`, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original.
 
 ## Done
 
