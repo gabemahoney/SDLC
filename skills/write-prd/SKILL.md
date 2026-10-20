@@ -46,7 +46,7 @@ None: the PRD can be written or revised at any Idea status.
 
 5. **Save the PRD** as described under Writes.
 
-6. **Review the PRD with `req-review`.** Launch a fresh Child Agent each round so each review is independent. Take every conflict with req-review's three guides to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Expect many PRD findings to need product decisions. Save revisions and repeat until a review returns nothing left to fix. Then hand the PRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
+6. **Review the PRD with `req-review`.** Launch a fresh Child Agent each round so each review is independent. Take every conflict with `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` or `guide:test-guide.md` to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Expect many PRD findings to need product decisions. Save revisions and repeat until a review returns nothing left to fix. Then hand the PRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
 
 ## Child Agents
 

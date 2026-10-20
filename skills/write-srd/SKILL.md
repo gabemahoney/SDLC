@@ -48,7 +48,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
    Save the SRD, then return changed or newly modelled groups to step 3 so models cover the final requirements.
 
-5. **Review the SRD with `req-review` once every model has been reviewed and its checker run has passed, and every Report you asked for is accepted.** Launch a fresh Child Agent each round so each review is independent. Take every conflict with req-review's three guides to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
+5. **Review the SRD with `req-review` once every model has been reviewed and its checker run has passed, and every Report you asked for is accepted.** Launch a fresh Child Agent each round so each review is independent. Take every conflict with `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` or `guide:test-guide.md` to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
 
 ## Child Agents
 
