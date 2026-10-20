@@ -49,7 +49,7 @@ Report the ticket ID, findings and any review limitations to your Main Agent as 
 
 ## Review judgement
 
-Apply recorded guide exceptions within their scope and report every other Guidance Document breach, however small, so review respects the Managing Intelligence's decisions.
+Report every Guidance Document breach, however small, except those an entry in `## Guide exceptions` covers on the ticket you're reviewing or its parents, so review respects the Managing Intelligence's approved exceptions.
 
 Focus on substantive, actionable issues in proportion to the requirements. 
 

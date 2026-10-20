@@ -54,7 +54,7 @@ Value content over form. Prefer concise, direct requirements and clear organizat
 
 Check the relevant code and docs as well as the requirements. Review for:
 
-- **Guide conflicts:** Check both PRDs and SRDs against these three guides and report every conflict outside recorded guide exceptions as **major**, so the Managing Intelligence settles it before approval.
+- **Guide conflicts:** Check both PRDs and SRDs against these three guides and report every conflict not covered by the Doc's `## Guide exceptions` as **major**, so the Managing Intelligence settles it before approval.
 - **Consistency:** statements agree, terms keep their meanings, and control flows have complete outcomes without unintended gaps or cycles. When an SRD is reviewed, it agrees with the PRD and covers every PRD acceptance criterion.
 - **Completeness:** requirements state the dependencies, assumptions, boundaries and expected behaviour for relevant edge cases and errors. Cover the decisions this change needs in proportion to the Idea.
 - **Testability:** each requirement has clear acceptance criteria and observable outcomes. Performance, security, scalability and other non-functional requirements have measures grounded in a stated need or existing constraint.

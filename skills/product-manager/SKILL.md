@@ -79,7 +79,7 @@ Report ticket IDs, findings with references and suggested corrections, incomplet
 
 Report every requirement or scope violation, because your Main Agent decides which findings to act on.
 
-Apply recorded guide exceptions within their scope and report breaches outside it, so review respects the Managing Intelligence's decisions.
+Treat a departure from a guide as intended when an entry in `## Guide exceptions` on the PRD, SRD or ticket you're checking covers it, so review respects the Managing Intelligence's approved exceptions.
 
 Tag every finding with one level, so your Main Agent can weigh it:
 - **blocker:** functionality that's missing, or functionality the PRD or SRD didn't ask for.
