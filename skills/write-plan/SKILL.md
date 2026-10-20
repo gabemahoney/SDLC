@@ -74,7 +74,7 @@ Suggest configure-worktree for the Idea, then write-epic on each `draft` Epic in
 **Each Epic ticket's body:**
 
 - `## Outcome`: the one user- or system-visible capability it delivers, and how success is measured.
-- `## Guide exceptions`: quote applicable entries from the PRD or SRD so planning preserves approved departures from the guides.
+- `## Guide exceptions` (only when one applies): quote the matching entries from the PRD or SRD, so planning preserves approved departures from the guides.
 - `## Work`: what it takes to deliver that outcome, the requirements it serves and the code folders it touches, including the engineering, testing and documentation work the Guidance Documents require.
 - `## Acceptance criteria`: how the Managing Intelligence can check the outcome on the result. Where they can't interact with it directly, how the Agent will show it with observable evidence.
 - `## Dependencies`: why each Epic it depends on must be `done` first.
