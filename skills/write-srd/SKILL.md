@@ -48,7 +48,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
    Save the SRD, then return changed or newly modelled groups to step 3 so models cover the final requirements.
 
-5. **Review the SRD with `req-review` once every model has been reviewed and its checker run has passed, and every Report you asked for is accepted.** Launch a fresh Child Agent each round so each review is independent. Judge every finding: fix it, decline a minor finding with its reason, or take a product question to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
+5. **Review the SRD with `req-review` once every model has been reviewed and its checker run has passed, and every Report you asked for is accepted.** Launch a fresh Child Agent each round so each review is independent. Take every conflict with `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` or `guide:test-guide.md` to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
 
 ## Child Agents
 
@@ -58,6 +58,8 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 - **`research`:** Start fresh for each question needing real digging so its context stays focused on that question, and reuse it for that question's review rounds. Expect a cited answer in that Research ticket's Report.
 
 ## Writes
+
+Record each approved guide exception once under `## Guide exceptions` on the PRD or SRD it concerns, stating the guide rule, what the spec does instead, why and the Managing Intelligence's approval, so later work preserves the decision.
 
 - **SRD:** create or update the Idea's Doc titled `SRD`, set `draft` because new or revised requirements need approval. Use `## Requirements` for numbered SR groups and their Model Doc links, `## Technology and architecture` for choices, reasons and supporting Research links, and `## Declined findings` for declined or unaddressed review findings with reasons.
 - **Plan:** reset to `draft` when revising the SRD it was built from, with changed SRs and previously active Epics recorded under `## SRD changes`.

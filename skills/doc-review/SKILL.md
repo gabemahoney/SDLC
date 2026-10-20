@@ -35,7 +35,7 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
 
 1. **Read the code changes.** Read every code change made in this Task carefully, so you know exactly what changed.
 2. **Read every document.** Read all of the Project's docs, in full, so nothing the change affects is missed.
-3. **Check the docs against the changes.** Judge every passage against the document's intended audience, including unchanged material. Report unnecessary or misplaced content even when a Subtask asks to retain it, and recommend cuts or consolidation that preserve required reader information. Following `guide:doc-writing-guide.md`, check:
+3. **Check the docs against the changes.** Judge every passage against the document's intended audience, including unchanged material. Report unnecessary or misplaced content not covered by a `## Guide exceptions` entry even when a Subtask asks to retain it, and recommend cuts or consolidation to preserve required reader information. Following `guide:doc-writing-guide.md`, check:
    - Is a new doc needed that's missing?
    - Does any doc need updating, and which sections?
    - Does any doc need trimming, and which sections?
@@ -56,7 +56,7 @@ Report the ticket ID, findings and any review limitations to your Main Agent as 
 
 ## Review judgement
 
-Your job is to interpret the Guidance Documents very strictly: report every breach of them as a finding, however small, because your Main Agent decides which findings are worth fixing.
+Report every Guidance Document breach, however small, except those an entry in `## Guide exceptions` covers on the ticket you're reviewing or its parents, so review respects the Managing Intelligence's approved exceptions.
 
 Tag every finding with one level, so your Main Agent can weigh it:
 - **blocker:** it's wrong: false, outdated, or missing something a reader needs.

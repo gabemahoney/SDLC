@@ -58,6 +58,7 @@ Every Subtask has these sections, with detail in proportion to the work:
 
 - `## Executor`: `doc-writer`, so develop-epic knows which Child Agent works it.
 - `## Context`: explain why the Subtask exists and which code or test work it describes.
+- `## Guide exceptions` (only when one applies): quote the matching entries from the Task, so execution preserves approved departures from the guides.
 - `## Work`: say which docs to add, change or remove, and why.
 - `## Key files`: give concrete paths relative to a named repo's root, or a named code folder under `<Project Folder>` when there is no repo. Identify files to create as new.
 - `## Acceptance criteria`: state checkable conditions, for example: the README's setup steps match the new install command, and the old section on manual setup is gone.
