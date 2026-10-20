@@ -68,6 +68,7 @@ Suggest develop-epic on this Epic once every Epic it depends on is `done`.
 ## Task template
 
 - `## Context`: explain why the Task exists, the requirements it serves and what prerequisite work it assumes.
+- `## Guide exceptions`: quote applicable entries from the Epic so planning preserves approved departures from the guides.
 - `## Work`: state the work and affected code folders, following the SRD's decisions.
 - `## Dependencies`: name Tasks that must finish first and explain why.
 

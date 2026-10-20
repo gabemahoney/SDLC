@@ -49,7 +49,7 @@ Report the ticket ID, findings and any review limitations to your Main Agent as 
 
 ## Review judgement
 
-Your job is to interpret the Guidance Documents very strictly: report every breach of them as a finding, however small, because your Main Agent decides which findings are worth fixing.
+Apply recorded guide exceptions within their scope and report every other Guidance Document breach, however small, so review respects the Managing Intelligence's decisions.
 
 Focus on substantive, actionable issues in proportion to the requirements. 
 

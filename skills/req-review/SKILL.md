@@ -23,6 +23,7 @@ A PRD or SRD Doc ID.
 - **Settings:** supplied by the Main Agent, for configuration.
 - **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, supplied by the Main Agent, for operations.
 - **Doc, Idea and supporting Docs:** for requirements, context and decisions; the approved PRD and Model Docs for SRD coverage and modelling evidence.
+- **Guidance:** `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` and `guide:test-guide.md` for Project constraints in both PRD and SRD reviews.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -53,6 +54,7 @@ Value content over form. Prefer concise, direct requirements and clear organizat
 
 Check the relevant code and docs as well as the requirements. Review for:
 
+- **Guide conflicts:** Check both PRDs and SRDs against these three guides and report every conflict outside recorded guide exceptions as **major**, so the Managing Intelligence settles it before approval.
 - **Consistency:** statements agree, terms keep their meanings, and control flows have complete outcomes without unintended gaps or cycles. When an SRD is reviewed, it agrees with the PRD and covers every PRD acceptance criterion.
 - **Completeness:** requirements state the dependencies, assumptions, boundaries and expected behaviour for relevant edge cases and errors. Cover the decisions this change needs in proportion to the Idea.
 - **Testability:** each requirement has clear acceptance criteria and observable outcomes. Performance, security, scalability and other non-functional requirements have measures grounded in a stated need or existing constraint.
