@@ -38,6 +38,8 @@ agent-director status --instance-id '<id>'
 agent-director read-pane --instance-id '<id>' --n-lines 80
 ```
 
+Keep waiting only while `status` shows `pending` or `working`, and read the pane on any other state, because a wait that ends only on some states, such as `check_permission`, stalls on the others.
+
 `waiting` means its turn ended: read the pane for its report or question. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped. A Codex Child Agent can stay `working` after a model error, so also read the pane if it hasn't changed for a long time.
 
 ## Resuming a Child Agent
