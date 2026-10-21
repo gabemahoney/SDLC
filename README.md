@@ -59,6 +59,7 @@ Run each skill below in a fresh session, such as `claude "/write-idea"`, in the 
 Run project-setup to change these, or edit the files in your Project's `.apiary/` folder. Put a guide in `~/.apiary/` to use it in every Project.
 
 - **Guides:** your own rules for engineering, testing, docs, bug reports, research, build commands and releases. Apiary ships a default for each.
+- **Guidance that lives where it belongs:** guides about the code (engineering rules, tests, build commands) are checked into the repo, so every contributor gets them, Apiary user or not. Your own setup (settings, generic guides you reuse across Projects, and pointers to the repo's guides) lives on your host, in the Project Folder's `.apiary`, so your repos stay free of Apiary.
 - **Release:** how your work ships, and whether Apiary may push, tag or publish. By default it only merges to your local main.
 - **Models and effort:** which model and effort each skill runs with, for Claude Code and Codex CLI.
 - **PRD template:** the layout of your requirements documents.
