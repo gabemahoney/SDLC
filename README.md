@@ -29,7 +29,7 @@ cd ~/projects/my-project
 claude "/project-setup"
 ```
 
-It sets up the Project's settings, ticket stores and guides with you.
+It sets up the Project's settings, ticket stores and guides with you. To set up several Projects the same way, save one as a [Project Template](docs/project-templates.md) and name it when you run project-setup.
 
 For Cursor, launch `/project-setup` through agent-director with `CURSOR_WORKER` and a model available to your account, then select Cursor alone or alongside the other tools. Setup offers `setting:levels` to mix Agents across Thinking Levels, with an explicit account model and optional mode for Cursor entries. Existing `setting:levels_cursor` mappings still apply when `setting:levels` is unset.
 
@@ -75,3 +75,4 @@ Run project-setup to change these, or edit the files in your Project's `.apiary/
 - **PRD template:** the layout of your requirements documents.
 - **Intake:** where new Ideas and Bugs come from, such as GitHub issues.
 - **Tickets:** where and how tickets, Research and Reports are stored.
+- **Project Templates:** your own bundles of settings and guides in `~/.apiary/templates/`, which Apiary upgrades never touch. See [Project Templates](docs/project-templates.md).

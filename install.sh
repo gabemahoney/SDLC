@@ -23,6 +23,7 @@ Shared:       workflow/workflow.md -> ~/.apiary/system/workflow.md
               doc-templates/ -> ~/.apiary/system/doc-templates/ (also with --repo)
               protocols/    -> ~/.apiary/system/protocols/ (includes launcher-*.md)
               dot-apiary/*-default-fallback.md -> ~/.apiary/ (also with --repo)
+Never written: ~/.apiary/templates/ (your Project Templates)
 EOF
 }
 
@@ -120,6 +121,8 @@ for shared in templates intakes resolvers; do
   run mkdir -p "$HOME/.apiary/system/$shared"
   run cp -R "$SRC/$shared/." "$HOME/.apiary/system/$shared/"
 done
+# Apiary no longer ships this Project Template; remove copies left by earlier installs.
+run rm -f "$HOME/.apiary/system/templates/public-github-project.md"
 
 run mkdir -p "$HOME/.apiary/system/doc-templates"
 run cp -R "$SRC/doc-templates/." "$HOME/.apiary/system/doc-templates/"
