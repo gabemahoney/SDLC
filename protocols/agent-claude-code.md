@@ -7,3 +7,7 @@
 ## Launch template
 
 Launch every Main Agent and Child Agent with the `WORKER` template, because it sets the agent's sandbox and permissions.
+
+## Blocking waits
+
+Run blocking waits, such as the command `setting:child_watch_command` names, with the Bash tool's `run_in_background`, because a foreground run hits the Bash timeout; you're re-invoked when it exits.

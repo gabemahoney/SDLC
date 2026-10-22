@@ -35,16 +35,21 @@ End your turn with your report or question as the final message, so your Main Ag
 
 ## Knowing when a Child Agent's state changes
 
-agent-director doesn't notify you, so poll while work is outstanding:
+While work is outstanding, wait by running the command `setting:child_watch_command` names, followed by your Child Agents' ids, as one plain command, because agent-director doesn't notify you. Never write your own watch loop, because Claude Code asks permission for shell constructs such as `declare -A` or braces with quotes, stalling you until a human answers, while a host can allowlist one fixed command.
+
+The command returns as soon as any Child Agent's state is other than `pending` or `working`, printing `<id> <state>`, because a wait that ends only on some states, such as `check_permission`, stalls on the others. If `setting:child_watch_command` is unset, check each Child Agent with this single plain command instead, and keep waiting only while it shows `pending` or `working`:
 
 ```sh
 agent-director status --instance-id '<id>'
+```
+
+On any other state, read that Child Agent's pane:
+
+```sh
 agent-director read-pane --instance-id '<id>' --n-lines 80
 ```
 
-Keep waiting only while `status` shows `pending` or `working`, and read the pane on any other state, because a wait that ends only on some states, such as `check_permission`, stalls on the others.
-
-`waiting` means its turn ended: read the pane for its report or question. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped. A Codex Child Agent can stay `working` after a model error, so also read the pane if it hasn't changed for a long time.
+`waiting` means its turn ended: read the pane for its report or question. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped. After you act on it, wait again while work is outstanding. A Codex Child Agent can stay `working` after a model error, so also read the pane if its state hasn't changed for a long time.
 
 ## Resuming a Child Agent
 
