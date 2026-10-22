@@ -31,7 +31,7 @@ claude "/project-setup"
 
 It sets up the Project's settings, ticket stores and guides with you.
 
-For Cursor, launch `/project-setup` through agent-director with `CURSOR_WORKER` and a model available to your account, then select Cursor alone or alongside the other tools. Setup collects an explicit account model for each of the five Thinking Levels in `setting:levels_cursor`, with an optional mode and no effort setting, while preserving valid existing settings.
+For Cursor, launch `/project-setup` through agent-director with `CURSOR_WORKER` and a model available to your account, then select Cursor alone or alongside the other tools. Setup offers `setting:levels` to mix Agents across Thinking Levels, with an explicit account model and optional mode for Cursor entries. Existing `setting:levels_cursor` mappings still apply when `setting:levels` is unset.
 
 ## Use
 
@@ -71,7 +71,7 @@ Run project-setup to change these, or edit the files in your Project's `.apiary/
 - **Guides:** your own rules for engineering, testing, docs, bug reports, research, build commands and releases. Apiary ships a default for each.
 - **Guidance that lives where it belongs:** guides about the code (engineering rules, tests, build commands) are checked into the repo, so every contributor gets them, Apiary user or not. Your own setup (settings, generic guides you reuse across Projects, and pointers to the repo's guides) lives on your host, in the Project Folder's `.apiary`, so your repos stay free of Apiary.
 - **Release:** how your work ships, and whether Apiary may push, tag or publish. By default it only merges to your local main.
-- **Thinking Levels:** model and effort for Claude Code and Codex CLI, or model and optional mode for Cursor, including Task and Bug overrides.
+- **Thinking Levels:** `setting:levels` selects an Agent, model and its own effort or optional Cursor mode for each level, including Task and Bug overrides, so Main Agents and Child Agents can use different tools. Existing per-Agent mappings apply when it is unset.
 - **PRD template:** the layout of your requirements documents.
 - **Intake:** where new Ideas and Bugs come from, such as GitHub issues.
 - **Tickets:** where and how tickets, Research and Reports are stored.

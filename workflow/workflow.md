@@ -44,7 +44,7 @@
 - **Resolver:** the instructions for reading one kind of Source Reference, picked by its kind (a GitHub URL uses `github`, a file path uses `file`).
 - **Intake:** the file of instructions for taking in new Ideas or Bugs, whose path `setting:new_idea_intake` or `setting:new_bug_intake` holds. write-idea and write-bug also always accept plain text describing the work or defect.
 - **Run:** one execution of a skill, from its first steps to its report.
-- **Thinking Level:** the model and any effort or mode an Agent runs with (see Thinking Levels).
+- **Thinking Level:** the Agent, model and any effort or mode a session runs with (see Thinking Levels).
 
 ## Stores and ticket terms
 
@@ -160,7 +160,7 @@ Each section must give usable instructions, because a heading alone cannot suppo
 
 ### Thinking Levels
 
-A Thinking Level picks an Agent's model and any effort or mode. The caller resolves it before launch, as `protocol:launcher.md` describes, so every session starts with the intended settings.
+A Thinking Level picks an Agent, model and any effort or mode. The caller resolves it before launch, as `protocol:launcher.md` describes, so every session starts on the intended Agent with the intended settings.
 
 - `setting:thinking_levels` maps skill names to levels, one `<skill>: <label>` line each:
   ```
@@ -169,16 +169,16 @@ A Thinking Level picks an Agent's model and any effort or mode. The caller resol
   code-review: xhigh
   engineer: high
   ```
-- `setting:levels_claude_code` and `setting:levels_codex` map each level (`low` < `medium` < `high` < `xhigh` < `max`) to a model and effort for that Agent, so launches use its configured model names.
-- `setting:levels_cursor` maps the same five levels to explicit models available to the user's Cursor account, with an optional mode and no effort value, because Cursor launches take model and mode selections. Use the format in `~/.apiary/system/templates/thinking-levels.md`, so setup and callers read the same mapping.
+- `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.apiary/system/templates/thinking-levels.md`, so setup and callers read the same mapping.
+- When `setting:levels` is unset, use the caller's own Agent and its existing `setting:levels_claude_code`, `setting:levels_codex` or `setting:levels_cursor` mapping, so existing Projects keep working. Claude Code and Codex mappings supply model and effort; Cursor mappings supply model and optional mode.
 
-For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the selected Agent's model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
+For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
 If a skill line or model mapping is missing, stop and point to project-setup. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
 
 ### Child Agents
 
-Launch Child Agents through `protocol:launcher.md` with the skill, ticket IDs and checkout paths. Supply resolved settings and Protocol File locations, including its Agent protocol, so each uses the same Project configuration. It reads work from tickets and reports their IDs and unresolved work to the Main Agent.
+Launch Child Agents on the Agent their Thinking Level resolves to through `protocol:launcher.md`, with the skill, ticket IDs and checkout paths, so each runs on the configured tool. Supply resolved settings and Protocol File locations, including the selected Agent's protocol, so each uses the same Project configuration. It reads work from tickets and reports their IDs and unresolved work to the Main Agent.
 
 Start Child Agents fresh unless the skill retains them, so unrelated work does not fill context. Each loads its named guides for every assigned repo and may read other repos for context. The Main Agent coordinates their work through files and tickets.
 

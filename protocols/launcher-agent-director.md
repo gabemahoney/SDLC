@@ -10,10 +10,10 @@ Both run in their own agent-director sessions. The Managing Intelligence launche
 
 ## Launching a Main Agent
 
-Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.apiary/system/workflow.md`'s Thinking Levels, so Main Agents and Child Agents use the configured models and Task or Bug overrides:
+Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.apiary/system/workflow.md`'s Thinking Levels, so Main Agents and Child Agents use the configured Agent, model and effort or mode, including Task or Bug overrides. Read the selected `protocol:agent-<agent>.md`, use its launch template and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
 
 ```sh
-# Claude Code
+# Claude Code (agent: claude-code)
 agent-director spawn --template '<template>' --agent claude --cwd '<checkout>' -- --model '<model>' --effort '<effort>' '/<skill> <arguments>'
 # Codex
 agent-director spawn --template '<template>' --agent codex --cwd '<checkout>' -- --model '<model>' -c 'model_reasoning_effort="<effort>"' '$<skill> <arguments>'
@@ -27,7 +27,7 @@ Arguments after `--` replace the template's `agent_args`, so include those too, 
 
 ## Launching a Child Agent
 
-Use the same commands from the Main Agent's own session, so agent-director makes it a child of that Main Agent. Check `agent-director get --instance-id '<id>'` shows the right `parent_id`.
+Resolve the Child Agent's Thinking Level and use the selected Agent's protocol, template and command above from the Main Agent's own session, so agent-director keeps the parent–child relationship even when the Agents differ. Check `agent-director get --instance-id '<id>'` shows the right `parent_id`.
 
 ## Reporting to your Main Agent
 
