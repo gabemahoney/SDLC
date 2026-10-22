@@ -10,14 +10,18 @@ Both run in their own agent-director sessions. The Managing Intelligence launche
 
 ## Launching a Main Agent
 
-Use the Managing Intelligence's recorded skill and ticket, with the model and effort from the workflow's Thinking Levels:
+Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.apiary/system/workflow.md`'s Thinking Levels, so Main Agents and Child Agents use the configured models and Task or Bug overrides:
 
 ```sh
 # Claude Code
 agent-director spawn --template '<template>' --agent claude --cwd '<checkout>' -- --model '<model>' --effort '<effort>' '/<skill> <arguments>'
 # Codex
 agent-director spawn --template '<template>' --agent codex --cwd '<checkout>' -- --model '<model>' -c 'model_reasoning_effort="<effort>"' '$<skill> <arguments>'
+# Cursor
+agent-director spawn --template '<template>' --agent cursor --cwd '<checkout>' -- --model '<model>' '/<skill> <arguments>'
 ```
+
+For Cursor, pass the resolved model and, when configured, `--mode '<mode>'` before the prompt, because agent-director accepts model, mode and an initial prompt for interactive Cursor sessions, with no effort flag.
 
 Arguments after `--` replace the template's `agent_args`, so include those too, or the agent loses its sandbox and prompt. Record the returned `instance_id`.
 
@@ -44,11 +48,11 @@ Keep waiting only while `status` shows `pending` or `working`, and read the pane
 
 ## Resuming a Child Agent
 
-For a `waiting` child, send its next assignment with `agent-director send-keys --instance-id '<id>' --text '<next assignment>'`. For one that has exited, run `agent-director resume --instance-id '<id>'` from your own session first.
+Apply `~/.apiary/system/workflow.md`'s context gate first, because reuse depends on a verified reading. For an eligible `waiting` child, send its next assignment with `agent-director send-keys --instance-id '<id>' --text '<next assignment>'`. For one that has exited, run `agent-director resume --instance-id '<id>'` from your own session first.
 
 ## Reading a Child Agent's context
 
-Run `agent-director get --instance-id '<id>'` for its `session_id` and `jsonl_path`, then follow `## Context use` in its Agent Protocol File. An unverified reading is unknown, never zero.
+Run `agent-director get --instance-id '<id>'` for its context and session details, then follow `## Context use` in its Agent Protocol File. An unverified reading is unknown, never zero.
 
 ## Stopping a Child Agent
 

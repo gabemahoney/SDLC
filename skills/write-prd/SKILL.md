@@ -20,7 +20,7 @@ An Idea ID.
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Idea and its existing Docs:** for requirements and existing PRD and SRD context.
 - **Template:** `setting:prd_template`, for PRD structure.
 - **Resolvers:** selected by Source Reference kind, for source context.

@@ -5,9 +5,10 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: ./install.sh [--agent claude|codex|both] [--repo <path>] [--dry-run]
+Usage: ./install.sh [--agent claude|codex|cursor|both|all] [--repo <path>] [--dry-run]
 
-  --agent    Which flavour to install: claude (default), codex or both.
+  --agent    Which flavour to install: claude (default), codex, cursor,
+             both (Claude Code and Codex CLI), or all three.
   --repo     Install into one repository instead of your user-level folders.
   --dry-run  Print every action; write nothing.
 
@@ -15,6 +16,8 @@ Claude Code:  skills/<name>/ -> ~/.claude/skills/<name>/
               (--repo: <repo>/.claude/skills)
 Codex CLI:    skills/<name>/ -> ~/.agents/skills/<name>/
               (--repo: <repo>/.agents/skills)
+Cursor:       skills/<name>/ -> ~/.cursor/skills/<name>/
+              (--repo: <repo>/.cursor/skills)
 Shared:       workflow/workflow.md -> ~/.apiary/system/workflow.md
               templates/, intakes/, resolvers/ -> ~/.apiary/system/ (also with --repo)
               doc-templates/ -> ~/.apiary/system/doc-templates/ (also with --repo)
@@ -48,8 +51,8 @@ while [ $# -gt 0 ]; do
 done
 
 case "$AGENT" in
-  claude|codex|both) ;;
-  *) echo "install.sh: --agent must be claude, codex or both (got '$AGENT')" >&2; exit 2 ;;
+  claude|codex|cursor|both|all) ;;
+  *) echo "install.sh: --agent must be claude, codex, cursor, both or all (got '$AGENT')" >&2; exit 2 ;;
 esac
 
 if [ -n "$REPO" ]; then
@@ -96,10 +99,18 @@ install_codex() {
   install_skills "$skills"
 }
 
+install_cursor() {
+  local base="${REPO:-$HOME}/.cursor"
+  echo "== Cursor: $base"
+  install_skills "$base/skills"
+}
+
 case "$AGENT" in
   claude) install_claude ;;
   codex) install_codex ;;
+  cursor) install_cursor ;;
   both) install_claude; install_codex ;;
+  all) install_claude; install_codex; install_cursor ;;
 esac
 
 # Main Agents and Child Agents share these instructions and selected protocols.

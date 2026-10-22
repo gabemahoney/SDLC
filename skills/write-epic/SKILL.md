@@ -20,7 +20,7 @@ An Epic ID.
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Epic, Plan, all sibling Epics, existing Tasks and Subtasks, Idea and its Docs:** for requirements, decisions, Dependencies, scope and progress.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md` and `guide:doc-writing-guide.md` for Task and Subtask planning in each affected code folder.
 

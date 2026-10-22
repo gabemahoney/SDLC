@@ -20,7 +20,7 @@ A Bug ID.
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`) and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Bug and its Dependencies:** for readiness, the report, validation, reproduction and decisions.
 - **Guidance:** `guide:bug-writing-guide.md`, for the report, and `guide:build-commands.md` when reproducing needs a build or tests.
 

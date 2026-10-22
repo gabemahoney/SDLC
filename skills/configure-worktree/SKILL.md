@@ -20,7 +20,7 @@ An Idea or Bug ID, and any repos the caller names.
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and `protocol:ticket.md`, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`) and `protocol:ticket.md`, for operations.
 - **The Idea, its Plan and Epics, or the Bug:** for the repos the work changes, and any earlier worktree record. An Idea's repos come from its Epics' `## Work`; a Bug's from its `## Reproduction`.
 
 ## Gate

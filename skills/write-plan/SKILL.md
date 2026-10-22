@@ -20,7 +20,7 @@ An Idea ID.
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Idea, its Docs and existing Plan and Epics:** for requirements and earlier planning.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md` and `guide:doc-writing-guide.md` for engineering, testing and documentation planning in each affected code folder.
 

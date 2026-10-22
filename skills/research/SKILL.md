@@ -26,7 +26,7 @@ One of these:
 
 - **Settings:** Project and defaults, for configuration.
 - **Launcher:** `protocol:launcher.md` if you were launched as a Child Agent, for how to report to your Main Agent.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`) and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **The Research ticket and its Report, if they exist:** the ticket for the question and scope; the Report for the current answer.
 - **Guidance:** `guide:research-guide.md`, for research methods, evidence and Report requirements.
 - **Anything your launch names**, such as the SRD a question serves, for the question's context.

@@ -20,7 +20,7 @@ Whatever the Managing Intelligence gives you about the defect: either plain text
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`) and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Intake:** the instructions `setting:new_bug_intake` names, for what input it takes and how to prepare the Bug.
 - **Guidance:** `guide:bug-writing-guide.md`, for the report format.
 

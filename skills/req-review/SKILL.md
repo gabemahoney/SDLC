@@ -21,7 +21,7 @@ A PRD or SRD Doc ID.
 
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Settings:** supplied by the Main Agent, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md` and the Ticket System Protocol File selected by `setting:ticket_system`, supplied by the Main Agent, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`) and the Ticket System Protocol File selected by `setting:ticket_system`, supplied by the Main Agent, for operations.
 - **Doc, Idea and supporting Docs:** for requirements, context and decisions; the approved PRD and Model Docs for SRD coverage and modelling evidence.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` and `guide:test-guide.md` for Project constraints in both PRD and SRD reviews.
 

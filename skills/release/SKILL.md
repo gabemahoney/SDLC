@@ -19,7 +19,7 @@ The IDs of the Ideas and Bugs to release, chosen by the Managing Intelligence, p
 
 ## Required Reading
 
-- **Agent:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, for Agent instructions.
+- **Agent:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), for Agent instructions.
 - **Settings and protocol:** Project and default settings, and `protocol:ticket.md`, for ticket operations.
 - **The Ideas and Bugs:** their status and `## Worktrees` records, for the Gate.
 - **Guidance:** `guide:release-guide.md` and the files it points to, for the release process, permissions and approvals.

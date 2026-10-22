@@ -3,7 +3,7 @@
 ## Terms
 
 - **Managing Intelligence:** the person or bot acting for one who chooses skills, starts Main Agents, answers questions and tests results.
-- **Agent:** the AI coding tool Apiary runs in: Claude Code or Codex CLI.
+- **Agent:** the AI coding tool Apiary runs in: Claude Code, Codex CLI or Cursor.
 - **Main Agent:** an Agent started by the Managing Intelligence to run one skill and report back.
 - **Child Agent:** an Agent started by a Main Agent to run one skill for it and report back. The Launcher keeps the parent–child relationship.
 - **Skills Child Agents run:**
@@ -44,7 +44,7 @@
 - **Resolver:** the instructions for reading one kind of Source Reference, picked by its kind (a GitHub URL uses `github`, a file path uses `file`).
 - **Intake:** the file of instructions for taking in new Ideas or Bugs, whose path `setting:new_idea_intake` or `setting:new_bug_intake` holds. write-idea and write-bug also always accept plain text describing the work or defect.
 - **Run:** one execution of a skill, from its first steps to its report.
-- **Thinking Level:** the model and effort an Agent runs at (see Thinking Levels).
+- **Thinking Level:** the model and any effort or mode an Agent runs with (see Thinking Levels).
 
 ## Stores and ticket terms
 
@@ -158,7 +158,7 @@ Each section must give usable instructions, because a heading alone cannot suppo
 
 ### Thinking Levels
 
-A Thinking Level picks an Agent's model and effort. The caller resolves it before launch, as `protocol:launcher.md` describes, so every session starts with the intended settings.
+A Thinking Level picks an Agent's model and any effort or mode. The caller resolves it before launch, as `protocol:launcher.md` describes, so every session starts with the intended settings.
 
 - `setting:thinking_levels` maps skill names to levels, one `<skill>: <label>` line each:
   ```
@@ -167,9 +167,10 @@ A Thinking Level picks an Agent's model and effort. The caller resolves it befor
   code-review: xhigh
   engineer: high
   ```
-- `setting:levels_claude_code` and `setting:levels_codex` map each level (`low` < `medium` < `high` < `xhigh` < `max`) to a model and effort for that Agent. Use the model names in those settings.
+- `setting:levels_claude_code` and `setting:levels_codex` map each level (`low` < `medium` < `high` < `xhigh` < `max`) to a model and effort for that Agent, so launches use its configured model names.
+- `setting:levels_cursor` maps the same five levels to explicit models available to the user's Cursor account, with an optional mode and no effort value, because Cursor launches take model and mode selections. Use the format in `~/.apiary/system/templates/thinking-levels.md`, so setup and callers read the same mapping.
 
-For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so effort follows the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
+For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the selected Agent's model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
 If a skill line or model mapping is missing, stop and point to project-setup. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
 

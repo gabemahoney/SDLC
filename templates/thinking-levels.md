@@ -32,3 +32,18 @@ test-review: xhigh
 doc-review: high
 product-manager: xhigh
 ```
+
+## Cursor models
+
+Use this shape for `setting:levels_cursor`, replacing each placeholder with a model from the user's `cursor-agent --list-models`, so every level names a model their account can use:
+
+```text
+## levels_cursor
+low: model=<model>
+medium: model=<model>
+high: model=<model>
+xhigh: model=<model>
+max: model=<model>
+```
+
+Add `mode=agent`, `mode=plan` or `mode=ask` to a line when needed, choosing a mode that permits the assigned skill's work, because agent-director supports these Cursor modes and `plan` and `ask` are read-only. A model alone uses the normal agent mode. Keep Cursor mappings to model and optional mode, because Cursor launches have no effort setting.

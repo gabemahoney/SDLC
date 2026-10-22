@@ -20,7 +20,7 @@ An Idea or Bug ID.
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
-- **Protocols:** `protocol:agent-claude-code.md` or `protocol:agent-codex.md`, `protocol:launcher.md` and `protocol:ticket.md`, for operations.
+- **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and `protocol:ticket.md`, for operations.
 - **The Idea or Bug:** its `## Worktrees` record, for each repo's worktree, branch and base branch, and what earlier Runs already did.
 
 ## Gate
