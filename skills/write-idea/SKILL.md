@@ -22,6 +22,7 @@ Whatever the Managing Intelligence gives you about the work: either plain text d
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`) and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Intake:** the instructions `setting:new_idea_intake` names, for what input it takes and how to prepare the Idea.
+- **Research guide:** `guide:research-guide.md`, for where the Project's research is published.
 - **Idea:** when revising, its body and attached files, for its current intent.
 
 ## Gate
@@ -40,7 +41,7 @@ None: you file the Idea yourself.
 
 ## Writes
 
-A new Idea in the Ideas store, status `draft`, with `## Description` holding the Idea body below. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original.
+A new Idea in the Ideas store, status `draft`, holding the Idea body below, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original.
 
 To revise, rewrite the affected part in place so the body stays the final intended state. Attach a record of how the Idea got there, through `protocol:ticket.md`, and link it under `## Artifacts`, so the history survives outside the intent.
 
@@ -54,7 +55,7 @@ An Idea holds the final intended state at product level, so the Managing Intelli
 
 - What the work is and why, and what the User requires, as concrete outcomes rather than vague ones, so write-prd doesn't have to guess what was meant.
 - What it relates to, as Associations that each say why they are linked, so each link can be defended.
-- Finished Research Reports, reviews and other input, attached or kept as their own tickets and linked rather than pasted, so the body stays the intent.
+- The research done for it, listed under `## Artifacts`: each completed Research Report and each published research page `guide:research-guide.md` names, with a one-line note on what each covers, so write-prd and write-srd start from that evidence. Attach and link reviews and other input there too rather than pasting them, so the body stays the intent.
 
 Leave out:
 
