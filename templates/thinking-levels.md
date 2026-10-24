@@ -26,7 +26,7 @@ model-review: xhigh
 engineer-planner: high
 test-writer-planner: high
 doc-writer-planner: high
-req-review: medium
+req-review: xhigh
 code-review: xhigh
 test-review: xhigh
 doc-review: high
