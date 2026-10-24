@@ -7,7 +7,7 @@ description: "File or revise an Idea from what the Managing Intelligence gives y
 
 ## Purpose
 
-You file an Idea as the first step of the Idea flow, and revise it as its intent changes.
+You file an Idea as the first step of the Idea flow, and revise it.
 
 ## Loading Apiary
 
@@ -30,7 +30,7 @@ None: you create or revise an Idea.
 
 ## Steps
 
-1. **Take in the work.** Follow the intake's instructions for input it takes; otherwise, work out the Idea or change with the Managing Intelligence as you judge best.
+1. **Take in the work.** Follow the intake's instructions for input it takes; otherwise, work out the Idea or change with the Managing Intelligence.
 2. **File or revise the Idea** as Writes describes.
 3. **Check it** against Idea body, so drift is fixed before approval.
 
@@ -40,9 +40,9 @@ None: you file the Idea yourself.
 
 ## Writes
 
-A new `draft` Idea in the Ideas store, with `## Description` saying what the work is, as Idea body describes. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original.
+A new `draft` Idea in the Ideas store, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original.
 
-Revise in place, so the body stays the final state, and attach how it got there under `## Artifacts`, so history stays out of the body.
+Revise in place, so the body shows only the current agreed direction, and attach its history under `## Artifacts`, so it survives.
 
 ## Done
 
@@ -50,16 +50,16 @@ Report the Idea's ID. Suggest write-prd.
 
 ## Idea body
 
-An Idea holds the final intended state at product level, so it can be approved and built on:
+An Idea holds the direction the User and the Managing Intelligence agreed on, at product level, not the discussion, decisions or abandoned options that led there, so it can be approved and built on:
 
 - What the work is and why, and what the User requires, as direction rather than design, but specific enough that write-prd isn't guessing what was meant.
 - Associations, each saying why it is linked, so the link can be defended.
-- Under `## Artifacts`, each completed Research Report and published research page `guide:research-guide.md` names, with a line on what it covers, so write-prd and write-srd start from that evidence; reviews and other input go there too, linked rather than pasted, so the body stays the intent.
+- Under `## Artifacts`, each completed Research Report and published research page `guide:research-guide.md` names, with a line on what it covers, so write-prd and write-srd start from that evidence; reviews and other input go there too, linked rather than pasted, so the body stays the direction.
 
 Leave out:
 
-- Anything write-prd or write-srd settles, such as term definitions, mechanics and research, because those documents own it.
+- Anything write-prd or write-srd settles, such as term definitions, mechanics and research, because they own it.
 - Restated engineering principles, because the Guidance Documents carry them.
-- Decision history, status notes, and chat links or timestamps, because they go stale.
+- Status notes, chat links and timestamps, because they go stale.
 
 Merge sections covering one concept, so it has one account.
