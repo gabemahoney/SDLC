@@ -42,7 +42,7 @@ None: you file the Idea yourself.
 
 A new `draft` Idea in the Ideas store, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original.
 
-Revise in place, so the body shows only the current agreed direction, and attach its history under `## Artifacts`, so it survives.
+Revise in place, so the body shows only the current direction, and link its history under `## Artifacts`, so it survives.
 
 ## Done
 
@@ -50,15 +50,15 @@ Report the Idea's ID. Suggest write-prd.
 
 ## Idea body
 
-An Idea holds the direction the User and the Managing Intelligence agreed on, at product level, not the discussion, decisions or abandoned options that led there, so it can be approved and built on:
+An Idea holds the direction the User and the Managing Intelligence agreed, at product level, without the decisions or rejected options behind it, so it can be approved and built on:
 
-- What the work is and why, and what the User requires, as direction rather than design, but specific enough that write-prd isn't guessing what was meant.
+- What the work is and why, and what the User requires, specific enough that write-prd isn't guessing what was meant.
 - Associations, each saying why it is linked, so the link can be defended.
-- Under `## Artifacts`, each completed Research Report and published research page `guide:research-guide.md` names, with a line on what it covers, so write-prd and write-srd start from that evidence; reviews and other input go there too, linked rather than pasted, so the body stays the direction.
+- Under `## Artifacts`, completed Research Reports, research pages (`guide:research-guide.md`), reviews and other input, each linked with a line on what it covers, so later skills start from that evidence.
 
 Leave out:
 
-- Anything write-prd or write-srd settles, such as term definitions, mechanics and research, because they own it.
+- Anything write-prd or write-srd settles, because they own it.
 - Restated engineering principles, because the Guidance Documents carry them.
 - Status notes, chat links and timestamps, because they go stale.
 
