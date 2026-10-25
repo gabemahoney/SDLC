@@ -22,6 +22,7 @@ An Idea ID.
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Idea, its Docs and Plan:** for requirements, findings, change requests, existing models and affected Epics.
+- **SRD leads:** the Idea's attached `srd-leads.md`, if any, for design leads from PRD review; settle each in the SRD, because the PRD leaves them open.
 - **Guidance:** `guide:engineering-best-practices.md` for engineering constraints in each explored repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.

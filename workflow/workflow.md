@@ -59,7 +59,7 @@
 - A Bug is a defect to validate and fix.
 - A Plan has an Association with one Idea, and an Idea has at most one Plan.
 - A Plan divides an Idea into Epics, an Epic into Tasks (each committed in one go), and a Task into Subtasks (each one executor's part).
-- A Doc describes an Idea: its Product Requirements Document (PRD: the product's features, what a user sees or interacts with), Software Requirements Document (SRD: what the code does and how it does it), Formal Model in a Model Doc, or another document.
+- A Doc describes an Idea: its Product Requirements Document (PRD: the product's features, what a user sees or interacts with; for an API, CLI or library, what a caller can do and rely on), Software Requirements Document (SRD: what the code does and how it does it, including exact interfaces and data shapes), Formal Model in a Model Doc, or another document.
 - A Research ticket holds a research question. Its one Report holds the answer. A Report is not a Doc.
 
 Every Epic is a vertical slice: a feature or working part of one, through code, tests and docs, that can be demonstrated independently. A **Round Feedback Epic**, titled `Round <N> Feedback`, is the exception. idea-review files it under the Idea's Plan to group one round's non-trivial corrections.
