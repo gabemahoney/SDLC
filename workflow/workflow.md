@@ -174,7 +174,7 @@ A Thinking Level picks an Agent, model and any effort or mode. The caller resolv
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
-If a skill line or `setting:levels` entry is missing, stop and point to project-setup. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
+If a skill line or `setting:levels` entry is missing, stop and point to project-setup. Before a Project has `setting:levels`, the Managing Intelligence chooses project-setup's Agent and model, because no level resolves until setup has run. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
 
 ### Child Agents
 

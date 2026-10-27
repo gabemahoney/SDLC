@@ -28,6 +28,7 @@ An Idea or Bug ID.
 Run only when all of these are true:
 
 - The Idea or Bug is `done`, because only accepted work goes back to the base branch. Otherwise, stop and report its status.
+- The Idea's Plan or the Bug has a `## Worktrees` record. Otherwise, stop and tell the Managing Intelligence, because there is nothing recorded to merge.
 - The main checkouts and worktrees still to merge are on their recorded branches with no uncommitted changes, because merging could otherwise mix in or lose someone's work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
 - No agent is still working in the ticket's worktrees, because you remove them. Otherwise, stop and tell the Managing Intelligence.
 

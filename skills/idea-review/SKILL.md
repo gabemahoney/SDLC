@@ -31,6 +31,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 Run only when all of these are true:
 
 - The Plan is `done`, because execution must finish first. Otherwise, report unfinished work.
+- The Plan has a `## Worktrees` record, because your Child Agents review the work there. Otherwise, stop and suggest configure-worktree.
 - The Idea's PRD and SRD are `defined`, because you review the work against them. Otherwise, stop and tell the Managing Intelligence which one isn't approved.
 
 ## Steps
