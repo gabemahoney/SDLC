@@ -13,3 +13,7 @@ agent-director reports `context.fraction` as `null` for Cursor. As a Main Agent,
 ## Launch template
 
 Launch every Main Agent and Child Agent with the `CURSOR_WORKER` template, because it supplies the host's Cursor configuration.
+
+## Blocking waits
+
+While Child Agents are outstanding, keep your turn open: run the watch that `protocol:launcher.md ## Knowing when a Child Agent's state changes` describes as a watched background shell that prints a unique marker when it returns, and watch for that marker, because Cursor resumes an open turn on a watched marker but never wakes an ended one. Then inspect the child and watch again. Needs Cursor CLI 2026.10.08 or later.
