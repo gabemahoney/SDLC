@@ -12,7 +12,7 @@ Choose Cursor models from `cursor-agent --list-models`, because model availabili
 
 ## Modes
 
-Leave mode unset in `setting:levels` and `setting:levels_cursor`, so a model alone uses agent-director's normal `agent` mode, because Task and Bug tags can reach any level and its other modes, `plan` and `ask`, are read-only. Where a mode is set, write `mode: <mode>` in a `setting:levels` entry or `mode=<mode>` on a `setting:levels_cursor` line, so it follows its mapping's format.
+Leave mode unset in `setting:levels`, so a model alone uses agent-director's normal `agent` mode, because Task and Bug tags can reach any level and its other modes, `plan` and `ask`, are read-only. Where a mode is set, write `mode: <mode>` in that level's entry.
 
 ## Context use
 

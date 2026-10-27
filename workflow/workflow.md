@@ -113,7 +113,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 ### Settings
 
-Read settings only from `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it. Level settings follow Thinking Levels' precedence instead.
+Read settings only from `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
 
 `setting:research_location` locates Research tickets, Reports and artifacts through the Ticket System Protocol File, including linked Research. A home default shares Research across Projects and bots because answers may serve more than one Project; a Project setting overrides it. Research always uses the requesting Project's guidance.
 
@@ -171,12 +171,10 @@ A Thinking Level picks an Agent, model and any effort or mode. The caller resolv
   engineer: high
   ```
 - `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.apiary/system/templates/thinking-levels.md`, so setup and callers read the same mapping.
-- Level settings take precedence as a group: when a Project has any `setting:levels` or `setting:levels_*`, all of its level settings replace every level setting in home defaults, so a home default never hides or mixes with a Project's mapping.
-- When no `setting:levels` applies, the Managing Intelligence chooses the Agent for Main Agents and Child Agents use their caller's Agent, each with its existing `setting:levels_claude_code`, `setting:levels_codex` or `setting:levels_cursor` mapping, so existing Projects keep working. Claude Code and Codex mappings supply model and effort; Cursor mappings supply model and optional mode.
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
-If a skill line or model mapping is missing, stop and point to project-setup. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
+If a skill line or `setting:levels` entry is missing, stop and point to project-setup. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
 
 ### Child Agents
 

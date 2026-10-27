@@ -46,23 +46,4 @@ medium: {agent: codex, model: gpt-6-astra, effort: xhigh}
 low: {agent: codex, model: gpt-6-astra, effort: low}
 ```
 
-Have the Managing Intelligence supply models and effort values available to their accounts, checking Cursor models as `protocol:agent-cursor.md ## Models` says, because these example model names are illustrative. A level's label chooses an entry; its `effort` is the selected model's setting, so the two can differ.
-
-## Per-Agent mappings
-
-Keep existing `setting:levels_claude_code`, `setting:levels_codex` and `setting:levels_cursor` mappings valid, because they apply when no `setting:levels` does, as `~/.apiary/system/workflow.md`'s Thinking Levels describes. Claude Code and Codex mappings supply model and effort.
-
-### Cursor models
-
-Use this shape for `setting:levels_cursor`, replacing each placeholder with a model chosen as `protocol:agent-cursor.md ## Models` says, so every level names a model their account can use:
-
-```text
-## levels_cursor
-low: model=<model>
-medium: model=<model>
-high: model=<model>
-xhigh: model=<model>
-max: model=<model>
-```
-
-Give Cursor entries a model and no effort, leaving mode unset as `protocol:agent-cursor.md ## Modes` says, because Cursor launches have no effort setting.
+Have the Managing Intelligence supply models and effort values available to their accounts, checking Cursor models as `protocol:agent-cursor.md ## Models` says, because these example model names are illustrative. A level's label chooses an entry; its `effort` is the selected model's setting, so the two can differ. Give Cursor entries a model and no effort, leaving mode unset as `protocol:agent-cursor.md ## Modes` says, because Cursor launches have no effort setting.

@@ -33,7 +33,7 @@ Run only when all of these are true:
 ## Steps
 
 1. **Create or reuse the worktrees,** one per repo, with the branch and worktree named after the Idea's or Bug's ID at the paths `~/.apiary/system/workflow.md` defines, so every ticket's worktrees are named the same way and anyone can tell whose work it is. Branch from each main checkout's current branch, and reuse any worktree the Idea or Bug already has. If something already in the way isn't the ticket's, stop for the Managing Intelligence.
-2. **Record them** on the Idea's Plan or the Bug, moving an Idea's own `## Worktrees` record to its Plan, because older Runs kept it on the Idea.
+2. **Record them** on the Idea's Plan or the Bug.
 
 ## Child Agents
 
