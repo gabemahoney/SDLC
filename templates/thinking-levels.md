@@ -50,7 +50,7 @@ Have the Managing Intelligence supply models and effort values available to thei
 
 ## Per-Agent mappings
 
-Keep existing `setting:levels_claude_code`, `setting:levels_codex` and `setting:levels_cursor` mappings valid, because they apply on the caller's own Agent when `setting:levels` is unset. Claude Code and Codex mappings supply model and effort.
+Keep existing `setting:levels_claude_code`, `setting:levels_codex` and `setting:levels_cursor` mappings valid, because they apply when no `setting:levels` does, as `~/.apiary/system/workflow.md`'s Thinking Levels describes. Claude Code and Codex mappings supply model and effort.
 
 ### Cursor models
 
@@ -65,4 +65,4 @@ xhigh: model=<model>
 max: model=<model>
 ```
 
-For either mapping, choose a Cursor mode that permits the assigned skill's work, because agent-director supports `agent`, `plan` and `ask`, and `plan` and `ask` are read-only. Use `mode: <mode>` in a `setting:levels` entry or `mode=<mode>` on a `setting:levels_cursor` line, so the mode follows its mapping's format. A model alone uses the normal agent mode. Keep Cursor mappings to model and optional mode, because Cursor launches have no effort setting.
+For either mapping, use `plan` or `ask` only on a level that no writing skill, Task tag or Bug tag reaches, because agent-director supports `agent`, `plan` and `ask`, and `plan` and `ask` are read-only. Use `mode: <mode>` in a `setting:levels` entry or `mode=<mode>` on a `setting:levels_cursor` line, so the mode follows its mapping's format. A model alone uses the normal agent mode. Keep Cursor mappings to model and optional mode, because Cursor launches have no effort setting.

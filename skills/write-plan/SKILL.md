@@ -71,6 +71,8 @@ Suggest configure-worktree for the Idea, then write-epic on each `draft` Epic in
 - `## Epic count`: why this number of Epics fits the Idea.
 - `## Declined findings`: declined or unaddressed review findings, with reasons.
 
+A revision keeps the Plan's other sections, such as `## Worktrees` and `## SRD changes`, because other skills own them.
+
 **Each Epic ticket's body:**
 
 - `## Outcome`: the one user- or system-visible capability it delivers, and how success is measured.

@@ -50,7 +50,8 @@ Run only when all of these are true:
 
 For each finding:
 
-- **Fix it:** group all findings worth fixing, including any merge conflict teardown-worktree reported on the Idea, into one `Round <N> Feedback` Epic for write-epic and develop-epic, so corrections receive planning and review. A non-trivial finding is an unmet PRD requirement or acceptance criterion, or a real defect in the Idea's work.
+- **Fix it:** group all findings worth fixing, including any merge conflict teardown-worktree reported in the Plan's `## Worktrees`, into one `Round <N> Feedback` Epic for write-epic and develop-epic, so corrections receive planning and review. A non-trivial finding is an unmet PRD requirement or acceptance criterion, or a real defect in the Idea's work.
+- **Route it to write-srd:** send a finding other than a merge conflict that no SRD requirement covers to the Managing Intelligence, to route through write-srd, because planned work must trace to an approved requirement.
 - **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason under `## Declined findings` on the Idea for the Managing Intelligence.
 - **Ask the Managing Intelligence:** for product questions or PRD/SRD conflicts, because they own those decisions.
 
@@ -62,4 +63,4 @@ For each finding:
 
 ## Done
 
-Report the Idea ID, round, declined findings with reasons, and next step: write-epic (feedback Epic ID) or the Managing Intelligence's testing.
+Report the Idea ID, round, declined findings with reasons, findings routed to write-srd, and next step: write-epic (feedback Epic ID) or the Managing Intelligence's testing.

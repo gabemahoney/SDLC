@@ -10,4 +10,4 @@ Launch every Main Agent and Child Agent with the `WORKER` template, because it s
 
 ## Blocking waits
 
-Run blocking waits, such as the command `setting:child_watch_command` names, with the Bash tool's `run_in_background`, because a foreground run hits the Bash timeout; you're re-invoked when it exits.
+Run blocking waits, such as the command `setting:child_watch_command` names, with the Bash tool's `run_in_background`, because a foreground run hits the Bash timeout; you're re-invoked when it exits. Keep each wait one plain command, because Claude Code asks permission for shell constructs such as `declare -A` or braces with quotes.

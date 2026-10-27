@@ -29,7 +29,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 ## Gate
 
-A revision that adds scope the Idea doesn't describe stops and returns to the Managing Intelligence, who revises the Idea and gets the User's approval first, because the approved Idea bounds the PRD.
+A revision that adds scope the Idea doesn't describe stops and returns to the Managing Intelligence, who has write-idea revise it and approves the revision first, because the approved Idea bounds the PRD.
 
 ## Steps
 

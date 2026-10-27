@@ -21,7 +21,7 @@ The IDs of the Ideas and Bugs to release, chosen by the Managing Intelligence, p
 
 - **Agent:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), for Agent instructions.
 - **Settings and protocol:** Project and default settings, and `protocol:ticket.md`, for ticket operations.
-- **The Ideas and Bugs:** their status, and the `## Worktrees` records on the Ideas' Plans and the Bugs, for the Gate.
+- **The Ideas and Bugs:** their status, and the `## Worktrees` records on the Bugs and the Ideas' Plans, for the Gate. Read an Idea's own record when its Plan has none, because older Runs kept it there.
 - **Guidance:** `guide:release-guide.md` and the files it points to, for the release process, permissions and approvals.
 
 ## Gate
@@ -30,7 +30,7 @@ Run only when all of these are true:
 
 - The guide defines a release process. Otherwise, stop and suggest project-setup, which helps the Managing Intelligence write it.
 - Each Idea and Bug is `done`, because only accepted work ships. Otherwise, stop and name the ones the Managing Intelligence hasn't accepted.
-- Each Idea's Plan or Bug's `## Worktrees` record shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and suggest teardown-worktree for it.
+- Each Idea's or Bug's `## Worktrees` record shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and suggest teardown-worktree for it.
 - Each main checkout in those `## Worktrees` records is on the branch the guide releases from, with no uncommitted changes to tracked files, so the release holds only merged work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
 
 ## Steps

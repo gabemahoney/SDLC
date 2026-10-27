@@ -84,7 +84,7 @@ Each line in `## guides` names a guide, then `link` or `copy`, then the file tha
 <guide file>: copy <path>
 ```
 
-- **Guide file:** one of `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `build-commands.md`, `release-guide.md`, `bug-writing-guide.md` or `research-guide.md`.
+- **Guide file:** one of `engineering-best-practices.md`, `test-guide.md`, `doc-writing-guide.md`, `release-guide.md`, `bug-writing-guide.md` or `research-guide.md`. A template can't carry `build-commands.md`, because its commands are per code folder.
 - **Path:** an absolute path, or a path relative to the template folder, so a template can carry its own guide files.
 - **`link`:** project-setup writes a short pointer guide that names the file. Later edits to the file reach every Project that links it.
 - **`copy`:** project-setup copies the file into the Project once. After that, the Project's copy and the source change independently.

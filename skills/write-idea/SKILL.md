@@ -22,7 +22,7 @@ Plain text describing the work, or input of the kind `setting:new_idea_intake` t
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`) and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Intake:** the instructions `setting:new_idea_intake` names, for what input it takes and how to prepare the Idea.
-- **Research guide:** `guide:research-guide.md`, for where research is published.
+- **Research guide:** `guide:research-guide.md`, for where the Project's research lives.
 
 ## Gate
 
@@ -50,11 +50,11 @@ Report the Idea's ID. Suggest write-prd.
 
 ## Idea body
 
-An Idea holds the direction the User and the Managing Intelligence agreed, at product level, without the decisions or rejected options behind it, so it can be approved and built on:
+An Idea holds the direction the Managing Intelligence agreed, at product level, without the decisions or rejected options behind it, so it can be approved and built on:
 
-- What the work is and why, and what the User requires, specific enough that write-prd isn't guessing what was meant.
+- What the work is and why, and what the Managing Intelligence requires, specific enough that write-prd isn't guessing what was meant.
 - Associations, each saying why it is linked, so the link can be defended.
-- Under `## Artifacts`, completed Research Reports, research pages (`guide:research-guide.md`), reviews and other input, each linked with a line on what it covers, so later skills start from that evidence.
+- Under `## Artifacts`, completed Research Reports, research the Project keeps elsewhere (`guide:research-guide.md`), reviews and other input, each linked with a line on what it covers, so later skills start from that evidence.
 
 Leave out:
 

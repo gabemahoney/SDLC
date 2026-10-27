@@ -67,7 +67,7 @@ Suggest develop-epic on this Epic once every Epic it depends on is `done`.
 
 ## Task template
 
-- `## Context`: explain why the Task exists and what prerequisite work it assumes, and name the SRD requirements it serves, because develop-epic builds only work the SRD covers.
+- `## Context`: explain why the Task exists and what prerequisite work it assumes, and name what it serves: SRD requirements, or in a Round Feedback Epic a PRD requirement or the teardown-worktree conflict it resolves, because develop-epic builds only work the approved requirements cover.
 - `## Guide exceptions` (only when one applies): quote the matching entries from the Epic, so planning preserves approved departures from the guides.
 - `## Work`: state the work and affected code folders, following the SRD's decisions.
 - `## Dependencies`: name Tasks that must finish first and explain why.
@@ -97,6 +97,7 @@ When unsure between two levels, choose the higher one.
 
 - [ ] The Tasks cover the Epic's acceptance criteria and follow the PRD, SRD and recorded Managing Intelligence decisions.
 - [ ] Every planned change serves the requirements or applicable Guidance Documents, and its size fits the outcome.
+- [ ] Each Task's `## Context` names what it serves, as the Task template says.
 - [ ] Prerequisite and sibling Epic work is accounted for, and each Task has a coherent outcome and the Dependencies it needs.
 - [ ] Each Subtask has `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria`, with concrete paths in a named repo or code folder.
 - [ ] Testing Subtasks identify fixture reuse and changes and avoid duplicate checks at the same level.

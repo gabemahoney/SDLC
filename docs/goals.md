@@ -7,7 +7,7 @@ Read this before changing any skill. Today's Apiary is effective and its skills 
 2. **An Orchestrator in the loop.** The Managing Intelligence chooses skills for Main Agents. Main Agents can launch Child Agents with the skills their work needs, through the Launcher Protocol File.
 3. **Shareable configuration.** Templates and `~/.apiary` defaults replace copy-paste between projects.
 4. **Apiary reads its own settings and Guidance Documents,** not each repo's CLAUDE.md.
-5. **Claude Code and Codex CLI,** each through its Agent Protocol File.
+5. **Claude Code, Codex CLI and Cursor,** each through its Agent Protocol File.
 6. **Intake per Project:** how Ideas and Bugs come in is a setting.
 7. **Ideas span several repos.**
 8. **In proportion:** plans, code, tests and docs are sized to the change. More is not safer.

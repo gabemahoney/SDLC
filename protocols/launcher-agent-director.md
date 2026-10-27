@@ -10,7 +10,7 @@ Both run in their own agent-director sessions. The Managing Intelligence launche
 
 ## Launching a Main Agent
 
-Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.apiary/system/workflow.md`'s Thinking Levels, so Main Agents and Child Agents use the configured Agent, model and effort or mode, including Task or Bug overrides. Read the selected `protocol:agent-<agent>.md`, use its launch template and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
+Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.apiary/system/workflow.md`'s Thinking Levels, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use its launch template and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
 
 ```sh
 # Claude Code (agent: claude-code)
@@ -35,9 +35,9 @@ End your turn with your report or question as the final message, so your Main Ag
 
 ## Knowing when a Child Agent's state changes
 
-While work is outstanding, wait by running the command `setting:child_watch_command` names, followed by your Child Agents' ids, as one plain command, because agent-director doesn't notify you. Never write your own watch loop, because Claude Code asks permission for shell constructs such as `declare -A` or braces with quotes, stalling you until a human answers, while a host can allowlist one fixed command.
+While work is outstanding, wait by running the command `setting:child_watch_command` names, followed by your Child Agents' ids, as one plain command, because agent-director doesn't notify you. Never write your own watch loop, because an Agent may ask permission for its shell constructs, stalling you until a human answers, while a host can allowlist one fixed command.
 
-The command returns as soon as any Child Agent's state is other than `pending` or `working`, printing `<id> <state>`, because a wait that ends only on some states, such as `check_permission`, stalls on the others. If `setting:child_watch_command` is unset, check each Child Agent with this single plain command instead, and keep waiting only while it shows `pending` or `working`:
+The command returns as soon as any Child Agent's state is other than `pending` or `working`, printing `<id> <state>`, because a wait that ends only on some states, such as `check_permission`, stalls on the others. If `setting:child_watch_command` is unset, re-check each Child Agent with this plain command instead, one at a time and spaced out because it returns at once, running it as your Agent Protocol File's `## Blocking waits` says, until it shows another state:
 
 ```sh
 agent-director status --instance-id '<id>'

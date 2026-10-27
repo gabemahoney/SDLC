@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Use Cursor CLI on Linux with an operator-configured login and launch template, because agent-director's Cursor support requires that host setup.
+Use Cursor CLI 2026.10.08 or later on Linux with an operator-configured login and launch template, because agent-director's Cursor support and `## Blocking waits` require that host setup.
 
 Check skills in `~/.cursor/skills/<skill>/SKILL.md` for a user installation or `<repo>/.cursor/skills/<skill>/SKILL.md` for a repository installation, and shared materials under `~/.apiary/`, so Cursor can load the same Apiary instructions as the other Agents.
 
@@ -16,4 +16,4 @@ Launch every Main Agent and Child Agent with the `CURSOR_WORKER` template, becau
 
 ## Blocking waits
 
-While Child Agents are outstanding, keep your turn open: run the watch that `protocol:launcher.md ## Knowing when a Child Agent's state changes` describes as a watched background shell that prints a unique marker when it returns, and watch for that marker, because Cursor resumes an open turn on a watched marker but never wakes an ended one. Then inspect the child and watch again. Needs Cursor CLI 2026.10.08 or later.
+While Child Agents are outstanding, keep your turn open: run the watch that `protocol:launcher.md ## Knowing when a Child Agent's state changes` describes as a watched background shell that prints a unique marker when it returns, and watch for that marker, because Cursor resumes an open turn on a watched marker but never wakes an ended one. Then inspect the child and watch again.

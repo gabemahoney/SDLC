@@ -89,7 +89,7 @@ For `guide:research-guide.md`, offer existing guidance, a guide written with the
 
 ## Project Templates
 
-A template's manifest, `~/.apiary/templates/<name>/template.md`, writes settings in the `<setting>: <value>` lines and `## <setting>` blocks of `<Project Folder>/.apiary/project_settings.md`, so you can copy each value into the Project's settings as written. Its `## guides` section lists Template Guides, one `<guide file>: link <path>` or `<guide file>: copy <path>` line each. A relative path is relative to the template folder, so a template can carry its own guide files. A template holds as much or as little as its author wants, and you settle everything it leaves out as you would without one.
+A template's manifest, `~/.apiary/templates/<name>/template.md`, writes settings in the `<setting>: <value>` lines and `## <setting>` blocks of `<Project Folder>/.apiary/project_settings.md`, so you can copy each value into the Project's settings as written. Its `## guides` section lists Template Guides, one `<guide file>: link <path>` or `<guide file>: copy <path>` line each. A relative path is relative to the template folder, so a template can carry its own guide files. A template holds as much or as little as its author wants, and you settle everything it leaves out as you would without one. Leave `setting:child_watch_command` and `guide:build-commands.md` out of templates, both when applying and when saving, because the first belongs to the host and the second's commands are per code folder.
 
 Apply each Template Guide in the Project Folder's `.apiary`, because a template can't know a Project's code folders:
 
