@@ -21,7 +21,7 @@ An Epic ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Epic, Tasks, Subtasks, Plan, sibling Epics, Idea and its Docs:** for requirements, decisions, Dependencies, unfinished work and Plan completion. The Idea's `## Worktrees` says where you and your Child Agents work.
+- **Epic, Tasks, Subtasks, Plan, sibling Epics, Idea and its Docs:** for requirements, decisions, Dependencies, unfinished work and Plan completion. The Plan's `## Worktrees` says where you and your Child Agents work.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for implementation, reviews, checks and commits in each affected repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
@@ -34,7 +34,7 @@ Run only when all of these are true:
 - Every Epic it depends on is `done`. Otherwise, stop and report the unfinished Dependency.
 - Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff. Otherwise, stop and suggest write-plan.
 - The PRD and SRD are `defined`, because execution follows approved requirements. Otherwise, stop and return them to the Managing Intelligence.
-- The Idea's `## Worktrees` covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
+- The Plan's `## Worktrees` covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
 - The Epic has planned Tasks with Subtasks. Unfinished ones are `defined` or `active`, except `draft` fix Tasks and Subtasks whose planning you resume before execution so interrupted repairs can continue. Otherwise, stop and suggest write-epic.
 - Every Task names the SRD requirements it serves, because work outside the SRD bypassed its review. Otherwise, stop and suggest write-epic.
 

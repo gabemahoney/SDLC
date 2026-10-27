@@ -21,7 +21,7 @@ An Idea or Bug ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and `protocol:ticket.md`, for operations.
-- **The Idea or Bug:** its `## Worktrees` record, for each repo's worktree, branch and base branch, and what earlier Runs already did.
+- **The Idea's Plan or the Bug:** its `## Worktrees` record, for each repo's worktree, branch and base branch, and what earlier Runs already did.
 
 ## Gate
 
@@ -42,7 +42,7 @@ None: you merge and clean up yourself.
 
 ## Writes
 
-- **The Idea or Bug:** under `## Worktrees`, what merged, what was removed, and any conflict, so it can be resolved and a later Run can finish.
+- **The Idea's Plan or the Bug:** under `## Worktrees`, what merged, what was removed, and any conflict, so it can be resolved and a later Run can finish.
 - **Repos:** merge commits on the local base branches, and the removed worktrees and branches.
 
 ## Done

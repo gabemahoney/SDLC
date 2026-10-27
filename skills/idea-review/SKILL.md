@@ -21,7 +21,7 @@ An Idea ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Idea, PRD, SRD, Plan and Epics:** for requirements, decisions and completed work. The Idea's `## Worktrees` says where the work is, and where your Child Agents review it.
+- **Idea, PRD, SRD, Plan and Epics:** for requirements, decisions and completed work. The Plan's `## Worktrees` says where the work is, and where your Child Agents review it.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md` and `guide:build-commands.md` for review standards in each repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
