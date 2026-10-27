@@ -50,9 +50,9 @@ Report the Idea's ID. Suggest write-prd.
 
 ## Idea body
 
-An Idea holds the direction the Managing Intelligence agreed, at product level, without the decisions or rejected options behind it, so it can be approved and built on:
+An Idea holds the direction the User and the Managing Intelligence agreed, at product level, without the decisions or rejected options behind it, so it can be approved and built on:
 
-- What the work is and why, and what the Managing Intelligence requires, specific enough that write-prd isn't guessing what was meant.
+- What the work is and why, and what the User requires, specific enough that write-prd isn't guessing what was meant.
 - Associations, each saying why it is linked, so the link can be defended.
 - Under `## Artifacts`, completed Research Reports, research the Project keeps elsewhere (`guide:research-guide.md`), reviews and other input, each linked with a line on what it covers, so later skills start from that evidence.
 
