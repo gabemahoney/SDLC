@@ -40,7 +40,7 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 
 2. **Write the Plan and Epics.** First state in a sentence what changes for the user or system when the Idea is done, from the PRD's goals, acceptance criteria and constraints. If you can't, stop and raise it with the Managing Intelligence, because Epics cut without a clear outcome won't add up to one. Follow the SRD's software requirements, technology choices and architecture. Write each ticket as "What to write in each ticket" below says, and follow the Planning guidance.
    - If the Idea has no Plan, create one and its Epics as `draft`.
-   - If the Idea already has a Plan, bring it up to date with the SRD; `## SRD changes` on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed, and leave the rest as they are.
+   - If the Idea already has a Plan, bring it up to date with the SRD; `## SRD changes` on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed except Round Feedback Epics, and leave the rest as they are.
 
 3. **Check the Plan with the `product-manager`.** Save the Plan and Epics, then launch `product-manager`. Judge every finding under the shared rule and review again after significant changes. Then check the whole Plan against the Quality checklist below.
 

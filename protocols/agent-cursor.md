@@ -10,6 +10,10 @@ Check skills in `~/.cursor/skills/<skill>/SKILL.md` for a user installation or `
 
 Choose Cursor models from `cursor-agent --list-models`, because model availability depends on the account.
 
+## Modes
+
+Leave mode unset in `setting:levels` and `setting:levels_cursor`, so a model alone uses agent-director's normal `agent` mode, because Task and Bug tags can reach any level and its other modes, `plan` and `ask`, are read-only. Where a mode is set, write `mode: <mode>` in a `setting:levels` entry or `mode=<mode>` on a `setting:levels_cursor` line, so it follows its mapping's format.
+
 ## Context use
 
 agent-director reports `context.fraction` as `null` for Cursor. As a Main Agent, skip your own context check; as a caller, start every Cursor Child Agent fresh, because no context reading is available to judge reuse.

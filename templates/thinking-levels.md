@@ -35,7 +35,7 @@ product-manager: xhigh
 
 ## Agents, models and effort
 
-Use this shape for `setting:levels`, with an Agent, model and its own effort or optional Cursor mode at each level, so one mapping can mix Agents and choose how each model runs:
+Use this shape for `setting:levels`, with an Agent, model and its own effort at each level, so one mapping can mix Agents and choose how each model runs:
 
 ```text
 ## levels
@@ -65,4 +65,4 @@ xhigh: model=<model>
 max: model=<model>
 ```
 
-Leave mode unset in `setting:levels` and `setting:levels_cursor`, so a model alone uses the normal `agent` mode, because Task and Bug tags can reach any level and agent-director's other modes, `plan` and `ask`, are read-only. Where a mode is set, write `mode: <mode>` in a `setting:levels` entry or `mode=<mode>` on a `setting:levels_cursor` line, so it follows its mapping's format. Keep Cursor mappings to model and optional mode, because Cursor launches have no effort setting.
+Give Cursor entries a model and no effort, leaving mode unset as `protocol:agent-cursor.md ## Modes` says, because Cursor launches have no effort setting.

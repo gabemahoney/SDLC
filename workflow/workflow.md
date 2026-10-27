@@ -171,7 +171,7 @@ A Thinking Level picks an Agent, model and any effort or mode. The caller resolv
   engineer: high
   ```
 - `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.apiary/system/templates/thinking-levels.md`, so setup and callers read the same mapping.
-- A Project's own `setting:levels` or `setting:levels_*` wins over any level setting in home defaults, so a home default never hides a Project's mapping.
+- Level settings take precedence as a group: when a Project has any `setting:levels` or `setting:levels_*`, all of its level settings replace every level setting in home defaults, so a home default never hides or mixes with a Project's mapping.
 - When no `setting:levels` applies, the Managing Intelligence chooses the Agent for Main Agents and Child Agents use their caller's Agent, each with its existing `setting:levels_claude_code`, `setting:levels_codex` or `setting:levels_cursor` mapping, so existing Projects keep working. Claude Code and Codex mappings supply model and effort; Cursor mappings supply model and optional mode.
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
