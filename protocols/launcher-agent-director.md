@@ -37,7 +37,7 @@ End your turn with your report or question as the final message, so your Main Ag
 
 While work is outstanding, wait by running the command `setting:child_watch_command` names, followed by your Child Agents' ids, as one plain command, because agent-director doesn't notify you. Never write your own watch loop, because an Agent may ask permission for its shell constructs, stalling you until a human answers, while a host can allowlist one fixed command.
 
-The command returns as soon as any Child Agent's state is other than `pending` or `working`, printing `<id> <state>`, because a wait that ends only on some states, such as `check_permission`, stalls on the others. If `setting:child_watch_command` is unset, re-check each Child Agent with this plain command instead, one at a time and spaced out because it returns at once, running it as your Agent Protocol File's `## Blocking waits` says, until it shows another state:
+The command returns as soon as any Child Agent's state is other than `pending` or `working`, printing `<id> <state>`, because a wait that ends only on some states, such as `check_permission`, stalls on the others. If `setting:child_watch_command` is unset, re-check each Child Agent with this plain command instead, one at a time, spacing the checks as your Agent Protocol File's `## Blocking waits` says because it returns at once, until it shows another state:
 
 ```sh
 agent-director status --instance-id '<id>'

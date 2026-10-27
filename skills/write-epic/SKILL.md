@@ -67,7 +67,7 @@ Suggest develop-epic on this Epic once every Epic it depends on is `done`.
 
 ## Task template
 
-- `## Context`: explain why the Task exists and what prerequisite work it assumes, and name what it serves: SRD requirements, or in a Round Feedback Epic a PRD requirement or the teardown-worktree conflict it resolves, because develop-epic builds only work the approved requirements cover.
+- `## Context`: explain why the Task exists and what prerequisite work it assumes, and name what it serves: SRD requirements, Guidance Document rules, or in a Round Feedback Epic a PRD requirement or the teardown-worktree conflict it resolves, because develop-epic builds only work that approved requirements or guidance cover.
 - `## Guide exceptions` (only when one applies): quote the matching entries from the Epic, so planning preserves approved departures from the guides.
 - `## Work`: state the work and affected code folders, following the SRD's decisions.
 - `## Dependencies`: name Tasks that must finish first and explain why.

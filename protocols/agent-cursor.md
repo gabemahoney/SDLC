@@ -6,6 +6,10 @@ Use Cursor CLI 2026.10.08 or later on Linux with an operator-configured login an
 
 Check skills in `~/.cursor/skills/<skill>/SKILL.md` for a user installation or `<repo>/.cursor/skills/<skill>/SKILL.md` for a repository installation, and shared materials under `~/.apiary/`, so Cursor can load the same Apiary instructions as the other Agents.
 
+## Models
+
+Choose Cursor models from `cursor-agent --list-models`, because model availability depends on the account.
+
 ## Context use
 
 agent-director reports `context.fraction` as `null` for Cursor. As a Main Agent, skip your own context check; as a caller, start every Cursor Child Agent fresh, because no context reading is available to judge reuse.
@@ -16,4 +20,4 @@ Launch every Main Agent and Child Agent with the `CURSOR_WORKER` template, becau
 
 ## Blocking waits
 
-While Child Agents are outstanding, keep your turn open: run the watch that `protocol:launcher.md ## Knowing when a Child Agent's state changes` describes as a watched background shell that prints a unique marker when it returns, and watch for that marker, because Cursor resumes an open turn on a watched marker but never wakes an ended one. Then inspect the child and watch again.
+While Child Agents are outstanding, keep your turn open: run the watch that `protocol:launcher.md ## Knowing when a Child Agent's state changes` describes as a watched background shell that prints a unique marker when it returns, and watch for that marker, because Cursor resumes an open turn on a watched marker but never wakes an ended one. Then inspect the child and watch again. Between fallback checks, run a separate `sleep`, such as `sleep 30`, the same way, so the checks don't busy-poll.

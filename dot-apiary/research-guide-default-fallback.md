@@ -2,6 +2,10 @@
 
 Apiary uses this file only when the Project has no `guide:research-guide.md` of its own.
 
+## Where research lives
+
+The Project's research lives in Research tickets and their Reports at `setting:research_location`, so every skill finds it in one place.
+
 ## Sources and depth
 
 Choose sources and depth to suit the question, its constraints and the latest review request. Prefer original documentation, data and direct observations so conclusions rest on evidence close to the subject. Investigate disagreements that could change the answer and state what remains uncertain.

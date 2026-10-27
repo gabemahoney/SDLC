@@ -46,7 +46,7 @@ Revise in place, so the body shows only the current direction, and link its hist
 
 ## Done
 
-Report the Idea's ID. Suggest write-prd.
+Report the Idea's ID. Suggest the Managing Intelligence approve it, then write-prd.
 
 ## Idea body
 

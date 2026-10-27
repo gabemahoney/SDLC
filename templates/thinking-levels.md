@@ -46,7 +46,7 @@ medium: {agent: codex, model: gpt-6-astra, effort: xhigh}
 low: {agent: codex, model: gpt-6-astra, effort: low}
 ```
 
-Have the Managing Intelligence supply models and effort values available to their accounts, checking Cursor models with `cursor-agent --list-models`, because these example model names are illustrative. A level's label chooses an entry; its `effort` is the selected model's setting, so the two can differ.
+Have the Managing Intelligence supply models and effort values available to their accounts, checking Cursor models as `protocol:agent-cursor.md ## Models` says, because these example model names are illustrative. A level's label chooses an entry; its `effort` is the selected model's setting, so the two can differ.
 
 ## Per-Agent mappings
 
@@ -54,7 +54,7 @@ Keep existing `setting:levels_claude_code`, `setting:levels_codex` and `setting:
 
 ### Cursor models
 
-Use this shape for `setting:levels_cursor`, replacing each placeholder with a model from the user's `cursor-agent --list-models`, so every level names a model their account can use:
+Use this shape for `setting:levels_cursor`, replacing each placeholder with a model chosen as `protocol:agent-cursor.md ## Models` says, so every level names a model their account can use:
 
 ```text
 ## levels_cursor
@@ -65,4 +65,4 @@ xhigh: model=<model>
 max: model=<model>
 ```
 
-For either mapping, use `plan` or `ask` only on a level that no writing skill, Task tag or Bug tag reaches, because agent-director supports `agent`, `plan` and `ask`, and `plan` and `ask` are read-only. Use `mode: <mode>` in a `setting:levels` entry or `mode=<mode>` on a `setting:levels_cursor` line, so the mode follows its mapping's format. A model alone uses the normal agent mode. Keep Cursor mappings to model and optional mode, because Cursor launches have no effort setting.
+Leave mode unset in `setting:levels` and `setting:levels_cursor`, so a model alone uses the normal `agent` mode, because Task and Bug tags can reach any level and agent-director's other modes, `plan` and `ask`, are read-only. Where a mode is set, write `mode: <mode>` in a `setting:levels` entry or `mode=<mode>` on a `setting:levels_cursor` line, so it follows its mapping's format. Keep Cursor mappings to model and optional mode, because Cursor launches have no effort setting.

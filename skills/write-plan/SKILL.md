@@ -55,7 +55,7 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 ## Writes
 
 - **The Plan:** one per Idea, in the Plans store, with an Association to its Idea so later skills can find the requirements. A new Plan starts `draft`, and becomes `defined` or `active` in step 4.
-- **Its Epics:** children of the Plan. When one Epic can't start until another is `done`, record a Dependency from the waiting Epic on the one it waits for. New and changed Epics are `draft`. When revising a Plan, remove any Epic the changed SRD no longer calls for.
+- **Its Epics:** children of the Plan. When one Epic can't start until another is `done`, record a Dependency from the waiting Epic on the one it waits for. New and changed Epics are `draft`. When revising a Plan, remove any Epic the changed SRD no longer calls for, but keep Round Feedback Epics, because idea-review files them from review rather than the SRD.
 
 ## Done
 

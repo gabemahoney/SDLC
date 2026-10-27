@@ -68,7 +68,7 @@ A template can hold any of these. Each takes the same value it would in `project
 | `new_bug_intake` | Absolute path to the intake for new Bugs. |
 | `research_location` | Absolute path to the folder for Research tickets and Reports. |
 | `levels` | A `## levels` block: the Agent, model and effort or mode for each Thinking Level. |
-| `levels_claude_code`, `levels_codex`, `levels_cursor` | Per-Agent level blocks, used when `levels` is unset. |
+| `levels_claude_code`, `levels_codex`, `levels_cursor` | Per-Agent level blocks, used when no `levels` applies. |
 | `thinking_levels` | A `## thinking_levels` block: one `<skill>: <level>` line per skill. |
 | `ticket_links` | How links are recorded where the ticket system lacks a link type. |
 
