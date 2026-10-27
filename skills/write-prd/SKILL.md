@@ -29,7 +29,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 ## Gate
 
-None: the PRD can be written or revised at any Idea status.
+A revision that adds scope the Idea doesn't describe stops and returns to the Managing Intelligence, who revises the Idea and gets the User's approval first, because the approved Idea bounds the PRD.
 
 ## Steps
 

@@ -36,6 +36,7 @@ Run only when all of these are true:
 - The PRD and SRD are `defined`, because execution follows approved requirements. Otherwise, stop and return them to the Managing Intelligence.
 - The Idea's `## Worktrees` covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
 - The Epic has planned Tasks with Subtasks. Unfinished ones are `defined` or `active`, except `draft` fix Tasks and Subtasks whose planning you resume before execution so interrupted repairs can continue. Otherwise, stop and suggest write-epic.
+- Every Task names the SRD requirements it serves, because work outside the SRD bypassed its review. Otherwise, stop and suggest write-epic.
 
 ## Steps
 
