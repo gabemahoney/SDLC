@@ -81,6 +81,18 @@ Each transition has exactly one owner. Change only the tickets and statuses your
 
 The Managing Intelligence approves an Idea before write-prd and records the approval on the Idea, because the approved Idea bounds the PRD. It sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when teardown-worktree hits a merge conflict (fix-bug resolves it for a Bug; for an Idea, idea-review files it as a Round Feedback Epic), and manages Docs other than the PRD, SRD and Model Docs.
 
+### Temporary end-of-bee report (through 2026-11-12)
+
+When you act as Managing Intelligence and accept an Idea or Bug as `done`, write or refresh its short report at `/home/horde/research/tickets/b.rvm/artifacts/end-of-bee/<project>-<ticket id>.md`, including work that changes no repo, because Research b.rvm needs one report per finished Idea or Bug. Use the Project Folder's name for `<project>` and create the directory if needed, so bots share a predictable destination. Remove this temporary subsection after 2026-11-12 unless the User extends it, because it is a bounded data collection exercise.
+
+Use existing ticket history, job records and logs through acceptance to cover the following, citing ticket IDs and evidence locations so the report is factual and cheap to produce:
+
+- Quality problems and the phase where each surfaced.
+- The longest phases or steps, with wall times and their timestamp boundaries.
+- Minor findings that triggered another round, owner or rerun, with the resulting elapsed time as possible nitpick cost.
+
+Label missing timings unknown, distinguish waiting from work where evidence allows, and avoid summing overlapping intervals, because elapsed time alone does not prove wasted effort.
+
 ## Flows
 
 **Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing and acceptance → teardown-worktree → release. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again. A round that finds an unmet PRD requirement no SRD requirement covers sends it back through write-srd and write-plan first.
