@@ -42,7 +42,7 @@
 - **Dependency:** a link meaning one ticket can't start until another is `done`, such as between Epics or between Tasks.
 - **Association:** a link between related tickets where neither waits on the other, such as a Plan and its Idea, or an SRD and a Research ticket it cites.
 - **Source Reference:** a link to a ticket's origin outside the ticket system, such as a GitHub issue or file. write-prd and define-bug use it to establish requirements. Downstream skills use the requirements on the tickets so external changes cannot silently change their scope.
-- **Resolver:** the instructions for reading one kind of Source Reference, picked by its kind (a GitHub URL uses `github`, a file path uses `file`).
+- **Resolver:** the instructions for reading one kind of Source Reference, selected by its kind, with optional overrides in `setting:resolvers` (a GitHub URL uses `github`, a file path uses `file`).
 - **Intake:** the file of instructions for taking in new Ideas or Bugs, whose path `setting:new_idea_intake` or `setting:new_bug_intake` holds. write-idea and write-bug also always accept plain text describing the work or defect.
 - **Run:** one execution of a skill, from its first steps to its report.
 - **Thinking Level:** the Agent, model and any effort or mode a session runs with (see Thinking Levels).
@@ -134,6 +134,19 @@ Read settings only from `<Project Folder>/.sdlc/project_settings.md`, then `~/.s
 If a setting the Run needs is missing from both files, stop before any change and point to project-setup.
 
 Record Dependencies, Associations and Source References as the Ticket System Protocol File says, or as `setting:ticket_links` says where that file doesn't cover one.
+
+### Intakes and Resolvers
+
+Your intakes live in `~/.sdlc/intakes/` and your Resolvers in `~/.sdlc/resolvers/`. `install.sh` never writes there, so they survive SDLC upgrades. Shipped files live in `~/.sdlc/system/intakes/` and `~/.sdlc/system/resolvers/` and are replaced on installation.
+
+Set `setting:new_idea_intake` and `setting:new_bug_intake` to the chosen file's absolute path, so each intake can use a shipped or user file. `setting:resolvers` is optional: add one `<kind>: <absolute path>` line for each custom or overridden Source Reference kind, so Projects can use their own instructions while keeping shipped Resolvers. For example:
+
+```text
+## resolvers
+support: /home/you/.sdlc/resolvers/support.md
+```
+
+Use the mapped file when the kind has an entry; otherwise use `~/.sdlc/system/resolvers/<kind>.md`, including when `setting:resolvers` is unset, so existing Projects can read shipped source kinds without new settings. Stop if neither a mapping nor a shipped Resolver exists, because the source has no reading instructions. Check the selected file and its prerequisites before using it, because access depends on the source.
 
 ### References
 

@@ -23,7 +23,7 @@ An Idea ID.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
 - **Idea and its existing Docs:** for requirements and existing PRD and SRD context.
 - **Template:** `setting:prd_template`, for PRD structure.
-- **Resolvers:** selected by Source Reference kind, for source context.
+- **Resolvers:** the files selected by Intakes and Resolvers in `~/.sdlc/system/workflow.md`, for source instructions and prerequisites, so optional custom mappings and shipped Resolvers work alike.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

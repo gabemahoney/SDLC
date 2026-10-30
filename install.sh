@@ -24,6 +24,7 @@ Shared:       workflow/workflow.md -> ~/.sdlc/system/workflow.md
               protocols/    -> ~/.sdlc/system/protocols/ (includes launcher-*.md)
               dot-sdlc/*-default-fallback.md -> ~/.sdlc/ (also with --repo)
 Never written: ~/.sdlc/templates/ (your Project Templates)
+               ~/.sdlc/intakes/ and ~/.sdlc/resolvers/ (your intakes and resolvers)
 EOF
 }
 

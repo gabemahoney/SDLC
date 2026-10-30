@@ -66,12 +66,15 @@ A template can hold any of these. Each takes the same value it would in `project
 | `prd_template` | Absolute path to the PRD layout, such as `/home/you/.sdlc/system/doc-templates/prd.md`. |
 | `new_idea_intake` | Absolute path to the intake for new Ideas. |
 | `new_bug_intake` | Absolute path to the intake for new Bugs. |
+| `resolvers` | An optional `## resolvers` block: one `<kind>: <absolute path>` line per custom or overridden kind; unmapped kinds use shipped resolvers. |
 | `research_location` | Absolute path to the folder for Research tickets and Reports. |
 | `levels` | A `## levels` block: the Agent, model and effort or mode for each Thinking Level. |
 | `thinking_levels` | A `## thinking_levels` block: one `<skill>: <level>` line per skill. |
 | `ticket_links` | How links are recorded where the ticket system lacks a link type. |
 
 The `levels` and `thinking_levels` formats are in `~/.sdlc/system/templates/thinking-levels.md`. A template can't hold `child_watch_command`, because it belongs to the host and lives in your home defaults.
+
+Your intakes live in `~/.sdlc/intakes/` and your resolvers in `~/.sdlc/resolvers/`. Installing or upgrading SDLC never writes there, so your files stay as you left them. Settings can name those files or the shipped files under `~/.sdlc/system/` by absolute path.
 
 ### Guides
 

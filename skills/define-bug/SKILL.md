@@ -26,7 +26,7 @@ A Bug ID.
 
 - **Documentation:** the Project's user and internal docs, such as its README, `docs/`, architecture docs and the PRDs and SRDs behind the feature, for its intended behaviour.
 
-Also read the Project's code, tests and linked Research as needed, and any Source References through their Resolvers.
+Also read the Project's code, tests and linked Research as needed, and any Source References through the Intakes and Resolvers selection in `~/.sdlc/system/workflow.md`, so validation uses custom mappings when set and shipped Resolvers otherwise.
 
 ## Gate
 
