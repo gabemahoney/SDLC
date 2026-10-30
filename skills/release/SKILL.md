@@ -11,7 +11,7 @@ You release accepted, merged Ideas and Bugs by following the Project's release g
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

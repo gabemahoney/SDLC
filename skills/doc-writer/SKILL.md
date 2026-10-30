@@ -11,7 +11,7 @@ You update documentation for develop-epic or fix-bug after source and test chang
 
 ## Loading SDLC
 
-You are running an SDLC software development workflow. Before anything else, read `~/.sdlc/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.sdlc/system/workflow.md` before going on.
+You are running an SDLC software development workflow. Before anything else, read `~/.sdlc/install/workflow.md`, then follow this skill. After a compaction, re-read `~/.sdlc/install/workflow.md` before going on.
 
 ## Input
 

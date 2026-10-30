@@ -32,7 +32,9 @@ These templates supply worker permissions and host configuration. Cursor needs L
 
 ## Migrate an existing install
 
-Move `~/.apiary` to `~/.sdlc` and each Project's `.apiary` folder to `.sdlc`. Update paths in settings, saved templates and pointer guides, then reinstall from the SDLC repository. SDLC versions restart at `1.0.0`.
+Move `~/.apiary` to `~/.sdlc` and each Project's `.apiary` folder to `.sdlc`. Update paths in settings, saved templates and pointer guides. SDLC versions restarted at `1.0.0`.
+
+For SDLC `2.0.0`, move `~/.sdlc/system` to `~/.sdlc/install` or delete the old folder. Update stored paths in settings and templates, then reinstall so skills and shared files use the new location.
 
 ## Set up a Project
 

@@ -11,7 +11,7 @@ You merge an accepted Idea or Bug's branch into each repo's base branch, then re
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

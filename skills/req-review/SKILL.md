@@ -11,7 +11,7 @@ You independently review one draft PRD or SRD for your Main Agent.
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

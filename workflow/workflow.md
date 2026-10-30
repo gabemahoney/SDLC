@@ -23,7 +23,7 @@
   - **model-writer (Model Writer):** writes a Formal Model and runs its checker.
   - **model-review (Model Reviewer):** checks a Formal Model against the SRD before its checker runs.
 - **Launcher:** the program that launches, resumes, watches and stops Main Agents and Child Agents, keeping their parent–child relationships.
-- **Launcher Protocol File (`protocol:launcher.md`):** instructions for Launcher operations and Child Agent context readings. `setting:launcher` selects `~/.sdlc/system/protocols/launcher-<launcher>.md`; `setting:ticket_system` selects `protocol:ticket-<ticket_system>.md` there.
+- **Launcher Protocol File (`protocol:launcher.md`):** instructions for Launcher operations and Child Agent context readings. `setting:launcher` selects `~/.sdlc/install/protocols/launcher-<launcher>.md`; `setting:ticket_system` selects `protocol:ticket-<ticket_system>.md` there.
 - **Project:** the software the Managing Intelligence builds with SDLC, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.sdlc` Folder:** a folder named `.sdlc` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.sdlc` the default settings.
@@ -137,7 +137,7 @@ Record Dependencies, Associations and Source References as the Ticket System Pro
 
 ### Intakes and Resolvers
 
-Your intakes live in `~/.sdlc/intakes/` and your Resolvers in `~/.sdlc/resolvers/`. `install.sh` never writes there, so they survive SDLC upgrades. Shipped files live in `~/.sdlc/system/intakes/` and `~/.sdlc/system/resolvers/` and are replaced on installation.
+Your intakes live in `~/.sdlc/intakes/` and your Resolvers in `~/.sdlc/resolvers/`. `install.sh` never writes there, so they survive SDLC upgrades. Shipped files live in `~/.sdlc/install/intakes/` and `~/.sdlc/install/resolvers/` and are replaced on installation.
 
 Set `setting:new_idea_intake` and `setting:new_bug_intake` to the chosen file's absolute path, so each intake can use a shipped or user file. `setting:resolvers` is optional: add one `<kind>: <absolute path>` line for each custom or overridden Source Reference kind, so Projects can use their own instructions while keeping shipped Resolvers. For example:
 
@@ -146,7 +146,7 @@ Set `setting:new_idea_intake` and `setting:new_bug_intake` to the chosen file's 
 support: /home/you/.sdlc/resolvers/support.md
 ```
 
-Use the mapped file when the kind has an entry; otherwise use `~/.sdlc/system/resolvers/<kind>.md`, including when `setting:resolvers` is unset, so existing Projects can read shipped source kinds without new settings. Stop if neither a mapping nor a shipped Resolver exists, because the source has no reading instructions. Check the selected file and its prerequisites before using it, because access depends on the source.
+Use the mapped file when the kind has an entry; otherwise use `~/.sdlc/install/resolvers/<kind>.md`, including when `setting:resolvers` is unset, so existing Projects can read shipped source kinds without new settings. Stop if neither a mapping nor a shipped Resolver exists, because the source has no reading instructions. Check the selected file and its prerequisites before using it, because access depends on the source.
 
 ### References
 
@@ -155,9 +155,9 @@ Use these references, each in one pair of backticks, so an Agent knows whether t
 - A setting: `setting:<name>`, for example `setting:research_location`, in the settings files above.
 - A Guidance Document: `guide:<file>`, for example `guide:research-guide.md`, found by the Guidance Document walk.
 - A named guide section: `guide:<file> ## <Section>`, for example `guide:build-commands.md ## Integration tests`.
-- A Protocol File: `protocol:<file>`, for example `protocol:agent-codex.md`, under `~/.sdlc/system/protocols/`; `protocol:launcher.md` means the file selected by `setting:launcher`.
+- A Protocol File: `protocol:<file>`, for example `protocol:agent-codex.md`, under `~/.sdlc/install/protocols/`; `protocol:launcher.md` means the file selected by `setting:launcher`.
 - A named protocol section: `protocol:<file> ## <Section>`, for example `protocol:launcher.md ## Launching a Child Agent`.
-- A file with one fixed place: its full path, for example `~/.sdlc/system/workflow.md` or `<Project Folder>/.sdlc/project_settings.md`.
+- A file with one fixed place: its full path, for example `~/.sdlc/install/workflow.md` or `<Project Folder>/.sdlc/project_settings.md`.
 
 ### Ticket system operations
 
@@ -195,7 +195,7 @@ A Thinking Level picks an Agent, model and any effort or mode. The caller resolv
   code-review: xhigh
   engineer: high
   ```
-- `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.sdlc/system/templates/thinking-levels.md`, so setup and callers read the same mapping.
+- `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.sdlc/install/templates/thinking-levels.md`, so setup and callers read the same mapping.
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 

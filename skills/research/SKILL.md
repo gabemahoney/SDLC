@@ -13,7 +13,7 @@ You work in rounds. A round is one pass of researching and updating the Report, 
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

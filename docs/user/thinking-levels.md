@@ -31,7 +31,7 @@ xhigh: {agent: codex, model: gpt-6-astra, effort: xhigh}
 max: {agent: codex, model: gpt-6-astra, effort: xhigh}
 ```
 
-Copy the complete recommended list from `~/.sdlc/system/templates/thinking-levels.md` into a `## thinking_levels` block in a settings file. Change that block's `write-plan: max` entry to choose write-plan's default. A Project block replaces the entire home block, so retain every needed entry.
+Copy the complete recommended list from `~/.sdlc/install/templates/thinking-levels.md` into a `## thinking_levels` block in a settings file. Change that block's `write-plan: max` entry to choose write-plan's default. A Project block replaces the entire home block, so retain every needed entry.
 
 ## Task and Bug overrides
 

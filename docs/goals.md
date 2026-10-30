@@ -11,7 +11,7 @@ Read this before changing any skill. Today's SDLC is effective and its skills ar
 6. **Intake per Project:** how Ideas and Bugs come in is a setting.
 7. **Ideas span several repos.**
 8. **In proportion:** plans, code, tests and docs are sized to the change. More is not safer.
-9. **Fresh reads:** skills, `~/.sdlc/system/workflow.md` and Guidance Documents are read from disk on every Run, so changes need no restart.
+9. **Fresh reads:** skills, `~/.sdlc/install/workflow.md` and Guidance Documents are read from disk on every Run, so changes need no restart.
 10. **Written for capable models:** intent and gates, not scripts.
 
 ## How skills are written

@@ -11,7 +11,7 @@ You record a new defect report as a Bug for define-bug to complete and validate.
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

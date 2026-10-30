@@ -11,7 +11,7 @@ You follow write-prd and define what the software must do to meet the PRD. The S
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -37,7 +37,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, save the SRD, then launch `research` with the question, the SRD's ID and any constraints, and associate the Research ticket it files with the SRD. You are its reviewer, judging each Report against `guide:research-guide.md`: answer its questions, tell it you accept the Report or send back what more to research, and take product questions to the Managing Intelligence. Launch independent questions in parallel.
 
-3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `guide:build-commands.md`, found as `~/.sdlc/system/workflow.md` describes, for the language and checker in `guide:build-commands.md ## Model check`. If missing, ask the Managing Intelligence to supply it. Save the SRD first, so your Child Agents read the current requirements. For each group, independently and in parallel where possible:
+3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `guide:build-commands.md`, found as `~/.sdlc/install/workflow.md` describes, for the language and checker in `guide:build-commands.md ## Model check`. If missing, ask the Managing Intelligence to supply it. Save the SRD first, so your Child Agents read the current requirements. For each group, independently and in parallel where possible:
    - Have `model-writer` write or update the Formal Model for that group and attach the files to its Model Doc.
    - Have `model-review` review it against the SRD before the checker runs, because checker runs can be slow. Judge findings under the shared rule and record repair instructions under `## Progress` on the Model Doc. Resume the writer for repairs, then review again.
    - Once accepted findings are fixed, resume the writer to run the checker and retain its results under `## Checks` on the Model Doc. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
@@ -80,7 +80,7 @@ Report the SRD's ID, its Model Doc and Research ticket IDs, and anything left un
 - **Numbered requirements:** number each requirement group and requirement (SR-1, SR-1.1), because `model-writer` Child Agents, req-review and write-plan cite them by number.
 - **Software requirements:** define what must be true. Name actual modules and established patterns where they constrain the work.
 - **Linked models:** link each modelled SR group to its Model Doc so reviewers can find the Formal Model and checker results.
-- **Code in poor shape:** where the code this Idea changes is in poor shape, decide whether delivering the Idea needs it refactored. If it does, state the refactor as a requirement with its reason. If it doesn't, it's work outside the Idea, as `~/.sdlc/system/workflow.md` describes.
+- **Code in poor shape:** where the code this Idea changes is in poor shape, decide whether delivering the Idea needs it refactored. If it does, state the refactor as a requirement with its reason. If it doesn't, it's work outside the Idea, as `~/.sdlc/install/workflow.md` describes.
 - **Technology and architecture:** state each choice the SRD makes, with its reason in a sentence, and link the Research ticket if one informed it.
 - **Definitive wording:** write one clear, testable obligation per statement, in full sentences.
 - **Grounded requirements:** derive obligations from current input and applicable guidance. Keep the SRD in proportion to the Idea. If a capability the SRD needs doesn't exist yet, say it's new rather than implying it exists.

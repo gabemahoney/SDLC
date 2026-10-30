@@ -11,7 +11,7 @@ You review the whole Idea before the Managing Intelligence's acceptance. Each Ru
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

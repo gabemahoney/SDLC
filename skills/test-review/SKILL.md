@@ -11,7 +11,7 @@ You review tests for develop-epic, idea-review or fix-bug. Start fresh for every
 
 ## Loading SDLC
 
-You are running an SDLC software development workflow. Before anything else, read `~/.sdlc/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.sdlc/system/workflow.md` before going on.
+You are running an SDLC software development workflow. Before anything else, read `~/.sdlc/install/workflow.md`, then follow this skill. After a compaction, re-read `~/.sdlc/install/workflow.md` before going on.
 
 ## Input
 

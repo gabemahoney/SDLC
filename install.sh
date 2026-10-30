@@ -18,10 +18,10 @@ Codex CLI:    skills/<name>/ -> ~/.agents/skills/<name>/
               (--repo: <repo>/.agents/skills)
 Cursor:       skills/<name>/ -> ~/.cursor/skills/<name>/
               (--repo: <repo>/.cursor/skills)
-Shared:       workflow/workflow.md -> ~/.sdlc/system/workflow.md
-              templates/, intakes/, resolvers/ -> ~/.sdlc/system/ (also with --repo)
-              doc-templates/ -> ~/.sdlc/system/doc-templates/ (also with --repo)
-              protocols/    -> ~/.sdlc/system/protocols/ (includes launcher-*.md)
+Shared:       workflow/workflow.md -> ~/.sdlc/install/workflow.md
+              templates/, intakes/, resolvers/ -> ~/.sdlc/install/ (also with --repo)
+              doc-templates/ -> ~/.sdlc/install/doc-templates/ (also with --repo)
+              protocols/    -> ~/.sdlc/install/protocols/ (includes launcher-*.md)
               dot-sdlc/*-default-fallback.md -> ~/.sdlc/ (also with --repo)
 Never written: ~/.sdlc/templates/ (your Project Templates)
                ~/.sdlc/intakes/ and ~/.sdlc/resolvers/ (your intakes and resolvers)
@@ -116,19 +116,19 @@ case "$AGENT" in
 esac
 
 # Main Agents and Child Agents share these instructions and selected protocols.
-run mkdir -p "$HOME/.sdlc/system"
-run cp "$SRC/workflow/workflow.md" "$HOME/.sdlc/system/workflow.md"
+run mkdir -p "$HOME/.sdlc/install"
+run cp "$SRC/workflow/workflow.md" "$HOME/.sdlc/install/workflow.md"
 for shared in templates intakes resolvers; do
-  run mkdir -p "$HOME/.sdlc/system/$shared"
-  run cp -R "$SRC/$shared/." "$HOME/.sdlc/system/$shared/"
+  run mkdir -p "$HOME/.sdlc/install/$shared"
+  run cp -R "$SRC/$shared/." "$HOME/.sdlc/install/$shared/"
 done
 # SDLC no longer ships this Project Template; remove copies left by earlier installs.
-run rm -f "$HOME/.sdlc/system/templates/public-github-project.md"
+run rm -f "$HOME/.sdlc/install/templates/public-github-project.md"
 
-run mkdir -p "$HOME/.sdlc/system/doc-templates"
-run cp -R "$SRC/doc-templates/." "$HOME/.sdlc/system/doc-templates/"
-run mkdir -p "$HOME/.sdlc/system/protocols"
-run cp -R "$SRC/protocols/." "$HOME/.sdlc/system/protocols/"
+run mkdir -p "$HOME/.sdlc/install/doc-templates"
+run cp -R "$SRC/doc-templates/." "$HOME/.sdlc/install/doc-templates/"
+run mkdir -p "$HOME/.sdlc/install/protocols"
+run cp -R "$SRC/protocols/." "$HOME/.sdlc/install/protocols/"
 run mkdir -p "$HOME/.sdlc"
 run cp "$SRC"/dot-sdlc/*-default-fallback.md "$HOME/.sdlc/"
 

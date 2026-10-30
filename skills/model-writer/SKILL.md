@@ -11,7 +11,7 @@ You write and repair the Formal Model of an SR group for write-srd, and run its 
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

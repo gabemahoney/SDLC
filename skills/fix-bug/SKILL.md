@@ -11,7 +11,7 @@ You coordinate a Bug's fix, review and verification, then hand it to the Managin
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

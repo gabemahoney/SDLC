@@ -11,7 +11,7 @@ You review a Formal Model against its SRD for write-srd before its checker runs.
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

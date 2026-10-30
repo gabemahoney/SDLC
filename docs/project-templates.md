@@ -63,7 +63,7 @@ A template can hold any of these. Each takes the same value it would in `project
 | --- | --- |
 | `ticket_system` | The ticket system, such as `bees`. |
 | `launcher` | The Launcher, such as `agent-director`. |
-| `prd_template` | Absolute path to the PRD layout, such as `/home/you/.sdlc/system/doc-templates/prd.md`. |
+| `prd_template` | Absolute path to the PRD layout, such as `/home/you/.sdlc/install/doc-templates/prd.md`. |
 | `new_idea_intake` | Absolute path to the intake for new Ideas. |
 | `new_bug_intake` | Absolute path to the intake for new Bugs. |
 | `resolvers` | An optional `## resolvers` block: one `<kind>: <absolute path>` line per custom or overridden kind; unmapped kinds use shipped resolvers. |
@@ -72,7 +72,7 @@ A template can hold any of these. Each takes the same value it would in `project
 | `thinking_levels` | A `## thinking_levels` block: one `<skill>: <level>` line per skill. |
 | `ticket_links` | How links are recorded where the ticket system lacks a link type. |
 
-The `levels` and `thinking_levels` formats are in `~/.sdlc/system/templates/thinking-levels.md`. A template can't hold `child_watch_command`, because it belongs to the host and lives in your home defaults.
+The `levels` and `thinking_levels` formats are in `~/.sdlc/install/templates/thinking-levels.md`. A template can't hold `child_watch_command`, because it belongs to the host and lives in your home defaults.
 
 See [Intakes and resolvers](user/intakes-and-resolvers.md) for user file locations and prerequisites.
 
@@ -100,8 +100,8 @@ This template takes new Ideas and Bugs from GitHub issues and shares one release
 ```markdown
 # Project Template: github-intake
 
-new_idea_intake: /home/you/.sdlc/system/resolvers/github.md
-new_bug_intake: /home/you/.sdlc/system/resolvers/github.md
+new_idea_intake: /home/you/.sdlc/install/resolvers/github.md
+new_bug_intake: /home/you/.sdlc/install/resolvers/github.md
 
 ## guides
 release-guide.md: link /home/you/guides/release-guide.md

@@ -11,7 +11,7 @@ You break one Epic into Tasks and Subtasks for develop-epic, after write-plan or
 
 ## Loading SDLC
 
-Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

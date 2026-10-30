@@ -14,15 +14,15 @@ Write one-line settings as `<name>: <value>`, or use a `## <name>` heading for a
 
 | Setting | Value and purpose |
 | --- | --- |
-| `ticket_system` | Protocol name; SDLC ships `bees`, selecting `~/.sdlc/system/protocols/ticket-bees.md`. |
-| `launcher` | Protocol name; SDLC ships `agent-director`, selecting `~/.sdlc/system/protocols/launcher-agent-director.md`. |
-| `prd_template` | Path to the PRD layout. Setup suggests `~/.sdlc/system/doc-templates/prd.md`, expanded to your home path. |
+| `ticket_system` | Protocol name; SDLC ships `bees`, selecting `~/.sdlc/install/protocols/ticket-bees.md`. |
+| `launcher` | Protocol name; SDLC ships `agent-director`, selecting `~/.sdlc/install/protocols/launcher-agent-director.md`. |
+| `prd_template` | Path to the PRD layout. Setup suggests `~/.sdlc/install/doc-templates/prd.md`, expanded to your home path. |
 | `new_idea_intake` | Path to the instructions for new Ideas. Setup suggests the shipped interview intake. See [Intakes and resolvers](intakes-and-resolvers.md). |
 | `new_bug_intake` | Path to the instructions for new Bugs, chosen independently of the Idea intake. |
-| `resolvers` | Optional block of `<kind>: <absolute path>` lines adding or overriding Source Reference kinds. An unmapped kind uses `~/.sdlc/system/resolvers/<kind>.md`, including when this setting is unset. |
+| `resolvers` | Optional block of `<kind>: <absolute path>` lines adding or overriding Source Reference kinds. An unmapped kind uses `~/.sdlc/install/resolvers/<kind>.md`, including when this setting is unset. |
 | `research_location` | Absolute folder path for Research tickets, Reports and artifacts, located through the ticket protocol. A home default shares research across Projects; a Project override selects a separate store. Research uses the requesting Project's guide. |
 | `levels` | A block mapping all five Thinking Levels to an Agent, model and effort or mode. See [Thinking Levels](thinking-levels.md). |
-| `thinking_levels` | A block of `<skill>: <level>` lines covering every Main Agent and Child Agent skill. Setup supplies the recommendations from `~/.sdlc/system/templates/thinking-levels.md`. |
+| `thinking_levels` | A block of `<skill>: <level>` lines covering every Main Agent and Child Agent skill. Setup supplies the recommendations from `~/.sdlc/install/templates/thinking-levels.md`. |
 | `ticket_links` | Agreed instructions for Dependencies, Associations or Source References the selected ticket protocol does not cover. Only needed for uncovered link types. |
 | `child_watch_command` | Optional host command followed by Child Agent IDs. It must return when any child's state leaves `pending` or `working`, printing `<id> <state>`. Setup offers it in home defaults; when unset, the launcher protocol supplies status polling. |
 
