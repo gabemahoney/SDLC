@@ -17,6 +17,8 @@ Every hive's statuses are `draft`, `defined`, `active` and `done`, and Bugs also
 
 ## Apiary's records in bees
 
+Keep every ticket title you write to a few words, like an email subject line, with details in the body, so ticket lists stay readable.
+
 When a skill says to:
 
 - **Update a ticket section:** bees replaces whole bodies, so change only that section and keep the rest. Keep one writer per ticket at a time, so no update is lost.
