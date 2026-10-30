@@ -74,7 +74,7 @@ A template can hold any of these. Each takes the same value it would in `project
 
 The `levels` and `thinking_levels` formats are in `~/.sdlc/system/templates/thinking-levels.md`. A template can't hold `child_watch_command`, because it belongs to the host and lives in your home defaults.
 
-Your intakes live in `~/.sdlc/intakes/` and your resolvers in `~/.sdlc/resolvers/`. Installing or upgrading SDLC never writes there, so your files stay as you left them. Settings can name those files or the shipped files under `~/.sdlc/system/` by absolute path.
+See [Intakes and resolvers](user/intakes-and-resolvers.md) for user file locations and prerequisites.
 
 ### Guides
 
