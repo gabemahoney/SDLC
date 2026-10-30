@@ -1,6 +1,6 @@
-# Recommended Thinking Levels
+# Thinking Levels
 
-Each line maps a skill name to its default Thinking Level. Task and Bug tags override the executor skills as `~/.sdlc/install/workflow.md` describes.
+SDLC fixes each skill's Thinking Level below, so callers resolve the same level in every Project. Task and Bug tags override the executor skills as `~/.sdlc/install/workflow.md` describes.
 
 ```text
 project-setup: medium

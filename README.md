@@ -20,6 +20,8 @@ The default installs all three agents, as does `--agent all`. Select any comma-s
 
 `install.sh` copies shipped skills into the selected tool's skills folder, overwriting matching files. It also copies the workflow, templates, intakes, resolvers, document templates and protocols into `~/.sdlc/install/`, and default fallback guides into `~/.sdlc/`. It never writes your settings, custom guides, or `~/.sdlc/{templates,intakes,resolvers}/`. It leaves unshipped skills, agent definitions and other files in place, but deletes `~/.sdlc/install/templates/public-github-project.md`.
 
+SDLC ignores old `## thinking_levels` blocks in settings files; you can delete them because skill levels are now fixed by SDLC.
+
 ## Agent setup
 
 If you use agent-director, have your host operator configure its worker template for every tool you use:

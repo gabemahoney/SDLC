@@ -23,7 +23,7 @@ The Project Folder resolved by `~/.sdlc/install/workflow.md`, and the Managing I
 
 - **Settings:** Project and defaults, when present, for existing choices.
 - **Protocols:** the Agent Protocol Files for each selected Agent (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`) and the Ticket System Protocol File selected by `setting:ticket_system`, for installation and ticket operations.
-- **Thinking Levels:** `~/.sdlc/install/templates/thinking-levels.md`, for recommended skill levels and the `setting:levels` format.
+- **Thinking Levels:** `~/.sdlc/install/templates/thinking-levels.md`, for fixed skill levels and the `setting:levels` format.
 - **Project Template:** `~/.sdlc/templates/<name>/template.md`, when the request names one, for its settings and Template Guides.
 - **Code folders and Guidance:** confirmed folders and their inherited Guidance Documents, for commands and existing guidance.
 
@@ -69,7 +69,6 @@ For each setting, the Managing Intelligence chooses a default or Project value. 
 - **`setting:ticket_system`, `setting:launcher` and `setting:prd_template`:** offer existing defaults together, then individual choices. When missing, suggest `bees`, `agent-director` and `~/.sdlc/install/doc-templates/prd.md`. A custom `setting:prd_template` is a file path because the PRD covers the whole Project.
 - **Intakes and Resolvers:** settle `setting:new_idea_intake` and `setting:new_bug_intake`, suggesting `~/.sdlc/install/intakes/interview.md` when unset. Offer optional `setting:resolvers` entries for custom or overridden kinds as `~/.sdlc/install/workflow.md`'s Intakes and Resolvers describes, so user files survive upgrades and unmapped kinds use shipped Resolvers. Check the selected files and their prerequisites, so intake and source reading can run.
 - **Agent mappings:** offer `setting:levels` in the format in `~/.sdlc/install/templates/thinking-levels.md`, so the Managing Intelligence can choose an Agent, model and its own effort for each of `low`, `medium`, `high`, `xhigh` and `max`. Have them supply missing or corrected entries, checking Cursor models as `protocol:agent-cursor.md ## Models` says, so each Cursor level names a usable model. Check every named Agent is installed with its skills and the launch template its Agent Protocol File names, so each configured level can launch.
-- **`setting:thinking_levels`:** write a complete `setting:thinking_levels` value using the recommended list. Keep valid existing lines, add missing recommendations and have the Managing Intelligence correct invalid lines or change any recommendation. Include every Child Agent skill so launches can resolve their settings.
 - **`setting:research_location`:** offer the existing `setting:research_location`; otherwise recommend a shared location such as `~/research/tickets`, because answers can serve other Projects. A shared choice goes in default settings with the Project override removed; a Project-local choice goes in Project settings. Store folder locations as absolute paths so all working directories resolve them alike.
 - **`setting:child_watch_command`:** offer it when the host ships a command that waits on Child Agents, as a home default in `~/.sdlc/default_project_settings.md`, because it belongs to the host rather than the Project. Check it meets `protocol:launcher.md ## Knowing when a Child Agent's state changes`: it takes Child Agent ids, returns when any leaves `pending` or `working`, and prints `<id> <state>`. Otherwise leave it unset, so the Launcher Protocol File's fallback applies.
 
@@ -88,6 +87,8 @@ For `guide:release-guide.md`, write or point to the guide in the Project's `.sdl
 For `guide:research-guide.md`, offer existing guidance, a guide written with the Managing Intelligence, a pointer to their guide or the default. Cover sources, depth, evidence, Report shape, work required after acceptance and human involvement. Agree its location; Project-wide guidance belongs in the Project's `.sdlc/`. Settle inherited copies as for other defaults. Research uses the requesting Project's guidance even when its store is shared.
 
 ## Project Templates
+
+Apply and save only settings named in this skill, because unrecognized blocks are not SDLC configuration.
 
 A template's manifest, `~/.sdlc/templates/<name>/template.md`, writes settings in the `<setting>: <value>` lines and `## <setting>` blocks of `<Project Folder>/.sdlc/project_settings.md`, so you can copy each value into the Project's settings as written. Its `## guides` section lists Template Guides, one `<guide file>: link <path>` or `<guide file>: copy <path>` line each. A relative path is relative to the template folder, so a template can carry its own guide files. A template holds as much or as little as its author wants, and you settle everything it leaves out as you would without one. Leave `setting:child_watch_command` and `guide:build-commands.md` out of templates, both when applying and when saving, because the first belongs to the host and the second's commands are per code folder.
 

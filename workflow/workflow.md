@@ -188,18 +188,12 @@ Each section must give usable instructions, because a heading alone cannot suppo
 
 A Thinking Level picks an Agent, model and any effort or mode. The caller resolves it before launch, as `protocol:launcher.md` describes, so every session starts on the intended Agent with the intended settings.
 
-- `setting:thinking_levels` maps skill names to levels, one `<skill>: <label>` line each:
-  ```
-  ## thinking_levels
-  write-plan: max
-  code-review: xhigh
-  engineer: high
-  ```
+- Read each skill's fixed level from `~/.sdlc/install/templates/thinking-levels.md`, because SDLC owns this mapping across all Projects.
 - `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.sdlc/install/templates/thinking-levels.md`, so setup and callers read the same mapping.
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 
-If a skill line or `setting:levels` entry is missing, stop and point to project-setup. Before `setting:levels` resolves, the Managing Intelligence chooses project-setup's Agent, model and any effort or mode, because no level resolves until setup has run. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
+If a skill line is missing, stop and name the shipped mapping file, because Project settings cannot repair it. If a `setting:levels` entry is missing, stop and point to project-setup, because it configures the user's Agents and models. Before `setting:levels` resolves, the Managing Intelligence chooses project-setup's Agent, model and any effort or mode, because no level resolves until setup has run. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs.
 
 ### Child Agents
 
