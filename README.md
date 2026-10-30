@@ -4,9 +4,9 @@ SDLC turns Ideas and Bugs into reviewed, tested changes using Claude Code, Codex
 
 ## Requirements
 
-- Claude Code, Codex CLI or Cursor CLI
-- [bees](https://github.com/gabemahoney/bees) for tickets
-- [agent-director](https://github.com/gabemahoney/agent-director) and tmux to launch agents
+- Claude Code, Codex CLI or Cursor CLI.
+- A ticket database. SDLC ships a Protocol File for [bees](https://github.com/gabemahoney/bees); add your own Protocol File to use another.
+- Optional: an agent launch manager. SDLC ships a Protocol File for [agent-director](https://github.com/gabemahoney/agent-director).
 
 ## Install
 
@@ -22,7 +22,7 @@ cd ~/projects/sdlc
 
 ## Agent setup
 
-Have your host operator configure the agent-director worker template for every tool you use:
+If you use agent-director, have your host operator configure its worker template for every tool you use:
 
 | Tool | Template |
 | --- | --- |
@@ -39,7 +39,7 @@ cd ~/projects/my-project
 claude "/project-setup"
 ```
 
-Setup chooses settings, ticket stores and guides with you. For Cursor, launch project-setup through agent-director with `CURSOR_WORKER` and your chosen model. Use a [Project Template](docs/project-templates.md) to reuse a setup.
+Setup chooses settings, ticket stores and guides with you. If you use Cursor with agent-director, launch project-setup with `CURSOR_WORKER` and your chosen model. Use a [Project Template](docs/project-templates.md) to reuse a setup.
 
 ## Use
 
