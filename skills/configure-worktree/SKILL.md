@@ -9,9 +9,9 @@ description: "Create or reuse a branch and worktree for an Idea or Bug in every 
 
 You give an Idea or Bug its own branch and worktree in every repo it changes, so its work stays off the base branch until the Managing Intelligence accepts it.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
@@ -32,7 +32,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Create or reuse the worktrees,** one per repo, with the branch and worktree named after the Idea's or Bug's ID at the paths `~/.apiary/system/workflow.md` defines, so every ticket's worktrees are named the same way and anyone can tell whose work it is. Branch from each main checkout's current branch, and reuse any worktree the Idea or Bug already has. If something already in the way isn't the ticket's, stop for the Managing Intelligence.
+1. **Create or reuse the worktrees,** one per repo, with the branch and worktree named after the Idea's or Bug's ID at the paths `~/.sdlc/system/workflow.md` defines, so every ticket's worktrees are named the same way and anyone can tell whose work it is. Branch from each main checkout's current branch, and reuse any worktree the Idea or Bug already has. If something already in the way isn't the ticket's, stop for the Managing Intelligence.
 2. **Record them** on the Idea's Plan or the Bug.
 
 ## Child Agents

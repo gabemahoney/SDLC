@@ -4,7 +4,7 @@
 
 Use Cursor CLI 2026.10.08 or later on Linux with an operator-configured login and launch template, because agent-director's Cursor support and `## Blocking waits` require that host setup.
 
-Check skills in `~/.cursor/skills/<skill>/SKILL.md` for a user installation or `<repo>/.cursor/skills/<skill>/SKILL.md` for a repository installation, and shared materials under `~/.apiary/`, so Cursor can load the same Apiary instructions as the other Agents.
+Check skills in `~/.cursor/skills/<skill>/SKILL.md` for a user installation or `<repo>/.cursor/skills/<skill>/SKILL.md` for a repository installation, and shared materials under `~/.sdlc/`, so Cursor can load the same SDLC instructions as the other Agents.
 
 ## Models
 

@@ -9,9 +9,9 @@ description: "Write or revise an Idea's Product Requirements Document (PRD) from
 
 You follow write-idea and write the product requirements for write-srd and planning.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

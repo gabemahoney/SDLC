@@ -11,9 +11,9 @@ You research a question and write the answer, with sources, in a Report. The que
 
 You work in rounds. A round is one pass of researching and updating the Report, then presenting it to your reviewer, who either accepts it or asks for more. You repeat rounds until it's accepted.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

@@ -1,6 +1,6 @@
-# Test guide (Apiary default)
+# Test guide (SDLC default)
 
-Apiary uses this file only when the Project has no `guide:test-guide.md` of its own.
+SDLC uses this file only when the Project has no `guide:test-guide.md` of its own.
 
 ## Keep the suite lean
 

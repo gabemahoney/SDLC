@@ -1,10 +1,10 @@
-# Apiary workflow
+# SDLC workflow
 
 ## Terms
 
 - **Managing Intelligence:** the person or bot acting for one who chooses skills, starts Main Agents, answers questions and tests results.
 - **User:** the person the Managing Intelligence acts for, or the Managing Intelligence itself when it is a person.
-- **Agent:** the AI coding tool Apiary runs in: Claude Code, Codex CLI or Cursor.
+- **Agent:** the AI coding tool SDLC runs in: Claude Code, Codex CLI or Cursor.
 - **Main Agent:** an Agent started by the Managing Intelligence to run one skill and report back.
 - **Child Agent:** an Agent started by a Main Agent to run one skill for it and report back. The Launcher keeps the parent–child relationship.
 - **Skills Child Agents run:**
@@ -23,10 +23,10 @@
   - **model-writer (Model Writer):** writes a Formal Model and runs its checker.
   - **model-review (Model Reviewer):** checks a Formal Model against the SRD before its checker runs.
 - **Launcher:** the program that launches, resumes, watches and stops Main Agents and Child Agents, keeping their parent–child relationships.
-- **Launcher Protocol File (`protocol:launcher.md`):** instructions for Launcher operations and Child Agent context readings. `setting:launcher` selects `~/.apiary/system/protocols/launcher-<launcher>.md`; `setting:ticket_system` selects `protocol:ticket-<ticket_system>.md` there.
-- **Project:** the software the Managing Intelligence builds with Apiary, with its repos, settings and tickets.
+- **Launcher Protocol File (`protocol:launcher.md`):** instructions for Launcher operations and Child Agent context readings. `setting:launcher` selects `~/.sdlc/system/protocols/launcher-<launcher>.md`; `setting:ticket_system` selects `protocol:ticket-<ticket_system>.md` there.
+- **Project:** the software the Managing Intelligence builds with SDLC, with its repos, settings and tickets.
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
-- **`.apiary` Folder:** a folder named `.apiary` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.apiary` the default settings.
+- **`.sdlc` Folder:** a folder named `.sdlc` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.sdlc` the default settings.
 - **Guidance Document:** one of seven instruction files: `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md`, `guide:release-guide.md`, `guide:bug-writing-guide.md` and `guide:research-guide.md`. They set the Project's engineering, testing, documentation, build, release, Bug and research rules.
 - **Build Commands:** named sections in `guide:build-commands.md` for sequencing checks. Each code folder needs the first four, containing a command or `none` with a reason so required work is explicit.
   - **Compile** (`guide:build-commands.md ## Compile`): compilation or type-checking.
@@ -37,8 +37,8 @@
 
   Any other `##` section belongs to the Project; skills use it as the file describes.
 - **Formal Model:** a formal specification checked by a model checker. **Model checking** means running that checker. A **Model Doc** is a Doc under the Idea, next to the PRD and SRD, that holds a Formal Model, its attached files, review notes and checker results.
-- **Default Fallback File:** Apiary's shipped default copy of a Guidance Document, in `~/.apiary`, used only where no user copy of that Guidance Document is found.
-- **Protocol Files:** Apiary's Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent. `protocol:ticket.md` means the Ticket System Protocol File selected by `setting:ticket_system`.
+- **Default Fallback File:** the default copy of a Guidance Document shipped with SDLC, in `~/.sdlc`, used only where no user copy of that Guidance Document is found.
+- **Protocol Files:** the SDLC Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent. `protocol:ticket.md` means the Ticket System Protocol File selected by `setting:ticket_system`.
 - **Dependency:** a link meaning one ticket can't start until another is `done`, such as between Epics or between Tasks.
 - **Association:** a link between related tickets where neither waits on the other, such as a Plan and its Idea, or an SRD and a Research ticket it cites.
 - **Source Reference:** a link to a ticket's origin outside the ticket system, such as a GitHub issue or file. write-prd and define-bug use it to establish requirements. Downstream skills use the requirements on the tickets so external changes cannot silently change their scope.
@@ -103,17 +103,17 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 ### Project Folder, paths and worktrees
 
-- **Project Folder:** the nearest folder, from the working directory up, that holds `<Project Folder>/.apiary/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.apiary/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `setting:research_location`.
+- **Project Folder:** the nearest folder, from the working directory up, that holds `<Project Folder>/.sdlc/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.sdlc/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `setting:research_location`.
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
 - **Git:** project-setup may clone or create repos but commits nothing. write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree and release make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts without editing repository files.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
-- **Guidance Documents come from the main checkout,** because worktree guides may still be in development. Load only the guides your skill names. For each, read copies in the main checkout's `.apiary` (or the current code folder's, outside a repo), then parent `.apiary` folders and `~/.apiary`. Combine copies cumulatively; the Managing Intelligence settles conflicts. With no user copy, use `~/.apiary/<name>-default-fallback.md`.
+- **Guidance Documents come from the main checkout,** because worktree guides may still be in development. Load only the guides your skill names. For each, read copies in the main checkout's `.sdlc` (or the current code folder's, outside a repo), then parent `.sdlc` folders and `~/.sdlc`. Combine copies cumulatively; the Managing Intelligence settles conflicts. With no user copy, use `~/.sdlc/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
 - **Pushing:** push only as the Project's `guide:release-guide.md` allows.
 
 ### Settings
 
-Read settings only from `<Project Folder>/.apiary/project_settings.md`, then `~/.apiary/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
+Read settings only from `<Project Folder>/.sdlc/project_settings.md`, then `~/.sdlc/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
 
 `setting:research_location` locates Research tickets, Reports and artifacts through the Ticket System Protocol File, including linked Research. A home default shares Research across Projects and bots because answers may serve more than one Project; a Project setting overrides it. Research always uses the requesting Project's guidance.
 
@@ -130,9 +130,9 @@ Use these references, each in one pair of backticks, so an Agent knows whether t
 - A setting: `setting:<name>`, for example `setting:research_location`, in the settings files above.
 - A Guidance Document: `guide:<file>`, for example `guide:research-guide.md`, found by the Guidance Document walk.
 - A named guide section: `guide:<file> ## <Section>`, for example `guide:build-commands.md ## Integration tests`.
-- A Protocol File: `protocol:<file>`, for example `protocol:agent-codex.md`, under `~/.apiary/system/protocols/`; `protocol:launcher.md` means the file selected by `setting:launcher`.
+- A Protocol File: `protocol:<file>`, for example `protocol:agent-codex.md`, under `~/.sdlc/system/protocols/`; `protocol:launcher.md` means the file selected by `setting:launcher`.
 - A named protocol section: `protocol:<file> ## <Section>`, for example `protocol:launcher.md ## Launching a Child Agent`.
-- A file with one fixed place: its full path, for example `~/.apiary/system/workflow.md` or `<Project Folder>/.apiary/project_settings.md`.
+- A file with one fixed place: its full path, for example `~/.sdlc/system/workflow.md` or `<Project Folder>/.sdlc/project_settings.md`.
 
 ### Ticket system operations
 
@@ -140,7 +140,7 @@ Use these references, each in one pair of backticks, so an Agent knows whether t
 
 - `protocol:ticket.md ## Prerequisites`: the ticket system and how to reach the stores.
 - `protocol:ticket.md ## Create or check stores`: the four stores, their child tiers and statuses, including shared Research.
-- `protocol:ticket.md ## Apiary's records in bees`: how to keep the records that have no direct equivalent in the ticket system: updating one body section, Dependencies, Associations, Source References, attached files, Thinking Level tags, deleting a ticket and its links, and keeping Research from automatic archival.
+- `protocol:ticket.md ## SDLC records in bees`: how to keep the records that have no direct equivalent in the ticket system: updating one body section, Dependencies, Associations, Source References, attached files, Thinking Level tags, deleting a ticket and its links, and keeping Research from automatic archival.
 
 Plain operations (create, read, find and update tickets, set status) use the ticket system directly.
 
@@ -170,7 +170,7 @@ A Thinking Level picks an Agent, model and any effort or mode. The caller resolv
   code-review: xhigh
   engineer: high
   ```
-- `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.apiary/system/templates/thinking-levels.md`, so setup and callers read the same mapping.
+- `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.sdlc/system/templates/thinking-levels.md`, so setup and callers read the same mapping.
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's default, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 

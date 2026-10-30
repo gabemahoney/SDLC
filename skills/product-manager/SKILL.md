@@ -9,9 +9,9 @@ description: "Check planned or implemented work against the PRD and SRD for requ
 
 You review planned or implemented work for write-plan, write-epic, develop-epic and idea-review. The PRD and SRD are the source of truth: your job is to validate that the work conforms to them exactly, with nothing missing and nothing added.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

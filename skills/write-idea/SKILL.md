@@ -9,9 +9,9 @@ description: "File or revise an Idea from what the Managing Intelligence gives y
 
 You file an Idea as the first step of the Idea flow, and revise it.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

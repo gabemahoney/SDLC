@@ -2,13 +2,13 @@
 
 All b.v38 Child Agent skills are drafted. Their requirements now live in their skills.
 
-Draft from `docs/goals.md`, `~/.apiary/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
+Draft from `docs/goals.md`, `~/.sdlc/system/workflow.md` and the existing instructions for that work. The b.v38 PRD Docs are background only; the Acceptance baseline (t1.v38.2d) holds the checks.
 
 ## Required Reading for remaining drafts
 
-Each entry names its specific inputs. Shared startup, settings, Protocol File locations, Guidance Document lookup and Child Agent rules are in `~/.apiary/system/workflow.md`. The `guide:<file>` references below use that lookup. Each Child Agent uses the configuration its Main Agent supplies and reads findings and decisions from the assigned tickets.
+Each entry names its specific inputs. Shared startup, settings, Protocol File locations, Guidance Document lookup and Child Agent rules are in `~/.sdlc/system/workflow.md`. The `guide:<file>` references below use that lookup. Each Child Agent uses the configuration its Main Agent supplies and reads findings and decisions from the assigned tickets.
 
-The Main Agent resolves Thinking Levels under `~/.apiary/system/workflow.md`. These Child Agent skills launch no Agents.
+The Main Agent resolves Thinking Levels under `~/.sdlc/system/workflow.md`. These Child Agent skills launch no Agents.
 
 The workflow skills that launch Child Agents are write-prd, write-srd, write-plan, write-epic, develop-epic, idea-review and fix-bug. Each drafted skill's Gate checks its assigned ticket's state, so work starts at the right stage. All file changes remain uncommitted for the Main Agent to check and commit.
 

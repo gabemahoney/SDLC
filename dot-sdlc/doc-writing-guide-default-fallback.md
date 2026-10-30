@@ -1,6 +1,6 @@
-# Documentation writing guide (Apiary default)
+# Documentation writing guide (SDLC default)
 
-Apiary uses this file only when the Project has no `guide:doc-writing-guide.md` of its own.
+SDLC uses this file only when the Project has no `guide:doc-writing-guide.md` of its own.
 
 ## The README
 

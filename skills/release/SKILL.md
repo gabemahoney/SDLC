@@ -9,9 +9,9 @@ description: "Release accepted, merged Ideas and Bugs by following the Project's
 
 You release accepted, merged Ideas and Bugs by following the Project's release guide, which defines what releasing means and who may authorize each step.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

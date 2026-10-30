@@ -9,9 +9,9 @@ description: "Implement source changes for assigned Subtask IDs or a Bug ID."
 
 You implement source changes for develop-epic or fix-bug.
 
-## Loading Apiary
+## Loading SDLC
 
-You are running an Apiary software development workflow. Before anything else, read `~/.apiary/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.apiary/system/workflow.md` before going on.
+You are running an SDLC software development workflow. Before anything else, read `~/.sdlc/system/workflow.md`, then follow this skill. After a compaction, re-read `~/.sdlc/system/workflow.md` before going on.
 
 ## Input
 

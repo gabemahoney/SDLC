@@ -9,9 +9,9 @@ description: "Review an Idea's work in its worktrees and file one feedback Epic 
 
 You review the whole Idea before the Managing Intelligence's acceptance. Each Run is one numbered round.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

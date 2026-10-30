@@ -9,9 +9,9 @@ description: "Check a draft Bug against the docs and reproduce it to confirm it'
 
 You check a reported Bug is a real defect rather than intended behaviour, reproduce it, and record how you reproduced it so fix-bug can rerun it.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

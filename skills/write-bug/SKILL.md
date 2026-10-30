@@ -9,9 +9,9 @@ description: "File a new Bug from what the Managing Intelligence gives you: plai
 
 You record a new defect report as a Bug for define-bug to complete and validate.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

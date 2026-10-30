@@ -9,9 +9,9 @@ description: "Build, review and commit one Epic's Tasks and pass its integration
 
 You coordinate an Epic's implementation, review and integration, then hand it back to the Managing Intelligence.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

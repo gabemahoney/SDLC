@@ -9,9 +9,9 @@ description: "Merge an accepted Idea or Bug's branch back into each repo's base 
 
 You merge an accepted Idea or Bug's branch into each repo's base branch, then remove the ticket's worktrees and branches.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

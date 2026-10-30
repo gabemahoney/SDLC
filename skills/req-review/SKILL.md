@@ -9,9 +9,9 @@ description: "Review one PRD or SRD as a Child Agent and return findings to writ
 
 You independently review one draft PRD or SRD for your Main Agent.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

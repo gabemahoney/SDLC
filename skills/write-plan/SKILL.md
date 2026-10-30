@@ -9,9 +9,9 @@ description: "Turn an Idea's PRD and SRD into a Plan and draft Epics, or revise 
 
 You turn the `defined` PRD and SRD into a Plan and its Epics. write-epic then breaks each Epic into Tasks.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

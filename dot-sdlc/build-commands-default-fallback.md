@@ -1,6 +1,6 @@
-# Build commands (Apiary default)
+# Build commands (SDLC default)
 
-Apiary uses this file only when the Project has no `guide:build-commands.md` of its own.
+SDLC uses this file only when the Project has no `guide:build-commands.md` of its own.
 
 This fallback cannot know the Project's commands. Stop and ask the Managing Intelligence to write a real `build-commands.md`, using project-setup to settle it.
 

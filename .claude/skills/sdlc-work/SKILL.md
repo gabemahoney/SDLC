@@ -1,11 +1,11 @@
 ---
-name: apiary-work
-description: Apiary self-modification workflow — work an apiary ticket, fix an apiary bug, or implement an apiary bee as a single agent. Replaces do-bee/fix-bug when the target repo is apiary itself. Takes a bees ticket ID, dispatches one worker, and gates push behind operator sign-off.
+name: sdlc-work
+description: SDLC self-modification workflow — work an SDLC ticket, fix an SDLC bug, or implement an SDLC bee as a single agent. Replaces do-bee/fix-bug when the target repo is SDLC itself. Takes a bees ticket ID, dispatches one worker, and gates push behind operator sign-off.
 ---
 
-# apiary-work
+# sdlc-work
 
-Single-agent execution of a bees ticket against the apiary repo itself. No
+Single-agent execution of a bees ticket against the SDLC repo itself. No
 engineer/reviewer/doc-writer team — one worker implements end-to-end, and you
 (the calling agent) run a review loop with the operator before anything is
 pushed.
@@ -53,9 +53,9 @@ If any step fails, stop at once: change no ticket and dispatch nothing. When
 given `--no-questions`, or when `AGENT_DIRECTOR_INSTANCE_ID` is set, end your
 output with exactly one of these lines; otherwise tell the user the same and
 stop:
-- `apiary-work: needs input: <ticket-id> lacks approved:yes — the User must approve it`,
+- `sdlc-work: needs input: <ticket-id> lacks approved:yes — the User must approve it`,
   naming the Idea or the PRD, whichever lacks the tag
-- `apiary-work: needs input: no <Plan Bee | Idea Bee | PRD> found for <ticket-id> — cannot check approved:yes`
+- `sdlc-work: needs input: no <Plan Bee | Idea Bee | PRD> found for <ticket-id> — cannot check approved:yes`
 
 This skill never adds `approved:yes`. Only the User approves.
 

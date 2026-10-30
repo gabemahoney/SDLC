@@ -9,9 +9,9 @@ description: "Fix a defined Bug in its recorded worktrees, prove the regression 
 
 You coordinate a Bug's fix, review and verification, then hand it to the Managing Intelligence to test.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

@@ -1,6 +1,6 @@
-# Bug-writing guide (Apiary default)
+# Bug-writing guide (SDLC default)
 
-Apiary uses this file only when the Project has no `guide:bug-writing-guide.md` of its own.
+SDLC uses this file only when the Project has no `guide:bug-writing-guide.md` of its own.
 
 ## Report
 

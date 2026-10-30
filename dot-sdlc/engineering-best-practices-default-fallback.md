@@ -1,6 +1,6 @@
-# Engineering best practices (Apiary default)
+# Engineering best practices (SDLC default)
 
-Apiary uses this file only when the Project has no `guide:engineering-best-practices.md` of its own. Focus on what breaks, leaks or rots, not on style.
+SDLC uses this file only when the Project has no `guide:engineering-best-practices.md` of its own. Focus on what breaks, leaks or rots, not on style.
 
 ## Fit the codebase
 - **Match existing patterns.** Follow the codebase's conventions, and don't add a second way of doing something it already does.

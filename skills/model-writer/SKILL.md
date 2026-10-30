@@ -9,9 +9,9 @@ description: "Write or repair the Formal Model for an SR group, and run its mode
 
 You write and repair the Formal Model of an SR group for write-srd, and run its model checker. Each checker result says which SRD version it ran against, so a later Run can tell whether it's still current.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

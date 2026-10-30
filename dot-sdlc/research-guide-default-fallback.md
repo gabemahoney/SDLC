@@ -1,6 +1,6 @@
-# Research guide (Apiary default)
+# Research guide (SDLC default)
 
-Apiary uses this file only when the Project has no `guide:research-guide.md` of its own.
+SDLC uses this file only when the Project has no `guide:research-guide.md` of its own.
 
 ## Where research lives
 

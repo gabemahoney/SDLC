@@ -10,7 +10,7 @@ Both run in their own agent-director sessions. The Managing Intelligence launche
 
 ## Launching a Main Agent
 
-Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.apiary/system/workflow.md`'s Thinking Levels, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use its launch template and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
+Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.sdlc/system/workflow.md`'s Thinking Levels, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use its launch template and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
 
 ```sh
 # Claude Code (agent: claude-code)
@@ -53,7 +53,7 @@ agent-director read-pane --instance-id '<id>' --n-lines 80
 
 ## Resuming a Child Agent
 
-Apply `~/.apiary/system/workflow.md`'s context gate first, because reuse depends on a verified reading. For an eligible `waiting` child, send its next assignment with `agent-director send-keys --instance-id '<id>' --text '<next assignment>'`. For one that has exited, run `agent-director resume --instance-id '<id>'` from your own session first.
+Apply `~/.sdlc/system/workflow.md`'s context gate first, because reuse depends on a verified reading. For an eligible `waiting` child, send its next assignment with `agent-director send-keys --instance-id '<id>' --text '<next assignment>'`. For one that has exited, run `agent-director resume --instance-id '<id>'` from your own session first.
 
 ## Reading a Child Agent's context
 

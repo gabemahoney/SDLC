@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install Apiary skills for Main Agents and Child Agents.
+# Install SDLC skills for Main Agents and Child Agents.
 # Shared files include the workflow, templates and Agent, Ticket System and Launcher protocols.
 set -euo pipefail
 
@@ -18,12 +18,12 @@ Codex CLI:    skills/<name>/ -> ~/.agents/skills/<name>/
               (--repo: <repo>/.agents/skills)
 Cursor:       skills/<name>/ -> ~/.cursor/skills/<name>/
               (--repo: <repo>/.cursor/skills)
-Shared:       workflow/workflow.md -> ~/.apiary/system/workflow.md
-              templates/, intakes/, resolvers/ -> ~/.apiary/system/ (also with --repo)
-              doc-templates/ -> ~/.apiary/system/doc-templates/ (also with --repo)
-              protocols/    -> ~/.apiary/system/protocols/ (includes launcher-*.md)
-              dot-apiary/*-default-fallback.md -> ~/.apiary/ (also with --repo)
-Never written: ~/.apiary/templates/ (your Project Templates)
+Shared:       workflow/workflow.md -> ~/.sdlc/system/workflow.md
+              templates/, intakes/, resolvers/ -> ~/.sdlc/system/ (also with --repo)
+              doc-templates/ -> ~/.sdlc/system/doc-templates/ (also with --repo)
+              protocols/    -> ~/.sdlc/system/protocols/ (includes launcher-*.md)
+              dot-sdlc/*-default-fallback.md -> ~/.sdlc/ (also with --repo)
+Never written: ~/.sdlc/templates/ (your Project Templates)
 EOF
 }
 
@@ -115,21 +115,21 @@ case "$AGENT" in
 esac
 
 # Main Agents and Child Agents share these instructions and selected protocols.
-run mkdir -p "$HOME/.apiary/system"
-run cp "$SRC/workflow/workflow.md" "$HOME/.apiary/system/workflow.md"
+run mkdir -p "$HOME/.sdlc/system"
+run cp "$SRC/workflow/workflow.md" "$HOME/.sdlc/system/workflow.md"
 for shared in templates intakes resolvers; do
-  run mkdir -p "$HOME/.apiary/system/$shared"
-  run cp -R "$SRC/$shared/." "$HOME/.apiary/system/$shared/"
+  run mkdir -p "$HOME/.sdlc/system/$shared"
+  run cp -R "$SRC/$shared/." "$HOME/.sdlc/system/$shared/"
 done
-# Apiary no longer ships this Project Template; remove copies left by earlier installs.
-run rm -f "$HOME/.apiary/system/templates/public-github-project.md"
+# SDLC no longer ships this Project Template; remove copies left by earlier installs.
+run rm -f "$HOME/.sdlc/system/templates/public-github-project.md"
 
-run mkdir -p "$HOME/.apiary/system/doc-templates"
-run cp -R "$SRC/doc-templates/." "$HOME/.apiary/system/doc-templates/"
-run mkdir -p "$HOME/.apiary/system/protocols"
-run cp -R "$SRC/protocols/." "$HOME/.apiary/system/protocols/"
-run mkdir -p "$HOME/.apiary"
-run cp "$SRC"/dot-apiary/*-default-fallback.md "$HOME/.apiary/"
+run mkdir -p "$HOME/.sdlc/system/doc-templates"
+run cp -R "$SRC/doc-templates/." "$HOME/.sdlc/system/doc-templates/"
+run mkdir -p "$HOME/.sdlc/system/protocols"
+run cp -R "$SRC/protocols/." "$HOME/.sdlc/system/protocols/"
+run mkdir -p "$HOME/.sdlc"
+run cp "$SRC"/dot-sdlc/*-default-fallback.md "$HOME/.sdlc/"
 
 if [ "$DRY" -eq 1 ]; then
   echo "Dry run: nothing was written."

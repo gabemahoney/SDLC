@@ -1,4 +1,4 @@
-This is Apiary's PRD section template; a Project may replace it through `prd_template`. A replacement should keep Acceptance Criteria and Open Questions, because write-srd and req-review use them.
+This is the SDLC PRD section template; a Project may replace it through `prd_template`. A replacement should keep Acceptance Criteria and Open Questions, because write-srd and req-review use them.
 
 # [Feature/Project Name]
 

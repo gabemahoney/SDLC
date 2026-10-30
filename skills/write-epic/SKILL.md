@@ -9,9 +9,9 @@ description: Break one draft Epic into Tasks and Subtasks
 
 You break one Epic into Tasks and Subtasks for develop-epic, after write-plan or a round of idea-review. You revise existing work when the Epic's requirements change.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 

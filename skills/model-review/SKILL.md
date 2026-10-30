@@ -9,9 +9,9 @@ description: "Review a Formal Model against its SRD and return findings. Takes M
 
 You review a Formal Model against its SRD for write-srd before its checker runs.
 
-## Loading Apiary
+## Loading SDLC
 
-Read `~/.apiary/system/workflow.md` first for shared rules, settings and file locations.
+Read `~/.sdlc/system/workflow.md` first for shared rules, settings and file locations.
 
 ## Input
 
