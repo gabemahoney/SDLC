@@ -13,10 +13,10 @@ SDLC turns Ideas and Bugs into reviewed, tested changes using Claude Code, Codex
 ```bash
 git clone https://github.com/gabemahoney/SDLC ~/projects/sdlc
 cd ~/projects/sdlc
-./install.sh --agent both
+./install.sh
 ```
 
-`both` installs Claude Code and Codex CLI. Use `--agent cursor` for Cursor alone or `--agent all` for all three. Add `--repo /path/to/repo` for repository skills; shared files still install under `~/.sdlc/`.
+The default installs all three agents, as does `--agent all`. Select any comma-separated combination of `claude`, `codex` and `cursor`, for example `--agent claude,cursor`, or one name for a single agent. Repeated names install once; empty or unknown names are errors. Add `--repo /path/to/repo` for repository skills; shared files still install under `~/.sdlc/`.
 
 `install.sh` copies shipped skills into the selected tool's skills folder, overwriting matching files. It also copies the workflow, templates, intakes, resolvers, document templates and protocols into `~/.sdlc/install/`, and default fallback guides into `~/.sdlc/`. It never writes your settings, custom guides, or `~/.sdlc/{templates,intakes,resolvers}/`. It leaves unshipped skills, agent definitions and other files in place, but deletes `~/.sdlc/install/templates/public-github-project.md`.
 

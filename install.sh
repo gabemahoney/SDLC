@@ -5,10 +5,10 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: ./install.sh [--agent claude|codex|cursor|both|all] [--repo <path>] [--dry-run]
+Usage: ./install.sh [--agent <names>] [--repo <path>] [--dry-run]
 
-  --agent    Which flavour to install: claude (default), codex, cursor,
-             both (Claude Code and Codex CLI), or all three.
+  --agent    Comma-separated names: claude, codex, cursor, or all (default).
+             Example: --agent claude,cursor. Repeated names install once.
   --repo     Install into one repository instead of your user-level folders.
   --dry-run  Print every action; write nothing.
 
@@ -29,7 +29,7 @@ EOF
 }
 
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-AGENT=claude
+AGENT=all
 REPO=""
 DRY=0
 
@@ -52,10 +52,21 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-case "$AGENT" in
-  claude|codex|cursor|both|all) ;;
-  *) echo "install.sh: --agent must be claude, codex, cursor, both or all (got '$AGENT')" >&2; exit 2 ;;
-esac
+INSTALL_CLAUDE=0
+INSTALL_CODEX=0
+INSTALL_CURSOR=0
+AGENTS="$AGENT,"
+while [ -n "$AGENTS" ]; do
+  name="${AGENTS%%,*}"
+  AGENTS="${AGENTS#*,}"
+  case "$name" in
+    claude) INSTALL_CLAUDE=1 ;;
+    codex) INSTALL_CODEX=1 ;;
+    cursor) INSTALL_CURSOR=1 ;;
+    all) INSTALL_CLAUDE=1; INSTALL_CODEX=1; INSTALL_CURSOR=1 ;;
+    *) echo "install.sh: invalid --agent name '$name'; use comma-separated claude, codex, cursor or all" >&2; exit 2 ;;
+  esac
+done
 
 if [ -n "$REPO" ]; then
   if [ ! -d "$REPO" ]; then
@@ -107,13 +118,9 @@ install_cursor() {
   install_skills "$base/skills"
 }
 
-case "$AGENT" in
-  claude) install_claude ;;
-  codex) install_codex ;;
-  cursor) install_cursor ;;
-  both) install_claude; install_codex ;;
-  all) install_claude; install_codex; install_cursor ;;
-esac
+if [ "$INSTALL_CLAUDE" -eq 1 ]; then install_claude; fi
+if [ "$INSTALL_CODEX" -eq 1 ]; then install_codex; fi
+if [ "$INSTALL_CURSOR" -eq 1 ]; then install_cursor; fi
 
 # Main Agents and Child Agents share these instructions and selected protocols.
 run mkdir -p "$HOME/.sdlc/install"
