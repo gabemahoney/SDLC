@@ -18,7 +18,7 @@ cd ~/projects/sdlc
 
 `both` installs Claude Code and Codex CLI. Use `--agent cursor` for Cursor alone or `--agent all` for all three. Add `--repo /path/to/repo` for repository skills; shared files still install under `~/.sdlc/`.
 
-`install.sh` copies shipped skills into the selected tool's skills folder, overwriting matching files. It also copies the workflow, templates, intakes, resolvers, document templates and protocols into `~/.sdlc/install/`, and default fallback guides into `~/.sdlc/`. It never writes your settings, custom guides, or `~/.sdlc/{templates,intakes,resolvers}/`. It leaves obsolete skills, agent definitions and other unshipped files in place, except for one deletion: `~/.sdlc/install/templates/public-github-project.md`.
+`install.sh` copies shipped skills into the selected tool's skills folder, overwriting matching files. It also copies the workflow, templates, intakes, resolvers, document templates and protocols into `~/.sdlc/install/`, and default fallback guides into `~/.sdlc/`. It never writes your settings, custom guides, or `~/.sdlc/{templates,intakes,resolvers}/`. It leaves unshipped skills, agent definitions and other files in place, but deletes `~/.sdlc/install/templates/public-github-project.md`.
 
 ## Agent setup
 
@@ -31,51 +31,6 @@ Have your host operator configure the agent-director worker template for every t
 | Cursor CLI | `CURSOR_WORKER` |
 
 These templates supply worker permissions and host configuration. Cursor needs Linux, CLI 2026.10.08 or later and an operator-configured login. Choose an account model with `cursor-agent --list-models`.
-
-## Migrate an existing install
-
-Move `~/.apiary` to `~/.sdlc` and each Project's `.apiary` folder to `.sdlc`. Update paths in settings, saved templates and pointer guides. SDLC versions restarted at `1.0.0`.
-
-For SDLC `2.0.0`, move `~/.sdlc/system` to `~/.sdlc/install` or delete the old folder. Update stored paths in settings and templates, then reinstall so skills and shared files use the new location.
-
-### Upgrading from Apiary 1.0
-
-Apiary 1.0 (`v2.3.1`) installed eight skill folders that SDLC no longer ships. Remove them manually from each tool where they remain, then reinstall. These Bash commands name only those folders:
-
-```bash
-# Claude Code
-rm -rf ~/.claude/skills/{apiary-setup,configure_worktree,do-bee,hatch-epic,idea,make-plan,run-lanes,teardown_worktree}
-# Codex CLI
-rm -rf ~/.agents/skills/{apiary-setup,configure_worktree,do-bee,hatch-epic,idea,make-plan,run-lanes,teardown_worktree}
-# Cursor CLI
-rm -rf ~/.cursor/skills/{apiary-setup,configure_worktree,do-bee,hatch-epic,idea,make-plan,run-lanes,teardown_worktree}
-```
-
-Also remove the 18 Claude Code agent files shipped by that release:
-
-```bash
-rm -f \
-  ~/.claude/agents/apiary-code-reviewer.md \
-  ~/.claude/agents/apiary-doc-reviewer.md \
-  ~/.claude/agents/apiary-doc-writer-bugfix.md \
-  ~/.claude/agents/apiary-doc-writer-planner.md \
-  ~/.claude/agents/apiary-doc-writer.md \
-  ~/.claude/agents/apiary-engineer-bugfix.md \
-  ~/.claude/agents/apiary-engineer-planner.md \
-  ~/.claude/agents/apiary-engineer.md \
-  ~/.claude/agents/apiary-plan-writer.md \
-  ~/.claude/agents/apiary-prd-writer.md \
-  ~/.claude/agents/apiary-product-manager-planner.md \
-  ~/.claude/agents/apiary-product-manager.md \
-  ~/.claude/agents/apiary-req-reviewer.md \
-  ~/.claude/agents/apiary-srd-writer.md \
-  ~/.claude/agents/apiary-test-reviewer.md \
-  ~/.claude/agents/apiary-test-writer-bugfix.md \
-  ~/.claude/agents/apiary-test-writer-planner.md \
-  ~/.claude/agents/apiary-test-writer.md
-```
-
-For a repository install, replace `~` with that repository's path in the commands above.
 
 ## Set up a Project
 
