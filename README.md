@@ -6,7 +6,7 @@ SDLC turns Ideas and Bugs into reviewed, tested changes using Claude Code, Codex
 
 - Claude Code, Codex CLI or Cursor CLI.
 - A ticket database. SDLC ships a Protocol File for [bees](https://github.com/gabemahoney/bees); add your own Protocol File to use another.
-- Optional: an agent launch manager. SDLC ships a Protocol File for [agent-director](https://github.com/gabemahoney/agent-director).
+- Optional: an agent launch manager for autonomous development. SDLC ships a Protocol File for [agent-director](https://github.com/gabemahoney/agent-director).
 
 ## Install
 
