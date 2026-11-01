@@ -22,7 +22,7 @@ A Model Doc ID and its SRD ID.
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Model Doc and SRD:** for the model, requirements, assumptions and repair instructions.
-- **Guidance:** Read `guide:build-commands.md ## Model check` for the configured modelling language and checker.
+- **Guidance:** Read `guide:build-commands.md ## Model check` for the configured modelling language and checker, and `guide:test-guide.md` for modelling practices.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -32,7 +32,7 @@ Run only when your Model Doc is `defined`, because review needs a written model.
 
 ## Steps
 
-1. **Review the Formal Model in your Model Doc.** Check that it matches the SR group it models, can expose the ordering bugs it's meant to catch, and keeps modelling assumptions separate from real product limits. Review by reading it; don't run the checker, because model-writer runs it once your accepted findings are fixed.
+1. **Review the Formal Model in your Model Doc.** Check that it matches the SR group it models, can expose the ordering bugs it's meant to catch, and keeps modelling assumptions separate from real product limits. Check that each check is gating or during-build as `~/.sdlc/install/workflow.md` defines them, and that each size comes from what the design claims to handle, with its reason recorded, rather than from a time cap. Review by reading it; don't run the checker, because model-writer runs it once your accepted findings are fixed.
 
 ## Child Agents
 
@@ -52,6 +52,6 @@ Your job is to hold the model strictly to the SRD: report every place it doesn't
 
 Tag every finding with one level, so your Main Agent can weigh it:
 
-- **blocker:** the model doesn't match the SRD or can't expose an error it is meant to find.
+- **blocker:** the model doesn't match the SRD, can't expose an error it is meant to find, or puts a check in the wrong set.
 - **suggestion:** it's hard to understand or maintain: duplicated or needlessly complex.
 - **nit:** it's a matter of style, such as naming or formatting.

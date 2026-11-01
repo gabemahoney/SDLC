@@ -24,4 +24,6 @@ Give the command that runs the integration suites.
 
 ## Model check
 
-Optional: name the formal-modelling language and the checker command, needed before any Formal Model is checked. We suggest TLA+ with the TLC model checker, for example `java -cp tla2tools.jar tlc2.TLC -config <Model>.cfg <Model>.tla`.
+Optional: name the formal-modelling language, the checker command and a parse-only command, needed before any Formal Model is checked. We suggest TLA+ with the TLC model checker, for example `java -cp tla2tools.jar tlc2.TLC -config <Model>.cfg <Model>.tla`, parsed with `java -cp tla2tools.jar tla2sany.SANY <Model>.tla`.
+
+Optionally give the time cap for one gating checker run, sized to the Project's budget within the limits of the Model Check term in `~/.sdlc/install/workflow.md`. During-build runs use the same cap unless the section gives a longer one.
