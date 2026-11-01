@@ -7,7 +7,7 @@ Guides tell SDLC how you want work done. Use project-setup to choose or write th
 | File | What it controls |
 | --- | --- |
 | `engineering-best-practices.md` | Engineering and code review rules. |
-| `test-guide.md` | Test design, coverage and review; additions to or overrides of the shipped modelling practices in `~/.sdlc/install/templates/modelling-practices.md`. |
+| `test-guide.md` | Test design, coverage and review; formal-modelling practices. |
 | `doc-writing-guide.md` | Documentation content, location and style. |
 | `build-commands.md` | Compile, lint, unit and integration test commands for each code folder; optionally model checking. |
 | `release-guide.md` | Release process, permissions and human approvals. |
