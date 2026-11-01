@@ -75,6 +75,7 @@ Report the Epic's ID and unaddressed findings with reasons.
 - If you stopped at a Task boundary, suggest re-running develop-epic on this Epic.
 - For remaining Epics, suggest write-epic if `draft`, otherwise develop-epic.
 - For a completed Plan, suggest idea-review.
+- During an SRD revision, suggest write-plan once the SRD is approved, because only write-plan ends the revision.
 
 ## Handling Reviewer Feedback
 

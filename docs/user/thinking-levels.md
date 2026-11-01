@@ -1,6 +1,6 @@
 # Thinking Levels
 
-A Thinking Level selects the Agent, model and effort or mode for a skill. SDLC fixes skill levels; you choose the tools and models each level uses through project-setup or either [settings file](settings.md).
+A Thinking Level selects the Agent, model, effort or mode and any launch template for a skill. SDLC fixes skill levels; you choose the tools and models each level uses through project-setup or either [settings file](settings.md).
 
 ## The five levels
 

@@ -15,7 +15,7 @@ Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file loc
 
 ## Input
 
-An Idea ID.
+An Idea ID, and for a during-build revision, the Epics the Managing Intelligence names, or `none`.
 
 ## Required Reading
 
@@ -33,7 +33,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
 ## Steps
 
-1. **Pause a Plan built from the SRD before revising it,** including a completed Plan, as `~/.sdlc/install/workflow.md`'s SRD revisions rule describes, then tell the Managing Intelligence which Epics you paused and ask it to stop their Runs, because develop-epic checks its Gate only when it starts. Record changed SRs and previously active Epics under `## SRD changes` on the Plan as the revision proceeds, replacing earlier entries unless that rule says to add to them, so write-plan reads only unplanned changes. Before saving an SR change that reaches an unpaused Epic, ask the Managing Intelligence to stop that Epic's Runs and those of Epics that depend on it, then add them to `## Paused Epics`, as write-plan step 2 does, so no Epic builds on requirements you're changing.
+1. **Pause a Plan built from the SRD before revising it,** including a completed Plan, as `~/.sdlc/install/workflow.md`'s SRD revisions rule describes, then tell the Managing Intelligence which Epics you paused and ask it to stop their Runs, because develop-epic checks its Gate only when it starts. Set the SRD `draft` at the start of every revision, model-only included, because model-writer's Gate needs it. Record changed SRs and previously active Epics under `## SRD changes` on the Plan as the revision proceeds, replacing earlier entries unless that rule says to add to them, so write-plan reads only unplanned changes. Before saving an SR change that reaches an unpaused Epic, ask the Managing Intelligence to stop the Runs of that Epic and of those that rule pauses with it, then add them to `## Paused Epics`, so no Epic builds on requirements you're changing.
 
 2. **Write the SRD** from the approved PRD and any existing code. Settle technology and architecture choices. Look up small questions yourself. For deeper research, save the SRD, then launch `research` with the question, the SRD's ID and any constraints, and associate the Research ticket it files with the SRD. You are its reviewer, judging each Report against `guide:research-guide.md`: answer its questions, tell it you accept the Report or send back what more to research, and take product questions to the Managing Intelligence. Launch independent questions in parallel.
 

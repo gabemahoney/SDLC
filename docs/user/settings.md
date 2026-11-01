@@ -21,7 +21,7 @@ Write one-line settings as `<name>: <value>`, or use a `## <name>` heading for a
 | `new_bug_intake` | Path to the instructions for new Bugs, chosen independently of the Idea intake. |
 | `resolvers` | Optional block of `<kind>: <absolute path>` lines adding or overriding Source Reference kinds. An unmapped kind uses `~/.sdlc/install/resolvers/<kind>.md`, including when this setting is unset. |
 | `research_location` | Absolute folder path for Research tickets, Reports and artifacts, located through the ticket protocol. A home default shares research across Projects; a Project override selects a separate store. Research uses the requesting Project's guide. |
-| `levels` | A block mapping all five Thinking Levels to an Agent, model and effort or mode. See [Thinking Levels](thinking-levels.md). |
+| `levels` | A block mapping all five Thinking Levels to an Agent, model, effort or mode and any launch template. See [Thinking Levels](thinking-levels.md). |
 | `ticket_links` | Agreed instructions for Dependencies, Associations or Source References the selected ticket protocol does not cover. Only needed for uncovered link types. |
 | `child_watch_command` | Optional host command followed by Child Agent IDs. It must return when any child's state leaves `pending` or `working`, printing `<id> <state>`. Setup offers it in home defaults; when unset, the launcher protocol supplies status polling. |
 
