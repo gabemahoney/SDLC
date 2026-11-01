@@ -92,6 +92,7 @@ Use existing ticket history, job records and logs through acceptance to cover th
 - Quality problems and the phase where each surfaced.
 - The longest phases or steps, with wall times and their timestamp boundaries.
 - Minor findings that triggered another round, owner or rerun, with the resulting elapsed time as possible nitpick cost.
+- Your own analysis of where tokens may have been overspent for the value they gave, backed by evidence where you can find it. Consider whether each task's model and level were more than it needed, how context windows and agent reuse affected cost, and what each SDLC step gave against what it cost.
 
 Label missing timings unknown, distinguish waiting from work where evidence allows, and avoid summing overlapping intervals, because elapsed time alone does not prove wasted effort.
 
