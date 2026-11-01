@@ -35,7 +35,7 @@ Run only when all of these are true:
 - Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff, or the Epic is unpaused during an SRD revision, as `~/.sdlc/install/workflow.md` defines it. Otherwise, stop and suggest write-plan.
 - The PRD and SRD are `defined`, except the SRD for an unpaused Epic, because execution follows approved requirements. Otherwise, stop and return them to the Managing Intelligence.
 - The Plan's `## Worktrees` covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
-- The Epic has planned Tasks with Subtasks. Unfinished ones are `defined` or `active`, except `draft` fix Tasks and Subtasks whose planning you resume before execution so interrupted repairs can continue. Otherwise, stop and suggest write-epic.
+- The Epic has planned Tasks with Subtasks. Unfinished ones are `defined` or `active`, except `draft` fix Tasks and repair Subtasks whose planning you resume before execution so interrupted repairs can continue. Otherwise, stop and suggest write-epic.
 - Every Task names what it serves, as write-epic's Task template says, because work outside the approved requirements and guidance bypassed their review. Otherwise, add the names to the Task's `## Context` from its Epic's `## Work` or `## Findings`, because you own Task records and write-epic runs only on `draft` Epics; if the Epic names none, stop and ask the Managing Intelligence.
 
 ## Steps
@@ -46,13 +46,13 @@ Run only when all of these are true:
 
    **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the Task changed. Send each failure to the executor that owns the files, then rerun all three. Commit and set the Task `done` only when all three pass, so every commit leaves working code.
 
-3. **Finish the Epic.** Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
+3. **Finish the Epic.** Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks and Subtasks are `done` and its accepted findings and gate are complete, because a reopened Subtask can stay `active` under a `done` Task.
 
 4. **Check Plan completion.** Set the Plan `done` when every Epic is `done`, except during an SRD revision.
 
 ## Child Agents
 
-Use the Task pipeline and Integration gate for sequencing. Before you send an executor a repair, record it under `## Progress` on each `done` Subtask it touches and set that Subtask `active`, so the executor's Gate admits the repair and `done` keeps meaning finished; the executor sets it `done` again when the repair is complete.
+Use the Task pipeline and Integration gate for sequencing. Before sending an executor a repair, reopen each of its `done` Subtasks the repair concerns: add the repair to that Subtask's `## Progress` and set it `active`, so the executor's Gate admits it. The executor sets it `done` again. If the repair falls under no Subtask, add a `defined` repair Subtask to the Task first, for the same reason.
 
 - **`engineer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
 - **`test-writer`:** Start fresh for each Task and reuse each writer for fix rounds to preserve its knowledge. Launch one per testing Subtask, in parallel. Use them for integration failures in tests. Expect unit and integration tests, fixtures, repairs, gaps and only targeted checks on its own work following `guide:test-guide.md`, because you run the full suites.
@@ -66,7 +66,7 @@ Use the Task pipeline and Integration gate for sequencing. Before you send an ex
 
 - **Idea, Plan and Epic:** set statuses in steps 1, 3 and 4. Keep the current Task, phase and checkout paths under `## Progress` and integration evidence under `## Checks` on the Epic.
 - **Tasks and Subtasks:** add the names of what a Task serves to its `## Context` when the Gate finds them missing. Update stale instructions and set Task statuses in step 2. Executors set assigned Subtasks `active`, then `done`; you set a `done` Subtask back to `active` only to reopen it for a repair, as Child Agents describes. Record executor IDs, skills, testing assignments, Thinking Levels, checks and commits under `## Progress` on the Task so another Run can continue.
-- **Fix Tasks:** create Epic children for source integration failures and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work` and `## Dependencies` for each Task's purpose, changes and prerequisites, naming in `## Context` what the Task or Epic it repairs serves, so a re-run passes the Gate. Set a complexity-appropriate `thinking_level:<label>` tag. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage and affected docs so repairs receive the original work's checks.
+- **Fix Tasks and repair Subtasks:** create Epic children for integration failures routed to fix Tasks and accepted final product findings, and repair Subtasks under any of the Epic's Tasks for repairs no Subtask covers. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work` and `## Dependencies` for each Task's purpose, changes and prerequisites, naming in `## Context` what the Task or Epic it repairs serves, so a re-run passes the Gate. Set a complexity-appropriate `thinking_level:<label>` tag. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage and affected docs so repairs receive the original work's checks.
 
 ## Done
 
@@ -101,6 +101,6 @@ You run `guide:build-commands.md ## Integration tests` for every affected code f
 
 Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures under `## Checks` on the Epic. If suites cannot run, ask the Managing Intelligence.
 
-Route test failures to test-writer, then test-review, and run step 2's commit checks yourself before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Rerun integration after all repairs are committed to check their combined result.
+Route a failing test that one of this Epic's testing Subtasks owns to that Subtask's test-writer, then test-review, and run step 2's commit checks yourself before committing repairs. Route source failures into fix Tasks, and other failing tests into fix Tasks with a testing Subtask, through the full Task pipeline, because only this Epic's Subtasks can be reopened. Rerun integration after all repairs are committed to check their combined result.
 
 If repairs stop making progress, stop for the Managing Intelligence so a repair loop doesn't burn the budget.

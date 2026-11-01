@@ -1,6 +1,6 @@
 ---
 name: test-writer
-description: "Write unit and integration tests for a testing Subtask, Task or Bug ID."
+description: "Write unit and integration tests for a testing Subtask or Bug ID."
 ---
 
 # test-writer
@@ -15,7 +15,7 @@ You are running an SDLC software development workflow. Before anything else, rea
 
 ## Input
 
-A testing Subtask, Task or Bug ID.
+A testing Subtask or Bug ID.
 
 ## Required Reading
 

@@ -81,7 +81,7 @@ Ideas, Plans and Research use `draft`, `defined`, `active` and `done`. Bugs use 
 
 Each transition has exactly one owner. Change only the tickets and statuses your `SKILL.md` gives you.
 
-Executors set their Subtasks `active` and `done`, and develop-epic alone sets a `done` Subtask back to `active` before sending its executor a repair, so the executor's Gate admits the repair.
+Executors set their Subtasks `active` and `done`; only develop-epic sets a `done` Subtask back to `active`, to reopen it for a repair.
 
 The Managing Intelligence approves an Idea before write-prd and records the approval on the Idea, because the approved Idea bounds the PRD. It sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when teardown-worktree hits a merge conflict (fix-bug resolves it for a Bug; for an Idea, idea-review files it as a Round Feedback Epic), and manages Docs other than the PRD, SRD and Model Docs.
 
