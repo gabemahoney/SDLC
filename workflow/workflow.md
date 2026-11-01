@@ -193,7 +193,7 @@ Each section must give usable instructions, because a heading alone cannot suppo
 A Thinking Level picks an Agent, model and any effort or mode. The caller resolves it before launch, as `protocol:launcher.md` describes, so every session starts on the intended Agent with the intended settings.
 
 - Read each skill's fixed level from `~/.sdlc/install/templates/thinking-levels.md`, because SDLC owns this mapping across all Projects.
-- `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor. Use the format in `~/.sdlc/install/templates/thinking-levels.md`, so setup and callers read the same mapping.
+- `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor, plus an optional Launcher `template`. Use the format in `~/.sdlc/install/templates/thinking-levels.md`, so setup and callers read the same mapping.
 
 For `engineer`, `test-writer` and `doc-writer`, the assigned Task's or Bug's `thinking_level:<label>` tag overrides the skill's fixed level, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags.
 

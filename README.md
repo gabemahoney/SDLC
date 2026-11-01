@@ -22,9 +22,9 @@ The default installs all three agents, as does `--agent all`. Select any comma-s
 
 ## Agent setup
 
-If you use agent-director, have your host operator configure its worker template for every tool you use:
+If you use agent-director, have your host operator configure a default worker template for every tool you use, and any per-level template your `levels` setting names (see [Thinking Levels](docs/user/thinking-levels.md)):
 
-| Tool | Template |
+| Tool | Default template |
 | --- | --- |
 | Claude Code | `WORKER` |
 | Codex CLI | `CODEX_WORKER` |

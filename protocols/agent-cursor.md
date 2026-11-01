@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Use Cursor CLI 2026.10.08 or later on Linux with an operator-configured login and launch template, because agent-director's Cursor support and `## Blocking waits` require that host setup.
+Use Cursor CLI 2026.10.08 or later on Linux with an operator-configured login and launch templates, because agent-director's Cursor support and `## Blocking waits` require that host setup.
 
 Check skills in `~/.cursor/skills/<skill>/SKILL.md` for a user installation or `<repo>/.cursor/skills/<skill>/SKILL.md` for a repository installation, and shared materials under `~/.sdlc/`, so Cursor can load the same SDLC instructions as the other Agents.
 
@@ -20,7 +20,7 @@ agent-director reports `context.fraction` as `null` for Cursor. As a Main Agent,
 
 ## Launch template
 
-Launch every Main Agent and Child Agent with the `CURSOR_WORKER` template, because it supplies the host's Cursor configuration.
+Launch each Main Agent and Child Agent with the `template` its resolved `setting:levels` entry names, or `CURSOR_WORKER` when it names none, because the template supplies the host's Cursor configuration.
 
 ## Blocking waits
 

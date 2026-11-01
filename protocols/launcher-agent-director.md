@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Use agent-director, with the template the Agent Protocol File names under `## Launch template`. This launcher requires that section, so every Agent Protocol File used with it must have one. Run `agent-director --help` for anything this file doesn't cover, because it documents every command, state and error.
+Use agent-director, with each launch's template chosen as the Agent Protocol File's `## Launch template` says. This launcher requires that section, so every Agent Protocol File used with it must have one. Run `agent-director --help` for anything this file doesn't cover, because it documents every command, state and error.
 
 ## Main Agents and Child Agents
 
@@ -10,7 +10,7 @@ Both run in their own agent-director sessions. The Managing Intelligence launche
 
 ## Launching a Main Agent
 
-Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.sdlc/install/workflow.md`'s Thinking Levels, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use its launch template and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
+Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.sdlc/install/workflow.md`'s Thinking Levels, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use the template its `## Launch template` selects for the resolved level and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
 
 ```sh
 # Claude Code (agent: claude-code)

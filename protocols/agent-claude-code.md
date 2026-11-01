@@ -10,7 +10,7 @@ Check skills in `~/.claude/skills/<skill>/SKILL.md` for a user installation or `
 
 ## Launch template
 
-Launch every Main Agent and Child Agent with the `WORKER` template, because it sets the agent's sandbox and permissions.
+Launch each Main Agent and Child Agent with the `template` its resolved `setting:levels` entry names, or `WORKER` when it names none, because the template sets the agent's sandbox and permissions.
 
 ## Blocking waits
 
