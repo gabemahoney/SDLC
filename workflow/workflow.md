@@ -101,7 +101,7 @@ Label missing timings unknown, distinguish waiting from work where evidence allo
 
 An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
 
-Each time the SRD becomes `defined`, the Managing Intelligence has one model-writer Main Agent per Model Doc run its during-build checks, skipping a Model Doc whose results are still current, outside the Plan because the Plan holds only the coding work. A violation is a design fix, not a Bug: the Managing Intelligence sends it through write-srd's revision, then write-plan and write-epic. The Idea isn't accepted until every check passes against the current SRD; a result stays current while its SR group and model are unchanged.
+Each time the SRD becomes `defined`, the Managing Intelligence has one model-writer Main Agent per Model Doc run its during-build checks, skipping a Model Doc whose results are still current, outside the Plan because the Plan holds only the coding work. A violation is a design fix, not a Bug: the Managing Intelligence sends it through write-srd's revision (see SRD revisions), then write-plan and write-epic. The Idea isn't accepted until every check passes against the current SRD; a result stays current while its SR group and model are unchanged.
 
 **Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
 
@@ -216,6 +216,10 @@ Before resuming any reused Child Agent, read its context fraction as `protocol:l
 Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. Record only declined or unaddressed findings on the ticket they concern, each with its reason, so the next skill sees what remains. Product questions go to the Managing Intelligence, who decides the expected behaviour. idea-review files non-trivial findings for correction and hands the result to the Managing Intelligence for acceptance.
 
 Main Agents and Child Agents keep decisions, repair instructions, progress and handoffs on the ticket they concern so later work can continue from the record. A launch, continuation or report names those tickets rather than repeating their contents, because copied instructions can drift from the record.
+
+### SRD revisions
+
+When write-srd revises an SRD that has a Plan, it sets the Plan `draft` and writes the Plan's `## Paused Epics` as `all`, because changed requirements need replanning. For a revision driven by a during-build check, the Managing Intelligence may instead name only the Epics the fix touches. If the Plan already has `## Paused Epics`, a revision is still in progress: write-srd adds this revision's changed SRs and previously active Epics to `## SRD changes`, and its paused Epics to the list, rather than replacing them. The Managing Intelligence starts a revision only when no write-plan, write-srd or idea-review Run for the Idea is in progress, so revisions apply one at a time. It stops paused Epics' write-epic and develop-epic Runs at the next Task boundary, and stops a Model Doc's during-build model-writer Run before write-srd changes that Model Doc, because its result won't be current. The revision lasts while the list exists, and an Epic it doesn't name is **unpaused**: write-epic and develop-epic may work on it with the Plan and SRD `draft`. Before write-plan sets an unpaused Epic `draft`, the Managing Intelligence stops its Runs and write-plan adds it to the list, as it does each Epic it adds, so two writers never share an Epic. write-plan removes the list once the revised Plan's status is set.
 
 ### Work outside the ticket
 

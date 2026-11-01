@@ -31,7 +31,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 Run only when all of these are true:
 
 - The Epic is `draft`. If it isn't, stop and report its status.
-- Its Plan is `defined` or `active`. If it isn't, stop and suggest write-plan.
+- Its Plan is `defined` or `active`, or the Epic is unpaused during an SRD revision, as `~/.sdlc/install/workflow.md` defines it. If not, stop and suggest write-plan.
 
 ## Steps
 

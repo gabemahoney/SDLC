@@ -40,13 +40,16 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 
 2. **Write the Plan and Epics.** First state in a sentence what changes for the user or system when the Idea is done, from the PRD's goals, acceptance criteria and constraints. If you can't, stop and raise it with the Managing Intelligence, because Epics cut without a clear outcome won't add up to one. Follow the SRD's software requirements, technology choices and architecture. Write each ticket as "What to write in each ticket" below says, and follow the Planning guidance.
    - If the Idea has no Plan, create one and its Epics as `draft`.
-   - If the Idea already has a Plan, bring it up to date with the SRD; `## SRD changes` on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it. Add new Epics as `draft`, remove any no longer needed except Round Feedback Epics, and leave the rest as they are.
+   - If the Idea already has a Plan, bring it up to date with the SRD; `## SRD changes` on the Plan says which SRs changed. Update every Epic the SRD change affects, whatever its status, and set it to `draft` so write-epic replans it, first having the Managing Intelligence stop an unpaused Epic's Runs and adding it to `## Paused Epics`, as `~/.sdlc/install/workflow.md`'s SRD revisions rule says. Add new Epics as `draft`, also to `## Paused Epics` during a revision, remove any no longer needed except Round Feedback Epics, and leave the rest as they are.
 
 3. **Check the Plan with the `product-manager`.** Save the Plan and Epics, then launch `product-manager`. Judge every finding under the shared rule and review again after significant changes. Then check the whole Plan against the Quality checklist below.
 
 4. **Set the Plan's status.** Only once the `product-manager`'s accepted findings are fixed and the Quality checklist passes:
-   - If any Epic is `done` or `active`, or was before this revision, set the Plan `active`, because work is already underway.
+   - If every Epic is `done`, set the Plan `done`, because no work remains.
+   - Otherwise, if any Epic is `done` or `active`, or was before this revision, set the Plan `active`, because work is already underway.
    - Otherwise, set the Plan `defined`.
+
+   Then remove `## Paused Epics`, because the revision is over.
 
 ## Child Agents
 
@@ -54,14 +57,14 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 
 ## Writes
 
-- **The Plan:** one per Idea, in the Plans store, with an Association to its Idea so later skills can find the requirements. A new Plan starts `draft`, and becomes `defined` or `active` in step 4.
+- **The Plan:** one per Idea, in the Plans store, with an Association to its Idea so later skills can find the requirements. A new Plan starts `draft`, and becomes `defined`, `active` or `done` in step 4. During a revision, you add to `## Paused Epics` in step 2 and remove it in step 4.
 - **Its Epics:** children of the Plan. When one Epic can't start until another is `done`, record a Dependency from the waiting Epic on the one it waits for. New and changed Epics are `draft`. When revising a Plan, remove any Epic the changed SRD no longer calls for, but keep Round Feedback Epics, because idea-review files them from review rather than the SRD.
 
 ## Done
 
 Report the Plan's ID, and any `product-manager` findings left unaddressed with the reason.
 
-Suggest configure-worktree for the Idea, then write-epic on each `draft` Epic in dependency order.
+If the Plan is `done`, suggest idea-review. Otherwise, suggest configure-worktree for the Idea, then write-epic on each `draft` Epic in dependency order and develop-epic on each paused Epic still `defined` or `active`.
 
 ## What to write in each ticket
 
