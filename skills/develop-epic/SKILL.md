@@ -52,7 +52,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-Use the Task pipeline and Integration gate for sequencing.
+Use the Task pipeline and Integration gate for sequencing. Before you send an executor a repair, record it under `## Progress` on each `done` Subtask it touches and set that Subtask `active`, so the executor's Gate admits the repair and `done` keeps meaning finished; the executor sets it `done` again when the repair is complete.
 
 - **`engineer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
 - **`test-writer`:** Start fresh for each Task and reuse each writer for fix rounds to preserve its knowledge. Launch one per testing Subtask, in parallel. Use them for integration failures in tests. Expect unit and integration tests, fixtures, repairs, gaps and only targeted checks on its own work following `guide:test-guide.md`, because you run the full suites.
@@ -65,7 +65,7 @@ Use the Task pipeline and Integration gate for sequencing.
 ## Writes
 
 - **Idea, Plan and Epic:** set statuses in steps 1, 3 and 4. Keep the current Task, phase and checkout paths under `## Progress` and integration evidence under `## Checks` on the Epic.
-- **Tasks and Subtasks:** add the names of what a Task serves to its `## Context` when the Gate finds them missing. Update stale instructions and set Task statuses in step 2. Executors set assigned Subtasks `active`, then `done`. Record executor IDs, skills, testing assignments, Thinking Levels, checks and commits under `## Progress` on the Task so another Run can continue.
+- **Tasks and Subtasks:** add the names of what a Task serves to its `## Context` when the Gate finds them missing. Update stale instructions and set Task statuses in step 2. Executors set assigned Subtasks `active`, then `done`; you set a `done` Subtask back to `active` only to reopen it for a repair, as Child Agents describes. Record executor IDs, skills, testing assignments, Thinking Levels, checks and commits under `## Progress` on the Task so another Run can continue.
 - **Fix Tasks:** create Epic children for source integration failures and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work` and `## Dependencies` for each Task's purpose, changes and prerequisites, naming in `## Context` what the Task or Epic it repairs serves, so a re-run passes the Gate. Set a complexity-appropriate `thinking_level:<label>` tag. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage and affected docs so repairs receive the original work's checks.
 
 ## Done
