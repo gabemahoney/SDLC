@@ -7,7 +7,7 @@ Guides tell SDLC how you want work done. Use project-setup to choose or write th
 | File | What it controls |
 | --- | --- |
 | `engineering-best-practices.md` | Engineering and code review rules. |
-| `test-guide.md` | Test design, coverage and review; formal-modelling practices. |
+| `test-guide.md` | Test design, coverage and review; additions to or overrides of the shipped modelling practices in `~/.sdlc/install/templates/modelling-practices.md`. |
 | `doc-writing-guide.md` | Documentation content, location and style. |
 | `build-commands.md` | Compile, lint, unit and integration test commands for each code folder; optionally model checking. |
 | `release-guide.md` | Release process, permissions and human approvals. |
@@ -36,6 +36,6 @@ Relative paths resolve from the pointer file's folder; absolute paths work too. 
 
 ## Build and release requirements
 
-For each code folder, `build-commands.md` needs `## Compile`, `## Lint`, `## Unit tests` and `## Integration tests`, each with a runnable command or `none` and a reason. A shared guide identifies each folder's commands. `## Model check` names the modelling language, checker command and parse-only command when needed, and optionally the time cap for gating checker runs. The build fallback asks you to supply real commands.
+For each code folder, `build-commands.md` needs `## Compile`, `## Lint`, `## Unit tests` and `## Integration tests`, each with a runnable command or `none` and a reason. A shared guide identifies each folder's commands. `## Model check` names the modelling language, checker command and parse-only command when needed, and optionally the time cap for gating checker runs and a longer one for during-build runs. The build fallback asks you to supply real commands.
 
 Your release guide must say what agents may do without a human, which steps require whose approval, and the release process, including its checks. Cover pushing, tagging and publishing explicitly so agents know their permissions. The shipped fallback permits local commits and merges only and defines no release process; release stops until you supply one through project-setup. A bot acting as Managing Intelligence cannot give an approval reserved for a named human.

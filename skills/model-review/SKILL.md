@@ -22,7 +22,7 @@ A Model Doc ID and its SRD ID.
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Model Doc and SRD:** for the model, requirements, assumptions and repair instructions.
-- **Guidance:** Read `guide:build-commands.md ## Model check` for the configured modelling language and checker, and `guide:test-guide.md` for modelling practices.
+- **Guidance:** Read `guide:build-commands.md ## Model check` for the configured modelling language and checker, and `~/.sdlc/install/templates/modelling-practices.md` for modelling practices, with any additions or overrides in `guide:test-guide.md`.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
