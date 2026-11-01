@@ -1,5 +1,9 @@
 # Codex Agent Protocol File
 
+## Prerequisites
+
+Check skills in `~/.agents/skills/<skill>/SKILL.md` for a user installation or `<repo>/.agents/skills/<skill>/SKILL.md` for a repository installation, and shared materials under `~/.sdlc/`, so Codex can load the same SDLC instructions as the other Agents.
+
 ## Context use
 
 **TBD:** agent-director will report each agent's context use (AD Idea b.17w). Until it does, no reading exists: a Main Agent skips its own check, and a Child Agent's reading counts as unknown, so it's always started fresh instead of reused.

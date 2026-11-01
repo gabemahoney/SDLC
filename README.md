@@ -16,11 +16,9 @@ cd ~/projects/sdlc
 ./install.sh
 ```
 
-The default installs all three agents, as does `--agent all`. Select any comma-separated combination of `claude`, `codex` and `cursor`, for example `--agent claude,cursor`, or one name for a single agent. Repeated names install once; empty or unknown names are errors. Add `--repo /path/to/repo` for repository skills; shared files still install under `~/.sdlc/`.
+The default installs all three agents, as does `--agent all`. Select any comma-separated combination of `claude` (Claude Code), `codex` and `cursor`, for example `--agent claude,cursor`, or one name for a single agent. Repeated names install once; empty or unknown names are errors. Add `--repo /path/to/repo` for repository skills; shared files still install under `~/.sdlc/`.
 
 `install.sh` copies shipped skills into the selected tool's skills folder, overwriting matching files. It also copies the workflow, templates, intakes, resolvers, document templates and protocols into `~/.sdlc/install/`, and default fallback guides into `~/.sdlc/`. It never writes your settings, custom guides, or `~/.sdlc/{templates,intakes,resolvers}/`. It leaves unshipped skills, agent definitions and other files in place, but deletes `~/.sdlc/install/templates/public-github-project.md`.
-
-SDLC ignores old `## thinking_levels` blocks in settings files; you can delete them because skill levels are now fixed by SDLC.
 
 ## Agent setup
 

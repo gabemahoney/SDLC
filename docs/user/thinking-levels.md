@@ -39,4 +39,4 @@ A Task or Bug's `thinking_level:<label>` tag overrides the fixed levels for `eng
 
 write-epic assigns Task tags, and develop-epic assigns them to fix Tasks. define-bug assigns Bug tags at `medium` or above because fixes require reproduction, regression coverage and review. For example, `thinking_level:high` makes all three executors use your `high` mapping.
 
-The caller resolves the mapping before launch. A missing skill entry stops the Run and identifies the shipped mapping file; a missing `levels` entry goes to project-setup. A missing Task tag goes back to planning, and a missing Bug tag goes to the Managing Intelligence. Before setup has established `levels`, the Managing Intelligence chooses setup's Agent and model settings.
+The caller resolves the mapping before launch. A missing entry for a shipped skill stops the Run, identifies the shipped mapping file and points to reinstalling SDLC with `install.sh`; a missing `levels` entry goes to project-setup. A missing Task tag goes back to planning, and a missing Bug tag goes to the Managing Intelligence. Before setup has established `levels`, the Managing Intelligence chooses setup's Agent and model settings.
