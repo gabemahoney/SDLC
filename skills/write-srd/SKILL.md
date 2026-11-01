@@ -40,7 +40,8 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 3. **Model SR groups** where concurrency or a state machine hides ordering bugs that reading and tests can miss, including changed groups with existing models. Read `guide:build-commands.md`, found as `~/.sdlc/install/workflow.md` describes, for the language and checker in `guide:build-commands.md ## Model check`. If missing, ask the Managing Intelligence to supply it. Save the SRD first, so your Child Agents read the current requirements. For each group, independently and in parallel where possible:
    - Have `model-writer` write or update the Formal Model for that group and attach the files to its Model Doc.
    - Have `model-review` review it against the SRD before the checker runs, because checker runs can be slow. Judge findings under the shared rule and record repair instructions under `## Progress` on the Model Doc. Resume the writer for repairs, then review again.
-   - Once accepted findings are fixed, resume the writer to run the checker and retain its results under `## Checks` on the Model Doc. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
+   - Once accepted findings are fixed, resume the writer to run the gating checks and retain its results under `## Checks` on the Model Doc. The during-build checks wait for the Managing Intelligence. If a run hits its time cap, choose how to shrink it from the writer's proposal, asking the Managing Intelligence for any longer cap.
+   - When revising for a during-build check, also have the writer rerun that check, because the revision must make it pass. Correct model errors through the same review cycle. If checking exposes an SRD bug, correct the requirements and repeat modelling, review and checking. The Managing Intelligence settles product questions because the PRD is approved.
 
 4. **Review the whole draft** for succinctness, software obligations, dropped ideas and the Quality checklist, in that order. Repeat after changes until a full round changes nothing, so revisions receive the same scrutiny as a first draft.
    - Fold changes into the affected requirements. Cut superseded text and padding while preserving current SRs, invariants, acceptance criteria, supplied edge cases and Managing Intelligence decisions. Only acceptance criteria and summaries may repeat behaviour; otherwise reference the existing SR.
@@ -49,7 +50,7 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
    Save the SRD, then return changed or newly modelled groups to step 3 so models cover the final requirements.
 
-5. **Review the SRD with `req-review` once every model has been reviewed and its checker run has passed, and every Report you asked for is accepted.** Launch a fresh Child Agent each round so each review is independent. Take every conflict with `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` or `guide:test-guide.md` to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
+5. **Review the SRD with `req-review` once every model has been reviewed and its gating checks, and any during-build check rerun in this revision, have passed, and every Report you asked for is accepted.** Launch a fresh Child Agent each round so each review is independent. Take every conflict with `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` or `guide:test-guide.md` to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and repeat until a review returns nothing left to fix. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
 
 ## Child Agents
 
@@ -64,14 +65,14 @@ Record each approved guide exception once under `## Guide exceptions` on the PRD
 
 - **SRD:** create or update the Idea's Doc titled `SRD`, set `draft` because new or revised requirements need approval. Use `## Requirements` for numbered SR groups and their Model Doc links, `## Technology and architecture` for choices, reasons and supporting Research links, and `## Declined findings` for declined or unaddressed review findings with reasons.
 - **Plan:** reset to `draft` when revising the SRD it was built from, with changed SRs and previously active Epics recorded under `## SRD changes`.
-- **Model Docs:** one per modelled SR group, maintained by `model-writer`. Keep model files attached to the Doc, outside repos, so they stay with requirements. Use `## Model` for the modelled SR group and Formal Model, `## Modelling assumptions` for bounds and assumptions, `## Artifacts` for file links, `## Progress` for repair instructions, `## Checks` for checker evidence and exposed SRD bugs, and `## Declined findings` for declined or unaddressed findings with reasons.
+- **Model Docs:** one per modelled SR group, maintained by `model-writer`. Keep model files attached to the Doc, outside repos, so they stay with requirements. Use `## Model` for the modelled SR group and Formal Model, `## Modelling assumptions` for bounds and assumptions, `## Artifacts` for file links, `## Progress` for repair instructions, `## Checks` for each check's set, checker evidence and exposed SRD bugs, and `## Declined findings` for declined or unaddressed findings with reasons.
 - **Research:** associate each Research ticket `research` files with the SRD.
 
 ## Done
 
 Report the SRD's ID, its Model Doc and Research ticket IDs, and anything left unaddressed with the reason. If the Plan was reset, report its ID.
 
-- If the SRD, modelling and review are complete, say the SRD remains `draft` and awaits the Managing Intelligence's approval. The Managing Intelligence sets it `defined` on approval.
+- If the SRD, modelling and review are complete, say the SRD remains `draft` and awaits the Managing Intelligence's approval, and that any during-build checks must run before acceptance. The Managing Intelligence sets it `defined` on approval.
 - Otherwise, say what must be settled before you can finish.
 
 ## Style rules
@@ -97,7 +98,7 @@ If an unresolved decision or unfinished model stops a check below from passing, 
 - [ ] The SRD agrees with the PRD and uses its defined terms consistently.
 - [ ] References to existing code name real modules and patterns, and anything new is marked as new.
 - [ ] Numeric constraints have a stated basis, and modelling bounds remain modelling assumptions.
-- [ ] Each modelled SR group has a Formal Model that matches the final SRD and passes the checker named in `guide:build-commands.md ## Model check`.
+- [ ] Each modelled SR group has a Formal Model that matches the final SRD and passes its gating checks, and any during-build check rerun in this revision, with the checker named in `guide:build-commands.md ## Model check`.
 
 ## What not to include
 

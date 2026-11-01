@@ -51,7 +51,7 @@ Start each skill in a fresh session, passing the ticket ID after intake. Each re
 - **Bug:** write-bug → define-bug → configure-worktree → fix-bug.
 - **Research:** research answers a question with a cited Report, revising it until you accept it.
 
-Approve the Idea before write-prd, and approve the PRD and SRD before planning. After implementation and review, test and accept the Idea or Bug, then run teardown-worktree and release. Your release guide controls what may ship.
+Approve the Idea before write-prd, and approve the PRD and SRD before planning. Once you approve an SRD with Formal Models, run model-writer on each Model Doc alongside the build, for the model checks that didn't need to pass before coding. Send each violation it reports through write-srd, write-plan and write-epic, and accept the Idea only once every check passes. After implementation and review, test and accept the Idea or Bug, then run teardown-worktree and release. Your release guide controls what may ship.
 
 ## Customize
 

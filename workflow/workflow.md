@@ -20,7 +20,7 @@
   - **doc-review:** checks documentation changes and gaps independently.
   - **product-manager:** checks planned or finished work against requirements, for scope and proportion.
   - **research:** answers one research question with a cited Report. It also runs as a Main Agent.
-  - **model-writer (Model Writer):** writes a Formal Model and runs its checker.
+  - **model-writer (Model Writer):** writes a Formal Model and runs its checker. It also runs as a Main Agent for during-build checks.
   - **model-review (Model Reviewer):** checks a Formal Model against the SRD before its checker runs.
 - **Launcher:** the program that launches, resumes, watches and stops Main Agents and Child Agents, keeping their parent–child relationships.
 - **Launcher Protocol File (`protocol:launcher.md`):** instructions for Launcher operations and Child Agent context readings. `setting:launcher` selects `~/.sdlc/install/protocols/launcher-<launcher>.md`; `setting:ticket_system` selects `protocol:ticket-<ticket_system>.md` there.
@@ -33,10 +33,12 @@
   - **Lint** (`guide:build-commands.md ## Lint`): lint and format checks.
   - **Unit Tests** (`guide:build-commands.md ## Unit tests`): the full unit suite.
   - **Integration Tests** (`guide:build-commands.md ## Integration tests`): the integration suites.
-  - **Model Check** (`guide:build-commands.md ## Model check`): an optional section naming the formal-modelling language and the command that runs its checker. If a Formal Model needs checking and this section is missing, write-srd stops and asks the Managing Intelligence.
+  - **Model Check** (`guide:build-commands.md ## Model check`): an optional section naming the formal-modelling language, the command that runs its checker, the command that only parses model files, and the time cap for gating checker runs: 30 minutes if unset, and never over 1 hour, because a gating run still going then is a model defect. If a Formal Model needs checking and this section is missing, write-srd stops and asks the Managing Intelligence.
 
   Any other `##` section belongs to the Project; skills use it as the file describes.
 - **Formal Model:** a formal specification checked by a model checker. **Model checking** means running that checker. A **Model Doc** is a Doc under the Idea, next to the PRD and SRD, that holds a Formal Model, its attached files, review notes and checker results.
+  - **Gating check:** a model check that guards a PRD requirement or acceptance criterion that must always hold, covers a new or changed mechanism, and would change the design's shape (its records, states, protocol or interfaces) if it failed. It must pass before coding starts, because code written first could be thrown away.
+  - **During-build check:** every other model check. It runs while the Idea is built, because its failure is fixed without reshaping the design. It also includes gating checks moved here, with the reason recorded, when they can't finish in hours; moving a check changes its phase, not its requirement.
 - **Default Fallback File:** the default copy of a Guidance Document shipped with SDLC, in `~/.sdlc`, used only where no user copy of that Guidance Document is found.
 - **Protocol Files:** the SDLC Ticket System, Launcher and Agent Protocol Files, each holding everything specific to one ticket system, Launcher or Agent. `protocol:ticket.md` means the Ticket System Protocol File selected by `setting:ticket_system`.
 - **Dependency:** a link meaning one ticket can't start until another is `done`, such as between Epics or between Tasks.
@@ -98,6 +100,8 @@ Label missing timings unknown, distinguish waiting from work where evidence allo
 **Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing and acceptance → teardown-worktree → release. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again. A round that finds an unmet PRD requirement no SRD requirement covers sends it back through write-srd and write-plan first.
 
 An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
+
+Each time the SRD becomes `defined`, the Managing Intelligence has one model-writer Main Agent per Model Doc run its during-build checks, skipping a Model Doc whose results are still current, outside the Plan because the Plan holds only the coding work. A violation is a design fix, not a Bug: the Managing Intelligence sends it through write-srd's revision, then write-plan and write-epic. The Idea isn't accepted until every check passes against the current SRD; a result stays current while its SR group and model are unchanged.
 
 **Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
 

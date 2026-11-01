@@ -1,7 +1,7 @@
 # SDLC: who runs which skill (b.v38)
 
 - **Managing Intelligence:** runs no skills itself. It starts one Main Agent per skill.
-- **Main Agent skills that launch no Child Agents:** project-setup, write-idea, write-bug, define-bug, research, configure-worktree, teardown-worktree, release.
+- **Main Agent skills that launch no Child Agents:** project-setup, write-idea, write-bug, define-bug, research, model-writer (for during-build checks), configure-worktree, teardown-worktree, release.
 - **Main Agent skills that launch Child Agents:** one diagram each below.
 
 ## write-prd
