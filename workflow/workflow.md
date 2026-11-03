@@ -87,13 +87,13 @@ The Managing Intelligence approves an Idea before write-prd and records the appr
 
 ### Managing Intelligence retrospectives
 
-From a bee's approval to its acceptance, watch its work for answers to these questions and note each one, with evidence, under `## Retrospective notes` on the bee, because you see the whole job and its Main Agents see only their part:
+From an Idea's approval or a Bug's filing to its acceptance, watch its work for answers to these questions and note each one, with evidence, under `## Retrospective notes` on the Idea or Bug, because you see the whole job and its Main Agents see only their part:
 
 - Where did we introduce a quality issue? How could it have been avoided?
 - Where did we spend too much time and not gain value? How could it have been avoided?
 - Where did we spend too many tokens and not gain value? How could it have been avoided?
 
-Before setting the bee `done`, summarize your findings and its Main Agents' notes under `## Retrospective`, because the program manager consolidates these into SDLC improvements.
+Before setting the Idea or Bug `done`, summarize your findings and its Main Agents' notes under `## Retrospective`, because whoever maintains SDLC consolidates these into SDLC improvements.
 
 ## Flows
 

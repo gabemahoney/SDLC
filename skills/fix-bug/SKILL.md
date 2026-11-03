@@ -64,7 +64,7 @@ The Bug is the only ticket you change, and no Child Agent writes it, because sev
 
 ## Retrospective notes
 
-While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the Idea's or Bug's retrospective from them:
 
 - Where did we introduce a quality issue? How could it have been avoided?
 - Where did we spend too much time and not gain value? How could it have been avoided?
@@ -87,7 +87,7 @@ You coordinate the work; your Child Agents do it. For each finding from code-rev
 
 ## Fix pipelines
 
-Before each `code-review` or `test-review`, run `guide:build-commands.md ## Compile` and `## Lint` yourself for the code folders changed, and send failures to the executor that owns the files, so reviewers see only code that builds.
+Before each `code-review` or `test-review`, run `guide:build-commands.md ## Compile` and `## Lint` yourself for the code folders changed, and send failures to the executor that owns the files, so reviewers see only code that builds. Once the test-writers finish, run `## Unit tests` for those folders the same way before test-review, so it sees passing tests.
 
 - **Small:** for a fix in one place with a low cost of mistakes. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change. Resume both for each fix round, because they already know the change.
 - **Docs only:** for a fix that changes only documentation. One `doc-writer` makes the change and one `doc-review` reviews it, both resumed for each fix round. Skip step 4, `## Unit tests` and the Integration gate, because there is no code to test.

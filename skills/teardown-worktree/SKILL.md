@@ -46,14 +46,6 @@ None: you merge and clean up yourself.
 - **The Idea's Plan:** under `## Worktrees`, what merged, what was removed, and any conflict, so it can be resolved and a later Run can finish.
 - **Repos:** merge commits on the local base branches, and the removed worktrees and branches.
 
-## Retrospective notes
-
-While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
-
-- Where did we introduce a quality issue? How could it have been avoided?
-- Where did we spend too much time and not gain value? How could it have been avoided?
-- Where did we spend too many tokens and not gain value? How could it have been avoided?
-
 ## Done
 
 Report the Idea's ID, which repos merged (locally, not pushed), and anything left with the reason. Once every repo has merged, suggest release.

@@ -70,7 +70,7 @@ Use the Task pipeline and Integration gate for sequencing. Before sending an exe
 
 ## Retrospective notes
 
-While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the Idea's or Bug's retrospective from them:
 
 - Where did we introduce a quality issue? How could it have been avoided?
 - Where did we spend too much time and not gain value? How could it have been avoided?
@@ -95,7 +95,7 @@ You coordinate the work; your Child Agents do it. For each finding from code-rev
 
 ## Task pipeline
 
-Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Before each code-review or test-review, run `guide:build-commands.md ## Compile` and `## Lint` yourself for the code folders changed, and send failures to the executor that owns the files, so reviewers see only code that builds.
+Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Before each code-review or test-review, run `guide:build-commands.md ## Compile` and `## Lint` yourself for the code folders changed, and send failures to the executor that owns the files, so reviewers see only code that builds. Once the test-writers finish, run `## Unit tests` for those folders the same way before test-review, so it sees passing tests.
 
 Keep testing Subtasks from editing the same file so their writers can work in parallel. Tests that share a helper the Task changes go in one Subtask.
 
