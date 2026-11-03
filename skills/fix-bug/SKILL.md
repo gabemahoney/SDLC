@@ -1,13 +1,13 @@
 ---
 name: fix-bug
-description: "Fix a defined Bug in its recorded worktrees, prove the regression is covered, review and commit the fix, and hand it back for testing. Takes a Bug ID."
+description: "Fix a defined Bug in its own worktrees, prove the regression is covered, review and commit the fix, and hand it back for testing. Takes a Bug ID."
 ---
 
 # fix-bug
 
 ## Purpose
 
-You coordinate a Bug's fix, review and verification, then hand it to the Managing Intelligence to test.
+You set up a Bug's worktrees and coordinate its fix, review and verification, then hand it to the Managing Intelligence to test.
 
 ## Loading SDLC
 
@@ -21,7 +21,7 @@ A Bug ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and `protocol:ticket.md`, for operations.
-- **Bug and its Dependencies:** for the report, reproduction, decisions and progress. The Bug's `## Worktrees` says where you and your Child Agents work and holds any merge conflict teardown-worktree reported, and its `thinking_level` tag is the level you launch `engineer`, `test-writer` and `doc-writer` at.
+- **Bug and its Dependencies:** for the report, reproduction, decisions and progress. The Bug's `## Reproduction` names the repos the fix is likely to change, its `## Worktrees` holds any worktrees and merge conflict recorded earlier, and its `thinking_level` tag is the level you launch `engineer`, `test-writer` and `doc-writer` at.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for implementation, reviews, checks and commits in each affected repo.
 
 ## Gate
@@ -29,22 +29,23 @@ A Bug ID.
 Run only when all of these are true:
 
 - The Bug is `defined` or `active`. If it's `draft`, stop and suggest define-bug. Otherwise, stop and report its status.
-- The Bug has a `## Worktrees` record. Otherwise, stop and suggest configure-worktree.
 - Every ticket the Bug depends on is `done`. Otherwise, stop and report the blocking ticket IDs.
 
 ## Steps
 
-1. **Start or resume.** Set the Bug `active`. If the Managing Intelligence has noted under `## Decisions` what's still wrong after an earlier fix, fix that on top of the earlier commits. Resolve any merge conflict recorded in the Bug's `## Worktrees` on the Bug's branch, because teardown-worktree can't merge until it's gone. Before committing work left by an interrupted Run, have it reviewed.
+1. **Start or resume.** Set the Bug `active`. If the Managing Intelligence has noted under `## Decisions` what's still wrong after an earlier fix, fix that on top of the earlier commits. Resolve any merge conflict recorded in the Bug's `## Worktrees` on the Bug's branch, because the Managing Intelligence can't merge until it's gone. Before committing work left by an interrupted Run, have it reviewed.
 
-2. **Write a test that catches the Bug.** Before the fix, have test-writers add a failing regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted, that isn't covered yet, as Regression evidence below describes.
+2. **Set up worktrees.** For each repo the fix changes, create or reuse one worktree, with the branch and worktree named after the Bug's ID at the paths `~/.sdlc/install/workflow.md` defines and branched from the main checkout's current branch, so the fix stays off the base branch until it's accepted. Record each repo's main checkout, worktree path, branch and base branch under `## Worktrees`, because the Managing Intelligence merges from that record. Add a worktree the same way if the fix later needs another repo. If a main checkout that needs a new branch has uncommitted changes, which the branch would leave out, or something in the way isn't the Bug's, stop for the Managing Intelligence.
 
-3. **Fix and review.** Follow the Fix pipeline until accepted findings are fixed. If the fix needs a repo with no worktree, stop and suggest configure-worktree.
+3. **Write a test that catches the Bug.** Before the fix, have test-writers add a failing regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted, that isn't covered yet, as Regression evidence below describes.
+
+4. **Fix and review.** Follow the Fix pipeline until accepted findings are fixed.
 
    **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed, sending failures back through the Fix pipeline, until they pass.
 
-4. **Test the fix.** Rerun every scenario under `## Reproduction` and every noted failure to check the Bug is gone, then pass the Integration gate.
+5. **Test the fix.** Rerun every scenario under `## Reproduction` and every noted failure to check the Bug is gone, then pass the Integration gate.
 
-5. **Commit** in each worktree the fix changed.
+6. **Commit** in each worktree the fix changed.
 
 ## Child Agents
 
@@ -57,14 +58,14 @@ Use the Fix pipeline and Integration gate for sequencing. Start executors fresh 
 
 ## Writes
 
-The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Progress` (including the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current.
+The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Worktrees`, `## Progress` (including the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current.
 
 ## Done
 
 Report the Bug's ID, each worktree's path, branch and commit, and unaddressed findings with reasons.
 
 - If you stopped before committing, say what you need, and suggest re-running fix-bug once it's settled.
-- Otherwise, suggest the Managing Intelligence test the fix in its worktrees. If it passes, they set the Bug `done` and run teardown-worktree. If not, they note what's still wrong under `## Decisions` and run fix-bug again.
+- Otherwise, suggest the Managing Intelligence test the fix in its worktrees. If it passes, they set the Bug `done` and merge it, as `~/.sdlc/install/workflow.md`'s Bug flow describes. If not, they note what's still wrong under `## Decisions` and run fix-bug again.
 
 ## Handling Reviewer Feedback
 
@@ -76,7 +77,7 @@ You coordinate the work; your Child Agents do it. For each finding from code-rev
 
 ## Fix pipeline
 
-After step 2's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers.
+After step 3's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers.
 
 Split the testing work into assignments that don't edit the same files, so their writers can work in parallel.
 
@@ -90,8 +91,8 @@ Each scenario and noted failure needs an automated regression test that fails be
 
 ## Integration gate
 
-You run `guide:build-commands.md ## Integration tests` for every code folder the fix affects, following `guide:test-guide.md`. Keep the output somewhere that survives teardown.
+You run `guide:build-commands.md ## Integration tests` for every code folder the fix affects, following `guide:test-guide.md`. Keep the output somewhere that survives the worktrees' removal.
 
 The gate passes when suites pass, or when the Managing Intelligence accepts the remaining failures. If suites can't run, ask the Managing Intelligence.
 
-Send failures back through step 3, so every change is reviewed and checked before it's committed, then repeat step 4.
+Send failures back through step 4, so every change is reviewed and checked before it's committed, then repeat step 5.

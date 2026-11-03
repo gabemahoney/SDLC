@@ -83,7 +83,7 @@ Each transition has exactly one owner. Change only the tickets and statuses your
 
 Executors set their Subtasks `active` and `done`; only develop-epic sets a `done` Subtask back to `active`, to reopen it for a repair.
 
-The Managing Intelligence approves an Idea before write-prd and records the approval on the Idea, because the approved Idea bounds the PRD. It sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when teardown-worktree hits a merge conflict (fix-bug resolves it for a Bug; for an Idea, idea-review files it as a Round Feedback Epic), and manages Docs other than the PRD, SRD and Model Docs.
+The Managing Intelligence approves an Idea before write-prd and records the approval on the Idea, because the approved Idea bounds the PRD. It sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when their merge hits a conflict (fix-bug resolves it for a Bug; for an Idea, idea-review files it as a Round Feedback Epic), and manages Docs other than the PRD, SRD and Model Docs.
 
 ### Temporary end-of-bee report (through 2026-11-12)
 
@@ -106,7 +106,9 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 Each time the SRD becomes `defined`, the Managing Intelligence has one model-writer Main Agent per Model Doc run its during-build checks, skipping a Model Doc whose results are still current, outside the Plan because the Plan holds only the coding work. A violation is a design fix, not a Bug: the Managing Intelligence sends it through write-srd's revision (see SRD revisions), then write-plan and write-epic. The Idea isn't accepted until every check passes against the current SRD; a result stays current while its SR group and model are unchanged.
 
-**Bug:** write-bug → define-bug → configure-worktree → fix-bug → the Managing Intelligence's testing and acceptance (`done`) → teardown-worktree → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
+**Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence's testing, acceptance (`done`) and merge → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
+
+The Managing Intelligence merges an accepted Bug itself, because a few git commands don't need a Main Agent. In each main checkout the Bug's `## Worktrees` names, once no agent works in its worktree and the checkout is on its base branch with no uncommitted changes, merge the Bug's branch, then remove its worktree and branch. Record what merged and what was removed under `## Worktrees`, because release checks that record. If a merge conflicts, abort it, record the conflict there and set the Bug `active`, so fix-bug resolves it on the Bug's branch.
 
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 
@@ -124,7 +126,7 @@ Each time the SRD becomes `defined`, the Managing Intelligence has one model-wri
 
 - **Project Folder:** the nearest folder, from the working directory up, that holds `<Project Folder>/.sdlc/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.sdlc/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `setting:research_location`.
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
-- **Git:** project-setup may clone or create repos but commits nothing. write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree and release make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts without editing repository files.
+- **Git:** project-setup may clone or create repos but commits nothing. write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree, release and the Managing Intelligence's Bug merge make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts without editing repository files.
 - **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
 - **Guidance Documents come from the main checkout,** because worktree guides may still be in development. Load only the guides your skill names. For each, read copies in the main checkout's `.sdlc` (or the current code folder's, outside a repo), then parent `.sdlc` folders and `~/.sdlc`. Combine copies cumulatively; the Managing Intelligence settles conflicts. With no user copy, use `~/.sdlc/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.

@@ -44,7 +44,7 @@ Run only when all of these are true:
 3. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
 4. **Record the outcome** using the Bug sections below.
-   - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set its Thinking Level tag (below), then set it `defined` for configure-worktree.
+   - Confirmed by reproduction, source evidence or the Managing Intelligence's decision: set its Thinking Level tag (below), then set it `defined` for fix-bug.
    - The docs, evidence or a Managing Intelligence decision establish that the behaviour is intended or cannot happen: set `invalid`, with the reason.
    - Inconclusive: leave it `draft`, record what you couldn't establish, and ask the Managing Intelligence for guidance.
 
@@ -58,7 +58,7 @@ Update the Bug in the Bugs store, setting its status in step 4:
 
 - `## Report`: the current write-up, holding whatever `guide:bug-writing-guide.md` says a report contains.
 - `## Validation`: evidence, conclusion and anything you couldn't establish.
-- `## Reproduction`: commands or scripts, inputs, setup, the code revision, and the expected and observed results, so fix-bug can rerun the reported scenario. Include each repo's main checkout path for the repos the reproduction touched and the repos the fix is likely to change, so configure-worktree can find them. If it cannot run, say why.
+- `## Reproduction`: commands or scripts, inputs, setup, the code revision, and the expected and observed results, so fix-bug can rerun the reported scenario. Include each repo's main checkout path for the repos the reproduction touched and the repos the fix is likely to change, so fix-bug can set up their worktrees. If it cannot run, say why.
 - `## Decisions`: the Managing Intelligence's decisions.
 
 Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, and point `## Reproduction` at the attached copies, then delete the scratch files you made there.
@@ -75,5 +75,5 @@ When unsure between two levels, choose the higher one.
 
 Report the Bug's ID, status and unresolved work with reasons.
 
-- If it's `defined`, suggest configure-worktree.
+- If it's `defined`, suggest fix-bug.
 - If it's still `draft`, report what is needed to settle it.
