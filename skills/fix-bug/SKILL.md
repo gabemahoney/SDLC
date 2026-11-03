@@ -87,8 +87,8 @@ For each finding from code-review, test-review or doc-review:
 
 ## Fix pipelines
 
-- **Small:** for a code fix in a Bug tagged `medium` or below, or `high` when the fix stays in one function or file and raises no design question, because the engineer still runs at the `high` level. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change. If a `high` fix leaves one file or meets a design question, switch to Full and record why.
-- **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it. Skip the Integration gate and run `## Unit tests` only for code folders whose tests read the changed docs, because no code changed. If such a test must change, the fix isn't docs-only: switch to Small or Full.
+- **Small:** for a code fix in a Bug tagged `medium` or below, or `high` when the fix stays in one function or file and raises no design question, because the engineer still runs at the `high` level. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
+- **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it. Skip the Integration gate and run `## Unit tests` only for code folders whose tests read the changed docs, because no code changed.
 - **Full:** for every other code fix. After `test-writer`s write step 4's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 
 If fixes stop making progress, stop for the Managing Intelligence, so a fix loop doesn't burn the budget.
