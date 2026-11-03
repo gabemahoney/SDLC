@@ -35,15 +35,15 @@ Run only when all of these are true:
 
 1. **Start or resume.** Set the Bug `active`. If the Managing Intelligence has noted under `## Decisions` what's still wrong after an earlier fix, fix that on top of the earlier commits. Resolve any merge conflict recorded in the Bug's `## Worktrees` on the Bug's branch, because the Managing Intelligence can't merge until it's gone. Before committing work left by an interrupted Run, have it reviewed.
 
-2. **Set up worktrees.** For each repo the fix changes, create or reuse one worktree, with the branch and worktree named after the Bug's ID at the paths `~/.sdlc/install/workflow.md` defines and branched from the main checkout's current branch, so the fix stays off the base branch until it's accepted. Record each repo's main checkout, worktree path, branch and base branch under `## Worktrees`, because the Managing Intelligence merges from that record. Add a worktree the same way if the fix later needs another repo. If a main checkout that needs a new branch has uncommitted changes, which the branch would leave out, or something in the way isn't the Bug's, stop for the Managing Intelligence.
+2. **Set up worktrees** for each repo the fix changes, now or later, as `~/.sdlc/install/workflow.md`'s Worktrees rule says.
 
-3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`, so the effort fits the fix. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first only when the approach is questionable.
+3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first when the guides don't settle it or it changes behaviour others rely on.
 
-4. **Write a test that catches the Bug.** Before the fix, have your pipeline's test writer add a failing regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted, that isn't covered yet, as Regression evidence below describes.
+4. **Write a test that catches the Bug.** Before the fix, have the engineer in Small, or test-writers in Full, add a failing regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted, that isn't covered yet, as Regression evidence below describes.
 
-5. **Fix and review.** Follow your pipeline until accepted findings are fixed.
+5. **Fix and review.** Follow your pipeline until accepted findings are fixed, running checks before each review as `~/.sdlc/install/workflow.md`'s Checks rule says.
 
-   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Send failures back through your pipeline and confirm each repair with the checks it affects, then rerun all three, until they pass.
+   **Run the commit checks yourself:** `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Send failures back through your pipeline until they pass.
 
 6. **Test the fix.** Rerun every scenario under `## Reproduction` and every noted failure to check the Bug is gone, then pass the Integration gate.
 
@@ -51,7 +51,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-Your pipeline and the Integration gate say which Child Agents to launch and when. Start executors fresh for each Run and reuse them for its fix rounds, to preserve their knowledge. Start the full pipeline's reviewers fresh every time, so each assessment is independent.
+Start executors, and the small and docs-only pipelines' reviewer, fresh each Run and reuse them for its fix rounds, to preserve their knowledge; start the full pipeline's reviewers fresh every time, so each assessment is independent.
 
 - **`engineer`:** Expect implementation, targeted checks, deviations, effects on documentation and regression evidence for tests it writes.
 - **`test-writer`:** Launch one per testing assignment, telling each which is theirs. Expect tests, fixtures, gaps and regression evidence.
@@ -60,7 +60,7 @@ Your pipeline and the Integration gate say which Child Agents to launch and when
 
 ## Writes
 
-The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Worktrees`, `## Progress` (including your pipeline and reason, any approach you chose, and the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current.
+The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Worktrees`, `## Progress` (including the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current.
 
 ## Retrospective notes
 
@@ -87,17 +87,17 @@ You coordinate the work; your Child Agents do it. For each finding from code-rev
 
 ## Fix pipelines
 
-Before each `code-review` or `test-review`, run `guide:build-commands.md ## Compile` and `## Lint` yourself for the code folders changed, and send failures to the executor that owns the files, so reviewers see only code that builds. Once the test-writers finish, run `## Unit tests` for those folders the same way before test-review, so it sees passing tests.
+A Bug tagged `high` or above takes Full unless the Managing Intelligence agrees otherwise, because define-bug rated its fix hard or risky.
 
-- **Small:** for a fix in one place with a low cost of mistakes. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change. Resume both for each fix round, because they already know the change.
-- **Docs only:** for a fix that changes only documentation. One `doc-writer` makes the change and one `doc-review` reviews it, both resumed for each fix round. Skip step 4, `## Unit tests` and the Integration gate, because there is no code to test.
+- **Small:** only for a Bug tagged `medium`. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
+- **Docs only:** for a fix that changes only documentation. One `doc-writer` makes the change and one `doc-review` reviews it. Skip step 4, `## Unit tests` and the Integration gate, because there is no code to test.
 - **Full:** for a fix that needs design judgement, spans modules or risks costly mistakes. After `test-writer`s write step 4's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 
 If fixes stop making progress, stop for the Managing Intelligence, so a fix loop doesn't burn the budget.
 
 ## Regression evidence
 
-Each scenario and noted failure needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
+Except in the docs-only pipeline, each scenario and noted failure needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
 
 ## Integration gate
 
@@ -105,4 +105,4 @@ You run `guide:build-commands.md ## Integration tests` for every code folder the
 
 The gate passes when suites pass, or when the Managing Intelligence accepts the remaining failures. If suites can't run, ask the Managing Intelligence.
 
-Send failures back through step 5, so every change is reviewed and checked before it's committed. Confirm each repair with the integration tests it affects, then repeat step 6 once for all repairs, because a full run per repair costs much and adds little.
+Send failures back through step 5, so every change is reviewed and checked before it's committed, then repeat step 6 once for all repairs, as `~/.sdlc/install/workflow.md`'s Checks rule says.

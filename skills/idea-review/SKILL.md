@@ -43,7 +43,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-- **`code-review`:** Start fresh every time for independence. Launch across the Idea's source changes. Expect correctness, engineering and lint findings.
+- **`code-review`:** Start fresh every time for independence. Launch across the Idea's source changes. Expect correctness and engineering findings.
 - **`test-review`:** Start fresh every time for independence. Launch across the Idea's tests. Expect quality, coverage and duplication findings.
 - **`doc-review`:** Start fresh every time for independence. Launch across the Idea's documentation. Expect incomplete, missing or outdated documentation findings.
 - **`product-manager`:** Start fresh every time for independence. Launch after those reviewers so it sees the combined result. Expect requirements, scope and proportion findings against the PRD and SRD.

@@ -42,7 +42,7 @@ None: you file the Idea yourself.
 
 A new `draft` Idea in the Ideas store, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original.
 
-Revise in place, so the body shows only the current direction, and link its history under `## Artifacts`, so it survives.
+Revise in place, so the body shows only the current direction, and link its history under `## Artifacts`, so it survives. A revision keeps sections other skills own, such as `## Review rounds`, `## Declined findings` and `## Retrospective notes`.
 
 ## Retrospective notes
 

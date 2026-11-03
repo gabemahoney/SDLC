@@ -25,15 +25,11 @@ An Idea ID, and any repos the caller names.
 
 ## Gate
 
-Run only when all of these are true:
-
-- The Idea and its Plan are `defined` or `active`. Otherwise, stop and report which isn't.
-- Each main checkout that needs a new branch is clean, because the branch would leave uncommitted changes out. Otherwise, stop and tell the Managing Intelligence which ones aren't.
+Run only when the Idea and its Plan are `defined` or `active`. Otherwise, stop and report which isn't.
 
 ## Steps
 
-1. **Create or reuse the worktrees,** one per repo, with the branch and worktree named after the Idea's ID at the paths `~/.sdlc/install/workflow.md` defines, so every ticket's worktrees are named the same way and anyone can tell whose work it is. Branch from each main checkout's current branch, and reuse any worktree the Idea already has. If something already in the way isn't the Idea's, stop for the Managing Intelligence.
-2. **Record them** on the Idea's Plan.
+1. **Create or reuse the worktrees and record them** on the Idea's Plan, as `~/.sdlc/install/workflow.md`'s Worktrees rule says.
 
 ## Child Agents
 
@@ -41,7 +37,7 @@ None: you prepare the worktrees yourself.
 
 ## Writes
 
-- **The Idea's Plan:** under `## Worktrees`, each repo's main checkout, worktree path, branch and base branch, so later skills can find the work and teardown-worktree knows where to merge it.
+- **The Idea's Plan:** its `## Worktrees` record.
 - **Repos:** the Idea's branches and worktrees.
 
 ## Retrospective notes

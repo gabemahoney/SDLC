@@ -7,7 +7,7 @@ description: "Update documentation for assigned Subtask IDs or a Bug ID."
 
 ## Purpose
 
-You update documentation for develop-epic or fix-bug after source and test changes, including accepted review repairs.
+You update documentation for develop-epic or fix-bug after any source and test changes, including accepted review repairs.
 
 ## Loading SDLC
 

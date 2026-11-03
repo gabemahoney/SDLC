@@ -44,7 +44,7 @@ Run only when all of these are true:
 
 2. **Complete Tasks in Dependency order, one at a time.** Update stale instructions, set the Task `active` and follow the Task pipeline until Subtasks are `done` and accepted findings are fixed.
 
-   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the Task changed. Send each failure to the executor that owns the files and confirm each repair with the checks it affects, then rerun all three. Commit and set the Task `done` only when all three pass, so every commit leaves working code.
+   **Run the commit checks yourself,** as `~/.sdlc/install/workflow.md`'s Checks rule says: `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the Task changed. Commit and set the Task `done` only when all three pass, so every commit leaves working code.
 
 3. **Finish the Epic.** Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
 
@@ -57,7 +57,7 @@ Use the Task pipeline and Integration gate for sequencing. Before sending an exe
 - **`engineer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
 - **`test-writer`:** Start fresh for each Task and reuse each writer for fix rounds to preserve its knowledge. Launch one per testing Subtask, in parallel. Use them for integration failures in tests. Expect unit and integration tests, fixtures, repairs, gaps and only targeted checks on its own work following `guide:test-guide.md`, because you run the full suites.
 - **`doc-writer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch when documentation is affected. Expect updates following `guide:doc-writing-guide.md` and implementation gaps.
-- **`code-review`:** Start fresh every time so each assessment is independent. Launch after source changes. Expect correctness, engineering and lint findings with references and suggested fixes.
+- **`code-review`:** Start fresh every time so each assessment is independent. Launch after source changes. Expect correctness and engineering findings with references and suggested fixes.
 - **`test-review`:** Start fresh every time so each assessment is independent. Launch after unit or integration test changes. Expect quality, coverage and duplication findings across the suite.
 - **`doc-review`:** Start fresh every time so each assessment is independent. Launch after documentation changes. Expect findings on complete touched documents and missing or outdated documentation.
 - **`product-manager`:** Start fresh every time so each assessment is independent. Launch after each Task's executors and reviewers, after fixes affecting behaviour and after the Epic's Integration gate. Expect requirements, scope and proportion findings, including incomplete work and Managing Intelligence decisions needed.
@@ -95,20 +95,18 @@ You coordinate the work; your Child Agents do it. For each finding from code-rev
 
 ## Task pipeline
 
-Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Before each code-review or test-review, run `guide:build-commands.md ## Compile` and `## Lint` yourself for the code folders changed, and send failures to the executor that owns the files, so reviewers see only code that builds. Once the test-writers finish, run `## Unit tests` for those folders the same way before test-review, so it sees passing tests.
+Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Run checks before each review as the Checks rule says.
 
 Keep testing Subtasks from editing the same file so their writers can work in parallel. Tests that share a helper the Task changes go in one Subtask.
 
 Group accepted findings into repair rounds, as Handling Reviewer Feedback describes. Resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check repairs until accepted findings are fixed.
 
-For these checks and step 2's commit checks, skip only sections marked `none` with a reason.
-
 ## Integration gate
 
-You run `guide:build-commands.md ## Integration tests` for every affected code folder after the Epic's Tasks, following `guide:test-guide.md`. Skip sections marked `none` with a reason. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
+You run `guide:build-commands.md ## Integration tests` for every affected code folder after the Epic's Tasks, following `guide:test-guide.md`. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
 
 Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures under `## Checks` on the Epic. If suites cannot run, ask the Managing Intelligence.
 
-Route test failures to test-writer, then test-review, and run step 2's commit checks yourself before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Confirm each repair with the integration tests it affects, then rerun the suites once after all repairs are committed, to check their combined result.
+Route test failures to test-writer, then test-review, and run step 2's commit checks yourself before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Rerun the suites once all repairs are committed, as the Checks rule says.
 
 If repairs stop making progress, stop for the Managing Intelligence so a repair loop doesn't burn the budget.

@@ -2,7 +2,7 @@
 
 ## Terms
 
-- **Managing Intelligence:** the person or bot acting for one who chooses skills, starts Main Agents, answers questions and tests results.
+- **Managing Intelligence:** the person or bot acting for one who chooses skills, starts Main Agents, answers questions, tests results and writes retrospectives.
 - **User:** the person the Managing Intelligence acts for, or the Managing Intelligence itself when it is a person.
 - **Agent:** the AI coding tool SDLC runs in: Claude Code, Codex CLI or Cursor.
 - **Main Agent:** an Agent started by the Managing Intelligence to run one skill and report back.
@@ -93,19 +93,19 @@ From an Idea's approval or a Bug's filing to its acceptance, watch its work for 
 - Where did we spend too much time and not gain value? How could it have been avoided?
 - Where did we spend too many tokens and not gain value? How could it have been avoided?
 
-Before setting the Idea or Bug `done`, summarize your findings and its Main Agents' notes under `## Retrospective`, because whoever maintains SDLC consolidates these into SDLC improvements.
+Write your notes only while no Main Agent is writing that ticket, so no update is lost. Before setting the Idea or Bug `done`, gather its Main Agents' notes from it, its Docs, Plan and Epics, and their Research tickets, and summarize them with your findings under `## Retrospective`, because whoever maintains SDLC consolidates these into SDLC improvements.
 
 ## Flows
 
-**Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing and acceptance → teardown-worktree → release. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again. A round that finds an unmet PRD requirement no SRD requirement covers sends it back through write-srd and write-plan first.
+**Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic for each Epic → develop-epic for each Epic → idea-review → the Managing Intelligence's testing, retrospective and acceptance → teardown-worktree → release. Each round of idea-review that has non-trivial findings files them as a Round Feedback Epic, which goes through write-epic and develop-epic before idea-review runs again. A round that finds an unmet PRD requirement no SRD requirement covers sends it back through write-srd and write-plan first.
 
 An Idea has at most one PRD and one SRD, and needs both before planning. An Idea may have several Model Docs, one per modelled SRD part.
 
 Each time the SRD becomes `defined`, the Managing Intelligence has one model-writer Main Agent per Model Doc run its during-build checks, skipping a Model Doc whose results are still current, outside the Plan because the Plan holds only the coding work. A violation is a design fix, not a Bug: the Managing Intelligence sends it through write-srd's revision (see SRD revisions), then write-plan and write-epic. The Idea isn't accepted until every check passes against the current SRD; a result stays current while its SR group and model are unchanged.
 
-**Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence's testing, acceptance (`done`) and merge → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
+**Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence's testing, retrospective, acceptance (`done`) and merge → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
 
-The Managing Intelligence merges an accepted Bug itself, because a few git commands don't need a Main Agent. In each main checkout the Bug's `## Worktrees` names, once no agent works in its worktree and the checkout is on its base branch with no uncommitted changes, it merges the Bug's branch, then removes its worktree and branch. It records what merged and what was removed under `## Worktrees`, because release checks that record. If a merge conflicts, it aborts the merge, records the conflict there and sets the Bug `active`, so fix-bug resolves it on the Bug's branch.
+The Managing Intelligence merges an accepted Bug itself, because a few git commands don't need a Main Agent. It waits until no agent works in the Bug's worktrees. Each main checkout its `## Worktrees` names must be on its base branch, and each checkout and worktree free of uncommitted changes; if one isn't, it settles that first without losing anyone's work. It checks every repo merges cleanly before landing any, merges them all, then removes the worktrees and branches, so no base branch holds part of the fix. It records what merged and what was removed under `## Worktrees`, because release checks that record. If any repo conflicts, it lands nothing, records the conflict there and sets the Bug `active`, so fix-bug resolves it on the Bug's branch.
 
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 
@@ -124,7 +124,7 @@ The Managing Intelligence merges an accepted Bug itself, because a few git comma
 - **Project Folder:** the nearest folder, from the working directory up, that holds `<Project Folder>/.sdlc/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.sdlc/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `setting:research_location`.
 - **Repos:** the Project's repos are its main checkouts under the Project Folder.
 - **Git:** project-setup may clone or create repos but commits nothing. write-idea, write-bug, write-prd, write-srd, req-review, write-plan, write-epic and research work without git. develop-epic, idea-review, fix-bug, configure-worktree, teardown-worktree, release and the Managing Intelligence's Bug merge make repository changes only inside repo checkouts. define-bug reproduces defects in main checkouts without editing repository files.
-- **Worktrees:** a worktree of a repo lives at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder.
+- **Worktrees:** an Idea or Bug gets one worktree in each repo it changes, at `<Project Folder>/.worktrees/<ticket id>/<repo path>`, where `<repo path>` is the repo's path under the Project Folder. Its branch is named after its ID and made from the main checkout's current branch, so its work stays off the base branch until it's accepted. Reuse any it already has. Record each repo's main checkout, worktree path, branch and base branch under `## Worktrees` on the Idea's Plan or the Bug, because later skills find and merge the work from that record. Stop for the Managing Intelligence if a main checkout that needs a new branch has uncommitted changes, because the branch would leave them out, or if something in the way isn't the ticket's.
 - **Guidance Documents come from the main checkout,** because worktree guides may still be in development. Load only the guides your skill names. For each, read copies in the main checkout's `.sdlc` (or the current code folder's, outside a repo), then parent `.sdlc` folders and `~/.sdlc`. Combine copies cumulatively; the Managing Intelligence settles conflicts. With no user copy, use `~/.sdlc/<name>-default-fallback.md`.
 - **Commits:** commit per repo, naming the ticket. A Task that spans repos gets one commit per repo.
 - **Pushing:** push only as the Project's `guide:release-guide.md` allows.
@@ -211,15 +211,21 @@ Start Child Agents fresh unless the skill retains them, so unrelated work does n
 
 Before each new unit of work, every Main Agent checks its own context fraction as its Agent Protocol File describes, and skips its own check where that file says no reading exists yet. At 75% or more, or when a reading should exist but can't be made, record progress on the ticket and stop for the Managing Intelligence to start a fresh session with the same skill and ticket IDs, because a nearly full context causes mistakes.
 
-Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains.
+Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains. Within one fix-bug Run or develop-epic Task, you may resume executors and the small or docs-only pipeline's reviewer for fix rounds even when no reading exists, because a single Run's or Task's context stays small.
+
+### Checks
+
+develop-epic and fix-bug run Build Commands themselves for the code folders a change touches, skipping only sections marked `none` with a reason, and send each failure to the executor that owns the files. Before each code-review or test-review they run Compile and Lint, and before test-review Unit Tests too, so reviewers see only code that builds and tests that pass. They confirm each repair with the checks it affects, then rerun the full checks once all repairs are in, because a full run per repair costs much and adds little. A commit check may reuse a passing run if no file it covers has changed since.
 
 ### Review findings
 
-Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. Whoever fixes a finding sweeps the whole change for its kind of problem, not just the places cited, because each place missed costs another round. Before another review round, whoever runs the review weighs whether the remaining findings are worth a full pass; once they're nits, it records them as declined and moves on, because a full pass costs more than nits are worth. Record only declined or unaddressed findings on the ticket they concern, each with its reason, so the next skill sees what remains. Product questions go to the Managing Intelligence, who decides the expected behaviour. idea-review files non-trivial findings for correction and hands the result to the Managing Intelligence for acceptance.
+Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. When you fix a finding, sweep the change for its kind of problem within the files you own, not just the places cited, because each place missed costs another round; report other places to your Main Agent. After a repair round, review again only if it repaired blocker or suggestion findings; decline nits instead of repairing them, because a full pass costs more than nits are worth. Record only declined or unaddressed findings on the ticket they concern, each with its reason, so the next skill sees what remains. Product questions go to the Managing Intelligence, who decides the expected behaviour. idea-review files non-trivial findings for correction and hands the result to the Managing Intelligence for acceptance.
 
 ### Tickets carry the information
 
 Main Agents and Child Agents keep decisions, repair instructions, progress and handoffs on the ticket they concern so later work can continue from the record. A launch, continuation or report names those tickets rather than repeating their contents, because copied instructions can drift from the record.
+
+"Your ticket" in a skill is the one its Input names or it files; model-writer's is its Model Doc. Add to `## Retrospective notes` without replacing others' notes, because several agents write there.
 
 ### SRD revisions
 
