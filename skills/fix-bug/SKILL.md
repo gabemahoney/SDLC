@@ -83,19 +83,19 @@ For each finding from code-review, test-review or doc-review:
 
 - **Fix it:** return it to the executor that owns the files.
 - **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason under `## Declined findings` and in the Done report.
-- **Ask the Managing Intelligence:** for expected behaviour, or conflicts with the Bug's report and decisions, because those are theirs to decide. Take them any finding that one of their decisions breaks existing behaviour or the Bug's requirements, with its evidence, rather than declining it, because the decision may be wrong.
+- **Ask the Managing Intelligence:** for expected behaviour, or conflicts with the Bug's report and decisions, because those are theirs to decide.
 
 ## Fix pipelines
 
-- **Small:** for a Bug tagged `medium`, or `high` when the fix stays in one function or file and raises no design question, because a `high` tag still gives the engineer a stronger model. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
-- **Docs only:** for a fix that changes only documentation. One `doc-writer` makes the change and one `doc-review` reviews it. Skip step 4, `## Unit tests` and the Integration gate, because no code changed, but run any tests that read the changed docs before committing.
-- **Full:** for every other code fix, including any tagged `xhigh` or above. After `test-writer`s write step 4's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
+- **Small:** for a code fix in a Bug tagged `medium` or below, or `high` when the fix stays in one function or file and raises no design question, because the engineer still runs at the `high` level. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change. If a `high` fix leaves one file or meets a design question, switch to Full and record why.
+- **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it. Skip the Integration gate and run `## Unit tests` only for code folders whose tests read the changed docs, because no code changed. If such a test must change, the fix isn't docs-only: switch to Small or Full.
+- **Full:** for every other code fix. After `test-writer`s write step 4's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 
 If fixes stop making progress, stop for the Managing Intelligence, so a fix loop doesn't burn the budget.
 
 ## Regression evidence
 
-Except in the docs-only pipeline, each scenario under `## Reproduction` and each noted failure needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
+Except in the docs-only pipeline, each scenario under `## Reproduction` and each failure noted under `## Decisions` needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
 
 ## Integration gate
 

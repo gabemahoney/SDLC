@@ -87,11 +87,11 @@ Report the Epic's ID and unaddressed findings with reasons.
 
 ## Handling Reviewer Feedback
 
-You coordinate the work; your Child Agents do it. For each finding from code-review, test-review, doc-review or product-manager:
+For each finding from code-review, test-review, doc-review or product-manager:
 
 - **Fix it:** return it to the executor that owns the files.
 - **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason under `## Declined findings` on the Task or Epic and in the Done report, so the Managing Intelligence sees what was left.
-- **Ask the Managing Intelligence:** for product questions or conflicts with the PRD or SRD, because those are their approved decisions. Take them any finding that one of their decisions breaks existing behaviour or a requirement, with its evidence, rather than declining it, because the decision may be wrong.
+- **Ask the Managing Intelligence:** for product questions or conflicts with the PRD or SRD, because those are their approved decisions.
 
 ## Task pipeline
 
