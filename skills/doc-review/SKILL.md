@@ -52,7 +52,7 @@ None: keep files and tickets unchanged, because executors own repairs and the Ma
 
 ## Done
 
-Report the ticket ID, findings and any review limitations to your Main Agent as `protocol:launcher.md` describes. Give each finding its impact, document reference and suggested fix so it can be acted on. State when there are no findings.
+Report the ticket ID, findings and any review limitations to your Main Agent as `protocol:launcher.md` describes. Report each kind of problem as one finding with its impact, suggested fix and every place you find it, so it can be fixed everywhere in one round. State when there are no findings.
 
 ## Review judgement
 

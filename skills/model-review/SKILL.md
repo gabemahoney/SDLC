@@ -44,7 +44,7 @@ None: keep files and tickets unchanged, because model-writer owns repairs and yo
 
 ## Done
 
-Report the Model Doc ID, findings with references and suggested fixes, or no findings, and review limitations to your Main Agent as `protocol:launcher.md` describes.
+Report the Model Doc ID, findings or no findings, and review limitations to your Main Agent as `protocol:launcher.md` describes. Report each kind of problem as one finding with its suggested fix and every place you find it, so it can be fixed everywhere in one round.
 
 ## Review judgement
 

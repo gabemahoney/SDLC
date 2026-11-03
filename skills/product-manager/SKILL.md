@@ -73,7 +73,7 @@ None: your review is read-only, because the Main Agent coordinates corrections a
 
 ## Done
 
-Report ticket IDs, findings with references and suggested corrections, incomplete work, clashes with other Tasks or Epics, and decisions needed to your Main Agent as `protocol:launcher.md` describes. State when there are no findings.
+Report ticket IDs, findings, incomplete work, clashes with other Tasks or Epics, and decisions needed to your Main Agent as `protocol:launcher.md` describes. Report each kind of problem as one finding with its suggested correction and every place you find it, so it can be fixed everywhere in one round. State when there are no findings.
 
 ## Review judgement
 

@@ -44,7 +44,7 @@ Run only when all of these are true:
 
 2. **Complete Tasks in Dependency order, one at a time.** Update stale instructions, set the Task `active` and follow the Task pipeline until Subtasks are `done` and accepted findings are fixed.
 
-   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the Task changed. Send each failure to the executor that owns the files, then rerun all three. Commit and set the Task `done` only when all three pass, so every commit leaves working code.
+   **Run the commit checks yourself.** Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the Task changed. Send each failure to the executor that owns the files and confirm each repair with the checks it affects, then rerun all three. Commit and set the Task `done` only when all three pass, so every commit leaves working code.
 
 3. **Finish the Epic.** Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
 
@@ -87,13 +87,13 @@ You coordinate the work; your Child Agents do it. For each finding from code-rev
 
 ## Task pipeline
 
-Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result.
+Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Before each code-review or test-review, run `guide:build-commands.md ## Compile` and `## Lint` yourself for the code folders changed, and send failures to the executor that owns the files, so reviewers see only code that builds.
 
 Keep testing Subtasks from editing the same file so their writers can work in parallel. Tests that share a helper the Task changes go in one Subtask.
 
 Group accepted findings into repair rounds, as Handling Reviewer Feedback describes. Resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check repairs until accepted findings are fixed.
 
-For the commit checks in step 2, skip only sections marked `none` with a reason.
+For these checks and step 2's commit checks, skip only sections marked `none` with a reason.
 
 ## Integration gate
 
@@ -101,6 +101,6 @@ You run `guide:build-commands.md ## Integration tests` for every affected code f
 
 Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures under `## Checks` on the Epic. If suites cannot run, ask the Managing Intelligence.
 
-Route test failures to test-writer, then test-review, and run step 2's commit checks yourself before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Rerun integration after all repairs are committed to check their combined result.
+Route test failures to test-writer, then test-review, and run step 2's commit checks yourself before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Confirm each repair with the integration tests it affects, then rerun the suites once after all repairs are committed, to check their combined result.
 
 If repairs stop making progress, stop for the Managing Intelligence so a repair loop doesn't burn the budget.

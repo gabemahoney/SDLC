@@ -216,9 +216,11 @@ Before each new unit of work, every Main Agent checks its own context fraction a
 
 Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains.
 
-### Tickets carry the information
+### Review findings
 
-Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. Record only declined or unaddressed findings on the ticket they concern, each with its reason, so the next skill sees what remains. Product questions go to the Managing Intelligence, who decides the expected behaviour. idea-review files non-trivial findings for correction and hands the result to the Managing Intelligence for acceptance.
+Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. Whoever fixes a finding sweeps the whole change for its kind of problem, not just the places cited, because each place missed costs another round. Before another review round, whoever runs the review weighs whether the remaining findings are worth a full pass; once they're nits, it records them as declined and moves on, because a full pass costs more than nits are worth. Record only declined or unaddressed findings on the ticket they concern, each with its reason, so the next skill sees what remains. Product questions go to the Managing Intelligence, who decides the expected behaviour. idea-review files non-trivial findings for correction and hands the result to the Managing Intelligence for acceptance.
+
+### Tickets carry the information
 
 Main Agents and Child Agents keep decisions, repair instructions, progress and handoffs on the ticket they concern so later work can continue from the record. A launch, continuation or report names those tickets rather than repeating their contents, because copied instructions can drift from the record.
 
