@@ -23,7 +23,7 @@ Write one-line settings as `<name>: <value>`, or use a `## <name>` heading for a
 | `research_location` | Absolute folder path for Research tickets, Reports and artifacts, located through the ticket protocol. A home default shares research across Projects; a Project override selects a separate store. Research uses the requesting Project's guide. |
 | `levels` | A block mapping all five Thinking Levels to an Agent, model, effort or mode and any launch template. See [Thinking Levels](thinking-levels.md). |
 | `ticket_links` | Agreed instructions for Dependencies, Associations or Source References the selected ticket protocol does not cover. Only needed for uncovered link types. |
-| `child_watch_command` | Optional host command followed by Child Agent IDs. It must return when any child's state leaves `pending` or `working`, printing `<id> <state>`. Setup offers it in home defaults; when unset, the launcher protocol supplies status polling. |
+| `child_watch_command` | Optional host command followed by Child Agent IDs. It must return when any child's state leaves `pending` or `working`, printing `<id> <state>`. Setup offers it in home defaults; when unset or empty, the launcher protocol supplies status polling. |
 
 Setup suggestions are choices to save, not automatic runtime defaults. If a Run needs a setting absent from both files, it stops and points to project-setup. Another ticket system or launcher needs a corresponding protocol with the operations setup checks.
 

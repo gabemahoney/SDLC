@@ -58,7 +58,7 @@ None.
 
 ## Done
 
-Report the Project Folder, the Project Template applied or saved, and any incomplete setup or failed installation checks. Guidance written in repos needs a commit by the Managing Intelligence, because you make no commits. Next: write-idea or write-bug, or project-setup with the saved template for another Project.
+Report the Project Folder, the Project Template applied or saved, and any incomplete setup, failed installation checks or gaps. Guidance written in repos needs a commit by the Managing Intelligence, because you make no commits. Next: write-idea or write-bug, or project-setup with the saved template for another Project.
 
 ## Settings guidance
 
@@ -72,7 +72,7 @@ Apply and save only settings named in this skill. Remove any others from Project
 - **Intakes and Resolvers:** settle `setting:new_idea_intake` and `setting:new_bug_intake`, suggesting `~/.sdlc/install/intakes/interview.md` when unset. Offer optional `setting:resolvers` entries for custom or overridden kinds as `~/.sdlc/install/workflow.md`'s Intakes and Resolvers describes, so user files survive upgrades and unmapped kinds use shipped Resolvers. Check the selected files and their prerequisites, so intake and source reading can run.
 - **Agent mappings:** offer `setting:levels` in the format in `~/.sdlc/install/templates/thinking-levels.md`, so the Managing Intelligence can choose an Agent, model, its own effort and any launch template for each of `low`, `medium`, `high`, `xhigh` and `max`. Have them supply missing or corrected entries, checking Cursor models as `protocol:agent-cursor.md ## Models` says, so each Cursor level names a usable model. Check every named Agent is installed with its skills and each level's launch template, as its Agent Protocol File's `## Launch template` selects, so each configured level can launch.
 - **`setting:research_location`:** offer the existing `setting:research_location`; otherwise recommend a shared location such as `~/research/tickets`, because answers can serve other Projects. A shared choice goes in default settings with the Project override removed; a Project-local choice goes in Project settings. Store folder locations as absolute paths so all working directories resolve them alike.
-- **`setting:child_watch_command`:** offer it when the host ships a command that waits on Child Agents, as a home default in `~/.sdlc/default_project_settings.md`, because it belongs to the host rather than the Project. Check it meets `protocol:launcher.md ## Knowing when a Child Agent's state changes`: it takes Child Agent ids, returns when any leaves `pending` or `working`, and prints `<id> <state>`. Otherwise leave it unset, so the Launcher Protocol File's fallback applies.
+- **`setting:child_watch_command`:** offer it when the host ships a command that waits on Child Agents, as a home default in `~/.sdlc/default_project_settings.md`, because it belongs to the host rather than the Project. Check it meets `protocol:launcher.md ## Knowing when a Child Agent's state changes`: it takes Child Agent ids, returns when any leaves `pending` or `working`, and prints `<id> <state>`. When none qualifies, leave it unset. Report an unset or empty value, including an empty Project override, as a gap in Done, because the Launcher Protocol File's fallback spends a model turn on every re-check.
 
 ## Guidance
 
