@@ -59,6 +59,14 @@ Run only when all of these are true:
 - **Revised work:** reset affected Tasks and Subtasks to `draft`, even if previously `active` or `done`, so develop-epic executes the revised work. Have planners revise the Subtasks. Delete obsolete unimplemented work.
 - **The Epic and its draft children:** set to `defined` in step 4. Record unfinished writing under `## Progress` on the Epic, so a later Run can resume it. Record declined or unaddressed review findings with reasons under `## Declined findings` on the Task or Epic they concern.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Epic's ID, and any `product-manager` findings left unaddressed with the reason.

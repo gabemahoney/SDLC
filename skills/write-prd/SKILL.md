@@ -58,6 +58,14 @@ Record each approved guide exception once under `## Guide exceptions` on the PRD
 
 Create or update the Idea's Doc titled `PRD`. Set it `draft` because a new or revised PRD needs approval. Record declined or unaddressed review findings with their reasons under `## Declined findings` on the PRD.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the PRD's ID and anything left unaddressed with the reason.

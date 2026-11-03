@@ -69,6 +69,14 @@ Record each approved guide exception once under `## Guide exceptions` on the PRD
 - **Model Docs:** one per modelled SR group, maintained by `model-writer`. Keep model files attached to the Doc, outside repos, so they stay with requirements. Use `## Model` for the modelled SR group and Formal Model, `## Modelling assumptions` for bounds and assumptions, `## Artifacts` for file links, `## Progress` for repair instructions, `## Checks` for each check's set, checker evidence and exposed SRD bugs, and `## Declined findings` for declined or unaddressed findings with reasons.
 - **Research:** associate each Research ticket `research` files with the SRD.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the SRD's ID, its Model Doc and Research ticket IDs, and anything left unaddressed with the reason. If the Plan was reset, report its ID.

@@ -85,18 +85,15 @@ Executors set their Subtasks `active` and `done`; only develop-epic sets a `done
 
 The Managing Intelligence approves an Idea before write-prd and records the approval on the Idea, because the approved Idea bounds the PRD. It sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when their merge hits a conflict (fix-bug resolves it for a Bug; for an Idea, idea-review files it as a Round Feedback Epic), and manages Docs other than the PRD, SRD and Model Docs.
 
-### Temporary end-of-bee report (through 2026-11-12)
+### Managing Intelligence retrospectives
 
-When you act as Managing Intelligence and accept an Idea or Bug as `done`, write or refresh its short report at `/home/horde/research/tickets/b.rvm/artifacts/end-of-bee/<project>-<ticket id>.md`, including work that changes no repo, because Research b.rvm needs one report per finished Idea or Bug. Use the Project Folder's name for `<project>` and create the directory if needed, so bots share a predictable destination. Remove this temporary subsection after 2026-11-12 unless the User extends it, because it is a bounded data collection exercise.
+From a bee's approval to its acceptance, watch its work for answers to these questions and note each one, with evidence, under `## Retrospective notes` on the bee, because you see the whole job and its Main Agents see only their part:
 
-Use existing ticket history, job records and logs through acceptance to cover the following, citing ticket IDs and evidence locations so the report is factual and cheap to produce:
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
 
-- Quality problems and the phase where each surfaced.
-- The longest phases or steps, with wall times and their timestamp boundaries.
-- Minor findings that triggered another round, owner or rerun, with the resulting elapsed time as possible nitpick cost.
-- Your own analysis of where tokens may have been overspent for the value they gave, backed by evidence where you can find it. Consider whether each task's model and level were more than it needed, how context windows and agent reuse affected cost, and what each SDLC step gave against what it cost.
-
-Label missing timings unknown, distinguish waiting from work where evidence allows, and avoid summing overlapping intervals, because elapsed time alone does not prove wasted effort.
+Before setting the bee `done`, summarize your findings and its Main Agents' notes under `## Retrospective`, because the program manager consolidates these into SDLC improvements.
 
 ## Flows
 

@@ -44,6 +44,14 @@ None: you prepare the worktrees yourself.
 - **The Idea's Plan:** under `## Worktrees`, each repo's main checkout, worktree path, branch and base branch, so later skills can find the work and teardown-worktree knows where to merge it.
 - **Repos:** the Idea's branches and worktrees.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Idea's ID and worktree paths, and suggest the skill that needs them next: write-epic for a new Plan's first `draft` Epic, or develop-epic if it sent you here.

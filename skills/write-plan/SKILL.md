@@ -60,6 +60,14 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 - **The Plan:** one per Idea, in the Plans store, with an Association to its Idea so later skills can find the requirements. A new Plan starts `draft`, and becomes `defined`, `active` or `done` in step 4. During a revision, you add to `## Paused Epics` in step 2 and remove it in step 4.
 - **Its Epics:** children of the Plan. When one Epic can't start until another is `done`, record a Dependency from the waiting Epic on the one it waits for. New and changed Epics are `draft`. When revising a Plan, remove any Epic the changed SRD no longer calls for, but keep Round Feedback Epics, because idea-review files them from review rather than the SRD.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Plan's ID, and any `product-manager` findings left unaddressed with the reason.

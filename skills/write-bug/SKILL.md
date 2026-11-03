@@ -41,6 +41,14 @@ None: you file the Bug yourself.
 
 A new Bug in the Bugs store, status `draft`, with `## Report` holding whatever `guide:bug-writing-guide.md` says a report contains. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so define-bug can read the original.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Bug's ID. Suggest define-bug.

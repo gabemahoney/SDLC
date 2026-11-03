@@ -55,6 +55,14 @@ None: you investigate the question yourself.
 - **The Research ticket:** its `## Question` and `## Scope`, including changes from your reviewer.
 - **Its Report:** maintain one child titled `Report: <Research ticket title>`, using the sections in `guide:research-guide.md`.
 
+## Retrospective notes (as a Main Agent)
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Research ticket ID, the Report's ID, and any after-acceptance work left unfinished with the reason.

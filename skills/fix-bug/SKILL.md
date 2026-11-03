@@ -62,6 +62,14 @@ Use your pipeline and the Integration gate for sequencing. Start executors fresh
 
 The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Worktrees`, `## Progress` (including your pipeline and reason, any approach you chose, and the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Bug's ID, each worktree's path, branch and commit, and unaddressed findings with reasons.

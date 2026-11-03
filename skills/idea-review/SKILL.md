@@ -63,6 +63,14 @@ For each finding:
 - **Round Feedback Epic:** when findings are worth fixing, create one `draft` child of the Idea's Plan titled `Round <N> Feedback`, with `## Outcome` for the correction's outcome, `## Findings` for findings with evidence and the requirement or Guidance Document rule each serves or the merge conflict it resolves, `## Acceptance criteria` for observable checks, and `## Dependencies` for prerequisites. Leave Task planning to write-epic.
 - **Plan:** set it `active` when filing feedback, because work remains.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Idea ID, round, declined findings with reasons, findings routed to write-srd, and next step: write-srd through the Managing Intelligence (with any feedback Epic ID), write-epic (feedback Epic ID) or the Managing Intelligence's testing.

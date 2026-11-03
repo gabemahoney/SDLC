@@ -56,6 +56,14 @@ Maintain one `defined` Model Doc per SR group, writing only it and attachments o
 - `## Progress`: repairs, deviations with reasons, unfinished coverage, unresolved findings with reasons and effects on other work; leave `## Declined findings` to write-srd, because it judges review findings.
 - `## Checks`: clause/phase table with reasons; SRD/model versions, forecasts, measurements, controls, completion, capped runs, unreached checks and violations.
 
+## Retrospective notes (as a Main Agent)
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Model Doc ID, violations, unresolved work, reasons and questions through `protocol:launcher.md` to your Main Agent, or to the Managing Intelligence as a Main Agent, so the caller can continue. Distinguish model from design errors and route violations through write-srd, because during-build failures need revision, not Bugs.

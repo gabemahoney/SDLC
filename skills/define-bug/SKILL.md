@@ -71,6 +71,14 @@ Set or replace `thinking_level:<label>` when confirming the Bug, because it sets
 
 When unsure between two levels, choose the higher one.
 
+## Retrospective notes
+
+While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the bee's retrospective from them:
+
+- Where did we introduce a quality issue? How could it have been avoided?
+- Where did we spend too much time and not gain value? How could it have been avoided?
+- Where did we spend too many tokens and not gain value? How could it have been avoided?
+
 ## Done
 
 Report the Bug's ID, status and unresolved work with reasons.
