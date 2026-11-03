@@ -7,7 +7,7 @@ description: "Implement source changes for assigned Subtask IDs or a Bug ID."
 
 ## Purpose
 
-You implement source changes for develop-epic or fix-bug.
+You implement source changes for develop-epic or fix-bug, and in fix-bug's small pipeline its regression tests and doc changes too.
 
 ## Loading SDLC
 
@@ -22,7 +22,7 @@ Assigned Subtask IDs or a Bug ID.
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
 - **Your Subtask or Bug:** it holds everything you need to do.
-- **Guidance:** Read `guide:engineering-best-practices.md` and `guide:build-commands.md` for implementation standards and checks.
+- **Guidance:** Read `guide:engineering-best-practices.md` and `guide:build-commands.md` for implementation standards and checks, and in fix-bug's small pipeline `guide:test-guide.md` and `guide:doc-writing-guide.md` for its tests and docs.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -41,7 +41,8 @@ None: you perform the assigned implementation yourself.
 
 ## Writes
 
-- Change source files only and leave changes uncommitted, because other executors own tests and documentation and the Main Agent owns commits.
+- Change only source files, plus tests and docs in fix-bug's small pipeline, because other executors own the rest. Leave changes uncommitted, because the Main Agent owns commits.
+- In fix-bug's small pipeline, write the regression tests before the fix and report failing-before and passing-after results, commands, revisions and coverage limits to fix-bug, so the tests prove they catch the defect.
 - Set each assigned Subtask `active` when starting and `done` when complete, so its status tracks your work.
 - On a Subtask, record only deviations with reasons, unfinished work, and effects on documentation or other work under `## Progress`, so the Main Agent can coordinate what remains. On a Bug, report them to fix-bug instead, because several Child Agents work on one Bug at once and fix-bug records them.
 

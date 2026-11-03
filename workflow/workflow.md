@@ -8,14 +8,14 @@
 - **Main Agent:** an Agent started by the Managing Intelligence to run one skill and report back.
 - **Child Agent:** an Agent started by a Main Agent to run one skill for it and report back. The Launcher keeps the parent–child relationship.
 - **Skills Child Agents run:**
-  - **engineer:** changes source code for a Task or Bug.
+  - **engineer:** changes source code for a Task or Bug, and a small Bug fix's tests and docs.
   - **test-writer:** writes unit and integration tests and runs assigned suites.
   - **doc-writer:** updates documentation for a Task or Bug.
   - **engineer-planner:** reads a Task's source context and writes draft implementation Subtasks.
   - **test-writer-planner:** writes draft testing Subtasks that can be implemented in parallel and plans their fixtures.
   - **doc-writer-planner:** writes a Task's draft documentation Subtasks.
   - **req-review:** reviews one PRD or SRD independently for write-prd or write-srd.
-  - **code-review:** checks source changes independently.
+  - **code-review:** checks source changes independently, and a small Bug fix's whole change.
   - **test-review:** checks test quality, coverage and duplication independently.
   - **doc-review:** checks documentation changes and gaps independently.
   - **product-manager:** checks planned or finished work against requirements, for scope and proportion.
