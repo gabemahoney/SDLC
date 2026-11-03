@@ -105,7 +105,7 @@ Each time the SRD becomes `defined`, the Managing Intelligence has one model-wri
 
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence's testing, acceptance (`done`) and merge → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
 
-The Managing Intelligence merges an accepted Bug itself, because a few git commands don't need a Main Agent. In each main checkout the Bug's `## Worktrees` names, once no agent works in its worktree and the checkout is on its base branch with no uncommitted changes, merge the Bug's branch, then remove its worktree and branch. Record what merged and what was removed under `## Worktrees`, because release checks that record. If a merge conflicts, abort it, record the conflict there and set the Bug `active`, so fix-bug resolves it on the Bug's branch.
+The Managing Intelligence merges an accepted Bug itself, because a few git commands don't need a Main Agent. In each main checkout the Bug's `## Worktrees` names, once no agent works in its worktree and the checkout is on its base branch with no uncommitted changes, it merges the Bug's branch, then removes its worktree and branch. It records what merged and what was removed under `## Worktrees`, because release checks that record. If a merge conflicts, it aborts the merge, records the conflict there and sets the Bug `active`, so fix-bug resolves it on the Bug's branch.
 
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 

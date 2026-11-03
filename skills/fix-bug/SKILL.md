@@ -51,12 +51,12 @@ Run only when all of these are true:
 
 ## Child Agents
 
-Use your pipeline and the Integration gate for sequencing. Start executors fresh for each Run and reuse them for its fix rounds, to preserve their knowledge. Start the full pipeline's reviewers fresh every time, so each assessment is independent.
+Your pipeline and the Integration gate say which Child Agents to launch and when. Start executors fresh for each Run and reuse them for its fix rounds, to preserve their knowledge. Start the full pipeline's reviewers fresh every time, so each assessment is independent.
 
-- **`engineer`:** Launch for source changes, and in the small pipeline for the regression tests and doc changes too. Expect implementation, targeted checks, deviations, effects on documentation and regression evidence for tests it writes.
-- **`test-writer`:** In the full pipeline, launch one per testing assignment, in parallel, telling each which assignment is theirs. Expect tests, fixtures, gaps and regression evidence.
-- **`doc-writer`:** In the full pipeline, launch for every Bug, because a fix can leave docs wrong even when it only restores documented behaviour. It also writes the docs-only pipeline's fix. Expect updates and implementation gaps, or a reason none are needed.
-- **`code-review`, `test-review` and `doc-review`:** In the full pipeline, launch after source, test and documentation changes respectively. `code-review` is the small pipeline's only reviewer, and `doc-review` the docs-only pipeline's.
+- **`engineer`:** Expect implementation, targeted checks, deviations, effects on documentation and regression evidence for tests it writes.
+- **`test-writer`:** Launch one per testing assignment, telling each which is theirs. Expect tests, fixtures, gaps and regression evidence.
+- **`doc-writer`:** In the full pipeline, launch it for every Bug, because a fix can leave docs wrong even when it only restores documented behaviour. Expect updates and implementation gaps, or a reason none are needed.
+- **`code-review`, `test-review` and `doc-review`:** Expect findings on source, tests and documentation respectively, or on the whole change as a pipeline's only reviewer.
 
 ## Writes
 
