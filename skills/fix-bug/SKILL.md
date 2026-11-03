@@ -39,7 +39,7 @@ Run only when all of these are true:
 
 3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first when the guides don't settle it or it changes behaviour others rely on.
 
-4. **Write a test that catches the Bug.** Before the fix, have the engineer in Small, or test-writers in Full, add a failing regression test for each scenario under `## Reproduction` and each failure the Managing Intelligence noted, that isn't covered yet, as Regression evidence below describes.
+4. **Write a test that catches the Bug.** Before the fix, have the engineer in Small, or test-writers in Full, add each failing regression test that Regression evidence below requires and that doesn't exist yet.
 
 5. **Fix and review.** Follow your pipeline until accepted findings are fixed, running checks before each review as `~/.sdlc/install/workflow.md`'s Checks rule says.
 
@@ -75,29 +75,27 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 Report the Bug's ID, each worktree's path, branch and commit, and unaddressed findings with reasons.
 
 - If you stopped before committing, say what you need, and suggest re-running fix-bug once it's settled.
-- Otherwise, suggest the Managing Intelligence test the fix in its worktrees. If it passes, they set the Bug `done` and merge it, as `~/.sdlc/install/workflow.md`'s Bug flow describes. If not, they note what's still wrong under `## Decisions` and run fix-bug again.
+- Otherwise, suggest the Managing Intelligence test the fix in its worktrees, then accept and merge it, or note what's still wrong under `## Decisions` and run fix-bug again, as `~/.sdlc/install/workflow.md`'s Bug flow describes.
 
 ## Handling Reviewer Feedback
 
-You coordinate the work; your Child Agents do it. For each finding from code-review, test-review or doc-review:
+For each finding from code-review, test-review or doc-review:
 
 - **Fix it:** return it to the executor that owns the files.
 - **Decline it:** use your judgement to decline findings that are minor or trivial, and record each one with its reason under `## Declined findings` and in the Done report.
-- **Ask the Managing Intelligence:** for expected behaviour, or conflicts with the Bug's report and decisions, because those are theirs to decide.
+- **Ask the Managing Intelligence:** for expected behaviour, or conflicts with the Bug's report and decisions, because those are theirs to decide. Take them any finding that one of their decisions breaks existing behaviour or the Bug's requirements, with its evidence, rather than declining it, because the decision may be wrong.
 
 ## Fix pipelines
 
-A Bug tagged `high` or above takes Full unless the Managing Intelligence agrees otherwise, because define-bug rated its fix hard or risky.
-
-- **Small:** only for a Bug tagged `medium`. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
-- **Docs only:** for a fix that changes only documentation. One `doc-writer` makes the change and one `doc-review` reviews it. Skip step 4, `## Unit tests` and the Integration gate, because there is no code to test.
-- **Full:** for a fix that needs design judgement, spans modules or risks costly mistakes. After `test-writer`s write step 4's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
+- **Small:** for a Bug tagged `medium`, or `high` when the fix stays in one function or file and raises no design question, because a `high` tag still gives the engineer a stronger model. One `engineer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
+- **Docs only:** for a fix that changes only documentation. One `doc-writer` makes the change and one `doc-review` reviews it. Skip step 4, `## Unit tests` and the Integration gate, because no code changed, but run any tests that read the changed docs before committing.
+- **Full:** for every other code fix, including any tagged `xhigh` or above. After `test-writer`s write step 4's regression tests, run engineer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 
 If fixes stop making progress, stop for the Managing Intelligence, so a fix loop doesn't burn the budget.
 
 ## Regression evidence
 
-Except in the docs-only pipeline, each scenario and noted failure needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
+Except in the docs-only pipeline, each scenario under `## Reproduction` and each noted failure needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
 
 ## Integration gate
 
