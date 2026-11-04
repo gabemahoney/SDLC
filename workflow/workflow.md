@@ -135,7 +135,7 @@ Read settings only from `<Project Folder>/.sdlc/project_settings.md`, then `~/.s
 
 `setting:research_location` locates Research tickets, Reports and artifacts through the Ticket System Protocol File, including linked Research. A home default shares Research across Projects and bots because answers may serve more than one Project; a Project setting overrides it. Research always uses the requesting Project's guidance.
 
-`setting:child_watch_command` is optional: it names a host's command that waits on Child Agents, as `protocol:launcher.md ## Knowing when a Child Agent's state changes` describes. When it is unset, that section's fallback applies, so its absence never stops a Run.
+`setting:child_watch_command` is optional: it names a host's command that waits on Child Agents, as `protocol:launcher.md ## Knowing when a Child Agent's state changes` describes. When it is unset or empty, that section's fallback applies, so its absence never stops a Run.
 
 If a setting the Run needs is missing from both files, stop before any change and point to project-setup.
 
