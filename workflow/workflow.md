@@ -28,7 +28,7 @@
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.sdlc` Folder:** a folder named `.sdlc` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.sdlc` the default settings.
 - **Guidance Document:** one of seven instruction files: `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md`, `guide:release-guide.md`, `guide:bug-writing-guide.md` and `guide:research-guide.md`. They set the Project's engineering, testing, documentation, build, release, Bug and research rules.
-- **Build Commands:** named sections in `guide:build-commands.md` for sequencing checks. Each code folder needs the first four, containing a command or `none` with a reason so required work is explicit.
+- **Build Commands:** named sections in `guide:build-commands.md` for sequencing checks. Each code folder needs the first four, containing a command or `none` with a reason so required work is explicit. A check that runs outside the session, such as a scheduler job, also names the command that blocks until it ends, so no Agent polls it.
   - **Compile** (`guide:build-commands.md ## Compile`): compilation or type-checking.
   - **Lint** (`guide:build-commands.md ## Lint`): lint and format checks.
   - **Unit Tests** (`guide:build-commands.md ## Unit tests`): the full unit suite.
