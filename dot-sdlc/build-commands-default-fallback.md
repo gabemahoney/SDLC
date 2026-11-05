@@ -4,7 +4,7 @@ SDLC uses this file only when the Project has no `guide:build-commands.md` of it
 
 This fallback cannot know the Project's commands. Stop and ask the Managing Intelligence to write a real `build-commands.md`, using project-setup to settle it.
 
-For every code folder, the first four sections must contain a runnable command or `none: <reason>`. A shared guide identifies each folder's commands. Include `## Model check` when formal modelling is needed.
+For every code folder, the first four sections must contain a runnable command or `none: <reason>`. A shared guide identifies each folder's commands. Include `## Model check` when formal modelling is needed. For a check that runs outside the session, also give the command that blocks until it ends.
 
 ## Compile
 
