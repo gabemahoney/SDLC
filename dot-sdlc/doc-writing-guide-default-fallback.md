@@ -26,6 +26,12 @@ Architecture docs live in `docs/architecture/`. They set the architecture guidel
 
 Keep developer and operational guides current where the Project needs them, such as testing and release instructions.
 
+## Doc categories
+
+- **User:** the README and user guides, for changes to installing, configuring or using the Project.
+- **Architecture:** architecture docs, for changes to components, their interactions or design decisions.
+- **Developer:** other guides, for changes to building, testing, releasing or operating the Project.
+
 ## Write and trim
 
 - Document what readers need to do with the software as it is now; requirements are a correctness check, not an outline to reproduce.

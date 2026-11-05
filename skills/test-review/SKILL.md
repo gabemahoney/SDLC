@@ -7,7 +7,7 @@ description: "Review unit and integration tests for a Task, Idea or Bug ID and r
 
 ## Purpose
 
-You review tests for develop-epic, idea-review or fix-bug. Start fresh for every review, including fix rounds, so each assessment is independent.
+You review tests for develop-epic, idea-review or fix-bug.
 
 ## Loading SDLC
 

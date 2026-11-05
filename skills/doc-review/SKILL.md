@@ -23,7 +23,7 @@ A Task, Epic, Idea or Bug ID.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task, Epic, Idea or Bug:** Read it; it holds everything you need to do.
 - **Guidance:** Read `guide:doc-writing-guide.md` for which documents to maintain and their standards.
-- **All the Project's docs:** read every doc the doc-writing guide covers, so you can spot gaps, leftovers and duplicates anywhere.
+- **The Project's docs:** those step 2 names, so you can spot gaps, leftovers and duplicates.
 
 Also read any other code where the docs must describe it, as the work needs.
 
@@ -34,7 +34,7 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
 ## Steps
 
 1. **Read the code changes.** Read every code change made in this Task carefully, so you know exactly what changed.
-2. **Read every document.** Read all of the Project's docs, in full, so nothing the change affects is missed.
+2. **Read the docs the work can affect.** Read in full every doc in each `guide:doc-writing-guide.md ## Doc categories` category the work could affect, counting one in when unsure, and every doc no category lists, because an unchanged doc there may describe the change. With no categories, read all the Project's docs. In a later round, read only what `~/.sdlc/install/workflow.md`'s Review findings rule names.
 3. **Check the docs against the changes.** Judge every passage against the document's intended audience, including unchanged material. Report unnecessary or misplaced content not covered by a `## Guide exceptions` entry even when a Subtask asks to retain it, and recommend cuts or consolidation to preserve required reader information. Following `guide:doc-writing-guide.md`, check:
    - Is a new doc needed that's missing?
    - Does any doc need updating, and which sections?
