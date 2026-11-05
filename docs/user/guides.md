@@ -14,8 +14,6 @@ Guides tell SDLC how you want work done. Use project-setup to choose or write th
 | `bug-writing-guide.md` | Bug report format used by write-bug and define-bug. |
 | `research-guide.md` | Sources, depth, evidence, Report shape, human involvement and work after acceptance. |
 
-In `doc-writing-guide.md`, `## Doc categories` lists each category's docs by path and the changes affecting it; without it, doc-review reads every doc.
-
 ## Where guides go
 
 Check code guides (engineering rules, tests and build commands) into the repository so every contributor gets them, whether they use SDLC or not. Keep settings, reused generic guides and pointers to repository guides on your host, in the Project Folder's `.sdlc/` or `~/.sdlc/`, so repositories stay free of SDLC setup.
