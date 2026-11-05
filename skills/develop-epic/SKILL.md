@@ -46,6 +46,8 @@ Run only when all of these are true:
 
    **Run the commit checks yourself,** as `~/.sdlc/install/workflow.md`'s Checks rule says: `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the Task changed. Commit and set the Task `done` only when all three pass, so every commit leaves working code.
 
+   **Start the full suites early.** If another Task remains, start each of `guide:build-commands.md ## Unit tests` and `## Integration tests` that runs outside the session for the Epic's code folders, then begin that Task without waiting, so breakage surfaces before much builds on it. When that Task commits, read the result with the blocking wait Build Commands name, record it under `## Checks` on the Epic and repair failures as the Integration gate does before going on. Suites that run in the session wait for the Integration gate, which stays the final check.
+
 3. **Finish the Epic.** Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
 
 4. **Check Plan completion.** Set the Plan `done` when every Epic is `done`, except during an SRD revision.
@@ -54,13 +56,15 @@ Run only when all of these are true:
 
 Use the Task pipeline and Integration gate for sequencing. Before sending an executor a repair, reopen each of its `done` Subtasks the repair concerns: add the repair to that Subtask's `## Progress` and set it `active`, so the executor's Gate admits it. The executor sets it `done` again. If no Subtask of this Epic covers the repair, send it through a fix Task.
 
-- **`engineer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
-- **`test-writer`:** Start fresh for each Task and reuse each writer for fix rounds to preserve its knowledge. Launch one per testing Subtask, in parallel. Use them for integration failures in tests. Expect unit and integration tests, fixtures, repairs, gaps and only targeted checks on its own work following `guide:test-guide.md`, because you run the full suites.
-- **`doc-writer`:** Start fresh for each Task and reuse it for fix rounds to preserve its knowledge. Launch when documentation is affected. Expect updates following `guide:doc-writing-guide.md` and implementation gaps.
-- **`code-review`:** Start fresh every time so each assessment is independent. Launch after source changes. Expect correctness and engineering findings with references and suggested fixes.
-- **`test-review`:** Start fresh every time so each assessment is independent. Launch after unit or integration test changes. Expect quality, coverage and duplication findings across the suite.
-- **`doc-review`:** Start fresh every time so each assessment is independent. Launch after documentation changes. Expect findings on complete touched documents and missing or outdated documentation.
-- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after each Task's executors and reviewers, after fixes affecting behaviour and after the Epic's Integration gate. Expect requirements, scope and proportion findings, including incomplete work and Managing Intelligence decisions needed.
+Start each executor (engineer, test-writer, doc-writer) fresh for each Task and reuse it for fix rounds to preserve its knowledge. Start each reviewer (code-review, test-review, doc-review, product-manager) fresh every time so each assessment is independent.
+
+- **`engineer`:** Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
+- **`test-writer`:** Launch one per testing Subtask, in parallel. Use them for integration failures in tests. Expect unit and integration tests, fixtures, repairs, gaps and only targeted checks on its own work following `guide:test-guide.md`, because you run the full suites.
+- **`doc-writer`:** Launch when documentation is affected. Expect updates following `guide:doc-writing-guide.md` and implementation gaps.
+- **`code-review`:** Launch after source changes. Expect correctness and engineering findings with references and suggested fixes.
+- **`test-review`:** Launch after unit or integration test changes. Expect quality, coverage and duplication findings across the suite.
+- **`doc-review`:** Launch after documentation changes. Expect findings on complete touched documents and missing or outdated documentation.
+- **`product-manager`:** Launch after each Task's executors and reviewers, after fixes affecting behaviour and after the Epic's Integration gate. Expect requirements, scope and proportion findings, including incomplete work and Managing Intelligence decisions needed.
 
 ## Writes
 
