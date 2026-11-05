@@ -8,11 +8,13 @@ Guides tell SDLC how you want work done. Use project-setup to choose or write th
 | --- | --- |
 | `engineering-best-practices.md` | Engineering and code review rules. |
 | `test-guide.md` | Test design, coverage and review; formal-modelling practices. |
-| `doc-writing-guide.md` | Documentation content, location, style and categories. |
+| `doc-writing-guide.md` | Documentation content, location and style. |
 | `build-commands.md` | Compile, lint, unit and integration test commands for each code folder; optionally model checking. |
 | `release-guide.md` | Release process, permissions and human approvals. |
 | `bug-writing-guide.md` | Bug report format used by write-bug and define-bug. |
 | `research-guide.md` | Sources, depth, evidence, Report shape, human involvement and work after acceptance. |
+
+In `doc-writing-guide.md`, `## Doc categories` lists each category's docs by path and the changes affecting it; without it, doc-review reads every doc.
 
 ## Where guides go
 

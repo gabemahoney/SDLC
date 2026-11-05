@@ -28,9 +28,9 @@ Keep developer and operational guides current where the Project needs them, such
 
 ## Doc categories
 
-- **User:** the README and user guides, for changes to installing, configuring or using the Project.
-- **Architecture:** architecture docs, for changes to components, their interactions or design decisions.
-- **Developer:** other guides, for changes to building, testing, releasing or operating the Project.
+- **User:** `README.md` and `docs/` outside `docs/architecture/`, for changes to installing, configuring or using the Project.
+- **Architecture:** `docs/architecture/`, for changes to components, their interactions or design decisions.
+- **Developer:** all other guides, for changes to building, testing, releasing or operating the Project.
 
 ## Write and trim
 

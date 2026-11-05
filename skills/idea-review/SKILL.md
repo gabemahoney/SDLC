@@ -38,7 +38,7 @@ Run only when all of these are true:
 ## Steps
 
 1. **Start the round.** Number it one more than the last recorded on the Idea, starting at 1. Record the round, checkouts and commits under `## Review rounds` on the Idea to identify the reviewed work.
-2. **Review the whole Idea,** or from round 2 the last round's findings, as `~/.sdlc/install/workflow.md`'s Review findings rule says. Launch Child Agents and handle their feedback as below.
+2. **Review the whole Idea.** Launch Child Agents and handle their feedback as below.
 3. **Hand off.** If any findings are worth fixing, create one Epic titled `Round <N> Feedback` in the Idea's Plan, with contents as Writes describes, and set the Plan `active` because work remains. If any finding went to write-srd, hand off to the Managing Intelligence for write-srd before write-epic or acceptance, because the requirement gap must close first. Otherwise, hand off to write-epic if you filed feedback, or hand the Idea to the Managing Intelligence for testing and acceptance, listing any Model Docs whose during-build checks haven't passed against the current SRD, because acceptance waits on them.
 
 ## Child Agents
