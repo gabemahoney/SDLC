@@ -56,7 +56,7 @@ A revision that adds scope the Idea doesn't describe stops and returns to the Ma
 
 Record each approved guide exception once under `## Guide exceptions` on the PRD or SRD it concerns, stating the guide rule, what the spec does instead, why and the Managing Intelligence's approval, so later work preserves the decision.
 
-Create or update the Idea's Doc titled `PRD`. Set it `draft` because a new or revised PRD needs approval. Record declined or unaddressed review findings with their reasons under `## Declined findings` on the PRD.
+Create or update the Idea's Doc titled `PRD`. Set it `draft` because a new or revised PRD needs approval. Record repaired review findings under `## Progress`, and declined or unaddressed ones with their reasons under `## Declined findings`, on the PRD.
 
 ## Retrospective notes
 

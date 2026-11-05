@@ -32,10 +32,10 @@ Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because 
 
 ## Steps
 
-In a later round, apply these steps only to what `~/.sdlc/install/workflow.md`'s Review findings rule names.
+When your launch says this is a later round, apply these steps only to what `~/.sdlc/install/workflow.md`'s Review findings rule names.
 
-1. **Read the code changes.** Read every code change in the work, so you know exactly what changed.
-2. **Read the docs the work can affect.** Read in full the docs this work could affect, on your own judgement, as code-review does with code.
+1. **Read the changes.** Read every code and doc change in the work, so you know exactly what changed.
+2. **Read the docs the work can affect.** Read the docs this work could affect, on your own judgement, as code-review does with code.
 3. **Check the docs against the changes.** Judge every passage against the document's intended audience, including unchanged material. Report unnecessary or misplaced content not covered by a `## Guide exceptions` entry even when a Subtask asks to retain it, and recommend cuts or consolidation to preserve required reader information. Following `guide:doc-writing-guide.md`, check:
    - Is a new doc needed that's missing?
    - Does any doc need updating, and which sections?

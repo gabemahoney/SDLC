@@ -57,7 +57,7 @@ Run only when all of these are true:
 - **Tasks:** children of the Epic in the Plans store. New and revised Tasks start `draft`. Each gets a `thinking_level:<label>` tag. Record Dependencies so execution follows the required order.
 - **Subtasks:** planners write them as `draft` children of their Tasks. You review them and set them `defined` in step 2. Have planners record Dependencies so execution follows the required order.
 - **Revised work:** reset affected Tasks and Subtasks to `draft`, even if previously `active` or `done`, so develop-epic executes the revised work. Have planners revise the Subtasks. Delete obsolete unimplemented work.
-- **The Epic and its draft children:** set to `defined` in step 4. Record unfinished writing under `## Progress` on the Epic, so a later Run can resume it. Record declined or unaddressed review findings with reasons under `## Declined findings` on the Task or Epic they concern.
+- **The Epic and its draft children:** set to `defined` in step 4. Record unfinished writing under `## Progress` on the Epic, so a later Run can resume it. Record repaired review findings under `## Progress`, and declined or unaddressed ones with reasons under `## Declined findings`, on the Task or Epic they concern.
 
 ## Retrospective notes
 
