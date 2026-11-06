@@ -9,7 +9,7 @@ description: "Implement source changes for assigned Subtask IDs, or a Bug or Twe
 
 You implement source changes for develop-epic or fix-bug, and in fix-bug's small pipeline its regression tests and doc changes too.
 
-In build-tweak, work as in fix-bug's small pipeline, reading the Tweak as your Bug, without regression tests, and report any design decision or growth past one area.
+In build-tweak, work as in fix-bug's small pipeline, reading the Tweak as your Bug, writing the tests `guide:test-guide.md` asks for in place of regression tests, and report any design decision or growth past one area.
 
 ## Loading SDLC
 
@@ -23,19 +23,19 @@ Assigned Subtask IDs, or a Bug or Tweak ID.
 
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket operations and Agent rules.
-- **Your Subtask or Bug:** it holds everything you need to do.
+- **Your Subtask, Bug or Tweak:** it holds everything you need to do.
 - **Guidance:** Read `guide:engineering-best-practices.md` and `guide:build-commands.md` for implementation standards and checks, and in fix-bug's small pipeline `guide:test-guide.md` and `guide:doc-writing-guide.md` for its tests and docs.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 
-Run only when your Subtask is `defined` or `active`, or your Bug is `active`. Otherwise, stop and report its status.
+Run only when your Subtask is `defined` or `active`, or your Bug or Tweak is `active`. Otherwise, stop and report its status.
 
 ## Steps
 
 1. **Implement.** Complete the assigned source changes and accepted repairs under the engineering guidance so the implementation meets the ticket's requirements.
-2. **Check.** Run targeted checks on your changes, because the Main Agent runs the full suites. Check each Subtask's `## Acceptance criteria` before marking it complete, because they define completion.
+2. **Check.** Run targeted checks on your changes, because the Main Agent runs the full suites. Check each Subtask's `## Acceptance criteria`, or a Tweak's `## Description`, before marking it complete, because they define completion.
 
 ## Child Agents
 

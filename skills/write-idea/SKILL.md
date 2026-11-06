@@ -15,7 +15,7 @@ Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file loc
 
 ## Input
 
-Plain text describing the work, or input of the kind `setting:new_idea_intake` takes, such as a link. To revise, also the Idea's ID.
+Plain text describing the work, or input of the kind `setting:new_idea_intake` takes, such as a link. To revise, also the Idea's or Tweak's ID.
 
 ## Required Reading
 
@@ -26,13 +26,13 @@ Plain text describing the work, or input of the kind `setting:new_idea_intake` t
 
 ## Gate
 
-None: you create or revise an Idea.
+None: you create or revise an Idea or Tweak.
 
 ## Steps
 
-1. **Take in the work.** Follow the intake's instructions for input it takes; otherwise, work out the Idea or change with the Managing Intelligence.
-2. **File or revise the Idea** as Writes describes.
-3. **Check it** against Idea body, so drift is fixed before approval.
+1. **Take in and classify the work.** Follow the intake's instructions for input it takes; otherwise, work out the Idea or change with the Managing Intelligence.
+2. **File or revise the Idea or Tweak** as Writes describes.
+3. **Check it** against Idea body or Tweak body, so drift is fixed before approval.
 
 ## Child Agents
 
@@ -54,7 +54,7 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 
 ## Done
 
-Report the Idea's ID. Suggest the Managing Intelligence approve it, then write-prd, or for a Tweak, worktree setup and build-tweak.
+Report the Idea's or Tweak's ID. Suggest the Managing Intelligence approve it, then write-prd, or for a Tweak, worktree setup and build-tweak.
 
 ## Idea body
 

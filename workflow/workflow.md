@@ -45,7 +45,7 @@
 - **Association:** a link between related tickets where neither waits on the other, such as a Plan and its Idea, or an SRD and a Research ticket it cites.
 - **Source Reference:** a link to a ticket's origin outside the ticket system, such as a GitHub issue or file. write-prd and define-bug use it to establish requirements. Downstream skills use the requirements on the tickets so external changes cannot silently change their scope.
 - **Resolver:** the instructions for reading one kind of Source Reference, selected by its kind, with optional overrides in `setting:resolvers` (a GitHub URL uses `github`, a file path uses `file`).
-- **Intake:** the file of instructions for taking in new Ideas or Bugs, whose path `setting:new_idea_intake` or `setting:new_bug_intake` holds. write-idea and write-bug also always accept plain text describing the work or defect.
+- **Intake:** the file of instructions for taking in new Ideas, Tweaks or Bugs, whose path `setting:new_idea_intake` or `setting:new_bug_intake` holds. write-idea and write-bug also always accept plain text describing the work or defect.
 - **Run:** one execution of a skill, from its first steps to its report.
 - **Thinking Level:** the Agent, model, any effort or mode and any launch template a session runs with (see Thinking Levels).
 
@@ -84,17 +84,17 @@ Each transition has exactly one owner. Change only the tickets and statuses your
 
 Executors set their Subtasks `active` and `done`; only develop-epic sets a `done` Subtask back to `active`, to reopen it for a repair.
 
-The Managing Intelligence approves an Idea before write-prd and records the approval on the Idea, because the approved Idea bounds the PRD. It sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas and Bugs `done` on acceptance, sets them back to `active` when their merge hits a conflict (fix-bug resolves it for a Bug; for an Idea, idea-review files it as a Round Feedback Epic), and manages Docs other than the PRD, SRD and Model Docs.
+The Managing Intelligence records the User's approval on an Idea before write-prd, because the approved Idea bounds the PRD, and on a Tweak, setting it `defined`. It sets PRDs and SRDs `defined` on approval, and a `draft` Idea `defined` once both are approved. It sets Ideas, Tweaks and Bugs `done` on acceptance, sets them back to `active` when their merge hits a conflict (fix-bug or build-tweak resolves it for a Bug or Tweak; for an Idea, idea-review files it as a Round Feedback Epic), sets a Tweak `draft` when it becomes an Idea, and manages Docs other than the PRD, SRD and Model Docs.
 
 ### Managing Intelligence retrospectives
 
-From an Idea's approval or a Bug's filing to its acceptance, watch its work for answers to these questions and note each one, with evidence, under `## Retrospective notes` on the Idea or Bug, because you see the whole job and its Main Agents see only their part:
+From an Idea's or Tweak's approval or a Bug's filing to its acceptance, watch its work for answers to these questions and note each one, with evidence, under `## Retrospective notes` on the Idea, Tweak or Bug, because you see the whole job and its Main Agents see only their part:
 
 - Where did we introduce a quality issue? How could it have been avoided?
 - Where did we spend too much time and not gain value? How could it have been avoided?
 - Where did we spend too many tokens and not gain value? How could it have been avoided?
 
-Write your notes only while no Main Agent is writing that ticket, so no update is lost. Before setting the Idea or Bug `done`, gather its Main Agents' notes from it, its Docs, Plan and Epics, and their Research tickets, and summarize them with your findings under `## Retrospective`, because whoever maintains SDLC consolidates these into SDLC improvements.
+Write your notes only while no Main Agent is writing that ticket, so no update is lost. Before setting the Idea, Tweak or Bug `done`, gather its Main Agents' notes from it, its Docs, Plan and Epics, and their Research tickets, and summarize them with your findings under `## Retrospective`, because whoever maintains SDLC consolidates these into SDLC improvements.
 
 ## Flows
 
@@ -106,7 +106,7 @@ An Idea has at most one PRD and one SRD, and needs both before planning. An Idea
 
 Each time the SRD becomes `defined`, the Managing Intelligence has one model-writer Main Agent per Model Doc run its during-build checks, skipping a Model Doc whose results are still current, outside the Plan because the Plan holds only the coding work. A violation is a design fix, not a Bug: the Managing Intelligence sends it through write-srd's revision (see SRD revisions), then write-plan and write-epic. The Idea isn't accepted until every check passes against the current SRD; a result stays current while its SR group and model are unchanged.
 
-**Tweak:** write-idea → the User's one approval (`defined`) → the Managing Intelligence's worktree setup → build-tweak → the Managing Intelligence's acceptance against the description (`done`), retrospective and merge → release, handling failures and conflicts as for a Bug, through build-tweak. At any step, a design decision or growth past one area makes it an Idea: write-idea refiles it, and the Managing Intelligence sets it `draft` and settles its worktrees.
+**Tweak:** write-idea → the User's one approval (`defined`) → the Managing Intelligence's worktree setup → build-tweak → the Managing Intelligence's retrospective, acceptance against the description (`done`) and merge → release, handling failures and conflicts as for a Bug, through build-tweak. At any step, a design decision or growth past one area makes it an Idea: write-idea refiles it, and the Managing Intelligence sets it `draft`, removes its approval, settles its worktrees and removes its `## Worktrees` record, because the Idea needs the User's own approval before write-prd and must not pass build-tweak's Gate.
 
 **Bug:** write-bug → define-bug → fix-bug → the Managing Intelligence's testing, retrospective, acceptance (`done`) and merge → release. If the fix fails the Managing Intelligence's testing, they note what's still wrong under `## Decisions` on the Bug and run fix-bug again, in the same worktrees. define-bug doesn't run again, because it only weeds out reports that aren't real Bugs.
 
@@ -216,7 +216,7 @@ Start Child Agents fresh unless the skill retains them, so unrelated work does n
 
 Before each new unit of work, every Main Agent checks its own context fraction as its Agent Protocol File describes, and skips its own check where that file says no reading exists yet. At 75% or more, or when a reading should exist but can't be made, record progress on the ticket and stop for the Managing Intelligence to start a fresh session with the same skill and ticket IDs, because a nearly full context causes mistakes.
 
-Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains. Within one fix-bug Run or develop-epic Task, you may resume executors and the small or docs-only pipeline's reviewer for fix rounds even when no reading exists, because a single Run's or Task's context stays small.
+Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains. Within one fix-bug or build-tweak Run or develop-epic Task, you may resume executors and the only reviewer of build-tweak or fix-bug's small or docs-only pipeline for fix rounds even when no reading exists, because a single Run's or Task's context stays small.
 
 ### Checks
 
@@ -224,7 +224,7 @@ develop-epic, fix-bug and build-tweak run Build Commands themselves for the code
 
 ### Review findings
 
-Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. When you fix a finding, sweep the change for its kind of problem within the files you own, not just the places cited, because each place missed costs another round; report other places to your Main Agent. After a repair round, review again only if it repaired blocker or suggestion findings; decline nits instead of repairing them, because a review round costs more than nits are worth. Record each repaired finding with the places its repair and sweep changed under `## Progress` on the reviewed ticket (PRD, SRD, Model Doc, Plan, Epic, Task, Subtask or Bug), and each declined or unaddressed finding with its reason on the ticket it concerns, so later skills see what changed and what remains. A round is later only when the Main Agent's launch says so, after the same reviewer skill reviewed this work in this loop; otherwise review in full. A later round checks only the recorded repairs, from every reviewer, and the docs or code that refer to them, because the first round read the rest. New work or a new Run starts a fresh review loop. idea-review, the last gate before acceptance, reviews the whole Idea every round, as does any review a skill requires to cover the whole work, such as model-writer's pre-gate review. Product questions go to the Managing Intelligence, who decides the expected behaviour. So does any finding, even a nit, that one of their decisions breaks existing behaviour, a requirement or a Bug's expected behaviour, with its evidence, because the decision may be wrong.
+Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. When you fix a finding, sweep the change for its kind of problem within the files you own, not just the places cited, because each place missed costs another round; report other places to your Main Agent. After a repair round, review again only if it repaired blocker or suggestion findings; decline nits instead of repairing them, because a review round costs more than nits are worth. Record each repaired finding with the places its repair and sweep changed under `## Progress` on the reviewed ticket (PRD, SRD, Model Doc, Plan, Epic, Task, Subtask, Bug or Tweak), and each declined or unaddressed finding with its reason on the ticket it concerns, so later skills see what changed and what remains. A round is later only when the Main Agent's launch says so, after the same reviewer skill reviewed this work in this loop; otherwise review in full. A later round checks only the recorded repairs, from every reviewer, and the docs or code that refer to them, because the first round read the rest. New work or a new Run starts a fresh review loop. idea-review, the last gate before acceptance, reviews the whole Idea every round, as does any review a skill requires to cover the whole work, such as model-writer's pre-gate review. Product questions go to the Managing Intelligence, who decides the expected behaviour. So does any finding, even a nit, that one of their decisions breaks existing behaviour, a requirement or a Bug's expected behaviour, with its evidence, because the decision may be wrong.
 
 ### Tickets carry the information
 
@@ -238,7 +238,7 @@ When write-srd revises an SRD that has a Plan, it sets the Plan `draft` and writ
 
 ### Work outside the ticket
 
-If you find work outside the current Idea or Bug, such as a refactor, a new defect or a missing feature, record it on the ticket and suggest it to the Managing Intelligence as a new Idea or Bug. Don't take it on, because whether to do it is their call.
+If you find work outside the current Idea, Tweak or Bug, such as a refactor, a new defect or a missing feature, record it on the ticket and suggest it to the Managing Intelligence as a new Idea, Tweak or Bug. Don't take it on, because whether to do it is their call.
 
 ### Questions and stops
 
