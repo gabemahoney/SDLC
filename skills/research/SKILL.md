@@ -40,7 +40,7 @@ Run only when the question, whether given to you or on the Research ticket, is c
 
 1. **Set up.** For a new question, file a Research ticket at `setting:research_location`, in the format under "Research ticket record" below. Create the ticket's Report if it has none, and set both `active`.
 
-2. **Research.** Research the question, or your reviewer's latest request, following `guide:research-guide.md` and `~/.sdlc/install/workflow.md`'s Proposals last rule. Update the Report with the answer, so there is always one current answer.
+2. **Research.** Research the question, or your reviewer's latest request, following `guide:research-guide.md` and `~/.sdlc/install/workflow.md`'s Proposals last rule, which covers suggested answers, not the question. Update the Report with the answer, so there is always one current answer.
 
 3. **Review.** Present the Report to your reviewer.
    - If they ask for more, go back to step 2.

@@ -43,7 +43,7 @@ Setup chooses settings, ticket stores and guides with you. If you use Cursor wit
 
 ## Use
 
-Start each skill in a fresh session, passing the ticket ID after intake. Each reports what to run next.
+Start each skill in a fresh session, passing the ticket ID after intake; fix-bug and build-tweak can bundle small tickets. Each reports what to run next.
 
 - **Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic and develop-epic for each Epic → idea-review.
 - **Tweak** (a minor feature): write-idea → build-tweak.

@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: "Review source changes for a Task, Idea, Tweak or Bug ID and return findings."
+description: "Review source changes for Task, Idea, Tweak or Bug IDs and return findings."
 ---
 
 # code-review
@@ -44,7 +44,7 @@ None: keep files and tickets unchanged, because executors own repairs and the Ma
 
 ## Done
 
-Report the ticket ID, findings and any review limitations to your Main Agent as `protocol:launcher.md` describes. Report each kind of problem as one finding with its impact, suggested fix and every place you find it, so it can be fixed everywhere in one round. State when there are no findings.
+Report the ticket IDs, findings and any review limitations to your Main Agent as `protocol:launcher.md` describes, naming each finding's ticket or fix. Report each kind of problem as one finding with its impact, suggested fix and every place you find it, so it can be fixed everywhere in one round. State when there are no findings.
 
 ## Review judgement
 

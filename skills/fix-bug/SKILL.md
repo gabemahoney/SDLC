@@ -1,6 +1,6 @@
 ---
 name: fix-bug
-description: "Fix a defined Bug in its own worktrees with a pipeline sized to the fix, prove the regression is covered, review and commit the fix, and hand it back for testing. Takes a Bug ID."
+description: "Fix a defined Bug in its own worktrees with a pipeline sized to the fix, prove the regression is covered, review and commit the fix, and hand it back for testing. Takes one or more Bug IDs."
 ---
 
 # fix-bug
@@ -15,13 +15,13 @@ Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file loc
 
 ## Input
 
-A Bug ID, or several as `~/.sdlc/install/workflow.md`'s Bundles rule describes; then each must pass the Gate, you use the Small pipeline, and every step and record covers each Bug.
+A Bug ID, or several as `~/.sdlc/install/workflow.md`'s Bundles rule describes; then each must pass the Gate, every step and record covers each Bug, and you use the Small pipeline, stopping at step 3 if a Bug doesn't fit it.
 
 ## Required Reading
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and `protocol:ticket.md`, for operations.
-- **Bug and its Dependencies:** for the report, reproduction, decisions and progress. The Bug's `## Reproduction` names the repos the fix is likely to change, its `## Worktrees` holds any worktrees and merge conflict recorded earlier, and its `thinking_level` tag is the level you launch `engineer`, `test-writer` and `doc-writer` at.
+- **Bug and its Dependencies:** for the report, reproduction, decisions and progress. The Bug's `## Reproduction` names the repos the fix is likely to change, its `## Worktrees` holds any worktrees and merge conflict recorded earlier, and its `thinking_level` tag, the highest in a bundle, is the level you launch `engineer`, `test-writer` and `doc-writer` at.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for implementation, reviews, checks and commits in each affected repo.
 
 ## Gate
@@ -37,7 +37,7 @@ Run only when all of these are true:
 
 2. **Set up worktrees** for each repo the fix changes, now or later, as `~/.sdlc/install/workflow.md`'s Worktrees rule says.
 
-3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first when the guides don't settle it or it changes behaviour others rely on.
+3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first when the guides don't settle it or it changes behaviour others rely on. Then read any `## Reporter's proposal`, recording differences under `## Progress`.
 
 4. **Write a test that catches the Bug.** Before the fix, have the engineer in Small, or test-writers in Full, add each failing regression test that Regression evidence below requires and that doesn't exist yet.
 
@@ -60,7 +60,7 @@ Start executors, and the small and docs-only pipelines' reviewer, fresh each Run
 
 ## Writes
 
-The Bug is the only ticket you change, and no Child Agent writes it, because several work on it at once. Leave it `active` for the Managing Intelligence to test. Keep its `## Worktrees`, `## Progress` (including the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current.
+Your Bugs are the only tickets you change, and no Child Agent writes them, because several work on them at once. Leave them `active` for the Managing Intelligence to test. Keep their `## Worktrees`, `## Progress` (including the deviations and documentation effects executors report), `## Regression evidence`, `## Checks` and `## Declined findings` current.
 
 ## Retrospective notes
 
@@ -72,7 +72,7 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 
 ## Done
 
-Report the Bug's ID, each worktree's path, branch and commit, and unaddressed findings with reasons.
+Report each Bug's ID, each worktree's path, branch and commit, and unaddressed findings with reasons.
 
 - If you stopped before committing, say what you need, and suggest re-running fix-bug once it's settled.
 - Otherwise, suggest the Managing Intelligence test the fix in its worktrees, then accept and merge it, or note what's still wrong under `## Decisions` and run fix-bug again, as `~/.sdlc/install/workflow.md`'s Bug flow describes.

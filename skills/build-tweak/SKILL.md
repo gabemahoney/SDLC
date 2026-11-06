@@ -1,6 +1,6 @@
 ---
 name: build-tweak
-description: "Build an approved Tweak in its worktrees with one engineer and one combined review, commit it and hand it back for acceptance. Takes a Tweak ID."
+description: "Build an approved Tweak in its worktrees with one engineer and one combined review, commit it and hand it back for acceptance. Takes one or more Tweak IDs."
 ---
 
 # build-tweak
@@ -49,4 +49,4 @@ No Child Agent writes the Tweak, because you record what they report. Keep its `
 
 ## Done
 
-Report the Tweak's ID, each worktree's path, branch and commit, the check results and declined findings with reasons. Suggest the Managing Intelligence's next step in the Tweak flow: acceptance and merge, refiling as an Idea if it outgrew a Tweak, or settling what stopped you.
+Report each Tweak's ID, each worktree's path, branch and commit, the check results and declined findings with reasons. Suggest the Managing Intelligence's next step in the Tweak flow: acceptance and merge, refiling as an Idea if it outgrew a Tweak, or settling what stopped you.

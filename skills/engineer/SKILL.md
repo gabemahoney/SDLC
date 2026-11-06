@@ -1,6 +1,6 @@
 ---
 name: engineer
-description: "Implement source changes for assigned Subtask IDs, or a Bug or Tweak ID."
+description: "Implement source changes for assigned Subtask IDs, or Bug or Tweak IDs."
 ---
 
 # engineer

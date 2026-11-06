@@ -30,7 +30,7 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Take in the report.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, work out the report with the Managing Intelligence however you judge best. Either way, follow `~/.sdlc/install/workflow.md`'s Proposals last rule.
+1. **Take in the report.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, work out the report with the Managing Intelligence however you judge best.
 2. **Classify it.** If `~/.sdlc/install/workflow.md`'s Flows rule makes it an Idea or Tweak, file nothing and suggest write-idea.
 3. **File the Bug** as Writes describes.
 
@@ -40,7 +40,7 @@ None: you file the Bug yourself.
 
 ## Writes
 
-A new Bug in the Bugs store, status `draft`, with `## Report` holding whatever `guide:bug-writing-guide.md` says a report contains. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so define-bug can read the original.
+A new Bug in the Bugs store, status `draft`, with `## Report` holding whatever `guide:bug-writing-guide.md` says a report contains. Copy any fix the reporter proposes verbatim, without analysing it, into `## Reporter's proposal`, so fix-bug reads it last. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so define-bug can read the original.
 
 ## Retrospective notes
 

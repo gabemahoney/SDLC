@@ -112,7 +112,7 @@ Each time the SRD becomes `defined`, the Managing Intelligence has one model-wri
 
 The Managing Intelligence merges an accepted Bug or Tweak itself, because a few git commands don't need a Main Agent. It waits until no agent works in its worktrees. Each main checkout its `## Worktrees` names must be on its base branch, and each checkout and worktree free of uncommitted changes; if one isn't, it settles that first without losing anyone's work. It checks every repo merges cleanly before landing any, merges them all, then removes the worktrees and branches, so no base branch holds part of the fix. It records what merged and what was removed under `## Worktrees`, because release checks that record. If any repo conflicts, it lands nothing, records the conflict there and sets it `active`, so fix-bug or build-tweak resolves it on its branch.
 
-**Bundles:** the Managing Intelligence may run up to five independent Bugs that fit fix-bug's Small pipeline, or five Tweaks, through one Run of their skill, because one build and review costs less than several. The bundle shares one worktree per repo, named after its first ticket and recorded under each ticket's `## Worktrees`, and each commit names every ticket it covers. Each ticket keeps its own records and acceptance, and findings and repairs name the ticket they concern. The bundle merges only once every ticket is accepted, because they share a branch.
+**Bundles:** the Managing Intelligence may run up to five independent Bugs that fit fix-bug's Small pipeline, or five Tweaks, through one Run of their skill, to share one build and review. They share one worktree and branch per repo, named after the Input's first ID and recorded under each ticket's `## Worktrees`, with one commit per ticket per repo, so each can be reverted. Each ticket keeps its own records, findings, retrospective notes and acceptance. A ticket that leaves the bundle (it doesn't fit, becomes an Idea, is invalid or abandoned, or keeps failing) stops the Run; the Managing Intelligence reverts its commits and removes it from every `## Worktrees`, and it continues alone. A re-run takes only failing tickets, and accepted ones are re-tested after any new commit. The bundle merges once all are accepted, because they share a branch; record the merge, removal or conflict on every ticket, setting all `active` on a conflict.
 
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 
@@ -161,7 +161,7 @@ support: /home/you/.sdlc/resolvers/support.md
 
 Use the mapped file when the kind has an entry; otherwise use `~/.sdlc/install/resolvers/<kind>.md`, including when `setting:resolvers` is unset, so existing Projects can read shipped source kinds without new settings. Stop if neither a mapping nor a shipped Resolver exists, because the source has no reading instructions. Check the selected file and its prerequisites before using it, because access depends on the source.
 
-**Proposals last:** when a report, request or Source Reference proposes a fix or solution, read its facts first and do your own analysis, then read the proposal and say where your conclusion differs, because a proposal read first anchors the work.
+**Proposals last:** a proposal is a reporter's or source's suggested fix or implementation, not direction the User or Managing Intelligence approved. Read the facts first and do your own analysis, then read the proposal and say where your conclusion differs, because a proposal read first anchors the work.
 
 ### References
 

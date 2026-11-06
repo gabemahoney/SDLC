@@ -88,7 +88,7 @@ The planners write Subtasks using their own Subtask templates.
 
 Put testing after its implementation and documentation after its implementation and tests, so each checks the work it describes.
 
-Put up to five independent fixes that would each fit fix-bug's Small pipeline in one Task, naming each in `## Work`, so develop-epic builds and reviews them once together.
+In a Round Feedback Epic, you may put up to five independent fixes that would each fit fix-bug's Small pipeline in one Task, naming each in `## Work`, so develop-epic builds and reviews them once together.
 
 Follow the Guidance Documents when writing each Task and Subtask.
 
@@ -108,7 +108,7 @@ When unsure between two levels, choose the higher one.
 - [ ] The Tasks cover the Epic's acceptance criteria and follow the PRD, SRD and recorded Managing Intelligence decisions.
 - [ ] Every planned change serves the requirements or applicable Guidance Documents, and its size fits the outcome.
 - [ ] Each Task's `## Context` names what it serves, as the Task template says.
-- [ ] Prerequisite and sibling Epic work is accounted for, and each Task has a coherent outcome and the Dependencies it needs.
+- [ ] Prerequisite and sibling Epic work is accounted for, and each Task has a coherent outcome, a bundled Task's being its listed fixes, and the Dependencies it needs.
 - [ ] Each Subtask has `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria`, with concrete paths in a named repo or code folder.
 - [ ] Testing Subtasks identify fixture reuse and changes and avoid duplicate checks at the same level.
 - [ ] Documentation work follows its implementation and tests and is allowed by the doc-writing guide.
