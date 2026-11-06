@@ -37,11 +37,11 @@ Run only when all of these are true:
 
 2. **Set up worktrees** for each repo the fix changes, now or later, as `~/.sdlc/install/workflow.md`'s Worktrees rule says.
 
-3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first when the guides don't settle it or it changes behaviour others rely on. Then take any proposal, as `~/.sdlc/install/workflow.md`'s Proposals rule says.
+3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first when the guides don't settle it or it changes behaviour others rely on.
 
 4. **Write a test that catches the Bug.** Before the fix, have the engineer in Small, or test-writers in Full, add each failing regression test that Regression evidence below requires and that doesn't exist yet.
 
-5. **Fix and review.** Follow your pipeline until accepted findings are fixed, running checks before each review as `~/.sdlc/install/workflow.md`'s Checks rule says.
+5. **Fix and review.** Follow your pipeline until accepted findings are fixed, running checks before each review as `~/.sdlc/install/workflow.md`'s Checks rule says. Once the fix is built, take any proposal before its first review, as `~/.sdlc/install/workflow.md`'s Proposals rule says, so no Agent sees it before the fix exists.
 
    **Run the commit checks yourself:** `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Send failures back through your pipeline until they pass.
 
