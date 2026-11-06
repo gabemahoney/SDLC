@@ -1,6 +1,6 @@
 # SDLC: who runs which skill (b.v38)
 
-- **Managing Intelligence:** runs no skills itself. It starts one Main Agent per skill, and merges accepted Bugs itself.
+- **Managing Intelligence:** runs no skills itself. It starts one Main Agent per skill, sets up Tweaks' worktrees, and merges accepted Bugs and Tweaks itself.
 - **Main Agent skills that launch no Child Agents:** project-setup, write-idea, write-bug, define-bug, research, model-writer (for during-build checks), configure-worktree and teardown-worktree (for Ideas), release.
 - **Main Agent skills that launch Child Agents:** one diagram each below.
 
@@ -67,6 +67,15 @@ flowchart LR
   M --> C3["code-review"]
   M --> C4["test-review"]
   M --> C5["doc-review"]
+```
+
+## build-tweak
+
+```mermaid
+flowchart LR
+  M["build-tweak<br/>(Main Agent)"]
+  M --> C0["engineer"]
+  M --> C1["code-review"]
 ```
 
 ## idea-review

@@ -1,13 +1,13 @@
 ---
 name: code-review
-description: "Review source changes for a Task, Idea or Bug ID and return findings."
+description: "Review source changes for a Task, Idea, Tweak or Bug ID and return findings."
 ---
 
 # code-review
 
 ## Purpose
 
-You review source changes for develop-epic, idea-review or fix-bug, and the whole change in fix-bug's small pipeline, because you are then its only reviewer.
+You review source changes for develop-epic, idea-review or fix-bug, and the whole change in fix-bug's small pipeline and build-tweak, because you are then its only reviewer.
 
 ## Loading SDLC
 
@@ -15,24 +15,24 @@ You are running an SDLC software development workflow. Before anything else, rea
 
 ## Input
 
-A Task, Idea or Bug ID.
+A Task, Idea, Tweak or Bug ID.
 
 ## Required Reading
 
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
-- **Your Task, Idea or Bug:** Read it; it holds everything you need to do.
-- **Guidance:** Read `guide:engineering-best-practices.md` for review standards, and in fix-bug's small pipeline `guide:test-guide.md` and `guide:doc-writing-guide.md` for its tests and docs.
+- **Your Task, Idea, Tweak or Bug:** Read it; it holds everything you need to do.
+- **Guidance:** Read `guide:engineering-best-practices.md` for review standards, and in fix-bug's small pipeline and build-tweak `guide:test-guide.md` and `guide:doc-writing-guide.md` for its tests and docs.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
 ## Gate
 
-Run only when the Task, Epic, Idea or Bug you're reviewing is `active`, because review comes before it's finished. Otherwise, stop and report its status.
+Run only when the Task, Epic, Idea, Tweak or Bug you're reviewing is `active`, because review comes before it's finished. Otherwise, stop and report its status.
 
 ## Steps
 
-1. **Review the source changes and the code around them.** Assess correctness, security and engineering quality against the assignment and engineering guidance. Also review the code that calls the changed code and the code it calls, because a change can break its neighbours without breaking itself. Check each reviewed Subtask's `## Acceptance criteria` and report unmet criteria, because they define completion. In fix-bug's small pipeline, also review its tests and docs against their guides, including docs the fix leaves wrong.
+1. **Review the source changes and the code around them.** Assess correctness, security and engineering quality against the assignment and engineering guidance. Also review the code that calls the changed code and the code it calls, because a change can break its neighbours without breaking itself. Check each reviewed Subtask's `## Acceptance criteria`, or a Tweak's `## Description`, and report what's unmet, because they define completion. In fix-bug's small pipeline and build-tweak, also review the tests and docs against their guides, including docs the change leaves wrong.
 
 ## Child Agents
 

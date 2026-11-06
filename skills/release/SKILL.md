@@ -1,13 +1,13 @@
 ---
 name: release
-description: "Release accepted, merged Ideas and Bugs by following the Project's `guide:release-guide.md`, including its permissions and human approvals. Takes Idea and Bug IDs."
+description: "Release accepted, merged Ideas, Tweaks and Bugs by following the Project's `guide:release-guide.md`, including its permissions and human approvals. Takes Idea, Tweak and Bug IDs."
 ---
 
 # release
 
 ## Purpose
 
-You release accepted, merged Ideas and Bugs by following the Project's release guide, which defines what releasing means and who may authorize each step.
+You release accepted, merged Ideas, Tweaks and Bugs by following the Project's release guide, which defines what releasing means and who may authorize each step.
 
 ## Loading SDLC
 
@@ -15,13 +15,13 @@ Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file loc
 
 ## Input
 
-The IDs of the Ideas and Bugs to release, chosen by the Managing Intelligence, plus anything else the Project's guide requires, such as a version.
+The IDs of the Ideas, Tweaks and Bugs to release, chosen by the Managing Intelligence, plus anything else the Project's guide requires, such as a version.
 
 ## Required Reading
 
 - **Agent:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), for Agent instructions.
 - **Settings and protocol:** Project and default settings, and `protocol:ticket.md`, for ticket operations.
-- **The Ideas and Bugs:** their status, and the `## Worktrees` records on the Bugs and the Ideas' Plans, for the Gate.
+- **The Ideas, Tweaks and Bugs:** their status, and the `## Worktrees` records on the Tweaks, the Bugs and the Ideas' Plans, for the Gate.
 - **Guidance:** `guide:release-guide.md` and the files it points to, for the release process, permissions and approvals.
 
 ## Gate
@@ -29,8 +29,8 @@ The IDs of the Ideas and Bugs to release, chosen by the Managing Intelligence, p
 Run only when all of these are true:
 
 - The guide defines a release process. Otherwise, stop and suggest project-setup, which helps the Managing Intelligence write it.
-- Each Idea and Bug is `done`, because only accepted work ships. Otherwise, stop and name the ones the Managing Intelligence hasn't accepted.
-- The `## Worktrees` record on each Bug and on each Idea's Plan shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and suggest teardown-worktree for an Idea, or the Managing Intelligence's merge for a Bug.
+- Each Idea, Tweak and Bug is `done`, because only accepted work ships. Otherwise, stop and name the ones the Managing Intelligence hasn't accepted.
+- The `## Worktrees` record on each Tweak, each Bug and each Idea's Plan shows every repo merged and its worktrees removed, because unmerged work isn't in the release. Otherwise, stop and suggest teardown-worktree for an Idea, or the Managing Intelligence's merge for a Tweak or Bug.
 - Each main checkout in those `## Worktrees` records is on the branch the guide releases from, with no uncommitted changes to tracked files, so the release holds only merged work. Otherwise, stop and tell the Managing Intelligence which ones aren't.
 
 ## Steps
@@ -45,8 +45,8 @@ None: you follow the guide yourself.
 
 ## Writes
 
-The files, release artifacts and ticket changes specified by `guide:release-guide.md`. Leave Idea and Bug statuses unchanged, because the Managing Intelligence owns them.
+The files, release artifacts and ticket changes specified by `guide:release-guide.md`. Leave Idea, Tweak and Bug statuses unchanged, because the Managing Intelligence owns them.
 
 ## Done
 
-Report the version released, the Idea and Bug IDs it includes, anything left incomplete, and the next step from the guide.
+Report the version released, the Idea, Tweak and Bug IDs it includes, anything left incomplete, and the next step from the guide.

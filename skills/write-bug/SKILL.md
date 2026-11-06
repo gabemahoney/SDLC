@@ -31,7 +31,8 @@ None: you create a new ticket.
 ## Steps
 
 1. **Take in the report.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, work out the report with the Managing Intelligence however you judge best.
-2. **File the Bug** as Writes describes.
+2. **Classify the request** by `~/.sdlc/install/workflow.md`'s Flows rule, because only a Bug goes through define-bug and fix-bug. If it's an Idea or a Tweak, change nothing and suggest write-idea.
+3. **File the Bug** as Writes describes.
 
 ## Child Agents
 

@@ -8,6 +8,7 @@ write-idea: medium
 write-bug: medium
 define-bug: high
 fix-bug: medium
+build-tweak: medium
 write-prd: xhigh
 write-srd: max
 write-plan: max
