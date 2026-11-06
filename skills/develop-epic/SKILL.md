@@ -103,7 +103,7 @@ Run engineer; code-review and test-writer in parallel; test-review and doc-write
 
 Keep testing Subtasks from editing the same file so their writers can work in parallel. Tests that share a helper the Task changes go in one Subtask.
 
-Group accepted findings into repair rounds, as Handling Reviewer Feedback describes. Resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check repairs until accepted findings are fixed.
+In a Task of bundled fixes, have reviewers name the fix each finding concerns, so repairs reach the right Subtask. Group accepted findings into repair rounds, as Handling Reviewer Feedback describes. Resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check repairs until accepted findings are fixed.
 
 ## Integration gate
 

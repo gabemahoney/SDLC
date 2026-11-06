@@ -17,7 +17,7 @@ You are running an SDLC software development workflow. Before anything else, rea
 
 ## Input
 
-Assigned Subtask IDs, or a Bug or Tweak ID.
+Assigned Subtask IDs, or Bug or Tweak IDs.
 
 ## Required Reading
 

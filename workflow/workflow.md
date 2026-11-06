@@ -112,6 +112,8 @@ Each time the SRD becomes `defined`, the Managing Intelligence has one model-wri
 
 The Managing Intelligence merges an accepted Bug or Tweak itself, because a few git commands don't need a Main Agent. It waits until no agent works in its worktrees. Each main checkout its `## Worktrees` names must be on its base branch, and each checkout and worktree free of uncommitted changes; if one isn't, it settles that first without losing anyone's work. It checks every repo merges cleanly before landing any, merges them all, then removes the worktrees and branches, so no base branch holds part of the fix. It records what merged and what was removed under `## Worktrees`, because release checks that record. If any repo conflicts, it lands nothing, records the conflict there and sets it `active`, so fix-bug or build-tweak resolves it on its branch.
 
+**Bundles:** the Managing Intelligence may run up to five independent Bugs that fit fix-bug's Small pipeline, or five Tweaks, through one Run of their skill, because one build and review costs less than several. The bundle shares one worktree per repo, named after its first ticket and recorded under each ticket's `## Worktrees`, and each commit names every ticket it covers. Each ticket keeps its own records and acceptance, and findings and repairs name the ticket they concern. The bundle merges only once every ticket is accepted, because they share a branch.
+
 **Research:** research → whoever asked (the Managing Intelligence, or the Main Agent that launched it) accepts the Report.
 
 ## Shared rules

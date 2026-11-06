@@ -88,6 +88,8 @@ The planners write Subtasks using their own Subtask templates.
 
 Put testing after its implementation and documentation after its implementation and tests, so each checks the work it describes.
 
+Put up to five independent fixes that would each fit fix-bug's Small pipeline in one Task, naming each in `## Work`, so develop-epic builds and reviews them once together.
+
 Follow the Guidance Documents when writing each Task and Subtask.
 
 ## Thinking Level guidance

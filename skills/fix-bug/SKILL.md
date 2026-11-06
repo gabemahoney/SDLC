@@ -15,7 +15,7 @@ Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file loc
 
 ## Input
 
-A Bug ID.
+A Bug ID, or several as `~/.sdlc/install/workflow.md`'s Bundles rule describes; then each must pass the Gate, you use the Small pipeline, and every step and record covers each Bug.
 
 ## Required Reading
 

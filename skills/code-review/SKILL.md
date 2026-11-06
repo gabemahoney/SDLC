@@ -15,7 +15,7 @@ You are running an SDLC software development workflow. Before anything else, rea
 
 ## Input
 
-A Task, Idea, Tweak or Bug ID.
+A Task or Idea ID, or Tweak or Bug IDs.
 
 ## Required Reading
 

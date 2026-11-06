@@ -15,7 +15,7 @@ Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file loc
 
 ## Input
 
-A Tweak ID.
+A Tweak ID, or several as `~/.sdlc/install/workflow.md`'s Bundles rule describes; then each must pass the Gate, and every step and record covers each Tweak.
 
 ## Required Reading
 
