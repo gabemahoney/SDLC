@@ -17,7 +17,7 @@ Write one-line settings as `<name>: <value>`, or use a `## <name>` heading for a
 | `ticket_system` | Protocol name; SDLC ships `bees`, selecting `~/.sdlc/install/protocols/ticket-bees.md`. |
 | `launcher` | Protocol name; SDLC ships `agent-director`, selecting `~/.sdlc/install/protocols/launcher-agent-director.md`. |
 | `prd_template` | Path to the PRD layout. Setup suggests `~/.sdlc/install/doc-templates/prd.md`, expanded to your home path. |
-| `new_idea_intake` | Path to the instructions for new Ideas and Tweaks. Setup suggests the shipped interview intake. See [Intakes and resolvers](intakes-and-resolvers.md). |
+| `new_idea_intake` | Path to the instructions for new Ideas. Setup suggests the shipped interview intake. See [Intakes and resolvers](intakes-and-resolvers.md). |
 | `new_bug_intake` | Path to the instructions for new Bugs, chosen independently of the Idea intake. |
 | `resolvers` | Optional block of `<kind>: <absolute path>` lines adding or overriding Source Reference kinds. An unmapped kind uses `~/.sdlc/install/resolvers/<kind>.md`, including when this setting is unset. |
 | `research_location` | Absolute folder path for Research tickets, Reports and artifacts, located through the ticket protocol. A home default shares research across Projects; a Project override selects a separate store. Research uses the requesting Project's guide. |

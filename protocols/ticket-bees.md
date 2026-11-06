@@ -27,7 +27,7 @@ When a skill says to:
 - **Add a Source Reference:** record the intake URL or absolute file path under `## Source References`, because SDLC Resolvers read it from there.
 - **Attach a file:** bees has no attachments, so copy files into an `artifacts/` folder beside the ticket's own file and link them under `## Artifacts`. Don't name folders or files after ticket IDs, because bees can mistake them for tickets.
 - **Set a Thinking Level:** use a `thinking_level:<label>` tag, replacing any old one.
-- **Mark a Tweak:** file it in the Ideas hive with a `tweak` tag, because a Tweak shares that hive but takes its own flow. Remove the tag when a Tweak is refiled as an Idea.
+- **Mark a Tweak:** use a `tweak` tag.
 - **Delete a ticket:** first remove other tickets' Dependency and Association links to it and its children.
 - **Retain Research:** keep the Research hive out of automatic archiving, so accepted Reports and artifacts stay readable.
 

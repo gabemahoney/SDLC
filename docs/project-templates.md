@@ -64,7 +64,7 @@ A template can hold any of these. Each takes the same value it would in `project
 | `ticket_system` | The ticket system, such as `bees`. |
 | `launcher` | The Launcher, such as `agent-director`. |
 | `prd_template` | Absolute path to the PRD layout, such as `/home/you/.sdlc/install/doc-templates/prd.md`. |
-| `new_idea_intake` | Absolute path to the intake for new Ideas and Tweaks. |
+| `new_idea_intake` | Absolute path to the intake for new Ideas. |
 | `new_bug_intake` | Absolute path to the intake for new Bugs. |
 | `resolvers` | An optional `## resolvers` block: one `<kind>: <absolute path>` line per custom or overridden kind; unmapped kinds use shipped resolvers. |
 | `research_location` | Absolute path to the folder for Research tickets and Reports. |

@@ -18,13 +18,11 @@ The workflow skills that launch Child Agents are write-prd, write-srd, write-pla
 
 **Idea:** the Managing Intelligence sets a `draft` Idea `defined` once its PRD and SRD are both approved, and `done` after testing the Idea.
 
-**Tweak:** the Managing Intelligence sets a `draft` Tweak `defined` on approval, and `done` after testing and accepting it in its worktrees, before merging it.
-
 **Other Doc (not PRD, SRD or Model Doc):** the Managing Intelligence creates it `draft` and owns its later status changes.
 
 **Bug:** write-bug or the Managing Intelligence creates `draft`, not yet validated
 
 **Bug:** the Managing Intelligence sets `done` after testing and accepting the fix in its worktrees, before merging it.
 
-**Idea, Tweak or Bug:** the Managing Intelligence sets it back to `active` when its merge hits a conflict, so the conflict can be resolved and tested on its branch.
+**Idea or Bug:** the Managing Intelligence sets it back to `active` when its merge hits a conflict, so the conflict can be resolved and tested on its branch.
 

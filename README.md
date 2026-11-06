@@ -1,6 +1,6 @@
 # SDLC
 
-SDLC turns Ideas, Tweaks and Bugs into reviewed, tested changes using Claude Code, Codex CLI or Cursor CLI. Agents plan the work, build it and hand it back for your acceptance.
+SDLC turns Ideas and Bugs into reviewed, tested changes using Claude Code, Codex CLI or Cursor CLI. Agents plan the work, build it and hand it back for your acceptance.
 
 ## Requirements
 
@@ -46,11 +46,11 @@ Setup chooses settings, ticket stores and guides with you. If you use Cursor wit
 Start each skill in a fresh session, passing the ticket ID after intake. Each reports what to run next.
 
 - **Idea:** write-idea → write-prd → write-srd → write-plan → configure-worktree → write-epic and develop-epic for each Epic → idea-review.
-- **Tweak:** write-idea → build-tweak, for a minor feature: a small user-visible change in one area with no new design decision or dependency.
+- **Tweak** (a minor feature): write-idea → build-tweak.
 - **Bug:** write-bug → define-bug → fix-bug.
 - **Research:** research answers a question with a cited Report, revising it until you accept it.
 
-Approve the Idea before write-prd, and approve the PRD and SRD before planning. Approve a Tweak once and set up its worktree yourself before build-tweak; it needs no PRD, SRD or Plan. Once you approve an SRD with Formal Models, run model-writer on each Model Doc alongside the build, for the model checks that didn't need to pass before coding. Send each violation it reports through write-srd, write-plan and write-epic, and accept the Idea only once every check passes. After implementation and review, test the Idea, Tweak or Bug, write its retrospective and accept it. Then run teardown-worktree for an Idea, or merge a Tweak's or Bug's branch and remove its worktrees yourself, and run release. Your release guide controls what may ship.
+Approve the Idea before write-prd, and approve the PRD and SRD before planning. Approve a Tweak once and set up its worktree before build-tweak. Once you approve an SRD with Formal Models, run model-writer on each Model Doc alongside the build, for the model checks that didn't need to pass before coding. Send each violation it reports through write-srd, write-plan and write-epic, and accept the Idea only once every check passes. After implementation and review, test the Idea or Bug, write its retrospective and accept it. Then run teardown-worktree for an Idea, or merge a Tweak's or Bug's branch and remove its worktrees yourself, and run release. Your release guide controls what may ship.
 
 ## Customize
 
