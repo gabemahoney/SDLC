@@ -30,7 +30,7 @@ None: you create or revise an Idea or Tweak.
 
 ## Steps
 
-1. **Take in and classify the work.** Follow the intake's instructions for input it takes; otherwise, work out the Idea or change with the Managing Intelligence.
+1. **Take in and classify the work.** Follow the intake's instructions for input it takes; otherwise, work out the Idea or change with the Managing Intelligence. Either way, follow `~/.sdlc/install/workflow.md`'s Proposals last rule.
 2. **File or revise the Idea or Tweak** as Writes describes.
 3. **Check it** against Idea body or Tweak body, so drift is fixed before approval.
 

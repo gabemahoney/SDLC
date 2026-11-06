@@ -159,6 +159,8 @@ support: /home/you/.sdlc/resolvers/support.md
 
 Use the mapped file when the kind has an entry; otherwise use `~/.sdlc/install/resolvers/<kind>.md`, including when `setting:resolvers` is unset, so existing Projects can read shipped source kinds without new settings. Stop if neither a mapping nor a shipped Resolver exists, because the source has no reading instructions. Check the selected file and its prerequisites before using it, because access depends on the source.
 
+**Proposals last:** when a report, request or Source Reference proposes a fix or solution, read its facts first and do your own analysis, then read the proposal and say where your conclusion differs, because a proposal read first anchors the work.
+
 ### References
 
 Use these references, each in one pair of backticks, so an Agent knows whether to read a setting, walk up for a Guidance Document or open a Protocol File:

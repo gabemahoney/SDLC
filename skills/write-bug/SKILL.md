@@ -30,7 +30,7 @@ None: you create a new ticket.
 
 ## Steps
 
-1. **Take in the report.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, work out the report with the Managing Intelligence however you judge best.
+1. **Take in the report.** If the input is the kind the intake takes, follow the intake's instructions. Otherwise, work out the report with the Managing Intelligence however you judge best. Either way, follow `~/.sdlc/install/workflow.md`'s Proposals last rule.
 2. **Classify it.** If `~/.sdlc/install/workflow.md`'s Flows rule makes it an Idea or Tweak, file nothing and suggest write-idea.
 3. **File the Bug** as Writes describes.
 
