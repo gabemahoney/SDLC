@@ -40,7 +40,7 @@ None: you file the Bug yourself.
 
 ## Writes
 
-A new Bug in the Bugs store, status `draft`, with `## Report` holding whatever `guide:bug-writing-guide.md` says a report contains. Copy any fix the reporter proposes verbatim, without analysing it, into `## Reporter's proposal`, so fix-bug reads it last. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so define-bug can read the original.
+A new Bug in the Bugs store, status `draft`, with `## Report` holding whatever `guide:bug-writing-guide.md` says a report contains. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so define-bug can read the original, unless it carries a proposal.
 
 ## Retrospective notes
 
@@ -52,4 +52,4 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 
 ## Done
 
-Report the Bug's ID. Suggest define-bug.
+Report the Bug's ID and any proposal, with its source. Suggest define-bug.

@@ -37,7 +37,7 @@ Run only when all of these are true:
 
 2. **Set up worktrees** for each repo the fix changes, now or later, as `~/.sdlc/install/workflow.md`'s Worktrees rule says.
 
-3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first when the guides don't settle it or it changes behaviour others rely on. Then read any `## Reporter's proposal`, recording differences under `## Progress`.
+3. **Choose the pipeline** from Fix pipelines below and record it with your reason under `## Progress`. When the fix must choose an approach, record it there and check it against the guides before any code, because a rejected design throws the build away; ask the Managing Intelligence first when the guides don't settle it or it changes behaviour others rely on. Then take any proposal, as `~/.sdlc/install/workflow.md`'s Proposals rule says.
 
 4. **Write a test that catches the Bug.** Before the fix, have the engineer in Small, or test-writers in Full, add each failing regression test that Regression evidence below requires and that doesn't exist yet.
 

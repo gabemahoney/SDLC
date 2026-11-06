@@ -23,7 +23,7 @@ new_idea_intake: /home/you/.sdlc/install/resolvers/github.md
 new_bug_intake: /home/you/.sdlc/install/resolvers/github.md
 ```
 
-Run project-setup to check the files and prerequisites, then give write-idea or write-bug an issue URL. The intake reads the issue and records its URL on the ticket. write-prd or define-bug later reads it through the `github` resolver; downstream skills use the ticket's established requirements.
+Run project-setup to check the files and prerequisites, then give write-idea or write-bug an issue URL. The intake reads the issue and records its URL on the ticket, unless the issue proposes a fix. write-prd or define-bug later reads it through the `github` resolver; downstream skills use the ticket's established requirements.
 
 ## Write your own
 

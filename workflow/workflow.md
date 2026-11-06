@@ -161,7 +161,9 @@ support: /home/you/.sdlc/resolvers/support.md
 
 Use the mapped file when the kind has an entry; otherwise use `~/.sdlc/install/resolvers/<kind>.md`, including when `setting:resolvers` is unset, so existing Projects can read shipped source kinds without new settings. Stop if neither a mapping nor a shipped Resolver exists, because the source has no reading instructions. Check the selected file and its prerequisites before using it, because access depends on the source.
 
-**Proposals last:** a proposal is a reporter's or source's suggested fix or implementation, not direction the User or Managing Intelligence approved. Read the facts first and do your own analysis, then read the proposal and say where your conclusion differs, because a proposal read first anchors the work.
+### Proposals
+
+A proposal is a reporter's or source's suggested fix, implementation or answer, not direction from the User or Managing Intelligence. Keep it off tickets, because an Agent that reads one first anchors on it. write-idea and write-bug file only the reporter's facts, leaving out the proposal, any mention of it and any Source Reference carrying it, and report those to the Managing Intelligence. It keeps them in `<Project Folder>/.proposals/`, which no skill reads, and tells a launch only that one exists. Then fix-bug, build-tweak and research ask for it at the step their skill names, after recording their own approach, and record where theirs differs and why under `## Progress`, or in the Report for research.
 
 ### References
 

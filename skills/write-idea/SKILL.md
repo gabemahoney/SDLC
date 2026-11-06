@@ -30,7 +30,7 @@ None: you create or revise an Idea or Tweak.
 
 ## Steps
 
-1. **Take in and classify the work.** Follow the intake's instructions for input it takes; otherwise, work out the Idea or change with the Managing Intelligence. Either way, follow `~/.sdlc/install/workflow.md`'s Proposals last rule, reporting differences to the Managing Intelligence, not the Idea.
+1. **Take in and classify the work.** Follow the intake's instructions for input it takes; otherwise, work out the Idea or change with the Managing Intelligence.
 2. **File or revise the Idea or Tweak** as Writes describes.
 3. **Check it** against Idea body or Tweak body, so drift is fixed before approval.
 
@@ -40,7 +40,7 @@ None: you file the Idea yourself.
 
 ## Writes
 
-A new `draft` Idea in the Ideas store, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original.
+A new `draft` Idea in the Ideas store, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original, unless it carries a proposal.
 
 Revise in place, so the body shows only the current direction, and link its history under `## Artifacts`, so it survives. A revision keeps sections other skills own, such as `## Review rounds`, `## Declined findings` and `## Retrospective notes`. To refile a Tweak as an Idea, remove its mark and rewrite its body.
 
@@ -54,7 +54,7 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 
 ## Done
 
-Report the Idea's or Tweak's ID. Suggest the Managing Intelligence approve it, then write-prd, or for a Tweak, worktree setup and build-tweak.
+Report the Idea's or Tweak's ID and any proposal, with its source. Suggest the Managing Intelligence approve it, then write-prd, or for a Tweak, worktree setup and build-tweak.
 
 ## Idea body
 
