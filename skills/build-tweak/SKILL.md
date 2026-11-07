@@ -25,7 +25,7 @@ A Tweak ID, or several as `~/.sdlc/install/workflow.md`'s Bundles rule describes
 
 ## Gate
 
-Run only when the Tweak carries the Tweak mark (`protocol:ticket.md`) and is `defined` or `active`, its `## Worktrees` records its worktrees, and every ticket it depends on is `done`, because approval, worktree setup and prerequisites come first. Otherwise, change nothing and report what's missing.
+Run only when the Tweak carries the Tweak mark (`protocol:ticket.md`) and is `defined` or `active`, its `## Worktrees` records its worktrees, or `none` when it changes no repo, and every ticket it depends on is `done`, because approval, worktree setup and prerequisites come first. Otherwise, change nothing and report what's missing.
 
 ## Steps
 
