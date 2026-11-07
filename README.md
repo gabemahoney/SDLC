@@ -50,7 +50,7 @@ Start each skill in a fresh session, passing the ticket ID after intake; fix-bug
 - **Bug:** write-bug → define-bug → fix-bug.
 - **Research:** research answers a question with a cited Report, revising it until you accept it.
 
-Approve the Idea before write-prd, and approve the PRD and SRD before planning. Approve a Tweak once and set up its worktree before build-tweak. Once you approve an SRD with Formal Models, run model-writer on each Model Doc alongside the build, for the model checks that didn't need to pass before coding. Send each violation it reports through write-srd, write-plan and write-epic, and accept the Idea only once every check passes. After implementation and review, test the Idea, Tweak or Bug, write its retrospective and accept it. Then run teardown-worktree for an Idea, or merge a Tweak's or Bug's branch and remove its worktrees yourself, and run release. Your release guide controls what may ship.
+Approve the Idea before write-prd, and approve the PRD and SRD before planning. Approve a Tweak once and set up its worktrees before build-tweak, or record `none` under its `## Worktrees` when it changes no repo. Once you approve an SRD with Formal Models, run model-writer on each Model Doc alongside the build, for the model checks that didn't need to pass before coding. Send each violation it reports through write-srd, write-plan and write-epic, and accept the Idea only once every check passes. After implementation and review, test the Idea, Tweak or Bug, write its retrospective and accept it. Then run teardown-worktree for an Idea, or merge a Tweak's or Bug's branch and remove its worktrees yourself, and run release. Your release guide controls what may ship.
 
 ## Customize
 

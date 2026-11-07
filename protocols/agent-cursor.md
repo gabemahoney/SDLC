@@ -16,7 +16,7 @@ Leave mode unset in `setting:levels`, so a model alone uses agent-director's nor
 
 ## Subagents
 
-Don't use Cursor's built-in subagents (its Task tool), because agent-director's Cursor gateway rejects them and cancels your turn; launch Child Agents through agent-director instead.
+Don't use Cursor's built-in subagents (its Task tool), because agent-director's Cursor gateway rejects them and cancels your turn; launch only the Child Agents your skill names, through `protocol:launcher.md`.
 
 ## Context use
 
