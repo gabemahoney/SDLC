@@ -14,6 +14,10 @@ Choose Cursor models from `cursor-agent --list-models`, because model availabili
 
 Leave mode unset in `setting:levels`, so a model alone uses agent-director's normal `agent` mode, because Task and Bug tags can reach any level and its other modes, `plan` and `ask`, are read-only. Where a mode is set, write `mode: <mode>` in that level's entry.
 
+## Subagents
+
+Don't use Cursor's built-in subagents (its Task tool), because agent-director's Cursor gateway rejects them and cancels your turn; launch Child Agents through agent-director instead.
+
 ## Context use
 
 agent-director reports `context.fraction` as `null` for Cursor. As a Main Agent, skip your own context check; as a caller, start every Cursor Child Agent fresh, because no context reading is available to judge reuse.
