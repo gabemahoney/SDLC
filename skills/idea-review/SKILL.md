@@ -7,7 +7,7 @@ description: "Review an Idea's work in its worktrees and file one feedback Epic 
 
 ## Purpose
 
-You review the whole Idea before the Managing Intelligence's acceptance. Each Run is one numbered round.
+You review an Idea's work before the Managing Intelligence's acceptance: the whole Idea in round 1, and what changed since the last round in later rounds. Each Run is one numbered round.
 
 ## Loading SDLC
 
@@ -38,14 +38,14 @@ Run only when all of these are true:
 ## Steps
 
 1. **Start the round.** Number it one more than the last recorded on the Idea, starting at 1. Record the round, checkouts and commits under `## Review rounds` on the Idea to identify the reviewed work.
-2. **Review the whole Idea.** Launch Child Agents and handle their feedback as below.
+2. **Review the round's work.** Round 1 reviews the whole Idea. A later round reviews only the commits made since the last round's recorded commits, and the code and docs that refer to them, as `~/.sdlc/install/workflow.md`'s Review findings rule says, because develop-epic reviewed each Epic those commits built and earlier rounds read the rest. Launch Child Agents and handle their feedback as below, telling each in a later round that the round is later and which commits it covers.
 3. **Hand off.** If any findings are worth fixing, create one Epic titled `Round <N> Feedback` in the Idea's Plan, with contents as Writes describes, and set the Plan `active` because work remains. If any finding went to write-srd, hand off to the Managing Intelligence for write-srd before write-epic or acceptance, because the requirement gap must close first. Otherwise, hand off to write-epic if you filed feedback, or hand the Idea to the Managing Intelligence for testing and acceptance, listing any Model Docs whose during-build checks haven't passed against the current SRD, because acceptance waits on them.
 
 ## Child Agents
 
-- **`code-review`:** Start fresh every time for independence. Launch across the Idea's source changes. Expect correctness and engineering findings.
-- **`test-review`:** Start fresh every time for independence. Launch across the Idea's tests. Expect quality, coverage and duplication findings.
-- **`doc-review`:** Start fresh every time for independence. Launch across the Idea's documentation. Expect incomplete, missing or outdated documentation findings.
+- **`code-review`:** Start fresh every time for independence. Launch across the round's source changes. Expect correctness and engineering findings.
+- **`test-review`:** Start fresh every time for independence. Launch across the round's tests. Expect quality, coverage and duplication findings.
+- **`doc-review`:** Start fresh every time for independence. Launch across the round's documentation. Expect incomplete, missing or outdated documentation findings.
 - **`product-manager`:** Start fresh every time for independence. Launch after those reviewers so it sees the combined result. Expect requirements, scope and proportion findings against the PRD and SRD.
 
 ## Handling Reviewer Feedback
