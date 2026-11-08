@@ -141,7 +141,7 @@ The Managing Intelligence merges an accepted Bug or Tweak itself, because a few 
 
 ### Settings
 
-Read settings only from `<Project Folder>/.sdlc/project_settings.md`, then `~/.sdlc/default_project_settings.md`. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
+Read settings only from `<Project Folder>/.sdlc/project_settings.md`, then `~/.sdlc/default_project_settings.md`. A setting with one value is a `<name>: <value>` line, and a map setting, such as `setting:levels`, is a `## <name>` section with one line per entry; a setting is unset only when neither form appears. The first file naming a setting supplies its whole value, so a Project's setting replaces the default cleanly rather than mixing with it.
 
 `setting:research_location` locates Research tickets, Reports and artifacts through the Ticket System Protocol File, including linked Research. A home default shares Research across Projects and bots because answers may serve more than one Project; a Project setting overrides it. Research always uses the requesting Project's guidance.
 
