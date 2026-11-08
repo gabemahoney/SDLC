@@ -31,7 +31,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 Run only when all of these are true:
 
 - The Epic is `defined` or `active`, or is `done` and needs only step 4 or a repeat of step 3's merge. Otherwise, stop and suggest write-epic.
-- Every Epic it depends on is `done`. Otherwise, stop and report the unfinished Dependency.
+- Every Epic it depends on is `done`, and merged into the Idea's branches if it had its own worktrees. Otherwise, stop and report the unfinished Dependency.
 - Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff or repeated merge, or the Epic is unpaused during an SRD revision, as `~/.sdlc/install/workflow.md` defines it. Otherwise, stop and suggest write-plan.
 - The PRD and SRD are `defined`, except the SRD for an unpaused Epic, because execution follows approved requirements. Otherwise, stop and return them to the Managing Intelligence.
 - The Epic's `## Worktrees`, while its worktrees exist, or else the Plan's, covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
@@ -48,7 +48,7 @@ Run only when all of these are true:
 
    **Start the full suites early.** When a Task commits, first read and repair any recorded job, then, if another Task remains, start each of `guide:build-commands.md ## Unit tests` and `## Integration tests` that runs outside the session for every affected code folder, on a snapshot or clean checkout of the latest commit so later edits don't change what it tests. Record each job's ID, commit and Build Commands' blocking wait under `## Progress` on the Epic and begin the next Task without waiting, so breakage surfaces before much builds on it. To read a job, wait, read only failures, move the result and commit to `## Checks`, clear its `## Progress` entry and route failures as the Integration gate does; the next job, or the gate after the last Task, confirms the repairs. A resuming Run reads any recorded job first. In-session Integration tests wait for the gate, which stays the final check.
 
-3. **Finish the Epic.** If the Epic has its own worktrees, first merge the Idea's branches into the Epic's, resolving any conflict in a fix Task, so the gate checks the combined code. Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
+3. **Finish the Epic.** If the Epic has its own worktrees, first merge the Idea's branches into the Epic's and run step 2's commit checks on the result, resolving any conflict or failure in a fix Task, so every check covers the combined code. Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
 
 4. **Check Plan completion.** Set the Plan `done` when every Epic is `done`, except during an SRD revision.
 

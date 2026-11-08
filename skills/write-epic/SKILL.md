@@ -71,7 +71,7 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 
 Report the Epic's ID, and any `product-manager` findings left unaddressed with the reason.
 
-Suggest develop-epic on this Epic once every Epic it depends on is `done`.
+Suggest develop-epic on this Epic once every Epic it depends on is `done` and merged into the Idea's branches.
 
 ## Task template
 
