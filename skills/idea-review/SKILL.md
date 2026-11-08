@@ -59,7 +59,7 @@ For each finding:
 
 ## Writes
 
-- **Idea:** under `## Review rounds`, record the round, checkouts and commits when it starts, and its handoff (write-epic with the feedback Epic ID, write-srd or testing) when it ends, because the next round's scope starts from the last handed-off round. Record there each finding sent to write-srd with its evidence and PRD requirement, so write-srd reads the gap from the ticket. Under `## Declined findings`, record declined or unaddressed findings with reasons.
+- **Idea:** under `## Review rounds`, record the round, checkouts and commits when it starts, and its handoff (write-epic, write-srd or testing) and any feedback Epic ID when it ends, because the next round's scope starts from the last handed-off round. Record there each finding sent to write-srd with its evidence and PRD requirement, so write-srd reads the gap from the ticket. Under `## Declined findings`, record declined or unaddressed findings with reasons.
 - **Round Feedback Epic:** when findings are worth fixing, create one `draft` child of the Idea's Plan titled `Round <N> Feedback`, with `## Outcome` for the correction's outcome, `## Findings` for findings with evidence and the requirement or Guidance Document rule each serves or the merge conflict it resolves, `## Acceptance criteria` for observable checks, and `## Dependencies` for prerequisites. Leave Task planning to write-epic.
 - **Plan:** set it `active` when filing feedback, because work remains.
 
