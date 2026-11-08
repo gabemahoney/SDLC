@@ -1,7 +1,7 @@
 # SDLC: who runs which skill (b.v38)
 
-- **Managing Intelligence:** runs no skills itself. It starts one Main Agent per skill, and does the git work for Bugs, Tweaks and Epics with their own worktrees itself.
-- **Main Agent skills that launch no Child Agents:** project-setup, write-idea, write-bug, define-bug, research, model-writer (for during-build checks), configure-worktree (for Ideas and Epics) and teardown-worktree (for Ideas), release.
+- **Managing Intelligence:** runs no skills itself. It starts one Main Agent per skill, and does the git work for Bugs and Tweaks itself.
+- **Main Agent skills that launch no Child Agents:** project-setup, write-idea, write-bug, define-bug, research, model-writer (for during-build checks), configure-worktree and teardown-worktree (for Ideas), release.
 - **Main Agent skills that launch Child Agents:** one diagram each below.
 
 ## write-prd

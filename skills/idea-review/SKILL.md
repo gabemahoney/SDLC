@@ -31,7 +31,7 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 Run only when all of these are true:
 
-- The Plan is `done` and no Epic still has worktrees of its own, because execution must finish and merge first. Otherwise, report unfinished or unmerged work.
+- The Plan is `done` and every Epic merged, because execution must finish first. Otherwise, report unfinished work.
 - The Plan has a `## Worktrees` record, because it tells your Child Agents where to review the work, and `none` means no repo changed. Otherwise, stop and tell the Managing Intelligence, because there is no recorded work to review.
 - The Idea's PRD and SRD are `defined`, because you review the work against them. Otherwise, stop and tell the Managing Intelligence which one isn't approved.
 
