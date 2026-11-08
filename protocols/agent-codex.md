@@ -6,7 +6,7 @@ Check skills in `~/.agents/skills/<skill>/SKILL.md` for a user installation or `
 
 ## Context use
 
-**TBD:** agent-director will report each agent's context use. Until it does, no reading exists: a Main Agent skips its own check, and a Child Agent's reading counts as unknown, so it's always started fresh instead of reused.
+Read an agent's context with `agent-director get --instance-id '<id>'`; for your own, use your `AGENT_DIRECTOR_INSTANCE_ID`. Use `context.fraction` when it is a number. When it is null or unverified, there is no reading: as a Main Agent, skip your own check; as a caller, start that Child Agent fresh instead of reusing it.
 
 ## Launch template
 
