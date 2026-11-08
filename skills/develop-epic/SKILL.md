@@ -21,7 +21,7 @@ An Epic ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Epic, Tasks, Subtasks, Plan, sibling Epics, Idea and its Docs:** for requirements, decisions, Dependencies, unfinished work and Plan completion. The Plan's `## Worktrees` says where you and your Child Agents work.
+- **Epic, Tasks, Subtasks, Plan, sibling Epics, Idea and its Docs:** for requirements, decisions, Dependencies, unfinished work and Plan completion. The Epic's `## Worktrees`, if it has one, or else the Plan's, says where you and your Child Agents work.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for implementation, reviews, checks and commits in each affected repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
@@ -34,13 +34,13 @@ Run only when all of these are true:
 - Every Epic it depends on is `done`. Otherwise, stop and report the unfinished Dependency.
 - Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff, or the Epic is unpaused during an SRD revision, as `~/.sdlc/install/workflow.md` defines it. Otherwise, stop and suggest write-plan.
 - The PRD and SRD are `defined`, except the SRD for an unpaused Epic, because execution follows approved requirements. Otherwise, stop and return them to the Managing Intelligence.
-- The Plan's `## Worktrees` covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
+- The Epic's `## Worktrees`, or else the Plan's, covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
 - The Epic has planned Tasks with Subtasks. Unfinished ones are `defined` or `active`, except `draft` fix Tasks and Subtasks whose planning you resume before execution so interrupted repairs can continue. Otherwise, stop and suggest write-epic.
 - Every Task names what it serves, as write-epic's Task template says, because work outside the approved requirements and guidance bypassed their review. Otherwise, add the names to the Task's `## Context` from its Epic's `## Work` or `## Findings`, because you own Task records and write-epic runs only on `draft` Epics; if the Epic names none, stop and ask the Managing Intelligence.
 
 ## Steps
 
-1. **Start or resume.** For a completed Epic, go to step 4. Otherwise, set the Idea, Plan and Epic `active`, leaving the Plan `draft` during an SRD revision.
+1. **Start or resume.** For a completed Epic, go to step 4. Otherwise, set the Idea, Plan and Epic `active`, leaving the Plan `draft` during an SRD revision. If the Epic's `## Worktrees` records a merge conflict, add a fix Task that merges the Idea's branches into the Epic's and resolves it, so the next merge is clean.
 
 2. **Complete Tasks in Dependency order, one at a time.** Update stale instructions, set the Task `active` and follow the Task pipeline until Subtasks are `done` and accepted findings are fixed.
 
@@ -70,7 +70,7 @@ Start each executor (engineer, test-writer, doc-writer) fresh for each Task and 
 
 - **Idea, Plan and Epic:** set statuses in steps 1, 3 and 4. Keep the current Task, phase, checkout paths and running suite jobs under `## Progress` and integration evidence, including early job results, under `## Checks` on the Epic.
 - **Tasks and Subtasks:** add the names of what a Task serves to its `## Context` when the Gate finds them missing. Update stale instructions and set Task statuses in step 2. Executors set assigned Subtasks `active`, then `done`; you set a `done` Subtask back to `active` only to reopen it for a repair, as Child Agents describes. Record executor IDs, skills, testing assignments, Thinking Levels, checks and commits under `## Progress` on the Task so another Run can continue.
-- **Fix Tasks:** create Epic children for source integration failures and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work` and `## Dependencies` for each Task's purpose, changes and prerequisites, naming in `## Context` what the Task or Epic it repairs serves, so a re-run passes the Gate. Set a complexity-appropriate `thinking_level:<label>` tag. You may bundle fixes that fit fix-bug's Small pipeline into one Task, as write-epic's Writing guidance describes. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage and affected docs so repairs receive the original work's checks.
+- **Fix Tasks:** create Epic children for source integration failures, merge conflicts and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work` and `## Dependencies` for each Task's purpose, changes and prerequisites, naming in `## Context` what the Task or Epic it repairs serves, so a re-run passes the Gate. Set a complexity-appropriate `thinking_level:<label>` tag. You may bundle fixes that fit fix-bug's Small pipeline into one Task, as write-epic's Writing guidance describes. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage and affected docs so repairs receive the original work's checks.
 
 ## Retrospective notes
 

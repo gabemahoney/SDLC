@@ -1,13 +1,13 @@
 ---
 name: configure-worktree
-description: "Create or reuse a branch and worktree for an Idea in every repo it changes, and record them on the Idea's Plan. Takes an Idea ID."
+description: "Create or reuse a branch and worktree for an Idea in every repo it changes, and record them on the Idea's Plan, or give an Epic built alongside another its own. Takes an Idea or Epic ID."
 ---
 
 # configure-worktree
 
 ## Purpose
 
-You give an Idea its own branch and worktree in every repo it changes, so its work stays off the base branch until the Managing Intelligence accepts it.
+You give an Idea its own branch and worktree in every repo it changes, so its work stays off the base branch until the Managing Intelligence accepts it. You give an Epic its own when its develop-epic Run would otherwise share the Idea's worktrees with another Run.
 
 ## Loading SDLC
 
@@ -15,7 +15,7 @@ Read `~/.sdlc/install/workflow.md` first for shared rules, settings and file loc
 
 ## Input
 
-An Idea ID, and any repos the caller names.
+An Idea or Epic ID, and any repos the caller names.
 
 ## Required Reading
 
@@ -25,11 +25,11 @@ An Idea ID, and any repos the caller names.
 
 ## Gate
 
-Run only when the Idea and its Plan are `defined` or `active`. Otherwise, stop and report which isn't.
+Run only when the Idea and its Plan are `defined` or `active`, and for an Epic, when the Plan's `## Worktrees` names the Idea's worktrees, because the Epic's branches start from them. Otherwise, stop and report which isn't.
 
 ## Steps
 
-1. **Create or reuse the worktrees and record them** on the Idea's Plan, or record `none` when the Idea changes no repo, as `~/.sdlc/install/workflow.md`'s Worktrees rule says.
+1. **Create or reuse the worktrees and record them** on the Idea's Plan, or record `none` when the Idea changes no repo, as `~/.sdlc/install/workflow.md`'s Worktrees rule says. For an Epic, record them on the Epic, only for the repos it changes.
 
 ## Child Agents
 
@@ -37,8 +37,8 @@ None: you prepare the worktrees yourself.
 
 ## Writes
 
-- **The Idea's Plan:** its `## Worktrees` record.
-- **Repos:** the Idea's branches and worktrees.
+- **The Idea's Plan or the Epic:** its `## Worktrees` record.
+- **Repos:** the Idea's or Epic's branches and worktrees.
 
 ## Retrospective notes
 
@@ -50,4 +50,4 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 
 ## Done
 
-Report the Idea's ID and worktree paths, or `none`, and suggest the skill that needs them next: write-epic for a new Plan's first `draft` Epic, or develop-epic if it sent you here.
+Report the Idea's or Epic's ID and worktree paths, or `none`, and suggest the skill that needs them next: write-epic for a new Plan's first `draft` Epic, or develop-epic for an Epic or if it sent you here.
