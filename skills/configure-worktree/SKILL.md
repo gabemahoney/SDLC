@@ -25,7 +25,7 @@ An Idea or Epic ID, and any repos the caller names.
 
 ## Gate
 
-Run only when the Idea and its Plan are `defined` or `active`, and for an Epic, when the Plan's `## Worktrees` names the Idea's worktrees, because the Epic's branches start from them. Otherwise, stop and report which isn't.
+Run only when the Idea and its Plan are `defined` or `active`, or an Epic input is unpaused during an SRD revision. For an Epic, the Plan's `## Worktrees` must also name the Idea's worktrees, because the Epic's branches start from them. Otherwise, stop and report which isn't.
 
 ## Steps
 
@@ -50,4 +50,4 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 
 ## Done
 
-Report the Idea's or Epic's ID and worktree paths, or `none`, and suggest the skill that needs them next: write-epic for a new Plan's first `draft` Epic, or develop-epic for an Epic or if it sent you here.
+Report the Idea's or Epic's ID and worktree paths, or `none`, and suggest the skill that needs them next: write-epic for a new Plan's first `draft` Epic, develop-epic if it sent you here, or for an Epic, write-epic if it is `draft` and develop-epic otherwise.

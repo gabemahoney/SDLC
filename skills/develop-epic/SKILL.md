@@ -21,7 +21,7 @@ An Epic ID.
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and the Ticket System Protocol File selected by `setting:ticket_system`, for operations.
-- **Epic, Tasks, Subtasks, Plan, sibling Epics, Idea and its Docs:** for requirements, decisions, Dependencies, unfinished work and Plan completion. The Epic's `## Worktrees`, if it has one, or else the Plan's, says where you and your Child Agents work.
+- **Epic, Tasks, Subtasks, Plan, sibling Epics, Idea and its Docs:** for requirements, decisions, Dependencies, unfinished work and Plan completion. The Epic's `## Worktrees`, while its worktrees exist, or else the Plan's, says where you and your Child Agents work.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for implementation, reviews, checks and commits in each affected repo.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
@@ -30,17 +30,17 @@ Also read the Project's code, tests and any linked Research tickets as the work 
 
 Run only when all of these are true:
 
-- The Epic is `defined` or `active`, or is `done` and needs only step 4. Otherwise, stop and suggest write-epic.
+- The Epic is `defined` or `active`, or is `done` and needs only step 4 or a repeat of step 3's merge. Otherwise, stop and suggest write-epic.
 - Every Epic it depends on is `done`. Otherwise, stop and report the unfinished Dependency.
-- Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff, or the Epic is unpaused during an SRD revision, as `~/.sdlc/install/workflow.md` defines it. Otherwise, stop and suggest write-plan.
+- Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff or repeated merge, or the Epic is unpaused during an SRD revision, as `~/.sdlc/install/workflow.md` defines it. Otherwise, stop and suggest write-plan.
 - The PRD and SRD are `defined`, except the SRD for an unpaused Epic, because execution follows approved requirements. Otherwise, stop and return them to the Managing Intelligence.
-- The Epic's `## Worktrees`, or else the Plan's, covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
+- The Epic's `## Worktrees`, while its worktrees exist, or else the Plan's, covers every repo this Epic changes, so nothing is committed on a base branch. Otherwise, stop and suggest configure-worktree.
 - The Epic has planned Tasks with Subtasks. Unfinished ones are `defined` or `active`, except `draft` fix Tasks and Subtasks whose planning you resume before execution so interrupted repairs can continue. Otherwise, stop and suggest write-epic.
 - Every Task names what it serves, as write-epic's Task template says, because work outside the approved requirements and guidance bypassed their review. Otherwise, add the names to the Task's `## Context` from its Epic's `## Work` or `## Findings`, because you own Task records and write-epic runs only on `draft` Epics; if the Epic names none, stop and ask the Managing Intelligence.
 
 ## Steps
 
-1. **Start or resume.** For a completed Epic, go to step 4. Otherwise, set the Idea, Plan and Epic `active`, leaving the Plan `draft` during an SRD revision. If the Epic's `## Worktrees` records a merge conflict, add a fix Task that merges the Idea's branches into the Epic's and resolves it, so the next merge is clean.
+1. **Start or resume.** For a completed Epic that needs only step 4, go to step 4. Otherwise, set the Idea, Plan and Epic `active`, leaving the Plan `draft` during an SRD revision.
 
 2. **Complete Tasks in Dependency order, one at a time.** Update stale instructions, set the Task `active` and follow the Task pipeline until Subtasks are `done` and accepted findings are fixed.
 
@@ -48,7 +48,7 @@ Run only when all of these are true:
 
    **Start the full suites early.** When a Task commits, first read and repair any recorded job, then, if another Task remains, start each of `guide:build-commands.md ## Unit tests` and `## Integration tests` that runs outside the session for every affected code folder, on a snapshot or clean checkout of the latest commit so later edits don't change what it tests. Record each job's ID, commit and Build Commands' blocking wait under `## Progress` on the Epic and begin the next Task without waiting, so breakage surfaces before much builds on it. To read a job, wait, read only failures, move the result and commit to `## Checks`, clear its `## Progress` entry and route failures as the Integration gate does; the next job, or the gate after the last Task, confirms the repairs. A resuming Run reads any recorded job first. In-session Integration tests wait for the gate, which stays the final check.
 
-3. **Finish the Epic.** Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
+3. **Finish the Epic.** If the Epic has its own worktrees, first merge the Idea's branches into the Epic's, resolving any conflict in a fix Task, so the gate checks the combined code. Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
 
 4. **Check Plan completion.** Set the Plan `done` when every Epic is `done`, except during an SRD revision.
 
@@ -85,6 +85,7 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 Report the Epic's ID and unaddressed findings with reasons.
 
 - If you stopped at a Task boundary, suggest re-running develop-epic on this Epic.
+- If this `done` Epic has its own worktrees, ask the Managing Intelligence to merge them, because Epics that depend on it and idea-review wait for that.
 - For remaining Epics, suggest write-epic if `draft`, otherwise develop-epic.
 - For a completed Plan, suggest idea-review.
 - During an SRD revision, suggest write-plan once the SRD is approved, because only write-plan ends the revision.
