@@ -122,6 +122,7 @@ The Managing Intelligence merges an accepted Bug or Tweak itself, because a few 
 
 - Stop before any change, naming the file, if a file the Run needs is missing, empty or unreadable. That covers the `SKILL.md`, a Protocol File, and a Guidance Document with neither a user copy nor a Default Fallback File. A missing store stops the Run the same way; point to project-setup.
 - If your skill's Gate fails, change nothing and say why.
+- Gates guard a skill's own steps, not the preparation for them, so the Managing Intelligence may have independent work done early or in parallel, such as drafting release notes during the last review, because waiting for a Gate that guards nothing in it only costs time. That work spends nothing an approval doesn't cover and keeps each ticket to its single writer. The gated skill then reuses it and re-checks it against the final state.
 - The Managing Intelligence runs no skills itself. It assigns each workflow skill to a Main Agent, which launches the Child Agents its skill names.
 - After a compaction, re-read this workflow and the Protocol Files and Guidance Documents you loaded, because summaries can omit their rules.
 - Report pass, fail or not applicable for every required check and gate in the `SKILL.md` and its Guidance Documents, and name the Guidance Document copies or Default Fallback Files used.
