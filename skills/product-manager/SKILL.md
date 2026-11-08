@@ -59,7 +59,7 @@ Do the common checks, then the checks for your point.
 - **A planned Epic (from write-epic):** check its Tasks and Subtasks together will meet every acceptance criterion of the Epic, and fit with sibling Epics without overlapping them.
 - **A finished Task (from develop-epic):** check the work fits with the rest of the Epic. Read its other Tasks and any earlier Epics this work touches, and flag anything this Task changes that they rely on, because each Task is reviewed on its own and a clash between them would otherwise go unseen.
 - **A finished Epic (from develop-epic, after the Integration gate):** check the combined work of all its Tasks meets every acceptance criterion of the Epic and covers everything it needs.
-- **An Idea (from idea-review):** in a full round, check the combined work of all its Epics meets every PRD acceptance criterion and requirement. In a later round, check the round's commits meet the findings and requirements they serve and break no other PRD or SRD requirement, keeping the whole PRD and SRD in view because a repair can undo work an earlier round accepted.
+- **An Idea (from idea-review):** check the combined work of all its Epics, or in a later round its commits, against every PRD acceptance criterion and requirement.
 
 Leave full unit and integration suites to your Main Agent, which owns those checks.
 

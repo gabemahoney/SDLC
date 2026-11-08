@@ -7,7 +7,7 @@ description: "Review an Idea's work in its worktrees and file one feedback Epic 
 
 ## Purpose
 
-You review an Idea's work before the Managing Intelligence's acceptance: the whole Idea first, then what changed since the last round that handed off. Each Run is one numbered round.
+You review the Idea before the Managing Intelligence's acceptance. Each Run is one numbered round.
 
 ## Loading SDLC
 
@@ -38,7 +38,7 @@ Run only when all of these are true:
 ## Steps
 
 1. **Start the round.** Number it one more than the last recorded on the Idea, starting at 1. Record the round, checkouts and commits under `## Review rounds` on the Idea to identify the reviewed work.
-2. **Review the round's work.** Review the whole Idea until a round has recorded its handoff. After that, a later round reviews only the commits made since the last handed-off round's recorded commits, and the code and docs that refer to them, as `~/.sdlc/install/workflow.md`'s Review findings rule says, because develop-epic reviewed each Epic those commits built and earlier rounds read the rest. Launch Child Agents and handle their feedback as below, telling each in a later round that the round is later and which commits it covers.
+2. **Review the round's work:** the whole Idea until a round hands off, then only the commits since the last handed-off round and what refers to them, because develop-epic reviewed each Epic that built them. Launch Child Agents, telling each in a later round which commits it covers, and handle their feedback as below.
 3. **Hand off.** If any findings are worth fixing, create one Epic titled `Round <N> Feedback` in the Idea's Plan, with contents as Writes describes, and set the Plan `active` because work remains. If any finding went to write-srd, hand off to the Managing Intelligence for write-srd before write-epic or acceptance, because the requirement gap must close first. Otherwise, hand off to write-epic if you filed feedback, or hand the Idea to the Managing Intelligence for testing and acceptance, listing any Model Docs whose during-build checks haven't passed against the current SRD, because acceptance waits on them.
 
 ## Child Agents
@@ -59,7 +59,7 @@ For each finding:
 
 ## Writes
 
-- **Idea:** under `## Review rounds`, record the round, checkouts and commits when it starts, and its handoff (write-epic, write-srd or testing) and any feedback Epic ID when it ends, because the next round's scope starts from the last handed-off round. Record there each finding sent to write-srd with its evidence and PRD requirement, so write-srd reads the gap from the ticket. Under `## Declined findings`, record declined or unaddressed findings with reasons.
+- **Idea:** under `## Review rounds`, record the round, checkouts and commits when it starts, any feedback Epic ID and its handoff when it ends, and each finding sent to write-srd with its evidence and PRD requirement, so write-srd reads the gap from the ticket. Under `## Declined findings`, record declined or unaddressed findings with reasons.
 - **Round Feedback Epic:** when findings are worth fixing, create one `draft` child of the Idea's Plan titled `Round <N> Feedback`, with `## Outcome` for the correction's outcome, `## Findings` for findings with evidence and the requirement or Guidance Document rule each serves or the merge conflict it resolves, `## Acceptance criteria` for observable checks, and `## Dependencies` for prerequisites. Leave Task planning to write-epic.
 - **Plan:** set it `active` when filing feedback, because work remains.
 
