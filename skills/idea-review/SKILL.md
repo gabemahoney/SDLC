@@ -43,6 +43,8 @@ Run only when all of these are true:
 
 ## Child Agents
 
+In a round that reviews the whole Idea, launch them at `xhigh`, overriding their fixed levels, because it's the Idea's one full final review. Later rounds use their fixed levels, because they only check fixes.
+
 - **`code-review`:** Start fresh every time for independence. Launch across the round's source changes. Expect correctness and engineering findings.
 - **`test-review`:** Start fresh every time for independence. Launch across the round's tests. Expect quality, coverage and duplication findings.
 - **`doc-review`:** Start fresh every time for independence. Launch across the round's documentation. Expect incomplete, missing or outdated documentation findings.

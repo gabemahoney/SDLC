@@ -23,15 +23,15 @@ engineer: medium
 test-writer: medium
 doc-writer: high
 model-writer: high
-model-review: xhigh
+model-review: high
 engineer-planner: high
 test-writer-planner: high
 doc-writer-planner: high
-req-review: xhigh
-code-review: xhigh
-test-review: xhigh
+req-review: high
+code-review: high
+test-review: high
 doc-review: high
-product-manager: xhigh
+product-manager: high
 ```
 
 ## Agents, models and effort
