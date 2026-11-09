@@ -20,7 +20,7 @@ A Tweak ID, or several as `~/.sdlc/install/workflow.md`'s Bundles rule describes
 ## Required Reading
 
 - **Settings and protocols:** Project and default settings, your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and `protocol:ticket.md`, for configuration and operations.
-- **The Tweak and its Dependencies:** its `## Description` (what changes and how we know it's done), `## Decisions`, `## Progress` and `## Worktrees`. Its `thinking_level` tag, the highest in a bundle, is the level you launch `engineer` at; without one, use the skill's fixed level.
+- **The Tweak and its Dependencies:** its `## Description` (what changes and how we know it's done), `## Decisions`, `## Progress` and `## Worktrees`. Its `thinking_level` tag, the highest in a bundle, is the level you launch `engineer` at; without one, use `engineer`'s fixed level.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md`, for the work, checks and commits in each repo.
 
 ## Gate
