@@ -38,12 +38,12 @@ Run only when all of these are true:
 ## Steps
 
 1. **Start the round.** Number it one more than the last recorded on the Idea, starting at 1. Record the round, checkouts and commits under `## Review rounds` on the Idea to identify the reviewed work.
-2. **Review the round's work.** The first round reviews the whole Idea. Each later round reviews only the changes made since the last finished round, plus the code and docs they touch, because develop-epic already reviewed those changes. Launch Child Agents, telling each in a later round which changes it covers, and handle their feedback as below.
+2. **Review the round's work.** A round with no finished round before it reviews the whole Idea. Every other round reviews only the changes made since the last finished round, plus the code and docs they touch, because develop-epic already reviewed those changes. Launch Child Agents, telling each in any other round which changes it covers, and handle their feedback as below.
 3. **Hand off.** If any findings are worth fixing, create one Epic titled `Round <N> Feedback` in the Idea's Plan, with contents as Writes describes, and set the Plan `active` because work remains. If any finding went to write-srd, hand off to the Managing Intelligence for write-srd before write-epic or acceptance, because the requirement gap must close first. Otherwise, hand off to write-epic if you filed feedback, or hand the Idea to the Managing Intelligence for testing and acceptance, listing any Model Docs whose during-build checks haven't passed against the current SRD, because acceptance waits on them.
 
 ## Child Agents
 
-In a round that reviews the whole Idea, launch them at `xhigh`, overriding their fixed levels, because it's the Idea's one full final review. Later rounds use their fixed levels, because they only check fixes.
+In a round that reviews the whole Idea, launch every Child Agent below at `xhigh`, overriding its fixed level, because it's the Idea's one full review. Other rounds use the fixed levels, because they only check fixes.
 
 - **`code-review`:** Start fresh every time for independence. Launch across the round's source changes. Expect correctness and engineering findings.
 - **`test-review`:** Start fresh every time for independence. Launch across the round's tests. Expect quality, coverage and duplication findings.
