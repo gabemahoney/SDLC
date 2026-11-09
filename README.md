@@ -55,6 +55,6 @@ Approve the Idea before write-prd, and approve the PRD and SRD before planning. 
 ## Customize
 
 - [Settings reference](docs/user/settings.md): files, overrides and every setting.
-- [Thinking Levels](docs/user/thinking-levels.md): tools, models and Task/Bug overrides.
+- [Thinking Levels](docs/user/thinking-levels.md): tools, models and Task, Bug and Tweak overrides.
 - [Guides](docs/user/guides.md): engineering, testing, docs, builds, Bugs, research and releases.
 - [Intakes and resolvers](docs/user/intakes-and-resolvers.md): input sources and your own instructions.

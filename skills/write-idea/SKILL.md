@@ -42,7 +42,15 @@ None: you file the Idea yourself.
 
 A new `draft` Idea in the Ideas store, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original, unless it carries a proposal.
 
-Revise in place, so the body shows only the current direction, and link its history under `## Artifacts`, so it survives. A revision keeps sections other skills own, such as `## Review rounds`, `## Declined findings` and `## Retrospective notes`. To refile a Tweak as an Idea, remove its mark and rewrite its body.
+Set or replace a Tweak's `thinking_level:<label>` tag, through `protocol:ticket.md`, because it sets how hard build-tweak's `engineer` thinks. Use `medium` or above, because one engineer writes the change, its tests and docs. Match it to how hard the change is and what a mistake in it would cost:
+- `medium`: routine changes in one place that follow an established pattern, including trivial ones such as wording or a config value.
+- `high`: changes that need real judgement or change behavior other code relies on.
+- `xhigh`: changes where a mistake is costly or hard to spot, such as security or an interface between components.
+- `max`: the highest-risk changes only, because it is the slowest and most expensive.
+
+When unsure between two levels, choose the higher one.
+
+Revise in place, so the body shows only the current direction, and link its history under `## Artifacts`, so it survives. A revision keeps sections other skills own, such as `## Review rounds`, `## Declined findings` and `## Retrospective notes`. To refile a Tweak as an Idea, remove its mark and Thinking Level tag and rewrite its body.
 
 ## Retrospective notes
 
