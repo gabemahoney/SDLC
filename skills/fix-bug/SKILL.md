@@ -21,7 +21,7 @@ A Bug ID, or several as `~/.sdlc/install/workflow.md`'s Bundles rule describes; 
 
 - **Settings:** Project and defaults, for configuration.
 - **Protocols:** your Agent Protocol File (`protocol:agent-claude-code.md`, `protocol:agent-codex.md` or `protocol:agent-cursor.md`), `protocol:launcher.md` and `protocol:ticket.md`, for operations.
-- **Bug and its Dependencies:** for the report, reproduction, decisions and progress. The Bug's `## Reproduction` names the repos the fix is likely to change, its `## Worktrees` holds any worktrees and merge conflict recorded earlier, and its `thinking_level` tag, the highest in a bundle, is the level you launch `engineer`, `test-writer` and `doc-writer` at.
+- **Bug and its Dependencies:** for the report, reproduction, decisions and progress. The Bug's `## Reproduction` names the repos the fix is likely to change, its `## Worktrees` holds any worktrees and merge conflict recorded earlier, and its `thinking_level` tag, the highest in a bundle, is the level you launch `engineer`, `test-writer` and `doc-writer` at, capped at `high` except as `~/.sdlc/install/workflow.md`'s Thinking Levels allows.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for implementation, reviews, checks and commits in each affected repo.
 
 ## Gate
