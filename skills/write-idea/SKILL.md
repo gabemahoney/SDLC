@@ -42,11 +42,10 @@ None: you file the Idea yourself.
 
 A new `draft` Idea in the Ideas store, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original, unless it carries a proposal.
 
-Set or replace a Tweak's `thinking_level:<label>` tag, through `protocol:ticket.md`, because it sets how hard build-tweak's `engineer` thinks. Use `medium` or above, because one engineer writes the change, its tests and docs. Match it to how hard the change is and what a mistake in it would cost:
+Set or replace a Tweak's `thinking_level:<label>` tag, through `protocol:ticket.md`, because it sets how hard build-tweak's `engineer` thinks. Use `medium`, `high` or `xhigh`, because one engineer writes the change, its tests and docs, and a change that needs `max` is an Idea, not a Tweak. Match it to how hard the change is and what a mistake in it would cost:
 - `medium`: routine changes in one place that follow an established pattern, including trivial ones such as wording or a config value.
 - `high`: changes that need care or change behavior other code relies on.
 - `xhigh`: changes where a mistake is costly or hard to spot, such as security or stored data.
-- `max`: the highest-risk changes only, because it is the slowest and most expensive.
 
 When unsure between two levels, choose the higher one.
 
