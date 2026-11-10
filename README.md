@@ -39,7 +39,7 @@ cd ~/projects/my-project
 claude "/project-setup"
 ```
 
-Setup chooses settings, ticket stores and guides with you. If you use Cursor with agent-director, launch project-setup with `CURSOR_WORKER` and your chosen model. Use a [Project Template](docs/project-templates.md) to reuse a setup.
+Setup chooses settings, ticket stores and guides with you. If you use Cursor with agent-director and have no levels set yet, launch project-setup with `CURSOR_WORKER` and your chosen model. Use a [Project Template](docs/project-templates.md) to reuse a setup.
 
 ## Use
 
