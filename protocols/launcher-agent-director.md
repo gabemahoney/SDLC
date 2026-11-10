@@ -10,7 +10,7 @@ Both run in their own agent-director sessions. The Managing Intelligence launche
 
 ## Launching a Main Agent
 
-Use the Managing Intelligence's recorded skill and ticket, with the settings resolved through `~/.sdlc/install/workflow.md`'s Thinking Levels, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use the template its `## Launch template` selects for the resolved level and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
+Use the Managing Intelligence's recorded skill and ticket, with the settings resolved for a Main Agent through `~/.sdlc/install/workflow.md`'s Thinking Levels, which try `setting:lead_levels` before `setting:levels`, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use the template its `## Launch template` selects for the resolved level and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
 
 ```sh
 # Claude Code (agent: claude-code)
@@ -27,7 +27,7 @@ Arguments after `--` replace the template's `agent_args`, so include those too, 
 
 ## Launching a Child Agent
 
-Resolve the Child Agent's Thinking Level and use the selected Agent's protocol, template and command above from the Main Agent's own session, so agent-director keeps the parent–child relationship even when the Agents differ. Check `agent-director get --instance-id '<id>'` shows the right `parent_id`.
+Resolve the Child Agent's Thinking Level through `setting:levels` alone and use the selected Agent's protocol, template and command above from the Main Agent's own session, so agent-director keeps the parent–child relationship even when the Agents differ. Check `agent-director get --instance-id '<id>'` shows the right `parent_id`.
 
 ## Reporting to your Main Agent
 

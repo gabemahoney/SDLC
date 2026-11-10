@@ -10,7 +10,7 @@ Read an agent's context with `agent-director get --instance-id '<id>'`; for your
 
 ## Launch template
 
-Launch each Main Agent and Child Agent with the `template` its resolved `setting:levels` entry names, or `WORKER` when it names none, because the template sets the agent's sandbox and permissions.
+Launch each Main Agent and Child Agent with the `template` its resolved `setting:lead_levels` or `setting:levels` entry names, or `WORKER` when it names none, because the template sets the agent's sandbox and permissions.
 
 ## Blocking waits
 

@@ -69,9 +69,10 @@ A template can hold any of these. Each takes the same value it would in `project
 | `resolvers` | An optional `## resolvers` block: one `<kind>: <absolute path>` line per custom or overridden kind; unmapped kinds use shipped resolvers. |
 | `research_location` | Absolute path to the folder for Research tickets and Reports. |
 | `levels` | A `## levels` block: the Agent, model, effort or mode and any launch template for each Thinking Level. |
+| `lead_levels` | An optional `## lead_levels` block in the `levels` format, for Main Agents. |
 | `ticket_links` | How links are recorded where the ticket system lacks a link type. |
 
-The `levels` format is in `~/.sdlc/install/templates/thinking-levels.md`. A template can't hold `child_watch_command`, because it belongs to the host and lives in your home defaults.
+The `levels` and `lead_levels` format is in `~/.sdlc/install/templates/thinking-levels.md`. A template can't hold `child_watch_command`, because it belongs to the host and lives in your home defaults.
 
 See [Intakes and resolvers](user/intakes-and-resolvers.md) for user file locations and prerequisites.
 

@@ -33,10 +33,22 @@ low: {agent: codex, model: gpt-6-astra, effort: low}
 
 A Project's `levels` block replaces the entire home block, so include all five levels when overriding it.
 
+## Separate levels for Main Agents
+
+An optional `lead_levels` block in the same format applies only to Main Agents, the skills you launch yourself, such as fix-bug, develop-epic or research. Child Agents always use `levels`. A level `lead_levels` omits, or every level when it is unset, uses `levels`. For example, to keep leads on Claude Code while Child Agents use your `levels` mapping:
+
+```text
+## lead_levels
+high: {agent: claude-code, model: claude-opus-5-5, effort: high}
+medium: {agent: claude-code, model: claude-opus-5-5, effort: medium}
+```
+
+A Project's `lead_levels` replaces the home block, as `levels` does. The two settings resolve separately, so a Project that overrides only `levels` still uses your home `lead_levels`.
+
 ## Task, Bug and Tweak overrides
 
 A Task, Bug or Tweak's `thinking_level:<label>` tag overrides the fixed levels for `engineer`, `test-writer` and `doc-writer`. A Subtask uses its Task's tag. Other skills keep their fixed levels, except that idea-review launches its reviewers at `xhigh` in a round that reviews the whole Idea.
 
 write-epic assigns Task tags, and develop-epic assigns them to fix Tasks. define-bug assigns Bug tags at `medium` or `high`, never below `medium` because fixes require reproduction and review. fix-bug launches an `xhigh` or `max` Bug tag at `high`. The Managing Intelligence may ask you, with a reason, to run one Bug at `xhigh`; on your yes, it tags the Bug `xhigh` and records your yes under the Bug's `## Decisions`, and only then does fix-bug launch it at `xhigh`. write-idea assigns Tweak tags at `medium`, `high` or `xhigh`, and build-tweak launches its engineer at the tag. For example, `thinking_level:high` makes all three executors use your `high` mapping.
 
-The caller resolves the mapping before launch. A missing entry for a shipped skill stops the Run, identifies the shipped mapping file and points to reinstalling SDLC with `install.sh`; a missing `levels` entry goes to project-setup. A missing Task tag goes back to planning and a missing Bug tag goes to the Managing Intelligence. A Tweak with no tag uses the fixed level. Before setup has established `levels`, the Managing Intelligence chooses setup's Agent and model settings.
+The caller resolves the mapping before launch. A missing entry for a shipped skill stops the Run, identifies the shipped mapping file and points to reinstalling SDLC with `install.sh`; a level with no entry in either mapping goes to project-setup. A missing Task tag goes back to planning and a missing Bug tag goes to the Managing Intelligence. A Tweak with no tag uses the fixed level. When no entry resolves setup's own level, the Managing Intelligence chooses setup's Agent and model settings.
