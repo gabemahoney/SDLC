@@ -10,7 +10,7 @@ Both run in their own agent-director sessions. The Managing Intelligence launche
 
 ## Launching a Main Agent
 
-Use the Managing Intelligence's recorded skill and ticket, with the settings resolved for a Main Agent through `~/.sdlc/install/workflow.md`'s Thinking Levels, which try `setting:lead_levels` before `setting:levels`, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use the template its `## Launch template` selects for the resolved level and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
+Use the Managing Intelligence's recorded skill and ticket, with the settings resolved for a Main Agent through `~/.sdlc/install/workflow.md`'s Thinking Levels, which try `setting:main_agent_levels` before `setting:levels`, so the session uses the configured Agent, model and effort or mode. Read the selected `protocol:agent-<agent>.md`, use the template its `## Launch template` selects for the resolved level and the matching command below, and invoke the skill installed for that Agent, so the session receives that tool's instructions and configuration:
 
 ```sh
 # Claude Code (agent: claude-code)

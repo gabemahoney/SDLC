@@ -49,10 +49,10 @@ low: {agent: codex, model: gpt-6-astra, effort: low}
 
 Have the Managing Intelligence supply models and effort values available to their accounts, checking Cursor models as `protocol:agent-cursor.md ## Models` says, because these example model names are illustrative. A level's label chooses an entry; its `effort` is the selected model's setting, so the two can differ. Give Cursor entries a model and no effort, leaving mode unset as `protocol:agent-cursor.md ## Modes` says, because Cursor launches have no effort setting. Add `template: <name>`, such as `CURSOR_WORKER_HIGH`, to launch a level with its own Launcher template, so a host can configure each level separately; an entry without one uses its Agent Protocol File's `## Launch template` default.
 
-Use the same shape for optional `setting:lead_levels`, which Main Agent launches use as `~/.sdlc/install/workflow.md` describes. It may list only some levels; the rest use `setting:levels`:
+Use the same shape for optional `setting:main_agent_levels`, which Main Agent launches use as `~/.sdlc/install/workflow.md` describes. It may list only some levels; the rest use `setting:levels`:
 
 ```text
-## lead_levels
+## main_agent_levels
 high: {agent: claude-code, model: claude-opus-5-5, effort: high}
 medium: {agent: claude-code, model: claude-opus-5-5, effort: medium}
 ```

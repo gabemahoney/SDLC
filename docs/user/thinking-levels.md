@@ -35,15 +35,15 @@ A Project's `levels` block replaces the entire home block, so include all five l
 
 ## Separate levels for Main Agents
 
-An optional `lead_levels` block in the same format applies only to Main Agents, the skills you launch yourself, such as fix-bug, develop-epic or research. Child Agents always use `levels`. A level `lead_levels` omits, or every level when it is unset, uses `levels`. For example, to keep leads on Claude Code while Child Agents use your `levels` mapping:
+An optional `main_agent_levels` block in the same format applies only to Main Agents, the skills you launch yourself, such as fix-bug, develop-epic or research. Child Agents always use `levels`. A level `main_agent_levels` omits, or every level when it is unset, uses `levels`. For example, to keep Main Agents on Claude Code while Child Agents use your `levels` mapping:
 
 ```text
-## lead_levels
+## main_agent_levels
 high: {agent: claude-code, model: claude-opus-5-5, effort: high}
 medium: {agent: claude-code, model: claude-opus-5-5, effort: medium}
 ```
 
-A Project's `lead_levels` replaces the home block, as `levels` does. The two settings resolve separately, so a Project that overrides only `levels` still uses your home `lead_levels`.
+A Project's `main_agent_levels` replaces the home block, as `levels` does. The two settings resolve separately, so a Project that overrides only `levels` still uses your home `main_agent_levels`.
 
 ## Task, Bug and Tweak overrides
 

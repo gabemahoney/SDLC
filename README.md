@@ -22,7 +22,7 @@ The default installs all three agents, as does `--agent all`. Select any comma-s
 
 ## Agent setup
 
-If you use agent-director, have your host operator configure a default worker template for every tool you use, and any per-level template your `levels` or `lead_levels` setting names (see [Thinking Levels](docs/user/thinking-levels.md)):
+If you use agent-director, have your host operator configure a default worker template for every tool you use, and any per-level template your `levels` or `main_agent_levels` setting names (see [Thinking Levels](docs/user/thinking-levels.md)):
 
 | Tool | Default template |
 | --- | --- |
