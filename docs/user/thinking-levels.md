@@ -16,7 +16,7 @@ The labels run from `low` through `medium`, `high`, `xhigh` and `max`. Task plan
 
 ## Configure each level
 
-SDLC assigns each skill a fixed label in [`templates/thinking-levels.md`](../../templates/thinking-levels.md), installed at `~/.sdlc/install/templates/thinking-levels.md`. Your `levels` setting assigns each label an `agent`, a `model` and that model's `effort` for Claude Code or Codex. Valid Agent names are `claude-code`, `codex` and `cursor`. An entry may also name a launch `template`, such as `CURSOR_WORKER_HIGH`, so each level can carry its own host configuration; without one, the level uses its Agent's default template from the [README](../../README.md#agent-setup).
+SDLC assigns each skill a fixed label in [`templates/thinking-levels.md`](../../templates/thinking-levels.md), installed at `~/.sdlc/install/templates/thinking-levels.md`. Settings can't change these labels, and project-setup removes any leftover `thinking_levels` block. Your `levels` setting assigns each label an `agent`, a `model` and that model's `effort` for Claude Code or Codex. Valid Agent names are `claude-code`, `codex` and `cursor`. An entry may also name a launch `template`, such as `CURSOR_WORKER_HIGH`, so each level can carry its own host configuration; without one, the level uses its Agent's default template from the [README](../../README.md#agent-setup).
 
 The label and effort need not match: a `medium` level can use a model's `high` effort. Choose models and efforts your accounts support. For Cursor, choose from `cursor-agent --list-models`, omit `effort` and leave `mode` unset. That uses the launcher's normal `agent` mode; `plan` and `ask` are read-only and unsuitable for levels that may execute Tasks, Bugs or Tweaks.
 

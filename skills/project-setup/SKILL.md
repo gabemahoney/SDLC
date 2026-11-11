@@ -58,7 +58,7 @@ None.
 
 ## Done
 
-Report the Project Folder, the Project Template applied or saved, any incomplete setup or failed installation checks, and an unset or empty `setting:child_watch_command`. Guidance written in repos needs a commit by the Managing Intelligence, because you make no commits. Next: write-idea or write-bug, or project-setup with the saved template for another Project.
+Report the Project Folder, the Project Template applied or saved, any `thinking_levels` block you removed, any incomplete setup or failed installation checks, and an unset or empty `setting:child_watch_command`. Guidance written in repos needs a commit by the Managing Intelligence, because you make no commits. Next: write-idea or write-bug, or project-setup with the saved template for another Project.
 
 ## Settings guidance
 
@@ -66,7 +66,7 @@ A Project Template's value answers that setting's question, so don't ask it. Che
 
 For each setting, the Managing Intelligence chooses a default or Project value. Preserve an existing chosen value. When a template value differs from the Project's existing value, show both and have the Managing Intelligence choose, so a template never silently overwrites an earlier choice. Using a default removes the Project override. Adding or changing a home default needs their approval because it affects other Projects using it.
 
-Apply and save only settings named in this skill. Remove any others from Project or home settings with the Managing Intelligence's OK, and report ones in a Project Template, because they aren't SDLC configuration and you write a template only when saving one.
+Apply and save only settings named in this skill. Remove a `## thinking_levels` block from Project and home settings, because it is left over from SDLC before 3.0.0 and has no effect. Remove other unnamed content only with the Managing Intelligence's OK, because it may be the user's notes. Report unnamed settings in a Project Template, because you write a template only when saving one.
 
 - **`setting:ticket_system`, `setting:launcher` and `setting:prd_template`:** offer existing defaults together, then individual choices. When missing, suggest `bees`, `agent-director` and `~/.sdlc/install/doc-templates/prd.md`. A custom `setting:prd_template` is a file path because the PRD covers the whole Project.
 - **Intakes and Resolvers:** settle `setting:new_idea_intake` and `setting:new_bug_intake`, suggesting `~/.sdlc/install/intakes/interview.md` when unset. Offer optional `setting:resolvers` entries for custom or overridden kinds as `~/.sdlc/install/workflow.md`'s Intakes and Resolvers describes, so user files survive upgrades and unmapped kinds use shipped Resolvers. Check the selected files and their prerequisites, so intake and source reading can run.

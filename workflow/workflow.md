@@ -208,7 +208,7 @@ Each section must give usable instructions, because a heading alone cannot suppo
 
 A Thinking Level picks an Agent, model, any effort or mode and any launch template. The caller resolves it before launch, as `protocol:launcher.md` describes, so every session starts on the intended Agent with the intended settings.
 
-- Read each skill's fixed level from `~/.sdlc/install/templates/thinking-levels.md`, because SDLC owns this mapping across all Projects.
+- Read each skill's fixed level only from `~/.sdlc/install/templates/thinking-levels.md`, because SDLC owns this mapping across all Projects. Settings can't change it, so ignore any leftover `thinking_levels` block.
 - `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor, plus an optional Launcher `template`. Use the format in `~/.sdlc/install/templates/thinking-levels.md`, so setup and callers read the same mapping.
 - Optional `setting:main_agent_levels` has the same format and serves only Main Agent launches, so Main Agents can run on a different Agent than Child Agents. A Main Agent uses its level's `setting:main_agent_levels` entry, or its `setting:levels` entry when that setting is unset or has no entry for the level, so Projects without it keep working. A Child Agent always uses `setting:levels`. A skill that runs both ways, such as research, follows how it was launched.
 
