@@ -1,9 +1,9 @@
 ---
-name: engineer
+name: code-writer
 description: "Implement source changes for assigned Subtask IDs, or Bug or Tweak IDs."
 ---
 
-# engineer
+# code-writer
 
 ## Purpose
 

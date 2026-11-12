@@ -93,6 +93,8 @@ install_skills() {
     run mkdir -p "$dest/$name"
     run cp -R "$dir." "$dest/$name/"
   done
+  # SDLC renamed these skills to code-writer and code-writer-planner; remove copies left by earlier installs.
+  run rm -rf "$dest/engineer" "$dest/engineer-planner"
 }
 
 install_claude() {

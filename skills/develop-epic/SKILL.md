@@ -56,9 +56,9 @@ Run only when all of these are true:
 
 Use the Task pipeline and Integration gate for sequencing. Before sending an executor a repair, reopen each of its `done` Subtasks the repair concerns: add the repair to that Subtask's `## Progress` and set it `active`, so the executor's Gate admits it. The executor sets it `done` again. If no Subtask of this Epic covers the repair, send it through a fix Task.
 
-Start each executor (engineer, test-writer, doc-writer) fresh for each Task and reuse it for fix rounds to preserve its knowledge. Start each reviewer (code-review, test-review, doc-review, product-manager) fresh every time so each assessment is independent.
+Start each executor (code-writer, test-writer, doc-writer) fresh for each Task and reuse it for fix rounds to preserve its knowledge. Start each reviewer (code-review, test-review, doc-review, product-manager) fresh every time so each assessment is independent.
 
-- **`engineer`:** Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
+- **`code-writer`:** Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
 - **`test-writer`:** Launch one per testing Subtask, in parallel. Use them for integration failures in tests. Expect unit and integration tests, fixtures, repairs, gaps and only targeted checks on its own work following `guide:test-guide.md`, because you run the full suites.
 - **`doc-writer`:** Launch when documentation is affected. Expect updates following `guide:doc-writing-guide.md` and implementation gaps.
 - **`code-review`:** Launch after source changes. Expect correctness and engineering findings with references and suggested fixes.
@@ -100,7 +100,7 @@ For each finding from code-review, test-review, doc-review or product-manager:
 
 ## Task pipeline
 
-Run engineer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Run checks before each review as the Checks rule says.
+Run code-writer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Run checks before each review as the Checks rule says.
 
 Keep testing Subtasks from editing the same file so their writers can work in parallel. Tests that share a helper the Task changes go in one Subtask.
 

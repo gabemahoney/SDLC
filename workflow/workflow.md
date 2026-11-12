@@ -8,10 +8,10 @@
 - **Main Agent:** an Agent started by the Managing Intelligence to run one skill and report back.
 - **Child Agent:** an Agent started by a Main Agent to run one skill for it and report back. The Launcher keeps the parent–child relationship.
 - **Skills Child Agents run:**
-  - **engineer:** changes source code for a Task, Bug or Tweak, and a small Bug fix's or Tweak's tests and docs.
+  - **code-writer:** changes source code for a Task, Bug or Tweak, and a small Bug fix's or Tweak's tests and docs.
   - **test-writer:** writes unit and integration tests and runs assigned suites.
   - **doc-writer:** updates documentation for a Task or Bug.
-  - **engineer-planner:** reads a Task's source context and writes draft implementation Subtasks.
+  - **code-writer-planner:** reads a Task's source context and writes draft implementation Subtasks.
   - **test-writer-planner:** writes draft testing Subtasks that can be implemented in parallel and plans their fixtures.
   - **doc-writer-planner:** writes a Task's draft documentation Subtasks.
   - **req-review:** reviews one PRD or SRD independently for write-prd or write-srd.
@@ -212,7 +212,7 @@ A Thinking Level picks an Agent, model, any effort or mode and any launch templa
 - `setting:levels` maps each level (`low` < `medium` < `high` < `xhigh` < `max`) to an `agent` (`claude-code`, `codex` or `cursor`), a `model` and that Agent's own `effort` for Claude Code and Codex, or optional `mode` for Cursor, plus an optional Launcher `template`. Use the format in `~/.sdlc/install/templates/thinking-levels.md`, so setup and callers read the same mapping.
 - Optional `setting:main_agent_levels` has the same format and serves only Main Agent launches, so Main Agents can run on a different Agent than Child Agents. A Main Agent uses its level's `setting:main_agent_levels` entry, or its `setting:levels` entry when that setting is unset or has no entry for the level, so Projects without it keep working. A Child Agent always uses `setting:levels`. A skill that runs both ways, such as research, follows how it was launched.
 
-For `engineer`, `test-writer` and `doc-writer`, the assigned Task's, Bug's or Tweak's `thinking_level:<label>` tag overrides the skill's fixed level, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags; write-idea sets Tweak tags. Bugs max out at `high`: define-bug tags `medium` or `high`, and fix-bug launches an `xhigh` or `max` tag at `high`. The Managing Intelligence may ask the User, with a reason, to run one Bug at `xhigh`; on a yes, it tags the Bug `xhigh` and records the yes under the Bug's `## Decisions`, and only then does fix-bug launch it at `xhigh`. A skill may launch a Child Agent at a level its own text names.
+For `code-writer`, `test-writer` and `doc-writer`, the assigned Task's, Bug's or Tweak's `thinking_level:<label>` tag overrides the skill's fixed level, so the Agent, model and any effort or mode follow the work's complexity and risk. A Subtask uses its Task's tag. write-epic and develop-epic set Task tags; define-bug sets Bug tags; write-idea sets Tweak tags. Bugs max out at `high`: define-bug tags `medium` or `high`, and fix-bug launches an `xhigh` or `max` tag at `high`. The Managing Intelligence may ask the User, with a reason, to run one Bug at `xhigh`; on a yes, it tags the Bug `xhigh` and records the yes under the Bug's `## Decisions`, and only then does fix-bug launch it at `xhigh`. A skill may launch a Child Agent at a level its own text names.
 
 If a shipped skill's line is missing, stop, name the shipped mapping file and point to reinstalling SDLC with `install.sh`, because Project settings cannot repair it. If no entry the rules above allow resolves a launch's level, stop and point to project-setup, because it configures the user's Agents and models. When no entry resolves project-setup's own level, the Managing Intelligence chooses its Agent, model and any effort or mode, because setup writes the mappings. A missing Task tag returns to its planning skill, because that skill judges the work's complexity. A missing Bug tag goes to the Managing Intelligence to set, because define-bug only runs on `draft` Bugs. A Tweak with no tag uses the skill's fixed level.
 

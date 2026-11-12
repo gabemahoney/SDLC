@@ -6,13 +6,13 @@ description: SDLC self-modification workflow — work an SDLC ticket, fix an SDL
 # sdlc-work
 
 Single-agent execution of a bees ticket against the SDLC repo itself. No
-engineer/reviewer/doc-writer team — one worker implements end-to-end, and you
+code-writer/reviewer/doc-writer team — one worker implements end-to-end, and you
 (the calling agent) run a review loop with the operator before anything is
 pushed.
 
 ## Non-goals
 
-- No multi-agent subagent team (engineer, reviewers, doc writer).
+- No multi-agent subagent team (code-writer, reviewers, doc writer).
 - No pre-dispatch model validation — the general-purpose Agent inherits
   harness defaults.
 - No PRD/SRD generation — that stays in `write-prd` / `write-srd`.

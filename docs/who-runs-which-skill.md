@@ -36,7 +36,7 @@ flowchart LR
 ```mermaid
 flowchart LR
   M["write-epic<br/>(Main Agent)"]
-  M --> C0["engineer-planner"]
+  M --> C0["code-writer-planner"]
   M --> C1["test-writer-planner"]
   M --> C2["doc-writer-planner"]
   M --> C3["product-manager"]
@@ -47,7 +47,7 @@ flowchart LR
 ```mermaid
 flowchart LR
   M["develop-epic<br/>(Main Agent)"]
-  M --> C0["engineer"]
+  M --> C0["code-writer"]
   M --> C1["test-writer"]
   M --> C2["doc-writer"]
   M --> C3["code-review"]
@@ -61,7 +61,7 @@ flowchart LR
 ```mermaid
 flowchart LR
   M["fix-bug<br/>(Main Agent)"]
-  M --> C0["engineer"]
+  M --> C0["code-writer"]
   M --> C1["test-writer"]
   M --> C2["doc-writer"]
   M --> C3["code-review"]
@@ -74,7 +74,7 @@ flowchart LR
 ```mermaid
 flowchart LR
   M["build-tweak<br/>(Main Agent)"]
-  M --> C0["engineer"]
+  M --> C0["code-writer"]
   M --> C1["code-review"]
 ```
 

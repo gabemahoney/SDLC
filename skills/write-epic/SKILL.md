@@ -38,7 +38,7 @@ Run only when all of these are true:
 1. **Write or revise the Tasks,** using the Task template below. Leave out work another Epic already covers, so no work is planned twice.
    - If Tasks already exist, revise every affected Task from recorded progress and current requirements. Have planners revise its affected Subtasks, whatever their status. Include removing delivered functionality that the requirements withdraw, so the software will match them. Add new work, remove obsolete unimplemented work, and leave unaffected work as it is.
 
-2. **Plan each draft Task's Subtasks.** Launch the `engineer-planner`, `test-writer-planner` and `doc-writer-planner` Child Agents described below. Each reads its part's code, tests or docs and writes its Subtasks as `draft`, so your context lasts through the Epic. Review all of the Task's Subtasks together for overlaps, gaps, order and file conflicts between testing Subtasks. Send edits back to the planner that wrote them. Set the Subtasks `defined` when they are right. When a planner reports a rule this Task sets up that later Tasks must follow, put it in each affected Task's `## Context`, so its executors and reviewers see it. Assign each draft Task a `thinking_level:<label>` tag using the Thinking Level guidance below, because develop-epic uses it for the Task's executors.
+2. **Plan each draft Task's Subtasks.** Launch the `code-writer-planner`, `test-writer-planner` and `doc-writer-planner` Child Agents described below. Each reads its part's code, tests or docs and writes its Subtasks as `draft`, so your context lasts through the Epic. Review all of the Task's Subtasks together for overlaps, gaps, order and file conflicts between testing Subtasks. Send edits back to the planner that wrote them. Set the Subtasks `defined` when they are right. When a planner reports a rule this Task sets up that later Tasks must follow, put it in each affected Task's `## Context`, so its executors and reviewers see it. Assign each draft Task a `thinking_level:<label>` tag using the Thinking Level guidance below, because develop-epic uses it for the Task's executors.
    - If planning raises a product question or conflicts with the SRD, ask the Managing Intelligence, because planning follows the defined requirements.
 
 3. **Check the whole Epic with the `product-manager`.** Launch `product-manager` to review the saved Tasks and Subtasks. Judge every finding under the shared rule and review again after significant revisions. Check the Quality checklist below.
@@ -47,7 +47,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-- **`engineer-planner`:** Start fresh for each Task and reuse it for edits to its Subtasks, so it keeps its knowledge of the Task. Launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
+- **`code-writer-planner`:** Start fresh for each Task and reuse it for edits to its Subtasks, so it keeps its knowledge of the Task. Launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
 - **`test-writer-planner`:** Start fresh for each Task and reuse it for edits to its Subtasks, so it keeps its knowledge of the Task. Launch for each Task once any implementation Subtasks it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `guide:test-guide.md` requires and fixture planning. develop-epic's `test-review` checks test quality independently.
 - **`doc-writer-planner`:** Start fresh for each Task and reuse it for edits to its Subtasks, so it keeps its knowledge of the Task. Launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
 - **`product-manager`:** Start fresh every time so each assessment is independent. Launch after saving the Epic's Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests, with references and suggested fixes.
@@ -94,7 +94,7 @@ Follow the Guidance Documents when writing each Task and Subtask.
 
 ## Thinking Level guidance
 
-A Task's tag sets how hard its `engineer`, `test-writer` and `doc-writer` think, so match it to how hard the engineering problem in that Task is and what a mistake in it would cost:
+A Task's tag sets how hard its `code-writer`, `test-writer` and `doc-writer` think, so match it to how hard the engineering problem in that Task is and what a mistake in it would cost:
 - `low`: trivial, mechanical changes such as wording or config values, where a mistake is obvious and cheap.
 - `medium`: routine work that follows an established pattern, such as adding a field or a small, well-understood change.
 - `high`: work that needs real design judgement, touches several modules, or changes behaviour other code relies on.

@@ -19,12 +19,12 @@ research: high
 release: medium
 configure-worktree: medium
 teardown-worktree: medium
-engineer: medium
+code-writer: medium
 test-writer: medium
 doc-writer: high
 model-writer: high
 model-review: high
-engineer-planner: high
+code-writer-planner: high
 test-writer-planner: high
 doc-writer-planner: high
 req-review: high

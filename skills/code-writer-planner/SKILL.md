@@ -1,9 +1,9 @@
 ---
-name: engineer-planner
+name: code-writer-planner
 description: "Write implementation Subtasks for a Task ID during write-epic."
 ---
 
-# engineer-planner
+# code-writer-planner
 
 ## Purpose
 
@@ -53,7 +53,7 @@ Report the Subtask IDs, incomplete planning and questions to your Main Agent as 
 
 Every Subtask has these sections, with detail in proportion to the work:
 
-- `## Executor`: `engineer`, so develop-epic knows which Child Agent works it.
+- `## Executor`: `code-writer`, so develop-epic knows which Child Agent works it.
 - `## Context`: explain why the Subtask exists and what preconditions it assumes. For code, name what depends on the code it changes and what that code depends on, so the executor sees what a change could break.
 - `## Guide exceptions` (only when one applies): quote the matching entries from the Task, so execution preserves approved departures from the guides.
 - `## Work`: describe the work and requirements for that executor's part of the Task.
