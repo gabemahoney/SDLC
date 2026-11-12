@@ -26,7 +26,7 @@ If you use agent-director, have your host operator configure a default worker te
 
 | Tool | Default template |
 | --- | --- |
-| Claude Code | `WORKER` |
+| Claude Code | `CLAUDE_WORKER` |
 | Codex CLI | `CODEX_WORKER` |
 | Cursor CLI | `CURSOR_WORKER` |
 
