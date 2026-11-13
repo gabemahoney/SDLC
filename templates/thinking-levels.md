@@ -9,10 +9,10 @@ write-bug: medium
 define-bug: high
 fix-bug: medium
 build-tweak: medium
-write-prd: high
+write-prd: xhigh
 write-srd: xhigh
 write-plan: xhigh
-write-epic: high
+write-epic: xhigh
 develop-epic: medium
 idea-review: high
 research: high
