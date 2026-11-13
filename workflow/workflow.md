@@ -226,6 +226,8 @@ Start Child Agents fresh unless the skill retains them, so unrelated work does n
 
 The Managing Intelligence starts each skill Run in a fresh session. Long sessions cost more, because every turn re-reads the whole context. "Hand off" means a Main Agent records progress on the ticket and stops, and the Managing Intelligence starts a fresh session on the same ticket. Once a Main Agent has run long, it hands off at the next natural break, such as between Tasks or between fix rounds. The Managing Intelligence may also ask it to hand off. A Main Agent that can read its context use also hands off at 75%, because a nearly full context causes mistakes.
 
+A develop-epic, fix-bug, idea-review or build-tweak Main Agent leaves reading the Project's code to its Child Agents, because what it reads stays in its context for the rest of the Run. It reads tickets, diffs and its Child Agents' reports, and opens the lines a report cites only to check a finding. To learn how code works, it asks a Child Agent for an answer with `file:line` evidence.
+
 Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains. Within one fix-bug or build-tweak Run or develop-epic Task, you may resume executors and the only reviewer of build-tweak or fix-bug's small or docs-only pipeline for fix rounds even when no reading exists, because a single Run's or Task's context stays small.
 
 ### Checks

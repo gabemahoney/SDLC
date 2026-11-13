@@ -25,7 +25,7 @@ An Idea ID.
 - **Model Docs' `## Checks`:** for during-build checks that haven't passed against the current SRD, because your handoff lists them.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md` and `guide:build-commands.md` for review standards in each repo.
 
-Also read the Project's code, tests and any linked Research tickets as the work needs.
+Also read any linked Research tickets as the work needs. Leave the Project's code and tests to your Child Agents, as `~/.sdlc/install/workflow.md`'s Context rule says.
 
 ## Gate
 

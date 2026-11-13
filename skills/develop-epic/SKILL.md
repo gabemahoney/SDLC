@@ -24,7 +24,7 @@ An Epic ID.
 - **Epic, Tasks, Subtasks, Plan, sibling Epics, Idea and its Docs:** for requirements, decisions, Dependencies, unfinished work and Plan completion. The Epic's `## Worktrees` while they exist, or else the Plan's, says where you and your Child Agents work.
 - **Guidance:** `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md` and `guide:release-guide.md` for implementation, reviews, checks and commits in each affected repo.
 
-Also read the Project's code, tests and any linked Research tickets as the work needs.
+Also read any linked Research tickets as the work needs. Leave the Project's code and tests to your Child Agents, as `~/.sdlc/install/workflow.md`'s Context rule says.
 
 ## Gate
 
