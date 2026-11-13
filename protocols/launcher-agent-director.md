@@ -49,7 +49,7 @@ On any other state, read that Child Agent's pane:
 agent-director read-pane --instance-id '<id>' --n-lines 80
 ```
 
-`waiting` means its turn ended: read the pane for its report or question. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped. After you act on it, wait again while work is outstanding. A Codex Child Agent can stay `working` after a model error, so also read the pane if its state hasn't changed for a long time.
+`waiting` means its turn ended: read the pane for its report or question. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped. After you act on it, wait again while work is outstanding. A Codex Child Agent can stay `working` after a model error, so read its pane when the watcher reports it unchanged for a long time, or, with fallback checks, once its state hasn't changed for a long time.
 
 ## Resuming a Child Agent
 
