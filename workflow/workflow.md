@@ -218,7 +218,7 @@ If a shipped skill's line is missing, stop, name the shipped mapping file and po
 
 ### Child Agents
 
-Launch Child Agents on the Agent their Thinking Level resolves to through `protocol:launcher.md`, with the skill, ticket IDs and checkout paths, so each runs on the configured tool. Supply resolved settings and Protocol File locations, including the selected Agent's protocol, so each uses the same Project configuration. It reads work from tickets and reports their IDs and unresolved work to the Main Agent.
+Launch Child Agents on the Agent their Thinking Level resolves to through `protocol:launcher.md`, with the skill, ticket IDs and checkout paths, so each runs on the configured tool. Supply resolved settings and Protocol File locations, including the selected Agent's protocol, so each uses the same Project configuration. It reads work from tickets and reports their IDs and unresolved work to the Main Agent, citing any code as `file:line`, so the Main Agent can check it without exploring.
 
 Start Child Agents fresh unless the skill retains them, so unrelated work does not fill context. Stop each one, as `protocol:launcher.md ## Stopping a Child Agent` says, once its output is saved and your skill won't resume it, and stop any still open before you report or hand off, because an open session keeps costing money. Each loads its named guides for every assigned repo and may read other repos for context. The Main Agent coordinates their work through files and tickets.
 
