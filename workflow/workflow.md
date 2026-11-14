@@ -235,7 +235,7 @@ Before resuming any reused Child Agent, read its context fraction as `protocol:l
 
 In develop-epic, fix-bug and build-tweak, you run Build Commands yourself for the code folders a change touches, skipping only sections marked `none` with a reason, and send each failure to the executor that owns the files.
 
-- **Commit check:** before each code-review or test-review and each commit, run Compile, Lint and the tests you judge matter for the change: targeted tests for what changed and the guards Fast Checks names, so reviewers see code that builds and every commit works. Don't run the full suites here, because they rarely catch what targeted tests miss and waiting for them stalls the work.
+- **Commit check:** before each code-review or test-review and each commit, run Compile, Lint and the tests you judge matter for the change: targeted tests for what changed and the guards Fast Checks names, so reviewers see code that builds and every commit works. Leave the full suites to the full run, because they rarely catch what targeted tests miss and waiting for them stalls the work.
 - **Full run:** Unit Tests and Integration Tests in full for the affected code folders. Run at most one at a time in your Run, because a run on your latest commit covers your earlier ones. Before you hand back an Epic, Bug or Tweak, wait for the full run your skill names to pass on the exact code you hand back, so only working code leaves you; for a bundle, that is all its tickets' changes together.
 - **Repairs:** confirm each repair with the checks it affects, and let the next full run confirm them all, because a full run per repair adds little.
 - **Reuse:** a check may reuse a passing run if no file it covers has changed since.
