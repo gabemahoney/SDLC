@@ -35,7 +35,7 @@ Run only when your Subtask is `defined` or `active`, or your Bug or Tweak is `ac
 ## Steps
 
 1. **Implement.** Complete the assigned source changes and accepted repairs under the engineering guidance so the implementation meets the ticket's requirements.
-2. **Check.** Run targeted checks on your changes, because the Main Agent runs the full suites. Check each Subtask's `## Acceptance criteria`, or a Tweak's `## Description`, before marking it complete, because they define completion.
+2. **Check.** Run targeted checks on your changes, because the Main Agent runs the commit checks and full suites. Check each Subtask's `## Acceptance criteria`, or a Tweak's `## Description`, before marking it complete, because they define completion.
 
 ## Child Agents
 

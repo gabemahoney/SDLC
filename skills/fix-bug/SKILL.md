@@ -43,7 +43,7 @@ Run only when all of these are true:
 
 5. **Fix and review.** Follow your pipeline until accepted findings are fixed, running checks before each review as `~/.sdlc/install/workflow.md`'s Checks rule says. Once the fix is built, take any proposal before its first review, as `~/.sdlc/install/workflow.md`'s Proposals rule says, so no Agent sees it before the fix exists.
 
-   **Run the commit checks yourself:** `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` for every code folder the fix changed. Send failures back through your pipeline until they pass.
+   **Run the commit check yourself** for every code folder the fix changed, as the Checks rule says. Send failures back through your pipeline until it passes.
 
 6. **Test the fix.** Rerun every scenario under `## Reproduction` and every noted failure to check the Bug is gone, then pass the Integration gate.
 
@@ -88,7 +88,7 @@ For each finding from code-review, test-review or doc-review:
 ## Fix pipelines
 
 - **Small:** for a code fix in a Bug tagged `medium` or below, or `high` when the fix stays in one function or file and raises no design question, because the code-writer runs at the Bug's `high` tag. One `code-writer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
-- **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it. Skip the Integration gate and run `## Unit tests` only for code folders whose tests read the changed docs, because no code changed.
+- **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it. In the Integration gate, run only `## Unit tests`, and only for code folders whose tests read the changed docs, because no code changed.
 - **Full:** for every other code fix. After `test-writer`s write step 4's regression tests, run code-writer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 
 If fixes stop making progress, stop for the Managing Intelligence, so a fix loop doesn't burn the budget.
@@ -99,7 +99,7 @@ Except in the docs-only pipeline, each scenario under `## Reproduction` and each
 
 ## Integration gate
 
-You run `guide:build-commands.md ## Integration tests` for every code folder the fix affects, following `guide:test-guide.md`. Keep the output somewhere that survives the worktrees' removal.
+You wait for a passing full run, as `~/.sdlc/install/workflow.md`'s Checks rule defines it, on exactly the change you will commit, following `guide:test-guide.md`, because the Managing Intelligence tests only working code. Keep the output somewhere that survives the worktrees' removal.
 
 The gate passes when suites pass, or when the Managing Intelligence accepts the remaining failures. If suites can't run, ask the Managing Intelligence.
 

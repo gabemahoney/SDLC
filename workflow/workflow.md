@@ -28,11 +28,12 @@
 - **Project Folder:** the folder a Project lives in, holding its repos and their worktrees (see Project Folder, paths and worktrees).
 - **`.sdlc` Folder:** a folder named `.sdlc` holding a user's own Guidance Documents. The Project Folder's also holds the Project's settings, and `~/.sdlc` the default settings.
 - **Guidance Document:** one of seven instruction files: `guide:engineering-best-practices.md`, `guide:test-guide.md`, `guide:doc-writing-guide.md`, `guide:build-commands.md`, `guide:release-guide.md`, `guide:bug-writing-guide.md` and `guide:research-guide.md`. They set the Project's engineering, testing, documentation, build, release, Bug and research rules.
-- **Build Commands:** named sections in `guide:build-commands.md` for sequencing checks. Each code folder needs the first four, containing a command or `none` with a reason so required work is explicit. A check that runs outside the session, such as a scheduler job, also names the command that blocks until it ends, so no Agent polls it.
+- **Build Commands:** named sections in `guide:build-commands.md` for sequencing checks. Each code folder needs the first four, containing a command or `none` with a reason so required work is explicit. A check that runs outside the session, such as a scheduler job, also names the command that blocks until it ends, so no Agent polls it, and one that reports without blocking whether it has ended, so a Main Agent can read a background run between steps.
   - **Compile** (`guide:build-commands.md ## Compile`): compilation or type-checking.
   - **Lint** (`guide:build-commands.md ## Lint`): lint and format checks.
   - **Unit Tests** (`guide:build-commands.md ## Unit tests`): the full unit suite.
   - **Integration Tests** (`guide:build-commands.md ## Integration tests`): the integration suites.
+  - **Fast Checks** (`guide:build-commands.md ## Fast checks`): an optional section naming how to test only what changed and the cheap repo-wide guards every commit check runs.
   - **Model Check** (`guide:build-commands.md ## Model check`): an optional section naming the formal-modelling language, the command that runs its checker, the command that only parses model files, and the time cap for gating checker runs: 30 minutes if unset, and never over 1 hour, because a gating run still going then is a model defect. During-build runs use the gating cap unless the section gives a longer one, so every run has a defined cap that can still fit checks too slow to gate. If a Formal Model needs checking and this section is missing, write-srd stops and asks the Managing Intelligence.
 
   Any other `##` section belongs to the Project; skills use it as the file describes.
@@ -232,7 +233,12 @@ Before resuming any reused Child Agent, read its context fraction as `protocol:l
 
 ### Checks
 
-develop-epic, fix-bug and build-tweak run Build Commands themselves for the code folders a change touches, skipping only sections marked `none` with a reason, and send each failure to the executor that owns the files. Before each code-review or test-review they run Compile and Lint, and before test-review Unit Tests too, so reviewers see only code that builds and tests that pass. They confirm each repair with the checks it affects, then rerun the full checks once all repairs are in, because a full run per repair costs much and adds little. A commit check may reuse a passing run if no file it covers has changed since.
+In develop-epic, fix-bug and build-tweak, you run Build Commands yourself for the code folders a change touches, skipping only sections marked `none` with a reason, and send each failure to the executor that owns the files.
+
+- **Commit check:** before each code-review or test-review and each commit, run Compile, Lint and the tests you judge matter for the change: targeted tests for what changed and the guards Fast Checks names, so reviewers see code that builds and every commit works. Don't run the full suites here, because they rarely catch what targeted tests miss and waiting for them stalls the work.
+- **Full run:** Unit Tests and Integration Tests in full for the affected code folders. Run at most one at a time, because a run on the latest commit covers every earlier one. Before you hand back an Epic, Bug or Tweak, wait for the full run your skill names to pass on the exact code you hand back, so only working code leaves you.
+- **Repairs:** confirm each repair with the checks it affects, and let the next full run confirm them all, because a full run per repair adds little.
+- **Reuse:** a check may reuse a passing run if no file it covers has changed since.
 
 ### Review findings
 

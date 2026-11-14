@@ -30,9 +30,9 @@ Run only when the Tweak carries the Tweak mark (`protocol:ticket.md`) and is `de
 ## Steps
 
 1. **Start or resume.** Set the Tweak `active`. Build on earlier commits, fixing anything noted under `## Decisions` and any merge conflict recorded under `## Worktrees`, and have work left by an interrupted Run reviewed before committing it.
-2. **Build.** Have the `code-writer` write the change with its tests and docs. Run `guide:build-commands.md ## Compile`, `## Lint` and `## Unit tests` yourself, as `~/.sdlc/install/workflow.md`'s Checks rule says, until they pass.
+2. **Build.** Have the `code-writer` write the change with its tests and docs. Run the commit check yourself, as `~/.sdlc/install/workflow.md`'s Checks rule says, until it passes.
 3. **Review.** Take any proposal, as `~/.sdlc/install/workflow.md`'s Proposals rule says, then have `code-review` review the whole change: code, tests and docs. Handle its findings as `~/.sdlc/install/workflow.md`'s Review findings rule says: the code-writer fixes accepted ones, you rerun the affected checks, and after blocker or suggestion repairs the same reviewer checks only the fixes. If fixes stop making progress, stop for the Managing Intelligence.
-4. **Commit** in each worktree the change touched.
+4. **Commit** in each worktree the change touched, once a full `guide:build-commands.md ## Unit tests` run passes on exactly what you commit, because a Tweak hands back only working code and has no integration gate.
 
 At any step, if the change needs a design decision or grows past one area, stop before committing and record why under `## Progress`, because it becomes an Idea. If it needs a repo with no recorded worktree, ask the Managing Intelligence to add one, because it sets up the Tweak's worktrees.
 

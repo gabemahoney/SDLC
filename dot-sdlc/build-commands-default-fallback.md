@@ -4,7 +4,7 @@ SDLC uses this file only when the Project has no `guide:build-commands.md` of it
 
 This fallback cannot know the Project's commands. Stop and ask the Managing Intelligence to write a real `build-commands.md`, using project-setup to settle it.
 
-For every code folder, the first four sections must contain a runnable command or `none: <reason>`. A shared guide identifies each folder's commands. Include `## Model check` when formal modelling is needed. For a check that runs outside the session, make its run command return once the job is submitted, and also give the command that blocks until it ends.
+For every code folder, the first four sections must contain a runnable command or `none: <reason>`. A shared guide identifies each folder's commands. Include `## Model check` when formal modelling is needed. For a check that runs outside the session, make its run command return once the job is submitted, and also give the command that blocks until it ends and one that reports without blocking whether it has ended.
 
 ## Compile
 
@@ -21,6 +21,10 @@ Give the command that runs the full unit test suite.
 ## Integration tests
 
 Give the command that runs the integration suites.
+
+## Fast checks
+
+Optional: say how to run tests for only what changed, and name the cheap repo-wide guards, such as format or size checks, to run with them at every commit, so commit checks catch in minutes what a full run would catch later.
 
 ## Model check
 

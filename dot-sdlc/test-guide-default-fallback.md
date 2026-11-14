@@ -10,6 +10,10 @@ Aim for about 80% coverage with as few lines of test code as possible, because e
 - **Parameterize.** When three or more tests differ only in their inputs, make them one parameterized test.
 - **Delete as readily as you add.** Deleting tests matters as much as adding them: remove duplicated tests, tests a change made obsolete, and tests that no longer earn their maintenance, whenever you touch the suite.
 
+## Keep the full run fast
+
+A full run of the unit and integration suites should finish within 15 minutes of run time, because every Epic and Bug waits for one before handoff. If it runs longer, split it into parallel jobs or raise it with the Managing Intelligence. A Project with its own test guide sets its limit there.
+
 ## Reuse the Project's test setup
 
 Before writing a test, find the fixtures, factories, helpers and constants the Project already has, and reuse them. If one doesn't do exactly what you need, change it, then update every test that uses it, rather than adding a near-copy. Do that work, because one unified set of fixtures is what keeps the suite consistent and small. Add new setup only where nothing fits, in the place the Project keeps shared setup, and extend existing test files before adding new ones.
