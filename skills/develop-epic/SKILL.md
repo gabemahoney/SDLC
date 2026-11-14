@@ -54,7 +54,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-Use the Task pipeline and Integration gate for sequencing. Before sending an executor a repair, reopen each of its `done` Subtasks the repair concerns: add the repair to that Subtask's `## Progress` and set it `active`, so the executor's Gate admits it. The executor sets it `done` again. If no Subtask of this Epic covers the repair, send it through a fix Task.
+Use the Task pipeline and Integration gate for sequencing. Before sending an executor a repair, reopen each of its `done` Subtasks the repair concerns: add the repair to that Subtask's `## Progress` and set it `active`, so the executor's Gate admits it. The executor sets it `done` again. Reopen only Subtasks of a Task not yet committed, because each Task gets one commit; send any other repair through a fix Task.
 
 Start each executor (code-writer, test-writer, doc-writer) fresh for each Task and reuse it for fix rounds to preserve its knowledge. Start each reviewer (code-review, test-review, doc-review, product-manager) fresh every time so each assessment is independent.
 
@@ -70,7 +70,7 @@ Start each executor (code-writer, test-writer, doc-writer) fresh for each Task a
 
 - **Idea, Plan and Epic:** set statuses in steps 1, 3 and 4. Keep the current Task, phase, checkout paths and the running full run's jobs under `## Progress` and integration evidence, including background run results, under `## Checks` on the Epic.
 - **Tasks and Subtasks:** add the names of what a Task serves to its `## Context` when the Gate finds them missing. Update stale instructions and set Task statuses in step 2. Executors set assigned Subtasks `active`, then `done`; you set a `done` Subtask back to `active` only to reopen it for a repair, as Child Agents describes. Record executor IDs, skills, testing assignments, Thinking Levels, checks and commits under `## Progress` on the Task so another Run can continue.
-- **Fix Tasks:** create Epic children for source integration failures and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work` and `## Dependencies` for each Task's purpose, changes and prerequisites, naming in `## Context` what the Task or Epic it repairs serves, so a re-run passes the Gate. Set a complexity-appropriate `thinking_level:<label>` tag. You may bundle fixes that fit fix-bug's Small pipeline into one Task, as write-epic's Writing guidance describes. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage and affected docs so repairs receive the original work's checks.
+- **Fix Tasks:** create Epic children for full-run failures and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work` and `## Dependencies` for each Task's purpose, changes and prerequisites, naming in `## Context` what the Task or Epic it repairs serves, so a re-run passes the Gate. Set a complexity-appropriate `thinking_level:<label>` tag. You may bundle fixes that fit fix-bug's Small pipeline into one Task, as write-epic's Writing guidance describes. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage and affected docs so repairs receive the original work's checks.
 
 ## Retrospective notes
 
@@ -108,10 +108,10 @@ In a Task of bundled fixes, have reviewers name the fix each finding concerns, s
 
 ## Integration gate
 
-After the Epic's last Task commits, wait for a passing full run on the final commit, following `guide:test-guide.md`, because the Epic hands off only working code. Reuse a background run on that commit, waiting for it if it hasn't ended; otherwise let any run in progress end, read it, then start one on the final commit. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
+After the Epic's last Task commits, wait for a passing full run on the final commit, following `guide:test-guide.md`, because the Epic hands off only working code. Reuse the suites a background run on that commit passes, waiting for it if it hasn't ended, and run the suites it left out; otherwise let any run in progress end, read it, then start one on the final commit. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
 
 Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures under `## Checks` on the Epic. If suites cannot run, ask the Managing Intelligence.
 
-Route test failures to test-writer, then test-review, and run step 2's commit checks yourself before committing repairs. Route source failures into fix Tasks through the full Task pipeline. Start a new full run once all repairs are committed, as the Checks rule says.
+Route every failure into a fix Task, because each Task gets one commit: a failure only in tests needs test-writer, then test-review, and any other goes through the full Task pipeline. Start a new full run once all repairs are committed, as the Checks rule says.
 
 If repairs stop making progress, stop for the Managing Intelligence so a repair loop doesn't burn the budget.
