@@ -8,10 +8,10 @@ The labels run from `low` through `medium`, `high`, `xhigh` and `max`. Task plan
 
 | Level | Work it suits |
 | --- | --- |
-| `low` | Trivial, mechanical changes with obvious, cheap mistakes. |
+| `low` | Trivial, mechanical changes with obvious, easily fixed mistakes. |
 | `medium` | Routine work following an established pattern. |
 | `high` | Design judgement, several modules or behaviour other code relies on. |
-| `xhigh` | Costly or hard-to-spot mistakes, such as concurrency or security. |
+| `xhigh` | Serious or hard-to-spot mistakes, such as concurrency or security. |
 | `max` | The hardest, highest-risk work. |
 
 ## Configure each level

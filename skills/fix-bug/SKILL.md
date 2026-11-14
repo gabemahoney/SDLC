@@ -67,8 +67,7 @@ Your Bugs are the only tickets you change, and no Child Agent writes them, becau
 While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the Idea's or Bug's retrospective from them:
 
 - Where did we introduce a quality issue? How could it have been avoided?
-- Where did we spend too much time and not gain value? How could it have been avoided?
-- Where did we spend too many tokens and not gain value? How could it have been avoided?
+- Where did we take too long and not gain value? How could it have been avoided?
 
 ## Done
 
@@ -91,7 +90,7 @@ For each finding from code-review, test-review or doc-review:
 - **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it. In the Integration gate, run only `## Unit tests`, and only for code folders whose tests read the changed docs, because no code changed.
 - **Full:** for every other code fix. After `test-writer`s write step 4's regression tests, run code-writer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 
-If fixes stop making progress, stop for the Managing Intelligence, so a fix loop doesn't burn the budget.
+If fixes stop making progress, stop for the Managing Intelligence, so a stuck fix loop doesn't waste time.
 
 ## Regression evidence
 

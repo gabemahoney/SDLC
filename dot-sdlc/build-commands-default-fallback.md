@@ -24,10 +24,10 @@ Give the command that runs the integration suites.
 
 ## Fast checks
 
-Optional: say how to run tests for only what changed, and name the cheap repo-wide guards, such as format or size checks, to run with them at every commit, so commit checks catch in minutes what a full run would catch later.
+Optional: say how to run tests for only what changed, and name the quick repo-wide guards, such as format or size checks, to run with them at every commit, so commit checks catch in minutes what a full run would catch later.
 
 ## Model check
 
 Optional: name the formal-modelling language, the checker command and a parse-only command, needed before any Formal Model is checked. We suggest TLA+ with the TLC model checker, for example `java -cp tla2tools.jar tlc2.TLC -config <Model>.cfg <Model>.tla`, parsed with `java -cp tla2tools.jar tla2sany.SANY <Model>.tla`.
 
-Optionally give the time cap for one gating checker run, and a longer one for during-build runs, sized to the Project's budget within the limits of the Model Check term in `~/.sdlc/install/workflow.md`.
+Optionally give the time cap for one gating checker run, and a longer one for during-build runs, sized to how long the Project can wait, within the limits of the Model Check term in `~/.sdlc/install/workflow.md`.

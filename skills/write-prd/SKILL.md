@@ -63,8 +63,7 @@ Create or update the Idea's Doc titled `PRD`. Set it `draft` because a new or re
 While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the Idea's or Bug's retrospective from them:
 
 - Where did we introduce a quality issue? How could it have been avoided?
-- Where did we spend too much time and not gain value? How could it have been avoided?
-- Where did we spend too many tokens and not gain value? How could it have been avoided?
+- Where did we take too long and not gain value? How could it have been avoided?
 
 ## Done
 

@@ -77,8 +77,7 @@ Start each executor (code-writer, test-writer, doc-writer) fresh for each Task a
 While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the Idea's or Bug's retrospective from them:
 
 - Where did we introduce a quality issue? How could it have been avoided?
-- Where did we spend too much time and not gain value? How could it have been avoided?
-- Where did we spend too many tokens and not gain value? How could it have been avoided?
+- Where did we take too long and not gain value? How could it have been avoided?
 
 ## Done
 
@@ -114,4 +113,4 @@ Keep the Epic `active` until suites pass or the Managing Intelligence accepts th
 
 Route every failure into a fix Task, because each Task gets one commit: a failure only in tests needs test-writer, then test-review, and any other goes through the full Task pipeline. Start a new full run once all repairs are committed, as the Checks rule says.
 
-If repairs stop making progress, stop for the Managing Intelligence so a repair loop doesn't burn the budget.
+If repairs stop making progress, stop for the Managing Intelligence so a stuck repair loop doesn't waste time.

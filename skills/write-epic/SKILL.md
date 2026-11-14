@@ -64,8 +64,7 @@ Run only when all of these are true:
 While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the Idea's or Bug's retrospective from them:
 
 - Where did we introduce a quality issue? How could it have been avoided?
-- Where did we spend too much time and not gain value? How could it have been avoided?
-- Where did we spend too many tokens and not gain value? How could it have been avoided?
+- Where did we take too long and not gain value? How could it have been avoided?
 
 ## Done
 
@@ -94,12 +93,12 @@ Follow the Guidance Documents when writing each Task and Subtask.
 
 ## Thinking Level guidance
 
-A Task's tag sets how hard its `code-writer`, `test-writer` and `doc-writer` think, so match it to how hard the engineering problem in that Task is and what a mistake in it would cost:
-- `low`: trivial, mechanical changes such as wording or config values, where a mistake is obvious and cheap.
+A Task's tag sets how hard its `code-writer`, `test-writer` and `doc-writer` think, so match it to how hard the engineering problem in that Task is and how bad a mistake would be:
+- `low`: trivial, mechanical changes such as wording or config values, where a mistake is obvious and easy to fix.
 - `medium`: routine work that follows an established pattern, such as adding a field or a small, well-understood change.
 - `high`: work that needs real design judgement, touches several modules, or changes behaviour other code relies on.
-- `xhigh`: work where a mistake is costly or hard to spot, such as concurrency, security, data migrations or an interface between components.
-- `max`: the hardest, highest-risk Tasks only, because it is the slowest and most expensive.
+- `xhigh`: work where a mistake is serious or hard to spot, such as concurrency, security, data migrations or an interface between components.
+- `max`: the hardest, highest-risk Tasks only, because it is the slowest.
 
 When unsure between two levels, choose the higher one.
 

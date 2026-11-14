@@ -42,10 +42,10 @@ None: you file the Idea yourself.
 
 A new `draft` Idea in the Ideas store, with `## Description` saying what the work is. Keep the link or path the input came from as a Source Reference, through `protocol:ticket.md`, so write-prd can read the original, unless it carries a proposal.
 
-Set or replace a Tweak's `thinking_level:<label>` tag, through `protocol:ticket.md`, because it sets how hard build-tweak's `code-writer` thinks. Use `medium`, `high` or `xhigh`, because one code-writer writes the change, its tests and docs, and a change that needs `max` is an Idea, not a Tweak. Match it to how hard the change is and what a mistake in it would cost:
+Set or replace a Tweak's `thinking_level:<label>` tag, through `protocol:ticket.md`, because it sets how hard build-tweak's `code-writer` thinks. Use `medium`, `high` or `xhigh`, because one code-writer writes the change, its tests and docs, and a change that needs `max` is an Idea, not a Tweak. Match it to how hard the change is and how bad a mistake would be:
 - `medium`: routine changes in one place that follow an established pattern, including trivial ones such as wording or a config value.
 - `high`: changes that need care or change behavior other code relies on.
-- `xhigh`: changes where a mistake is costly or hard to spot, such as security or stored data.
+- `xhigh`: changes where a mistake is serious or hard to spot, such as security or stored data.
 
 When unsure between two levels, choose the higher one.
 
@@ -56,8 +56,7 @@ Revise in place, so the body shows only the current direction, and link its hist
 While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the Idea's or Bug's retrospective from them:
 
 - Where did we introduce a quality issue? How could it have been avoided?
-- Where did we spend too much time and not gain value? How could it have been avoided?
-- Where did we spend too many tokens and not gain value? How could it have been avoided?
+- Where did we take too long and not gain value? How could it have been avoided?
 
 ## Done
 

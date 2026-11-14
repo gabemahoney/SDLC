@@ -63,9 +63,9 @@ Update the Bug in the Bugs store, setting its status in step 4:
 
 Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, and point `## Reproduction` at the attached copies, then delete the scratch files you made there.
 
-Set or replace `thinking_level:<label>` when confirming the Bug, because it helps choose fix-bug's pipeline and sets how hard its `code-writer`, `test-writer` and `doc-writer` think. Use `medium` or `high`, never below `medium`, because even a small fix goes through reproduction and review. Match it to how hard the fix is and what a mistake in it would cost:
+Set or replace `thinking_level:<label>` when confirming the Bug, because it helps choose fix-bug's pipeline and sets how hard its `code-writer`, `test-writer` and `doc-writer` think. Use `medium` or `high`, never below `medium`, because even a small fix goes through reproduction and review. Match it to how hard the fix is and how bad a mistake would be:
 - `medium`: routine fixes in one place that follow an established pattern, including trivial ones such as wording or a config value.
-- `high`: fixes that need real design judgement, touch several modules, change behavior other code relies on, or risk a costly or hard-to-spot mistake, such as concurrency, security or data corruption.
+- `high`: fixes that need real design judgement, touch several modules, change behavior other code relies on, or risk a serious or hard-to-spot mistake, such as concurrency, security or data corruption.
 
 When unsure between two levels, choose the higher one.
 
@@ -74,8 +74,7 @@ When unsure between two levels, choose the higher one.
 While you work, note under `## Retrospective notes` on your ticket, with evidence, your answers to these questions, because the Managing Intelligence builds the Idea's or Bug's retrospective from them:
 
 - Where did we introduce a quality issue? How could it have been avoided?
-- Where did we spend too much time and not gain value? How could it have been avoided?
-- Where did we spend too many tokens and not gain value? How could it have been avoided?
+- Where did we take too long and not gain value? How could it have been avoided?
 
 ## Done
 

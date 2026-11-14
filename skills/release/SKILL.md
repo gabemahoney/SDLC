@@ -35,7 +35,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Follow the release process** in the guide's order, with its readiness checks and permissions. Stop at any unmet condition, because the Project controls release readiness. For a step that needs a named human's approval, stop and ask the Managing Intelligence to get it, and continue only on that human's answer, because a bot acting as Managing Intelligence can't give it.
+1. **Follow the release process** in the guide's order, with its readiness checks and permissions. Stop at any unmet condition, because the Project controls release readiness. For a step that needs a named human's approval, stop and ask the Managing Intelligence to get it, and continue only on that human's answer, because an AI acting as Managing Intelligence can't give it.
 
 2. **Check the result** as the guide requires, so the report reflects what was released.
 
