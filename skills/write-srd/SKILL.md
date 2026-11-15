@@ -51,13 +51,13 @@ The Idea's PRD is `defined`, because the SRD builds on the approved product requ
 
    Save the SRD, then return changed or newly modelled groups to step 3 so models cover the final requirements.
 
-5. **Review the SRD with `req-review` once every model has been reviewed and its gating checks, and any during-build check rerun in this revision, have passed, and every Report you asked for is accepted.** Launch a fresh Child Agent each round so each review is independent. Take every conflict with `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` or `guide:test-guide.md` to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and review again while the remaining findings are worth another round. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
+5. **Review the SRD with `req-review` once every model has been reviewed and its gating checks, and any during-build check rerun in this revision, have passed, and every Report you asked for is accepted.** Take every conflict with `guide:engineering-best-practices.md`, `guide:doc-writing-guide.md` or `guide:test-guide.md` to the Managing Intelligence as a major finding, because only they may settle it. Judge other findings: fix them, decline minor findings with reasons, or take product questions to the Managing Intelligence. Return revisions through steps 3 and 4 so models cover the final requirements. Save revisions and review again while the remaining findings are worth another round. Then hand the SRD to the Managing Intelligence for approval, reporting declined findings with their reasons.
 
 ## Child Agents
 
-- **`req-review`:** Launch after writing or revising the SRD and passing its models, fresh every round so each review is independent. Expect findings with references and suggested fixes, or none.
+- **`req-review`:** Launch after writing or revising the SRD and passing its models. Expect findings with references and suggested fixes, or none.
 - **`model-writer`:** Start fresh for each modelled SR group and reuse it for the write, fix and run cycle to preserve its knowledge of the model. Expect a Model Doc, checker results and any SRD bugs they show.
-- **`model-review`:** Start fresh for each review in step 3 so each assessment is independent. Expect findings with references and suggested fixes, or none.
+- **`model-review`:** Launch for each review in step 3. Expect findings with references and suggested fixes, or none.
 - **`research`:** Start fresh for each question needing real digging so its context stays focused on that question, and reuse it for that question's review rounds. Expect a cited answer in that Research ticket's Report.
 
 ## Writes

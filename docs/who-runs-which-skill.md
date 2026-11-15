@@ -89,4 +89,4 @@ flowchart LR
   M --> C3["product-manager"]
 ```
 
-req-review is a Child Agent skill. Other Child Agent skill names are placeholders until those skills are written.
+Each diagram shows the Child Agents a skill may launch; `workflow/workflow.md`'s Steps sized to the work says which may be skipped.

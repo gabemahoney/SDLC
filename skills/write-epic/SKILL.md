@@ -52,7 +52,7 @@ Start each planner fresh for each Task and reuse it for edits to its Subtasks, s
 - **`code-writer-planner`:** Launch for each Task needing source code changes. Expect implementation Subtasks grounded in the code and engineering guidance.
 - **`test-writer-planner`:** Launch for each Task needing tests, once any implementation Subtasks it needs are available. Expect `test-writer` Subtasks for the unit and integration coverage `guide:test-guide.md` requires and fixture planning. develop-epic's `test-review` checks test quality independently.
 - **`doc-writer-planner`:** Launch for each Task affecting source, user-facing behaviour, installation, setup or documentation. Expect documentation Subtasks allowed by the doc-writing guide, or a reason none are needed.
-- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after saving the Epic's Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests, with references and suggested fixes.
+- **`product-manager`:** Launch after saving the Epic's Tasks and Subtasks. Expect an independent check that the work meets (and does not exceed) the requirements and is in proportion to them, including duplicated tests, with references and suggested fixes.
 
 ## Writes
 

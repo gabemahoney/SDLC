@@ -56,7 +56,7 @@ Run only when all of these are true:
 
 Use the Task pipeline and Integration gate for sequencing. Before sending an executor a repair, reopen each of its `done` Subtasks the repair concerns: add the repair to that Subtask's `## Progress` and set it `active`, so the executor's Gate admits it. The executor sets it `done` again. Reopen only Subtasks of a Task not yet committed, because each Task gets one commit; send any other repair through a fix Task.
 
-Start each executor and reviewer fresh for each Task and reuse it for that Task's fix rounds, so executors keep their knowledge and reviewers check repairs of their own findings. Start `product-manager` fresh every time, so each assessment is independent.
+Start each executor fresh for each Task and reuse it for that Task's fix rounds, so it keeps its knowledge. Reviewers start and are retained as `~/.sdlc/install/workflow.md`'s Child Agents rule says.
 
 - **`code-writer`:** Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
 - **`test-writer`:** Launch one per testing Subtask, in parallel. Use them for integration failures in tests. Expect unit and integration tests, fixtures, repairs, gaps and only targeted checks on its own work following `guide:test-guide.md`, because you run the commit checks and full suites.
@@ -99,7 +99,7 @@ For each finding from code-review, test-review, doc-review or product-manager:
 
 ## Task pipeline
 
-Run code-writer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review, followed by product-manager so it sees the combined result. A Task whose `## Pipeline` says `single executor` runs one code-writer, then one code-review; if its real diff shows the shape fits or doesn't, change `## Pipeline`, giving the reason. Run checks before each review as the Checks rule says.
+Run code-writer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review, followed by product-manager so it sees the combined result. A Task whose `## Pipeline` says `single executor` runs one code-writer, then one code-review; if its real diff shows the shape fits or doesn't, change `## Pipeline`, giving the reason, and reassign its unfinished Subtasks to match before relaunching executors. Run checks before each review as the Checks rule says.
 
 Keep testing Subtasks from editing the same file so their writers can work in parallel. Tests that share a helper the Task changes go in one Subtask.
 
@@ -107,7 +107,7 @@ In a Task of bundled fixes, have reviewers name the fix each finding concerns, s
 
 ## Integration gate
 
-After the Epic's last Task commits, wait for a passing full run on the final commit if the Epic changed code, following `guide:test-guide.md`, because the Epic hands off only working code; otherwise its commit checks are the gate. Reuse the suites a background run on that commit passes, waiting for it if it hasn't ended, and run the suites it left out; otherwise let any run in progress end, read it, then start one on the final commit. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
+If the Epic changed no code, its commit checks are the gate. Otherwise, after its last Task commits, wait for a passing full run on the final commit, following `guide:test-guide.md`, because the Epic hands off only working code. Reuse the suites a background run on that commit passes, waiting for it if it hasn't ended, and run the suites it left out; otherwise let any run in progress end, read it, then start one on the final commit. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
 
 Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures under `## Checks` on the Epic. If suites cannot run, ask the Managing Intelligence.
 

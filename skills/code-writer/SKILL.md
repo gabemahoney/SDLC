@@ -7,7 +7,7 @@ description: "Implement source changes for assigned Subtask IDs, or Bug or Tweak
 
 ## Purpose
 
-You implement source changes for develop-epic or fix-bug. You also write the regression tests and doc changes in fix-bug's small pipeline, and the tests and docs of a single-executor Task.
+You implement source changes for develop-epic or fix-bug. You also write the regression tests and doc changes in fix-bug's small pipeline, and the tests and docs when your Subtask's Task has a `## Pipeline` saying `single executor`.
 
 In build-tweak, work as in fix-bug's small pipeline, reading the Tweak as your Bug, writing the tests `guide:test-guide.md` asks for in place of regression tests, and report any design decision or growth past one area.
 

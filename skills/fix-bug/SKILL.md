@@ -51,7 +51,7 @@ Run only when all of these are true:
 
 ## Child Agents
 
-Start executors and reviewers fresh each Run and reuse them for its fix rounds, so executors keep their knowledge and reviewers check repairs of their own findings.
+Start executors fresh each Run and reuse them for its fix rounds, so they keep their knowledge. Reviewers start and are retained as `~/.sdlc/install/workflow.md`'s Child Agents rule says.
 
 - **`code-writer`:** Expect implementation, targeted checks, deviations, effects on documentation and regression evidence for tests it writes.
 - **`test-writer`:** Launch one per testing assignment, telling each which is theirs. Expect tests, fixtures, gaps and regression evidence.
@@ -86,7 +86,7 @@ For each finding from code-review, test-review or doc-review:
 
 ## Fix pipelines
 
-- **Small:** for a code fix in a Bug tagged `medium` or below, or `high` when the fix stays in one function or file and raises no design question, because the code-writer runs at the Bug's `high` tag. One `code-writer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
+- **Small:** for a code, data or config fix in a Bug tagged `medium` or below, or `high` when the fix stays in one function or file and raises no design question, because the code-writer runs at the Bug's `high` tag. One `code-writer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
 - **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it.
 - **Full:** for every other code fix. After `test-writer`s write step 4's regression tests, run code-writer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 

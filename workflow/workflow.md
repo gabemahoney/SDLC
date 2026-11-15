@@ -134,10 +134,10 @@ The Managing Intelligence merges an accepted Bug or Tweak itself, because a few 
 This floor always runs, because it is the evidence the work is right:
 
 - the commit check;
-- tests of what changed: for docs, none unless some tests read them; for data or config, the tests that load and validate it, at the commit check; for code, including tests, a passing full run at the Epic, Bug or Tweak hand-back;
+- tests of what changed, classed by what the content does, a mixed change meeting each part's rule: for docs, none unless some tests read them; for data or config that code loads, the tests that load and validate it, at the commit check; for code, including tests, the full run your skill names, passing at the Epic, Bug or Tweak hand-back;
 - a review of code changes, before they're committed, by an Agent that didn't write them.
 
-The Main Agent that plans or runs any other step, such as a Child Agent, review round or background full run, may skip it when it would add nothing for this work, because such a step only slows the work. Judge by the kind of files, new or changed behaviour or interfaces, size and spread, and open design choices. For example, skip a planner whose part has no work, or a per-Task product-manager check in a one-Task Epic, which the Epic check covers. Record `Skipped <step>: <one-line reason>` under `## Progress` on the ticket it serves, so others can see and challenge it, and restore the step if the work outgrows that reason. The Managing Intelligence may require or skip any step above the floor under `## Decisions`. Approvals, Gates and acceptance aren't steps.
+The Main Agent that plans or runs any other step, such as a Child Agent, review round or background full run, may skip it when it would add nothing for this work, because such a step only slows the work. Judge by the kind of files, new or changed behaviour or interfaces, size and spread, and open design choices. For example, skip a planner whose part has no work, or a per-Task product-manager check in a one-Task Epic, which the Epic check covers. Record `Skipped <step>: <one-line reason>` under `## Progress` on the ticket it serves, so others can see and challenge it, and restore the step if the work outgrows that reason. The Managing Intelligence may require or skip any step above the floor under `## Decisions`. Approvals, Gates and acceptance aren't steps, and a skip never removes a record a later Gate needs.
 
 ### Project Folder, paths and worktrees
 
@@ -230,7 +230,7 @@ If a shipped skill's line is missing, stop, name the shipped mapping file and po
 
 Launch Child Agents on the Agent their Thinking Level resolves to through `protocol:launcher.md`, with the skill, ticket IDs and checkout paths, so each runs on the configured tool. Supply resolved settings and Protocol File locations, including the selected Agent's protocol, so each uses the same Project configuration. It reads work from tickets and reports their IDs and unresolved work to the Main Agent, citing any code as `file:line`, so the Main Agent can check it without exploring.
 
-Start Child Agents fresh unless the skill retains them, so unrelated work does not fill context. Stop each one, as `protocol:launcher.md ## Stopping a Child Agent` says, once its output is saved and your skill won't resume it, and stop any still open before you report or hand off, because an open session keeps holding resources. Each loads its named guides for every assigned repo and may read other repos for context. The Main Agent coordinates their work through files and tickets.
+Start Child Agents fresh unless the skill retains them, so unrelated work does not fill context. Start a reviewer fresh for each first review of a piece of work, so it is independent, and retain it to check repairs of its own findings, because it knows what it asked for. Stop each one, as `protocol:launcher.md ## Stopping a Child Agent` says, once its output is saved and your skill won't resume it, and stop any still open before you report or hand off, because an open session keeps holding resources. Each loads its named guides for every assigned repo and may read other repos for context. The Main Agent coordinates their work through files and tickets.
 
 ### Context
 
@@ -242,7 +242,7 @@ Before resuming a Child Agent your skill retains, read its context fraction as `
 
 ### Checks
 
-In develop-epic, fix-bug and build-tweak, you run Build Commands yourself for the code folders a change touches, skipping only sections marked `none` with a reason, and send each failure to the executor that owns the files.
+In develop-epic, fix-bug and build-tweak, you run Build Commands yourself for the code folders a change touches, skipping only sections marked `none` with a reason and suites the floor in Steps sized to the work doesn't require, and send each failure to the executor that owns the files.
 
 - **Commit check:** before each code-review or test-review and each commit, run Compile, Lint and the tests you judge matter for the change: targeted tests for what changed and the guards Fast Checks names, so reviewers see code that builds and every commit works. Leave the full suites to the full run, because they rarely catch what targeted tests miss and waiting for them stalls the work.
 - **Full run:** Unit Tests and Integration Tests in full for the affected code folders. Run at most one at a time in your Run, because a run on your latest commit covers your earlier ones. Before you hand back an Epic, Bug or Tweak that changed code, wait for the full run your skill names to pass on the exact code you hand back, so only working code leaves you; for a bundle, that is all its tickets' changes together.

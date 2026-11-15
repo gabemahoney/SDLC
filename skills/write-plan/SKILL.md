@@ -53,7 +53,7 @@ Revise the existing Plan; create one only if absent, so the Idea keeps one Plan.
 
 ## Child Agents
 
-- **`product-manager`:** Start fresh every time so each assessment is independent. Launch after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes.
+- **`product-manager`:** Launch after writing or revising the Plan, with the Idea, PRD, SRD, Plan and Epic IDs. Expect findings on product coverage, scope and proportion, with references and suggested fixes.
 
 ## Writes
 
