@@ -12,7 +12,7 @@ Aim for about 80% coverage with as few lines of test code as possible, because e
 
 ## Keep the full run fast
 
-A full run of the unit and integration suites should finish within 15 minutes of run time, because every Epic, Bug and Tweak that changes code waits for one before handoff. If it runs longer, split it into parallel jobs or raise it with the Managing Intelligence. A Project with its own test guide sets its limit there.
+A full run of the unit and integration suites should finish within 15 minutes of run time, because every Epic and Bug that changes code waits for one before handoff. If it runs longer, split it into parallel jobs or raise it with the Managing Intelligence. A Project with its own test guide sets its limit there.
 
 ## Reuse the Project's test setup
 
