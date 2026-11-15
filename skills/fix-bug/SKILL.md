@@ -102,6 +102,6 @@ Except in the docs-only pipeline, each scenario under `## Reproduction` and each
 
 For a fix that changes code, you wait for a passing full run, as `~/.sdlc/install/workflow.md`'s Checks rule defines it, on exactly the change you will commit, following `guide:test-guide.md`, because the Managing Intelligence tests only working code; otherwise the commit check is the gate. Keep the output somewhere that survives the worktrees' removal.
 
-The gate passes when suites pass, or when the Managing Intelligence accepts the remaining failures. If suites can't run, ask the Managing Intelligence.
+The gate passes only when suites pass, as `~/.sdlc/install/workflow.md`'s Checks rule says. If suites can't run, ask the Managing Intelligence.
 
 Send failures back through step 5, so every change is reviewed and checked before it's committed, then repeat step 6 once for all repairs, as `~/.sdlc/install/workflow.md`'s Checks rule says.

@@ -84,6 +84,7 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 Report the Epic's ID and unaddressed findings with reasons.
 
 - If you stopped at a Task boundary, suggest re-running develop-epic on this Epic.
+- If you stopped for a Bug filed against a failing test, suggest re-running develop-epic once its fix reaches the Epic's branch, because the gate waits for the suite to pass.
 - For a `done` Epic with its own worktrees, ask the Managing Intelligence to merge it.
 - For remaining Epics, suggest write-epic if `draft`, otherwise develop-epic.
 - For a completed Plan, suggest idea-review.
@@ -111,8 +112,8 @@ In a Task of bundled fixes, have reviewers name the fix each finding concerns, s
 
 If the Epic changed no code, its commit checks are the gate. Otherwise, after its last Task commits, wait for a passing full run on the final commit, following `guide:test-guide.md`, because the Epic hands off only working code. Reuse the suites a background run on that commit passes, waiting for it if it hasn't ended, and run the suites it left out; otherwise let any run in progress end, read it, then start one on the final commit. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
 
-Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures under `## Checks` on the Epic. If suites cannot run, ask the Managing Intelligence.
+Keep the Epic `active` until suites pass, as `~/.sdlc/install/workflow.md`'s Checks rule says. If suites cannot run, ask the Managing Intelligence.
 
-Route every failure into a fix Task, because each Task gets one commit: a failure only in tests needs test-writer, then test-review, and any other goes through the Task pipeline. Start a new full run once all repairs are committed, as the Checks rule says.
+Route every failure you fix into a fix Task, because each Task gets one commit: a failure only in tests needs test-writer, then test-review, and any other goes through the Task pipeline. Start a new full run once all repairs are committed, as the Checks rule says.
 
 If repairs stop making progress, stop for the Managing Intelligence so a stuck repair loop doesn't waste time.
