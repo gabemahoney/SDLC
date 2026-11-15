@@ -50,3 +50,5 @@ The files, release artifacts and ticket changes specified by `guide:release-guid
 ## Done
 
 Report the version released, the Idea, Tweak and Bug IDs it includes, anything left incomplete, and the next step from the guide.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

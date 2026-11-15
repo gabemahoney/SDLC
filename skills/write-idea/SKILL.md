@@ -62,6 +62,8 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 
 Report the Idea's or Tweak's ID and any proposal, with its source. Suggest the Managing Intelligence approve it, then write-prd, or for a Tweak, worktree setup and build-tweak.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Idea body
 
 An Idea holds the direction the User and the Managing Intelligence agreed, at product level, without the decisions or rejected options behind it, so it can be approved and built on:

@@ -60,6 +60,8 @@ None.
 
 Report the Project Folder, the Project Template applied or saved, any `thinking_levels` block you removed, any incomplete setup or failed installation checks, and an unset or empty `setting:child_watch_command`. Guidance written in repos needs a commit by the Managing Intelligence, because you make no commits. Next: write-idea or write-bug, or project-setup with the saved template for another Project.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Settings guidance
 
 A Project Template's value answers that setting's question, so don't ask it. Check the value as you would the Managing Intelligence's answer and report a failing one the same way, so a template can't bypass setup's checks. Write template values to Project settings only, because home defaults affect other Projects.

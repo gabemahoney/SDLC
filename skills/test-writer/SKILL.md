@@ -49,3 +49,5 @@ None: you perform the assigned testing work yourself.
 ## Done
 
 Report the ticket ID and unresolved work or questions to your Main Agent as `protocol:launcher.md` describes.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

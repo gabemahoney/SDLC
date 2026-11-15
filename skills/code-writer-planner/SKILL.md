@@ -49,6 +49,8 @@ Your Subtask tickets, `draft` only.
 
 Report the Subtask IDs, incomplete planning and questions to your Main Agent as `protocol:launcher.md` describes. Flag product questions or conflicts with the SRD for the Managing Intelligence, because they own those decisions. Explain when no implementation Subtasks are needed.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Subtask template
 
 Every Subtask has these sections, with detail in proportion to the work:

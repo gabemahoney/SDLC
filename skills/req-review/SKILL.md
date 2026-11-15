@@ -48,6 +48,8 @@ None: your Main Agent owns the Doc's record.
 
 Report the Doc ID and your findings to your Main Agent as `protocol:launcher.md` describes. State when there are no findings.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Review criteria
 
 Value content over form. Prefer concise, direct requirements and clear organization; user stories are only useful when they clarify the requirement.

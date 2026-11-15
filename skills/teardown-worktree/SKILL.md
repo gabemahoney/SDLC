@@ -49,3 +49,5 @@ None: you merge and clean up yourself.
 ## Done
 
 Report the Idea's ID, which repos merged (locally, not pushed), and anything left with the reason. Once every repo has merged, suggest release.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

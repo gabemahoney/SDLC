@@ -74,6 +74,8 @@ Report the Epic's ID, and any `product-manager` findings left unaddressed with t
 
 Suggest develop-epic on this Epic once every Epic it depends on is `done` and merged.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Task template
 
 - `## Context`: explain why the Task exists and what prerequisite work it assumes, and name what it serves: SRD requirements, Guidance Document rules, or in a Round Feedback Epic a PRD requirement or the teardown-worktree conflict it resolves, because develop-epic builds only work that approved requirements or guidance cover.

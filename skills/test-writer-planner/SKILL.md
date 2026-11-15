@@ -52,6 +52,8 @@ Your Subtask tickets, `draft` only.
 
 Report the Subtask IDs, incomplete planning and questions to your Main Agent as `protocol:launcher.md` describes. Explain when no testing Subtasks are needed.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Subtask template
 
 Every Subtask has these sections, with detail in proportion to the work:

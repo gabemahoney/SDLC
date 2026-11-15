@@ -50,3 +50,5 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 ## Done
 
 Report the Idea's ID and worktree paths, or `none`, and suggest the skill that needs them next: write-epic for a new Plan's first `draft` Epic, or develop-epic if it sent you here.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

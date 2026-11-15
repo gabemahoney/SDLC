@@ -52,3 +52,5 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 ## Done
 
 Report the Bug's ID and any proposal, with its source. Suggest define-bug.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

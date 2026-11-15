@@ -71,6 +71,8 @@ Report the PRD's ID and anything left unaddressed with the reason.
 
 The PRD remains `draft` and awaits the Managing Intelligence's approval. The Managing Intelligence sets it `defined` on approval.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Style rules
 
 - **Plain English.** Use short sentences, bullet lists and short paragraphs.

@@ -46,6 +46,8 @@ None: keep files and tickets unchanged, because executors own repairs and the Ma
 
 Report the ticket IDs, findings and any review limitations to your Main Agent as `protocol:launcher.md` describes, naming each finding's ticket or fix. Report each kind of problem as one finding with its impact, suggested fix and every place you find it, so it can be fixed everywhere in one round. State when there are no findings.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Review judgement
 
 Report every Guidance Document breach, however small, except those an entry in `## Guide exceptions` covers on the ticket you're reviewing or its parents, so review respects the Managing Intelligence's approved exceptions.

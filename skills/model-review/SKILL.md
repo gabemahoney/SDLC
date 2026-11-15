@@ -46,6 +46,8 @@ None: keep files and tickets unchanged, because model-writer owns repairs and yo
 
 Report the Model Doc ID, findings or no findings, and review limitations to your Main Agent as `protocol:launcher.md` describes. Report each kind of problem as one finding with its suggested fix and every place you find it, so it can be fixed everywhere in one round.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Review judgement
 
 Your job is to hold the model strictly to the SRD: report every place it doesn't match, however small, because your Main Agent decides which findings are worth fixing.

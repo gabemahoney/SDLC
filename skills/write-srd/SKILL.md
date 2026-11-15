@@ -83,6 +83,8 @@ Report the SRD's ID, its Model Doc and Research ticket IDs, and anything left un
 - If the SRD, modelling and review are complete, say the SRD remains `draft` and awaits the Managing Intelligence's approval, and that any during-build checks must run before acceptance. The Managing Intelligence sets it `defined` on approval.
 - Otherwise, say what must be settled before you can finish.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Style rules
 
 - **Group by concern:** group requirements by domain or concern, not by PRD section. Data model, configuration, interfaces, runtime behaviour, validation, behaviour to preserve and documentation are common groups; use those the Idea needs.

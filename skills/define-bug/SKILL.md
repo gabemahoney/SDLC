@@ -82,3 +82,5 @@ Report the Bug's ID, status and unresolved work with reasons.
 
 - If it's `defined`, suggest fix-bug.
 - If it's still `draft`, report what is needed to settle it.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

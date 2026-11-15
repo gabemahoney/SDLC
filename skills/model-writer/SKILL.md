@@ -66,3 +66,5 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 ## Done
 
 Report the Model Doc ID, violations, unresolved work, reasons and questions through `protocol:launcher.md` to your Main Agent, or to the Managing Intelligence as a Main Agent, so the caller can continue. Distinguish model from design errors and route violations through write-srd, because during-build failures need revision, not Bugs.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

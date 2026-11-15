@@ -68,6 +68,8 @@ Report the Research ticket ID, the Report's ID, and any after-acceptance work le
 
 If the round is waiting on your reviewer, say so; their answer continues it.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Research ticket record
 
 - `## Question`: state the question in the requester's words where possible.

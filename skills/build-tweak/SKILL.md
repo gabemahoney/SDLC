@@ -50,3 +50,5 @@ No Child Agent writes the Tweak, because you record what they report. Keep its `
 ## Done
 
 Report each Tweak's ID, each worktree's path, branch and commit, the check results and declined findings with reasons. Suggest the Managing Intelligence's next step in the Tweak flow: acceptance and merge, refiling as an Idea if it outgrew a Tweak, or settling what stopped you.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

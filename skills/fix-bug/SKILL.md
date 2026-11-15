@@ -76,6 +76,8 @@ Report each Bug's ID, each worktree's path, branch and commit, and unaddressed f
 - If you stopped before committing, say what you need, and suggest re-running fix-bug once it's settled.
 - Otherwise, suggest the Managing Intelligence test the fix in its worktrees, then accept and merge it, or note what's still wrong under `## Decisions` and run fix-bug again, as `~/.sdlc/install/workflow.md`'s Bug flow describes.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Handling Reviewer Feedback
 
 For each finding from code-review, test-review or doc-review:

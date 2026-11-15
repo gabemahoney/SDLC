@@ -89,6 +89,8 @@ Report the Epic's ID and unaddressed findings with reasons.
 - For a completed Plan, suggest idea-review.
 - During an SRD revision, suggest write-plan once the SRD is approved, because only write-plan ends the revision.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Handling Reviewer Feedback
 
 For each finding from code-review, test-review, doc-review or product-manager:

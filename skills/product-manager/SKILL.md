@@ -75,6 +75,8 @@ None: your review is read-only, because the Main Agent coordinates corrections a
 
 Report ticket IDs, findings, incomplete work, clashes with other Tasks or Epics, and decisions needed to your Main Agent as `protocol:launcher.md` describes. Report each kind of problem as one finding with its suggested correction and every place you find it, so it can be fixed everywhere in one round. State when there are no findings.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## Review judgement
 
 Report every requirement or scope violation, because your Main Agent decides which findings to act on.

@@ -75,3 +75,5 @@ While you work, note under `## Retrospective notes` on your ticket, with evidenc
 ## Done
 
 Report the Idea ID, round, declined findings with reasons, findings routed to write-srd, and next step: write-srd through the Managing Intelligence (with any feedback Epic ID), write-epic (feedback Epic ID) or the Managing Intelligence's testing.
+
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.

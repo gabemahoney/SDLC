@@ -73,6 +73,8 @@ Report the Plan's ID, and any `product-manager` findings left unaddressed with t
 
 If the Plan is `done`, suggest idea-review. Otherwise, suggest configure-worktree for the Idea, then write-epic on each `draft` Epic in dependency order and develop-epic on each paused Epic still `defined` or `active`.
 
+End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
+
 ## What to write in each ticket
 
 **The Plan ticket's body:**
