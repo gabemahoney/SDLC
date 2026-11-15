@@ -245,7 +245,8 @@ Before resuming a Child Agent your skill retains, read its context fraction as `
 In develop-epic, fix-bug and build-tweak, you run Build Commands yourself for the code folders a change touches, skipping only sections marked `none` with a reason and suites the floor in Steps sized to the work doesn't require, and send each failure to the executor that owns the files.
 
 - **Commit check:** before each code-review or test-review and each commit, run Compile, Lint and the tests you judge matter for the change: targeted tests for what changed and the guards Fast Checks names, so reviewers see code that builds and every commit works. Leave the full suites to the full run, because they rarely catch what targeted tests miss and waiting for them stalls the work.
-- **Full run:** Unit Tests and Integration Tests in full for the affected code folders. Run at most one at a time in your Run, because a run on your latest commit covers your earlier ones. Before you hand back an Epic, Bug or Tweak that changed code, wait for the full run your skill names to pass on the exact code you hand back, so only working code leaves you; for a bundle, that is all its tickets' changes together. Any failing test blocks hand-back, even one your change didn't cause, because a known failure hides new ones and leaves broken code for the next change. Fix it as your skill fixes its own failures, or stop and ask the Managing Intelligence to file a Bug for it, and hand back only once the suite passes.
+- **Full run:** Unit Tests and Integration Tests in full for the affected code folders. Run at most one at a time in your Run, because a run on your latest commit covers your earlier ones. Before you hand back an Epic, Bug or Tweak that changed code, wait for the full run your skill names to pass on the exact code you hand back, so only working code leaves you; for a bundle, that is all its tickets' changes together.
+- **Failing tests:** a known failing test blocks every gate, hand-back, acceptance, merge and release, even one the change didn't cause, and no one may accept it, because a known failure hides new ones and leaves broken code for the next change. Whoever finds it fixes it as their skill fixes its own failures or has the Managing Intelligence file a Bug for it, and the work waits until the suite passes, so it never moves on with the failure.
 - **Repairs:** confirm each repair with the checks it affects, and let the next full run confirm them all, because a full run per repair adds little.
 - **Reuse:** a check may reuse a passing run if no file it covers has changed since.
 
@@ -269,7 +270,7 @@ When write-srd revises an SRD that has a Plan, it sets the Plan `draft` and writ
 
 ### Work outside the ticket
 
-If you find work outside the current Idea, Tweak or Bug, such as a refactor, a new defect or a missing feature, record it on the ticket and suggest it to the Managing Intelligence as a new Idea, Tweak or Bug. Don't take it on, because whether to do it is their call. A problem in a tool from outside the Project goes to its owner as Tool feedback instead, because the Project can't fix it.
+If you find work outside the current Idea, Tweak or Bug, such as a refactor, a new defect or a missing feature, record it on the ticket and suggest it to the Managing Intelligence as a new Idea, Tweak or Bug. Don't take it on, because whether to do it is their call, except a failing test that blocks your work, which the Checks rule covers. A problem in a tool from outside the Project goes to its owner as Tool feedback instead, because the Project can't fix it.
 
 ### Questions and stops
 
