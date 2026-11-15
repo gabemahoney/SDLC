@@ -112,7 +112,7 @@ Plan documentation as `guide:doc-writing-guide.md` guides, including which doc f
 - [ ] Every planned documentation change is allowed by the doc-writing guide.
 - [ ] Every planned requirement is grounded in the Idea's Docs, supplied decisions or applicable Guidance Documents.
 - [ ] A revision covers every changed SR, and every Epic it affects is back in `draft`.
-- [ ] The `product-manager` has checked the Plan, and every finding has been judged and accepted fixes applied.
+- [ ] The `product-manager` has checked the Plan, or its skip is recorded, and every finding has been judged and accepted fixes applied.
 
 ## What not to include
 

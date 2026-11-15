@@ -22,7 +22,7 @@ A Task ID.
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task:** Read it; it holds everything you need to do.
-- **Guidance:** Read `guide:engineering-best-practices.md` for implementation constraints.
+- **Guidance:** Read `guide:engineering-best-practices.md` for implementation constraints, and for a single-executor Task, `guide:test-guide.md` and `guide:doc-writing-guide.md`, because your Subtasks then cover its tests and docs.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 

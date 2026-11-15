@@ -6,7 +6,7 @@ Check skills in `~/.agents/skills/<skill>/SKILL.md` for a user installation or `
 
 ## Context use
 
-Read an agent's context with `agent-director get --instance-id '<id>'`; for your own, use your `AGENT_DIRECTOR_INSTANCE_ID`. Use `context.fraction` when it is a number. When it is null or unverified, there is no reading: as a Main Agent, skip your own check; as a caller, start that Child Agent fresh instead of reusing it.
+Read an agent's context with `agent-director get --instance-id '<id>'`; for your own, use your `AGENT_DIRECTOR_INSTANCE_ID`. Use `context.fraction` when it is a number. When it is null or unverified, there is no reading: as a Main Agent, skip your own check; as a caller, follow `~/.sdlc/install/workflow.md`'s Context rule for reuse with no reading.
 
 ## Launch template
 

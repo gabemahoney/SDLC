@@ -46,7 +46,7 @@ Run only when all of these are true:
 
    **Run the commit check yourself** for every code folder the Task changed, as `~/.sdlc/install/workflow.md`'s Checks rule says. Commit and set the Task `done` only when it passes, so every commit leaves working code.
 
-   **Run the full suites in the background.** When a Task commits and no full run is in progress, start the full run's suites that run outside the session on a snapshot or clean checkout of that commit, so later edits don't change what it tests. Record each job's ID, commit and Build Commands' blocking wait under `## Progress` on the Epic, and begin the next Task without waiting, so breakage surfaces before much builds on it. Between steps, check without waiting whether the run has ended. When it has, read only failures, move the result and commit to `## Checks`, clear its `## Progress` entry, route failures as the Integration gate does, and start the next run if a newer commit exists. Never wait for a run at a Task commit, because the Integration gate is where you wait. A resuming Run checks any recorded run first. Suites that run only in the session wait for the gate.
+   **Run the full suites in the background.** When a Task that changed code commits and no full run is in progress, start the full run's suites that run outside the session on a snapshot or clean checkout of that commit, so later edits don't change what it tests. Record each job's ID, commit and Build Commands' blocking wait under `## Progress` on the Epic, and begin the next Task without waiting, so breakage surfaces before much builds on it. Between steps, check without waiting whether the run has ended. When it has, read only failures, move the result and commit to `## Checks`, clear its `## Progress` entry, route failures as the Integration gate does, and start the next run if a newer commit exists. Never wait for a run at a Task commit, because the Integration gate is where you wait. A resuming Run checks any recorded run first. Suites that run only in the session wait for the gate.
 
 3. **Finish the Epic.** With its own worktrees, first merge the Idea's branches in and rerun step 2's commit checks, fixing any conflict or failure in a fix Task. Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
 
@@ -56,7 +56,7 @@ Run only when all of these are true:
 
 Use the Task pipeline and Integration gate for sequencing. Before sending an executor a repair, reopen each of its `done` Subtasks the repair concerns: add the repair to that Subtask's `## Progress` and set it `active`, so the executor's Gate admits it. The executor sets it `done` again. Reopen only Subtasks of a Task not yet committed, because each Task gets one commit; send any other repair through a fix Task.
 
-Start each executor (code-writer, test-writer, doc-writer) fresh for each Task and reuse it for fix rounds to preserve its knowledge. Start each reviewer (code-review, test-review, doc-review, product-manager) fresh every time so each assessment is independent.
+Start each executor and reviewer fresh for each Task and reuse it for that Task's fix rounds, so executors keep their knowledge and reviewers check repairs of their own findings. Start `product-manager` fresh every time, so each assessment is independent.
 
 - **`code-writer`:** Launch for source changes, including integration fixes. Expect implementation, targeted checks, deviations and effects on design or documentation.
 - **`test-writer`:** Launch one per testing Subtask, in parallel. Use them for integration failures in tests. Expect unit and integration tests, fixtures, repairs, gaps and only targeted checks on its own work following `guide:test-guide.md`, because you run the commit checks and full suites.
@@ -64,7 +64,7 @@ Start each executor (code-writer, test-writer, doc-writer) fresh for each Task a
 - **`code-review`:** Launch after source changes. Expect correctness and engineering findings with references and suggested fixes.
 - **`test-review`:** Launch after unit or integration test changes. Expect quality, coverage and duplication findings across the suite.
 - **`doc-review`:** Launch after documentation changes. Expect findings on complete touched documents and missing or outdated documentation.
-- **`product-manager`:** Launch after each Task's executors and reviewers, after fixes affecting behaviour and after the Epic's Integration gate. Expect requirements, scope and proportion findings, including incomplete work and Managing Intelligence decisions needed.
+- **`product-manager`:** Launch after a Task's executors and reviewers, after fixes affecting behaviour and after the Epic's Integration gate. Expect requirements, scope and proportion findings, including incomplete work and Managing Intelligence decisions needed.
 
 ## Writes
 
@@ -99,7 +99,7 @@ For each finding from code-review, test-review, doc-review or product-manager:
 
 ## Task pipeline
 
-Run code-writer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers, followed by product-manager for every Task so it sees the combined result. Run checks before each review as the Checks rule says.
+Run code-writer; code-review and test-writer in parallel; test-review and doc-writer in parallel; then doc-review, followed by product-manager so it sees the combined result. A Task whose `## Pipeline` says `single executor` runs one code-writer, then one code-review; if its real diff shows the shape fits or doesn't, change `## Pipeline`, giving the reason. Run checks before each review as the Checks rule says.
 
 Keep testing Subtasks from editing the same file so their writers can work in parallel. Tests that share a helper the Task changes go in one Subtask.
 
@@ -107,10 +107,10 @@ In a Task of bundled fixes, have reviewers name the fix each finding concerns, s
 
 ## Integration gate
 
-After the Epic's last Task commits, wait for a passing full run on the final commit, following `guide:test-guide.md`, because the Epic hands off only working code. Reuse the suites a background run on that commit passes, waiting for it if it hasn't ended, and run the suites it left out; otherwise let any run in progress end, read it, then start one on the final commit. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
+After the Epic's last Task commits, wait for a passing full run on the final commit if the Epic changed code, following `guide:test-guide.md`, because the Epic hands off only working code; otherwise its commit checks are the gate. Reuse the suites a background run on that commit passes, waiting for it if it hasn't ended, and run the suites it left out; otherwise let any run in progress end, read it, then start one on the final commit. Save output to a file and read only failures to preserve context. Record commands, exit statuses and output paths under `## Checks` on the Epic.
 
 Keep the Epic `active` until suites pass or the Managing Intelligence accepts the remaining failures; record accepted failures under `## Checks` on the Epic. If suites cannot run, ask the Managing Intelligence.
 
-Route every failure into a fix Task, because each Task gets one commit: a failure only in tests needs test-writer, then test-review, and any other goes through the full Task pipeline. Start a new full run once all repairs are committed, as the Checks rule says.
+Route every failure into a fix Task, because each Task gets one commit: a failure only in tests needs test-writer, then test-review, and any other goes through the Task pipeline. Start a new full run once all repairs are committed, as the Checks rule says.
 
 If repairs stop making progress, stop for the Managing Intelligence so a stuck repair loop doesn't waste time.

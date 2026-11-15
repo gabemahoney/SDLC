@@ -8,14 +8,14 @@
 - **Main Agent:** an Agent started by the Managing Intelligence to run one skill and report back.
 - **Child Agent:** an Agent started by a Main Agent to run one skill for it and report back. The Launcher keeps the parent–child relationship.
 - **Skills Child Agents run:**
-  - **code-writer:** changes source code for a Task, Bug or Tweak, and a small Bug fix's or Tweak's tests and docs.
+  - **code-writer:** changes source code for a Task, Bug or Tweak, and the tests and docs too for a small Bug fix, a Tweak or a single-executor Task.
   - **test-writer:** writes unit and integration tests and runs assigned suites.
   - **doc-writer:** updates documentation for a Task or Bug.
   - **code-writer-planner:** reads a Task's source context and writes draft implementation Subtasks.
   - **test-writer-planner:** writes draft testing Subtasks that can be implemented in parallel and plans their fixtures.
   - **doc-writer-planner:** writes a Task's draft documentation Subtasks.
   - **req-review:** reviews one PRD or SRD independently for write-prd or write-srd.
-  - **code-review:** checks source changes independently, and a small Bug fix's or Tweak's whole change.
+  - **code-review:** checks source changes independently, and the whole change for a small Bug fix, a Tweak or a single-executor Task.
   - **test-review:** checks test quality, coverage and duplication independently.
   - **doc-review:** checks documentation changes and gaps independently.
   - **product-manager:** checks planned or finished work against requirements, for scope and proportion.
@@ -129,6 +129,16 @@ The Managing Intelligence merges an accepted Bug or Tweak itself, because a few 
 - After a compaction, re-read this workflow and the Protocol Files and Guidance Documents you loaded, because summaries can omit their rules.
 - Report pass, fail or not applicable for every required check and gate in the `SKILL.md` and its Guidance Documents, and name the Guidance Document copies or Default Fallback Files used.
 
+### Steps sized to the work
+
+This floor always runs, because it is the evidence the work is right:
+
+- the commit check;
+- tests of what changed: for docs, none unless some tests read them; for data or config, the tests that load and validate it, at the commit check; for code, including tests, a passing full run at the Epic, Bug or Tweak hand-back;
+- a review of code changes, before they're committed, by an Agent that didn't write them.
+
+The Main Agent that plans or runs any other step, such as a Child Agent, review round or background full run, may skip it when it would add nothing for this work, because such a step only slows the work. Judge by the kind of files, new or changed behaviour or interfaces, size and spread, and open design choices. For example, skip a planner whose part has no work, or a per-Task product-manager check in a one-Task Epic, which the Epic check covers. Record `Skipped <step>: <one-line reason>` under `## Progress` on the ticket it serves, so others can see and challenge it, and restore the step if the work outgrows that reason. The Managing Intelligence may require or skip any step above the floor under `## Decisions`. Approvals, Gates and acceptance aren't steps.
+
 ### Project Folder, paths and worktrees
 
 - **Project Folder:** the nearest folder, from the working directory up, that holds `<Project Folder>/.sdlc/project_settings.md`. If there is none, the Project Folder is the folder the Agent started in, and settings come only from `~/.sdlc/default_project_settings.md`. Project Folders don't nest, so each folder resolves one Project's settings. Projects may share Research through `setting:research_location`.
@@ -228,20 +238,20 @@ The Managing Intelligence starts each skill Run in a fresh session. Long session
 
 A develop-epic, fix-bug, idea-review or build-tweak Main Agent leaves reading the Project's code to its Child Agents, because what it reads stays in its context for the rest of the Run. It reads tickets, diffs and its Child Agents' reports, and opens the lines a report cites only to check a finding. To learn how code works, it asks a Child Agent for an answer with `file:line` evidence.
 
-Before resuming any reused Child Agent, read its context fraction as `protocol:launcher.md` describes. Resume only below 75%; otherwise, including an unknown reading, replace it with a fresh Child Agent that reads the ticket, because reuse saves work only while enough context remains. Within one fix-bug or build-tweak Run or develop-epic Task, you may resume executors and the only reviewer of build-tweak or fix-bug's small or docs-only pipeline for fix rounds even when no reading exists, because a single Run's or Task's context stays small.
+Before resuming a Child Agent your skill retains, read its context fraction as `protocol:launcher.md` describes, because reuse saves work only while enough context remains. Resume it below 75%; at or above 75%, replace it with a fresh Child Agent that reads the ticket. With no reading, you may still resume it for follow-ups on its own work in this Run, such as a reviewer checking repairs of its own findings, because it keeps what it learned; replace it once it has compacted, had 3 follow-ups, or you judge its history long, such as after reading much of the code.
 
 ### Checks
 
 In develop-epic, fix-bug and build-tweak, you run Build Commands yourself for the code folders a change touches, skipping only sections marked `none` with a reason, and send each failure to the executor that owns the files.
 
 - **Commit check:** before each code-review or test-review and each commit, run Compile, Lint and the tests you judge matter for the change: targeted tests for what changed and the guards Fast Checks names, so reviewers see code that builds and every commit works. Leave the full suites to the full run, because they rarely catch what targeted tests miss and waiting for them stalls the work.
-- **Full run:** Unit Tests and Integration Tests in full for the affected code folders. Run at most one at a time in your Run, because a run on your latest commit covers your earlier ones. Before you hand back an Epic, Bug or Tweak, wait for the full run your skill names to pass on the exact code you hand back, so only working code leaves you; for a bundle, that is all its tickets' changes together.
+- **Full run:** Unit Tests and Integration Tests in full for the affected code folders. Run at most one at a time in your Run, because a run on your latest commit covers your earlier ones. Before you hand back an Epic, Bug or Tweak that changed code, wait for the full run your skill names to pass on the exact code you hand back, so only working code leaves you; for a bundle, that is all its tickets' changes together.
 - **Repairs:** confirm each repair with the checks it affects, and let the next full run confirm them all, because a full run per repair adds little.
 - **Reuse:** a check may reuse a passing run if no file it covers has changed since.
 
 ### Review findings
 
-Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. When you fix a finding, sweep the change for its kind of problem within the files you own, not just the places cited, because each place missed takes another round; report other places to your Main Agent. After a repair round, review again only if it repaired blocker or suggestion findings; decline nits instead of repairing them, because a review round takes longer than nits are worth. Record each repaired finding with the places its repair and sweep changed under `## Progress` on the reviewed ticket (PRD, SRD, Model Doc, Plan, Epic, Task, Subtask, Bug or Tweak), and each declined or unaddressed finding with its reason on the ticket it concerns, so later skills see what changed and what remains. A round is later only when the Main Agent's launch says so, after the same reviewer skill reviewed this work in this loop; otherwise review in full. A later round checks only the recorded repairs, from every reviewer, and the docs or code that refer to them, because the first round read the rest. New work or a new Run starts a fresh review loop, except in idea-review, whose later rounds review only the changes since its last finished round. Any review a skill requires to cover the whole work, such as model-writer's pre-gate review, is always full. Product questions go to the Managing Intelligence, who decides the expected behaviour. So does any finding, even a nit, that one of their decisions breaks existing behaviour, a requirement or a Bug's expected behaviour, with its evidence, because the decision may be wrong.
+Skills judge every finding returned by a review skill or product-manager and fix the ones they accept. When you fix a finding, sweep the change for its kind of problem within the files you own, not just the places cited, because each place missed takes another round; report other places to your Main Agent. After a repair round, review again only if it repaired blocker or suggestion findings; decline nits instead of repairing them, because a review round takes longer than nits are worth. Record each repaired finding with the places its repair and sweep changed under `## Progress` on the reviewed ticket (PRD, SRD, Model Doc, Plan, Epic, Task, Subtask, Bug or Tweak), and each declined or unaddressed finding with its reason on the ticket it concerns, so later skills see what changed and what remains. A round is later only when the Main Agent's launch or follow-up says so, after the same reviewer skill reviewed this work in this loop; otherwise review in full. A later round checks only the recorded repairs, from every reviewer, and the docs or code that refer to them, because the first round read the rest. New work or a new Run starts a fresh review loop, except in idea-review, whose later rounds review only the changes since its last finished round. Any review a skill requires to cover the whole work, such as model-writer's pre-gate review, is always full. Product questions go to the Managing Intelligence, who decides the expected behaviour. So does any finding, even a nit, that one of their decisions breaks existing behaviour, a requirement or a Bug's expected behaviour, with its evidence, because the decision may be wrong.
 
 ### Tickets carry the information
 

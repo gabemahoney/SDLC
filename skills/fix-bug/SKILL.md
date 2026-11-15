@@ -51,11 +51,11 @@ Run only when all of these are true:
 
 ## Child Agents
 
-Start executors, and the small and docs-only pipelines' reviewer, fresh each Run and reuse them for its fix rounds, to preserve their knowledge; start the full pipeline's reviewers fresh every time, so each assessment is independent.
+Start executors and reviewers fresh each Run and reuse them for its fix rounds, so executors keep their knowledge and reviewers check repairs of their own findings.
 
 - **`code-writer`:** Expect implementation, targeted checks, deviations, effects on documentation and regression evidence for tests it writes.
 - **`test-writer`:** Launch one per testing assignment, telling each which is theirs. Expect tests, fixtures, gaps and regression evidence.
-- **`doc-writer`:** In the full pipeline, launch it for every Bug, because a fix can leave docs wrong even when it only restores documented behaviour. Expect updates and implementation gaps, or a reason none are needed.
+- **`doc-writer`:** In the full pipeline, launch it even when the fix only restores documented behaviour, because such a fix can still leave docs wrong. Expect updates and implementation gaps, or a reason none are needed.
 - **`code-review`, `test-review` and `doc-review`:** Expect findings on source, tests and documentation respectively, or on the whole change as a pipeline's only reviewer.
 
 ## Writes
@@ -87,8 +87,8 @@ For each finding from code-review, test-review or doc-review:
 ## Fix pipelines
 
 - **Small:** for a code fix in a Bug tagged `medium` or below, or `high` when the fix stays in one function or file and raises no design question, because the code-writer runs at the Bug's `high` tag. One `code-writer` writes the regression tests, the fix and any doc changes, and one `code-review` reviews the whole change.
-- **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it. In the Integration gate, run only `## Unit tests`, and only for code folders whose tests read the changed docs, because no code changed.
-- **Full:** for every other code fix. After `test-writer`s write step 4's regression tests, run code-writer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Use applicable executors and reviewers. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
+- **Docs only:** for a fix that changes only documentation, whatever its tag. One `doc-writer` makes the change and one `doc-review` reviews it.
+- **Full:** for every other code fix. After `test-writer`s write step 4's regression tests, run code-writer; code-review and test-writer in parallel for any further tests; test-review and doc-writer in parallel; then doc-review. Split the testing work into assignments that don't edit the same files, so their writers can work in parallel. Group accepted findings into fix rounds and resume affected executors in source → tests → documentation order, with one doc-writer pass per round. Have reviewers check each round.
 
 If fixes stop making progress, stop for the Managing Intelligence, so a stuck fix loop doesn't waste time.
 
@@ -98,7 +98,7 @@ Except in the docs-only pipeline, each scenario under `## Reproduction` and each
 
 ## Integration gate
 
-You wait for a passing full run, as `~/.sdlc/install/workflow.md`'s Checks rule defines it, on exactly the change you will commit, following `guide:test-guide.md`, because the Managing Intelligence tests only working code. Keep the output somewhere that survives the worktrees' removal.
+For a fix that changes code, you wait for a passing full run, as `~/.sdlc/install/workflow.md`'s Checks rule defines it, on exactly the change you will commit, following `guide:test-guide.md`, because the Managing Intelligence tests only working code; otherwise the commit check is the gate. Keep the output somewhere that survives the worktrees' removal.
 
 The gate passes when suites pass, or when the Managing Intelligence accepts the remaining failures. If suites can't run, ask the Managing Intelligence.
 

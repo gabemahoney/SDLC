@@ -47,7 +47,7 @@ A Project's `main_agent_levels` replaces the home block, as `levels` does. The t
 
 ## Task, Bug and Tweak overrides
 
-A Task, Bug or Tweak's `thinking_level:<label>` tag overrides the fixed levels for `code-writer`, `test-writer` and `doc-writer`. A Subtask uses its Task's tag. Other skills keep their fixed levels, except that idea-review launches its reviewers at `xhigh` in a round that reviews the whole Idea.
+A Task, Bug or Tweak's `thinking_level:<label>` tag overrides the fixed levels for `code-writer`, `test-writer` and `doc-writer`. A Subtask uses its Task's tag. Other skills keep their fixed levels, except that idea-review launches its reviewers at `xhigh` in a round that reviews the whole Idea when it changed code.
 
 write-epic assigns Task tags, and develop-epic assigns them to fix Tasks. define-bug assigns Bug tags at `medium` or `high`, never below `medium` because fixes require reproduction and review. fix-bug launches an `xhigh` or `max` Bug tag at `high`. The Managing Intelligence may ask you, with a reason, to run one Bug at `xhigh`; on your yes, it tags the Bug `xhigh` and records your yes under the Bug's `## Decisions`, and only then does fix-bug launch it at `xhigh`. write-idea assigns Tweak tags at `medium`, `high` or `xhigh`, and build-tweak launches its code-writer at the tag. For example, `thinking_level:high` makes all three executors use your `high` mapping.
 

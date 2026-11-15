@@ -53,7 +53,7 @@ agent-director read-pane --instance-id '<id>' --n-lines 80
 
 ## Resuming a Child Agent
 
-Apply `~/.sdlc/install/workflow.md`'s context gate first, because reuse depends on a verified reading. For an eligible `waiting` child, send its next assignment with `agent-director send-keys --instance-id '<id>' --text '<next assignment>'`. For one that has exited, run `agent-director resume --instance-id '<id>'` from your own session first.
+Apply `~/.sdlc/install/workflow.md`'s Context rule for reuse first, because reuse depends on the Child Agent's remaining context. For an eligible `waiting` child, send its next assignment with `agent-director send-keys --instance-id '<id>' --text '<next assignment>'`. For one that has exited, run `agent-director resume --instance-id '<id>'` from your own session first.
 
 ## Reading a Child Agent's context
 

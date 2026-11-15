@@ -20,7 +20,7 @@ Don't use Cursor's built-in subagents (its Task tool), because agent-director's 
 
 ## Context use
 
-agent-director reports `context.fraction` as `null` for Cursor. As a Main Agent, skip your own context check; as a caller, start every Cursor Child Agent fresh, because no context reading is available to judge reuse.
+agent-director reports `context.fraction` as `null` for Cursor, so there is no reading. As a Main Agent, skip your own context check; as a caller, follow `~/.sdlc/install/workflow.md`'s Context rule for reuse with no reading.
 
 ## Launch template
 
