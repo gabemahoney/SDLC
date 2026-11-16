@@ -51,7 +51,7 @@ End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
 
 ## Review judgement
 
-Report every Guidance Document breach, however small, including a standing budget or invariant, such as a performance budget, that the change could break even when its ticket doesn't mention it, because a change checked only against its ticket can pass while breaking one. Skip those an entry in `## Guide exceptions` covers on the ticket you're reviewing or its parents, so review respects the Managing Intelligence's approved exceptions.
+Report every Guidance Document breach, however small, including of a budget or invariant its ticket doesn't mention, because a change can pass its ticket and still break one. Skip those an entry in `## Guide exceptions` covers on the ticket you're reviewing or its parents, so review respects the Managing Intelligence's approved exceptions.
 
 Focus on substantive, actionable issues in proportion to the requirements. 
 
