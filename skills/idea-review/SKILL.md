@@ -31,13 +31,14 @@ Also read any linked Research tickets as the work needs. Leave the Project's cod
 
 Run only when all of these are true:
 
-- The Plan is `done` and every Epic merged, because execution must finish first. Otherwise, report unfinished work.
+- Every Epic is `done` and merged, because execution must finish first. Otherwise, report unfinished work.
+- The Plan has no `## Paused Epics`, because an SRD revision lasts until write-plan replans and removes it. Otherwise, stop and suggest write-plan.
 - The Plan has a `## Worktrees` record, because it tells your Child Agents where to review the work, and `none` means no repo changed. Otherwise, stop and tell the Managing Intelligence, because there is no recorded work to review.
 - The Idea's PRD and SRD are `defined`, because you review the work against them. Otherwise, stop and tell the Managing Intelligence which one isn't approved.
 
 ## Steps
 
-1. **Start the round.** Number it one more than the last recorded on the Idea, starting at 1. Record the round, checkouts and commits under `## Review rounds` on the Idea to identify the reviewed work.
+1. **Start the round.** Set the Plan `done` if it isn't, because the develop-epic Runs have handed off and the one that finished the last Epic, or finished alongside a parallel one, may have stopped before setting it. Number it one more than the last recorded on the Idea, starting at 1. Record the round, checkouts and commits under `## Review rounds` on the Idea to identify the reviewed work.
 2. **Review the round's work.** A round with no finished round before it reviews the whole Idea. Every other round reviews only the changes made since the last finished round, plus the code and docs they touch, because develop-epic already reviewed those changes. Launch Child Agents, telling each in any other round which changes it covers, and handle their feedback as below.
 3. **Hand off.** If any findings are worth fixing, create one Epic titled `Round <N> Feedback` in the Idea's Plan, with contents as Writes describes, and set the Plan `active` because work remains. If any finding went to write-srd, hand off to the Managing Intelligence for write-srd before write-epic or acceptance, because the requirement gap must close first. Otherwise, hand off to write-epic if you filed feedback, or hand the Idea to the Managing Intelligence for testing and acceptance, listing any Model Docs whose during-build checks haven't passed against the current SRD, because acceptance waits on them.
 
@@ -63,7 +64,7 @@ For each finding:
 
 - **Idea:** under `## Review rounds`, record the round, checkouts and commits when it starts, any feedback Epic ID and its handoff when it finishes (a round that doesn't finish doesn't count), and each finding sent to write-srd with its evidence and PRD requirement, so write-srd reads the gap from the ticket. Under `## Declined findings`, record declined or unaddressed findings with reasons.
 - **Round Feedback Epic:** when findings are worth fixing, create one `draft` child of the Idea's Plan titled `Round <N> Feedback`, with `## Outcome` for the correction's outcome, `## Findings` for findings with evidence and the requirement or Guidance Document rule each serves or the merge conflict it resolves, `## Acceptance criteria` for observable checks, and `## Dependencies` for prerequisites. Leave Task planning to write-epic.
-- **Plan:** set it `active` when filing feedback, because work remains.
+- **Plan:** set it `done` in step 1 if it isn't, and `active` when filing feedback, because work remains.
 
 ## Retrospective notes
 

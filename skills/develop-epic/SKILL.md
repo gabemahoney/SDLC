@@ -30,7 +30,7 @@ Also read any linked Research tickets as the work needs. Leave the Project's cod
 
 Run only when all of these are true:
 
-- The Epic is `defined` or `active`, or is `done` and needs only step 4 or step 3's merge again. Otherwise, stop and suggest write-epic.
+- The Epic is `defined` or `active`, or is `done` and needs only step 3's Plan check or merge again. Otherwise, stop and suggest write-epic.
 - Every Epic it depends on is `done` and merged. Otherwise, stop and report the unfinished Dependency.
 - Its Plan is `defined` or `active`, or is `done` for a completed Epic's handoff or merge, or the Epic is unpaused during an SRD revision, as `~/.sdlc/install/workflow.md` defines it. Otherwise, stop and suggest write-plan.
 - The PRD and SRD are `defined`, except the SRD for an unpaused Epic, because execution follows approved requirements. Otherwise, stop and return them to the Managing Intelligence.
@@ -40,7 +40,7 @@ Run only when all of these are true:
 
 ## Steps
 
-1. **Start or resume.** For a completed Epic that needs only step 4, go to step 4. Otherwise, set the Idea, Plan and Epic `active`, leaving the Plan `draft` during an SRD revision.
+1. **Start or resume.** For a completed Epic that needs only the Plan check, go to step 3's Plan check. Otherwise, set the Idea, Plan and Epic `active`, leaving the Plan `draft` during an SRD revision.
 
 2. **Complete Tasks in Dependency order, one at a time.** Update stale instructions, set the Task `active` and follow the Task pipeline until Subtasks are `done` and accepted findings are fixed.
 
@@ -48,9 +48,7 @@ Run only when all of these are true:
 
    **Run the full suites in the background.** When a Task that changed code commits and no full run is in progress, start the full run's suites that run outside the session on a snapshot or clean checkout of that commit, so later edits don't change what it tests. Record each job's ID, commit and Build Commands' blocking wait under `## Progress` on the Epic, and begin the next Task without waiting, so breakage surfaces before much builds on it. Between steps, check without waiting whether the run has ended. When it has, read only failures, move the result and commit to `## Checks`, clear its `## Progress` entry, route failures as the Integration gate does, and start the next run if a newer commit exists. Never wait for a run at a Task commit, because the Integration gate is where you wait. A resuming Run checks any recorded run first. Suites that run only in the session wait for the gate.
 
-3. **Finish the Epic.** With its own worktrees, first merge the Idea's branches in and rerun step 2's commit checks, fixing any conflict or failure in a fix Task. Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete.
-
-4. **Check Plan completion.** Set the Plan `done` when every Epic is `done`, except during an SRD revision.
+3. **Finish the Epic.** With its own worktrees, first merge the Idea's branches in and rerun step 2's commit checks, fixing any conflict or failure in a fix Task. Pass the Integration gate, then launch `product-manager`. Handle findings as Handling Reviewer Feedback describes. Complete accepted findings as fix Tasks through step 2 and pass the Integration gate again. Set the Epic `done` once its Tasks, accepted findings and gate are complete. Then, before reporting, run the Plan check: reread the sibling Epics and set the Plan `done` if every Epic is `done`, except during an SRD revision, because idea-review runs only on a `done` Plan and a parallel Epic may have finished while you worked.
 
 ## Child Agents
 
@@ -68,7 +66,7 @@ Start each executor fresh for each Task and reuse it for that Task's fix rounds,
 
 ## Writes
 
-- **Idea, Plan and Epic:** set statuses in steps 1, 3 and 4. Keep the current Task, phase, checkout paths and the running full run's jobs under `## Progress` and integration evidence, including background run results, under `## Checks` on the Epic.
+- **Idea, Plan and Epic:** set statuses in steps 1 and 3. Keep the current Task, phase, checkout paths and the running full run's jobs under `## Progress` and integration evidence, including background run results, under `## Checks` on the Epic.
 - **Tasks and Subtasks:** add the names of what a Task serves to its `## Context` when the Gate finds them missing. Update stale instructions and set Task statuses in step 2. Executors set assigned Subtasks `active`, then `done`; you set a `done` Subtask back to `active` only to reopen it for a repair, as Child Agents describes. Record executor IDs, skills, testing assignments, Thinking Levels, checks and commits under `## Progress` on the Task so another Run can continue.
 - **Fix Tasks:** create Epic children for full-run failures and accepted final product findings. Start Tasks and repair Subtasks `draft`, then set them `defined` when planned. Use `## Context`, `## Work` and `## Dependencies` for each Task's purpose, changes and prerequisites, naming in `## Context` what the Task or Epic it repairs serves, so a re-run passes the Gate. Set a complexity-appropriate `thinking_level:<label>` tag. You may bundle fixes that fit fix-bug's Small pipeline into one Task, as write-epic's Writing guidance describes. Use `## Executor`, `## Context`, `## Work`, `## Key files` and `## Acceptance criteria` for each Subtask's owner, preconditions, work, paths and completion checks. Include required coverage and affected docs so repairs receive the original work's checks.
 
