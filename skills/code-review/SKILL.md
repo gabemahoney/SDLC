@@ -22,7 +22,7 @@ A Task or Idea ID, or Tweak or Bug IDs.
 - **Launcher:** `protocol:launcher.md`, for how you work as a Child Agent and report to your Main Agent.
 - **Protocols:** Read `protocol:ticket.md` and your supplied Agent Protocol File for ticket access and Agent rules.
 - **Your Task, Idea, Tweak or Bug:** Read it; it holds everything you need to do.
-- **Guidance:** Read `guide:engineering-best-practices.md` for review standards, and, when you review the whole change, `guide:test-guide.md` and `guide:doc-writing-guide.md` for its tests and docs.
+- **Guidance:** Read `guide:engineering-best-practices.md` for review standards, `guide:test-guide.md` for its budgets and invariants, and, when you review the whole change, both that guide and `guide:doc-writing-guide.md` for its tests and docs.
 
 Also read the Project's code, tests and any linked Research tickets as the work needs.
 
@@ -50,7 +50,7 @@ End with Tool feedback, as `~/.sdlc/install/workflow.md` says.
 
 ## Review judgement
 
-Report every Guidance Document breach, however small, except those an entry in `## Guide exceptions` covers on the ticket you're reviewing or its parents, so review respects the Managing Intelligence's approved exceptions.
+Report every Guidance Document breach, however small, including a standing budget or invariant, such as a performance budget, that the change could break even when its ticket doesn't mention it, because a change checked only against its ticket can pass while breaking one. Skip those an entry in `## Guide exceptions` covers on the ticket you're reviewing or its parents, so review respects the Managing Intelligence's approved exceptions.
 
 Focus on substantive, actionable issues in the assigned changes, in proportion to the requirements. Separate engineering defects from personal style preferences so review does not create unnecessary work.
 
