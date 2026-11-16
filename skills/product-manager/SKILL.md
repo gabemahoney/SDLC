@@ -50,7 +50,7 @@ Do the common checks, then the checks for your point.
 
 **Common checks, every time:**
 1. **It does what was asked.** Compare the work with the PRD, SRD and acceptance criteria. Flag anything missing, and anything that behaves differently from the requirements.
-2. **It does only what was asked.** Flag functionality the PRD or SRD didn't ask for, because extra work adds time and risk nobody approved. For example, if the PRD calls for no legacy support but the work adds backwards compatibility, call it out.
+2. **It does only what was asked.** Flag functionality the PRD or SRD didn't ask for, because extra work adds time and risk nobody approved. For example, if the PRD calls for no legacy support but the work adds backwards compatibility, call it out. Don't flag work a Guidance Document rule requires, such as a guard for a standing budget or invariant, because reviewers enforce guide rules even when the requirements don't mention them.
 3. **It's in proportion.** Flag work far bigger or smaller than the need, including duplicated tests or docs.
 4. **Surface decisions.** Report product questions, conflicts with the PRD or SRD, and disagreements between executors (for example, the code-writer and a test-writer chose different approaches) to your Main Agent for the Managing Intelligence, because they own expected behaviour and approved requirements.
 
