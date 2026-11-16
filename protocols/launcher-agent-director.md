@@ -6,7 +6,7 @@ Use agent-director, with each launch's template chosen as the Agent Protocol Fil
 
 ## Main Agents and Child Agents
 
-Both run in their own agent-director sessions. The Managing Intelligence launches Main Agents; a Main Agent launches its Child Agents. A Main Agent sends work at launch and follow-ups with `send-keys`. A Child Agent ends its turn with its report or question, and its Main Agent reads it from the pane. Decisions needing the Managing Intelligence go through the Main Agent.
+Both run in their own agent-director sessions. The Managing Intelligence launches Main Agents; a Main Agent launches its Child Agents. A Main Agent sends work at launch and follow-ups with `send-keys`. A Child Agent ends its turn with its report or question, or where it saved a long one, and its Main Agent reads it from the pane. In each launch, a Main Agent names a report file outside any repo, so a long report has a home that stays out of commits. Decisions needing the Managing Intelligence go through the Main Agent.
 
 ## Launching a Main Agent
 
@@ -31,7 +31,7 @@ Resolve the Child Agent's Thinking Level through `setting:levels` alone and use 
 
 ## Reporting to your Main Agent
 
-End your turn with your report or question as the final message, so your Main Agent can read it.
+End your turn with your report or question as the final message, so your Main Agent can read it. If it is longer than a short message, write all of it, Tool feedback included, to the file your Main Agent named, or to a ticket section where your skill already records that content, and make the final message its location and a one-line summary, because a pane may keep only its last screen. Any Child Agent may write that file, whatever its skill's Writes allow, because writing it is reporting.
 
 ## Knowing when a Child Agent's state changes
 
@@ -49,7 +49,7 @@ On any other state, read that Child Agent's pane:
 agent-director read-pane --instance-id '<id>' --n-lines 80
 ```
 
-`waiting` means its turn ended: read the pane for its report or question. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped. After you act on it, wait again while work is outstanding. A Codex Child Agent can stay `working` after a model error, so read its pane when the watcher reports it unchanged for a long time or returns with no change, or, with fallback checks, once its state hasn't changed for a long time.
+`waiting` means its turn ended: read the pane for its report or question, and any file or section it names. `check_permission` means it needs a permission decision. `ended` or `missing` means it stopped. After you act on it, wait again while work is outstanding. A Codex Child Agent can stay `working` after a model error, so read its pane when the watcher reports it unchanged for a long time or returns with no change, or, with fallback checks, once its state hasn't changed for a long time.
 
 ## Resuming a Child Agent
 
