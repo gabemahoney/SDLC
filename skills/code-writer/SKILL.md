@@ -44,7 +44,7 @@ None: you perform the assigned implementation yourself.
 ## Writes
 
 - Change only source files, plus tests and docs when Purpose gives you them, because other executors own the rest. Leave changes uncommitted, because the Main Agent owns commits.
-- In fix-bug's small pipeline, write the regression tests before the fix and report failing-before and passing-after results, commands, revisions and coverage limits to fix-bug, so the tests prove they catch the defect.
+- In fix-bug's small pipeline, write the regression tests before the fix, run them in the environment the Bug reports, and report failing-before and passing-after results, commands, that environment, revisions and coverage limits to fix-bug, so the tests prove they catch the defect.
 - Set each assigned Subtask `active` when starting and `done` when complete, so its status tracks your work.
 - On a Subtask, record only deviations with reasons, unfinished work, and effects on documentation or other work under `## Progress`, so the Main Agent can coordinate what remains. On a Bug, report them to fix-bug instead, because several Child Agents work on one Bug at once and fix-bug records them.
 

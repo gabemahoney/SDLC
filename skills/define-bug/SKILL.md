@@ -39,7 +39,7 @@ Run only when all of these are true:
 
 1. **Check the expected behaviour.** Compare the report's expected result with what the Project's user and internal docs say the software should do, because behaviour the docs describe as a design choice isn't a Bug. If they show the reported behaviour is intended, mark it `invalid` as step 4 describes, citing the docs. The Managing Intelligence settles expected behaviour the docs leave unclear.
 
-2. **Reproduce the Bug** in the main checkouts, at the boundary where the real interaction happens, because an isolated component test can miss the reported failure. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. If reproducing it would need tracked repository files edited, use source evidence instead, citing the code and why it proves the conclusion. Record what ran and what it showed, keeping what you saw separate from what you infer.
+2. **Reproduce the Bug** in the main checkouts, at the boundary where the real interaction happens and in the environment the Bug reports, because an isolated component test or a cleaner environment can miss the reported failure. Put scratch scripts and inputs in `<Project Folder>/.scratch/<Bug ID>/`, so tracked repository files stay unchanged; build output in the checkouts is fine. If reproducing it would need tracked repository files edited, use source evidence instead, citing the code and why it proves the conclusion. Record what ran and what it showed, keeping what you saw separate from what you infer.
 
 3. **Write up the report** using `guide:bug-writing-guide.md`, from the original report and what you found, so fix-bug has one current account of the defect.
 
@@ -58,7 +58,7 @@ Update the Bug in the Bugs store, setting its status in step 4:
 
 - `## Report`: the current write-up, holding whatever `guide:bug-writing-guide.md` says a report contains.
 - `## Validation`: evidence, conclusion and anything you couldn't establish.
-- `## Reproduction`: commands or scripts, inputs, setup, the code revision, and the expected and observed results, so fix-bug can rerun the reported scenario. Include each repo's main checkout path for the repos the reproduction touched and the repos the fix is likely to change, and the code at fault as `file:line` if you found it, so fix-bug can set up their worktrees and size the fix. If it cannot run, say why.
+- `## Reproduction`: commands or scripts, inputs, setup, the environment they ran in, the code revision, and the expected and observed results, so fix-bug can rerun the reported scenario. Include each repo's main checkout path for the repos the reproduction touched and the repos the fix is likely to change, and the code at fault as `file:line` if you found it, so fix-bug can set up their worktrees and size the fix. If it cannot run, say why.
 - `## Decisions`: the Managing Intelligence's decisions.
 
 Before you finish, attach any script or input fix-bug needs to rerun the reproduction to the Bug, through `protocol:ticket.md`, and point `## Reproduction` at the attached copies, then delete the scratch files you made there.

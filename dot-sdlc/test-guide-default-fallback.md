@@ -42,7 +42,7 @@ Write files only under a temporary directory, never in the repo or a real shared
 
 ## Cover regressions where they occur
 
-Exercise the boundary where the defect occurs. Use unit coverage for an isolated rule and integration coverage for interacting components, because a component test can pass while the reported interaction still fails.
+Exercise the boundary and environment where the defect occurs, using unit coverage for an isolated rule and integration coverage for interacting components, because a component test or a cleaner environment can pass while the reported interaction still fails.
 
 ## Modelling for tractability
 

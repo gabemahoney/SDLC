@@ -45,7 +45,7 @@ Run only when all of these are true:
 
    **Run the commit check yourself** for every code folder the fix changed, as the Checks rule says. Send failures back through your pipeline until it passes.
 
-6. **Test the fix.** Rerun every scenario under `## Reproduction` and every noted failure to check the Bug is gone, then pass the Integration gate.
+6. **Test the fix.** Rerun every scenario under `## Reproduction` and every noted failure, in the environment the Bug reports, to check the Bug is gone, then pass the Integration gate.
 
 7. **Commit** in each worktree the fix changed.
 
@@ -96,7 +96,7 @@ If fixes stop making progress, stop for the Managing Intelligence, so a stuck fi
 
 ## Regression evidence
 
-Except in the docs-only pipeline, each scenario under `## Reproduction` and each failure noted under `## Decisions` needs an automated regression test that fails before the fix and passes after it, because a passing test alone doesn't prove it catches the defect. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
+Except in the docs-only pipeline, each scenario under `## Reproduction` and each failure noted under `## Decisions` needs an automated regression test that fails before the fix and passes after it, run in the environment the Bug reports, such as the same tool, shell or process, because a passing test alone doesn't prove it catches the defect and a cleaner environment can pass while the defect remains. If you can't get this evidence, ask the Managing Intelligence what verification is enough.
 
 ## Integration gate
 
